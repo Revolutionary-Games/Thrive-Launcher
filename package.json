@@ -16,5 +16,8 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "~1.6.2"
+  },
+  "dependencies": {
+    "strip-json-comments": "^2.0.1"
   }
 }

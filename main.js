@@ -9,6 +9,8 @@ const BrowserWindow = electron.BrowserWindow
 const path = require('path')
 const url = require('url')
 
+const os = require('os');
+
 
 //
 // Set this to true if you want to open the dev console
@@ -58,6 +60,9 @@ function createWindow () {
 
     // Version info stuff
     // process.versions.node process.versions.chrome process.versions.electron
+    //console.log("os: " + os.platform() + " arch: " + os.arch());
+    
+    
 }
 
 // This method will be called when Electron has finished

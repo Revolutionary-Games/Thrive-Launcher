@@ -120,6 +120,16 @@ hr {
     background: rgba(20, 20, 20, 1);
 }
 
+#playText:hover {
+
+    background: #009ac1;
+}
+
+#playComboPopup:hover {
+
+    background: #009ac1;
+}
+
 /* Button Stuff */
 
 .Clickable {

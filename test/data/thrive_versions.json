@@ -1,0 +1,69 @@
+// This is a sample file of how thrive version file that is downloaded
+// should look like
+
+{
+    "platforms": [
+        
+        {
+            // These ids should stay the same, same as the version ids
+            "id": 1,
+            "name": "Windows 32-bit",
+            // from os.arch
+            "arch": "x86",
+            // from os.platform
+            "os": "win32"
+        },
+        
+        {
+            "id": 2,
+            "name": "Windows 64-bit",
+            "arch": "x64",
+            "os": "win32"
+        },
+        
+        {
+            "id": 3,
+            "name": "Linux x64",
+            // from os.arch
+            "arch": "x64",
+            // from os.platform
+            "os": "linux"
+        }
+    ],
+    
+    "latest": [
+
+        {
+            "type": "stable",
+            "id": 1
+        }
+    ],
+    
+    "versions": [
+
+        {
+            // Unique id of the release
+            "id": 1,
+            "releaseNum": "0.3.3",
+
+            "platforms": [
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.3.3/LINUX_Thrive-v0.3.3.7z",
+                    // sha256 hash of the file, to verify downloads
+                    "hash": "1ba907a940655022c8f05a301c5305a67ff711fa7e3ef5783d6a2a39d1f2374f"
+                },
+
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.3.3/WINDOWS_Thrive-v0.3.3.zip",
+                    "hash": ""
+                }
+            ]
+        }
+    ]
+    
+    
+
+}
+

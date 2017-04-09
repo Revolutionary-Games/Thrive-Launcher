@@ -4,12 +4,37 @@
 "use strict";
 
 const fs = require('fs');
+const path = require('path');
+const assert = require('assert');
+
+var {ipcRenderer, remote} = require('electron');
+
+const versionInfo = require('./version_info');
 
 
-// document.addEventListener("DOMContentLoaded", function(event) {
-// }
+//! Parses version information from data and adds it to all the places
+function onVersionDataReceived(data){
 
-//document.createElement("div")
+    versionInfo.parseData(data);
+
+    assert(versionInfo.getVersionData().versions);
+    
+    updatePlayButton();
+}
+
+
+fs.readFile(path.join(remote.app.getAppPath(), 'test/data/thrive_versions.json'),
+            "utf8",
+            function (err,data){
+                
+                if (err) {
+                    return console.log(err);
+                }
+
+                onVersionDataReceived(data);
+            });
+
+
 document.getElementById("text").textContent =
     "This would be result of some discourse API call.";
 
@@ -18,7 +43,41 @@ let playButton = document.getElementById("playButton");
 
 let playButtonText = document.getElementById("playText");
 
-playButtonText.textContent = "Play 0.3.3 (Current)";
+playButtonText.textContent = "Retrieving version information...";
+
+//! Called once version info is loaded
+function updatePlayButton(){
+
+    let version = versionInfo.getRecommendedVersion();
+
+    let dl = versionInfo.getDownloadForPlatform(version.id);
+    
+    playButtonText.textContent = "Play " + version.releaseNum +
+        "(Current)";
+
+    console.log("dl: " + dl.url);
+    
+}
+
+playButtonText.addEventListener("click", function(event){
+
+    console.log("play clicked");
+    
+});
+
+console.log("play clicked");
+
+
+let playComboPopup = document.getElementById("playComboPopup");
+
+playComboPopup.addEventListener("click", function(event){
+
+    console.log("open combo popup");
+    
+});
+
+
+
 
 
 
