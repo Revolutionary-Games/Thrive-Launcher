@@ -1,3 +1,5 @@
+"use strict";
+
 const electron = require('electron')
 // Module to control application life.
 const app = electron.app
@@ -7,6 +9,12 @@ const BrowserWindow = electron.BrowserWindow
 const path = require('path')
 const url = require('url')
 
+
+//
+// Set this to true if you want to open the dev console
+//
+const openDev = false;
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -15,23 +23,27 @@ let mainWindow
 function createWindow () {
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 800, height: 600,
+        width: 1200 + (openDev ? 400 : 0), height: 700,
         // This would disable the system title bar and frame window
         // so if this is false we need a custom window top bar
         frame: true
     });
+    
     // Remove the menu bar with entries like "file" and "edit"
-    mainWindow.setMenu(null);
+    if(!openDev)
+        mainWindow.setMenu(null);
 
     // and load the index.html of the app.
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'index.html'),
+        pathname: path.join(app.getAppPath(), 'index.html'),
         protocol: 'file:',
         slashes: true
     }));
 
     // Open the DevTools.
-    //mainWindow.webContents.openDevTools()
+    if(openDev){
+        mainWindow.webContents.openDevTools();
+    }
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
@@ -40,6 +52,12 @@ function createWindow () {
         // when you should delete the corresponding element.
         mainWindow = null
     });
+
+    // Startup checks //
+
+
+    // Version info stuff
+    // process.versions.node process.versions.chrome process.versions.electron
 }
 
 // This method will be called when Electron has finished

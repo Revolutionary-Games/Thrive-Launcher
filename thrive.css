@@ -1,0 +1,129 @@
+/*
+  Thrive style for the launcher
+*/
+
+/* Thrive site font */
+body {
+    font-family: Roboto;
+}
+
+/* 100% height */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    background-image: url('assets/Planet-1.jpg');
+}
+
+h1, h2 {
+    color: #FFFFFF;
+    font-family: Century Gothic, Arial, sans-serif;
+    font-size: 2.5em;
+    text-align: justify;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+a {
+    color: #6ACDEB;
+}
+
+a:hover {
+    color: #56A7BF;
+}
+
+hr {
+
+    /*border-color: linear-gradient(100deg, blue, red);*/
+    border-color: #00ffff;
+}
+
+.Inline {
+
+    display: inline-block;
+}
+
+/* News boxes */
+.ContentBlock {
+
+    overflow: auto;
+    display: inline-block;
+    height: auto;
+    width: auto;
+    vertical-align: top;
+
+    position: absolute;
+
+    background: linear-gradient(to top left, rgb(68, 68, 68), rgba(48, 48, 48, 0.7));
+}
+
+.Post > p {
+
+    color: #DEDEDE;
+}
+
+.Post {
+
+    color: #00ffff;
+}
+
+#buttonContainer {
+
+    height: 10%;
+    max-height: 10%;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    overflow: hidden;
+    text-align: center;
+
+    border-top: 1px solid rgba(68, 68, 68, 0.46);
+
+    background: linear-gradient(110deg, rgb(68, 68, 68), rgba(48, 48, 48, 0.7));
+}
+
+#innerButtons {
+
+    display: inline-block;
+    height: auto;
+    width: auto;
+
+    position: relative;
+    top: 50%;
+    transform: perspective(1px) translateY(-50%);
+}
+
+/* A nice green colour: #73AD21 */
+
+.BottomButton {
+
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+
+    color: #DEDEDE;
+    border-radius: 5px;
+    background: rgba(43, 43, 43, 0.9);
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    cursor: pointer;
+}
+
+.BottomButton:hover {
+
+    background: rgba(20, 20, 20, 1);
+}
+
+/* Button Stuff */
+
+.Clickable {
+
+    
+}
+

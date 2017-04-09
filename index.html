@@ -2,18 +2,72 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="thrive.css" rel="stylesheet"> 
+    <title>Thrive Launcher</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-  </body>
+    
+    <span class="ContentBlock"
+          style="height: 90%; width: 40%; top: 0px; left: 0px; border-right: 1px solid 
+                 rgba(68, 68, 68, 0.46)">
 
+      <h2>Development Forums</h2>
+      <hr>
+
+      <span class="Post">
+        And here there would be the latest posts on the dev forums
+
+        <p id="text">
+          test text
+        </p>
+      </span>
+    </span>
+
+    <span class="ContentBlock"
+          style="height: 90%; width: calc(60% - 1px); top: 0px; left: calc(40% + 1px);">
+
+      <h2>News</h2>
+      <hr>
+      <!-- <iframe src="https://boostslair.com" -->
+      <!--         style="height: 80%; width: 100%; box-sizing: border-box;"> -->
+      <!-- </iframe> -->
+      <span class="Post">
+        news text that goes here
+      </span>
+      
+    </span>
+
+    <div id="buttonContainer">
+
+      <span id="innerButtons">
+
+        <div id="cogbutton" class="BottomButton" style="background: none;">
+          <p style="text-align: right;">
+            <img src="assets/gear.png" style="width: 36px; height: 36px;">
+          </p>
+        </div>
+
+        <div id="playButton" class="BottomButton"
+             style="font-size: 2.3em; border: 2px solid #00ffff; background: #007fc1;">
+          
+          <span id="playText" class="Inline" style="border-right: 2px solid #00ffff;">
+            Play
+          </span>
+          <span class="Inline">
+            ^
+          </span>
+        </div>
+
+        <div id="linksButton" class="BottomButton" style="">
+          <p style="text-align: left;">
+            Links
+          </p>
+        </div> 
+      </span>
+    </div>
+  </body>
   <script>
-    // You can also require other files to run in this process
     require('./renderer.js')
   </script>
 </html>
