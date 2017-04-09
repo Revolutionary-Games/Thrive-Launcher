@@ -45,19 +45,6 @@ let playButtonText = document.getElementById("playText");
 
 playButtonText.textContent = "Retrieving version information...";
 
-//! Called once version info is loaded
-function updatePlayButton(){
-
-    let version = versionInfo.getRecommendedVersion();
-
-    let dl = versionInfo.getDownloadForPlatform(version.id);
-    
-    playButtonText.textContent = "Play " + version.releaseNum +
-        "(Current)";
-
-    console.log("dl: " + dl.url);
-    
-}
 
 playButtonText.addEventListener("click", function(event){
 
@@ -75,6 +62,39 @@ playComboPopup.addEventListener("click", function(event){
     console.log("open combo popup");
     
 });
+
+
+//! Called once version info is loaded
+function updatePlayButton(){
+
+    playButtonText.textContent = "Processing Version Data...";
+
+    let version = versionInfo.getRecommendedVersion();
+
+    let dl = versionInfo.getDownloadForPlatform(version.id);
+
+    // Verify retrieve logic
+    assert(versionInfo.getCurrentPlatform().compare(versionInfo.getPlatformByID(dl.os)));
+    
+    playButtonText.textContent = "Play " + version.releaseNum +
+        "(Current)";
+
+    playButtonText.dataset.versionObj = version;
+    playButtonText.dataset.selectedID = version.id;
+    playButtonText.dataset.download = dl;
+
+    console.log("dl: " + dl.url);
+
+
+    // Dump the other versions to be selected in the combo box thing //
+    let options = versionInfo.getAllValidVersions();
+
+    playComboPopup.dataset.options = options;
+
+    console.log("All valid versions: " + options.length);
+    
+}
+
 
 
 

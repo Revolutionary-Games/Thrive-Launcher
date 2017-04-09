@@ -10,7 +10,16 @@ function parseData(data){
     
     versionData = JSON.parse(stripJsonComments(data));
 
-};
+    // Set recommended version data //
+    for(let tags of versionData.latest){
+
+        if(tags.type == "stable"){
+            let ver = getVersionByID(tags.id);
+
+            ver.stable = true;
+        }
+    }
+}
 
 function getCurrentPlatform(){
 
@@ -79,10 +88,40 @@ function getRecommendedVersion(type = "stable"){
     return null;
 }
 
+// Returns objects with "version" and "download" items
+function getAllValidVersions(platform = getCurrentPlatform()){
+
+    let options = [];
+
+    for(let ver of versionData.versions){
+
+        // Add to options if a valid download is found
+        for(let dl of ver.platforms){
+
+            if(platform.compare(getPlatformByID(dl.os))){
+
+                options.push(
+                    {
+                        version: ver,
+                        download: dl
+                    });
+            }
+        }
+    }
+    
+    return options;
+}
+
 
 module.exports.getVersionData = function(){ return versionData };
 module.exports.parseData = parseData;
 module.exports.getRecommendedVersion = getRecommendedVersion;
 module.exports.getVersionByID = getVersionByID;
 module.exports.getDownloadForPlatform = getDownloadForPlatform;
+module.exports.getPlatformByID = getPlatformByID;
+module.exports.getCurrentPlatform = getCurrentPlatform;
+module.exports.getAllValidVersions = getAllValidVersions;
+
+
+
 
