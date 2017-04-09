@@ -1,0 +1,20 @@
+{
+  "name": "thrive-launcher",
+  "version": "1.0.0",
+  "description": "Thrive Launcher manages downloading Thrive releases",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/Revolutionary-Games/Thrive-Launcher",
+  "keywords": [
+    "Thrive",
+    "launcher",
+    "installer"
+  ],
+  "author": "Revolutionary Games",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "~1.6.2"
+  }
+}
