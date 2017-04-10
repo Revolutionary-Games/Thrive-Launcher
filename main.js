@@ -11,8 +11,6 @@ const url = require('url')
 
 const os = require('os');
 
-const $ = require('jquery');
-
 //
 // Set this to true if you want to open the dev console
 //
@@ -39,8 +37,6 @@ function createWindow () {
         
         backgroundColor: '#404040'
     });
-
-    mainWindow.$ = $;
 
     if(!openDev){
         mainWindow.once('ready-to-show', () => {

@@ -19,6 +19,14 @@ const  url = require("url");
 
 const $ = require('jquery');
 
+
+const { Modal } = require('./modal');
+
+
+const linksModal = new Modal("linksModal", "linksModalDialog", {
+    closeButton: "linksClose"
+});
+
 // http://ourcodeworld.com/articles/read/228/how-to-download-a-webfile-with-electron-save-it-and-show-download-progress
 // With some modifications
 function downloadFile(configuration){
@@ -111,12 +119,12 @@ let modal = document.getElementById('myModal');
 let modalDialog = document.getElementById('myModalDialog');
 
 // Get the <span> element that closes the modal
-let span = document.getElementsByClassName("close")[0];
+let span = document.getElementById("myModalClose");
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
 
-    $( modalDialog ).slideUp( "fast", function() {
+    $( modalDialog ).slideUp( 400, function() {
         modal.style.display = "none";
     });
 }
@@ -125,7 +133,7 @@ span.onclick = function() {
 window.onclick = function(event) {
     if (event.target == modal) {
 
-        $( modalDialog ).slideUp( "fast", function() {
+        $( modalDialog ).slideUp( 400, function() {
             modal.style.display = "none";
         });
        
@@ -149,7 +157,7 @@ playButtonText.addEventListener("click", function(event){
     // Open play modal thing
     modal.style.display = "block";
     
-    $( modalDialog ).slideDown( "fast", function() {
+    $( modalDialog ).slideDown( 400, function() {
         // Animation complete.
     });
     
@@ -311,6 +319,15 @@ newsContent.textContent = "Loading...";
 devForumPosts.textContent = "Loading...";
 
 loadNews();
+
+
+// Links button 
+let linksButton = document.getElementById("linksButton");
+
+linksButton.addEventListener("click", function(event){
+
+    linksModal.show();
+});
 
 
 
