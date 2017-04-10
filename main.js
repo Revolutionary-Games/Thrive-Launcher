@@ -11,7 +11,7 @@ const url = require('url')
 
 const os = require('os');
 
-
+const $ = require('jquery');
 
 //
 // Set this to true if you want to open the dev console
@@ -29,7 +29,7 @@ let mainWindow = null;
 function createWindow () {
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 1200 + (openDev ? 400 : 0), height: 700,
+        width: 1200 + (openDev ? 600 : 0), height: 700,
         // This would disable the system title bar and frame window
         // so if this is false we need a custom window top bar
         frame: true,
@@ -39,6 +39,8 @@ function createWindow () {
         
         backgroundColor: '#404040'
     });
+
+    mainWindow.$ = $;
 
     if(!openDev){
         mainWindow.once('ready-to-show', () => {

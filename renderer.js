@@ -15,10 +15,12 @@ const versionInfo = require('./version_info');
 
 const retrieveNews = require('./retrieve_news');
 
+const  url = require("url");
 
+const $ = require('jquery');
 
 // http://ourcodeworld.com/articles/read/228/how-to-download-a-webfile-with-electron-save-it-and-show-download-progress
-
+// With some modifications
 function downloadFile(configuration){
     return new Promise(function(resolve, reject){
         // Save variable to know progress
@@ -30,12 +32,16 @@ function downloadFile(configuration){
             uri: configuration.remoteFile
         });
 
-        var out = fs.createWriteStream(configuration.localFile);
-        req.pipe(out);
+        var out = fs.createWriteStream(configuration.localFile, { encoding: null });
+        //req.pipe(out);
+
+        let contentType = "unknown";
 
         req.on('response', function ( data ) {
             // Change the total bytes value to get progress later.
             total_bytes = parseInt(data.headers['content-length' ]);
+
+            contentType = data.headers['content-type'];
         });
 
         // Get progress if callback exists
@@ -45,16 +51,28 @@ function downloadFile(configuration){
                 received_bytes += chunk.length;
 
                 configuration.onProgress(received_bytes, total_bytes);
+
+                out.write(chunk)
             });
         }else{
             req.on('data', function(chunk) {
                 // Update the received bytes
                 received_bytes += chunk.length;
+                out.write(chunk)
             });
         }
 
         req.on('end', function() {
-            resolve();
+            out.end();
+            resolve(contentType);
+        });
+
+        req.on('error', function(err){
+
+            out.end();
+            fs.unlinkSync(configuration.localFile);
+            reject(err);
+            
         });
     });
 }
@@ -73,7 +91,7 @@ function onVersionDataReceived(data){
     updatePlayButton();
 }
 
-
+// Load dummy version data //
 fs.readFile(path.join(remote.app.getAppPath(), 'test/data/thrive_versions.json'),
             "utf8",
             function (err,data){
@@ -86,6 +104,38 @@ fs.readFile(path.join(remote.app.getAppPath(), 'test/data/thrive_versions.json')
             });
 
 
+
+// Get the modal
+let modal = document.getElementById('myModal');
+
+let modalDialog = document.getElementById('myModalDialog');
+
+// Get the <span> element that closes the modal
+let span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+
+    $( modalDialog ).slideUp( "fast", function() {
+        modal.style.display = "none";
+    });
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+
+        $( modalDialog ).slideUp( "fast", function() {
+            modal.style.display = "none";
+        });
+       
+    }
+}
+
+
+
+
+
 // Buttons
 let playButton = document.getElementById("playButton");
 
@@ -96,9 +146,38 @@ playButtonText.textContent = "Retrieving version information...";
 
 playButtonText.addEventListener("click", function(event){
 
+    // Open play modal thing
+    modal.style.display = "block";
+    
+    $( modalDialog ).slideDown( "fast", function() {
+        // Animation complete.
+    });
+    
+    
+
     console.log("play clicked");
 
-    mkdirp("staging/download/", function (err){
+    assert(playButtonText.dataset.selectedID);
+
+    let version = versionInfo.getVersionByID(playButtonText.dataset.selectedID);
+
+    assert(version);
+
+    let download = versionInfo.getDownloadForPlatform(version.id);
+
+    assert(download);
+
+    console.log("Playing thrive version: " + version.releaseNum);
+
+    let parsedUrl = url.parse(download.url);
+    let fileName = path.basename(parsedUrl.pathname);
+    
+    const dlPath = "staging/download/";
+
+
+    mkdirp(dlPath, function (err){
+
+        const localTarget = dlPath + fileName;
         
         if(err){
             
@@ -106,21 +185,39 @@ playButtonText.addEventListener("click", function(event){
             
         } else {
 
+            console.log("skipping dl because testing");
+            return;
             downloadFile({
-                remoteFile: "https://fp.boostslair.com/images/cards/Garry.png",
-                localFile: "staging/download/garry.png",
+                remoteFile: download.url,
+                localFile: localTarget,
                 
                 onProgress: function (received, total){
                     
                     var percentage = (received * 100) / total;
-                    console.log(percentage + "% | " + received + " bytes out of " + total
-                                + " bytes.");
+                    //console.log(percentage + "% | " + received + " bytes out of " + total
+                    //            + " bytes.");
                 }
                 
-            }).then(function(){
+            }).then(function(contentType){
+                
+                if(![ "application/x-7z-compressed",
+                      "application/zip",
+                      "application/octet-stream"].includes(contentType))
+                {
+
+                    console.error("download type is wrong: " + contentType);
+                    fs.unlinkSync(localTarget);
+                    alert("type not supported: " + contentType);
+                    return;
+                }
                 
                 alert("File succesfully downloaded");
-            });            
+                
+            }, function(error){
+                
+                console.log("DL failed: " + error);
+                alert("DL failed: " + error);
+            });
         }
     });
     
@@ -153,9 +250,7 @@ function updatePlayButton(){
     playButtonText.textContent = "Play " + version.releaseNum +
         (version.stable ? "(Stable)" : "");
 
-    playButtonText.dataset.versionObj = version;
     playButtonText.dataset.selectedID = version.id;
-    playButtonText.dataset.download = dl;
 
     //console.log("dl: " + dl.url);
 
@@ -216,6 +311,9 @@ newsContent.textContent = "Loading...";
 devForumPosts.textContent = "Loading...";
 
 loadNews();
+
+
+
 
 
 

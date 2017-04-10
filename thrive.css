@@ -144,3 +144,53 @@ hr {
     
 }
 
+
+
+ /* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* Modal Content/Box */
+.modal-content {
+    display: none;
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    /* animation-name: animatetop; */
+    /* animation-duration: 0.4s */
+}
+
+/* @keyframes animatetop { */
+/*     from {margin-top: -50px; opacity: 0} */
+/*     to {margin-top: 15%; opacity: 1} */
+/* } */
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
