@@ -12,14 +12,18 @@ const url = require('url')
 const os = require('os');
 
 
+
 //
 // Set this to true if you want to open the dev console
 //
 const openDev = false;
 
+// When true links are opened in an external browser
+const openLinksInExternal = true;
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+let mainWindow = null;
 
 // Setup code from the electron quickstart
 function createWindow () {
@@ -28,13 +32,20 @@ function createWindow () {
         width: 1200 + (openDev ? 400 : 0), height: 700,
         // This would disable the system title bar and frame window
         // so if this is false we need a custom window top bar
-        frame: true
-    });
-    
-    // Remove the menu bar with entries like "file" and "edit"
-    if(!openDev)
-        mainWindow.setMenu(null);
+        frame: true,
 
+        // This breaks initial layout with dev console enabled
+        show: openDev ? true : false,
+        
+        backgroundColor: '#404040'
+    });
+
+    if(!openDev){
+        mainWindow.once('ready-to-show', () => {
+            mainWindow.show();
+        });
+    }
+    
     // and load the index.html of the app.
     mainWindow.loadURL(url.format({
         pathname: path.join(app.getAppPath(), 'index.html'),
@@ -54,6 +65,15 @@ function createWindow () {
         // when you should delete the corresponding element.
         mainWindow = null
     });
+
+    // Open in browser for links //
+    // Because the forums don't display correctly
+    if(openLinksInExternal){
+        mainWindow.webContents.on('new-window', function(e, url) {
+            e.preventDefault();
+            require('electron').shell.openExternal(url);
+        });
+    }
 
     // Startup checks //
 
@@ -87,5 +107,22 @@ app.on('activate', function () {
     }
 })
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+
+electron.app.on('browser-window-created',function(e, window) {
+
+    if(window === mainWindow || mainWindow === null){
+
+        // Main window
+        
+    } else {
+
+        // Extra window //
+        window.setSize(1000, 900);
+        window.center();
+    }
+
+    // Remove the menu bar with entries like "file" and "edit"
+    if(!openDev)
+        window.setMenu(null);
+});
+

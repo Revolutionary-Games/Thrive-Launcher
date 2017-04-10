@@ -24,7 +24,13 @@ h1, h2 {
     font-size: 2.5em;
     text-align: justify;
     margin-top: 8px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
+
+    padding-left: 5px;
+}
+
+h2 {
+    font-size: 2.4em;
 }
 
 a {
@@ -60,8 +66,9 @@ hr {
     background: linear-gradient(to top left, rgb(68, 68, 68), rgba(48, 48, 48, 0.7));
 }
 
-.Post > p {
+.Post p {
 
+    /* text body colour */
     color: #DEDEDE;
 }
 

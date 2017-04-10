@@ -1,6 +1,8 @@
 // 
 // Functions for working with thrive version objects
 //
+"use strict";
+
 const stripJsonComments = require('strip-json-comments');
 const os = require('os');
 
