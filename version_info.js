@@ -5,6 +5,8 @@
 
 const stripJsonComments = require('strip-json-comments');
 const os = require('os');
+const path = require('path');
+const url = require('url');
 
 var versionData = null;
 
@@ -19,6 +21,20 @@ function parseData(data){
             let ver = getVersionByID(tags.id);
 
             ver.stable = true;
+        }
+    }
+
+    // Add folder names to all downloads //
+    for(let ver of versionData.versions){
+
+        for(let dl of ver.platforms){
+
+            let parsedUrl = url.parse(dl.url);
+            let fileName = path.basename(parsedUrl.pathname);
+            
+            let ext = path.extname(fileName);
+            dl.folderName = path.basename(fileName, ext);
+            dl.fileName = fileName;
         }
     }
 }

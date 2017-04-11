@@ -18,7 +18,9 @@
     "electron": "~1.6.2"
   },
   "dependencies": {
+    "feedparser": "^2.1.0",
     "jquery": "^3.2.1",
+    "js-sha3": "^0.5.7",
     "mkdirp": "^0.5.1",
     "request": "^2.81.0",
     "strip-json-comments": "^2.0.1"

@@ -50,14 +50,15 @@
                 {
                     "os": 3,
                     "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.3.3/LINUX_Thrive-v0.3.3.7z",
-                    // sha256 hash of the file, to verify downloads
-                    "hash": "1ba907a940655022c8f05a301c5305a67ff711fa7e3ef5783d6a2a39d1f2374f"
+                    // sha3-256 hash of the file, to verify downloads
+                    // on linux can be created with: `rhash --sha3-256 file`
+                    "hash": "7a3156f2eb6f86f9e6c6e12a6494cf1d21a062e1ba9493debc3be8f925c1380e"
                 },
 
                 {
                     "os": 1,
                     "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.3.3/WINDOWS_Thrive-v0.3.3.zip",
-                    "hash": ""
+                    "hash": "981443aebc5c1c406072cf8fb2bd37ec7189d71b4a19c749aa97cb2a9eb7ef34"
                 }
             ]
         }

@@ -73,6 +73,16 @@ function createWindow () {
         });
     }
 
+    // Open links in a browser, could probably also open a new electron window
+    // depending on openLinksInExternal, but that hasn't been done
+    mainWindow.webContents.on('will-navigate', function(e, url) {
+
+        if(url != mainWindow.webContents.getURL()) {
+            e.preventDefault();
+            require('electron').shell.openExternal(url);
+        } 
+    });
+
     // Startup checks //
 
 

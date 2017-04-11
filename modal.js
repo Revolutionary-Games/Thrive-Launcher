@@ -13,8 +13,6 @@ class Modal {
     //! closeButton: id of element that when clicked closes this modal dialog
     constructor(backdropID, dialogID, properties = {}) {
 
-        console.log("stuff");
-        
         this.backdrop = document.getElementById(backdropID);
         this.dialog = document.getElementById(dialogID);
 
@@ -34,6 +32,12 @@ class Modal {
 
                 this.closeButton = document.getElementById(properties.closeButton);
             }
+
+            if(properties.onClose != undefined){
+
+                this.onClose = properties.onClose;
+            }
+
         }
         
         this.invariant();
@@ -80,9 +84,17 @@ class Modal {
     //! Hides this dialog
     hide(){
 
+        if(this.onClose){
+            
+            let prevent = this.onClose();
+
+            if(prevent)
+                return;
+        }
+
         $( this.dialog ).slideUp( 400, () => {
             this.backdrop.style.display = "none";
-        });        
+        }); 
     }
     
 }

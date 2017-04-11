@@ -145,6 +145,35 @@ hr {
 }
 
 
+.AfterPlayClose {
+
+    text-align: center;
+    display: inline-block;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    color: #DEDEDE;
+    border-radius: 5px;
+    background: rgba(43, 43, 43, 0.9);
+
+    font-size: 2.3em;
+
+    cursor: pointer;
+}
+
+.AfterPlayClose:hover {
+
+    background: rgba(20, 20, 20, 1);
+}
+
+/** Feed style **/
+.FeedLink {
+
+    margin-left: 15px;
+    color: #DEDEDE;
+}
+
 
  /* The Modal (background) */
 .modal {
@@ -163,10 +192,24 @@ hr {
 .modal-content {
     display: none;
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-top: 9%;
+
+    margin-bottom: auto;
+    
+    /*margin: 15% auto; /* 15% from the top and centered */
+    
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 80%;
+    max-height: 80%;
+
+    overflow: auto;
+    /*overflow: auto;*/
     /* animation-name: animatetop; */
     /* animation-duration: 0.4s */
 }
@@ -190,6 +233,8 @@ hr {
     text-decoration: none;
     cursor: pointer;
 }
+
+
 
 
 
