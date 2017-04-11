@@ -338,6 +338,16 @@ function onThriveFolderReady(version, download){
 //! Called once a file has been downloaded (or existed) and startup should continue
 function onDLFileReady(version, download, fileName){
 
+    // Delete the download progress //
+    let dlProgress = document.getElementById("dlProgress");
+
+    if(dlProgress){
+
+        $( dlProgress ).remove();
+        dlProgress = null;
+    }
+        
+
     const localTarget = dlPath + fileName;
     
     assert(fs.existsSync(localTarget));
