@@ -66,17 +66,6 @@ hr {
     background: linear-gradient(to top left, rgb(68, 68, 68), rgba(48, 48, 48, 0.7));
 }
 
-.Post p {
-
-    /* text body colour */
-    color: #DEDEDE;
-}
-
-.Post {
-
-    color: #00ffff;
-}
-
 #buttonContainer {
 
     height: 10%;
@@ -168,11 +157,63 @@ hr {
 }
 
 /** Feed style **/
-.FeedLink {
+.FeedPost {
 
-    margin-left: 15px;
-    color: #DEDEDE;
+    color: #00ffff;
+    display: block;
 }
+
+.FeedInfoBox {
+
+    padding-left: 15px;
+    color: #DEDEDE;
+    display: block;
+}
+
+.FeedAuthorAndDate {
+
+}
+
+.FeedAuthor {
+
+    display: inline-block;
+    color: #00ffff;
+}
+
+.FeedPreview {
+
+    /* text body colour */
+    color: white;
+    
+    margin-top: 12px;
+    margin-bottom: 30px;
+    margin-left: 3px;
+    margin-right: 3px;
+    
+    /* Margin doesn't work without this */
+    display: block;
+}
+
+.FeedTitle {
+
+    margin-bottom: 5px;
+    margin-top: 2px;
+}
+
+
+.FeedCategories {
+
+    display: block;
+    padding-left: 30px;
+    font-size: 0.8em;
+    color: darkgray;
+}
+
+.RedWordFeedTruncated {
+
+    color: #d43a3a;
+}
+
 
 
  /* The Modal (background) */
