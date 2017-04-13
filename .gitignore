@@ -1,11 +1,11 @@
 node_modules
-thrive-launcher-darwin-x64
-thrive-launcher-linux-armv7l
-thrive-launcher-linux-ia32
-thrive-launcher-linux-x64
-thrive-launcher-mas-x64
-thrive-launcher-win32-ia32
-thrive-launcher-win32-x64
+thrive-launcher-darwin-x64*
+thrive-launcher-linux-armv7l*
+thrive-launcher-linux-ia32*
+thrive-launcher-linux-x64*
+thrive-launcher-mas-x64*
+thrive-launcher-win32-ia32*
+thrive-launcher-win32-x64*
 /staging
 /installed
 
