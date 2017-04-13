@@ -441,7 +441,7 @@ function playPressed(){
 
     playBox.innerHTML = "Playing Thrive " + version.releaseNum +
         "<p id='playingInternalP'>Downloading: " + download.url +
-        "<div id='dlProgress'></div></p>";
+        "</p><div id='dlProgress'></div>";
 
     let fileName = download.fileName;
 
