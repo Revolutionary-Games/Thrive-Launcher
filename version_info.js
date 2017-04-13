@@ -10,6 +10,10 @@ const url = require('url');
 
 var versionData = null;
 
+// If true automatically finds 32 bit windows alternative if download is missing for x64
+const windowsAuto32Bits = true;
+
+
 function parseData(data){
     
     versionData = JSON.parse(stripJsonComments(data));
@@ -51,6 +55,14 @@ function getCurrentPlatform(){
     };
 }
 
+// Helper for getting win 32 bits platform
+function getWin32BitPlatform(){
+
+    let obj = getCurrentPlatform();
+    obj.arch = "x86";
+    obj.platform = "win32";
+}
+
 function getVersionByID(id){
 
     for(let ver of versionData.versions){
@@ -84,6 +96,20 @@ function getDownloadForPlatform(id, platform = getCurrentPlatform()){
                 if(platform.compare(getPlatformByID(dl.os))){
 
                     return dl;
+                }
+            }
+
+            // Win32 workaround check
+            if(windowsAuto32Bits && (os.platform() == "win32" && os.arch == "x64")){
+
+                let platform = getWin32BitPlatform();
+                
+                for(let dl of ver.platforms){
+
+                    if(platform.compare(getPlatformByID(dl.os))){
+
+                        return dl;
+                    }
                 }
             }
             
@@ -123,6 +149,24 @@ function getAllValidVersions(platform = getCurrentPlatform()){
                         version: ver,
                         download: dl
                     });
+                
+            } else {
+
+                // Win32 workaround check
+                if(windowsAuto32Bits && (os.platform() == "win32" && os.arch == "x64")){
+
+                    let platform = getWin32BitPlatform();
+                    
+                    if(platform.compare(getPlatformByID(dl.os))){
+
+                        options.push(
+                            {
+                                version: ver,
+                                download: dl,
+                                win32On64Bit: true
+                            });
+                    }
+                }
             }
         }
     }
