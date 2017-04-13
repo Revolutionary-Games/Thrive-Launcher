@@ -12,7 +12,7 @@ function truncateElement(element, o){
         if(o.length < 1){
 
             // Need to truncate always
-            // Also if we don't remove youtubep players and stuff might stay behind
+            // Also if we don't remove youtube players and stuff might stay behind
             current.remove();
             
             // if(current.text()){
