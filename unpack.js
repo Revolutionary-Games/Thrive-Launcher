@@ -7,22 +7,51 @@ const os = require('os');
 const path = require('path');
 const fs = require('fs');
 
-const exec = require('child_process').exec;
+const { exec, spawn } = require('child_process');
+var { remote } = require('electron');
 
 function sanityEscape(str){
 
-    return str.replace(/\'/gi, '');
+    return str.replace(/\'/gi, '').replace(/\"/gi, '');
 }
 
 function unpackRelease(unpackFolder, targetFolderName, archiveFile){
+    
+    archiveFile = path.join(remote.app.getAppPath(), archiveFile)
+    let target = path.join(remote.app.getAppPath(), unpackFolder, targetFolderName);
 
     return new Promise(function(resolve, reject){
 
         let unpacker;
 
-        if(os.platform == "win32"){
-
-            unpacker = "7zip/7z.exe";
+        if(os.platform() == "win32"){
+            
+            // By default use system installed 7zip
+            const zPaths = ["C:\\Program Files\\7-Zip\\7z.exe", "C:\\Program Files (x86)\\7-Zip\\7z.exe"];
+            
+            for(let z of zPaths){
+                
+                if(fs.existsSync(z)){
+                    
+                    unpacker = z;
+                    break;
+                }
+            }
+            
+            if(!unpacker){
+                
+                // Use packed in version //
+                console.log("No system installed 7z found, using packed in one");
+                
+                unpacker = path.join(remote.app.getAppPath(), "7zip\\7za.exe");
+                
+                if(!fs.existsSync(unpacker)){
+                    reject("You don't have 7Zip installed!. Download here: " +
+                        "http://www.7-zip.org/download.html");
+                        
+                    return;     
+                }
+            }
 
         } else {
 
@@ -35,8 +64,46 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile){
             reject("unpacker (" + unpacker + ") executable is missing");
             return;
         }
+        
+        // Windows hackery        
+        if(os.platform() == "win32"){
+            
+            const unpackProcess = spawn(unpacker, 
+                ['x', sanityEscape(archiveFile), "-O" + sanityEscape(target) + ""], 
+                {
+                    cwd: path.dirname(unpacker)
+                });
 
-        let target = path.join(unpackFolder, targetFolderName);
+            let message = "";
+                
+            unpackProcess.stdout.on('data', (data) => {
+                message += data;
+            });
+
+            unpackProcess.stderr.on('data', (data) => {
+                message += data;
+            });
+
+            unpackProcess.on('error', (err) => {
+                reject("Unpacker failed to start with error: " + err);
+                return;
+            });
+            
+            unpackProcess.on('close', (code) => {
+                
+                if(code !== 0){
+                    console.log(`Unpacker exited with code ${code}`);
+                    
+                    reject("Unpacker exited with code: " + code + ", message: " + message);
+                    return;
+                }
+                
+                resolve();
+                return;
+            });
+            
+            return;
+        }
 
         exec(unpacker + " x '" + sanityEscape(archiveFile) + "' -O'" + sanityEscape(target) +
              "'" ,
