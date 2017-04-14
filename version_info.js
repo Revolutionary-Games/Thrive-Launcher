@@ -61,6 +61,8 @@ function getWin32BitPlatform(){
     let obj = getCurrentPlatform();
     obj.arch = "x86";
     obj.platform = "win32";
+    
+    return obj;
 }
 
 function getVersionByID(id){
@@ -100,7 +102,7 @@ function getDownloadForPlatform(id, platform = getCurrentPlatform()){
             }
 
             // Win32 workaround check
-            if(windowsAuto32Bits && (os.platform() == "win32" && os.arch == "x64")){
+            if(windowsAuto32Bits && (os.platform() == "win32" && os.arch() == "x64")){
 
                 let platform = getWin32BitPlatform();
                 
@@ -153,7 +155,7 @@ function getAllValidVersions(platform = getCurrentPlatform()){
             } else {
 
                 // Win32 workaround check
-                if(windowsAuto32Bits && (os.platform() == "win32" && os.arch == "x64")){
+                if(windowsAuto32Bits && (os.platform() == "win32" && os.arch() == "x64")){
 
                     let platform = getWin32BitPlatform();
                     

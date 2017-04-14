@@ -218,7 +218,7 @@ function onThriveFolderReady(version, download){
     // Check that executable is there //
     let exename;
     
-    if(os.platform == "win32"){
+    if(os.platform() == "win32"){
 
         exename = "Thrive.exe";
         
@@ -569,9 +569,13 @@ function updatePlayButton(){
     assert(version.stable);
 
     let dl = versionInfo.getDownloadForPlatform(version.id);
-
+    
+    // If this is null then we should let the user know that there was no 
+    // preferred version
+    assert(dl);
+    
     // Verify retrieve logic
-    assert(versionInfo.getCurrentPlatform().compare(versionInfo.getPlatformByID(dl.os)));
+    assert(versionInfo.getCurrentPlatform().os == versionInfo.getPlatformByID(dl.os).os);
     
     playButtonText.textContent = "Play " + version.releaseNum +
         (version.stable ? "(Stable)" : "");
