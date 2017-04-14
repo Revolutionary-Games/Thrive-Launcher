@@ -227,6 +227,18 @@ hr {
 
 
 
+
+.UpdateButtonContainer {
+
+    width: 100%;
+    height: auto;
+    display: block;
+    text-align: center;
+    margin-top: 35px;
+    margin-bottom: 10px;
+}
+
+
  /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */

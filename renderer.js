@@ -22,6 +22,10 @@ const retrieveNews = require('./retrieve_news');
 const { Modal } = require('./modal');
 const { unpackRelease, findBinInRelease } = require('./unpack');
 
+// There's warnings that this could expose some server-only data to
+// clients, but we don't have separate things so that shouldn't apply
+var pjson = require('./package.json');
+
 //
 // Settings thing
 //
@@ -30,6 +34,17 @@ const fetchNewsFromWeb = true;
 const linksModal = new Modal("linksModal", "linksModalDialog", {
     closeButton: "linksClose"
 });
+
+const constOldVersionErrorModal = new Modal("errorOldCantStartModal",
+                                            "errorOldCantStartModalDialog", {
+                                                autoClose: false
+                                            });
+
+const updateModal = new Modal("newReleaseAvailableModal",
+                              "newReleaseAvailableModalDialog", {
+                                  autoClose: false,
+                                  closeButton: "newReleaseClose",
+                              });
 
 var playModalQuitDLCancel = null;
 var currentDLCanceled = false;
@@ -119,11 +134,95 @@ function downloadFile(configuration){
 //! Parses version information from data and adds it to all the places
 function onVersionDataReceived(data){
 
-    versionInfo.parseData(data);
+    // Check launcher version //
+    new Promise(function(resolve, reject){
 
-    assert(versionInfo.getVersionData().versions);
-    
-    updatePlayButton();
+        versionInfo.parseData(data);
+
+        assert(versionInfo.getVersionData().versions);
+
+        let dlVersion = versionInfo.getLauncherMeta();
+
+        if(dlVersion.latestVersion == pjson.version){
+
+            console.log("Using latest version: " + dlVersion.latestVersion);
+            
+        } else {
+
+            // Show update asking dialog //
+            updateModal.show();
+            updateModal.onClose = () => {
+
+                resolve();
+            };
+
+            let message = document.createElement("p");
+
+            message.append(
+                document.createTextNode("You are using Thrive launcher version " +
+                                        pjson.version + " but the latest version is " +
+                                        dlVersion.latestVersion));
+
+            let link = document.createElement("a");
+            link.textContent = "Visit releases page";
+
+            const urlTarget = dlVersion.releaseDLURL ||
+                  "https://github.com/Revolutionary-Games/Thrive-Launcher/releases";
+            link.href = urlTarget;
+
+            message.append(document.createElement("br"));
+            message.append(link);
+
+            let textParent = $("#newReleaseAvailableText");
+
+            textParent.empty();
+            textParent.append($(message));
+
+            // Buttons //
+            let container = document.createElement("div");
+
+            container.classList.add("UpdateButtonContainer");
+            
+            let dlnow = document.createElement("div");
+            dlnow.classList.add("BottomButton");
+            dlnow.style.fontSize = "3.4em";
+            dlnow.textContent = "Download Now";
+
+            container.append(dlnow);
+            textParent.append($(container));
+
+
+            dlnow.addEventListener('click', (event) => {
+
+                console.log("Clicked download now");
+                require('electron').shell.openExternal(urlTarget);
+                dlnow.textContent = "Opening link...";
+            });
+            
+            return;
+        }
+        
+        resolve();
+
+    }).then(() => {
+
+        updatePlayButton();
+        
+    }, (err) => {
+
+        // Fail //
+        constOldVersionErrorModal.show();
+
+        if(err){
+
+            let text = document.getElementById("errorOldCantStartText");
+
+            if(text){
+                text.append(document.createElement("br"));
+                text.append(document.createTextNode(" Error message: " + err));
+            }
+        }
+    });
 }
 
 // Load dummy version data //

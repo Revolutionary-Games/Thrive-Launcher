@@ -185,6 +185,12 @@ module.exports.getDownloadForPlatform = getDownloadForPlatform;
 module.exports.getPlatformByID = getPlatformByID;
 module.exports.getCurrentPlatform = getCurrentPlatform;
 module.exports.getAllValidVersions = getAllValidVersions;
+module.exports.getLauncherMeta = () => {
+    return {
+        latestVersion: versionData["launcher-meta"].latestVersion,
+        releaseDLURL: versionData["launcher-meta"].dlURL,
+    };
+};
 
 
 

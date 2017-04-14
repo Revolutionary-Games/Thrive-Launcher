@@ -2,6 +2,13 @@
 // should look like
 
 {
+    // launcher version info
+    "launcher-meta": {
+
+        "latestVersion": "1.0.0",
+        "dlURL": "https://github.com/Revolutionary-Games/Thrive-Launcher/releases"
+    },
+    
     "platforms": [
         
         {
