@@ -22,8 +22,9 @@ const retrieveNews = require('./retrieve_news');
 const { Modal } = require('./modal');
 const { unpackRelease, findBinInRelease } = require('./unpack');
 
-
+//
 // Settings thing
+//
 const fetchNewsFromWeb = true;
 
 const linksModal = new Modal("linksModal", "linksModalDialog", {
