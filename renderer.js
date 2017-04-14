@@ -217,7 +217,7 @@ function onThriveFolderReady(version, download){
     // Check that executable is there //
     let exename;
     
-    if(os.platform == "win32"){
+    if(os.platform() == "win32"){
 
         exename = "Thrive.exe";
         
