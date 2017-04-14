@@ -14,6 +14,9 @@ const moment = require('moment');
 
 const truncate = require('./truncate');
 
+// For user agent version
+var pjson = require('./package.json');
+
 
 //
 // These should be configuration options shown to users
@@ -96,7 +99,7 @@ function parseFeed(feed, resultObj){
         var req = request(feed, {timeout: 10000, pool: false});
         req.setMaxListeners(50);
         // Some feeds do not respond without user-agent and accept headers.
-        req.setHeader('user-agent', 'Thrive-Launcher');
+        req.setHeader('user-agent', "Thrive-Launcher " + pjson.version);
         req.setHeader('accept', 'text/html,application/xhtml+xml');
 
         let feedparser = new FeedParser();
