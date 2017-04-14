@@ -214,6 +214,19 @@ hr {
     color: #d43a3a;
 }
 
+.FeedPost img {
+
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.FeedPost iframe {
+
+    max-width: 100%;
+    /*height: auto;*/
+}
+
 
 
  /* The Modal (background) */
