@@ -225,7 +225,11 @@ hr {
     max-width: 100%;
 }
 
+.emoji {
 
+    width: 24px;
+    heigth: auto;
+}
 
 
 .UpdateButtonContainer {
