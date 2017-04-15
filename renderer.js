@@ -19,7 +19,7 @@ var {ipcRenderer, remote} = require('electron');
 
 const versionInfo = require('./version_info');
 const retrieveNews = require('./retrieve_news');
-const { Modal } = require('./modal');
+const { Modal, ComboBox} = require('./modal');
 const { unpackRelease, findBinInRelease } = require('./unpack');
 
 // There's warnings that this could expose some server-only data to
@@ -36,7 +36,8 @@ const showUnpackMessages = false;
 
 
 // For debugging
-const loadTestVersionData = false;
+const loadTestVersionData = true;
+
 
 const linksModal = new Modal("linksModal", "linksModalDialog", {
     closeButton: "linksClose"
@@ -814,13 +815,28 @@ playButtonText.addEventListener("click", function(event){
 
 let playComboPopup = document.getElementById("playComboPopup");
 
-playComboPopup.addEventListener("click", function(event){
 
-    console.log("open combo popup");
-    
-});
+const versionSelectPopupBackground = document.getElementById("playComboBackground");
+const versionSelectPopup = document.getElementById("versionSelectPopup");
+
 
 var playComboAllChoices = null;
+
+const versionSelectCombo = new ComboBox(versionSelectPopupBackground, versionSelectPopup, {
+
+    
+    closeButton: playComboPopup,
+    onClose: function(){
+
+        
+    },
+    onOpen: function(){
+
+        console.log("open combo popup");
+        this.position(playButton);
+    }
+});
+
 
 //! Called once version info is loaded
 function updatePlayButton(){

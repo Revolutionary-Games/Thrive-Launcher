@@ -312,6 +312,34 @@ hr {
 }
 
 
+.ComboPopup {
+    display: none; 
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0);
+}
+
+.ComboContent {
+
+    background: white;
+    max-height: 60%;
+    height: auto;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    overflow: auto;
+    display: none;
+    padding: 5px;
+    /* this is overwritten when opened */
+    width: 400px;
+}
+
 
 
 
