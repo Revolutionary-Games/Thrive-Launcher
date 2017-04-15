@@ -39,7 +39,18 @@ function parseData(data){
             let ext = path.extname(fileName);
             dl.folderName = path.basename(fileName, ext);
             dl.fileName = fileName;
+
+            dl.getDescriptionString = function(){
+
+                return getPlatformByID(this.os).name;
+            }
         }
+
+        // Add info string method //
+        ver.getDescriptionString = function(){
+
+            return this.releaseNum + (ver.stable ? " (Current)" : "");
+        };
     }
 }
 
@@ -123,6 +134,25 @@ function getDownloadForPlatform(id, platform = getCurrentPlatform()){
     return null;
 }
 
+function getDownloadByOSID(id, osid){
+
+    for(let ver of versionData.versions){
+
+        if(ver.id == id){
+
+            for(let dl of ver.platforms){
+
+                if(osid == dl.os){
+
+                    return dl;
+                }
+            }
+        }
+    }
+    
+    return null;
+}
+
 function getRecommendedVersion(type = "stable"){
     
     for(let ver of versionData.latest){
@@ -191,6 +221,7 @@ module.exports.getLauncherMeta = () => {
         releaseDLURL: versionData["launcher-meta"].dlURL,
     };
 };
+module.exports.getDownloadByOSID = getDownloadByOSID;
 
 
 

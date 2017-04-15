@@ -36,7 +36,7 @@ const showUnpackMessages = false;
 
 
 // For debugging
-const loadTestVersionData = true;
+const loadTestVersionData = false;
 
 
 const linksModal = new Modal("linksModal", "linksModalDialog", {
@@ -696,11 +696,13 @@ function playPressed(){
 
     assert(version);
 
-    let download = versionInfo.getDownloadForPlatform(version.id);
+    let download = versionInfo.getDownloadByOSID(version.id,
+                                                 playButtonText.dataset.selectedDLOS);
 
     assert(download);
 
-    console.log("Playing thrive version: " + version.releaseNum);
+    console.log("Playing thrive version: " + version.getDescriptionString() + " " +
+                download.getDescriptionString());
 
     let playBox = document.getElementById("playModalContent");
 
@@ -834,9 +836,59 @@ const versionSelectCombo = new ComboBox(versionSelectPopupBackground, versionSel
 
         console.log("open combo popup");
         this.position(playButton);
+
+        versionSelectPopup.innerHTML = "";
+
+        // Add versions //
+        for(let version of playComboAllChoices){
+
+            let div = document.createElement("div");
+            div.classList.add("ComboVersionSelect");
+            div.classList.add("Clickable");
+
+            let prefix = "";
+
+            if(version.version.id == playButtonText.dataset.selectedID &&
+               version.download.os == playButtonText.dataset.selectedDLOS)
+            {
+                prefix = "[SELECTED] ";
+            }
+            
+            div.textContent = prefix + version.version.getDescriptionString() + " " +
+                version.download.getDescriptionString();
+
+            versionSelectPopup.append(div);
+
+
+            div.addEventListener("click", function(event){
+
+                console.log("selected new version");
+
+                playButtonText.dataset.selectedID = version.version.id;
+                playButtonText.dataset.selectedDLOS = version.download.os;
+                
+                updatePlayButtonText();
+                versionSelectCombo.hide();
+            });
+        }
     }
 });
 
+//! Updates play button text
+function updatePlayButtonText(){
+
+    let version = versionInfo.getVersionByID(playButtonText.dataset.selectedID);
+
+    assert(version);
+
+    let download = versionInfo.getDownloadByOSID(version.id,
+                                                 playButtonText.dataset.selectedDLOS);
+
+    assert(download);
+    
+    playButtonText.textContent = "Play " + version.getDescriptionString() + " " +
+        download.getDescriptionString();
+}
 
 //! Called once version info is loaded
 function updatePlayButton(){
@@ -856,16 +908,30 @@ function updatePlayButton(){
     // Verify retrieve logic
     assert(versionInfo.getCurrentPlatform().os == versionInfo.getPlatformByID(dl.os).os);
     
-    playButtonText.textContent = "Play " + version.releaseNum +
-        (version.stable ? "(Stable)" : "");
+    playButtonText.textContent = "Play " + version.getDescriptionString() + " " +
+        dl.getDescriptionString();
 
     playButtonText.dataset.selectedID = version.id;
+    playButtonText.dataset.selectedDLOS = dl.os;
+
+    updatePlayButtonText();
 
 
     // Dump the other versions to be selected in the combo box thing //
     let options = versionInfo.getAllValidVersions();
 
     playComboAllChoices = options;
+
+    // Sort the versions //
+    playComboAllChoices.sort(function(a, b) {
+
+        if(a.version.releaseNum < b.version.releaseNum)
+            return 1;
+        if(a.version.releaseNum > b.version.releaseNum)
+            return -1;
+
+        return a.version.download.os < b.version.download.os;
+    });
 
     console.log("All valid versions: " + options.length);
     

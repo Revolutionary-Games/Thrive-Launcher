@@ -79,7 +79,7 @@ hr {
 
     border-top: 1px solid rgba(68, 68, 68, 0.46);
 
-    background: linear-gradient(110deg, rgb(68, 68, 68), rgba(48, 48, 48, 0.7));
+    background: linear-gradient(170deg, rgb(68, 68, 68), rgba(48, 48, 48, 0.7));
 }
 
 #innerButtons {
@@ -130,7 +130,7 @@ hr {
 
 .Clickable {
 
-    
+    cursor: pointer;
 }
 
 
@@ -338,6 +338,17 @@ hr {
     padding: 5px;
     /* this is overwritten when opened */
     width: 400px;
+}
+
+.ComboVersionSelect {
+
+    font-size: 1.4em;
+    background: none;
+}
+
+.ComboVersionSelect:hover {
+
+    background: #00ffff;
 }
 
 
