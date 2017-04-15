@@ -68,7 +68,28 @@
                     "hash": "981443aebc5c1c406072cf8fb2bd37ec7189d71b4a19c749aa97cb2a9eb7ef34"
                 }
             ]
+        },
+
+        {
+            "id": 2,
+            "releaseNum": "0.3.2",
+
+            "platforms": [
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.3.2/LINUX_Thrive.0.3.2.7z",
+
+                    "hash": "457667ce404ebff4e8a0fb42ebc34e9aa577504704babf0311f09071c9d4501b"
+                },
+
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.3.2/WINDOWS_Thrive.v0.3.2.zip",
+                    "hash": "d755839f492353b5b99dc26142c3af9a445ceea4ffbfbe91d01b00d21227d7ac"
+                }
+            ]
         }
+        
     ]
     
     
