@@ -56,7 +56,7 @@ def zipThemUp()
 
   puts "Zipping up releases"
 
-  files = Dir['*'].select {|x| x =~ /.*thrive-launcher-.*-(x64|ia32)/i }
+  files = Dir['*'].select {|x| x =~ /.*thrive-launcher-.*-(x64|ia32)(?!.7z)/i }
 
   files.each{|file|
 
