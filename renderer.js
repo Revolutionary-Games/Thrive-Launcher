@@ -31,6 +31,10 @@ var pjson = require('./package.json');
 //
 const fetchNewsFromWeb = true;
 
+
+// For debugging
+const loadTestVersionData = false;
+
 const linksModal = new Modal("linksModal", "linksModalDialog", {
     closeButton: "linksClose"
 });
@@ -45,6 +49,11 @@ const updateModal = new Modal("newReleaseAvailableModal",
                                   autoClose: false,
                                   closeButton: "newReleaseClose",
                               });
+
+const versionDataFailedModal = new Modal("versionDataDownloadFailedModal",
+                                         "versionDataDownloadFailedModalDialog", {
+                                             autoClose: false
+                                         });
 
 var playModalQuitDLCancel = null;
 var currentDLCanceled = false;
@@ -225,17 +234,152 @@ function onVersionDataReceived(data){
     });
 }
 
-// Load dummy version data //
-fs.readFile(path.join(remote.app.getAppPath(), 'test/data/thrive_versions.json'),
-            "utf8",
-            function (err,data){
-                
-                if (err) {
-                    return console.log(err);
+const locallyCachedDLFile = "staging/saved_version_db.json";
+
+function loadVersionData(){
+
+    if(loadTestVersionData){
+
+        // Load dummy version data //
+        fs.readFile(path.join(remote.app.getAppPath(), 'test/data/thrive_versions.json'),
+                    "utf8",
+                    function (err,data){
+                        
+                        if (err) {
+                            return console.log(err);
+                        }
+
+                        onVersionDataReceived(data);
+                    });
+
+
+    } else {
+
+        request({
+            timeout: 10000,
+            pool: null,
+            uri: "http://revolutionarygamesstudio.com/wp-content/uploads/thrive_versions.jpg",
+            headers: {
+                'User-Agent': "Thrive-Launcher " + pjson.version
+            }
+        }, function (error, response, body){
+
+            if(error || !response || !body || response.statusCode != 200){
+
+                // Unable to connect //
+                // Construct an error message
+                let message = "Unable to download Thrive version information. ";
+
+                // Create a good error message //
+                if(error){
+
+                    message += error;
+
+                } else {
+
+                    if(response.statusCode != 200){
+
+                        message += "File not found on server, status code: " +
+                            response.statusCode;
+
+                    } else {
+
+                        message += "Some other error occurred.";
+                    }
                 }
 
-                onVersionDataReceived(data);
+                console.log(message);
+
+                versionDataFailedModal.show();
+
+                const existsLocalFile = fs.existsSync(locallyCachedDLFile);
+
+                $("#versionDataDownloadFailedText").text(message);
+
+                let container = document.createElement("div");
+
+                container.classList.add("UpdateButtonContainer");
+                
+                let dlnow = document.createElement("div");
+                dlnow.classList.add("BottomButton");
+                dlnow.style.fontSize = "3.4em";
+                dlnow.style.marginRight = "5px";
+                dlnow.textContent = "Retry";
+                
+                container.append(dlnow);
+                
+                dlnow.addEventListener('click', (event) => {
+                    
+                    console.log("Clicked retry");
+                    versionDataFailedModal.hide();
+                    loadVersionData();
+                });
+
+                if(existsLocalFile){
+
+                    let useLocal = document.createElement("div");
+                    useLocal.classList.add("BottomButton");
+                    useLocal.style.fontSize = "3.4em";
+                    useLocal.style.marginLeft = "5px";
+                    useLocal.textContent = "Use Previous Version";
+                    
+                    container.append(useLocal);
+                    
+                    useLocal.addEventListener('click', (event) => {
+                        
+                        console.log("Clicked use local file");
+
+                        fs.readFile(locallyCachedDLFile,
+                                    "utf8",
+                                    function(err, data){
+                                        
+                                        if(err){
+
+                                            console.log(err);
+                                            alert("locally cached file is missing, when " +
+                                                  "it shouldn't be? " + err);
+                                            return;
+                                        }
+
+                                        onVersionDataReceived(data);
+                                    });
+                        
+                        versionDataFailedModal.hide();
+                    });
+                }
+
+                $("#versionDataDownloadFailedText").append($(container));
+                
+                return;
+            }
+
+            console.log("successfully downloaded version information");
+
+            mkdirp(path.dirname(locallyCachedDLFile), function (err){
+                
+                if(err){
+                    
+                    console.error("failed to create staging folder to save " +
+                                  "downloaded version info", err);
+                    return;
+                }
+
+                fs.writeFile(locallyCachedDLFile, body, (err) => {
+                    if(err){
+
+                        console.error("Unable to locally save downloaded version info: " +
+                                      err);
+                    }
+                });
             });
+
+            onVersionDataReceived(body);
+        });
+    }
+};
+
+loadVersionData();
+
 
 
 // Buttons
