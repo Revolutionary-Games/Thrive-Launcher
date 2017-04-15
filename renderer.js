@@ -31,6 +31,9 @@ var pjson = require('./package.json');
 //
 const fetchNewsFromWeb = true;
 
+// Shows output from 7z. Not really usefull as it shows no actual progress
+const showUnpackMessages = false;
+
 
 // For debugging
 const loadTestVersionData = false;
@@ -478,7 +481,8 @@ function onThriveFolderReady(version, download){
 
     status.textContent = "launching...";
 
-    let thrive = child_process.spawn(path.join(remote.app.getAppPath(), binFolder, exename),
+    // cwd is where relative to things are installed
+    let thrive = child_process.spawn(path.join(process.cwd(), binFolder, exename),
                                      [],
                                      {
                                          cwd: binFolder
@@ -627,11 +631,27 @@ function onDLFileReady(version, download, fileName){
 
             // Hash is correct //
             status.innerHTML = "";
-            status.textContent = "Unpacking archive '" + fileName + "'";
+            status.textContent = "Unpacking archive '" + fileName +
+                "'";
+
+            status.append(document.createElement("br"));
+            
+            status.append(document.createTextNode("This may take several minutes to " + 
+                                                  "complete, please be patient."));
+
+            let unpackProgress = null;
+
+            if(showUnpackMessages){
+                
+                unpackProgress = document.createElement("div");
+                unpackProgress.classList.add("UnpackProgressLog");
+                
+                status.append(unpackProgress);
+            }
 
             console.log("beginning unpacking");
 
-            unpackRelease(installPath, download.folderName, localTarget).then(
+            unpackRelease(installPath, download.folderName, localTarget, unpackProgress).then(
                 () => {
 
                     assert(fs.existsSync(path.join(installPath, download.folderName)));

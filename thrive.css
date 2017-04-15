@@ -243,6 +243,15 @@ hr {
 }
 
 
+.UnpackProgressLog {
+
+    width: 100%;
+    height: auto;
+    /* max-height: 350px; */
+    overflow: auto;
+    display: block;
+}
+
  /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
