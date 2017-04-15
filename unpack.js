@@ -15,10 +15,12 @@ function sanityEscape(str){
     return str.replace(/\'/gi, '').replace(/\"/gi, '');
 }
 
-function unpackRelease(unpackFolder, targetFolderName, archiveFile){
-    
-    archiveFile = path.join(remote.app.getAppPath(), archiveFile)
-    let target = path.join(remote.app.getAppPath(), unpackFolder, targetFolderName);
+function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElement){
+
+    // In releases working directory and remote.app.getAppPath() aren't the same
+    // process.cwd
+    archiveFile = path.join(process.cwd(), archiveFile)
+    let target = path.join(process.cwd(), unpackFolder, targetFolderName);
 
     return new Promise(function(resolve, reject){
 
@@ -27,7 +29,8 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile){
         if(os.platform() == "win32"){
             
             // By default use system installed 7zip
-            const zPaths = ["C:\\Program Files\\7-Zip\\7z.exe", "C:\\Program Files (x86)\\7-Zip\\7z.exe"];
+            const zPaths = ["C:\\Program Files\\7-Zip\\7z.exe",
+                            "C:\\Program Files (x86)\\7-Zip\\7z.exe"];
             
             for(let z of zPaths){
                 
@@ -55,7 +58,7 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile){
 
         } else {
 
-            unpacker = "7zip/7za";
+            unpacker = path.join(remote.app.getAppPath(), "7zip/7za");
         }
 
         // Verify unpacker is installed
@@ -64,66 +67,62 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile){
             reject("unpacker (" + unpacker + ") executable is missing");
             return;
         }
-        
-        // Windows hackery        
-        if(os.platform() == "win32"){
-            
-            const unpackProcess = spawn(unpacker, 
-                ['x', sanityEscape(archiveFile), "-O" + sanityEscape(target) + ""], 
-                {
-                    cwd: path.dirname(unpacker)
-                });
 
-            let message = "";
-                
-            unpackProcess.stdout.on('data', (data) => {
-                message += data;
+        let message = "";
+
+        const unpackProcess = spawn(
+            unpacker, 
+            ['x', sanityEscape(archiveFile), "-O" + sanityEscape(target) + ""], 
+            {
+                cwd: path.dirname(unpacker)
             });
 
-            unpackProcess.stderr.on('data', (data) => {
-                message += data;
-            });
+        if(!unpackProcess){
 
-            unpackProcess.on('error', (err) => {
-                reject("Unpacker failed to start with error: " + err);
-                return;
-            });
-            
-            unpackProcess.on('close', (code) => {
-                
-                if(code !== 0){
-                    console.log(`Unpacker exited with code ${code}`);
-                    
-                    reject("Unpacker exited with code: " + code + ", message: " + message);
-                    return;
-                }
-                
-                resolve();
-                return;
-            });
-            
+            reject("unpack process wasn't started for some reason");
             return;
         }
 
-        exec(unpacker + " x '" + sanityEscape(archiveFile) + "' -O'" + sanityEscape(target) +
-             "'" ,
-             {
-                 timeout: 300000
-             }, (error, stdout, stderr) => {
-                 
-                 if(error){
-                     
-                     console.error(`exec error: ${error}`);
-                     
-                     reject("Exec error: " + error);
-                     return;
-                 }
-                 
-                 //console.log(`stdout: ${stdout}`);
-                 //console.log(`stderr: ${stderr}`);
+        const onProgressMessage = (data) => {
 
-                 resolve();
-             });
+            if(progressElement){
+                let div = document.createElement("div");
+                div.textContent = data;
+                progressElement.append(div);
+                progressElement.scrollTop = progressElement.scrollHeight;
+            }            
+        }
+        
+        unpackProcess.stdout.on('data', (data) => {
+            message += data;
+
+            onProgressMessage(data);
+        });
+
+        unpackProcess.stderr.on('data', (data) => {
+            message += data;
+
+            onProgressMessage(data);
+        });
+
+        unpackProcess.on('error', (err) => {
+            reject("Unpacker failed to start with error: " + err);
+            return;
+        });
+        
+        unpackProcess.on('close', (code) => {
+            
+            if(code !== 0){
+                console.log(`Unpacker exited with code ${code}`);
+                
+                reject("Unpacker exited with code: " + code + ", message: " + message);
+                return;
+            }
+
+            onProgressMessage("Unpacking finished successfully");
+            resolve();
+            return;
+        });
     });
 }
 
