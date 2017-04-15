@@ -8,7 +8,7 @@ require 'optparse'
 
 def getIgnoreFlags()
 
-  "--ignore=staging --ignore=installed --overwrite"
+  "--ignore=staging --ignore=installed --ignore=test --overwrite"
   
 end
 
