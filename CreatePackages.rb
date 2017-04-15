@@ -8,8 +8,17 @@ require 'optparse'
 
 def getIgnoreFlags()
 
-  "--ignore=staging --ignore=installed --ignore=test --overwrite"
-  
+  return "--overwrite " +
+    "--ignore=staging --ignore=installed --ignore=test " +
+    # All the zips
+    "--ignore=thrive-launcher-darwin-x64.7z " +
+    "--ignore=thrive-launcher-linux-armv7l.7z " +
+    "--ignore=thrive-launcher-linux-ia32.7z " +
+    "--ignore=thrive-launcher-linux-x64.7z " +
+    "--ignore=thrive-launcher-mas-x64.7z " +
+    "--ignore=thrive-launcher-win32-ia32.7z " +
+    "--ignore=thrive-launcher-win32-x64.7z "
+    
 end
 
 def runBuildSingle(platform, arch)
@@ -73,7 +82,7 @@ OptionParser.new do |opts|
   end
 
   opts.on("--no-zip", "Skips zipping") do |b|
-    options[:noZip] = b
+    options[:noZip] = true
   end
   
   opts.on("-b", "--arch x86,x64", Array, "List of target architectures") do |list|
@@ -96,7 +105,7 @@ end
 SKIP_ZIP = options[:noZip]
 
 def doZip()
-  
+
   if SKIP_ZIP
     return
   end
@@ -128,6 +137,8 @@ end
 
 # Run default if nothing selected
 if !options[:platform] && !options[:arch]
+
+  puts "Running only for current platform"
 
   system("electron-packager ./ #{getIgnoreFlags}")
   
