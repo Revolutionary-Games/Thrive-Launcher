@@ -52,6 +52,11 @@ the created directory and run `npm install` this should install all
 required modules. You may need to run this again after pulling updates
 if the required modules have changed.
 
+### Icons
+
+In order for the icons to work you need to run `./CreateIcons.rb` to
+create all the icon files from the source images.
+
 ### Running
 
 Now you should have everything set up. You can run Thrive launcher

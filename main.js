@@ -11,6 +11,8 @@ const url = require('url')
 
 const os = require('os');
 
+const fs = require('fs');
+
 //
 // Set this to true if you want to open the dev console
 //
@@ -25,6 +27,16 @@ let mainWindow = null;
 
 // Setup code from the electron quickstart
 function createWindow () {
+
+    // Could also probably use 64x64 icon here
+    const iconFile = path.join(app.getAppPath(), "assets/icons/128x128.png");
+    if(!fs.existsSync(iconFile)){
+
+        console.error("Missing icon file. Did you forget to run 'CreateIcons.rb'?");
+        app.quit();
+        return;
+    }
+    
     // Create the browser window.
     mainWindow = new BrowserWindow({
         width: 1200 + (openDev ? 600 : 0), height: 700,
@@ -35,7 +47,9 @@ function createWindow () {
         // This breaks initial layout with dev console enabled
         show: openDev ? true : false,
         
-        backgroundColor: '#404040'
+        backgroundColor: '#404040',
+
+        icon: iconFile
     });
 
     if(!openDev){

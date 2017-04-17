@@ -5,19 +5,50 @@
 #
 
 require 'optparse'
+require 'os'
 
-def getIgnoreFlags()
+def getCommonFlags(platform)
 
-  return "--overwrite " +
-    "--ignore=staging --ignore=installed --ignore=test " +
-    # All the zips
-    "--ignore=thrive-launcher-darwin-x64.7z " +
-    "--ignore=thrive-launcher-linux-armv7l.7z " +
-    "--ignore=thrive-launcher-linux-ia32.7z " +
-    "--ignore=thrive-launcher-linux-x64.7z " +
-    "--ignore=thrive-launcher-mas-x64.7z " +
-    "--ignore=thrive-launcher-win32-ia32.7z " +
-    "--ignore=thrive-launcher-win32-x64.7z "
+  if !platform
+
+    platform = if OS.windows?
+                 "win32"
+               elsif OS.mac?
+                   "darwin"
+               else
+                 "linux"
+               end
+               
+    puts "using current platform for icon, platform=" + platform
+    
+  end
+
+  abort("getCommonFlags didn't get platform") if !platform
+
+  return "--overwrite --prune=true --out=release-builds " +
+         "--ignore=staging --ignore=installed --ignore=test --ignore=release-builds" +
+         # All the zips
+         "--ignore=thrive-launcher-darwin-x64.7z " +
+         "--ignore=thrive-launcher-linux-armv7l.7z " +
+         "--ignore=thrive-launcher-linux-ia32.7z " +
+         "--ignore=thrive-launcher-linux-x64.7z " +
+         "--ignore=thrive-launcher-mas-x64.7z " +
+         "--ignore=thrive-launcher-win32-ia32.7z " +
+         "--ignore=thrive-launcher-win32-x64.7z " + (
+
+           "--icon=" + case platform
+                       when "linux"
+                         "assets/icons/256x256.png"
+                       when "win32"
+                         "assets/icons/icon.ico"
+                       when "darwin"
+                         "assets/icons/icon.icns"
+                       else
+                         abort("unknown platform (no icon)")
+                       end
+                         
+           
+         )
     
 end
 
@@ -36,14 +67,15 @@ def runBuildSingle(platform, arch)
   if platform
 
     if arch
-      system("electron-packager ./ --platform=#{platform} --arch=#{arch} #{getIgnoreFlags}")
+      system("electron-packager ./ --platform=#{platform} --arch=#{arch} " +
+            "#{getCommonFlags platform}")
     else
-      system("electron-packager ./ --platform=#{platform} #{getIgnoreFlags}")
+      system("electron-packager ./ --platform=#{platform} #{getCommonFlags platform}")
     end
     
   else
 
-    system("electron-packager ./ --arch=#{arch} #{getIgnoreFlags}")
+    system("electron-packager ./ --arch=#{arch} #{getCommonFlags platform}")
     
   end
   
@@ -56,16 +88,20 @@ def zipThemUp()
 
   puts "Zipping up releases"
 
-  files = Dir['*'].select {|x| x =~ /.*thrive-launcher-.*-(x64|ia32)(?!.7z)/i }
+  Dir.chdir("release-builds") do
 
-  files.each{|file|
+    files = Dir['*'].select {|x| x =~ /.*thrive(\s*|-)launcher-.*-(x64|ia32)(?!.7z)/i }
 
-    puts "Zipping '#{file}'"
+    files.each{|file|
 
-    # TODO: version numbers added to these
-    system("7za a #{file}.7z #{file}")
-    abort("zipping failed") if $?.exitstatus != 0
-  }
+      puts "Zipping '#{file}'"
+
+      # TODO: version numbers added to these
+      system("7za a '#{file}.7z' '#{file}'")
+      abort("zipping failed") if $?.exitstatus != 0
+    }
+    
+  end
   
 end
 
@@ -116,9 +152,13 @@ end
 
 if options[:all]
 
-  system("electron-packager ./ --all #{getIgnoreFlags}")
+  runBuildSingle("linux", "x64")
+  runBuildSingle("linux", "x86")
+  runBuildSingle("win32", "x64")
+  runBuildSingle("win32", "x86")
+  runBuildSingle("darwin", "x64")
+  runBuildSingle("darwin", "x86")
   
-  abort("packaging failed") if $?.exitstatus != 0
   doZip
   exit
   
@@ -140,7 +180,8 @@ if !options[:platform] && !options[:arch]
 
   puts "Running only for current platform"
 
-  system("electron-packager ./ #{getIgnoreFlags}")
+  # auto detect os by passing in nil
+  system("electron-packager ./ #{getCommonFlags nil}")
   
   abort("packaging failed") if $?.exitstatus != 0
   doZip
