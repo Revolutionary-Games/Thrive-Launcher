@@ -55,7 +55,9 @@ if the required modules have changed.
 ### Icons
 
 In order for the icons to work you need to run `./CreateIcons.rb` to
-create all the icon files from the source images.
+create all the icon files from the source images. The icon creation
+script requires you to
+have [ImageMagick](https://www.imagemagick.org/) installed.
 
 ### Running
 
