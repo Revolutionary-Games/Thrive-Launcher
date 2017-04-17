@@ -351,6 +351,13 @@ hr {
     background: #00ffff;
 }
 
+/* Links in the "Links" dialog */
+.SiteLink {
+
+    font-size: 1.2em;
+    padding-bottom: 3px;
+}
+
 
 
 
