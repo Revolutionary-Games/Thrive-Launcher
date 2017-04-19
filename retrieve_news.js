@@ -195,7 +195,10 @@ function parseFeed(feed, resultObj){
 
 
                         dateStr = date.fromNow() + ", " +
-                            date.format('dddd Do MMM DD YYYY HH:mm:ss Z', language);
+                            // Long date format
+                            date.format('dddd Do MMM YYYY HH:mm:ss Z', language);
+                            // Short format
+                            //date.format('DD.MM.YYYY HH:mm:ss Z', language);
                         
                     } else {
 

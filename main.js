@@ -30,6 +30,7 @@ function createWindow () {
 
     // Could also probably use 64x64 icon here
     const iconFile = path.join(app.getAppPath(), "assets/icons/128x128.png");
+    //const iconFile = path.join(app.getAppPath(), "assets/icons/64x64.png");
     if(!fs.existsSync(iconFile)){
 
         console.error("Missing icon file. Did you forget to run 'CreateIcons.rb'?");
