@@ -19,6 +19,7 @@ var {ipcRenderer, remote} = require('electron');
 
 const versionInfo = require('./version_info');
 const retrieveNews = require('./retrieve_news');
+const errorSuggestions = require('./error_suggestions');
 const { Modal, ComboBox} = require('./modal');
 const { unpackRelease, findBinInRelease } = require('./unpack');
 
@@ -666,8 +667,15 @@ function onDLFileReady(version, download, fileName){
                     status.textContent = "Unpacking failed, File '" + fileName +
                         "' is invalid? " + error;
 
-                    fs.unlinkSync(localTarget);
+                    status.append(document.createElement("br"));
+
+                    // Auto detect solutions //
+                    errorSuggestions.unpackError(error, status);
+
+                    status.append(document.createElement("br"));
                     
+                    status.append(document.createTextNode("To try redownloading delete '" +
+                                                          localTarget + "'"));
                 });
             
 
