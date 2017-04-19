@@ -6,8 +6,10 @@ function appendSuggestion(suggestionText, element){
 
     let div = document.createElement("div");
 
+    div.classList.add("ErrorSuggestions");
+
     div.append(document.createTextNode("Suggestions:"));
-    div.append(document.createElement("dv"));
+    div.append(document.createElement("br"));
 
     $(div).append($.parseHTML(suggestionText));
 
@@ -17,7 +19,7 @@ function appendSuggestion(suggestionText, element){
 
 function unpackError(message, element){
 
-    if(message.contains("ENOENT")){
+    if(message.includes("ENOENT")){
         // ENOENT, missing 32bit support
 
         appendSuggestion("ENOENT error can mean that you are missing 32-bit library support. \

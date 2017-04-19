@@ -358,6 +358,14 @@ hr {
     padding-bottom: 3px;
 }
 
+/* Error suggestions in dialogs */
+.ErrorSuggestions {
+
+    margin-top: 5px;
+    display: block;
+    margin-bottom: 5px;
+}
+
 
 
 
