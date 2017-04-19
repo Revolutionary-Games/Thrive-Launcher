@@ -24,12 +24,20 @@ end
 # http://stackoverflow.com/questions/11423711/recipe-for-creating-windows-ico-files-with-imagemagick
 def createMultiSize(ext)
 
-  system("convert #{SOURCE_IMAGE} -bordercolor white -border 0 " + 
+  # system("convert #{SOURCE_IMAGE} -bordercolor white -border 0 " + 
+  #        "\\( -clone 0 -resize 16x16 \\) " +
+  #        "\\( -clone 0 -resize 32x32 \\) " +
+  #        "\\( -clone 0 -resize 48x48 \\) " +
+  #        "\\( -clone 0 -resize 64x64 \\) " +
+  #        "-delete 0 -alpha off -colors 256 #{File.join(TARGET_PATH, 'icon.' + ext)}")
+
+  # This version keeps transparency
+  system("convert #{SOURCE_IMAGE} " + 
          "\\( -clone 0 -resize 16x16 \\) " +
          "\\( -clone 0 -resize 32x32 \\) " +
          "\\( -clone 0 -resize 48x48 \\) " +
          "\\( -clone 0 -resize 64x64 \\) " +
-         "-delete 0 -alpha off -colors 256 #{File.join(TARGET_PATH, 'icon.' + ext)}")
+         "-delete 0 #{File.join(TARGET_PATH, 'icon.' + ext)}")
   
 end
 
