@@ -92,7 +92,8 @@ def zipThemUp()
 
   Dir.chdir("release-builds") do
 
-    files = Dir['*'].select {|x| x =~ /.*thrive(\s*|-)launcher-.*-(x64|ia32)(?!.7z)/i }
+    files = Dir['*'].select {|x| x =~
+                             /.*thrive(\s*|-)launcher-.*-(x64|ia32)(?!(.7z)|(.zip))/i }
 
     files.each{|file|
 
