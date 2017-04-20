@@ -83,6 +83,8 @@ def runBuildSingle(platform, arch)
   
 end
 
+$useRegularZip = true
+
 # Zips up all created folders (uses regex to find them)
 def zipThemUp()
 
@@ -98,7 +100,13 @@ def zipThemUp()
 
       # TODO: version numbers added to these
       system("7za a '#{file}.7z' '#{file}'")
-      abort("zipping failed") if $?.exitstatus != 0
+      abort("zipping (7za) failed") if $?.exitstatus != 0
+
+      # Optional .zip file
+      if $useRegularZip
+        system("zip -r '#{file}.zip' '#{file}'")
+        abort("zipping failed") if $?.exitstatus != 0
+      end
     }
     
   end
@@ -129,6 +137,10 @@ OptionParser.new do |opts|
     # Basically the same as --platform win32,linux --arch x86,x64, but no 32 bit linux
     options[:default] = d
   end
+
+  opts.on("-z", "--[no-]regular-zip", "Create additional zips as normal '.zip's") do |b|
+    options[:regularZip] = b
+  end
   
 end.parse!
 
@@ -136,6 +148,10 @@ if !ARGV.empty?
 
   abort("Unkown arguments. See --help. This was left unparsed: " + ARGV.join(' '))
   
+end
+
+if options.include?(:regularZip)
+  $useRegularZip = options[:regularZip]
 end
 
 SKIP_ZIP = options[:noZip]
