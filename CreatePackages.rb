@@ -27,15 +27,7 @@ def getCommonFlags(platform)
 
   return "--overwrite --prune=true --out=release-builds " +
          "--ignore=staging --ignore=installed --ignore=test --ignore=release-builds" +
-         # All the zips
-         "--ignore=thrive-launcher-darwin-x64.7z " +
-         "--ignore=thrive-launcher-linux-armv7l.7z " +
-         "--ignore=thrive-launcher-linux-ia32.7z " +
-         "--ignore=thrive-launcher-linux-x64.7z " +
-         "--ignore=thrive-launcher-mas-x64.7z " +
-         "--ignore=thrive-launcher-win32-ia32.7z " +
-         "--ignore=thrive-launcher-win32-x64.7z " + (
-
+         (
            "--icon=" + case platform
                        when "linux"
                          "assets/icons/256x256.png"
@@ -46,8 +38,6 @@ def getCommonFlags(platform)
                        else
                          abort("unknown platform (no icon)")
                        end
-                         
-           
          )
     
 end
