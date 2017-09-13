@@ -239,8 +239,10 @@ function parseFeed(feed, resultObj){
 
                 // Force HTTP protocol to avoid file protocol
                 // Dirty hack to make forum images valid
-                post.description = post.description.replace(forumImageFixRegex,
-                                                            "http://$1/");
+                if(post.description){
+                    post.description = post.description.replace(forumImageFixRegex,
+                                                                "http://$1/");
+                }
 
 
                 let content = document.createElement("span");
