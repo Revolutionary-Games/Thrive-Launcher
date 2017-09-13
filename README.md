@@ -22,8 +22,7 @@ Due to the used framework at least Windows 7 or newer is required.
 Releases
 --------
 
-Once precompiled releases are available they will be
-here:
+Releases are available here:
 [Thrive-Launcher releases](https://github.com/Revolutionary-Games/Thrive-Launcher/releases)
 
 
@@ -35,21 +34,16 @@ launcher you will need to follow these instructions to build it.
 
 ### Dependencies
 
-Thrive launcher uses the electron framework which needs to be
-installed before you can start.
-
-You first need npm before you can install electron. So
+You first need npm before you can build Thrive Launcher. So
 check [here](https://docs.npmjs.com/getting-started/installing-node)
 how to install it.
-
-Then run `npm install -g electron` to install electron command line tools.
 
 ### Downloading
 
 First clone this repository with `git clone
 https://github.com/Revolutionary-Games/Thrive-Launcher.git` now go to
 the created directory and run `npm install` this should install all
-required modules. You may need to run this again after pulling updates
+required modules and electron. You may need to run this again after pulling updates
 if the required modules have changed.
 
 ### Icons
@@ -62,7 +56,7 @@ have [ImageMagick](https://www.imagemagick.org/) installed.
 ### Running
 
 Now you should have everything set up. You can run Thrive launcher
-with `electron .` in the thrive-launcher directory.
+with `npm start` in the thrive-launcher directory.
 
 ### Issues
 
