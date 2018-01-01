@@ -383,10 +383,6 @@ function loadVersionData(){
     }
 };
 
-loadVersionData();
-
-
-
 // Buttons
 let playButton = document.getElementById("playButton");
 
@@ -394,7 +390,8 @@ let playButtonText = document.getElementById("playText");
 
 playButtonText.textContent = "Retrieving version information...";
 
-
+// Maybe this does something to the stuck downloading version info bug
+loadVersionData();
 
 const dlPath = "staging/download/";
 const installPath = "installed/";
