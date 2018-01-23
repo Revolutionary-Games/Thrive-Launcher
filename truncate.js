@@ -30,7 +30,27 @@ function truncateElement(element, o){
             if(text.length > o.length){
 
                 // Need to cut //
-                current.text(text.substring(0, o.length - 1) + ellipsis);
+                let truncatedText = text.substring(0, o.length - 1) + ellipsis;
+
+                // Special case thing which makes stuff work //
+                if(current.length > 0 && typeof current[0].textContent){
+
+                    current[0].textContent = truncatedText;
+                    
+                } else {
+
+                    console.log("Special case truncate not matched. This text element was " +
+                                "probably not cut correctly");
+                    
+                    current.text(truncatedText);
+                }
+                
+                // Verify that it worked
+                let actualData = current.text();
+                if(actualData == text){
+                    console.error("Cutting failed for string: " + actualData +
+                                  " shouldn't equal initial text: " + text);
+                }
 
                 o.truncated = true;
 
