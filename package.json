@@ -16,15 +16,15 @@
   "author": "Revolutionary Games",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^1.8.0"
+    "electron": "~>1.8.2-beta.4"
   },
   "dependencies": {
-    "feedparser": "^2.2.1",
-    "jquery": "^3.2.1",
+    "feedparser": "^2.2.8",
+    "jquery": "^3.3.1",
     "js-sha3": "^0.5.7",
     "mkdirp": "^0.5.1",
-    "moment": "^2.18.1",
-    "request": "^2.81.0",
+    "moment": "^2.20.1",
+    "request": "^2.83.0",
     "strip-json-comments": "^2.0.1"
   }
 }
