@@ -13,6 +13,14 @@ const os = require('os');
 
 const fs = require('fs');
 
+const openpgp = require('openpgp');
+
+// Hopefully this is the right place to do this
+openpgp.initWorker({ path:'openpgp.worker.js' })
+
+openpgp.config.aead_protect = true // activate fast AES-GCM mode (not yet OpenPGP standard)
+
+
 //
 // Set this to true if you want to open the dev console
 //

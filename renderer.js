@@ -23,6 +23,8 @@ const errorSuggestions = require('./error_suggestions');
 const { Modal, ComboBox} = require('./modal');
 const { unpackRelease, findBinInRelease } = require('./unpack');
 
+const openpgp = require('openpgp');
+
 // There's warnings that this could expose some server-only data to
 // clients, but we don't have separate things so that shouldn't apply
 var pjson = require('./package.json');
@@ -61,6 +63,10 @@ const versionDataFailedModal = new Modal("versionDataDownloadFailedModal",
                                              autoClose: false
                                          });
 
+const genericErrorModal = new Modal("genericErrorModal", "genericErrorModalDialog", {
+    closeButton: "genericErrorClose"
+});
+
 var playModalQuitDLCancel = null;
 var currentDLCanceled = false;
 
@@ -81,6 +87,77 @@ const playModal = new Modal("playModal", "playModalDialog", {
         //return true;
     }
 });
+
+
+// Use getLauncherKey instead
+let launcherKey = null;
+
+// Loads the key required for verifying version information //
+function getLauncherKey(){
+
+    return new Promise(function(resolve, reject){
+
+        if(launcherKey){
+            resolve(launcherKey);
+        } else {
+            fs.readFile(path.join(remote.app.getAppPath(), 'version_data/launcher_key.pgp'),
+                        "utf8",
+                        function (err,data){
+
+                            if(err){
+                                let msg = "Can't read launcher version info signing key";
+                                // showGenericError(msg, () => {
+                                //     reject(msg + ". " + err);
+                                // });
+
+                                reject(msg + ". " + err);
+                                console.log(err);
+                                return;
+                            }
+                            
+                            let keyid;
+                            
+                            try{
+                                launcherKey = openpgp.key.readArmored(data).keys;
+                                keyid = launcherKey["0"].primaryKey.keyid.toHex();
+                            } catch(err){
+                                reject("Couldn't parse signing key: " + err);
+                                return;
+                            }
+                            
+                            // console.log("Key: " + launcherKey);
+                            console.log("Signing key loaded: " + keyid);
+                            resolve(launcherKey);
+                        });
+        }
+    });
+}
+
+
+// Pops up a box with the message, onclosed is called once closed.
+// Note: only one of these boxes can be active at a time
+function showGenericError(message, onclosed){
+
+    // Hopefully no one overrides this after us
+    if(genericErrorModal.visible()){
+
+        log.error("Can't show generic message as one is already open: " + message);
+        onclosed();
+    } else {
+
+        
+        genericErrorModal.onClose = function(){
+
+            onclosed();
+            genericErrorModal.onClose = null;
+        }
+
+        genericErrorModal.show();
+        $("#genericErrorText").text("Error: " + message);
+    }
+}
+
+
 
 // http://ourcodeworld.com/articles/read/228/how-to-download-a-webfile-with-electron-save-it-and-show-download-progress
 // With some modifications
@@ -152,79 +229,127 @@ function onVersionDataReceived(data){
     // Check launcher version //
     new Promise(function(resolve, reject){
 
-        versionInfo.parseData(data);
+        getLauncherKey().then((key) =>{
 
-        assert(versionInfo.getVersionData().versions);
+            if(!key){
 
-        let dlVersion = versionInfo.getLauncherMeta();
+                reject("get launcher key is null");
+                return;
+            }
 
-        if(dlVersion.latestVersion == pjson.version){
-
-            console.log("Using latest version: " + dlVersion.latestVersion);
+            // Unpack and verify signature //
+            let options;
+            try{
+                options = {
+                    message: openpgp.cleartext.readArmored(data), // parse armored message
+                    publicKeys: key
+                };
+            } catch(err){
+                reject(err);
+                return;
+            }
             
-        } else {
+            openpgp.verify(options).then(function(verified) {
+	            let validity = verified.signatures[0].valid;
+	            if (validity) {
+		            console.log('Version data signed by key id ' +
+                                verified.signatures[0].keyid.toHex());
+                    
+                    versionInfo.parseData(verified.data);
 
-            // Show update asking dialog //
-            updateModal.show();
-            updateModal.onClose = () => {
+                    resolve();
+                    
+	            } else {
+                    let msg = "Error verifying signature validity. " +
+                        "Did the download get corrupted?"
+                    showGenericError(msg, () =>{
 
-                resolve();
-            };
-
-            let message = document.createElement("p");
-
-            message.append(
-                document.createTextNode("You are using Thrive launcher version " +
-                                        pjson.version + " but the latest version is " +
-                                        dlVersion.latestVersion));
-
-            let link = document.createElement("a");
-            link.textContent = "Visit releases page";
-
-            const urlTarget = dlVersion.releaseDLURL ||
-                  "https://github.com/Revolutionary-Games/Thrive-Launcher/releases";
-            link.href = urlTarget;
-
-            message.append(document.createElement("br"));
-            message.append(link);
-
-            let textParent = $("#newReleaseAvailableText");
-
-            textParent.empty();
-            textParent.append($(message));
-
-            // Buttons //
-            let container = document.createElement("div");
-
-            container.classList.add("UpdateButtonContainer");
-            
-            let dlnow = document.createElement("div");
-            dlnow.classList.add("BottomButton");
-            dlnow.style.fontSize = "3.4em";
-            // dlnow.textContent = "Download Now";
-            dlnow.textContent = "Download Updated Launcher";
-
-            container.append(dlnow);
-            textParent.append($(container));
-
-
-            dlnow.addEventListener('click', (event) => {
-
-                console.log("Clicked download now");
-                require('electron').shell.openExternal(urlTarget);
-                dlnow.textContent = "Opening link...";
+                        reject(msg);
+                    });
+                }
             });
             
-            return;
-        }
-        
-        resolve();
+        }, (err) =>{
+            reject(err);
+        });
+    }).then(() => {
+        return new Promise(function(resolve, reject){
 
+            if(!versionInfo.getVersionData().versions){
+
+                reject("No versions");
+                return;
+            }
+            
+            let dlVersion = versionInfo.getLauncherMeta();
+
+            if(dlVersion.latestVersion == pjson.version){
+
+                console.log("Using latest version: " + dlVersion.latestVersion);
+            
+            } else {
+
+                // Show update asking dialog //
+                updateModal.show();
+                updateModal.onClose = () => {
+
+                    resolve();
+                };
+
+                let message = document.createElement("p");
+
+                message.append(
+                    document.createTextNode("You are using Thrive launcher version " +
+                                            pjson.version + " but the latest version is " +
+                                            dlVersion.latestVersion));
+
+                let link = document.createElement("a");
+                link.textContent = "Visit releases page";
+
+                const urlTarget = dlVersion.releaseDLURL ||
+                      "https://github.com/Revolutionary-Games/Thrive-Launcher/releases";
+                link.href = urlTarget;
+
+                message.append(document.createElement("br"));
+                message.append(link);
+
+                let textParent = $("#newReleaseAvailableText");
+
+                textParent.empty();
+                textParent.append($(message));
+
+                // Buttons //
+                let container = document.createElement("div");
+
+                container.classList.add("UpdateButtonContainer");
+                
+                let dlnow = document.createElement("div");
+                dlnow.classList.add("BottomButton");
+                dlnow.style.fontSize = "3.4em";
+                // dlnow.textContent = "Download Now";
+                dlnow.textContent = "Download Updated Launcher";
+
+                container.append(dlnow);
+                textParent.append($(container));
+
+
+                dlnow.addEventListener('click', (event) => {
+
+                    console.log("Clicked download now");
+                    require('electron').shell.openExternal(urlTarget);
+                    dlnow.textContent = "Opening link...";
+                });
+                
+                return;
+            }
+            
+            resolve();
+        });
     }).then(() => {
 
         updatePlayButton();
         
-    }, (err) => {
+    }).catch((err) => {
 
         // Fail //
         constOldVersionErrorModal.show();
@@ -241,30 +366,34 @@ function onVersionDataReceived(data){
     });
 }
 
-const locallyCachedDLFile = "staging/saved_version_db.json";
+const locallyCachedDLFile = "staging/saved_version_db_v2.json";
 
 function loadVersionData(){
 
     if(loadPrePackagedVersionData){
 
         // Load potentially very old data //
-        fs.readFile(path.join(remote.app.getAppPath(), 'version_data/thrive_versions.json'),
+        fs.readFile(path.join(remote.app.getAppPath(), 'version_data/signed_versions.json'),
                     "utf8",
                     function (err,data){
                         
                         if (err) {
-                            return console.log(err);
+                            let msg = "Failed to read pre-packaged version data: " +
+                                err;
+                            showGenericError(msg);
+                            console.log(msg);
+                            return;
                         }
 
                         onVersionDataReceived(data);
                     });
-
     } else {
 
         request({
             timeout: 10000,
             pool: null,
-            uri: "http://revolutionarygamesstudio.com/wp-content/uploads/thrive_versions.jpg",
+            uri: "https://raw.githubusercontent.com/Revolutionary-Games/Thrive-Launcher/" +
+                "master/version_data/signed_versions.json",
             headers: {
                 'User-Agent': "Thrive-Launcher " + pjson.version
             }
@@ -318,7 +447,11 @@ function loadVersionData(){
                     
                     console.log("Clicked retry");
                     versionDataFailedModal.hide();
-                    loadVersionData();
+
+                    // Wait for animation to end //
+                    setTimeout(() =>{
+                        loadVersionData();
+                    }, 700);
                 });
 
                 if(existsLocalFile){

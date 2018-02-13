@@ -1,3 +1,6 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
 // This is the thrive version info database. This is automatically downloaded by the launcher
 // from github to let old versions see that there is a new version
 // To sign this file use:
@@ -117,3 +120,20 @@
     
 
 }
+-----BEGIN PGP SIGNATURE-----
+
+iQJXBAEBCABBFiEELEiDYd8a73luvWURdf2+KhSzR70FAlqDNeQjHHJldm9sdXRp
+b25hcnlnYW1lc3N0dWRpb0BnbWFpbC5jb20ACgkQdf2+KhSzR73hyQ/+KAFWUy3N
+WNZWCOUHK+Xg/Nl1qUq6wyDZMbQa7wfSk3cnQUFr/SvSfjgFwOXccdkigHQSgSVd
+VQwEPmwqoWAUHmRzqZ6OpQ/7BLr0Ycdlv8tLHqWwGD6UO9tn9LlrJ6XFsHUK1kns
+0PrXrEd7VMNN8nSoZXUBVt0FqGpJaSGVNR8u/+xzxg8eXpUaVPImnHN6yu1jIPS4
+KdtZCD/U+iRCLZAC8/OcoM+FvnxOEcqTIFD6vFwfX36BAz7nhjTpA+45P0D5J9MI
+OP5DE3JjP3xKRfYZzyXFaAhFhgDNsXw5H/G4NYDQRsfzvttD+Nhv3NTicr3fuOH4
+wc8baPAW3Yr8lz05NQxdkAMH25eec4EehkNJjtCCezI820EjrsO5n2chV/ore022
+2pIvvQmuVYQaUClFicFbNGdn2SnFa7d+f9EpwVdtgNnILqOrxiEBx9PJwXTkEFdA
+IzgcVtIaV6Dj4XaOMFbS9g771CD8zZ7oVxI6BRQZGfaXz1u49rKyVuhO+ll+tlpM
+PH3/6nLfXj9aj61xuvCTRzNqhCbWXCNaAe8MJHm7A+HToAlifE/b+3zOhwZs+Kau
+Pf0KZ/WyrisYtNL8fp0IU9XjQnaNXkd48WqlIelcVyfANsFHv7eKOrHJSeSlY0Qz
+Uo5IFhH6fIjCfxug74F8YaSFQS76Ygd8V2M=
+=1Cza
+-----END PGP SIGNATURE-----

@@ -81,6 +81,10 @@ class Modal {
         assert(this.dialog);
     }
 
+    visible(){
+        return this.backdrop.style.display == "block";
+    }
+
     //! Shows this dialog
     show(){
 
