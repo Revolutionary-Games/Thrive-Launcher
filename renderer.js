@@ -36,8 +36,9 @@ const fetchNewsFromWeb = true;
 const showUnpackMessages = false;
 
 
-// For debugging
-const loadTestVersionData = false;
+// If true will only attempt reading the prepackaged version data
+// Can be changed by user if no internet / download fails
+let loadPrePackagedVersionData = false;
 
 
 const linksModal = new Modal("linksModal", "linksModalDialog", {
@@ -200,7 +201,8 @@ function onVersionDataReceived(data){
             let dlnow = document.createElement("div");
             dlnow.classList.add("BottomButton");
             dlnow.style.fontSize = "3.4em";
-            dlnow.textContent = "Download Now";
+            // dlnow.textContent = "Download Now";
+            dlnow.textContent = "Download Updated Launcher";
 
             container.append(dlnow);
             textParent.append($(container));
@@ -243,10 +245,10 @@ const locallyCachedDLFile = "staging/saved_version_db.json";
 
 function loadVersionData(){
 
-    if(loadTestVersionData){
+    if(loadPrePackagedVersionData){
 
-        // Load dummy version data //
-        fs.readFile(path.join(remote.app.getAppPath(), 'test/data/thrive_versions.json'),
+        // Load potentially very old data //
+        fs.readFile(path.join(remote.app.getAppPath(), 'version_data/thrive_versions.json'),
                     "utf8",
                     function (err,data){
                         
@@ -256,7 +258,6 @@ function loadVersionData(){
 
                         onVersionDataReceived(data);
                     });
-
 
     } else {
 
@@ -350,9 +351,27 @@ function loadVersionData(){
                                     });
                         
                         versionDataFailedModal.hide();
+                    });                    
+                } else {
+
+                    let usePrepackaged = document.createElement("div");
+                    usePrepackaged.classList.add("BottomButton");
+                    usePrepackaged.style.fontSize = "3.4em";
+                    usePrepackaged.style.marginLeft = "5px";
+                    usePrepackaged.textContent = "Use Pre-packaged (old)";
+                    
+                    container.append(usePrepackaged);
+                    
+                    usePrepackaged.addEventListener('click', (event) => {
+                        
+                        console.log("Clicked use prepackaged");
+                        loadPrePackagedVersionData = true;
+                        versionDataFailedModal.hide();
+
+                        loadVersionData();
                     });
                 }
-
+                
                 $("#versionDataDownloadFailedText").append($(container));
                 
                 return;
@@ -905,22 +924,6 @@ function updatePlayButton(){
     assert(version.stable);
 
     let dl = versionInfo.getDownloadForPlatform(version.id);
-    
-    // If this is null then we should let the user know that there was no 
-    // preferred version
-    assert(dl);
-    
-    // Verify retrieve logic
-    assert(versionInfo.getCurrentPlatform().os == versionInfo.getPlatformByID(dl.os).os);
-    
-    playButtonText.textContent = "Play " + version.getDescriptionString() + " " +
-        dl.getDescriptionString();
-
-    playButtonText.dataset.selectedID = version.id;
-    playButtonText.dataset.selectedDLOS = dl.os;
-
-    updatePlayButtonText();
-
 
     // Dump the other versions to be selected in the combo box thing //
     let options = versionInfo.getAllValidVersions();
@@ -940,6 +943,24 @@ function updatePlayButton(){
 
     console.log("All valid versions: " + options.length);
     
+    // If this is null then we should let the user know that there was no 
+    // preferred version
+    if(!dl){
+        playButtonText.textContent = "Couldn't find recommended version for current platform";
+        return;
+    }
+    
+    // Verify retrieve logic
+    assert(versionInfo.getCurrentPlatform().os == versionInfo.getPlatformByID(dl.os).os);
+
+    // I don't think this is needed
+    // playButtonText.textContent = "Play " + version.getDescriptionString() + " " +
+    //     dl.getDescriptionString();
+
+    playButtonText.dataset.selectedID = version.id;
+    playButtonText.dataset.selectedDLOS = dl.os;
+
+    updatePlayButtonText();    
 }
 
 let newsContent = document.getElementById("newsContent");

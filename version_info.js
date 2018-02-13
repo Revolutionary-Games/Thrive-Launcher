@@ -70,7 +70,7 @@ function getCurrentPlatform(){
 function getWin32BitPlatform(){
 
     let obj = getCurrentPlatform();
-    obj.arch = "x86";
+    obj.arch = "ia32";
     obj.platform = "win32";
     
     return obj;

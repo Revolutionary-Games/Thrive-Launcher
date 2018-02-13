@@ -1,6 +1,8 @@
-// This is a sample file of how thrive version file that is downloaded
-// should look like
-
+// This is the thrive version info database. This is automatically downloaded by the launcher
+// from github to let old versions see that there is a new version
+// To sign this file use:
+// gpg2 --clearsign --output "signed_versions.json" --local-user "Thrive Launcher Signing Key" --sign thrive_versions.json
+// After you have the pgp key
 {
     // launcher version info
     "launcher-meta": {
@@ -16,7 +18,7 @@
             "id": 1,
             "name": "Windows 32-bit",
             // from os.arch
-            "arch": "x86",
+            "arch": "ia32",
             // from os.platform
             "os": "win32"
         },
@@ -115,4 +117,3 @@
     
 
 }
-
