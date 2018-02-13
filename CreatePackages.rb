@@ -89,13 +89,15 @@ def zipThemUp()
 
       puts "Zipping '#{file}'"
 
+      zippedName = file.gsub(' ', '_')
+
       # TODO: version numbers added to these
-      system("7za a '#{file}.7z' '#{file}'")
+      system("7za a '#{zippedName}.7z' '#{file}'")
       abort("zipping (7za) failed") if $?.exitstatus != 0
 
       # Optional .zip file
       if $useRegularZip
-        system("zip -r '#{file}.zip' '#{file}'")
+        system("zip -r '#{zippedName}.zip' '#{file}'")
         abort("zipping failed") if $?.exitstatus != 0
       end
     }
