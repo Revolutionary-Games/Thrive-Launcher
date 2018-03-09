@@ -1,5 +1,24 @@
 "use strict";
 
+// Command line parsing
+
+// use `npm run start-dev` if you want the dev tools
+// Set this to true if you want to open the dev console
+let openDev = false;
+
+let args = process.argv.slice(2);
+args.forEach((val, index) =>{
+
+    switch(val){
+    case "--open-dev":
+        openDev = true;
+        break;
+    default:
+        console.log("Invalid argument (" + index + "): " + val);
+        process.exit();
+    }
+});
+
 const electron = require('electron')
 // Module to control application life.
 const app = electron.app
@@ -20,11 +39,6 @@ openpgp.initWorker({ path:'openpgp.worker.js' })
 
 openpgp.config.aead_protect = true // activate fast AES-GCM mode (not yet OpenPGP standard)
 
-
-//
-// Set this to true if you want to open the dev console
-//
-const openDev = false;
 
 // When true links are opened in an external browser
 const openLinksInExternal = true;
@@ -48,7 +62,7 @@ function createWindow () {
     
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 1200 + (openDev ? 600 : 0), height: 700,
+        width: 1200 + (openDev ? 700 : 0), height: 700,
         // This would disable the system title bar and frame window
         // so if this is false we need a custom window top bar
         frame: true,

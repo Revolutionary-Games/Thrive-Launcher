@@ -5,7 +5,8 @@
   "description": "Thrive Launcher manages downloading Thrive releases",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+      "start": "electron .",
+      "start-dev": "electron . --open-dev"
   },
   "repository": "https://github.com/Revolutionary-Games/Thrive-Launcher",
   "keywords": [
