@@ -54,8 +54,6 @@ moment.locale(language);
 const allowXSSAttacks = false;
 
 
-const forumImageFixRegex = /\/\/(forum\.revolutionarygamesstudio.com)\//igm;
-
 //! Does anything it takes to parse a date string (I gave up and used
 //! the default format which resorts to Date.parse if it can't figure it out)
 function parseFeedDate(str){
@@ -237,12 +235,16 @@ function parseFeed(feed, resultObj){
 
                 span.append(infoBox);
 
-                // Force HTTP protocol to avoid file protocol
-                // Dirty hack to make forum images valid
-                if(post.description){
-                    post.description = post.description.replace(forumImageFixRegex,
-                                                                "http://$1/");
-                }
+                // Looks like the urls are now fixed so this would actually break them
+                // // Force HTTP protocol to avoid file protocol
+                // // Dirty hack to make forum images valid
+                // if(post.description){
+                //     // If uncommented this should be moved to the top of this file
+                //     const forumImageFixRegex =
+                //         /\/\/(forum\.revolutionarygamesstudio.com)\//igm;
+                //     post.description = post.description.replace(forumImageFixRegex,
+                //                                                 "http://$1/");
+                // }
 
 
                 let content = document.createElement("span");
