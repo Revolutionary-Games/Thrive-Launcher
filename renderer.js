@@ -42,6 +42,17 @@ const showUnpackMessages = false;
 // Can be changed by user if no internet / download fails
 let loadPrePackagedVersionData = false;
 
+const dataFolder = path.join(remote.app.getPath("appData"), "Revolutionary-Games", "Launcher");
+
+const tmpDLFolder = path.join(remote.app.getPath("temp"), "Revolutionary-Games-Launcher");
+
+const installPath = path.join(dataFolder, "Installed");
+
+// Make sure it exists. This simplifies a lot of code
+mkdirp.sync(dataFolder);
+
+const locallyCachedDLFile = path.join(dataFolder, "saved_version_db_v2.json");
+
 
 const linksModal = new Modal("linksModal", "linksModalDialog", {
     closeButton: "linksClose"
@@ -372,8 +383,6 @@ function onVersionDataReceived(data){
     });
 }
 
-const locallyCachedDLFile = "staging/saved_version_db_v2.json";
-
 function loadVersionData(){
 
     if(loadPrePackagedVersionData){
@@ -518,22 +527,12 @@ function loadVersionData(){
 
             console.log("successfully downloaded version information");
 
-            mkdirp(path.dirname(locallyCachedDLFile), function (err){
-                
+            fs.writeFile(locallyCachedDLFile, body, (err) => {
                 if(err){
-                    
-                    console.error("failed to create staging folder to save " +
-                                  "downloaded version info", err);
-                    return;
+
+                    console.error("Unable to locally save downloaded version info: " +
+                                  err);
                 }
-
-                fs.writeFile(locallyCachedDLFile, body, (err) => {
-                    if(err){
-
-                        console.error("Unable to locally save downloaded version info: " +
-                                      err);
-                    }
-                });
             });
 
             onVersionDataReceived(body);
@@ -550,9 +549,6 @@ playButtonText.textContent = "Retrieving version information...";
 
 // Maybe this does something to the stuck downloading version info bug
 loadVersionData();
-
-const dlPath = "staging/download/";
-const installPath = "installed/";
 
 //! Verifies file hash
 //! returns a promise that either cusseeds or fails once the check is done
@@ -614,7 +610,8 @@ function onThriveFolderReady(version, download){
 
     if(!fs.existsSync(binFolder)){
 
-        status.textContent = "Error 'bin' folder is missing! " + (binFolder ? binFolder : "");
+        status.textContent = "Error 'bin' folder is missing! To redownload delete " +
+            installFolder;
         return;
     }
 
@@ -632,14 +629,15 @@ function onThriveFolderReady(version, download){
 
     if(!fs.existsSync(path.join(binFolder, exename))){
 
-        status.textContent = "Error: Thrive executable is missing!";
+        status.textContent = "Error: Thrive executable is missing! To redownload delete " +
+            installFolder;
         return;
     }
 
     status.textContent = "launching...";
 
     // cwd is where relative to things are installed
-    let thrive = child_process.spawn(path.join(process.cwd(), binFolder, exename),
+    let thrive = child_process.spawn(path.join(binFolder, exename),
                                      [],
                                      {
                                          cwd: binFolder
@@ -747,7 +745,7 @@ function onDLFileReady(version, download, fileName){
     $( "#dlProgress" ).remove();
         
 
-    const localTarget = dlPath + fileName;
+    const localTarget = path.join(tmpDLFolder, fileName);
     
     assert(fs.existsSync(localTarget));
 
@@ -877,7 +875,14 @@ function playPressed(){
 
     assert(fileName);
 
-    const localTarget = dlPath + fileName;
+    if(fs.existsSync(path.join(installPath, download.folderName))){
+
+        console.log("archive has already been extracted (assumed)");
+        onThriveFolderReady(version, download);
+        return;
+    }
+
+    const localTarget = path.join(tmpDLFolder, fileName);
     
     if(fs.existsSync(localTarget)){
 
@@ -886,11 +891,11 @@ function playPressed(){
         return;
     }
 
-    mkdirp(dlPath, function (err){
+    mkdirp(tmpDLFolder, function (err){
         
         if(err){
             
-            console.error(err)
+            console.error(err);
             alert("failed to create dl directory");
             return;
             

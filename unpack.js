@@ -17,10 +17,7 @@ function sanityEscape(str){
 
 function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElement){
 
-    // In releases working directory and remote.app.getAppPath() aren't the same
-    // process.cwd
-    archiveFile = path.join(process.cwd(), archiveFile)
-    let target = path.join(process.cwd(), unpackFolder, targetFolderName);
+    let target = path.join(unpackFolder, targetFolderName);
 
     return new Promise(function(resolve, reject){
 
@@ -91,7 +88,7 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
                 progressElement.append(div);
                 progressElement.scrollTop = progressElement.scrollHeight;
             }            
-        }
+        };
         
         unpackProcess.stdout.on('data', (data) => {
             message += data;
