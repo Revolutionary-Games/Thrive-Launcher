@@ -337,7 +337,7 @@ function retrieveNews(callback, url = "http://revolutionarygamesstudio.com/"){
     };
 
     let newsPromise = parseFeed("http://revolutionarygamesstudio.com/feed/", news);
-    let devsPromise = parseFeed("http://forum.revolutionarygamesstudio.com/posts.rss",
+    let devsPromise = parseFeed("https://forum.revolutionarygamesstudio.com/posts.rss",
                                 devposts);
 
 
