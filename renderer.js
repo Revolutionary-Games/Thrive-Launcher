@@ -37,6 +37,8 @@ const fetchNewsFromWeb = true;
 // Shows output from 7z. Not really usefull as it shows no actual progress
 const showUnpackMessages = false;
 
+// If true then the testing data (local, unsigned) file is loaded
+const loadTestVersionData = false;
 
 // If true will only attempt reading the prepackaged version data
 // Can be changed by user if no internet / download fails
@@ -236,15 +238,19 @@ function downloadFile(configuration){
 }
 
 
-
-
-
 //! Parses version information from data and adds it to all the places
-function onVersionDataReceived(data){
+function onVersionDataReceived(data, unsigned = false){
 
     // Check launcher version //
     new Promise(function(resolve, reject){
 
+        if(unsigned){
+
+            versionInfo.parseData(data);
+            resolve();
+            return;
+        }
+        
         getLauncherKey().then((key) =>{
 
             if(!key){
@@ -384,6 +390,25 @@ function onVersionDataReceived(data){
 }
 
 function loadVersionData(){
+
+    if(loadTestVersionData){
+        
+        fs.readFile(path.join(remote.app.getAppPath(), 'version_data/thrive_versions.json'),
+                    "utf8",
+                    function (err,data){
+                        
+                        if (err) {
+                            let msg = "Failed to read test version data: " +
+                                err;
+                            showGenericError(msg);
+                            console.log(msg);
+                            return;
+                        }
+
+                        onVersionDataReceived(data, true);
+                    });
+        return;
+    }
 
     if(loadPrePackagedVersionData){
 
@@ -699,7 +724,8 @@ function onThriveFolderReady(version, download){
     
     thrive.stdout.on('data', (data) => {
 
-        appendMessage(data);
+        for(let line of data.toString().split(/\r?\n/g))
+            appendMessage(line);
     });
 
     thrive.stderr.on('data', (data) => {
