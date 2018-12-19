@@ -102,13 +102,10 @@ function getLauncherKey(){
         } else {
             fs.readFile(path.join(remote.app.getAppPath(), 'version_data/launcher_key.pgp'),
                         "utf8",
-                        function (err,data){
+                        function (err, data){
 
                             if(err){
                                 let msg = "Can't read launcher version info signing key";
-                                // showGenericError(msg, () => {
-                                //     reject(msg + ". " + err);
-                                // });
 
                                 reject(msg + ". " + err);
                                 console.log(err);
@@ -116,18 +113,26 @@ function getLauncherKey(){
                             }
                             
                             let keyid;
-                            
-                            try{
-                                launcherKey = openpgp.key.readArmored(data).keys;
-                                keyid = launcherKey["0"].primaryKey.keyid.toHex();
-                            } catch(err){
+
+                            openpgp.key.readArmored(data).then((key) => {
+                                
+                                launcherKey = key.keys;
+
+                                try{
+                                    keyid = launcherKey["0"].primaryKey.keyid.toHex();
+                                } catch(err){
+                                    reject("Loaded signing key but it is invalid " +
+                                           "(property error): " + err);
+                                    return;
+                                }
+                                
+                                // console.log("Key: " + launcherKey);
+                                console.log("Signing key loaded: " + keyid);
+                                resolve(launcherKey);
+                                
+                            }, (err) => {
                                 reject("Couldn't parse signing key: " + err);
-                                return;
-                            }
-                            
-                            // console.log("Key: " + launcherKey);
-                            console.log("Signing key loaded: " + keyid);
-                            resolve(launcherKey);
+                            });
                         });
         }
     });
@@ -141,7 +146,7 @@ function showGenericError(message, onclosed){
     // Hopefully no one overrides this after us
     if(genericErrorModal.visible()){
 
-        log.error("Can't show generic message as one is already open: " + message);
+        console.error("Can't show generic message as one is already open: " + message);
         onclosed();
     } else {
 
@@ -150,7 +155,7 @@ function showGenericError(message, onclosed){
 
             onclosed();
             genericErrorModal.onClose = null;
-        }
+        };
 
         genericErrorModal.show();
         $("#genericErrorText").text("Error: " + message);
@@ -194,13 +199,13 @@ function downloadFile(configuration){
 
                 configuration.onProgress(received_bytes, total_bytes);
 
-                out.write(chunk)
+                out.write(chunk);
             });
         }else{
             req.on('data', function(chunk) {
                 // Update the received bytes
                 received_bytes += chunk.length;
-                out.write(chunk)
+                out.write(chunk);
             });
         }
 
@@ -238,36 +243,37 @@ function onVersionDataReceived(data){
             }
 
             // Unpack and verify signature //
-            let options;
-            try{
-                options = {
-                    message: openpgp.cleartext.readArmored(data), // parse armored message
+            openpgp.cleartext.readArmored(data).then((message) => {
+
+                let options = {
+                    message: message,
                     publicKeys: key
                 };
-            } catch(err){
+                
+                openpgp.verify(options).then(function(verified) {
+	                let validity = verified.signatures[0].valid;
+	                if (validity) {
+		                console.log('Version data signed by key id ' +
+                                    verified.signatures[0].keyid.toHex());
+                        
+                        versionInfo.parseData(verified.data);
+
+                        resolve();
+                        
+	                } else {
+                        let msg = "Error verifying signature validity. " +
+                            "Did the download get corrupted?";
+                        showGenericError(msg, () =>{
+
+                            reject(msg);
+                        });
+                    }
+                });
+
+            }, (err) => {
                 reject(err);
-                return;
-            }
-            
-            openpgp.verify(options).then(function(verified) {
-	            let validity = verified.signatures[0].valid;
-	            if (validity) {
-		            console.log('Version data signed by key id ' +
-                                verified.signatures[0].keyid.toHex());
-                    
-                    versionInfo.parseData(verified.data);
-
-                    resolve();
-                    
-	            } else {
-                    let msg = "Error verifying signature validity. " +
-                        "Did the download get corrupted?"
-                    showGenericError(msg, () =>{
-
-                        reject(msg);
-                    });
-                }
             });
+
             
         }, (err) =>{
             reject(err);
