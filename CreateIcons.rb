@@ -53,9 +53,9 @@ createSingleImage(16, "png")
 createSingleImage(32, "png")
 
 # Apparently this doesn't work for some reason
-system("convert #{[16, 32, 64, 128, 256].reverse().map{|a| File.join(TARGET_PATH,
-                a.to_s + 'x' + a.to_s + '.png')}.join(' ')} " +
-       "#{File.join(TARGET_PATH, 'icon.icns')}")
+system("convert " + [16, 32, 64, 128, 256].reverse().map{|a| File.join(TARGET_PATH,
+                a.to_s + 'x' + a.to_s + '.png')}.join(' ') + " " +
+       File.join(TARGET_PATH, 'icon.icns'))
 
 # And neither does this
 #createMultiSize("icns")
