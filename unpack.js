@@ -58,6 +58,9 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
             unpacker = path.join(remote.app.getAppPath(), "7zip/7za");
         }
 
+        // In packaged builds this is needed for this to work
+        unpacker = unpacker.replace('app.asar', 'app.asar.unpacked');
+
         // Verify unpacker is installed
         if(!fs.existsSync(unpacker)){
 
@@ -69,10 +72,7 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
 
         const unpackProcess = spawn(
             unpacker, 
-            ['x', sanityEscape(archiveFile), "-O" + sanityEscape(target) + ""], 
-            {
-                cwd: path.dirname(unpacker)
-            });
+            ['x', sanityEscape(archiveFile), "-O" + sanityEscape(target) + ""]);
 
         if(!unpackProcess){
 

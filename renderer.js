@@ -1091,7 +1091,10 @@ function updatePlayButton(){
 
     let version = versionInfo.getRecommendedVersion();
 
-    assert(version.stable);
+    if(!version){
+        playButtonText.textContent = "Latest version has invalid number";
+        return;
+    }
 
     let dl = versionInfo.getDownloadForPlatform(version.id);
 

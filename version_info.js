@@ -24,7 +24,12 @@ function parseData(data){
         if(tags.type == "stable"){
             let ver = getVersionByID(tags.id);
 
-            ver.stable = true;
+            if(ver){
+
+                ver.stable = true;
+            } else {
+                console.error("Invalid JSON version data, latest is not found");
+            }
         }
     }
 
@@ -43,7 +48,7 @@ function parseData(data){
             dl.getDescriptionString = function(){
 
                 return getPlatformByID(this.os).name;
-            }
+            };
         }
 
         // Add info string method //

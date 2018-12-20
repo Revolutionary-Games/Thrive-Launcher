@@ -2,6 +2,7 @@
 
 #
 # Script that runs electron-packager with correct ignore folders
+# Electron-builder is ran with npm and that makes installers
 #
 
 require 'optparse'
