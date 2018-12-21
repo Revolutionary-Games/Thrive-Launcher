@@ -44,7 +44,7 @@
 
         {
             "type": "stable",
-            "id": 3
+            "id": 4
         }
     ],
     
@@ -108,6 +108,24 @@
                     "os": 1,
                     "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.3.4/WINDOWS_Thrive.0.3.4.zip",
                     "hash": "1b289e805d717c66e831575ca82b156fe0b88bcc373c66d02092dfcbc6fd3caa"
+                }
+            ]
+        },
+
+        {
+            "id": 4,
+            "releaseNum": "0.4.0",
+
+            "platforms": [
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.0/Thrive-0.4.0.0-WINDOWS-64bit.7z",
+                    "hash": "3364565593685e7ae1c32b242e6dba7d5fffb13f359d47baf9d138fda2fef439"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.0/Thrive-0.4.0.0-LINUX-generic.7z",
+                    "hash": "303f282dfdd0b81b48f7a57f64ffd099437e4442b35b87876a838e5aa1233be2"
                 }
             ]
         }
