@@ -47,7 +47,7 @@ Hash: SHA256
 
         {
             "type": "stable",
-            "id": 5
+            "id": 6
         }
     ],
     
@@ -149,6 +149,24 @@ Hash: SHA256
                     "hash": "893d2e7f0712d5fc163f3bae0845662159aeee9055856e21d75585167bc1184e"
                 }
             ]
+        },
+
+        {
+            "id": 6,
+            "releaseNum": "0.4.0.2",
+
+            "platforms": [
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.0.2/Thrive-0.4.0.2-WINDOWS-64bit.7z",
+                    "hash": "daa06720cc69bc871e1f9e26f86b1155f61b6deae84f39fe8aabd01573986cdd"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.0.2/Thrive-0.4.0.2-LINUX-generic.7z",
+                    "hash": "7dac551ac79a5e6dfebc30124c83aa6603153ede884bf36ddc27ed37f9002e0f"
+                }
+            ]
         }
         
     ]
@@ -158,18 +176,18 @@ Hash: SHA256
 }
 -----BEGIN PGP SIGNATURE-----
 
-iQJXBAEBCABBFiEELEiDYd8a73luvWURdf2+KhSzR70FAlwpKnwjHHJldm9sdXRp
-b25hcnlnYW1lc3N0dWRpb0BnbWFpbC5jb20ACgkQdf2+KhSzR70y0g/9GPLr1SuV
-X8pzz9dUVvn8ku6ZGMXutB5QRZ26MiG9gih6Ecz9G6HLiRkko+Vv0NiNOB5w7whu
-sFqoNo26doh45ea0+VZW7vW3rjarwvZQuhZKLXuywRV9FC/zQE8JwbX+FYSPeKA0
-+ZIPVbJz5bH15NAyd/aQCoWTWe0l31OEpuhWvcvDNGayeTWzJ0jnBLSUNbVgHwU0
-EaNId2KjE0dAWD0LYDOPj+Nwfpl2nwFoAN47sVHqOqD2Ph9RN9goBsK0/HhBuc6W
-dRqoOuL6Y0Zr/Twfj46fgiT5eKfAMMRraDNJXrhq/ZmGPBxWbRMNi9gbhuM5T1L0
-HIx0w26cun+28c81bQ2CiAhUC5TvOha9B1RMu+oSxwZC3GpnyQnoVz9andjCxPHk
-ua9A7hKzKw4bjwJsSm5d9qxHX4mxS2DiwIFDPgBFd2PLuPhFWjUoT3CSyulkc7na
-ODmW3EfvgixrLtACo1I+lfjeQIvuHQSUII0cmuh0q/O39vA7jL7ICTpObjymSuYz
-OV4yu5su482KLLwViayX25t8Q1amYhq7a9svLW1gLbsEyn0KSmvROnAGAVxkfNbC
-y45NVCnYwvSgocBvu+ct9MLBf2JlJZtsmFHJTmUMXJ8ePUKobhNYnkRyCIN9Kz8y
-vB2h5Nd0s2Puq+ZvQPdcPG1mTQwr30x2agg=
-=jiML
+iQJXBAEBCABBFiEELEiDYd8a73luvWURdf2+KhSzR70FAlwvSdgjHHJldm9sdXRp
+b25hcnlnYW1lc3N0dWRpb0BnbWFpbC5jb20ACgkQdf2+KhSzR73QdA/9Gsmz2gmT
+ScrN++zUoTG0KGY6DpBmvXT1aooA+I8ZYJ55qPakMcIsK/1HfjUm4iE3w65a2yKK
+YFAwyNSH25rsoDB/qMbDTnR8hi3uQY1iUMjxkq9JbKRwRidOqjEKqZzeqJpX+HyP
+32BRvskpS2cSI5sBfJ9kTETFnxB2ul9l+I2Iq5YXpaYKBeEAjCCs3RSy6i3Fkzgt
+FH44Jdg2MyYOACbwxcS4UAXE5p40v1h8zVojkAcVaxhNS8rgdX61K1wsp7iI8AON
+ESER2nVirb4WIo/JUvriWuzZDLNDrbN860n9mm1AavIIw2typHiyIhDnSFWmfZqv
+KoRSCZLzKkPTc+6bGkhLf0NSN5leTj5KG8PBwv/sa6nSo330o9KjnrhGNQhreG6E
+FQ6EuYGwN3f2PS6Gu1LOkXqJfqD+CBCfcu3/eKXV0GsV2LJo6VYdjjfghEBXEx8Q
+JaKTG0nlWfwEMM69s3qpTkGAKhY/BfOt9ti3O9LBhee+3rJApb0ezrLmqqcj0bHB
+JEa/oRpJ2GpSrwmMIgRw3eyn4BodQPhG2wqku7fjSsl6X14IpkS20WqxXXxSAdHj
+Ecry4koEociv1z1+flz1cdCeKAS8gG9q5VxowF83kLhdg9xjBLkJmH6tQlAGg7p/
+7yrZs8Srxz2ynr+OIov5jlTmvgiPYyx8dN4=
+=Qqbt
 -----END PGP SIGNATURE-----
