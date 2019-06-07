@@ -28,8 +28,13 @@ const feedWaitForAll = true;
 // Most images are disabled if this is false
 const showImagesInFeed = true;
 
+// Rewrites youtube embeds as links
+const rewriteYoutube = true;
+
 // If false youtube videos won't play
-const showIFramesInFeed = true;
+// Content Security Policy also blocks them anyway. And for it to work all Google's ad
+// scripts etc. need to be loaded...
+const showIFramesInFeed = false;
 
 // If true previews of feed items will be truncated
 const truncateLongFeedItems = true;
@@ -40,7 +45,9 @@ const truncateLength = 450;
 
 //
 // End configuration variables
-// 
+//
+
+const youtubeURLRegex = /^http.*youtube.com\/.*embed\/(\w+)\?.*/;
 
 
 // If true the link to the post is in the title and not separately after it
@@ -91,7 +98,7 @@ function parseFeed(feed, resultObj){
 
             resolve();
             return;
-        }
+        };
         
         // Define our streams
         var req = request(feed, {timeout: 10000, pool: false});
@@ -115,6 +122,7 @@ function parseFeed(feed, resultObj){
             
             // And boom goes the dynamite
             res.pipe(feedparser);
+            return null;
         });
 
         feedparser.on('error', errorCallback);
@@ -127,7 +135,7 @@ function parseFeed(feed, resultObj){
         
         feedparser.on('readable', function() {
             var post;
-            while (post = this.read()) {
+            while ((post = this.read())) {
 
                 // Use this to find properties you want to output
                 //console.log(JSON.stringify(post, ' ', 4));
@@ -181,7 +189,7 @@ function parseFeed(feed, resultObj){
 
                 {
 
-                    let dateStr = post.pubdate || post.date
+                    let dateStr = post.pubdate || post.date;
                     let date = parseFeedDate(dateStr);
 
                     if(date){
@@ -265,6 +273,19 @@ function parseFeed(feed, resultObj){
                 if(!showImagesInFeed){
 
                     $( remoteData ).find("img").remove();
+                }
+
+                if(rewriteYoutube){
+                    $( remoteData ).find("iframe").each( function(){
+                        let matches = this.src.match(youtubeURLRegex);
+                        if(matches){
+                            let url = "https://www.youtube.com/watch?v=" + matches[1];
+                            let anchor = document.createElement("a");
+                            anchor.href = url;
+                            anchor.append(document.createTextNode(url));
+                            this.replaceWith(anchor);
+                        }
+                    });
                 }
 
                 if(!showIFramesInFeed){
@@ -354,67 +375,6 @@ function retrieveNews(callback, url = "http://revolutionarygamesstudio.com/"){
 
         callback(news, devposts);
     }
-
-
-    
-    return;
-
-    request(url, function (error, response, body){
-
-        if(error){
-
-            let errObj = {
-                error: "Error failed to get content: " + error
-            };
-            
-            callback(errObj, errObj);
-            return;
-        }
-
-        // response.headers['content-type'] should be text/html
-        let parser = new DOMParser();
-        let doc = parser.parseFromString(body, "text/html");
-
-        assert(doc);
-
-        let newsDiv = document.createElement("div");
-        let devDiv = document.createElement("div");
-
-        for(let element of doc.querySelectorAll("div .feedzy-rss")){
-
-            assert(element.parentNode);
-
-            let titleNode = element.parentNode.querySelector("h2");
-
-            if(!titleNode)
-                continue;
-
-            //console.log("title thing is: " + titleNode.textContent);
-
-            if(devForumNameRegex.test(titleNode.textContent)){
-
-                devDiv.append(element);
-                continue;
-            }
-
-            if(newsFeedNameRegex.test(titleNode.textContent)){
-
-                newsDiv.append(element);
-                continue;
-            }
-        }
-        
-        
-        let news = {
-            htmlNodes: newsDiv
-        };
-        
-        let devposts = {
-            htmlNodes: devDiv
-        };
-
-        callback(news, devposts);
-    });
 }
 
 
