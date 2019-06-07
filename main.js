@@ -56,11 +56,11 @@ function createWindow () {
 
     // This does not work. So this is directly in index.html
     // Setup a security policy to make this thing more secure (and quiet a warning)
-    electron.session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
-        callback({ responseHeaders: Object.assign({
-            "Content-Security-Policy": [ "default-src 'self'" ]
-        }, details.responseHeaders)});
-    });
+    // electron.session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+    //     callback({ responseHeaders: Object.assign({
+    //         "Content-Security-Policy": [ "default-src 'self'" ]
+    //     }, details.responseHeaders)});
+    // });
 
     // Could also probably use 64x64 icon here
     const iconFile = path.join(app.getAppPath(), "assets/icons/128x128.png");
