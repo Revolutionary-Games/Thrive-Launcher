@@ -81,6 +81,10 @@ function createWindow () {
 
         // This breaks initial layout with dev console enabled
         show: openDev ? true : false,
+
+        webPreferences: {
+            nodeIntegration: true
+        },
         
         backgroundColor: '#404040',
 
