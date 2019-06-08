@@ -38,6 +38,8 @@ const { settings, loadSettings, saveSettings, dataFolder, tmpDLFolder, installPa
 // This loads settings in sync mode here
 loadSettings();
 
+const { onGameEnded } = require('./crash_reporting.js');
+
 // Shows output from 7z. Not really usefull as it shows no actual progress
 const showUnpackMessages = false;
 
@@ -697,13 +699,19 @@ function onThriveFolderReady(version, download){
         appendMessage("ERROR: " + data);
     });
 
-    thrive.on('close', (code) => {
-        
-        console.log(`child process exited with code ${code}`);
-        appendMessage(`child process exited with code ${code}`);
+    thrive.on('exit', (code, signal) => {
 
-        if(code == 0)
-            appendMessage("Thrive has exited normally.");
+        if(signal){
+            console.log(`child process exited due to signal ${signal}`);
+            appendMessage(`child process exited due to signal ${signal}`);
+
+        } else {
+            console.log(`child process exited with code ${code}`);
+            appendMessage(`child process exited with code ${code}`);
+
+            if(code == 0)
+                appendMessage("Thrive has exited normally (exit code 0).");
+        }
 
         let closeContainer = document.createElement("div");
 
@@ -722,9 +730,11 @@ function onThriveFolderReady(version, download){
         });
 
         closeContainer.append(close);
-        
+
         status.append(closeContainer);
 
+        // Let crash reporter do things
+        onGameEnded(binFolder, signal != null ? signal : code, closeContainer);
     });
 }
 

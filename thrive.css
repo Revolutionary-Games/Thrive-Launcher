@@ -163,6 +163,26 @@ hr {
     background: rgba(20, 20, 20, 1);
 }
 
+.AfterPlayReport{
+    text-align: center;
+    display: inline-block;
+
+    margin-left: 5px;
+    margin-right: auto;
+
+    color: #DEDEDE;
+    border-radius: 5px;
+    background: rgba(43, 43, 43, 0.9);
+
+    font-size: 2.3em;
+
+    cursor: pointer;
+}
+
+.AfterPlayReport:hover {
+    background: rgba(20, 20, 20, 1);
+}
+
 /** Feed style **/
 .FeedPost {
 

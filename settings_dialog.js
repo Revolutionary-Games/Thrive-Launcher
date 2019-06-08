@@ -5,7 +5,7 @@ const path = require('path');
 
 var {shell} = require('electron');
 
-const { Modal, ComboBox, showGenericError} = require('./modal');
+const { Modal, showGenericError} = require('./modal');
 const {listInstalledVersions, deleteInstalledVersion} = require('./install_handler.js');
 const { settings, saveSettings, installPath } = require('./settings.js');
 
