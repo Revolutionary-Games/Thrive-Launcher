@@ -7,6 +7,7 @@
     "scripts": {
         "start": "electron .",
         "start-dev": "electron . --open-dev",
+        "pack": "electron-builder --dir",
         "dist": "electron-builder",
         "dist:win": "electron-builder --win --x64 --ia32"
     },
@@ -25,12 +26,13 @@
     "build": {
         "appId": "com.revolutionarygamestudio.thrive-launcher",
         "productName": "Thrive Launcher",
-        "copyright": "Copyright © 2018 ${author}",
+        "copyright": "Copyright © 2018-2019 ${author}",
         "files": [
             "*",
             "7zip",
             "assets",
             "version_data",
+            "jquery-ui-1.12.1/**/*",
             "!release-builds"
         ],
         "asarUnpack": [
