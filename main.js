@@ -71,6 +71,10 @@ function createWindow () {
         app.quit();
         return;
     }
+
+    // Workaround for menu appearing (https://github.com/electron/electron/issues/16521)
+    if(!openDev)
+        electron.Menu.setApplicationMenu(null);
     
     // Create the browser window.
     mainWindow = new BrowserWindow({
@@ -79,8 +83,7 @@ function createWindow () {
         // so if this is false we need a custom window top bar
         frame: true,
 
-        // This breaks initial layout with dev console enabled
-        show: openDev ? true : false,
+        autoHideMenuBar: openDev ? false : true,
 
         webPreferences: {
             nodeIntegration: true
@@ -92,10 +95,16 @@ function createWindow () {
     });
 
     if(!openDev){
-        mainWindow.once('ready-to-show', () => {
-            mainWindow.show();
-        });
+        // Doesn't work. There's a bunch of open electron bugs for this
+        mainWindow.setMenu(null);
+
+        // Doesn't seem to work either
+        mainWindow.removeMenu();
     }
+
+    mainWindow.once('ready-to-show', () => {
+        mainWindow.show();
+    });
     
     // and load the index.html of the app.
     mainWindow.loadURL(url.format({
