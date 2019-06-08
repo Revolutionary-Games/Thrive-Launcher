@@ -1166,7 +1166,8 @@ linksButton.addEventListener("click", function(event){
 });
 
 
-
+// Settings dialog
+require('./settings_dialog.js');
 
 
 
