@@ -640,8 +640,8 @@ function onThriveFolderReady(version, download){
 
     processOutput.style.overflow = "auto";
     // This needs a fixed size for some reason
-    processOutput.style.maxHeight = "420px";
-    processOutput.style.height = "420px";
+    processOutput.style.maxHeight = "410px";
+    processOutput.style.height = "410px";
     processOutput.style.paddingTop = "5px";
     processOutput.style.width = "100%";
 

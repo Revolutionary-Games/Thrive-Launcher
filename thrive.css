@@ -417,3 +417,8 @@ hr {
     background: rgba(212, 106, 106, 1);
 }
 
+#listOfInstalledVersions{
+    overflow: auto;
+    max-height: 320px;
+}
+
