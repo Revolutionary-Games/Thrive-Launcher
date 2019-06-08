@@ -6,8 +6,6 @@
 const request = require('request');
 const assert = require('assert');
 
-const $ = require('jquery');
-
 const FeedParser = require('feedparser');
 
 const moment = require('moment');

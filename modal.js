@@ -2,7 +2,6 @@
 "use strict";
 
 const assert = require('assert');
-const $ = require('jquery');
 
 function documentHeight(){
 

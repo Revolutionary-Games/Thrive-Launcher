@@ -13,7 +13,6 @@ const child_process = require('child_process');
 const url = require("url");
 
 const sha3_256 = require('js-sha3').sha3_256;
-const $ = require('jquery');
 
 var {ipcRenderer, remote} = require('electron');
 

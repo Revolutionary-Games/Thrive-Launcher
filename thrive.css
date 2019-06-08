@@ -118,12 +118,19 @@ hr {
 
 #playText:hover {
 
-    background: #009ac1;
+    background: #02a2a2;
 }
 
 #playComboPopup:hover {
 
-    background: #009ac1;
+    background: #02a2a2;
+}
+
+#playButton {
+    font-size: 2.3em;
+    border: 2px solid #00ffff;
+    background: #007fc1; 
+    padding: 0px;
 }
 
 /* Button Stuff */
@@ -302,6 +309,7 @@ hr {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    z-index: 1;
 }
 
 .close:hover, .close:focus {
@@ -348,7 +356,7 @@ hr {
 
 .ComboVersionSelect:hover {
 
-    background: #00ffff;
+    background: #02a2a2;
 }
 
 /* Links in the "Links" dialog */
@@ -365,8 +373,5 @@ hr {
     display: block;
     margin-bottom: 5px;
 }
-
-
-
 
 

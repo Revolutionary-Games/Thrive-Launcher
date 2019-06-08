@@ -8,7 +8,8 @@
                    script-src 'self' 'unsafe-inline';
                    img-src 'self' http: https: data:;">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="thrive.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.min.css">
+    <link href="thrive.css" rel="stylesheet">
     <title>Thrive Launcher</title>
   </head>
   <body>
@@ -180,5 +181,7 @@
     </div>
     
   </body>
+  <script>window.$ = window.jQuery = require('jquery');</script>
+  <script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
   <script src="./renderer.js"></script>
 </html>

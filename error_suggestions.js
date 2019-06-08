@@ -1,5 +1,4 @@
 // Provides suggestions for errors
-const $ = require('jquery');
 
 // suggestionText is parsed as html so it SHOULDN'T contain any user input
 function appendSuggestion(suggestionText, element){
