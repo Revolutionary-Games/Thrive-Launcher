@@ -396,3 +396,19 @@ hr {
 }
 
 
+.VersionDeleteButton{
+
+    margin-left: 5px;
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+
+    color: #DEDEDE;
+    border-radius: 2px;
+    background: rgba(128, 21, 21, 1);
+
+    padding-left: 4px;
+    padding-right: 4px;
+
+    cursor: pointer;    
+}

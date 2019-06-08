@@ -1,10 +1,12 @@
 // Everything under the settings button
 "use strict";
 
+const path = require('path');
+
 var {shell} = require('electron');
 
 const { Modal, ComboBox, showGenericError} = require('./modal');
-const {listInstalledVersions} = require('./install_handler.js');
+const {listInstalledVersions, deleteInstalledVersion} = require('./install_handler.js');
 const { settings, saveSettings, installPath } = require('./settings.js');
 
 const settingsModal = new Modal("settingsModal", "settingsModalDialog", {
@@ -28,9 +30,27 @@ settingsButton.addEventListener("click", function(event){
     listInstalledVersions().then((data) =>{
         listOfInstalledVersions.innerHTML = "";
 
-        for(let key of data){
+        for(let key in data){
+
+            const obj = data[key];
+
             let li = document.createElement("li");
-            li.textContent = key;
+            let span = document.createElement("span");            
+            
+            if(obj.valid){
+                span.append(document.createTextNode(obj.name));
+
+                let button = document.createElement("span");
+                button.classList.add("VersionDeleteButton");
+                button.append(document.createTextNode("DELETE"));
+                span.append(button);
+                
+            } else {
+                span.append(document.createTextNode("Unknown folder present: "));
+                span.append(document.createTextNode(obj.path));
+            }
+            
+            li.append(span);
             listOfInstalledVersions.append(li);
         }
 

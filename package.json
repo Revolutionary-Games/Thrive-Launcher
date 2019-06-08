@@ -85,6 +85,7 @@
         "moment": "^2.24.0",
         "openpgp": "^4.5.3",
         "request": "^2.88.0",
+        "rimraf": "^2.6.3",
         "strip-json-comments": "^3.0.1"
     },
     "postinstall": "electron-builder install-app-deps"

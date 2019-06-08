@@ -4,6 +4,7 @@
 // TODO: the installing functions are still in renderer.js and should be moved here
 const fs = require('fs');
 const path = require('path');
+const rimraf = require("rimraf");
 
 const {getVersionData} = require("./version_info.js");
 
@@ -15,18 +16,66 @@ const getDirectories = source =>
 
 
 // Returns the names of all installed versions. And extra files in the installed folder
-function listInstalledVersions(success, error){
+function listInstalledVersions(){
     return new Promise((resolve, reject) => {
 
-        const versions = getVersionData();
+        const versions = getVersionData().versions;
 
         const directories = getDirectories(installPath);
 
-        console.log("dirs", directories);
+        let result = {};
 
-        resolve(directories);
+        for(let dir of directories){
+
+            const name = path.basename(dir);
+            let good = false;
+
+            for(let ver of versions){
+                for(let dl of ver.platforms){
+
+                    if(dl.folderName == name){
+
+                        good = true;
+                        break;
+                    }
+                }
+
+                if(good)
+                    break;
+            }
+
+            // TODO: calculate folder size
+
+            result[dir] = {path: dir, valid: good, name: name};
+        }
+
+        resolve(result);
+    });
+}
+
+// Deletes an installed version by name
+function deleteInstalledVersion(name){
+    return new Promise((resolve, reject) => {
+
+        const finalPath = path.join(installPath, name);
+
+        if(!fs.existsSync(finalPath)){
+            reject("path for version doesn't exist: " + finalPath);
+            return;
+        }
+
+        rimraf(finalPath, (error) => {
+            if(error){
+
+                reject("failed to delete, error: " + error);
+                return;
+            }
+
+            resolve();
+        });
     });
 }
 
 
 module.exports.listInstalledVersions = listInstalledVersions;
+module.exports.deleteInstalledVersion = deleteInstalledVersion;
