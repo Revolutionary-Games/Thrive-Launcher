@@ -128,6 +128,40 @@
       </div>
     </div>
 
+    <!-- Settings popup -->
+    <div id="settingsModal" class="modal">
+      <div id="settingsModalDialog" class="modal-content">
+        
+        <span id="settingsClose" class="close"
+              style="position: relative; right: 15px; top: 8px;">&times;</span>
+
+        <div id="settingsTabs">
+          <ul>
+            <li><a href="#settingsTabs-1">Installed Versions</a></li>
+            <li><a href="#settingsTabs-2">Launcher Options</a></li>
+            <!-- <li><a href="#settingsTabs-3">Thrive Options</a></li> -->
+          </ul>
+          <div id="settingsTabs-1">
+            <div id="browseFilesButton" class="BottomButton" style="">
+              <p style="text-align: left;">
+                Browse Installed Files
+              </p>
+            </div>
+            <hr/>
+            <ul id="listOfInstalledVersions">
+            </ul>
+          </div>
+          <div id="settingsTabs-2">
+            <label for="enableWebContentCheckbox">Enable Web Content</label>
+            <input type="checkbox" id="enableWebContentCheckbox">
+          </div>
+          <!-- <div id="settingsTabs-3"> -->
+          <!--   <p>Put something here...</p> -->
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+
     <!-- Error handling data things -->
     <div id="errorOldCantStartModal" class="modal">
       <div id="errorOldCantStartModalDialog" class="modal-content">

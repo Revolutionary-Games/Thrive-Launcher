@@ -62,7 +62,7 @@ class Modal {
 
                     this.hide();
                 }
-            }
+            };
         }
 
         if(this.closeButton){
@@ -158,7 +158,7 @@ class ComboBox{
 
                 this.hide();
             }
-        }
+        };
 
 
         if(this.closeButton){
@@ -241,5 +241,36 @@ class ComboBox{
     
 }
 
+const genericErrorModal = new Modal("genericErrorModal", "genericErrorModalDialog", {
+    closeButton: "genericErrorClose"
+});
+
+// Pops up a box with the message, onclosed is called once closed.
+// Note: only one of these boxes can be active at a time
+function showGenericError(message, onclosed = null){
+
+    // Hopefully no one overrides this after us
+    if(genericErrorModal.visible()){
+
+        console.error("Can't show generic message as one is already open: " + message);
+        if(onclosed)
+            onclosed();
+    } else {
+
+        
+        genericErrorModal.onClose = function(){
+
+            if(onclosed)
+                onclosed();
+            genericErrorModal.onClose = null;
+        };
+
+        genericErrorModal.show();
+        $("#genericErrorText").text("Error: " + message);
+    }
+}
+
+
 module.exports.Modal = Modal;
 module.exports.ComboBox = ComboBox;
+module.exports.showGenericError = showGenericError;

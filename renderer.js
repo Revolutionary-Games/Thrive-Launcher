@@ -19,7 +19,7 @@ var {ipcRenderer, remote} = require('electron');
 const versionInfo = require('./version_info');
 const retrieveNews = require('./retrieve_news');
 const errorSuggestions = require('./error_suggestions');
-const { Modal, ComboBox} = require('./modal');
+const { Modal, ComboBox, showGenericError} = require('./modal');
 const { unpackRelease, findBinInRelease } = require('./unpack');
 
 const openpgp = require('openpgp');
@@ -31,7 +31,12 @@ var pjson = require('./package.json');
 //
 // Settings thing
 //
-const fetchNewsFromWeb = true;
+const { settings, loadSettings, saveSettings, dataFolder, tmpDLFolder, installPath,
+        locallyCachedDLFile} =
+      require('./settings.js');
+
+// This loads settings in sync mode here
+loadSettings();
 
 // Shows output from 7z. Not really usefull as it shows no actual progress
 const showUnpackMessages = false;
@@ -42,17 +47,6 @@ const loadTestVersionData = false;
 // If true will only attempt reading the prepackaged version data
 // Can be changed by user if no internet / download fails
 let loadPrePackagedVersionData = false;
-
-const dataFolder = path.join(remote.app.getPath("appData"), "Revolutionary-Games", "Launcher");
-
-const tmpDLFolder = path.join(remote.app.getPath("temp"), "Revolutionary-Games-Launcher");
-
-const installPath = path.join(dataFolder, "Installed");
-
-// Make sure it exists. This simplifies a lot of code
-mkdirp.sync(dataFolder);
-
-const locallyCachedDLFile = path.join(dataFolder, "saved_version_db_v2.json");
 
 
 const linksModal = new Modal("linksModal", "linksModalDialog", {
@@ -74,10 +68,6 @@ const versionDataFailedModal = new Modal("versionDataDownloadFailedModal",
                                          "versionDataDownloadFailedModalDialog", {
                                              autoClose: false
                                          });
-
-const genericErrorModal = new Modal("genericErrorModal", "genericErrorModalDialog", {
-    closeButton: "genericErrorClose"
-});
 
 var playModalQuitDLCancel = null;
 var currentDLCanceled = false;
@@ -149,31 +139,6 @@ function getLauncherKey(){
         }
     });
 }
-
-
-// Pops up a box with the message, onclosed is called once closed.
-// Note: only one of these boxes can be active at a time
-function showGenericError(message, onclosed){
-
-    // Hopefully no one overrides this after us
-    if(genericErrorModal.visible()){
-
-        console.error("Can't show generic message as one is already open: " + message);
-        onclosed();
-    } else {
-
-        
-        genericErrorModal.onClose = function(){
-
-            onclosed();
-            genericErrorModal.onClose = null;
-        };
-
-        genericErrorModal.show();
-        $("#genericErrorText").text("Error: " + message);
-    }
-}
-
 
 
 // http://ourcodeworld.com/articles/read/228/how-to-download-a-webfile-with-electron-save-it-and-show-download-progress
@@ -939,7 +904,7 @@ function playPressed(){
 
                 status.textContent = "Download Failed! " + error;
             }
-        }
+        };
 
         let dataObj = {
             remoteFile: download.url,
@@ -953,7 +918,7 @@ function playPressed(){
                 if(status){
 
                     status.textContent = percentage.toFixed(2) + "% | " + received +
-                        " bytes out of " + total + " bytes."
+                        " bytes out of " + total + " bytes.";
                 }
             }
         };
@@ -1178,7 +1143,7 @@ function loadNews(){
 
 // Clear news and start loading them
 
-if(fetchNewsFromWeb){
+if(settings.fetchNewsFromWeb){
     
     newsContent.textContent = "Loading...";
     devForumPosts.textContent = "Loading...";
@@ -1199,9 +1164,6 @@ linksButton.addEventListener("click", function(event){
 
     linksModal.show();
 });
-
-
-
 
 
 
