@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 
-var {remote} = require('electron');
+var {remote, shell} = require('electron');
 
 const { Modal, ComboBox, showGenericError} = require('./modal');
 
@@ -39,8 +39,9 @@ let loadingSettings = false;
 let browseFilesButton = document.getElementById("browseFilesButton");
 
 browseFilesButton.addEventListener("click", function(event){
-
-    
+    const target = module.exports.installPath;
+    console.log("Opening item:", target);
+    shell.openItem(target);
 });
 
 let enableWebContentCheckbox = document.getElementById("enableWebContentCheckbox");
