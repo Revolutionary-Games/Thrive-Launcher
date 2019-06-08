@@ -21,10 +21,8 @@ let settingsButton = document.getElementById("settingsButton");
 
 let listOfInstalledVersions = document.getElementById("listOfInstalledVersions");
 
-settingsButton.addEventListener("click", function(event){
 
-    settingsModal.show();
-
+function updateInstalledVersions(){
     listOfInstalledVersions.innerHTML = "<li>Searching for files...</li>";
 
     listInstalledVersions().then((data) =>{
@@ -43,6 +41,24 @@ settingsButton.addEventListener("click", function(event){
                 let button = document.createElement("span");
                 button.classList.add("VersionDeleteButton");
                 button.append(document.createTextNode("DELETE"));
+
+                button.addEventListener("click", function(event){
+
+                    console.log("deleting release:", obj.name);
+
+                    span.style.display = "none";
+
+                    deleteInstalledVersion(obj.name).then(() =>{
+                        
+                        updateInstalledVersions();
+                        
+                    }).catch(err => {
+
+                        showGenericError("Failed to delete the version. " + err);
+                        span.style.display = "";
+                    });                    
+                });
+                
                 span.append(button);
                 
             } else {
@@ -60,7 +76,14 @@ settingsButton.addEventListener("click", function(event){
         let li = document.createElement("li");
         li.textContent = "An error happened: " + err;
         listOfInstalledVersions.append(li);
-    });
+    });    
+}
+
+settingsButton.addEventListener("click", function(event){
+
+    settingsModal.show();
+
+    updateInstalledVersions();
 });
 
 

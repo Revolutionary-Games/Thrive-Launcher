@@ -412,3 +412,8 @@ hr {
 
     cursor: pointer;    
 }
+
+.VersionDeleteButton:hover {
+    background: rgba(212, 106, 106, 1);
+}
+
