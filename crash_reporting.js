@@ -3,14 +3,22 @@
 //
 const fs = require('fs');
 const path = require('path');
+const url = require('url');
 
 var {shell} = require('electron');
 
 const moment = require('moment');
+const request = require('request');
 
 const { Modal, showGenericError} = require('./modal');
 
 const logFilenamesToCheck = ["ThriveLog.txt", "ThriveLogCEF.txt", "ThriveLogOGRE.txt"];
+
+
+// For local testing
+// const devCenterURL = "http://localhost:5000";
+const devCenterURL = "https://dev.revolutionarygamesstudio.com/";
+const devCenterReportAPI = url.resolve(devCenterURL, "/api/v1/crash_report");
 
 
 function getCrashDumpsInFolder(folder){
@@ -28,10 +36,10 @@ function getCrashDumpsInFolder(folder){
 
                 if(file.endsWith(".dmp")){
 
-                    let data = {name: file};
+                    let data = {name: file, path: path.join(folder, file)};
 
                     try{
-                        const stats = fs.lstatSync(path.join(folder, file));
+                        const stats = fs.lstatSync(data.path);
                         data.mtimeMs = stats.mtimeMs;
                     } catch(err){
                         continue;
@@ -102,21 +110,84 @@ function onAgreeChanged(value, settings){
 
 function onTrySubmit(settings){
 
-    if(!settings.agreed)
+    if(!settings.agreed || settings.uploading)
         return;
 
-    console.log("Starting reporting crash", settings);
+    settings.uploading = true;
+
+    // console.log("Starting reporting crash", settings);
     settings.submit.textContent = "Creating request...";
 
     // Get selected log file contents
 
+    let logs = "";
 
-    crashReportingContent.append(
-        document.createTextNode("Please allow up to a minute for your report to be processed"));
+    try{
 
+        for(let log of settings.selectedLogs){
 
+            logs += "==== START OF " + log.name + " ===\n" + fs.readFileSync(log.path) +
+                "=== END OF " + log.name + " ====";
+        }
 
-    // onSuccess("aa", "bb");
+    } catch(err){
+        showGenericError("Failed to read log files: " + err);
+        settings.uploading = false;
+        return;
+    }
+
+    const formData = {
+        exit_code: "" + settings.exitCode,
+        crash_time: "" + Math.floor(settings.selectedDump.mtimeMs / 1000),
+        public: "" + settings.public,
+        log_files: logs,
+        dump: fs.createReadStream(settings.selectedDump.path),
+    };
+
+    if(settings.extraDescription)
+        formData.extra_description = settings.extraDescription;
+
+    if(settings.email)
+        formData.email = settings.email;
+
+    settings.submit.textContent = "Sending request...";
+
+    request.post({url: devCenterReportAPI, formData: formData}, function(
+        err, httpResponse, body) {
+
+        let data = {};
+
+        try{
+            data = JSON.parse(body);
+        } catch(ignore){
+        }
+
+        if (err || httpResponse.statusCode != 201) {
+
+            console.log("error in creating report: err:", err, "status:",
+                        httpResponse.statusCode, "response:", httpResponse, "body:", body);
+
+            if(!err)
+                err = data.error;
+
+            settings.statusText.textContent =
+                "Error sending request, please try again later. " +
+                "status code: " + httpResponse.statusCode + " error: " +
+                err;
+            settings.submit.textContent = "Retry";
+            settings.uploading = false;
+            return;
+        }
+
+        console.log("successfully created report:", body);
+        onSuccess(url.resolve(devCenterURL, "/report/" + data.created_id),
+                  url.resolve(devCenterURL, "/delete_report/" + data.delete_key));
+    });
+
+    settings.submit.textContent = "Waiting for server response...";
+
+    settings.statusText.textContent = "Please allow up to a minute for your report to " +
+        "be processed";
 }
 
 function onSuccess(reportURL, privateURL){
@@ -315,7 +386,13 @@ function onBeginReportingCrash(dump, settings){
     let publicBox = document.createElement("input");
     publicBox.type = "checkbox";
     publicBox.checked = true;
+    settings.public = true;
     publicBox.classList.add("Report");
+
+    publicBox.addEventListener("change", function(event){
+
+        settings.public = event.target.checked;
+    });
 
     crashReportingContent.append(publicBox);
     crashReportingContent.append(document.createTextNode(
@@ -358,6 +435,9 @@ function onBeginReportingCrash(dump, settings){
     submitContainer.append(settings.submit);
 
     crashReportingContent.append(submitContainer);
+
+    settings.statusText = document.createElement("span");
+    crashReportingContent.append(settings.statusText);
 }
 
 function onReporterOpened(settings){
@@ -406,9 +486,7 @@ function onReporterOpened(settings){
             console.log("deleting stuff");
 
             for(let dump of settings.dumps){
-                let targetFile = path.join(settings.dumpFolder, dump.name);
-
-                fs.unlinkSync(targetFile);
+                fs.unlinkSync(dump.path);
             }
 
             resolve();
