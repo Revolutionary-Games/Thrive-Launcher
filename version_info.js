@@ -70,7 +70,7 @@ function getCurrentPlatform(){
         // os: "win32",
 
         compare: function(other){
-            return this.arch == other.arch && this.os == other.os
+            return this.arch == other.arch && this.os == other.os;
         }
     };
 }

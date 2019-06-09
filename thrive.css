@@ -140,7 +140,6 @@ hr {
     cursor: pointer;
 }
 
-
 .AfterPlayClose {
 
     text-align: center;
@@ -351,6 +350,7 @@ hr {
     font-size: 28px;
     font-weight: bold;
     z-index: 1;
+    cursor: pointer;
 }
 
 .close:hover, .close:focus {
@@ -442,3 +442,44 @@ hr {
     max-height: 320px;
 }
 
+textarea.Report {
+    width: 600px;
+    height: 80px;
+}
+
+input[type="text"].Report {
+    width: 200px;
+}
+
+
+.Submit {
+    text-align: center;
+    display: inline-block;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    color: #DEDEDE;
+    border-radius: 5px;
+    background: rgba(43, 43, 43, 0.9);
+
+    font-size: 2.3em;
+
+    cursor: pointer;
+}
+
+.Submit:hover {
+
+    background: rgba(20, 20, 20, 1);
+}
+
+.Submit.Disabled{
+    
+    color: #222222;
+    cursor: not-allowed;
+}
+
+.Submit.Disabled:hover {
+
+    background: rgba(43, 43, 43, 0.9);
+}
