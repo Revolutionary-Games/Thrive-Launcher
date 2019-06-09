@@ -69,17 +69,9 @@ directory that contains the file `package.json`.
 Creating releases
 -----------------
 
-To create a release you first need to install electron-packager (with
-`npm install -g electron-packager`). You will also need to have 7zip
-installed for zipping the releases (make sure that you can run `7za`
-on the command line). And ruby because it is a ruby script.
-
-Then you just run `./CreatePackages.rb -d` on linux and `ruby
-CreatePackages.rb -d` on windows. This should create all the valid
-releases. If for some reason you need to build thrive launcher for all
-platforms (including ones that Thrive doesn't support) run
-`CreatePackages.rb` with `--all` instead.
-
+Packages are now made with electron builder. There are targets for
+making the releases included in package.json. They can be ran like
+this: `npm run dist` and `npm run dist:win`
 
 
 
