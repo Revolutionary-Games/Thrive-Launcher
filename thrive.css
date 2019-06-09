@@ -442,6 +442,11 @@ hr {
     max-height: 320px;
 }
 
+#crashReportingContent ul{
+    overflow: auto;
+    max-height: 320px;
+}
+
 textarea.Report {
     width: 600px;
     height: 80px;
