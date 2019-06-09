@@ -33,6 +33,7 @@
             "assets",
             "version_data",
             "jquery-ui-1.12.1/**/*",
+            "Roboto/*",
             "!release-builds"
         ],
         "asarUnpack": [
