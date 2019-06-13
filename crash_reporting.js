@@ -141,6 +141,7 @@ function onTrySubmit(settings){
         crash_time: "" + Math.floor(settings.selectedDump.mtimeMs / 1000),
         public: "" + settings.public,
         log_files: logs,
+        game_version: settings.gameVersion,
         dump: fs.createReadStream(settings.selectedDump.path),
     };
 
@@ -506,7 +507,7 @@ function onReporterOpened(settings){
     crashReportingContent.append(button);
 }
 
-function showDumpsDialog(dumpFolder, exitCode){
+function showDumpsDialog(dumpFolder, exitCode, gameVersion){
 
     crashReporterModal.show();
     crashReportingContent.innerHTML = "Finding dump files";
@@ -515,6 +516,7 @@ function showDumpsDialog(dumpFolder, exitCode){
         dumpFolder: dumpFolder,
         dumps: [],
         exitCode: exitCode,
+        gameVersion: gameVersion,
     };
 
     // The dumps are searched for again here as otherwise the delete
@@ -530,7 +532,7 @@ function showDumpsDialog(dumpFolder, exitCode){
 }
 
 // Called when Thrive exits
-function onGameEnded(binFolder, exitCode, buttonContainer){
+function onGameEnded(binFolder, exitCode, buttonContainer, gameVersion){
     // Look for .dmp files
     getCrashDumpsInFolder(binFolder).then(dumps => {
 
@@ -544,7 +546,7 @@ function onGameEnded(binFolder, exitCode, buttonContainer){
 
             button.addEventListener("click", function(event){
 
-                showDumpsDialog(binFolder, exitCode);
+                showDumpsDialog(binFolder, exitCode, gameVersion);
             });
 
             buttonContainer.append(button);

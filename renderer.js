@@ -734,7 +734,8 @@ function onThriveFolderReady(version, download){
         status.append(closeContainer);
 
         // Let crash reporter do things
-        onGameEnded(binFolder, signal != null ? signal : code, closeContainer);
+        onGameEnded(binFolder, signal != null ? signal : code, closeContainer,
+                    version.releaseNum);
     });
 }
 
