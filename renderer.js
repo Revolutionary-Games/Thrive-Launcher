@@ -572,6 +572,17 @@ function verifyDLHash(version, download, localTarget){
             if(download.hash != fileHash){
                 
                 console.error("Hashes don't match! " + download.hash + " != " + fileHash);
+                console.log("Deleting invalid file");
+
+                fs.unlink(localTarget, (err) => {
+                    if(err){
+                        console.log("Unable to delete file at " + localTarget);
+                        console.error(err);
+                        return;
+                    }
+
+                    console.log("File at " + localTarget + " deleted.");
+                });
 
                 reject();
                 return;
