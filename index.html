@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -13,22 +13,28 @@
     <title>Thrive Launcher</title>
   </head>
   <body>
-    
-    <span class="ContentBlock"
-          style="height: 90%; width: 40%; top: 0px; left: 0px; border-right: 1px solid 
-                 rgba(68, 68, 68, 0.46)">
 
-      <h2>Development Forums</h2>
+    <span class="ContentBlockFade" 
+    style="height: 5%; width: 35%; bottom: calc(70px + 13px); left: 8px;">
+    </span>
+    <span class="ContentBlock"
+          style="height: calc(80% + 20px); width: 35%; top: 10px; left: 8px;
+                 border-right: 1px; rgba(68, 68, 68, 0.46)">
+
+      <h2>DEVELOPMENT FORUMS</h2>
       <hr>
 
       <span id="devForumPosts">
       </span>
     </span>
 
+    <span class="ContentBlockFade" 
+    style="height: 5%; width: calc(60% + 15px); bottom: calc(70px + 13px); left: calc(35% + 20px);">
+    </span>
     <span class="ContentBlock"
-          style="height: 90%; width: calc(60% - 1px); top: 0px; left: calc(40% + 1px);">
+          style="height: calc(80% + 20px); width: calc(60% + 15px); top: 10px; left: calc(35% + 20px)">
 
-      <h2>News</h2>
+      <h2>NEWS</h2>
       <hr>
       <span id="newsContent">
       </span>
@@ -36,21 +42,19 @@
     </span>
 
     <div id="buttonContainer">
-
       <span id="innerButtons">
-
         <!-- Settings button -->
-        <div id="settingsButton" class="BottomButton" style="padding-top: 7px; padding-bottom: 3px;">
-          <img src="assets/gear.png" style="width: 36px; height: 36px;">
+        <div id="settingsButton" class="BottomButton" style="padding-top: 3px; padding-bottom: 3px;">
+          <img src="assets/gear.png" style="width: 36px; height: 36px; padding-top: 5px; padding-bottom: 3px;">
         </div>
 
         <div id="playButton" class="BottomButton">
-          
-          <span id="playText" class="Inline" style="padding-left: 10px;">
+
+          <span id="playText" class="Inline" style="padding-left: 10px; padding-bottom: 10px; padding-top: 10px; color: white;">
             Play
           </span>
           <span id="playComboPopup" class="Inline"
-                style="border-left: 2px solid #00ffff; padding-left: 5px; padding-right: 5px;">
+                style="border-left: 3px solid #60e7ff; padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px;">
             &#x21E7
           </span>
         </div>
@@ -71,7 +75,7 @@
 
     <!-- Popup Launching window -->
     <div id="playModal" class="modal">
-      <div id="playModalDialog" class="modal-content">
+      <div id="playModalDialog" class="modal-content" style="max-height: 70%;">
         <span id="playModalClose" class="close">&times;</span>
         <span id="playModalContent">An unknown error happened</span>
       </div>
@@ -142,18 +146,32 @@
             <!-- <li><a href="#settingsTabs-3">Thrive Options</a></li> -->
           </ul>
           <div id="settingsTabs-1">
-            <div id="browseFilesButton" class="BottomButton" style="">
-              <p style="text-align: left;">
+            <div id="browseFilesButton" class="BottomButton" style="height: 40px;">
+              <p style="text-align: left; font-size: 0.8em;">
                 Browse Installed Files
               </p>
             </div>
+            <div id="selectInstallLocation" class="BottomButton" style="height: 40px;">
+              <p style="text-align: left; font-size: 0.8em;">
+                Select Install Location
+              </p>
+              </div>
             <hr/>
+            <span id="currentInstallDir" class="Inline" style="font-size: 0.8em;">
+              Searching files...
+            </span>
             <ul id="listOfInstalledVersions">
             </ul>
           </div>
           <div id="settingsTabs-2">
-            <label for="enableWebContentCheckbox">Enable Web Content</label>
-            <input type="checkbox" id="enableWebContentCheckbox">
+            <div>
+              <label for="enableWebContentCheckbox">Enable Web Content</label>
+              <input type="checkbox" id="enableWebContentCheckbox">
+            </div>
+            <div>
+              <label for="hideLauncherOnPlay">Hide Launcher On Play</label>
+              <input type="checkbox" id="hideLauncherOnPlay">
+            </div>
           </div>
           <!-- <div id="settingsTabs-3"> -->
           <!--   <p>Put something here...</p> -->

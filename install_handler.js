@@ -8,7 +8,7 @@ const rimraf = require("rimraf");
 
 const {getVersionData} = require("./version_info.js");
 
-const {installPath} = require("./settings.js");
+const {getInstallPath} = require("./settings.js");
 
 const isDirectory = source => fs.lstatSync(source).isDirectory();
 const getDirectories = source =>
@@ -21,7 +21,7 @@ function listInstalledVersions(){
 
         const versions = getVersionData().versions;
 
-        const directories = getDirectories(installPath);
+        const directories = getDirectories(getInstallPath());
 
         let result = {};
 
@@ -57,7 +57,7 @@ function listInstalledVersions(){
 function deleteInstalledVersion(name){
     return new Promise((resolve, reject) => {
 
-        const finalPath = path.join(installPath, name);
+        const finalPath = path.join(getInstallPath(), name);
 
         if(!fs.existsSync(finalPath)){
             reject("path for version doesn't exist: " + finalPath);

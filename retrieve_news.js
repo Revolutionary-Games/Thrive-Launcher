@@ -297,7 +297,7 @@ function parseFeed(feed, resultObj){
 
                     truncated = truncate(remoteData, truncateLength);
                 }
-                
+
                 $( content ).append(remoteData);
 
                 if(truncated){

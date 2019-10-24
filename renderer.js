@@ -11,10 +11,13 @@ const mkdirp = require('mkdirp');
 const os = require('os');
 const child_process = require('child_process');
 const url = require("url");
+const si = require("systeminformation");
 
 const sha3_256 = require('js-sha3').sha3_256;
 
 var {ipcRenderer, remote} = require('electron');
+
+const win = remote.getCurrentWindow();
 
 const versionInfo = require('./version_info');
 const retrieveNews = require('./retrieve_news');
@@ -31,12 +34,15 @@ var pjson = require('./package.json');
 //
 // Settings thing
 //
-const { settings, loadSettings, saveSettings, dataFolder, tmpDLFolder, installPath,
-        locallyCachedDLFile} =
+const { settings, loadSettings, saveSettings, dataFolder, tmpDLFolder,
+        locallyCachedDLFile, getInstallPath} =
       require('./settings.js');
+
+let showIncompatibleModal = false;
 
 // This loads settings in sync mode here
 loadSettings();
+checkIfCompatible();
 
 const { onGameEnded } = require('./crash_reporting.js');
 
@@ -202,7 +208,6 @@ function downloadFile(configuration){
         });
     });
 }
-
 
 //! Parses version information from data and adds it to all the places
 function onVersionDataReceived(data, unsigned = false){
@@ -443,7 +448,7 @@ function loadVersionData(){
                 
                 let dlnow = document.createElement("div");
                 dlnow.classList.add("BottomButton");
-                dlnow.style.fontSize = "3.4em";
+                dlnow.style.fontSize = "1.7em";
                 dlnow.style.marginRight = "5px";
                 dlnow.textContent = "Retry";
                 
@@ -464,7 +469,7 @@ function loadVersionData(){
 
                     let useLocal = document.createElement("div");
                     useLocal.classList.add("BottomButton");
-                    useLocal.style.fontSize = "3.4em";
+                    useLocal.style.fontSize = "1.7em";
                     useLocal.style.marginLeft = "5px";
                     useLocal.textContent = "Use Previous Version";
                     
@@ -596,7 +601,7 @@ function verifyDLHash(version, download, localTarget){
 
 function onThriveFolderReady(version, download){
 
-    const installFolder = path.join(installPath, download.folderName);
+    const installFolder = getInstallPath();
     
     assert(fs.existsSync(installFolder));
 
@@ -712,6 +717,10 @@ function onThriveFolderReady(version, download){
 
     thrive.on('exit', (code, signal) => {
 
+        if(settings.hideLauncherOnPlay){
+            win.show();
+        }
+
         if(signal){
             console.log(`child process exited due to signal ${signal}`);
             appendMessage(`child process exited due to signal ${signal}`);
@@ -732,7 +741,7 @@ function onThriveFolderReady(version, download){
 
         close.textContent = "Close";
 
-        close.className = "AfterPlayClose";
+        close.className = "CloseButton";
 
         close.addEventListener('click', (event) => {
 
@@ -767,7 +776,7 @@ function onDLFileReady(version, download, fileName){
     status.innerHTML = "";
 
     // If unpacked already launch Thrive //
-    mkdirp(installPath, function (err){
+    mkdirp(getInstallPath(), function (err){
         
         if(err){
             
@@ -777,7 +786,7 @@ function onDLFileReady(version, download, fileName){
         }
 
         // Check does it exist //
-        if(fs.existsSync(path.join(installPath, download.folderName))){
+        if(fs.existsSync(path.join(getInstallPath(), download.folderName))){
 
             console.log("archive has already been extracted");
             onThriveFolderReady(version, download);
@@ -803,6 +812,10 @@ function onDLFileReady(version, download, fileName){
 
             status.append(document.createElement("br"));
             
+            status.append(document.createTextNode("to  '" + getInstallPath() + "'"));
+
+            status.append(document.createElement("br"));
+
             status.append(document.createTextNode("This may take several minutes to " + 
                                                   "complete, please be patient."));
 
@@ -818,10 +831,10 @@ function onDLFileReady(version, download, fileName){
 
             console.log("beginning unpacking");
 
-            unpackRelease(installPath, download.folderName, localTarget, unpackProgress).then(
+            unpackRelease(getInstallPath(), download.folderName, localTarget, unpackProgress).then(
                 () => {
 
-                    assert(fs.existsSync(path.join(installPath, download.folderName)));
+                    assert(fs.existsSync(path.join(getInstallPath(), download.folderName)));
                     console.log("unpacking completed");
                     
                     onThriveFolderReady(version, download);
@@ -887,7 +900,7 @@ function playPressed(){
 
     assert(fileName);
 
-    if(fs.existsSync(path.join(installPath, download.folderName))){
+    if(fs.existsSync(path.join(getInstallPath(), download.folderName))){
 
         console.log("archive has already been extracted (assumed)");
         onThriveFolderReady(version, download);
@@ -985,14 +998,59 @@ function playPressed(){
 
         playModalQuitDLCancel = dataObj.reqObj;
         
+        
     });
 
 }
 
-playButtonText.addEventListener("click", function(event){
+async function checkIfCompatible() {
+    try {
+        const data = await si.graphics();
+        if(data.controllers[0].model.includes("Intel")){
+            showIncompatibleModal = true;
+        }
+    } catch (e) {
+        console.log(e)
+    }
+}
 
+playButtonText.addEventListener("click", function(event){
     console.log("play clicked");
-    playPressed();
+
+    playModal.show();
+
+    let playBox = document.getElementById("playModalContent");
+    playBox.innerHTML = "<p id='playingInternalP'></p>"
+
+    let status = document.getElementById("playingInternalP");
+
+    if(showIncompatibleModal){
+        status.textContent = "WARNING: Intel Integrated Graphics Card may causes Thrive to crash due to engine issues, this is a known problem.";
+    
+        let closeContainer = document.createElement("div");
+        closeContainer.style.textAlign = "center";
+        let close = document.createElement("div");
+        close.textContent = "Continue";
+        close.className = "CloseButton";
+    
+        close.addEventListener('click', (event) => {
+            playPressed();
+
+            if(settings.hideLauncherOnPlay){
+                win.hide();
+            }
+        });
+    
+        closeContainer.append(close);
+        status.append(closeContainer);
+    }
+    else{
+        playPressed();
+
+        if(settings.hideLauncherOnPlay){
+            win.hide();
+        }
+    }
 });
 
 let playComboPopup = document.getElementById("playComboPopup");
@@ -1066,7 +1124,7 @@ function updatePlayButtonText(){
 
     assert(download);
     
-    playButtonText.textContent = "Play " + version.getDescriptionString() + " " +
+    playButtonText.textContent = "Play " + version.getDescriptionString() + "\n" +
         download.getDescriptionString();
 }
 
@@ -1190,6 +1248,3 @@ linksButton.addEventListener("click", function(event){
 
 // Settings dialog
 require('./settings_dialog.js');
-
-
-
