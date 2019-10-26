@@ -35,15 +35,16 @@ var pjson = require('./package.json');
 // Settings thing
 //
 const { settings, loadSettings, saveSettings, dataFolder, tmpDLFolder,
-        locallyCachedDLFile, getInstallPath, insDirs, saveInstalledDir } =
+        locallyCachedDLFile, getInstallPath } =
       require('./settings.js');
-
-checkIfCompatible();
 
 let graphicControllers = null;
 let cards = {};
 
 let showIncompatiblePopup = false;
+let showHelpText = false;
+
+checkIfCompatible();
 
 // This loads settings in sync mode here
 loadSettings();
@@ -100,6 +101,11 @@ const playModal = new Modal("playModal", "playModalDialog", {
         // Prevent closing //
         //return true;
     }
+});
+
+const incompatibleModal = new Modal("incompatibleModal", "incompatibleModalDialog", {
+    autoClose: false,
+    closeButton: "incompatibleModalClose",
 });
 
 // Use getLauncherKey instead
@@ -844,8 +850,8 @@ function onDLFileReady(version, download, fileName){
                     assert(fs.existsSync(path.join(getInstallPath(), download.folderName)));
                     console.log("unpacking completed");
                     
-                    insDirs.installedDir = getInstallPath();
-                    saveInstalledDir();
+                    settings.installedDir = getInstallPath();
+                    saveSettings();
 
                     onThriveFolderReady(version, download);
 
@@ -1027,7 +1033,13 @@ async function checkIfCompatible() {
         // Is incompatible if the word Intel is found in a substring
         if(cards.includes("Intel")){
             showIncompatiblePopup = true;
+
+            // Show help text
+            if(cards.includes("Nvidia") || cards.includes("AMD")){
+                showHelpText = true;
+            }
         }
+
     } catch (e) {
         console.log(e)
     }
@@ -1036,21 +1048,27 @@ async function checkIfCompatible() {
 playButtonText.addEventListener("click", function(event){
     console.log("play clicked");
 
-    playModal.show();
-
-    let playBox = document.getElementById("playModalContent");
-    playBox.innerHTML = "<p id='playingInternalP'></p>"
-
-    let status = document.getElementById("playingInternalP");
-
     if(showIncompatiblePopup){
-        status.textContent = "Detected graphics card(s): " + cards;
-        status.append(document.createElement("br"));
-        status.append(document.createElement("br"));
-        status.append(document.createTextNode("WARNING: Intel Integrated Graphics Card may causes Thrive to crash due to graphics engine issues with Intel: https://github.com/Revolutionary-Games/Thrive/issues/804."))
-        status.append(document.createElement("br"));
-        status.append(document.createTextNode("This is a known problem, any help fixing this would be most welcome!"));
+        incompatibleModal.show();
 
+        let incompatibleBox = document.getElementById("incompatibleModalContent");
+        incompatibleBox.innerHTML = "<p id='text'></p>"
+    
+        let box = document.getElementById("text");
+        
+        box.textContent = "Detected graphics card(s): " + cards;
+
+        if(showHelpText){
+            box.append(document.createElement("br"));
+            box.append(document.createElement("br"));
+            box.append(document.createTextNode("Another graphics card detected, you could configure Thrive to run with that instead!"));
+        }
+        box.append(document.createElement("br"));
+        box.append(document.createElement("br"));
+        box.append(document.createTextNode("WARNING: Intel Integrated Graphics Card may causes Thrive to crash due to graphics engine issues with Intel: https://github.com/Revolutionary-Games/Thrive/issues/804."))
+        box.append(document.createElement("br"));
+        box.append(document.createTextNode("This is a known problem, any help fixing this would be very much appreciated!"));
+        
         let closeContainer = document.createElement("div");
         closeContainer.style.marginTop = "20px";
         closeContainer.style.textAlign = "center";
@@ -1059,13 +1077,14 @@ playButtonText.addEventListener("click", function(event){
         close.className = "CloseButton";
     
         close.addEventListener('click', (event) => {
+            incompatibleModal.hide();
             if(cards != null){
                 playPressed();
             }
         });
 
         closeContainer.append(close);
-        status.append(closeContainer);
+        box.append(closeContainer);
         showIncompatiblePopup = false;
     }
     else{
@@ -1146,7 +1165,7 @@ function updatePlayButtonText(){
 
     assert(download);
     
-    playButtonText.textContent = "Play " + version.getDescriptionString() +
+    playButtonText.textContent = "Play " + version.getDescriptionString() + "." +
         download.getDescriptionString();
 }
 

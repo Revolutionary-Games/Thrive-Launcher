@@ -9,7 +9,10 @@ const win = remote.getCurrentWindow();
 
 const { Modal, showGenericError} = require('./modal');
 const {listInstalledVersions, deleteInstalledVersion, moveInstalledVersion} = require('./install_handler.js');
-const { settings, dataFolder, saveSettings, setInstallPath, getInstallPath, insDirs} = require('./settings.js');
+
+const { settings, dataFolder, saveSettings, defaultInstallPath,
+        installPath, setInstallPath, getInstallPath } 
+        = require('./settings.js');
 
 const settingsModal = new Modal("settingsModal", "settingsModalDialog", {
     closeButton: "settingsClose"
@@ -31,14 +34,14 @@ function updateInstalledVersions(){
 
     listInstalledVersions().then((data) =>{
         listOfInstalledVersions.innerHTML = "";
-        currentInstallDir.innerHTML = "Directory: " + getInstallPath();
+        currentInstallDir.innerHTML = "Installation Directory: " + getInstallPath();
 
         for(let key in data){
 
             const obj = data[key];
 
             let li = document.createElement("li");
-            let span = document.createElement("span");            
+            let span = document.createElement("span");
             
             if(obj.valid){
                 span.append(document.createTextNode(obj.name));
@@ -108,15 +111,13 @@ function onSettingsChanged(){
 }
 
 function installedMessageBox(){
-    if(insDirs.installedDir != null && settings.installDir != insDirs.installedDir){
+    if(settings.installedDir != null && settings.installDir != settings.installedDir){
         dialog.showMessageBox(win, messageOptions, (response) => {
             if(response == 0){
                 moveInstalledVersion();
-                console.log("moving file...");
             }
             if(response == 1){
-                insDirs.installedDir = getInstallPath();
-                saveInstalledDir();
+
             }
         })
     }
@@ -125,7 +126,7 @@ function installedMessageBox(){
 let browseFilesButton = document.getElementById("browseFilesButton");
 
 browseFilesButton.addEventListener("click", function(event){
-    const target = getInstallPath();
+    const target = settings.installedDir;
     console.log("Opening item:", target);
     shell.openItem(target);
 });
@@ -136,7 +137,7 @@ const messageOptions = {
     type: "warning",
     buttons: ["Yes", "No"],
     title: "Warning!",
-    message: "A Thrive installation folder already exists. Do you want to move all of the \n installed files into the new directory?",
+    message: "A Thrive version already exists in another directory. Do you want to move all of the \n installed files into the new location?",
 }
 
 selectInstallLocation.addEventListener("click", function(event){
@@ -150,25 +151,27 @@ selectInstallLocation.addEventListener("click", function(event){
         }
         else {
             setInstallPath(String(path));
+            settings.installDir = getInstallPath();
             onSettingsChanged();
             updateInstalledVersions();
-
-            currentInstallDir.innerHTML = "Directory: " + getInstallPath();
 
             installedMessageBox();
         }
     });
 });
 
-let resestInstallLocation = document.getElementById("resetInstallLocation");
+let resetInstallLocation = document.getElementById("resetInstallLocation");
 
 resetInstallLocation.addEventListener("click", function(event){
 
-    setInstallPath(path.join(dataFolder, "Installed"));
-    updateInstalledVersions();
-    onSettingsChanged();
+    if(getInstallPath() != defaultInstallPath){
+        setInstallPath(defaultInstallPath);
+        settings.installDir = getInstallPath();
+        onSettingsChanged();
+        updateInstalledVersions();
 
-    installedMessageBox();
+        installedMessageBox();
+    }
 });
 
 let enableWebContentCheckbox = document.getElementById("enableWebContentCheckbox");
@@ -202,6 +205,7 @@ module.exports.onSettingsLoaded = () =>{
 
         enableWebContentCheckbox.checked = settings.fetchNewsFromWeb;
         hideLauncherOnPlayCheckbox.checked = settings.hideLauncherOnPlay;
+
         setInstallPath(settings.installDir);
 
     } catch(err){

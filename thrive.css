@@ -113,23 +113,23 @@ hr.style2 {
     transform: perspective(1px) translateY(-50%);
 }
 
-::-webkit-scrollbar {
+.ContentBlock::-webkit-scrollbar {
     width: 10px;
     height: 10px;
     background-color: rgba(44, 44, 44, 0.178);
     -webkit-border-radius: 100px;
   }
 
-::-webkit-scrollbar:hover {
+.ContentBlock::-webkit-scrollbar:hover {
     background-color: rgba(0, 0, 0, 0.15);
 }
   
-::-webkit-scrollbar-thumb:vertical {
+.ContentBlock::-webkit-scrollbar-thumb:vertical {
     background: #08cfcf;
     -webkit-border-radius: 100px;
 }
 
-::-webkit-scrollbar-thumb:vertical:active {
+.ContentBlock::-webkit-scrollbar-thumb:vertical:active {
     background: #1dffff;
     -webkit-border-radius: 100px;
 }
@@ -356,8 +356,6 @@ hr.style2 {
     max-width: 70%;
     max-height: 80%;
 
-    font-size: 1.0em;
-
     overflow: auto;
     /*overflow: auto;*/
     /* animation-name: animatetop; */
@@ -450,7 +448,7 @@ hr.style2 {
 /* Links in the "Links" dialog */
 .SiteLink {
 
-    font-size: 1.0em;
+    font-size: 1.1em;
     padding-bottom: 3px;
 }
 
@@ -507,6 +505,7 @@ input[type="text"].Report {
 .Submit {
     text-align: center;
     display: inline-block;
+    font-size: 1.0em;
 
     margin-left: auto;
     margin-right: auto;
@@ -532,4 +531,57 @@ input[type="text"].Report {
 .Submit.Disabled:hover {
 
     background: rgba(43, 43, 43, 0.9);
+}
+
+/* Tooltip container */
+.ResetInstallLocationTooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.ResetInstallLocationTooltip.Disabled{
+    pointer-events: none;
+}
+  
+/* Tooltip text */
+.ResetInstallLocationTooltip .ResetInstallLocationTooltipText {
+    visibility: hidden;
+    width: 150px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+  
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 5px;
+    left: 450%;
+    margin-left: -60px;
+    font-size: 0.5em;
+  
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    pointer-events: none;
+}
+  
+/* Tooltip arrow */
+.ResetInstallLocationTooltip .ResetInstallLocationTooltipText::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* To the left of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #555 transparent transparent;
+}
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+.ResetInstallLocationTooltip:hover .ResetInstallLocationTooltipText {
+    visibility: visible;
+    opacity: 1;
 }

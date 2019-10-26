@@ -9,7 +9,7 @@ const { dialog } = require('electron').remote;
 
 const {getVersionData} = require("./version_info.js");
 
-const {getInstallPath, insDirs, saveInstalledDir} = require("./settings.js");
+const {getInstallPath, settings} = require("./settings.js");
 
 const isDirectory = source => fs.lstatSync(source).isDirectory();
 const getDirectories = source =>
@@ -22,7 +22,7 @@ function listInstalledVersions(){
 
         const versions = getVersionData().versions;
 
-        const directories = getDirectories(insDirs.installedDir);
+        const directories = getDirectories(settings.installedDir);
 
         let result = {};
 
@@ -58,7 +58,7 @@ function listInstalledVersions(){
 function deleteInstalledVersion(name){
     return new Promise((resolve, reject) => {
 
-        const finalPath = path.join(getInstallPath(), name);
+        const finalPath = path.join(settings.installedDir, name);
 
         if(!fs.existsSync(finalPath)){
             reject("path for version doesn't exist: " + finalPath);
@@ -83,17 +83,20 @@ function moveInstalledVersion(){
             const obj = data[key];
 
             if(obj.valid){
-                fs.move(insDirs.installedDir + "/" + obj.name, getInstallPath() + "/" + obj.name, err => {
-                    if (err){
-                        dialog.showErrorBox("Error!", "Failed to move file: " + err.message);
-                        console.log("error " + err.message)
-                    }else{
-                        console.log("moving '" + obj.name + "' finished");
+                console.log("moving file...");
+                if(obj != null){
+                    fs.move(settings.installedDir + "/" + obj.name, getInstallPath() + "/" + obj.name, err => {
+                        if (err){
+                            dialog.showErrorBox("Error!", "Failed to move file: " + err.message);
+                            console.log("error " + err.message)
+                        }else{
+                            console.log("moving '" + obj.name + "' finished");
 
-                        insDirs.installedDir = getInstallPath();
-                        saveInstalledDir();
-                    }
-                });
+                            settin.installedDir = getInstallPath();
+                            saveInstalledDir();
+                        }
+                    });
+                }
             }
         }
     });

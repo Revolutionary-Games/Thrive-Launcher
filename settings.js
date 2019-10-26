@@ -18,6 +18,8 @@ module.exports.tmpDLFolder = path.join(remote.app.getPath("temp"),
 module.exports.locallyCachedDLFile = path.join(module.exports.dataFolder,
                                                "saved_version_db_v2.json");
 
+module.exports.defaultInstallPath = path.join(module.exports.dataFolder, "Installed");
+
 module.exports.setInstallPath = (directory) => {
     module.exports.installPath = directory;
     console.log("Install path set to:", module.exports.installPath);
@@ -33,37 +35,25 @@ mkdirp.sync(module.exports.dataFolder);
 module.exports.settings = {
     fetchNewsFromWeb: true,
     hideLauncherOnPlay: true,
-    installDir: path.join(module.exports.dataFolder, "Installed"),
+    installDir: module.exports.defaultInstallPath,
+    installedDir: module.exports.defaultInstallPath,
 };
 
-module.exports.insDirs = {
-    installedDir: this.settings.installDir,
-}
-
 const settingsFile = path.join(module.exports.dataFolder, "launcher_settings.json");
-const installedDirFile = path.join(module.exports.dataFolder, "installed_directories.json");
-
-module.exports.saveInstalledDir = () => {
-    fs.writeFileSync(installedDirFile, JSON.stringify(module.exports.insDirs));
-}
 
 // Throws on error
 module.exports.saveSettings = () => {
 
-    this.settings.installDir = this.getInstallPath();
     fs.writeFileSync(settingsFile, JSON.stringify(module.exports.settings));
 };
 
 module.exports.loadSettings = () => {
     try{
-        const settingsFileData = fs.readFileSync(settingsFile);
-        const installedDirFileData = fs.readFileSync(installedDirFile);
+        const data = fs.readFileSync(settingsFile);
 
-        let newSettings = JSON.parse(settingsFileData);
-        let newInsDirFile = JSON.parse(installedDirFileData);
+        let newSettings = JSON.parse(data);
 
         Object.assign(module.exports.settings, newSettings);
-        Object.assign(module.exports.insDirs, newInsDirFile);
 
     } catch(err){
         console.log("Failed to read settings file, using defaults, error:", err);

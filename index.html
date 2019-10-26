@@ -73,9 +73,17 @@
       </div>
     </div>
 
+    <!-- Popup incompatible info -->
+    <div id="incompatibleModal" class="modal">
+      <div id="incompatibleModalDialog" class="modal-content" style="max-height: 80%;">
+        <span id="incompatibleModalClose" class="close">&times;</span>
+        <span id="incompatibleModalContent"></span>
+      </div>
+    </div>
+
     <!-- Popup Launching window -->
     <div id="playModal" class="modal">
-      <div id="playModalDialog" class="modal-content" style="max-height: 70%;">
+      <div id="playModalDialog" class="modal-content" style="max-height: 80%; margin-top: 3%; font-size: 0.9em;">
         <span id="playModalClose" class="close">&times;</span>
         <span id="playModalContent">An unknown error happened</span>
       </div>
@@ -157,7 +165,9 @@
               </p>
             </div>
             <div id="resetInstallLocation" class="BottomButton" style="font-size: 1.5em; vertical-align: middle;">
-                &#x21bb
+                <div class="ResetInstallLocationTooltip">&#x21bb
+                  <span class="ResetInstallLocationTooltipText">Reset Install Location</span>
+                </div>
             </div>
             <hr/>
             <span id="currentInstallDir" class="Inline" style="font-size: 0.8em;">
@@ -198,7 +208,7 @@
 
     <!-- Crash reporting popup -->
     <div id="crashReportingModal" class="modal">
-      <div id="crashReportingModalDialog" class="modal-content">
+      <div id="crashReportingModalDialog" class="modal-content" style="max-height: 80%; margin-top: 3%; font-size: 0.9em;">
         <span id="crashReportingClose" class="close">&times;</span>
         <div id="crashReportingContent">
           Trying to load crash reporter
