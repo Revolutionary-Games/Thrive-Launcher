@@ -580,7 +580,6 @@ input[type="text"].Report {
     border-color: transparent #555 transparent transparent;
 }
   
-  /* Show the tooltip text when you mouse over the tooltip container */
 .ResetInstallLocationTooltip:hover .ResetInstallLocationTooltipText {
     visibility: visible;
     opacity: 1;
