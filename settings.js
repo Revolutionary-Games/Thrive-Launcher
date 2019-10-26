@@ -37,7 +37,7 @@ module.exports.settings = {
 };
 
 module.exports.insDirs = {
-    installedDir: null,
+    installedDir: this.settings.installDir,
 }
 
 const settingsFile = path.join(module.exports.dataFolder, "launcher_settings.json");
