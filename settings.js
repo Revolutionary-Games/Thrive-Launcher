@@ -36,7 +36,16 @@ module.exports.settings = {
     installDir: path.join(module.exports.dataFolder, "Installed"),
 };
 
+module.exports.insDirs = {
+    installedDir: null,
+}
+
 const settingsFile = path.join(module.exports.dataFolder, "launcher_settings.json");
+const installedDirFile = path.join(module.exports.dataFolder, "installed_directories.json");
+
+module.exports.saveInstalledDir = () => {
+    fs.writeFileSync(installedDirFile, JSON.stringify(module.exports.insDirs));
+}
 
 // Throws on error
 module.exports.saveSettings = () => {
@@ -47,11 +56,14 @@ module.exports.saveSettings = () => {
 
 module.exports.loadSettings = () => {
     try{
-        const data = fs.readFileSync(settingsFile);
+        const settingsFileData = fs.readFileSync(settingsFile);
+        const installedDirFileData = fs.readFileSync(installedDirFile);
 
-        let newSettings = JSON.parse(data);
+        let newSettings = JSON.parse(settingsFileData);
+        let newInsDirFile = JSON.parse(installedDirFileData);
 
         Object.assign(module.exports.settings, newSettings);
+        Object.assign(module.exports.insDirs, newInsDirFile);
 
     } catch(err){
         console.log("Failed to read settings file, using defaults, error:", err);

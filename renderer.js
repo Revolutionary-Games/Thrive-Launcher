@@ -35,14 +35,18 @@ var pjson = require('./package.json');
 // Settings thing
 //
 const { settings, loadSettings, saveSettings, dataFolder, tmpDLFolder,
-        locallyCachedDLFile, getInstallPath} =
+        locallyCachedDLFile, getInstallPath, insDirs, saveInstalledDir } =
       require('./settings.js');
 
-let showIncompatibleModal = false;
+checkIfCompatible();
+
+let graphicControllers = null;
+let cards = {};
+
+let showIncompatiblePopup = false;
 
 // This loads settings in sync mode here
 loadSettings();
-checkIfCompatible();
 
 const { onGameEnded } = require('./crash_reporting.js');
 
@@ -97,7 +101,6 @@ const playModal = new Modal("playModal", "playModalDialog", {
         //return true;
     }
 });
-
 
 // Use getLauncherKey instead
 let launcherKey = null;
@@ -601,7 +604,7 @@ function verifyDLHash(version, download, localTarget){
 
 function onThriveFolderReady(version, download){
 
-    const installFolder = getInstallPath();
+    const installFolder = path.join(getInstallPath(), download.folderName);
     
     assert(fs.existsSync(installFolder));
 
@@ -650,6 +653,10 @@ function onThriveFolderReady(version, download){
                                          cwd: binFolder
                                      });
 
+    if(settings.hideLauncherOnPlay){
+        win.minimize();
+    }
+    
     status.innerHTML = "";
 
     let titleSpan = document.createElement("span");
@@ -812,7 +819,7 @@ function onDLFileReady(version, download, fileName){
 
             status.append(document.createElement("br"));
             
-            status.append(document.createTextNode("to  '" + getInstallPath() + "'"));
+            status.append(document.createTextNode("To  '" + getInstallPath() + "'"));
 
             status.append(document.createElement("br"));
 
@@ -837,6 +844,9 @@ function onDLFileReady(version, download, fileName){
                     assert(fs.existsSync(path.join(getInstallPath(), download.folderName)));
                     console.log("unpacking completed");
                     
+                    insDirs.installedDir = getInstallPath();
+                    saveInstalledDir();
+
                     onThriveFolderReady(version, download);
 
                 }, (error) => {
@@ -855,7 +865,6 @@ function onDLFileReady(version, download, fileName){
                     status.append(document.createTextNode("To try redownloading delete '" +
                                                           localTarget + "'"));
                 });
-            
 
         }, () => {
 
@@ -1006,8 +1015,18 @@ function playPressed(){
 async function checkIfCompatible() {
     try {
         const data = await si.graphics();
-        if(data.controllers[0].model.includes("Intel")){
-            showIncompatibleModal = true;
+
+        // Get all of the graphics cards info
+        var i;
+        for (i = 0; i < data.controllers.length; i++){
+            graphicControllers = data.controllers[i];
+            cards = String(graphicControllers.model);
+            console.log(cards);
+        }
+
+        // Is incompatible if the word Intel is found in a substring
+        if(cards.includes("Intel")){
+            showIncompatiblePopup = true;
         }
     } catch (e) {
         console.log(e)
@@ -1024,31 +1043,34 @@ playButtonText.addEventListener("click", function(event){
 
     let status = document.getElementById("playingInternalP");
 
-    if(showIncompatibleModal){
-        status.textContent = "WARNING: Intel Integrated Graphics Card may causes Thrive to crash due to engine issues, this is a known problem.";
-    
+    if(showIncompatiblePopup){
+        status.textContent = "Detected graphics card(s): " + cards;
+        status.append(document.createElement("br"));
+        status.append(document.createElement("br"));
+        status.append(document.createTextNode("WARNING: Intel Integrated Graphics Card may causes Thrive to crash due to graphics engine issues with Intel: https://github.com/Revolutionary-Games/Thrive/issues/804."))
+        status.append(document.createElement("br"));
+        status.append(document.createTextNode("This is a known problem, any help fixing this would be most welcome!"));
+
         let closeContainer = document.createElement("div");
+        closeContainer.style.marginTop = "20px";
         closeContainer.style.textAlign = "center";
         let close = document.createElement("div");
         close.textContent = "Continue";
         close.className = "CloseButton";
     
         close.addEventListener('click', (event) => {
-            playPressed();
-
-            if(settings.hideLauncherOnPlay){
-                win.hide();
+            if(cards != null){
+                playPressed();
             }
         });
-    
+
         closeContainer.append(close);
         status.append(closeContainer);
+        showIncompatiblePopup = false;
     }
     else{
-        playPressed();
-
-        if(settings.hideLauncherOnPlay){
-            win.hide();
+        if(cards != null){
+            playPressed();
         }
     }
 });
@@ -1124,7 +1146,7 @@ function updatePlayButtonText(){
 
     assert(download);
     
-    playButtonText.textContent = "Play " + version.getDescriptionString() + "\n" +
+    playButtonText.textContent = "Play " + version.getDescriptionString() +
         download.getDescriptionString();
 }
 

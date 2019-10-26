@@ -8,10 +8,8 @@ const {dialog} = require('electron').remote;
 const win = remote.getCurrentWindow();
 
 const { Modal, showGenericError} = require('./modal');
-const {listInstalledVersions, deleteInstalledVersion} = require('./install_handler.js');
-const { settings, saveSettings, setInstallPath, getInstallPath} = require('./settings.js');
-
-var { installPath } = require('./settings.js');
+const {listInstalledVersions, deleteInstalledVersion, moveInstalledVersion} = require('./install_handler.js');
+const { settings, dataFolder, saveSettings, setInstallPath, getInstallPath, insDirs} = require('./settings.js');
 
 const settingsModal = new Modal("settingsModal", "settingsModalDialog", {
     closeButton: "settingsClose"
@@ -109,6 +107,21 @@ function onSettingsChanged(){
     }
 }
 
+function installedMessageBox(){
+    if(insDirs.installedDir != null && settings.installDir != insDirs.installedDir){
+        dialog.showMessageBox(win, messageOptions, (response) => {
+            if(response == 0){
+                moveInstalledVersion();
+                console.log("moving file...");
+            }
+            if(response == 1){
+                insDirs.installedDir = getInstallPath();
+                saveInstalledDir();
+            }
+        })
+    }
+}
+
 let browseFilesButton = document.getElementById("browseFilesButton");
 
 browseFilesButton.addEventListener("click", function(event){
@@ -118,6 +131,13 @@ browseFilesButton.addEventListener("click", function(event){
 });
 
 let selectInstallLocation = document.getElementById("selectInstallLocation");
+
+const messageOptions = {
+    type: "warning",
+    buttons: ["Yes", "No"],
+    title: "Warning!",
+    message: "A Thrive installation folder already exists. Do you want to move all of the \n installed files into the new directory?",
+}
 
 selectInstallLocation.addEventListener("click", function(event){
     dialog.showOpenDialog(win,
@@ -131,10 +151,24 @@ selectInstallLocation.addEventListener("click", function(event){
         else {
             setInstallPath(String(path));
             onSettingsChanged();
-            currentInstallDir.innerHTML = "Directory: " + getInstallPath();
             updateInstalledVersions();
+
+            currentInstallDir.innerHTML = "Directory: " + getInstallPath();
+
+            installedMessageBox();
         }
     });
+});
+
+let resestInstallLocation = document.getElementById("resetInstallLocation");
+
+resetInstallLocation.addEventListener("click", function(event){
+
+    setInstallPath(path.join(dataFolder, "Installed"));
+    updateInstalledVersions();
+    onSettingsChanged();
+
+    installedMessageBox();
 });
 
 let enableWebContentCheckbox = document.getElementById("enableWebContentCheckbox");

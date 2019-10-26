@@ -5,6 +5,8 @@
 // use `npm run start-dev` if you want the dev tools
 // Set this to true if you want to open the dev console
 let openDev = false;
+
+
 let args = process.argv.slice(2);
 args.forEach((val, index) =>{
 

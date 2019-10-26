@@ -89,7 +89,7 @@ class Modal {
 
         this.backdrop.style.display = "block";
         
-        $( this.dialog ).slideDown( 500, function() {
+        $( this.dialog ).slideDown( 400, function() {
             // Animation complete.
         });   
     }
@@ -105,7 +105,7 @@ class Modal {
                 return;
         }
 
-        $( this.dialog ).slideUp( 500, () => {
+        $( this.dialog ).slideUp( 400, () => {
             this.backdrop.style.display = "none";
         }); 
     }

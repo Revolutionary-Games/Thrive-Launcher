@@ -2,13 +2,14 @@
 // Helpers for installing and removing versions
 //
 // TODO: the installing functions are still in renderer.js and should be moved here
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const rimraf = require("rimraf");
+const { dialog } = require('electron').remote;
 
 const {getVersionData} = require("./version_info.js");
 
-const {getInstallPath} = require("./settings.js");
+const {getInstallPath, insDirs, saveInstalledDir} = require("./settings.js");
 
 const isDirectory = source => fs.lstatSync(source).isDirectory();
 const getDirectories = source =>
@@ -21,7 +22,7 @@ function listInstalledVersions(){
 
         const versions = getVersionData().versions;
 
-        const directories = getDirectories(getInstallPath());
+        const directories = getDirectories(insDirs.installedDir);
 
         let result = {};
 
@@ -76,6 +77,28 @@ function deleteInstalledVersion(name){
     });
 }
 
+function moveInstalledVersion(){
+    listInstalledVersions().then((data) => {
+        for(let key in data){
+            const obj = data[key];
+
+            if(obj.valid){
+                fs.move(insDirs.installedDir + "/" + obj.name, getInstallPath() + "/" + obj.name, err => {
+                    if (err){
+                        dialog.showErrorBox("Error!", "Failed to move file: " + err.message);
+                        console.log("error " + err.message)
+                    }else{
+                        console.log("moving '" + obj.name + "' finished");
+
+                        insDirs.installedDir = getInstallPath();
+                        saveInstalledDir();
+                    }
+                });
+            }
+        }
+    });
+}
 
 module.exports.listInstalledVersions = listInstalledVersions;
 module.exports.deleteInstalledVersion = deleteInstalledVersion;
+module.exports.moveInstalledVersion = moveInstalledVersion;
