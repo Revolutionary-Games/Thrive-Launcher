@@ -1055,7 +1055,7 @@ playButtonText.addEventListener("click", function(event){
         incompatibleBox.innerHTML = "<p id='text'></p>"
     
         let box = document.getElementById("text");
-        
+
         box.textContent = "Detected graphics card(s): " + cards;
 
         if(showHelpText){
@@ -1165,7 +1165,7 @@ function updatePlayButtonText(){
 
     assert(download);
     
-    playButtonText.textContent = "Play " + version.getDescriptionString() + "." +
+    playButtonText.textContent = "Play " + version.getDescriptionString() + " . " +
         download.getDescriptionString();
 }
 

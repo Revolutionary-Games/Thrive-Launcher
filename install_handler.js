@@ -92,7 +92,7 @@ function moveInstalledVersion(){
                         }else{
                             console.log("moving '" + obj.name + "' finished");
 
-                            settin.installedDir = getInstallPath();
+                            settings.installedDir = getInstallPath();
                             saveInstalledDir();
                         }
                     });
