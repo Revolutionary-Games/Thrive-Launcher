@@ -1286,6 +1286,5 @@ linksButton.addEventListener("click", function(event){
     linksModal.show();
 });
 
-
 // Settings dialog
 require('./settings_dialog.js');
