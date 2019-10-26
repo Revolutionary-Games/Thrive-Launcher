@@ -1165,7 +1165,7 @@ function updatePlayButtonText(){
 
     assert(download);
     
-    playButtonText.textContent = "Play " + version.getDescriptionString() + ". " +
+    playButtonText.textContent = "Play " + version.getDescriptionString() + " " +
         download.getDescriptionString();
 }
 
