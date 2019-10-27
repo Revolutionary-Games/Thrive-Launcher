@@ -45,7 +45,7 @@ a:hover {
 hr {
     border: 0;
     height: 2px;
-    background-image: linear-gradient(to right, #00ffff, #00ffff, rgba(0, 0, 0, 0));
+    background-image: linear-gradient(to right, #4dd5ff, #52e5ff, rgba(0, 0, 0, 0));
 }
 
 hr.style2 {
@@ -70,7 +70,7 @@ hr.style2 {
 
     position: absolute;
 
-    background: linear-gradient(to top left, rgb(53, 53, 53), rgba(48, 48, 48, 0.3));
+    background: linear-gradient(to top left, rgb(41, 41, 41), rgba(48, 48, 48, 0.2));
 }
 
 .ContentBlockFade {
@@ -88,18 +88,17 @@ hr.style2 {
 
 #buttonContainer {
 
-    height: 12%;
-    max-height: 12%;
-    width: 98%;
+    height: 14%;
+    max-height: 14%;
+    width: 100%;
     position: absolute;
-    bottom: 5px;
-    left: 7px;
+    bottom: 0px;
     overflow: hidden;
     text-align: center;
 
     border-top: 1px solid rgba(68, 68, 68, 0.46);
 
-    background: linear-gradient(to bottom, rgb(68, 68, 68), rgba(24, 24, 24, 0.9));
+    background: linear-gradient(to bottom, rgb(48, 48, 48), rgba(20, 20, 20, 0.9));
 }
 
 #innerButtons {
@@ -117,7 +116,7 @@ hr.style2 {
     width: 10px;
     height: 10px;
     background-color: rgba(44, 44, 44, 0.178);
-    -webkit-border-radius: 100px;
+    -webkit-border-radius: 150px;
   }
 
 ::-webkit-scrollbar:hover {
@@ -125,13 +124,13 @@ hr.style2 {
 }
   
 ::-webkit-scrollbar-thumb:vertical {
-    background: #08cfcf;
-    -webkit-border-radius: 100px;
+    background: #4dd5ff;
+    -webkit-border-radius: 150px;
 }
 
 ::-webkit-scrollbar-thumb:vertical:active {
     background: #1dffff;
-    -webkit-border-radius: 100px;
+    -webkit-border-radius: 150px;
 }
 
 /* A nice green colour: #73AD21 */
@@ -144,8 +143,8 @@ hr.style2 {
     height: 45x;
 
     color: #DEDEDE;
-    border-radius: 3px;
-    background: linear-gradient(to top, rgba(22, 22, 22, 0.6), rgb(92, 92, 92));
+    border-radius: 2px;
+    background: linear-gradient(to top, rgba(22, 22, 22, 0.6), rgb(63, 63, 63));
 
     padding-left: 5px;
     padding-right: 5px;
@@ -165,13 +164,13 @@ hr.style2 {
 
 #playComboPopup:hover {
 
-    background: #66c5e2;
+    background: radial-gradient(#66c5e2, rgba(108, 193, 214, 0.37), rgba(0,0,0,0));;
 }
 
 #playButton {
     font-size: 1.3em;
-    border: 3px solid #60e7ff;
-    background: #439fdd; 
+    border: 4px solid #55dbdb;
+    background: #4890a7; 
     padding: 0px;
 }
 
