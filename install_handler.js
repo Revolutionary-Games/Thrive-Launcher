@@ -6,17 +6,22 @@ const fs = require('fs-extra');
 const path = require('path');
 const rimraf = require("rimraf");
 const { dialog } = require('electron').remote;
+const win = remote.getCurrentWindow();
 
 const {getVersionData} = require("./version_info.js");
 
-const {saveSettings, getInstallPath, settings, showMovingFileModal, hideMovingFileModal} = require("./settings.js");
+const {saveSettings, defaultInstallPath, getInstallPath, settings,
+        showMovingFileModal, hideMovingFileModal}
+        = require("./settings.js");
 
 const isDirectory = source => fs.lstatSync(source).isDirectory();
 const getDirectories = source =>
       fs.readdirSync(source).map(name => path.join(source, name)).filter(isDirectory);
 
+let isMoving = false;
+
 // Returns the names of all installed versions. And extra files in the installed folder
-function listInstalledVersions(isMoving){
+function listInstalledVersions(){
     return new Promise((resolve, reject) => {
 
         const versions = getVersionData().versions;
@@ -83,31 +88,57 @@ function deleteInstalledVersion(name){
 }
 
 function moveInstalledVersion(){
+    isMoving = true;
 
-    showMovingFileModal();
-
-    listInstalledVersions(true).then((data) => {
+    listInstalledVersions().then((data) => {
         for(let key in data){
             const obj = data[key];
 
             if(obj.valid){
-                console.log("moving file...");
+                if(fs.existsSync(settings.installedDir + "/" + obj.name)){
+                    console.log(settings.installedDir + "/" + obj.name);
+                    console.log("moving file...");
+                    showMovingFileModal();
 
-                fs.move(settings.installedDir + "/" + obj.name, getInstallPath() + "/" + obj.name, err => {
-                    if (err){
-                        dialog.showErrorBox("Error!", "Failed to move file: " + err.message);
-                        console.log("error " + err.message)
-                    }else{
-                        console.log("moving '" + obj.name + "' finished");
+                    fs.move(settings.installedDir + "/" + obj.name, getInstallPath() + "/" + obj.name, err => {
+                        if (err){
+                            dialog.showErrorBox("Error!", "Failed to move file: " + err.message);
+                            console.log("error " + err.message)
+                            hideMovingFileModal();
 
-                        settings.installedDir = getInstallPath();
-                        saveSettings();
+                        }else{
+                            isMoving = false;
+                            console.log("moving '" + obj.name + "' finished");
+    
+                            settings.installedDir = getInstallPath();
+                            saveSettings();
 
-                        hideMovingFileModal();
-                    }
-                });
+                            hideMovingFileModal();
+                        }
+                    });
+                }
             }
         }
+        // Check if the installed directory is empty
+        fs.readdir(settings.installedDir, function(err, files) {
+            if (err) {
+                console.log(err);
+            } else {
+               if (!files.length) {
+                    isMoving = false;
+                    console.log("file doesn't exist");
+                    settings.installedDir = getInstallPath();
+                    saveSettings();
+
+                    dialog.showMessageBox(win, { type: "info", title: "No files to be moved", message: "There is no files to be moved from the installed directory, \nSetting the path to the current one instead" }, 
+                    (response) => {
+                        if(response === 0){
+
+                        }
+                    });
+               }
+            }
+        });
     });
 }
 

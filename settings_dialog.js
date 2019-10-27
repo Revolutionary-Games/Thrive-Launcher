@@ -8,7 +8,7 @@ const {dialog} = require('electron').remote;
 const win = remote.getCurrentWindow();
 
 const { Modal, showGenericError} = require('./modal');
-const {listInstalledVersions, deleteInstalledVersion, moveInstalledVersion} = require('./install_handler.js');
+const { listInstalledVersions, deleteInstalledVersion, moveInstalledVersion} = require('./install_handler.js');
 
 const { settings, dataFolder, saveSettings, defaultInstallPath,
         installPath, setInstallPath, getInstallPath } 
@@ -109,20 +109,6 @@ function onSettingsChanged(){
     }
 }
 
-function installedMessageBox(){
-    if(settings.installedDir != null && settings.installDir != settings.installedDir){
-        dialog.showMessageBox(win, messageOptions, (response) => {
-            if(response === 0){
-                moveInstalledVersion();
-            }
-            if(response === 1){
-                updateInstalledVersions();
-            }
-            console.log(response);
-        })
-    }
-}
-
 let browseFilesButton = document.getElementById("browseFilesButton");
 
 browseFilesButton.addEventListener("click", function(event){
@@ -132,13 +118,6 @@ browseFilesButton.addEventListener("click", function(event){
 });
 
 let selectInstallLocation = document.getElementById("selectInstallLocation");
-
-const messageOptions = {
-    type: "warning",
-    buttons: ["Yes", "No"],
-    title: "Warning!",
-    message: "A Thrive version already exists in another directory. Do you want to move \nall of the installed files into the new location?",
-}
 
 selectInstallLocation.addEventListener("click", function(event){
     dialog.showOpenDialog(win,
@@ -153,9 +132,9 @@ selectInstallLocation.addEventListener("click", function(event){
             setInstallPath(String(path));
             settings.installDir = getInstallPath();
             onSettingsChanged();
+            
+            moveInstalledVersion();
             updateInstalledVersions();
-
-            installedMessageBox();
         }
     });
 });
@@ -168,9 +147,9 @@ resetInstallLocation.addEventListener("click", function(event){
         setInstallPath(defaultInstallPath);
         settings.installDir = getInstallPath();
         onSettingsChanged();
-        updateInstalledVersions();
 
-        installedMessageBox();
+        moveInstalledVersion();
+        updateInstalledVersions();
     }
 });
 
