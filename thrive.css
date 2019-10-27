@@ -77,7 +77,7 @@ hr.style2 {
     display: inline-block;
     height: auto;
     width: auto;
-    vertical-align: bottom;
+    vertical-align: top;
     z-index: 1;
     pointer-events: none;
     
@@ -113,23 +113,23 @@ hr.style2 {
     transform: perspective(1px) translateY(-50%);
 }
 
-.ContentBlock::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 10px;
     height: 10px;
     background-color: rgba(44, 44, 44, 0.178);
     -webkit-border-radius: 100px;
   }
 
-.ContentBlock::-webkit-scrollbar:hover {
+::-webkit-scrollbar:hover {
     background-color: rgba(0, 0, 0, 0.15);
 }
   
-.ContentBlock::-webkit-scrollbar-thumb:vertical {
+::-webkit-scrollbar-thumb:vertical {
     background: #08cfcf;
     -webkit-border-radius: 100px;
 }
 
-.ContentBlock::-webkit-scrollbar-thumb:vertical:active {
+::-webkit-scrollbar-thumb:vertical:active {
     background: #1dffff;
     -webkit-border-radius: 100px;
 }
@@ -376,8 +376,8 @@ hr.style2 {
     
     padding: 0px;
     border: none;
-    width: 70%; /* Could be more or less, depending on screen size */
-    max-width: 70%;
+    width: 75%; /* Could be more or less, depending on screen size */
+    max-width: 75%;
     max-height: 80%;
 
     overflow: auto;
@@ -505,7 +505,7 @@ input[type="text"].Report {
 .Submit {
     text-align: center;
     display: inline-block;
-    font-size: 1.0em;
+    font-size: 1.8em;
 
     margin-left: auto;
     margin-right: auto;

@@ -32,7 +32,7 @@ let currentInstallDir = document.getElementById("currentInstallDir");
 function updateInstalledVersions(){
     listOfInstalledVersions.innerHTML = "<li>Searching for files...</li>";
 
-    listInstalledVersions().then((data) =>{
+    listInstalledVersions(false).then((data) =>{
         listOfInstalledVersions.innerHTML = "";
         currentInstallDir.innerHTML = "Installation Directory: " + getInstallPath();
 
@@ -95,7 +95,6 @@ settingsButton.addEventListener("click", function(event){
     updateInstalledVersions();
 });
 
-
 $("#settingsTabs").tabs();
 
 // This is bugged inside tabs
@@ -113,12 +112,13 @@ function onSettingsChanged(){
 function installedMessageBox(){
     if(settings.installedDir != null && settings.installDir != settings.installedDir){
         dialog.showMessageBox(win, messageOptions, (response) => {
-            if(response == 0){
+            if(response === 0){
                 moveInstalledVersion();
             }
-            if(response == 1){
-
+            if(response === 1){
+                updateInstalledVersions();
             }
+            console.log(response);
         })
     }
 }
@@ -137,7 +137,7 @@ const messageOptions = {
     type: "warning",
     buttons: ["Yes", "No"],
     title: "Warning!",
-    message: "A Thrive version already exists in another directory. Do you want to move all of the \n installed files into the new location?",
+    message: "A Thrive version already exists in another directory. Do you want to move \nall of the installed files into the new location?",
 }
 
 selectInstallLocation.addEventListener("click", function(event){

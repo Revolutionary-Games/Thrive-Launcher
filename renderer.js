@@ -659,6 +659,9 @@ function onThriveFolderReady(version, download){
                                          cwd: binFolder
                                      });
 
+    settings.installedDir = getInstallPath();
+    saveSettings();
+
     if(settings.hideLauncherOnPlay){
         win.minimize();
     }
