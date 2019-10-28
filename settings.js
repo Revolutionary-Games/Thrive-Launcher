@@ -9,24 +9,6 @@ const mkdirp = require('mkdirp');
 
 var {remote} = require('electron');
 
-const { Modal, showGenericError} = require('./modal');
-
-const movingFileModal = new Modal("movingFileModal", "movingFileModalDialog", {
-    autoClose: false
-});
-
-module.exports.showMovingFileModal = () => {
-    movingFileModal.show();
-    let content = document.getElementById("movingFileModalContent");
-    content.innerHTML = "Moving files to: '" + this.getInstallPath() + "' ...";
-    content.append(document.createElement("br"));
-    content.append(document.createTextNode("This may take several minutes, please be patient."))
-};
-
-module.exports.hideMovingFileModal = () => {
-    movingFileModal.hide();
-};
-
 module.exports.dataFolder = path.join(remote.app.getPath("appData"), "Revolutionary-Games",
                                       "Launcher");
 
@@ -54,7 +36,6 @@ module.exports.settings = {
     fetchNewsFromWeb: true,
     hideLauncherOnPlay: true,
     installDir: module.exports.defaultInstallPath,
-    installedDir: module.exports.defaultInstallPath,
 };
 
 const settingsFile = path.join(module.exports.dataFolder, "launcher_settings.json");
@@ -62,6 +43,7 @@ const settingsFile = path.join(module.exports.dataFolder, "launcher_settings.jso
 // Throws on error
 module.exports.saveSettings = () => {
 
+    this.settings.installDir = getInstallPath();
     fs.writeFileSync(settingsFile, JSON.stringify(module.exports.settings));
 };
 

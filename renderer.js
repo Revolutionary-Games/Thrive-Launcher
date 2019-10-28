@@ -659,9 +659,6 @@ function onThriveFolderReady(version, download){
                                          cwd: binFolder
                                      });
 
-    settings.installedDir = getInstallPath();
-    saveSettings();
-
     if(settings.hideLauncherOnPlay){
         win.minimize();
     }
@@ -852,9 +849,6 @@ function onDLFileReady(version, download, fileName){
 
                     assert(fs.existsSync(path.join(getInstallPath(), download.folderName)));
                     console.log("unpacking completed");
-                    
-                    settings.installedDir = getInstallPath();
-                    saveSettings();
 
                     onThriveFolderReady(version, download);
 
