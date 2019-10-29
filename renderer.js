@@ -1062,7 +1062,7 @@ playButtonText.addEventListener("click", function(event){
         }
         box.append(document.createElement("br"));
         box.append(document.createElement("br"));
-        box.append(document.createTextNode("WARNING: Intel Integrated Graphics Card may causes Thrive to crash due to graphics engine issues with Intel: https://github.com/Revolutionary-Games/Thrive/issues/804."))
+        box.append(document.createTextNode("WARNING: Intel Integrated Graphics card may causes Thrive to crash due to issues with the graphics engine running on it: https://github.com/Revolutionary-Games/Thrive/issues/804."))
         box.append(document.createElement("br"));
         box.append(document.createTextNode("This is a known problem, any help fixing this would be very much appreciated!"));
         

@@ -73,17 +73,16 @@ hr.style2 {
     background: linear-gradient(to top left, rgb(41, 41, 41), rgba(48, 48, 48, 0.2));
 }
 
-.ContentBlockFade {
+.BottomFade {
     display: inline-block;
     height: auto;
     width: auto;
-    vertical-align: top;
     z-index: 1;
-    pointer-events: none;
-    
-    position: absolute;
 
-    background: linear-gradient(to top, rgb(36, 36, 36), rgba(0, 0, 0, 0));
+    position: absolute;
+    pointer-events: none;
+
+    background: linear-gradient(to top, rgb(20, 20, 20), rgba(0, 0, 0, 0));
 }
 
 #buttonContainer {

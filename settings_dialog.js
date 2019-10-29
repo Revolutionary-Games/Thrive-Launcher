@@ -189,7 +189,7 @@ browseFilesButton.addEventListener("click", function(event){
 });
 
 function askToMoveFiles(){
-    
+
     const options = {
         title: "Warning!",
         type: "warning",
@@ -200,7 +200,9 @@ function askToMoveFiles(){
 
     dialog.showMessageBox(win, options, (response) => {
         if(response == 0){
-            moveInstalledFiles(selectedDirectory);
+            if(getInstallPath() != selectedDirectory){
+                moveInstalledFiles(selectedDirectory);
+            }
         }
         if(response == 1){
             setInstallPath(selectedDirectory);
