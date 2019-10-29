@@ -34,8 +34,8 @@ var pjson = require('./package.json');
 //
 // Settings thing
 //
-const { settings, loadSettings, saveSettings, dataFolder, tmpDLFolder,
-        locallyCachedDLFile, getInstallPath } =
+const { settings, loadSettings, saveSettings, dataFolder,
+        tmpDLFolder, locallyCachedDLFile } =
       require('./settings.js');
 
 let graphicControllers = null;
@@ -610,7 +610,7 @@ function verifyDLHash(version, download, localTarget){
 
 function onThriveFolderReady(version, download){
 
-    const installFolder = path.join(getInstallPath(), download.folderName);
+    const installFolder = path.join(settings.installPath, download.folderName);
     
     assert(fs.existsSync(installFolder));
 
@@ -789,7 +789,7 @@ function onDLFileReady(version, download, fileName){
     status.innerHTML = "";
 
     // If unpacked already launch Thrive //
-    mkdirp(getInstallPath(), function (err){
+    mkdirp(settings.installPath, function (err){
         
         if(err){
             
@@ -799,7 +799,7 @@ function onDLFileReady(version, download, fileName){
         }
 
         // Check does it exist //
-        if(fs.existsSync(path.join(getInstallPath(), download.folderName))){
+        if(fs.existsSync(path.join(settings.installPath, download.folderName))){
 
             console.log("archive has already been extracted");
             onThriveFolderReady(version, download);
@@ -825,7 +825,7 @@ function onDLFileReady(version, download, fileName){
 
             status.append(document.createElement("br"));
             
-            status.append(document.createTextNode("To  '" + getInstallPath() + "'"));
+            status.append(document.createTextNode("To  '" + settings.installPath + "'"));
 
             status.append(document.createElement("br"));
 
@@ -844,10 +844,10 @@ function onDLFileReady(version, download, fileName){
 
             console.log("beginning unpacking");
 
-            unpackRelease(getInstallPath(), download.folderName, localTarget, unpackProgress).then(
+            unpackRelease(settings.installPath, download.folderName, localTarget, unpackProgress).then(
                 () => {
 
-                    assert(fs.existsSync(path.join(getInstallPath(), download.folderName)));
+                    assert(fs.existsSync(path.join(settings.installPath, download.folderName)));
                     console.log("unpacking completed");
 
                     onThriveFolderReady(version, download);
@@ -912,7 +912,7 @@ function playPressed(){
 
     assert(fileName);
 
-    if(fs.existsSync(path.join(getInstallPath(), download.folderName))){
+    if(fs.existsSync(path.join(settings.installPath, download.folderName))){
 
         console.log("archive has already been extracted (assumed)");
         onThriveFolderReady(version, download);
@@ -1075,6 +1075,7 @@ playButtonText.addEventListener("click", function(event){
     
         close.addEventListener('click', (event) => {
             incompatibleModal.hide();
+            showIncompatiblePopup = false;
             if(cards != null){
                 playPressed();
             }
@@ -1085,9 +1086,7 @@ playButtonText.addEventListener("click", function(event){
         showIncompatiblePopup = false;
     }
     else{
-        if(cards != null){
-            playPressed();
-        }
+        playPressed();
     }
 });
 

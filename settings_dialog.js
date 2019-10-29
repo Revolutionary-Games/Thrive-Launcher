@@ -13,9 +13,7 @@ const {getVersionData} = require("./version_info.js");
 const { Modal, showGenericError} = require('./modal');
 const { listInstalledVersions, deleteInstalledVersion } = require('./install_handler.js');
 
-const { settings, dataFolder, saveSettings, defaultInstallPath,
-        installPath, setInstallPath, getInstallPath } 
-        = require('./settings.js');
+const { settings, dataFolder, saveSettings, defaultInstallPath } = require('./settings.js');
 
 const settingsModal = new Modal("settingsModal", "settingsModalDialog", {
     closeButton: "settingsClose"
@@ -46,7 +44,7 @@ function updateInstalledVersions(){
 
     listInstalledVersions().then((data) =>{
         listOfInstalledVersions.innerHTML = "";
-        currentInstallDir.innerHTML = "Installation Directory: " + getInstallPath();
+        currentInstallDir.innerHTML = "Installation Directory: " + settings.installPath;
 
         for(let key in data){
 
@@ -95,16 +93,16 @@ function updateInstalledVersions(){
         listOfInstalledVersions.innerHTML = "";
         
         let li = document.createElement("li");
-        li.textContent = err;
+        li.textContent = "An error happened: " + err;
         listOfInstalledVersions.append(li);
     });    
 }
 
-function getInstalledVersions(){
+function checkForInstalledVersions(){
 
     const versions = getVersionData().versions;
     
-    fs.readdir(getInstallPath(), function (err, filesPath) {
+    fs.readdir(settings.installPath, function (err, filesPath) {
         if (err) throw err;
         for (var i = 0; i < filesPath.length; i++) {
 
@@ -112,7 +110,7 @@ function getInstalledVersions(){
                 for(let dl of ver.platforms){
                     if(filesPath[i].includes(dl.folderName)){
                         installedVersions = filesPath.map(function (filePath) {
-                            return path.join(getInstallPath(), filePath);
+                            return path.join(settings.installPath, filePath);
                         });
                     }
                 }
@@ -142,11 +140,12 @@ function moveInstalledFiles(destination){
                 .then(() => {
                     console.log("Successfully moving: " + obj.name);
         
-                    setInstallPath(destination);
-                    saveSettings();
+                    settings.installPath = destination;
+                    onSettingsChanged();
                     
                     movingFileModal.hide();
                     updateInstalledVersions();
+                    checkForInstalledVersions();
                 })
                 .catch(err => {
                     dialog.showErrorBox("Error!", "Error: " + err);
@@ -161,7 +160,7 @@ settingsButton.addEventListener("click", function(event){
 
     settingsModal.show();    
 
-    getInstalledVersions();
+    checkForInstalledVersions();
 
     updateInstalledVersions();
 });
@@ -183,7 +182,7 @@ function onSettingsChanged(){
 let browseFilesButton = document.getElementById("browseFilesButton");
 
 browseFilesButton.addEventListener("click", function(event){
-    const target = getInstallPath();
+    const target = settings.installPath;
     console.log("Opening item:", target);
     shell.openItem(target);
 });
@@ -200,12 +199,12 @@ function askToMoveFiles(){
 
     dialog.showMessageBox(win, options, (response) => {
         if(response == 0){
-            if(getInstallPath() != selectedDirectory){
+            if(settings.installPath != selectedDirectory){
                 moveInstalledFiles(selectedDirectory);
             }
         }
         if(response == 1){
-            setInstallPath(selectedDirectory);
+            settings.installPath = selectedDirectory;
             onSettingsChanged();
             updateInstalledVersions();
         }
@@ -231,9 +230,10 @@ selectInstallLocation.addEventListener("click", function(event){
                 if (!Array.isArray(installedVersions) || !installedVersions.length) {
                     console.log("No files to be found");
 
-                    setInstallPath(selectedDirectory);
+                    settings.installPath = selectedDirectory;
                     onSettingsChanged();
                     updateInstalledVersions();
+                    checkForInstalledVersions();
                 }else{
                     askToMoveFiles();
                 }
@@ -247,7 +247,7 @@ let resetInstallLocation = document.getElementById("resetInstallLocation");
 
 resetInstallLocation.addEventListener("click", function(event){
 
-    if(getInstallPath() != defaultInstallPath){
+    if(settings.installPath != defaultInstallPath){
         selectedDirectory = String(defaultInstallPath);
         askToMoveFiles();
     }
@@ -286,7 +286,7 @@ module.exports.onSettingsLoaded = () =>{
         enableWebContentCheckbox.checked = settings.fetchNewsFromWeb;
         hideLauncherOnPlayCheckbox.checked = settings.hideLauncherOnPlay;
 
-        setInstallPath(settings.installDir);
+        console.log("Install path set to: " + settings.installPath);
 
     } catch(err){
         showGenericError("Failed to update settings widgets from saved settings, error: " +

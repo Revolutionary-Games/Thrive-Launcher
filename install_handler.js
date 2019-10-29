@@ -10,7 +10,7 @@ const win = remote.getCurrentWindow();
 
 const {getVersionData} = require("./version_info.js");
 
-const {saveSettings, defaultInstallPath, getInstallPath, settings, setInstallPath } = require("./settings.js");
+const { settings } = require("./settings.js");
 
 const isDirectory = source => fs.lstatSync(source).isDirectory();
 const getDirectories = source =>
@@ -22,7 +22,7 @@ function listInstalledVersions(){
 
         const versions = getVersionData().versions;
 
-        const directories = getDirectories(getInstallPath());;
+        const directories = getDirectories(settings.installPath);
 
         let result = {};
 
@@ -58,7 +58,7 @@ function listInstalledVersions(){
 function deleteInstalledVersion(name){
     return new Promise((resolve, reject) => {
 
-        const finalPath = path.join(getInstallPath(), name);
+        const finalPath = path.join(settings.installPath, name);
 
         if(!fs.existsSync(finalPath)){
             reject("path for version doesn't exist: " + finalPath);

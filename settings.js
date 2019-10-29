@@ -20,22 +20,13 @@ module.exports.locallyCachedDLFile = path.join(module.exports.dataFolder,
 
 module.exports.defaultInstallPath = path.join(module.exports.dataFolder, "Installed");
 
-module.exports.setInstallPath = (directory) => {
-    module.exports.installPath = directory;
-    console.log("Install path set to:", module.exports.installPath);
-};
-
-module.exports.getInstallPath = () => {
-    return String(module.exports.installPath);
-};
-
 // Make sure it exists. This simplifies a lot of code
 mkdirp.sync(module.exports.dataFolder);
 
 module.exports.settings = {
     fetchNewsFromWeb: true,
     hideLauncherOnPlay: true,
-    installDir: module.exports.defaultInstallPath,
+    installPath: module.exports.defaultInstallPath,
 };
 
 const settingsFile = path.join(module.exports.dataFolder, "launcher_settings.json");
@@ -43,7 +34,6 @@ const settingsFile = path.join(module.exports.dataFolder, "launcher_settings.jso
 // Throws on error
 module.exports.saveSettings = () => {
 
-    this.settings.installDir = getInstallPath();
     fs.writeFileSync(settingsFile, JSON.stringify(module.exports.settings));
 };
 
