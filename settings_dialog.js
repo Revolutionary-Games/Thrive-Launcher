@@ -23,15 +23,12 @@ const movingFileModal = new Modal("movingFileModal", "movingFileModalDialog", {
     autoClose: false
 });
 
-var selectedDirectory = null;
-
-var installedVersions = [];
+let installedVersions = [];
 
 // Used to skip callbacks on loading settings
 let loadingSettings = false;
 
 let listInstalledVersionsError = false;
-
 
 let settingsButton = document.getElementById("settingsButton");
 
@@ -41,6 +38,8 @@ let currentInstallDir = document.getElementById("currentInstallDir");
 
 function updateInstalledVersions(){
     listOfInstalledVersions.innerHTML = "<li>Searching for files...</li>";
+
+    installedVersions.length = 0;
 
     listInstalledVersions().then((data) =>{
         listOfInstalledVersions.innerHTML = "";
@@ -54,6 +53,8 @@ function updateInstalledVersions(){
             let span = document.createElement("span");
             
             if(obj.valid){
+                installedVersions.push(obj.path);
+
                 span.append(document.createTextNode(obj.name));
 
                 let button = document.createElement("span");
@@ -98,27 +99,6 @@ function updateInstalledVersions(){
     });    
 }
 
-function checkForInstalledVersions(){
-
-    const versions = getVersionData().versions;
-    
-    fs.readdir(settings.installPath, function (err, filesPath) {
-        if (err) throw err;
-        for (var i = 0; i < filesPath.length; i++) {
-
-            for(let ver of versions){
-                for(let dl of ver.platforms){
-                    if(filesPath[i].includes(dl.folderName)){
-                        installedVersions = filesPath.map(function (filePath) {
-                            return path.join(settings.installPath, filePath);
-                        });
-                    }
-                }
-            }
-        }
-    });
-}
-
 function moveInstalledFiles(destination){
 
     listInstalledVersions().then((data) => {
@@ -145,7 +125,6 @@ function moveInstalledFiles(destination){
                     
                     movingFileModal.hide();
                     updateInstalledVersions();
-                    checkForInstalledVersions();
                 })
                 .catch(err => {
                     dialog.showErrorBox("Error!", "Error: " + err);
@@ -159,8 +138,6 @@ function moveInstalledFiles(destination){
 settingsButton.addEventListener("click", function(event){
 
     settingsModal.show();    
-
-    checkForInstalledVersions();
 
     updateInstalledVersions();
 });
@@ -187,7 +164,16 @@ browseFilesButton.addEventListener("click", function(event){
     shell.openItem(target);
 });
 
-function askToMoveFiles(){
+function askToMoveFiles(selectedDirectory){
+
+    if (!Array.isArray(installedVersions) || !installedVersions.length) {
+        console.log("No files to be found");
+
+        settings.installPath = selectedDirectory;
+        onSettingsChanged();
+        updateInstalledVersions();
+        return;
+    }
 
     const options = {
         title: "Warning!",
@@ -215,6 +201,7 @@ function askToMoveFiles(){
 let selectInstallLocation = document.getElementById("selectInstallLocation");
 
 selectInstallLocation.addEventListener("click", function(event){
+
     dialog.showOpenDialog(win,
     {
         properties: ['openDirectory', 'promptToCreate']
@@ -224,20 +211,7 @@ selectInstallLocation.addEventListener("click", function(event){
             console.log("No folder selected");
         }
         else {
-            selectedDirectory = String(path);
-
-            if(selectedDirectory != null){
-                if (!Array.isArray(installedVersions) || !installedVersions.length) {
-                    console.log("No files to be found");
-
-                    settings.installPath = selectedDirectory;
-                    onSettingsChanged();
-                    updateInstalledVersions();
-                    checkForInstalledVersions();
-                }else{
-                    askToMoveFiles();
-                }
-            }
+            askToMoveFiles(String(path));
         }
     });
 });
@@ -248,8 +222,7 @@ let resetInstallLocation = document.getElementById("resetInstallLocation");
 resetInstallLocation.addEventListener("click", function(event){
 
     if(settings.installPath != defaultInstallPath){
-        selectedDirectory = String(defaultInstallPath);
-        askToMoveFiles();
+        askToMoveFiles(String(defaultInstallPath));
     }
 });
 

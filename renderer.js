@@ -39,7 +39,8 @@ const { settings, loadSettings, saveSettings, dataFolder,
       require('./settings.js');
 
 let graphicControllers = null;
-let cards = {};
+let cardsVendor = {};
+let cardsModel = {};
 
 let showIncompatiblePopup = false;
 let showHelpText = false;
@@ -1015,6 +1016,7 @@ function playPressed(){
 
 }
 
+// Checks the graphics card
 async function checkIfCompatible() {
     try {
         const data = await si.graphics();
@@ -1023,17 +1025,24 @@ async function checkIfCompatible() {
         var i;
         for (i = 0; i < data.controllers.length; i++){
             graphicControllers = data.controllers[i];
-            cards = String(graphicControllers.model);
-            console.log(cards);
+            cardsVendor = String(graphicControllers.vendor.toLowerCase());
+            cardsModel = String(graphicControllers.model + ", ");
+            console.log(graphicControllers.model);
         }
 
-        // Is incompatible if the word Intel is found in a substring
-        if(cards.includes("Intel")){
-            showIncompatiblePopup = true;
+        const otherCardNames = ["nvidia", "amd"];
 
-            // Show help text
-            if(cards.includes("Nvidia") || cards.includes("AMD")){
-                showHelpText = true;
+        // Is incompatible if intel is found in a substring
+        if(cardsVendor.includes("intel")){
+
+            showIncompatiblePopup = true;
+            
+            for(i = 0; i < otherCardNames.length; i++){
+                if(cardsVendor.includes(otherCardNames[i])){
+                    console.log("Graphics card other than Intel detected");
+                    showIncompatiblePopup = true;
+                    showHelpText = true;
+                }
             }
         }
 
@@ -1053,7 +1062,7 @@ playButtonText.addEventListener("click", function(event){
     
         let box = document.getElementById("text");
 
-        box.textContent = "Detected graphics card(s): " + cards;
+        box.textContent = "Detected graphics card(s): " + cardsModel;
 
         if(showHelpText){
             box.append(document.createElement("br"));
@@ -1062,7 +1071,8 @@ playButtonText.addEventListener("click", function(event){
         }
         box.append(document.createElement("br"));
         box.append(document.createElement("br"));
-        box.append(document.createTextNode("WARNING: Intel Integrated Graphics card may causes Thrive to crash due to issues with the graphics engine running on it: https://github.com/Revolutionary-Games/Thrive/issues/804."))
+        box.append(document.createTextNode("WARNING: Intel Integrated Graphics card may causes Thrive to crash due to some issues with the graphics engine running on it: https://github.com/Revolutionary-Games/Thrive/issues/804."))
+        box.append(document.createElement("br"));
         box.append(document.createElement("br"));
         box.append(document.createTextNode("This is a known problem, any help fixing this would be very much appreciated!"));
         
@@ -1076,7 +1086,7 @@ playButtonText.addEventListener("click", function(event){
         close.addEventListener('click', (event) => {
             incompatibleModal.hide();
             showIncompatiblePopup = false;
-            if(cards != null){
+            if(cardsModel != null){
                 playPressed();
             }
         });
