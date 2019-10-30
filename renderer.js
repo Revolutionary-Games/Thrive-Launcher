@@ -1030,7 +1030,7 @@ async function checkIfCompatible() {
             console.log(graphicControllers.model);
         }
 
-        const otherCardNames = ["nvidia", "amd"];
+        const otherCardNames = ["nvidia", "advanced micro devices"];
 
         // Is incompatible if intel is found in a substring
         if(cardsVendor.includes("intel")){
