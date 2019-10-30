@@ -1022,8 +1022,7 @@ async function checkIfCompatible() {
         const data = await si.graphics();
 
         // Get all of the graphics cards info
-        var i;
-        for (i = 0; i < data.controllers.length; i++){
+        for (var i = 0; i < data.controllers.length; i++){
             graphicControllers = data.controllers[i];
             cardsVendor = String(graphicControllers.vendor.toLowerCase());
             cardsModel = String(graphicControllers.model + ", ");
@@ -1037,7 +1036,7 @@ async function checkIfCompatible() {
 
             showIncompatiblePopup = true;
             
-            for(i = 0; i < otherCardNames.length; i++){
+            for(var i = 0; i < otherCardNames.length; i++){
                 if(cardsVendor.includes(otherCardNames[i])){
                     console.log("Graphics card other than Intel detected");
                     showIncompatiblePopup = true;
