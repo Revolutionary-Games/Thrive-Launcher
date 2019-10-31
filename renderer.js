@@ -375,28 +375,28 @@ async function checkIfCompatible() {
 
         let cardsVendor = [];
 
-		for(var i = 0; i < data.controllers.length; i++){
+        for(var i = 0; i < data.controllers.length; i++){
 			
-			let graphicControllers = data.controllers[i];
+            let graphicControllers = data.controllers[i];
 			
-			cardsVendor.push(graphicControllers.vendor.toLowerCase());
-			cardsModel.push(" " + graphicControllers.model);
+            cardsVendor.push(graphicControllers.vendor.toLowerCase());
+            cardsModel.push(" " + graphicControllers.model);
             
             for(var n = 0; n < cardsVendor.length; n++){
                 
                 // Is incompatible if intel is found in a substring
-		        if(cardsVendor[n].split(" ").includes("intel")){
+                if(cardsVendor[n].split(" ").includes("intel")){
 
-			        showIncompatiblePopup = true;
+                    showIncompatiblePopup = true;
                 }
 				
-				for(var x = 0; x < identifier.length; x++){
-					if(cardsVendor[n].split(" ").includes(identifier[x])){
-						showHelpText = true;
-					}
-				}
+                for(var x = 0; x < identifier.length; x++){
+                    if(cardsVendor[n].split(" ").includes(identifier[x])){
+                        showHelpText = true;
+                    }
+                }
             }
-		}
+        }
         
     } catch (e) {
         console.log(e)
