@@ -38,14 +38,11 @@ const { settings, loadSettings, saveSettings, dataFolder,
         tmpDLFolder, locallyCachedDLFile } =
       require('./settings.js');
 
-let graphicControllers = null;
-let cardsVendor = {};
-let cardsModel = {};
+let cardsModel = [];
 
 let showIncompatiblePopup = false;
-let showHelpText = false;
 
-checkIfCompatible();
+let showHelpText = false;
 
 // This loads settings in sync mode here
 loadSettings();
@@ -105,7 +102,7 @@ const playModal = new Modal("playModal", "playModalDialog", {
 });
 
 const incompatibleModal = new Modal("incompatibleModal", "incompatibleModalDialog", {
-    autoClose: false,
+    autoClose: true,
     closeButton: "incompatibleModalClose",
 });
 
@@ -370,7 +367,45 @@ function onVersionDataReceived(data, unsigned = false){
     });
 }
 
-function loadVersionData(){
+// Checks the graphics card
+async function checkIfCompatible() {
+    try {
+        const data = await si.graphics();
+        const identifier = ["nvidia", "advanced micro devices", "amd"]; // and so on...
+
+        let cardsVendor = [];
+
+		for(var i = 0; i < data.controllers.length; i++){
+			
+			let graphicControllers = data.controllers[i];
+			
+			cardsVendor.push(graphicControllers.vendor.toLowerCase());
+			cardsModel.push(" " + graphicControllers.model);
+            
+            for(var n = 0; n < cardsVendor.length; n++){
+                
+                // Is incompatible if intel is found in a substring
+		        if(cardsVendor[n].split(" ").includes("intel")){
+
+			        showIncompatiblePopup = true;
+                }
+				
+				for(var x = 0; x < identifier.length; x++){
+					if(cardsVendor[n].split(" ").includes(identifier[x])){
+						showHelpText = true;
+					}
+				}
+            }
+		}
+        
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+async function loadVersionData(){
+
+    await checkIfCompatible();
 
     if(loadTestVersionData){
         
@@ -1016,40 +1051,6 @@ function playPressed(){
 
 }
 
-// Checks the graphics card
-async function checkIfCompatible() {
-    try {
-        const data = await si.graphics();
-
-        // Get all of the graphics cards info
-        for (var i = 0; i < data.controllers.length; i++){
-            graphicControllers = data.controllers[i];
-            cardsVendor = String(graphicControllers.vendor.toLowerCase());
-            cardsModel = String(graphicControllers.model + ", ");
-            console.log(graphicControllers.model);
-        }
-
-        const otherCardNames = ["nvidia", "advanced micro devices"];
-
-        // Is incompatible if intel is found in a substring
-        if(cardsVendor.includes("intel")){
-
-            showIncompatiblePopup = true;
-            
-            for(var i = 0; i < otherCardNames.length; i++){
-                if(cardsVendor.includes(otherCardNames[i])){
-                    console.log("Graphics card other than Intel detected");
-                    showIncompatiblePopup = true;
-                    showHelpText = true;
-                }
-            }
-        }
-
-    } catch (e) {
-        console.log(e)
-    }
-}
-
 playButtonText.addEventListener("click", function(event){
     console.log("play clicked");
 
@@ -1061,7 +1062,7 @@ playButtonText.addEventListener("click", function(event){
     
         let box = document.getElementById("text");
 
-        box.textContent = "Detected graphics card(s): " + cardsModel;
+        box.textContent = "Detected graphics card(s):" + cardsModel;
 
         if(showHelpText){
             box.append(document.createElement("br"));
