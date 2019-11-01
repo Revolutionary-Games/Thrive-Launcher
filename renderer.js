@@ -373,30 +373,26 @@ async function checkIfCompatible() {
         const data = await si.graphics();
         const identifier = ["nvidia", "advanced micro devices", "amd"]; // and so on...
 
-        let cardsVendor = [];
+        for(let i = 0; i < data.controllers.length; i++){
+			
+            let cards = data.controllers[i].vendor.toLowerCase();
 
-        for(var i = 0; i < data.controllers.length; i++){
-			
-            let graphicControllers = data.controllers[i];
-			
-            cardsVendor.push(graphicControllers.vendor.toLowerCase());
-            cardsModel.push(" " + graphicControllers.model);
-            
-            for(var n = 0; n < cardsVendor.length; n++){
+            cardsModel.push(" " + data.controllers[i].model);
                 
-                // Is incompatible if intel is found in a substring
-                if(cardsVendor[n].split(" ").includes("intel")){
+            // Is incompatible if intel is found in a substring
+            if(cards.split(" ").includes("intel")){
 
-                    showIncompatiblePopup = true;
-                }
+                showIncompatiblePopup = true;
+            }
 				
-                for(var x = 0; x < identifier.length; x++){
-                    if(cardsVendor[n].split(" ").includes(identifier[x])){
-                        showHelpText = true;
-                    }
+            for(var x = 0; x < identifier.length; x++){
+                if(cards.split(" ").includes(identifier[x])){
+                    showHelpText = true;
                 }
             }
         }
+
+        console.log("finished checking the graphics hardware");
         
     } catch (e) {
         console.log(e)
@@ -1062,7 +1058,15 @@ playButtonText.addEventListener("click", function(event){
     
         let box = document.getElementById("text");
 
-        box.textContent = "Detected graphics card(s):" + cardsModel;
+        box.innerHTML = 'WARNING: Intel Integrated Graphics card may causes Thrive to crash due to some issues with the graphics engine running on it: <a href="https://github.com/Revolutionary-Games/Thrive/issues/804">https://github.com/Revolutionary-Games/Thrive/issues/804.</a>';
+        
+        box.append(document.createElement("br"));
+        box.append(document.createTextNode("This is a known problem, any help fixing this would be very much appreciated!"));
+
+        box.append(document.createElement("br"));
+        box.append(document.createElement("br"));
+
+        box.append(document.createTextNode("Detected graphics card(s):" + cardsModel));
 
         if(showHelpText){
             box.append(document.createElement("br"));
@@ -1070,11 +1074,6 @@ playButtonText.addEventListener("click", function(event){
             box.append(document.createTextNode("Another graphics card detected, you could configure Thrive to run with that instead!"));
         }
         box.append(document.createElement("br"));
-        box.append(document.createElement("br"));
-        box.append(document.createTextNode("WARNING: Intel Integrated Graphics card may causes Thrive to crash due to some issues with the graphics engine running on it: https://github.com/Revolutionary-Games/Thrive/issues/804."))
-        box.append(document.createElement("br"));
-        box.append(document.createElement("br"));
-        box.append(document.createTextNode("This is a known problem, any help fixing this would be very much appreciated!"));
         
         let closeContainer = document.createElement("div");
         closeContainer.style.marginTop = "20px";

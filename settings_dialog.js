@@ -23,8 +23,6 @@ const movingFileModal = new Modal("movingFileModal", "movingFileModalDialog", {
     autoClose: false
 });
 
-let installedVersions = [];
-
 // Used to skip callbacks on loading settings
 let loadingSettings = false;
 
@@ -39,8 +37,6 @@ let currentInstallDir = document.getElementById("currentInstallDir");
 function updateInstalledVersions(){
     listOfInstalledVersions.innerHTML = "<li>Searching for files...</li>";
 
-    installedVersions.length = 0;
-
     listInstalledVersions().then((data) =>{
         listOfInstalledVersions.innerHTML = "";
         currentInstallDir.innerHTML = "Installation Directory: " + settings.installPath;
@@ -51,9 +47,8 @@ function updateInstalledVersions(){
 
             let li = document.createElement("li");
             let span = document.createElement("span");
-            
+
             if(obj.valid){
-                installedVersions.push(obj.path);
 
                 span.append(document.createTextNode(obj.name));
 
@@ -99,40 +94,32 @@ function updateInstalledVersions(){
     });    
 }
 
-function moveInstalledFiles(destination){
+function moveInstalledFiles(filePath, destination){
+    
+    for (let i = 0; i < filePath.length; i++) {
+        let file = filePath[i];
+        let fileName = path.basename(filePath[i]);
 
-    listInstalledVersions().then((data) => {
-
-        for(let key in data){
-
-            const obj = data[key];
-            
-            const source = path.dirname(obj.path);
-
-            if(obj.valid){
-                movingFileModal.show();
-                let content = document.getElementById("movingFileModalContent");
-                content.innerHTML = "Moving files to: " + destination + " ...";
-                content.append(document.createElement("br"));
-                content.append(document.createTextNode("This may take several minutes, please be patient."))
-
-                fs.move(path.join(source, obj.name), path.join(destination, obj.name))
-                .then(() => {
-                    console.log("Successfully moving: " + obj.name);
+        movingFileModal.show();
+        let content = document.getElementById("movingFileModalContent");
+        content.innerHTML = "Moving files to: " + destination + " ...";
+        content.append(document.createElement("br"));
+        content.append(document.createTextNode("This may take several minutes, please be patient."))
         
-                    settings.installPath = destination;
-                    onSettingsChanged();
-                    
-                    movingFileModal.hide();
-                    updateInstalledVersions();
-                })
-                .catch(err => {
-                    dialog.showErrorBox("Error!", "Error: " + err);
-                    movingFileModal.hide();
-                })
-            }
-        }
-    });
+        fs.move(file, path.join(destination, fileName))
+        .then(() => {
+            console.log("Successfully moving: " + fileName);
+
+            settings.installPath = destination;
+            onSettingsChanged();
+            updateInstalledVersions();
+            movingFileModal.hide();
+        })
+        .catch(err => {
+            dialog.showErrorBox("Error!", "Error: " + err);
+            movingFileModal.hide();
+        });
+    }
 }
 
 settingsButton.addEventListener("click", function(event){
@@ -166,35 +153,50 @@ browseFilesButton.addEventListener("click", function(event){
 
 function askToMoveFiles(selectedDirectory){
 
-    if (!Array.isArray(installedVersions) || !installedVersions.length) {
-        console.log("No files to be found");
+    let files = [];
 
-        settings.installPath = selectedDirectory;
-        onSettingsChanged();
-        updateInstalledVersions();
-        return;
-    }
+    listInstalledVersions().then((data) => {
 
-    const options = {
-        title: "Warning!",
-        type: "warning",
-        buttons: ['Yes', 'No'],
-        message: "A Thrive version already exist in the current directory \n"
-                + "Do you want to move the files into the selected location?"
-    }
+        for(let key in data){
 
-    dialog.showMessageBox(win, options, (response) => {
-        if(response == 0){
-            if(settings.installPath != selectedDirectory){
-                moveInstalledFiles(selectedDirectory);
+            const obj = data[key];
+
+            if(obj.valid){
+                files.push(obj.path);
             }
         }
-        if(response == 1){
+
+        if (!Array.isArray(files) || !files.length) {
+            console.log("No files to be found");
+    
             settings.installPath = selectedDirectory;
             onSettingsChanged();
             updateInstalledVersions();
+
+            return;
         }
-    })
+
+        const options = {
+            title: "Warning!",
+            type: "warning",
+            buttons: ['Yes', 'No'],
+            message: "A Thrive version already exist in the current directory \n"
+                    + "Do you want to move the files into the selected location?"
+        }
+    
+        dialog.showMessageBox(win, options, (response) => {
+            if(response == 0){
+                if(settings.installPath != selectedDirectory){
+                    moveInstalledFiles(files, selectedDirectory);
+                }
+            }
+            if(response == 1){
+                settings.installPath = selectedDirectory;
+                onSettingsChanged();
+                updateInstalledVersions();
+            }
+        });
+    });
 }
 
 // Button to select the install location
