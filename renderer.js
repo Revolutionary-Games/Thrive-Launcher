@@ -385,8 +385,8 @@ async function checkIfCompatible() {
                 showIncompatiblePopup = true;
             }
 				
-            for(var x = 0; x < identifier.length; x++){
-                if(cards.split(" ").includes(identifier[x])){
+            for(let n = 0; n < identifier.length; n++){
+                if(cards.split(" ").includes(identifier[n])){
                     showHelpText = true;
                 }
             }
