@@ -105,7 +105,7 @@ async function moveInstalledFiles(files, destination){
         })
         .catch (err => {
             movingFileModal.hide();
-            dialog.showErrorBox("Error!", "Failed to move files: " + err);
+            showGenericError("Failed to move files: " + err);
         })));
     
     console.log("succesfully moved all the files");
@@ -161,7 +161,7 @@ function askToMoveFiles(selectedDirectory){
         }
 
         if (!Array.isArray(files) || !files.length) {
-            console.log("No files to be found");
+            console.log("No files found");
     
             settings.installPath = selectedDirectory;
             onSettingsChanged();
@@ -177,7 +177,7 @@ function askToMoveFiles(selectedDirectory){
             message: "A Thrive version already exist in the current directory \n"
                     + "Do you want to move the files into the selected location?"
         }
-    
+        
         dialog.showMessageBox(win, options, (response) => {
             if(response == 0){
                 if(settings.installPath != selectedDirectory){

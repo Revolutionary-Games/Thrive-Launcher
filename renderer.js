@@ -393,8 +393,9 @@ async function checkIfCompatible() {
 
         console.log("finished checking the graphics hardware");
         
-    } catch (e) {
+    } catch (err) {
         console.log(e)
+        showGenericError("Failed to check the graphics hardware: " + err)
     }
 }
 
