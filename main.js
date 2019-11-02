@@ -102,6 +102,8 @@ function createWindow () {
 
         // Doesn't seem to work either
         mainWindow.removeMenu();
+
+        mainWindow.setResizable(false);
     }
 
     mainWindow.once('ready-to-show', () => {
@@ -119,6 +121,8 @@ function createWindow () {
     // Open the DevTools.
     if(openDev){
         mainWindow.webContents.openDevTools();
+
+        mainWindow.setResizable(true);
     }
 
     // Emitted when the window is closed.

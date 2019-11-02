@@ -8,12 +8,10 @@ var {shell} = require('electron');
 const {dialog} = require('electron').remote;
 const win = remote.getCurrentWindow();
 
-const {getVersionData} = require("./version_info.js");
-
 const { Modal, showGenericError} = require('./modal');
 const { listInstalledVersions, deleteInstalledVersion } = require('./install_handler.js');
 
-const { settings, dataFolder, saveSettings, defaultInstallPath } = require('./settings.js');
+const { settings, saveSettings, defaultInstallPath } = require('./settings.js');
 
 const settingsModal = new Modal("settingsModal", "settingsModalDialog", {
     closeButton: "settingsClose"
@@ -25,8 +23,6 @@ const movingFileModal = new Modal("movingFileModal", "movingFileModalDialog", {
 
 // Used to skip callbacks on loading settings
 let loadingSettings = false;
-
-let listInstalledVersionsError = false;
 
 let settingsButton = document.getElementById("settingsButton");
 
@@ -94,32 +90,30 @@ function updateInstalledVersions(){
     });    
 }
 
-function moveInstalledFiles(filePath, destination){
+async function moveInstalledFiles(files, destination){
     
-    for (let i = 0; i < filePath.length; i++) {
-        let file = filePath[i];
-        let fileName = path.basename(filePath[i]);
+    movingFileModal.show();
+    let content = document.getElementById("movingFileModalContent");
+    content.innerHTML = "Moving files to: " + destination + " ...";
+    content.append(document.createElement("br"));
+    content.append(document.createTextNode("This may take several minutes, please be patient."));
 
-        movingFileModal.show();
-        let content = document.getElementById("movingFileModalContent");
-        content.innerHTML = "Moving files to: " + destination + " ...";
-        content.append(document.createElement("br"));
-        content.append(document.createTextNode("This may take several minutes, please be patient."))
-        
-        fs.move(file, path.join(destination, fileName))
+    await Promise.all(files.map(file =>
+        fs.move(file, path.join(destination, path.basename(file)))
         .then(() => {
-            console.log("Successfully moving: " + fileName);
-
-            settings.installPath = destination;
-            onSettingsChanged();
-            updateInstalledVersions();
-            movingFileModal.hide();
+            console.log("finished moving: " + path.basename(file));
         })
-        .catch(err => {
-            dialog.showErrorBox("Error!", "Error: " + err);
+        .catch (err => {
             movingFileModal.hide();
-        });
-    }
+            dialog.showErrorBox("Error!", "Failed to move files: " + err);
+        })));
+    
+    console.log("succesfully moved all the files");
+
+    settings.installPath = destination;
+    onSettingsChanged();
+    updateInstalledVersions();
+    movingFileModal.hide();
 }
 
 settingsButton.addEventListener("click", function(event){
@@ -153,9 +147,9 @@ browseFilesButton.addEventListener("click", function(event){
 
 function askToMoveFiles(selectedDirectory){
 
-    let files = [];
-
     listInstalledVersions().then((data) => {
+
+        let files = [];
 
         for(let key in data){
 

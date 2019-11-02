@@ -23,8 +23,6 @@ module.exports.defaultInstallPath = path.join(module.exports.dataFolder, "Instal
 // Make sure it exists. This simplifies a lot of code
 mkdirp.sync(module.exports.dataFolder);
 
-mkdirp.sync(module.exports.defaultInstallPath);
-
 module.exports.settings = {
     fetchNewsFromWeb: true,
     hideLauncherOnPlay: true,
