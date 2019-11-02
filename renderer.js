@@ -15,7 +15,7 @@ const si = require("systeminformation");
 
 const sha3_256 = require('js-sha3').sha3_256;
 
-var {ipcRenderer, remote} = require('electron');
+var {remote} = require('electron');
 
 const win = remote.getCurrentWindow();
 
@@ -34,8 +34,7 @@ var pjson = require('./package.json');
 //
 // Settings thing
 //
-const { settings, loadSettings, saveSettings, dataFolder,
-        tmpDLFolder, locallyCachedDLFile } =
+const { settings, loadSettings, tmpDLFolder, locallyCachedDLFile } =
       require('./settings.js');
 
 let cardsModel = [];

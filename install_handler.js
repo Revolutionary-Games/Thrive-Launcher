@@ -5,8 +5,6 @@
 const fs = require('fs-extra');
 const path = require('path');
 const rimraf = require("rimraf");
-const { dialog } = require('electron').remote;
-const win = remote.getCurrentWindow();
 
 const {getVersionData} = require("./version_info.js");
 
