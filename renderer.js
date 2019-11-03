@@ -405,9 +405,7 @@ async function checkIfCompatible() {
 
 async function loadVersionData(){
 
-    //if(doGraphicsChecking){
-        await checkIfCompatible();
-    //}
+    await checkIfCompatible();
 
     if(loadTestVersionData){
         
