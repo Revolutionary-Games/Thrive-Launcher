@@ -1,7 +1,7 @@
 // Everything under the settings button
 "use strict";
 
-const fs = require('fs-extra');
+const fsExtra = require('fs-extra');
 const path = require('path');
 
 var {shell} = require('electron');
@@ -81,7 +81,6 @@ function updateInstalledVersions(){
         }
 
     }).catch(err => {
-        listInstalledVersionsError = true;
         listOfInstalledVersions.innerHTML = "";
         
         let li = document.createElement("li");
@@ -99,16 +98,14 @@ async function moveInstalledFiles(files, destination){
     content.append(document.createTextNode("This may take several minutes, please be patient."));
 
     await Promise.all(files.map(file =>
-        fs.move(file, path.join(destination, path.basename(file)))
-        .then(() => {
-            console.log("finished moving: " + path.basename(file));
+        fsExtra.move(file, path.join(destination, path.basename(file))).then(() => { console.log("moved: " + path.basename(file)) } )))
+        .then(() =>{
+            console.log("successfully moved all the files");
         })
-        .catch (err => {
+        .catch(err => {
             movingFileModal.hide();
-            showGenericError("Failed to move " + path.basename(file) + ": " + err.message);
-        })));
-    
-    console.log("succesfully moved all the files");
+            showGenericError("Failed to move file(s): " + err.message);
+        });
 
     settings.installPath = destination;
     onSettingsChanged();
@@ -118,7 +115,7 @@ async function moveInstalledFiles(files, destination){
 
 settingsButton.addEventListener("click", function(event){
 
-    settingsModal.show();    
+    settingsModal.show();
 
     updateInstalledVersions();
 });
