@@ -177,7 +177,7 @@ function askToMoveFiles(selectedDirectory){
             message: "A Thrive version already exist in the current directory \n"
                     + "Do you want to move the files into the selected location?"
         }
-        
+
         dialog.showMessageBox(win, options, (response) => {
             if(response == 0){
                 if(settings.installPath != selectedDirectory){
@@ -217,6 +217,8 @@ let resetInstallLocation = document.getElementById("resetInstallLocation");
 
 resetInstallLocation.addEventListener("click", function(event){
 
+    // "Disables" the button when the install path is
+    // at the default install location
     if(settings.installPath != defaultInstallPath){
         askToMoveFiles(String(defaultInstallPath));
     }

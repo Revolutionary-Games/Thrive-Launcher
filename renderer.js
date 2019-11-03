@@ -394,7 +394,7 @@ async function checkIfCompatible() {
         console.log("finished checking the graphics hardware");
         
     } catch (err) {
-        console.log(e)
+        console.log(err)
         showGenericError("Failed to check the graphics hardware: " + err)
     }
 }
@@ -1068,11 +1068,13 @@ playButtonText.addEventListener("click", function(event){
 
         box.append(document.createTextNode("Detected graphics card(s):" + cardsModel));
 
+        // Shows the help text if a non-Intel card is detected
         if(showHelpText){
             box.append(document.createElement("br"));
             box.append(document.createElement("br"));
             box.append(document.createTextNode("Another graphics card detected, you could configure Thrive to run with that instead!"));
         }
+
         box.append(document.createElement("br"));
         
         let closeContainer = document.createElement("div");
