@@ -105,7 +105,7 @@ async function moveInstalledFiles(files, destination){
         })
         .catch (err => {
             movingFileModal.hide();
-            showGenericError("Failed to move files: " + err);
+            showGenericError("Failed to move " + path.basename(file) + ": " + err.message);
         })));
     
     console.log("succesfully moved all the files");
