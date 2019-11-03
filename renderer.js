@@ -34,11 +34,13 @@ var pjson = require('./package.json');
 //
 // Settings thing
 //
-const { settings, saveSettings, loadSettings,
+const { settings, loadSettings,
         tmpDLFolder, locallyCachedDLFile }
         = require('./settings.js');
 
 let cardsModel = [];
+
+let showIncompatiblePopup = false;
 
 let showHelpText = false;
 
@@ -103,9 +105,7 @@ const incompatibleModal = new Modal("incompatibleModal", "incompatibleModalDialo
     autoClose: true,
     closeButton: "incompatibleModalClose",
     onClose: function(){
-        settings.showIncompatiblePopup = false;
-        settings.doGraphicsChecking = false;
-        saveSettings();
+        showIncompatiblePopup = false;
     }
 });
 
@@ -385,8 +385,7 @@ async function checkIfCompatible() {
             // Is incompatible if intel is found in a substring
             if(cards.split(" ").includes("intel")){
 
-                settings.showIncompatiblePopup = true;
-                saveSettings();
+                showIncompatiblePopup = true;
             }
 				
             for(let n = 0; n < identifier.length; n++){
@@ -406,8 +405,9 @@ async function checkIfCompatible() {
 
 async function loadVersionData(){
 
-    if(settings.doGraphicsChecking)
+    //if(doGraphicsChecking){
         await checkIfCompatible();
+    //}
 
     if(loadTestVersionData){
         
@@ -1056,7 +1056,7 @@ function playPressed(){
 playButtonText.addEventListener("click", function(event){
     console.log("play clicked");
 
-    if(settings.showIncompatiblePopup){
+    if(showIncompatiblePopup){
         incompatibleModal.show();
 
         let incompatibleBox = document.getElementById("incompatibleModalContent");
@@ -1094,7 +1094,7 @@ playButtonText.addEventListener("click", function(event){
     
         close.addEventListener('click', (event) => {
             incompatibleModal.hide();
-
+            showIncompatiblePopup = false;
             if(cardsModel != null){
                 playPressed();
             }
@@ -1106,9 +1106,6 @@ playButtonText.addEventListener("click", function(event){
     }
     else{
         playPressed();
-
-        settings.doGraphicsChecking = false;
-        saveSettings();
     }
 });
 

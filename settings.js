@@ -26,8 +26,6 @@ mkdirp.sync(module.exports.dataFolder);
 module.exports.settings = {
     fetchNewsFromWeb: true,
     hideLauncherOnPlay: true,
-    showIncompatiblePopup: false,
-    doGraphicsChecking: true,
     installPath: module.exports.defaultInstallPath,
 };
 
