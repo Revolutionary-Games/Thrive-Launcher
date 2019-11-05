@@ -370,9 +370,13 @@ function onVersionDataReceived(data, unsigned = false){
     });
 }
 
+let playButtonText = document.getElementById("playText");
+
 // Checks the graphics card
 async function checkIfCompatible() {
     try {
+        playButtonText.textContent = "Checking graphics hardware...";
+
         const data = await si.graphics();
         const identifier = ["nvidia", "advanced micro devices", "amd"]; // and so on...
 
@@ -407,6 +411,8 @@ async function loadVersionData(){
 
     await checkIfCompatible();
 
+    playButtonText.textContent = "Retrieving version information...";
+    
     if(loadTestVersionData){
         
         fs.readFile(path.join(remote.app.getAppPath(), 'version_data/thrive_versions.json'),
@@ -583,10 +589,6 @@ async function loadVersionData(){
 
 // Buttons
 let playButton = document.getElementById("playButton");
-
-let playButtonText = document.getElementById("playText");
-
-playButtonText.textContent = "Retrieving version information...";
 
 // Maybe this does something to the stuck downloading version info bug
 loadVersionData();

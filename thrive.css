@@ -67,19 +67,19 @@ hr.style2 {
     height: auto;
     width: auto;
     vertical-align: top;
-
+    
     position: absolute;
 
     background: linear-gradient(to top left, rgb(41, 41, 41), rgba(48, 48, 48, 0.2));
 }
 
 .BottomFade {
-    display: inline-block;
+    display: block;
     height: auto;
     width: auto;
     z-index: 1;
 
-    position: absolute;
+    position: fixed;
     pointer-events: none;
 
     background: linear-gradient(to top, rgb(20, 20, 20), rgba(0, 0, 0, 0));

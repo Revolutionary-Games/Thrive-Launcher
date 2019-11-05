@@ -35,7 +35,7 @@ function updateInstalledVersions(){
 
     listInstalledVersions().then((data) =>{
         listOfInstalledVersions.innerHTML = "";
-        currentInstallDir.innerHTML = "Installation Directory: " + settings.installPath;
+        currentInstallDir.innerHTML = "Directory: " + settings.installPath;
 
         for(let key in data){
 
@@ -90,27 +90,34 @@ function updateInstalledVersions(){
 }
 
 async function moveInstalledFiles(files, destination){
+    try {
+        movingFileModal.show();
+        let content = document.getElementById("movingFileModalContent");
     
-    movingFileModal.show();
-    let content = document.getElementById("movingFileModalContent");
-    content.innerHTML = "Moving files to: " + destination + " ...";
-    content.append(document.createElement("br"));
-    content.append(document.createTextNode("This may take several minutes, please be patient."));
+        content.innerHTML = "Moving files to: " + destination + " ...";
+        content.append(document.createElement("br"));
+        content.append(document.createTextNode("This may take several minutes, please be patient."));
+        
+        await Promise.all(files.map(file =>
+            fsExtra.move(file, path.join(destination, path.basename(file))).then(() => { console.log("moved: " + path.basename(file)) } )))
+            .then(() =>{
+                console.log("successfully moved all the files");
 
-    await Promise.all(files.map(file =>
-        fsExtra.move(file, path.join(destination, path.basename(file))).then(() => { console.log("moved: " + path.basename(file)) } )))
-        .then(() =>{
-            console.log("successfully moved all the files");
-        })
-        .catch(err => {
-            movingFileModal.hide();
-            showGenericError("Failed to move file(s): " + err.message);
-        });
+                settings.installPath = destination;
+                onSettingsChanged();
+                updateInstalledVersions();
+                movingFileModal.hide();
+            })
+            .catch(err => {
+                movingFileModal.hide();
+                showGenericError("Failed to move file(s): " + err.message);
+            });
 
-    settings.installPath = destination;
-    onSettingsChanged();
-    updateInstalledVersions();
-    movingFileModal.hide();
+    } catch (err) {
+
+        movingFileModal.hide();
+        showGenericError("Failed to move file(s): " + err.message);
+    }
 }
 
 settingsButton.addEventListener("click", function(event){
@@ -142,7 +149,7 @@ browseFilesButton.addEventListener("click", function(event){
     shell.openItem(target);
 });
 
-function askToMoveFiles(selectedDirectory){
+function changeInstallLocation(directory){
 
     listInstalledVersions().then((data) => {
 
@@ -160,7 +167,7 @@ function askToMoveFiles(selectedDirectory){
         if (!Array.isArray(files) || !files.length) {
             console.log("No files found");
     
-            settings.installPath = selectedDirectory;
+            settings.installPath = directory;
             onSettingsChanged();
             updateInstalledVersions();
 
@@ -177,12 +184,12 @@ function askToMoveFiles(selectedDirectory){
 
         dialog.showMessageBox(win, options, (response) => {
             if(response == 0){
-                if(settings.installPath != selectedDirectory){
-                    moveInstalledFiles(files, selectedDirectory);
+                if(settings.installPath != directory){
+                    moveInstalledFiles(files, directory);
                 }
             }
             if(response == 1){
-                settings.installPath = selectedDirectory;
+                settings.installPath = directory;
                 onSettingsChanged();
                 updateInstalledVersions();
             }
@@ -204,7 +211,7 @@ selectInstallLocation.addEventListener("click", function(event){
             console.log("No folder selected");
         }
         else {
-            askToMoveFiles(String(path));
+            changeInstallLocation(String(path));
         }
     });
 });
@@ -217,7 +224,7 @@ resetInstallLocation.addEventListener("click", function(event){
     // "Disables" the button when the install path is
     // at the default install location
     if(settings.installPath != defaultInstallPath){
-        askToMoveFiles(String(defaultInstallPath));
+        changeInstallLocation(String(defaultInstallPath));
     }
 });
 

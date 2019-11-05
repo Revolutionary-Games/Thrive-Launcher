@@ -83,7 +83,6 @@ function createWindow () {
         // This would disable the system title bar and frame window
         // so if this is false we need a custom window top bar
         frame: true,
-        resizable: false,
 
         autoHideMenuBar: openDev ? false : true,
 
@@ -102,8 +101,6 @@ function createWindow () {
 
         // Doesn't seem to work either
         mainWindow.removeMenu();
-
-        mainWindow.setResizable(false);
     }
 
     mainWindow.once('ready-to-show', () => {
@@ -121,8 +118,6 @@ function createWindow () {
     // Open the DevTools.
     if(openDev){
         mainWindow.webContents.openDevTools();
-
-        mainWindow.setResizable(true);
     }
 
     // Emitted when the window is closed.
