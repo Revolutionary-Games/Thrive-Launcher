@@ -35,7 +35,7 @@ function updateInstalledVersions(){
 
     listInstalledVersions().then((data) =>{
         listOfInstalledVersions.innerHTML = "";
-        currentInstallDir.innerHTML = "Directory: " + settings.installPath;
+        currentInstallDir.textContent = "Directory: " + settings.installPath;
 
         for(let key in data){
 
@@ -90,34 +90,27 @@ function updateInstalledVersions(){
 }
 
 async function moveInstalledFiles(files, destination){
-    try {
-        movingFileModal.show();
-        let content = document.getElementById("movingFileModalContent");
+    movingFileModal.show();
+    let content = document.getElementById("movingFileModalContent");
     
-        content.innerHTML = "Moving files to: " + destination + " ...";
-        content.append(document.createElement("br"));
-        content.append(document.createTextNode("This may take several minutes, please be patient."));
+    content.innerHTML = "Moving files to: " + destination + " ...";
+    content.append(document.createElement("br"));
+    content.append(document.createTextNode("This may take several minutes, please be patient."));
         
-        await Promise.all(files.map(file =>
-            fsExtra.move(file, path.join(destination, path.basename(file))).then(() => { console.log("moved: " + path.basename(file)) } )))
-            .then(() =>{
-                console.log("successfully moved all the files");
+    await Promise.all(files.map(file =>
+        fsExtra.move(file, path.join(destination, path.basename(file))).then(() => { console.log("moved: " + path.basename(file)) } )))
+        .then(() =>{
+            console.log("successfully moved all the files");
 
-                settings.installPath = destination;
-                onSettingsChanged();
-                updateInstalledVersions();
-                movingFileModal.hide();
-            })
-            .catch(err => {
-                movingFileModal.hide();
-                showGenericError("Failed to move file(s): " + err.message);
-            });
-
-    } catch (err) {
-
-        movingFileModal.hide();
-        showGenericError("Failed to move file(s): " + err.message);
-    }
+            settings.installPath = destination;
+            onSettingsChanged();
+            updateInstalledVersions();
+            movingFileModal.hide();
+        })
+        .catch(err => {
+            movingFileModal.hide();
+            showGenericError("Failed to move file(s): " + err.message);
+        });
 }
 
 settingsButton.addEventListener("click", function(event){

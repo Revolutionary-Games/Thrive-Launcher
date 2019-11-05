@@ -370,6 +370,9 @@ function onVersionDataReceived(data, unsigned = false){
     });
 }
 
+// Buttons
+let playButton = document.getElementById("playButton");
+
 let playButtonText = document.getElementById("playText");
 
 // Checks the graphics card
@@ -382,18 +385,19 @@ async function checkIfCompatible() {
 
         for(let i = 0; i < data.controllers.length; i++){
 			
-            let cards = data.controllers[i].vendor.toLowerCase();
+            let vendor = data.controllers[i].vendor;
 
             cardsModel.push(" " + data.controllers[i].model);
-                
-            // Is incompatible if intel is found in a substring
-            if(cards.split(" ").includes("intel")){
 
+            // Is incompatible if Intel is found in a substring
+            if(vendor.search(/intel/i) != -1){
+
+                console.log("hardware is not compatible");
                 showIncompatiblePopup = true;
             }
 				
             for(let n = 0; n < identifier.length; n++){
-                if(cards.split(" ").includes(identifier[n])){
+                if(vendor.search(/identifier[n]/i) != -1){
                     showHelpText = true;
                 }
             }
@@ -412,7 +416,7 @@ async function loadVersionData(){
     await checkIfCompatible();
 
     playButtonText.textContent = "Retrieving version information...";
-    
+
     if(loadTestVersionData){
         
         fs.readFile(path.join(remote.app.getAppPath(), 'version_data/thrive_versions.json'),
@@ -586,9 +590,6 @@ async function loadVersionData(){
         });
     }
 };
-
-// Buttons
-let playButton = document.getElementById("playButton");
 
 // Maybe this does something to the stuck downloading version info bug
 loadVersionData();
@@ -1095,9 +1096,7 @@ playButtonText.addEventListener("click", function(event){
         close.addEventListener('click', (event) => {
             incompatibleModal.hide();
             showIncompatiblePopup = false;
-            if(cardsModel != null){
-                playPressed();
-            }
+            playPressed();
         });
 
         closeContainer.append(close);
