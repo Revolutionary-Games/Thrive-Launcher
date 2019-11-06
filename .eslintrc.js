@@ -16,6 +16,8 @@ module.exports = {
         "sourceType": "script"
     },
     "globals": {
+        // Electron remote
+        "remote": true
     },
     "rules": {
         "indent": [
