@@ -3,42 +3,43 @@
 // All of the Node.js APIs are available in this process.
 "use strict";
 
-const fs = require('fs');
-const path = require('path');
-const assert = require('assert');
-const request = require('request');
-const mkdirp = require('mkdirp');
-const os = require('os');
-const child_process = require('child_process');
-const url = require("url");
+const fs = require("fs");
+const path = require("path");
+const assert = require("assert");
+const request = require("request");
+const mkdirp = require("mkdirp");
+const os = require("os");
+const child_process = require("child_process");
 const si = require("systeminformation");
 
-const sha3_256 = require('js-sha3').sha3_256;
+const sha3_256 = require("js-sha3").sha3_256;
 
-var {remote} = require('electron');
+const {remote} = require("electron");
 
 const win = remote.getCurrentWindow();
 
-const versionInfo = require('./version_info');
-const retrieveNews = require('./retrieve_news');
-const errorSuggestions = require('./error_suggestions');
-const { Modal, ComboBox, showGenericError} = require('./modal');
-const { unpackRelease, findBinInRelease } = require('./unpack');
+const versionInfo = require("./version_info");
+const retrieveNews = require("./retrieve_news");
+const errorSuggestions = require("./error_suggestions");
+const {Modal, ComboBox, showGenericError} = require("./modal");
+const {unpackRelease, findBinInRelease} = require("./unpack");
 
-const openpgp = require('openpgp');
+const openpgp = require("openpgp");
 
 // There's warnings that this could expose some server-only data to
 // clients, but we don't have separate things so that shouldn't apply
-var pjson = require('./package.json');
+const pjson = require("./package.json");
 
 //
 // Settings thing
 //
-const { settings, loadSettings,
-        tmpDLFolder, locallyCachedDLFile }
-        = require('./settings.js');
+const {
+    settings, loadSettings,
+    tmpDLFolder, locallyCachedDLFile
+} =
+        require("./settings.js");
 
-let cardsModel = [];
+const cardsModel = [];
 
 let showIncompatiblePopup = false;
 
@@ -47,7 +48,7 @@ let showHelpText = false;
 // This loads settings in sync mode here
 loadSettings();
 
-const { onGameEnded } = require('./crash_reporting.js');
+const {onGameEnded} = require("./crash_reporting.js");
 
 // Shows output from 7z. Not really usefull as it shows no actual progress
 const showUnpackMessages = false;
@@ -60,28 +61,22 @@ const loadTestVersionData = false;
 let loadPrePackagedVersionData = false;
 
 
-const linksModal = new Modal("linksModal", "linksModalDialog", {
-    closeButton: "linksClose"
-});
+const linksModal = new Modal("linksModal", "linksModalDialog", {closeButton: "linksClose"});
 
 const constOldVersionErrorModal = new Modal("errorOldCantStartModal",
-                                            "errorOldCantStartModalDialog", {
-                                                autoClose: false
-                                            });
+    "errorOldCantStartModalDialog", {autoClose: false});
 
 const updateModal = new Modal("newReleaseAvailableModal",
-                              "newReleaseAvailableModalDialog", {
-                                  autoClose: false,
-                                  closeButton: "newReleaseClose",
-                              });
+    "newReleaseAvailableModalDialog", {
+        autoClose: false,
+        closeButton: "newReleaseClose",
+    });
 
 const versionDataFailedModal = new Modal("versionDataDownloadFailedModal",
-                                         "versionDataDownloadFailedModalDialog", {
-                                             autoClose: false
-                                         });
+    "versionDataDownloadFailedModalDialog", {autoClose: false});
 
-var playModalQuitDLCancel = null;
-var currentDLCanceled = false;
+let playModalQuitDLCancel = null;
+let currentDLCanceled = false;
 
 const playModal = new Modal("playModal", "playModalDialog", {
     autoClose: false,
@@ -97,7 +92,7 @@ const playModal = new Modal("playModal", "playModalDialog", {
         }
 
         // Prevent closing //
-        //return true;
+        // return true;
     }
 });
 
@@ -120,75 +115,77 @@ function getLauncherKey(){
         if(launcherKey){
             resolve(launcherKey);
         } else {
-            fs.readFile(path.join(remote.app.getAppPath(), 'version_data/launcher_key.pgp'),
-                        "utf8",
-                        function (err, data){
+            fs.readFile(path.join(remote.app.getAppPath(), "version_data/launcher_key.pgp"),
+                "utf8",
+                function (err, data){
 
-                            if(err){
-                                let msg = "Can't read launcher version info signing key";
+                    if(err){
+                        const msg = "Can't read launcher version info signing key";
 
-                                reject(msg + ". " + err);
-                                console.log(err);
-                                return;
-                            }
-                            
-                            let keyid;
+                        reject(new Error(msg + ". " + err));
+                        console.log(err);
+                        return;
+                    }
 
-                            openpgp.key.readArmored(data).then((key) => {
-                                
-                                launcherKey = key.keys;
+                    openpgp.key.readArmored(data).then((key) => {
 
-                                try{
-                                    keyid = launcherKey["0"].primaryKey.keyid.toHex();
-                                } catch(err){
-                                    reject("Loaded signing key but it is invalid " +
-                                           "(property error): " + err);
-                                    return;
-                                }
-                                
-                                // console.log("Key: " + launcherKey);
-                                console.log("Signing key loaded: " + keyid);
-                                resolve(launcherKey);
-                                
-                            }, (err) => {
-                                reject("Couldn't parse signing key: " + err);
-                            });
-                        });
+                        launcherKey = key.keys;
+
+                        let keyid = null;
+
+                        try{
+                            keyid = launcherKey["0"].primaryKey.keyid.toHex();
+                        } catch(err){
+                            reject(new Error("Loaded signing key but it is invalid " +
+                                             "(property error): " + err));
+                            return;
+                        }
+
+                        // Console.log("Key: " + launcherKey);
+                        console.log("Signing key loaded: " + keyid);
+                        resolve(launcherKey);
+
+                    }, (err) => {
+                        reject(new Error("Couldn't parse signing key: " + err));
+                    });
+                });
         }
     });
 }
 
 
-// http://ourcodeworld.com/articles/read/228/how-to-download-a-webfile-with-electron-save-it-and-show-download-progress
+// http://ourcodeworld.com/articles/read/228/how-to-download-a-webfile-with-electron-
+// save-it-and-show-download-progress (note: link split on two lines)
 // With some modifications
 function downloadFile(configuration){
     return new Promise(function(resolve, reject){
         // Save variable to know progress
-        var received_bytes = 0;
-        var total_bytes = 0;
+        let received_bytes = 0;
+        let total_bytes = 0;
 
-        var req = request({
-            method: 'GET',
+        const req = request({
+            method: "GET",
             uri: configuration.remoteFile
         });
 
         configuration.reqObj = req;
 
-        var out = fs.createWriteStream(configuration.localFile, { encoding: null });
-        //req.pipe(out);
+        const out = fs.createWriteStream(configuration.localFile, {encoding: null});
+
+        // Req.pipe(out);
 
         let contentType = "unknown";
 
-        req.on('response', function ( data ) {
+        req.on("response", function ( data ) {
             // Change the total bytes value to get progress later.
-            total_bytes = parseInt(data.headers['content-length' ]);
+            total_bytes = parseInt(data.headers["content-length"]);
 
-            contentType = data.headers['content-type'];
+            contentType = data.headers["content-type"];
         });
 
         // Get progress if callback exists
-        if(configuration.hasOwnProperty("onProgress")){
-            req.on('data', function(chunk) {
+        if(Object.prototype.hasOwnProperty.call(configuration, "onProgress")){
+            req.on("data", function(chunk) {
                 // Update the received bytes
                 received_bytes += chunk.length;
 
@@ -197,24 +194,24 @@ function downloadFile(configuration){
                 out.write(chunk);
             });
         }else{
-            req.on('data', function(chunk) {
+            req.on("data", function(chunk) {
                 // Update the received bytes
                 received_bytes += chunk.length;
                 out.write(chunk);
             });
         }
 
-        req.on('end', function() {
+        req.on("end", function() {
             out.end();
             resolve(contentType);
         });
 
-        req.on('error', function(err){
+        req.on("error", function(err){
 
             out.end();
             fs.unlinkSync(configuration.localFile);
             reject(err);
-            
+
         });
     });
 }
@@ -231,35 +228,36 @@ function onVersionDataReceived(data, unsigned = false){
             resolve();
             return;
         }
-        
+
         getLauncherKey().then((key) =>{
 
             if(!key){
 
-                reject("get launcher key is null");
+                reject(new Error("get launcher key is null"));
                 return;
             }
 
             // Unpack and verify signature //
             openpgp.cleartext.readArmored(data).then((message) => {
 
-                let options = {
+                const options = {
                     message: message,
                     publicKeys: key
                 };
-                
+
                 openpgp.verify(options).then(function(verified) {
-	                let validity = verified.signatures[0].valid;
-	                if (validity) {
-		                console.log('Version data signed by key id ' +
+                    const validity = verified.signatures[0].valid;
+
+                    if (validity) {
+                        console.log("Version data signed by key id " +
                                     verified.signatures[0].keyid.toHex());
-                        
+
                         versionInfo.parseData(verified.data);
 
                         resolve();
-                        
-	                } else {
-                        let msg = "Error verifying signature validity. " +
+
+                    } else {
+                        const msg = "Error verifying signature validity. " +
                             "Did the download get corrupted?";
                         showGenericError(msg, () =>{
 
@@ -272,7 +270,7 @@ function onVersionDataReceived(data, unsigned = false){
                 reject(err);
             });
 
-            
+
         }, (err) =>{
             reject(err);
         });
@@ -281,16 +279,16 @@ function onVersionDataReceived(data, unsigned = false){
 
             if(!versionInfo.getVersionData().versions){
 
-                reject("No versions");
+                reject(new Error("No versions"));
                 return;
             }
-            
-            let dlVersion = versionInfo.getLauncherMeta();
+
+            const dlVersion = versionInfo.getLauncherMeta();
 
             if(dlVersion.latestVersion == pjson.version){
 
                 console.log("Using latest version: " + dlVersion.latestVersion);
-            
+
             } else {
 
                 // Show update asking dialog //
@@ -300,14 +298,14 @@ function onVersionDataReceived(data, unsigned = false){
                     resolve();
                 };
 
-                let message = document.createElement("p");
+                const message = document.createElement("p");
 
-                message.append(
-                    document.createTextNode("You are using Thrive launcher version " +
+                message.
+                    append(document.createTextNode("You are using Thrive launcher version " +
                                             pjson.version + " but the latest version is " +
                                             dlVersion.latestVersion));
 
-                let link = document.createElement("a");
+                const link = document.createElement("a");
                 link.textContent = "Visit releases page";
 
                 const urlTarget = dlVersion.releaseDLURL ||
@@ -317,42 +315,43 @@ function onVersionDataReceived(data, unsigned = false){
                 message.append(document.createElement("br"));
                 message.append(link);
 
-                let textParent = $("#newReleaseAvailableText");
+                const textParent = $("#newReleaseAvailableText");
 
                 textParent.empty();
                 textParent.append($(message));
 
                 // Buttons //
-                let container = document.createElement("div");
+                const container = document.createElement("div");
 
                 container.classList.add("UpdateButtonContainer");
-                
-                let dlnow = document.createElement("div");
+
+                const dlnow = document.createElement("div");
                 dlnow.classList.add("BottomButton");
                 dlnow.style.fontSize = "3.4em";
-                // dlnow.textContent = "Download Now";
+
+                // Dlnow.textContent = "Download Now";
                 dlnow.textContent = "Download Updated Launcher";
 
                 container.append(dlnow);
                 textParent.append($(container));
 
 
-                dlnow.addEventListener('click', (event) => {
+                dlnow.addEventListener("click", () => {
 
                     console.log("Clicked download now");
-                    require('electron').shell.openExternal(urlTarget);
+                    require("electron").shell.openExternal(urlTarget);
                     dlnow.textContent = "Opening link...";
                 });
-                
+
                 return;
             }
-            
+
             resolve();
         });
     }).then(() => {
 
         updatePlayButton();
-        
+
     }).catch((err) => {
 
         // Fail //
@@ -360,7 +359,7 @@ function onVersionDataReceived(data, unsigned = false){
 
         if(err){
 
-            let text = document.getElementById("errorOldCantStartText");
+            const text = document.getElementById("errorOldCantStartText");
 
             if(text){
                 text.append(document.createElement("br"));
@@ -371,9 +370,9 @@ function onVersionDataReceived(data, unsigned = false){
 }
 
 // Buttons
-let playButton = document.getElementById("playButton");
+const playButton = document.getElementById("playButton");
 
-let playButtonText = document.getElementById("playText");
+const playButtonText = document.getElementById("playText");
 
 // Checks the graphics card
 async function checkIfCompatible() {
@@ -381,11 +380,11 @@ async function checkIfCompatible() {
         playButtonText.textContent = "Checking graphics hardware...";
 
         const data = await si.graphics();
-        const identifier = ["nvidia", "advanced micro devices", "amd"]; // and so on...
+        const identifier = ["nvidia", "advanced micro devices", "amd"]; // And so on...
 
         for(let i = 0; i < data.controllers.length; i++){
-			
-            let vendor = data.controllers[i].vendor.toLowerCase();
+
+            const vendor = data.controllers[i].vendor.toLowerCase();
 
             cardsModel.push(" " + data.controllers[i].model);
 
@@ -395,7 +394,7 @@ async function checkIfCompatible() {
                 console.log("hardware is not compatible");
                 showIncompatiblePopup = true;
             }
-			
+
             for(let n = 0; n < identifier.length; n++){
                 if(vendor.includes(identifier[n])){
                     showHelpText = true;
@@ -404,10 +403,10 @@ async function checkIfCompatible() {
         }
 
         console.log("finished checking the graphics hardware");
-        
+
     } catch (err) {
-        console.log(err)
-        showGenericError("Failed to check the graphics hardware: " + err)
+        console.log(err);
+        showGenericError("Failed to check the graphics hardware: " + err);
     }
 }
 
@@ -418,41 +417,41 @@ async function loadVersionData(){
     playButtonText.textContent = "Retrieving version information...";
 
     if(loadTestVersionData){
-        
-        fs.readFile(path.join(remote.app.getAppPath(), 'version_data/thrive_versions.json'),
-                    "utf8",
-                    function (err,data){
-                        
-                        if (err) {
-                            let msg = "Failed to read test version data: " +
-                                err;
-                            showGenericError(msg);
-                            console.log(msg);
-                            return;
-                        }
 
-                        onVersionDataReceived(data, true);
-                    });
+        fs.readFile(path.join(remote.app.getAppPath(), "version_data/thrive_versions.json"),
+            "utf8",
+            function (err, data){
+
+                if (err) {
+                    const msg = "Failed to read test version data: " +
+                                err;
+                    showGenericError(msg);
+                    console.log(msg);
+                    return;
+                }
+
+                onVersionDataReceived(data, true);
+            });
         return;
     }
 
     if(loadPrePackagedVersionData){
 
         // Load potentially very old data //
-        fs.readFile(path.join(remote.app.getAppPath(), 'version_data/signed_versions.json'),
-                    "utf8",
-                    function (err,data){
-                        
-                        if (err) {
-                            let msg = "Failed to read pre-packaged version data: " +
-                                err;
-                            showGenericError(msg);
-                            console.log(msg);
-                            return;
-                        }
+        fs.readFile(path.join(remote.app.getAppPath(), "version_data/signed_versions.json"),
+            "utf8",
+            function (err, data){
 
-                        onVersionDataReceived(data);
-                    });
+                if (err) {
+                    const msg = "Failed to read pre-packaged version data: " +
+                                err;
+                    showGenericError(msg);
+                    console.log(msg);
+                    return;
+                }
+
+                onVersionDataReceived(data);
+            });
     } else {
 
         request({
@@ -460,9 +459,7 @@ async function loadVersionData(){
             pool: null,
             uri: "https://raw.githubusercontent.com/Revolutionary-Games/Thrive-Launcher/" +
                 "master/version_data/signed_versions.json",
-            headers: {
-                'User-Agent': "Thrive-Launcher " + pjson.version
-            }
+            headers: {"User-Agent": "Thrive-Launcher " + pjson.version}
         }, function (error, response, body){
 
             if(error || !response || !body || response.statusCode != 200){
@@ -476,17 +473,14 @@ async function loadVersionData(){
 
                     message += error;
 
-                } else {
+                } else if(response.statusCode != 200){
 
-                    if(response.statusCode != 200){
-
-                        message += "File not found on server, status code: " +
+                    message += "File not found on server, status code: " +
                             response.statusCode;
 
-                    } else {
+                } else {
 
-                        message += "Some other error occurred.";
-                    }
+                    message += "Some other error occurred.";
                 }
 
                 console.log(message);
@@ -497,20 +491,20 @@ async function loadVersionData(){
 
                 $("#versionDataDownloadFailedText").text(message);
 
-                let container = document.createElement("div");
+                const container = document.createElement("div");
 
                 container.classList.add("UpdateButtonContainer");
-                
-                let dlnow = document.createElement("div");
+
+                const dlnow = document.createElement("div");
                 dlnow.classList.add("BottomButton");
                 dlnow.style.fontSize = "1.7em";
                 dlnow.style.marginRight = "5px";
                 dlnow.textContent = "Retry";
-                
+
                 container.append(dlnow);
-                
-                dlnow.addEventListener('click', (event) => {
-                    
+
+                dlnow.addEventListener("click", () => {
+
                     console.log("Clicked retry");
                     versionDataFailedModal.hide();
 
@@ -522,47 +516,47 @@ async function loadVersionData(){
 
                 if(existsLocalFile){
 
-                    let useLocal = document.createElement("div");
+                    const useLocal = document.createElement("div");
                     useLocal.classList.add("BottomButton");
                     useLocal.style.fontSize = "1.7em";
                     useLocal.style.marginLeft = "5px";
                     useLocal.textContent = "Use Previous Version";
-                    
+
                     container.append(useLocal);
-                    
-                    useLocal.addEventListener('click', (event) => {
-                        
+
+                    useLocal.addEventListener("click", () => {
+
                         console.log("Clicked use local file");
 
                         fs.readFile(locallyCachedDLFile,
-                                    "utf8",
-                                    function(err, data){
-                                        
-                                        if(err){
+                            "utf8",
+                            function(err, data){
 
-                                            console.log(err);
-                                            alert("locally cached file is missing, when " +
+                                if(err){
+
+                                    console.log(err);
+                                    alert("locally cached file is missing, when " +
                                                   "it shouldn't be? " + err);
-                                            return;
-                                        }
+                                    return;
+                                }
 
-                                        onVersionDataReceived(data);
-                                    });
-                        
+                                onVersionDataReceived(data);
+                            });
+
                         versionDataFailedModal.hide();
-                    });                    
+                    });
                 } else {
 
-                    let usePrepackaged = document.createElement("div");
+                    const usePrepackaged = document.createElement("div");
                     usePrepackaged.classList.add("BottomButton");
                     usePrepackaged.style.fontSize = "3.4em";
                     usePrepackaged.style.marginLeft = "5px";
                     usePrepackaged.textContent = "Use Pre-packaged (old)";
-                    
+
                     container.append(usePrepackaged);
-                    
-                    usePrepackaged.addEventListener('click', (event) => {
-                        
+
+                    usePrepackaged.addEventListener("click", () => {
+
                         console.log("Clicked use prepackaged");
                         loadPrePackagedVersionData = true;
                         versionDataFailedModal.hide();
@@ -570,9 +564,9 @@ async function loadVersionData(){
                         loadVersionData();
                     });
                 }
-                
+
                 $("#versionDataDownloadFailedText").append($(container));
-                
+
                 return;
             }
 
@@ -589,7 +583,7 @@ async function loadVersionData(){
             onVersionDataReceived(body);
         });
     }
-};
+}
 
 // Maybe this does something to the stuck downloading version info bug
 loadVersionData();
@@ -602,28 +596,28 @@ function verifyDLHash(version, download, localTarget){
 
         const totalSize = fs.statSync(localTarget).size;
 
-        let hasher = sha3_256.create();
+        const hasher = sha3_256.create();
 
-        let readable = fs.createReadStream(localTarget, { encoding: null });
+        const readable = fs.createReadStream(localTarget, {encoding: null});
 
-        let status = document.getElementById("playHashProgress");
-        
-        readable.on('data', (chunk) => {
+        const status = document.getElementById("playHashProgress");
 
-            let percentage = (readable.bytesRead * 100) / totalSize;
+        readable.on("data", (chunk) => {
+
+            const percentage = (readable.bytesRead * 100) / totalSize;
 
             if(status)
                 status.textContent = "Progress " + percentage.toFixed(2) + "%";
-            
+
             hasher.update(chunk);
         });
 
-        readable.on('end', () => {
+        readable.on("end", () => {
 
             const fileHash = hasher.hex();
-            
+
             if(download.hash != fileHash){
-                
+
                 console.error("Hashes don't match! " + download.hash + " != " + fileHash);
                 console.log("Deleting invalid file");
 
@@ -637,23 +631,23 @@ function verifyDLHash(version, download, localTarget){
                     console.log("File at " + localTarget + " deleted.");
                 });
 
-                reject();
+                reject(new Error());
                 return;
             }
-            
+
             resolve();
         });
-        
+
     });
 }
 
 function onThriveFolderReady(version, download){
 
     const installFolder = path.join(settings.installPath, download.folderName);
-    
+
     assert(fs.existsSync(installFolder));
 
-    let status = document.getElementById("playingInternalP");
+    const status = document.getElementById("playingInternalP");
 
     // Destroy the download progress indicator
     status.innerHTML = "";
@@ -661,7 +655,7 @@ function onThriveFolderReady(version, download){
     status.textContent = "preparing to launch";
 
     // Find bin folder //
-    let binFolder = findBinInRelease(installFolder);
+    const binFolder = findBinInRelease(installFolder);
 
     if(!fs.existsSync(binFolder)){
 
@@ -671,12 +665,12 @@ function onThriveFolderReady(version, download){
     }
 
     // Check that executable is there //
-    let exename;
-    
+    let exename = null;
+
     if(os.platform() == "win32"){
 
         exename = "Thrive.exe";
-        
+
     } else {
 
         exename = "Thrive";
@@ -691,24 +685,23 @@ function onThriveFolderReady(version, download){
 
     status.textContent = "launching...";
 
-    // cwd is where relative to things are installed
-    let thrive = child_process.spawn(path.join(binFolder, exename),
-                                     [],
-                                     {
-                                         cwd: binFolder
-                                     });
+    // Cwd is where relative to things are installed
+    const thrive = child_process.spawn(path.join(binFolder, exename),
+        [],
+        {cwd: binFolder});
 
     if(settings.hideLauncherOnPlay){
         win.minimize();
     }
-    
+
     status.innerHTML = "";
 
-    let titleSpan = document.createElement("span");
+    const titleSpan = document.createElement("span");
 
-    let processOutput = document.createElement("div");
+    const processOutput = document.createElement("div");
 
     processOutput.style.overflow = "auto";
+
     // This needs a fixed size for some reason
     processOutput.style.maxHeight = "410px";
     processOutput.style.height = "410px";
@@ -723,13 +716,13 @@ function onThriveFolderReady(version, download){
 
     status.append(titleSpan);
 
-    let appendMessage = (text) => {
+    const appendMessage = (text) => {
 
-        let message = document.createElement("div");
+        const message = document.createElement("div");
         message.textContent = text;
         processOutput.append(message);
 
-        let container = $( processOutput );
+        const container = $( processOutput );
 
         // Max number of messages
         while(container.children().length > 1000){
@@ -741,7 +734,7 @@ function onThriveFolderReady(version, download){
         // For some reason the jquery thing is not working so this is at least a decent choice
         message.scrollIntoView(false);
 
-        // let modalContainer = $( playModal.dialog );
+        // Let modalContainer = $( playModal.dialog );
 
         // let check = $("#playModalDialog");
 
@@ -755,19 +748,19 @@ function onThriveFolderReady(version, download){
     };
 
     appendMessage("Process Started");
-    
-    thrive.stdout.on('data', (data) => {
 
-        for(let line of data.toString().split(/\r?\n/g))
+    thrive.stdout.on("data", (data) => {
+
+        for(const line of data.toString().split(/\r?\n/g))
             appendMessage(line);
     });
 
-    thrive.stderr.on('data', (data) => {
+    thrive.stderr.on("data", (data) => {
 
         appendMessage("ERROR: " + data);
     });
 
-    thrive.on('exit', (code, signal) => {
+    thrive.on("exit", (code, signal) => {
 
         if(settings.hideLauncherOnPlay){
             win.show();
@@ -785,17 +778,17 @@ function onThriveFolderReady(version, download){
                 appendMessage("Thrive has exited normally (exit code 0).");
         }
 
-        let closeContainer = document.createElement("div");
+        const closeContainer = document.createElement("div");
 
         closeContainer.style.textAlign = "center";
-        
-        let close = document.createElement("div");
+
+        const close = document.createElement("div");
 
         close.textContent = "Close";
 
         close.className = "CloseButton";
 
-        close.addEventListener('click', (event) => {
+        close.addEventListener("click", () => {
 
             console.log("extra close clicked");
             playModal.hide();
@@ -807,7 +800,7 @@ function onThriveFolderReady(version, download){
 
         // Let crash reporter do things
         onGameEnded(binFolder, signal != null ? signal : code, closeContainer,
-                    version.releaseNum);
+            version.releaseNum);
     });
 }
 
@@ -816,22 +809,22 @@ function onDLFileReady(version, download, fileName){
 
     // Delete the download progress //
     $( "#dlProgress" ).remove();
-        
+
 
     const localTarget = path.join(tmpDLFolder, fileName);
-    
+
     assert(fs.existsSync(localTarget));
 
-    let status = document.getElementById("playingInternalP");
+    const status = document.getElementById("playingInternalP");
 
     // Destroy the download progress indicator
     status.innerHTML = "";
 
     // If unpacked already launch Thrive //
     mkdirp(settings.installPath, function (err){
-        
+
         if(err){
-            
+
             console.error(err);
             alert("failed to create install directory");
             return;
@@ -850,7 +843,7 @@ function onDLFileReady(version, download, fileName){
 
         // Hash is verified before unpacking //
         status.textContent = "Verifying archive '" + fileName + "'";
-        let element = document.createElement("p");
+        const element = document.createElement("p");
         element.id = "playHashProgress";
         status.append(element);
 
@@ -863,55 +856,55 @@ function onDLFileReady(version, download, fileName){
                 "'";
 
             status.append(document.createElement("br"));
-            
+
             status.append(document.createTextNode("To  '" + settings.installPath + "'"));
 
             status.append(document.createElement("br"));
 
-            status.append(document.createTextNode("This may take several minutes to " + 
+            status.append(document.createTextNode("This may take several minutes to " +
                                                   "complete, please be patient."));
 
             let unpackProgress = null;
 
             if(showUnpackMessages){
-                
+
                 unpackProgress = document.createElement("div");
                 unpackProgress.classList.add("UnpackProgressLog");
-                
+
                 status.append(unpackProgress);
             }
 
             console.log("beginning unpacking");
 
-            unpackRelease(settings.installPath, download.folderName, localTarget, unpackProgress).then(
-                () => {
+            unpackRelease(settings.installPath, download.folderName, localTarget,
+                unpackProgress).then(() => {
 
-                    assert(fs.existsSync(path.join(settings.installPath, download.folderName)));
-                    console.log("unpacking completed");
+                assert(fs.existsSync(path.join(settings.installPath, download.folderName)));
+                console.log("unpacking completed");
 
-                    onThriveFolderReady(version, download);
+                onThriveFolderReady(version, download);
 
-                }, (error) => {
+            }, (error) => {
 
-                    // Fail //
-                    status.textContent = "Unpacking failed, File '" + fileName +
+                // Fail //
+                status.textContent = "Unpacking failed, File '" + fileName +
                         "' is invalid? " + error;
 
-                    status.append(document.createElement("br"));
+                status.append(document.createElement("br"));
 
-                    // Auto detect solutions //
-                    errorSuggestions.unpackError(error, status);
+                // Auto detect solutions //
+                errorSuggestions.unpackError(error, status);
 
-                    status.append(document.createElement("br"));
-                    
-                    status.append(document.createTextNode("To try redownloading delete '" +
+                status.append(document.createElement("br"));
+
+                status.append(document.createTextNode("To try redownloading delete '" +
                                                           localTarget + "'"));
-                });
+            });
 
         }, () => {
 
             // Fail //
-            status.textContent = "Hash for file '" + fileName + "' is invalid "+
+            status.textContent = "Hash for file '" + fileName + "' is invalid " +
                 "(download corrupted or wrong file was downloaded) please try again";
         });
     });
@@ -923,31 +916,31 @@ function playPressed(){
     // Cannot be downloading already //
     assert(playModalQuitDLCancel == null);
     currentDLCanceled = false;
-    
+
     // Open play modal thing
     playModal.show();
 
     assert(playButtonText.dataset.selectedID);
 
-    let version = versionInfo.getVersionByID(playButtonText.dataset.selectedID);
+    const version = versionInfo.getVersionByID(playButtonText.dataset.selectedID);
 
     assert(version);
 
-    let download = versionInfo.getDownloadByOSID(version.id,
-                                                 playButtonText.dataset.selectedDLOS);
+    const download = versionInfo.getDownloadByOSID(version.id,
+        playButtonText.dataset.selectedDLOS);
 
     assert(download);
 
     console.log("Playing thrive version: " + version.getDescriptionString() + " " +
                 download.getDescriptionString());
 
-    let playBox = document.getElementById("playModalContent");
+    const playBox = document.getElementById("playModalContent");
 
     playBox.innerHTML = "Playing Thrive " + version.releaseNum +
         "<p id='playingInternalP'>Downloading: " + download.url +
         "</p><div id='dlProgress'></div>";
 
-    let fileName = download.fileName;
+    const fileName = download.fileName;
 
     assert(fileName);
 
@@ -959,7 +952,7 @@ function playPressed(){
     }
 
     const localTarget = path.join(tmpDLFolder, fileName);
-    
+
     if(fs.existsSync(localTarget)){
 
         console.log("already exists: " + fileName);
@@ -968,23 +961,23 @@ function playPressed(){
     }
 
     mkdirp(tmpDLFolder, function (err){
-        
+
         if(err){
-            
+
             console.error(err);
             alert("failed to create dl directory");
             return;
-            
+
         }
 
-        let dlFailCallback = (error) => {
+        const dlFailCallback = (error) => {
 
             if(fs.existsSync(localTarget)){
-                
+
                 fs.unlinkSync(localTarget);
             }
 
-            let status = document.getElementById("dlProgress");
+            const status = document.getElementById("dlProgress");
 
             if(status){
 
@@ -992,14 +985,14 @@ function playPressed(){
             }
         };
 
-        let dataObj = {
+        const dataObj = {
             remoteFile: download.url,
             localFile: localTarget,
-            
+
             onProgress: function (received, total){
-                
-                let percentage = (received * 100) / total;
-                let status = document.getElementById("dlProgress");
+
+                const percentage = (received * 100) / total;
+                const status = document.getElementById("dlProgress");
 
                 if(status){
 
@@ -1018,27 +1011,30 @@ function playPressed(){
 
                 if(fs.existsSync(localTarget))
                     fs.unlinkSync(localTarget);
+
                 return;
             }
-            
-            if(![ "application/x-7z-compressed",
-                  "application/zip",
-                  "application/octet-stream"].includes(contentType))
-            {
+
+            if(![
+                "application/x-7z-compressed",
+                "application/zip",
+                "application/octet-stream"
+            ].includes(contentType)) {
                 dlFailCallback("download type is wrong: " + contentType);
                 return;
             }
 
             console.log("Successfully downloaded");
+
             // No longer need to cancel
             playModalQuitDLCancel = null;
 
-            let status = document.getElementById("playingInternalP");
+            const status = document.getElementById("playingInternalP");
             status.textContent = "Successfully downloaded " + version.releaseNum;
-            
+
             onDLFileReady(version, download, fileName);
-            
-            
+
+
         }, function(error){
 
             dlFailCallback("Download failed: " + error);
@@ -1048,28 +1044,31 @@ function playPressed(){
         assert(dataObj.reqObj);
 
         playModalQuitDLCancel = dataObj.reqObj;
-        
-        
+
+
     });
 
 }
 
-playButtonText.addEventListener("click", function(event){
+playButtonText.addEventListener("click", function(){
     console.log("play clicked");
 
     if(showIncompatiblePopup){
         incompatibleModal.show();
 
-        let incompatibleBox = document.getElementById("incompatibleModalContent");
-        incompatibleBox.innerHTML = "<p id='text'></p>"
-    
-        let box = document.getElementById("text");
+        const incompatibleBox = document.getElementById("incompatibleModalContent");
+        incompatibleBox.innerHTML = "<p id='text'></p>";
 
-        box.innerHTML = 'WARNING: Intel Integrated Graphics card may causes Thrive to crash due to some issues with the graphics engine ' + 
-                        'running on it: <a href="https://github.com/Revolutionary-Games/Thrive/issues/804">https://github.com/Revolutionary-Games/Thrive/issues/804.</a>';
-        
+        const box = document.getElementById("text");
+
+        box.innerHTML = "WARNING: Intel Integrated Graphics card may causes Thrive to " +
+            "crash due to some issues with the graphics engine running on it: <a href=\"" +
+            "https://github.com/Revolutionary-Games/Thrive/issues/804" +
+            "\">https://github.com/Revolutionary-Games/Thrive/issues/804.</a>";
+
         box.append(document.createElement("br"));
-        box.append(document.createTextNode("This is a known problem, any help fixing this would be very much appreciated!"));
+        box.append(document.createTextNode("This is a known problem, any help fixing " +
+                                           "this would be very much appreciated!"));
 
         box.append(document.createElement("br"));
         box.append(document.createElement("br"));
@@ -1080,20 +1079,21 @@ playButtonText.addEventListener("click", function(event){
         if(showHelpText){
             box.append(document.createElement("br"));
             box.append(document.createElement("br"));
-            box.append(document.createTextNode("Another graphics card detected, you could configure " + 
-                                                "Thrive to run with that instead!"));
+            box.append(document.createTextNode("Another graphics card detected, " +
+                                               "you could configure " +
+                                               "Thrive to run with that instead!"));
         }
 
         box.append(document.createElement("br"));
-        
-        let closeContainer = document.createElement("div");
+
+        const closeContainer = document.createElement("div");
         closeContainer.style.marginTop = "20px";
         closeContainer.style.textAlign = "center";
-        let close = document.createElement("div");
+        const close = document.createElement("div");
         close.textContent = "Continue";
         close.className = "CloseButton";
-    
-        close.addEventListener('click', (event) => {
+
+        close.addEventListener("click", () => {
             incompatibleModal.hide();
             showIncompatiblePopup = false;
             playPressed();
@@ -1102,28 +1102,27 @@ playButtonText.addEventListener("click", function(event){
         closeContainer.append(close);
         box.append(closeContainer);
         settings.showIncompatiblePopup = false;
-    }
-    else{
+    } else{
         playPressed();
     }
 });
 
-let playComboPopup = document.getElementById("playComboPopup");
+const playComboPopup = document.getElementById("playComboPopup");
 
 
 const versionSelectPopupBackground = document.getElementById("playComboBackground");
 const versionSelectPopup = document.getElementById("versionSelectPopup");
 
 
-var playComboAllChoices = null;
+let playComboAllChoices = null;
 
 const versionSelectCombo = new ComboBox(versionSelectPopupBackground, versionSelectPopup, {
 
-    
+
     closeButton: playComboPopup,
     onClose: function(){
 
-        
+
     },
     onOpen: function(){
 
@@ -1133,33 +1132,32 @@ const versionSelectCombo = new ComboBox(versionSelectPopupBackground, versionSel
         versionSelectPopup.innerHTML = "";
 
         // Add versions //
-        for(let version of playComboAllChoices){
+        for(const version of playComboAllChoices){
 
-            let div = document.createElement("div");
+            const div = document.createElement("div");
             div.classList.add("ComboVersionSelect");
             div.classList.add("Clickable");
 
             let prefix = "";
 
             if(version.version.id == playButtonText.dataset.selectedID &&
-               version.download.os == playButtonText.dataset.selectedDLOS)
-            {
+               version.download.os == playButtonText.dataset.selectedDLOS) {
                 prefix = "[SELECTED] ";
             }
-            
+
             div.textContent = prefix + version.version.getDescriptionString() + " " +
                 version.download.getDescriptionString();
 
             versionSelectPopup.append(div);
 
 
-            div.addEventListener("click", function(event){
+            div.addEventListener("click", function(){
 
                 console.log("selected new version");
 
                 playButtonText.dataset.selectedID = version.version.id;
                 playButtonText.dataset.selectedDLOS = version.download.os;
-                
+
                 updatePlayButtonText();
                 versionSelectCombo.hide();
             });
@@ -1170,15 +1168,15 @@ const versionSelectCombo = new ComboBox(versionSelectPopupBackground, versionSel
 //! Updates play button text
 function updatePlayButtonText(){
 
-    let version = versionInfo.getVersionByID(playButtonText.dataset.selectedID);
+    const version = versionInfo.getVersionByID(playButtonText.dataset.selectedID);
 
     assert(version);
 
-    let download = versionInfo.getDownloadByOSID(version.id,
-                                                 playButtonText.dataset.selectedDLOS);
+    const download = versionInfo.getDownloadByOSID(version.id,
+        playButtonText.dataset.selectedDLOS);
 
     assert(download);
-    
+
     playButtonText.textContent = "Play " + version.getDescriptionString() + " " +
         download.getDescriptionString();
 }
@@ -1188,17 +1186,17 @@ function updatePlayButton(){
 
     playButtonText.textContent = "Processing Version Data...";
 
-    let version = versionInfo.getRecommendedVersion();
+    const version = versionInfo.getRecommendedVersion();
 
     if(!version){
         playButtonText.textContent = "Latest version has invalid number";
         return;
     }
 
-    let dl = versionInfo.getDownloadForPlatform(version.id);
+    const dl = versionInfo.getDownloadForPlatform(version.id);
 
     // Dump the other versions to be selected in the combo box thing //
-    let options = versionInfo.getAllValidVersions();
+    const options = versionInfo.getAllValidVersions();
 
     playComboAllChoices = options;
 
@@ -1214,14 +1212,14 @@ function updatePlayButton(){
     });
 
     console.log("All valid versions: " + options.length);
-    
-    // If this is null then we should let the user know that there was no 
+
+    // If this is null then we should let the user know that there was no
     // preferred version
     if(!dl){
         playButtonText.textContent = "Couldn't find recommended version for current platform";
         return;
     }
-    
+
     // Verify retrieve logic
     assert(versionInfo.getCurrentPlatform().os == versionInfo.getPlatformByID(dl.os).os);
 
@@ -1232,12 +1230,12 @@ function updatePlayButton(){
     playButtonText.dataset.selectedID = version.id;
     playButtonText.dataset.selectedDLOS = dl.os;
 
-    updatePlayButtonText();    
+    updatePlayButtonText();
 }
 
-let newsContent = document.getElementById("newsContent");
+const newsContent = document.getElementById("newsContent");
 
-let devForumPosts = document.getElementById("devForumPosts");
+const devForumPosts = document.getElementById("devForumPosts");
 
 //
 // Starts loading the news and shows them once loaded
@@ -1252,11 +1250,11 @@ function loadNews(){
         if(news.error){
 
             newsContent.textContent = news.error;
-            
+
         } else {
-            
+
             assert(news.htmlNodes);
-            
+
             newsContent.innerHTML = "";
             newsContent.append(news.htmlNodes);
         }
@@ -1264,7 +1262,7 @@ function loadNews(){
         if(devposts.error){
 
             devForumPosts.textContent = devposts.error;
-            
+
         } else {
 
             assert(devposts.htmlNodes);
@@ -1279,12 +1277,12 @@ function loadNews(){
 // Clear news and start loading them
 
 if(settings.fetchNewsFromWeb){
-    
+
     newsContent.textContent = "Loading...";
     devForumPosts.textContent = "Loading...";
 
     loadNews();
-    
+
 } else {
 
     newsContent.textContent = "Web content is disabled.";
@@ -1292,13 +1290,13 @@ if(settings.fetchNewsFromWeb){
 }
 
 
-// Links button 
-let linksButton = document.getElementById("linksButton");
+// Links button
+const linksButton = document.getElementById("linksButton");
 
-linksButton.addEventListener("click", function(event){
+linksButton.addEventListener("click", function(){
 
     linksModal.show();
 });
 
 // Settings dialog
-require('./settings_dialog.js');
+require("./settings_dialog.js");

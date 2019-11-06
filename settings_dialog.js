@@ -1,34 +1,32 @@
 // Everything under the settings button
 "use strict";
 
-const fsExtra = require('fs-extra');
-const path = require('path');
+const fsExtra = require("fs-extra");
+const path = require("path");
 
-var {shell} = require('electron');
-const {dialog} = require('electron').remote;
+const {shell} = require("electron");
+const {dialog} = require("electron").remote;
 const win = remote.getCurrentWindow();
 
-const { Modal, showGenericError} = require('./modal');
-const { listInstalledVersions, deleteInstalledVersion } = require('./install_handler.js');
+const {Modal, showGenericError} = require("./modal");
+const {listInstalledVersions, deleteInstalledVersion} = require("./install_handler.js");
 
-const { settings, saveSettings, defaultInstallPath } = require('./settings.js');
+const {settings, saveSettings, defaultInstallPath} = require("./settings.js");
 
-const settingsModal = new Modal("settingsModal", "settingsModalDialog", {
-    closeButton: "settingsClose"
-});
+const settingsModal = new Modal("settingsModal", "settingsModalDialog",
+    {closeButton: "settingsClose"});
 
-const movingFileModal = new Modal("movingFileModal", "movingFileModalDialog", {
-    autoClose: false
-});
+const movingFileModal = new Modal("movingFileModal", "movingFileModalDialog",
+    {autoClose: false});
 
 // Used to skip callbacks on loading settings
 let loadingSettings = false;
 
-let settingsButton = document.getElementById("settingsButton");
+const settingsButton = document.getElementById("settingsButton");
 
-let listOfInstalledVersions = document.getElementById("listOfInstalledVersions");
+const listOfInstalledVersions = document.getElementById("listOfInstalledVersions");
 
-let currentInstallDir = document.getElementById("currentInstallDir");
+const currentInstallDir = document.getElementById("currentInstallDir");
 
 function updateInstalledVersions(){
     listOfInstalledVersions.innerHTML = "<li>Searching for files...</li>";
@@ -37,84 +35,86 @@ function updateInstalledVersions(){
         listOfInstalledVersions.innerHTML = "";
         currentInstallDir.textContent = "Directory: " + settings.installPath;
 
-        for(let key in data){
+        for(const key in data){
 
             const obj = data[key];
 
-            let li = document.createElement("li");
-            let span = document.createElement("span");
+            const li = document.createElement("li");
+            const span = document.createElement("span");
 
             if(obj.valid){
 
                 span.append(document.createTextNode(obj.name));
 
-                let button = document.createElement("span");
+                const button = document.createElement("span");
                 button.classList.add("VersionDeleteButton");
                 button.append(document.createTextNode("DELETE"));
 
-                button.addEventListener("click", function(event){
+                button.addEventListener("click", function(){
 
                     console.log("deleting release:", obj.name);
 
                     span.style.display = "none";
 
                     deleteInstalledVersion(obj.name).then(() =>{
-                        
+
                         updateInstalledVersions();
-                        
-                    }).catch(err => {
+
+                    }).catch((err) => {
 
                         showGenericError("Failed to delete the version. " + err);
                         span.style.display = "";
-                    });                    
+                    });
                 });
-                
+
                 span.append(button);
-                
+
             } else {
                 span.append(document.createTextNode("Unknown folder present: "));
                 span.append(document.createTextNode(obj.path));
             }
-            
+
             li.append(span);
             listOfInstalledVersions.append(li);
         }
 
-    }).catch(err => {
+    }).catch((err) => {
         listOfInstalledVersions.innerHTML = "";
-        
-        let li = document.createElement("li");
+
+        const li = document.createElement("li");
         li.textContent = "An error happened: " + err;
         listOfInstalledVersions.append(li);
-    });    
+    });
 }
 
 async function moveInstalledFiles(files, destination){
     movingFileModal.show();
-    let content = document.getElementById("movingFileModalContent");
-    
-    content.innerHTML = "Moving files to: " + destination + " ...";
+    const content = document.getElementById("movingFileModalContent");
+
+    content.textContent = "Moving files to: " + destination + " ...";
     content.append(document.createElement("br"));
-    content.append(document.createTextNode("This may take several minutes, please be patient."));
-        
-    await Promise.all(files.map(file =>
-        fsExtra.move(file, path.join(destination, path.basename(file))).then(() => { console.log("moved: " + path.basename(file)) } )))
-        .then(() =>{
+    content.append(document.createTextNode("This may take several minutes, " +
+                                           "please be patient."));
+
+    await Promise.all(files.map((file) =>
+        fsExtra.move(file, path.join(destination, path.basename(file))).then(() => {
+            console.log("moved: " + path.basename(file));
+        } ))).
+        then(() =>{
             console.log("successfully moved all the files");
 
             settings.installPath = destination;
             onSettingsChanged();
             updateInstalledVersions();
             movingFileModal.hide();
-        })
-        .catch(err => {
+        }).
+        catch((err) => {
             movingFileModal.hide();
             showGenericError("Failed to move file(s): " + err.message);
         });
 }
 
-settingsButton.addEventListener("click", function(event){
-
+settingsButton.addEventListener("click", function(){
     settingsModal.show();
 
     updateInstalledVersions();
@@ -134,9 +134,9 @@ function onSettingsChanged(){
     }
 }
 
-let browseFilesButton = document.getElementById("browseFilesButton");
+const browseFilesButton = document.getElementById("browseFilesButton");
 
-browseFilesButton.addEventListener("click", function(event){
+browseFilesButton.addEventListener("click", function(){
     const target = settings.installPath;
     console.log("Opening item:", target);
     shell.openItem(target);
@@ -146,9 +146,9 @@ function changeInstallLocation(directory){
 
     listInstalledVersions().then((data) => {
 
-        let files = [];
+        const files = [];
 
-        for(let key in data){
+        for(const key in data){
 
             const obj = data[key];
 
@@ -159,7 +159,7 @@ function changeInstallLocation(directory){
 
         if (!Array.isArray(files) || !files.length) {
             console.log("No files found");
-    
+
             settings.installPath = directory;
             onSettingsChanged();
             updateInstalledVersions();
@@ -170,10 +170,10 @@ function changeInstallLocation(directory){
         const options = {
             title: "Warning!",
             type: "warning",
-            buttons: ['Yes', 'No'],
-            message: "A Thrive version already exist in the current directory \n"
-                    + "Do you want to move the files into the selected location?"
-        }
+            buttons: ["Yes", "No"],
+            message: "A Thrive version already exist in the current directory \n" +
+                    "Do you want to move the files into the selected location?"
+        };
 
         dialog.showMessageBox(win, options, (response) => {
             if(response == 0){
@@ -191,29 +191,24 @@ function changeInstallLocation(directory){
 }
 
 // Button to select the install location
-let selectInstallLocation = document.getElementById("selectInstallLocation");
+const selectInstallLocation = document.getElementById("selectInstallLocation");
 
-selectInstallLocation.addEventListener("click", function(event){
-
+selectInstallLocation.addEventListener("click", function(){
     dialog.showOpenDialog(win,
-    {
-        properties: ['openDirectory', 'promptToCreate']
-    }, 
-    function(path) {
-        if(path == undefined){
-            console.log("No folder selected");
-        }
-        else {
-            changeInstallLocation(String(path));
-        }
-    });
+        {properties: ["openDirectory", "promptToCreate"]},
+        function(path) {
+            if(path == undefined){
+                console.log("No folder selected");
+            } else {
+                changeInstallLocation(String(path));
+            }
+        });
 });
 
 // Button to reset the install location
-let resetInstallLocation = document.getElementById("resetInstallLocation");
+const resetInstallLocation = document.getElementById("resetInstallLocation");
 
-resetInstallLocation.addEventListener("click", function(event){
-
+resetInstallLocation.addEventListener("click", function(){
     // "Disables" the button when the install path is
     // at the default install location
     if(settings.installPath != defaultInstallPath){
@@ -221,10 +216,9 @@ resetInstallLocation.addEventListener("click", function(event){
     }
 });
 
-let enableWebContentCheckbox = document.getElementById("enableWebContentCheckbox");
+const enableWebContentCheckbox = document.getElementById("enableWebContentCheckbox");
 
 enableWebContentCheckbox.addEventListener("change", function(event){
-
     if(loadingSettings)
         return;
 
@@ -235,10 +229,9 @@ enableWebContentCheckbox.addEventListener("change", function(event){
 });
 
 // Button to hide the window if the game is launched
-let hideLauncherOnPlayCheckbox = document.getElementById("hideLauncherOnPlay");
+const hideLauncherOnPlayCheckbox = document.getElementById("hideLauncherOnPlay");
 
 hideLauncherOnPlayCheckbox.addEventListener("change", function(event){
-
     if(loadingSettings)
         return;
 

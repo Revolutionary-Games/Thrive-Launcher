@@ -2,35 +2,37 @@
 // Helpers for installing and removing versions
 //
 // TODO: the installing functions are still in renderer.js and should be moved here
-const fs = require('fs-extra');
-const path = require('path');
+"use strict";
+
+const fs = require("fs-extra");
+const path = require("path");
 const rimraf = require("rimraf");
 
 const {getVersionData} = require("./version_info.js");
 
-const { settings } = require("./settings.js");
+const {settings} = require("./settings.js");
 
-const isDirectory = source => fs.lstatSync(source).isDirectory();
-const getDirectories = source =>
-      fs.readdirSync(source).map(name => path.join(source, name)).filter(isDirectory);
+const isDirectory = (source) => fs.lstatSync(source).isDirectory();
+const getDirectories = (source) =>
+    fs.readdirSync(source).map((name) => path.join(source, name)).filter(isDirectory);
 
 // Returns the names of all installed versions. And extra files in the installed folder
 function listInstalledVersions(){
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
 
         const versions = getVersionData().versions;
 
         const directories = getDirectories(settings.installPath);
 
-        let result = {};
+        const result = {};
 
-        for(let dir of directories){
+        for(const dir of directories){
 
             const name = path.basename(dir);
             let good = false;
 
-            for(let ver of versions){
-                for(let dl of ver.platforms){
+            for(const ver of versions){
+                for(const dl of ver.platforms){
 
                     if(dl.folderName == name){
 
@@ -59,14 +61,14 @@ function deleteInstalledVersion(name){
         const finalPath = path.join(settings.installPath, name);
 
         if(!fs.existsSync(finalPath)){
-            reject("path for version doesn't exist: " + finalPath);
+            reject(new Error("path for version doesn't exist: " + finalPath));
             return;
         }
 
         rimraf(finalPath, (error) => {
             if(error){
 
-                reject("failed to delete, error: " + error);
+                reject(new Error("failed to delete, error: " + error));
                 return;
             }
 

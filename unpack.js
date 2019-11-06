@@ -3,122 +3,124 @@
 //
 "use strict";
 
-const os = require('os');
-const path = require('path');
-const fs = require('fs');
+const os = require("os");
+const path = require("path");
+const fs = require("fs");
 
-const { exec, spawn } = require('child_process');
-var { remote } = require('electron');
+const {spawn} = require("child_process");
+const {remote} = require("electron");
 
 function sanityEscape(str){
 
-    return str.replace(/\'/gi, '').replace(/\"/gi, '');
+    return str.replace(/'/gi, "").replace(/"/gi, "");
 }
 
 function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElement){
 
-    let target = path.join(unpackFolder, targetFolderName);
+    const target = path.join(unpackFolder, targetFolderName);
 
     return new Promise(function(resolve, reject){
 
-        let unpacker;
+        let unpacker = null;
 
         if(os.platform() == "win32"){
-            
+
             // By default use system installed 7zip
-            const zPaths = ["C:\\Program Files\\7-Zip\\7z.exe",
-                            "C:\\Program Files (x86)\\7-Zip\\7z.exe"];
-            
-            for(let z of zPaths){
-                
+            const zPaths = [
+                "C:\\Program Files\\7-Zip\\7z.exe",
+                "C:\\Program Files (x86)\\7-Zip\\7z.exe"
+            ];
+
+            for(const z of zPaths){
+
                 if(fs.existsSync(z)){
-                    
+
                     unpacker = z;
                     break;
                 }
             }
-            
+
             if(!unpacker){
-                
+
                 // Use packed in version //
                 console.log("No system installed 7z found, using packed in one");
-                
+
                 unpacker = path.join(remote.app.getAppPath(), "7zip\\7za.exe");
-                
+
                 if(!fs.existsSync(unpacker)){
-                    reject("You don't have 7Zip installed!. Download here: " +
-                        "http://www.7-zip.org/download.html");
-                        
-                    return;     
+                    reject(new Error("You don't have 7Zip installed!. Download here: " +
+                                     "http://www.7-zip.org/download.html"));
+
+                    return;
                 }
             }
 
         } else {
-
+            // TODO: allow using system 7za if present to not need to have 32 bit
+            // libs installed
             unpacker = path.join(remote.app.getAppPath(), "7zip/7za");
         }
 
         // In packaged builds this is needed for this to work
-        unpacker = unpacker.replace('app.asar', 'app.asar.unpacked');
+        unpacker = unpacker.replace("app.asar", "app.asar.unpacked");
 
         // Verify unpacker is installed
         if(!fs.existsSync(unpacker)){
 
-            reject("unpacker (" + unpacker + ") executable is missing");
+            reject(new Error("unpacker (" + unpacker + ") executable is missing"));
             return;
         }
 
         let message = "";
 
-        const unpackProcess = spawn(
-            unpacker, 
-            ['x', sanityEscape(archiveFile), "-O" + sanityEscape(target) + ""]);
+        const unpackProcess = spawn(unpacker,
+            ["x", sanityEscape(archiveFile), "-O" + sanityEscape(target) + ""]);
 
         if(!unpackProcess){
 
-            reject("unpack process wasn't started for some reason");
+            reject(new Error("unpack process wasn't started for some reason"));
             return;
         }
 
         const onProgressMessage = (data) => {
 
             if(progressElement){
-                let div = document.createElement("div");
+                const div = document.createElement("div");
                 div.textContent = data;
                 progressElement.append(div);
                 progressElement.scrollTop = progressElement.scrollHeight;
-            }            
+            }
         };
-        
-        unpackProcess.stdout.on('data', (data) => {
+
+        unpackProcess.stdout.on("data", (data) => {
             message += data;
 
             onProgressMessage(data);
         });
 
-        unpackProcess.stderr.on('data', (data) => {
+        unpackProcess.stderr.on("data", (data) => {
             message += data;
 
             onProgressMessage(data);
         });
 
-        unpackProcess.on('error', (err) => {
-            reject("Unpacker failed to start with error: " + err);
-            return;
+        unpackProcess.on("error", (err) => {
+            reject(new Error("Unpacker failed to start with error: " + err));
         });
-        
-        unpackProcess.on('close', (code) => {
-            
+
+        unpackProcess.on("close", (code) => {
+
             if(code !== 0){
                 console.log(`Unpacker exited with code ${code}`);
-                
-                reject("Unpacker exited with code: " + code + ", message: " + message);
+
+                reject(new Error("Unpacker exited with code: " + code + ", message: " +
+                                 message));
                 return;
             }
 
             onProgressMessage("Unpacking finished successfully");
             resolve();
-            return;
+
         });
     });
 }
@@ -126,18 +128,18 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
 function findBinInRelease(releaseFolder){
 
     // We might already be in the right folder
-    if(fs.existsSync(path.join(releaseFolder, 'bin')))
-        return path.join(releaseFolder, 'bin');
+    if(fs.existsSync(path.join(releaseFolder, "bin")))
+        return path.join(releaseFolder, "bin");
 
-    let files = fs.readdirSync(releaseFolder);
+    const files = fs.readdirSync(releaseFolder);
 
-    for(let dirEntry of files){
+    for(const dirEntry of files){
 
-        let file = path.join(releaseFolder, dirEntry);
+        const file = path.join(releaseFolder, dirEntry);
 
         if(fs.statSync(file).isDirectory()){
 
-            let bin = findBinInRelease(file);
+            const bin = findBinInRelease(file);
 
             if(bin)
                 return bin;
@@ -150,5 +152,4 @@ function findBinInRelease(releaseFolder){
 
 module.exports.unpackRelease = unpackRelease;
 module.exports.findBinInRelease = findBinInRelease;
-
 

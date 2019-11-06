@@ -1,27 +1,29 @@
-const $ = require('jquery');
+"use strict";
 
-const ellipsis = '\u2026';
+const $ = require("jquery");
+
+const ellipsis = "\u2026";
 
 
 function truncateElement(element, o){
 
     element.contents().each(function(){
 
-        let current = $(this);
+        const current = $(this);
 
         if(o.length < 1){
 
             // Need to truncate always
             // Also if we don't remove youtube players and stuff might stay behind
             current.remove();
-            
-            // if(current.text()){
-                
+
+            // If(current.text()){
+
             //     current.text("");
 
 
             // }
-            
+
         } else {
 
             let text = current.text();
@@ -30,23 +32,24 @@ function truncateElement(element, o){
             if(text.length > o.length){
 
                 // Need to cut //
-                let truncatedText = text.substring(0, o.length - 1) + ellipsis;
+                const truncatedText = text.substring(0, o.length - 1) + ellipsis;
 
                 // Special case thing which makes stuff work //
                 if(current.length > 0 && typeof current[0].textContent){
 
                     current[0].textContent = truncatedText;
-                    
+
                 } else {
 
                     console.log("Special case truncate not matched. This text element was " +
                                 "probably not cut correctly");
-                    
+
                     current.text(truncatedText);
                 }
-                
+
                 // Verify that it worked
-                let actualData = current.text();
+                const actualData = current.text();
+
                 if(actualData == text){
                     console.error("Cutting failed for string: " + actualData +
                                   " shouldn't equal initial text: " + text);
@@ -55,7 +58,7 @@ function truncateElement(element, o){
                 o.truncated = true;
 
                 o.length -= o.length;
-                
+
             } else {
 
                 // Reduce available length
@@ -74,18 +77,18 @@ function truncateElement(element, o){
 // Truncates jquery elements in place
 function truncate(htmlElement, length) {
 
-    let o = {
+    const o = {
         length: length,
         truncated: false
     };
 
-    // length is how much text is allowed
+    // Length is how much text is allowed
 
-    let element = $(htmlElement);
+    const element = $(htmlElement);
 
     truncateElement(element, o);
-    
+
     return o.truncated;
-};
+}
 
 module.exports = truncate;

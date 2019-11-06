@@ -1,28 +1,28 @@
-// 
+//
 // Functions for working with thrive version objects
 //
 "use strict";
 
-const stripJsonComments = require('strip-json-comments');
-const os = require('os');
-const path = require('path');
-const url = require('url');
+const stripJsonComments = require("strip-json-comments");
+const os = require("os");
+const path = require("path");
+const url = require("url");
 
-var versionData = null;
+let versionData = null;
 
 // If true automatically finds 32 bit windows alternative if download is missing for x64
 const windowsAuto32Bits = true;
 
 
 function parseData(data){
-    
+
     versionData = JSON.parse(stripJsonComments(data));
 
     // Set recommended version data //
-    for(let tags of versionData.latest){
+    for(const tags of versionData.latest){
 
         if(tags.type == "stable"){
-            let ver = getVersionByID(tags.id);
+            const ver = getVersionByID(tags.id);
 
             if(ver){
 
@@ -34,14 +34,14 @@ function parseData(data){
     }
 
     // Add folder names to all downloads //
-    for(let ver of versionData.versions){
+    for(const ver of versionData.versions){
 
-        for(let dl of ver.platforms){
+        for(const dl of ver.platforms){
 
-            let parsedUrl = url.parse(dl.url);
-            let fileName = path.basename(parsedUrl.pathname);
-            
-            let ext = path.extname(fileName);
+            const parsedUrl = url.parse(dl.url);
+            const fileName = path.basename(parsedUrl.pathname);
+
+            const ext = path.extname(fileName);
             dl.folderName = path.basename(fileName, ext);
             dl.fileName = fileName;
 
@@ -64,7 +64,7 @@ function getCurrentPlatform(){
     return {
         arch: os.arch(),
         os: os.platform(),
-        
+
         // For testing
         // arch: "x64",
         // os: "win32",
@@ -78,10 +78,10 @@ function getCurrentPlatform(){
 // Helper for getting win 32 bits platform
 function getWin32BitPlatform(){
 
-    let obj = getCurrentPlatform();
+    const obj = getCurrentPlatform();
     obj.arch = "ia32";
     obj.platform = "win32";
-    
+
     return obj;
 }
 
@@ -91,7 +91,7 @@ function useWin32Workaround(platform){
 
 function getVersionByID(id){
 
-    for(let ver of versionData.versions){
+    for(const ver of versionData.versions){
 
         if(ver.id == id)
             return ver;
@@ -102,7 +102,7 @@ function getVersionByID(id){
 
 function getPlatformByID(osID){
 
-    for(let platform of versionData.platforms){
+    for(const platform of versionData.platforms){
 
         if(platform.id == osID)
             return platform;
@@ -113,11 +113,11 @@ function getPlatformByID(osID){
 
 function getDownloadForPlatform(id, platform = getCurrentPlatform()){
 
-    for(let ver of versionData.versions){
+    for(const ver of versionData.versions){
 
         if(ver.id == id){
 
-            for(let dl of ver.platforms){
+            for(const dl of ver.platforms){
 
                 if(platform.compare(getPlatformByID(dl.os))){
 
@@ -128,9 +128,9 @@ function getDownloadForPlatform(id, platform = getCurrentPlatform()){
             // Win32 workaround check
             if(useWin32Workaround(platform)){
 
-                let platform = getWin32BitPlatform();
-                
-                for(let dl of ver.platforms){
+                const platform = getWin32BitPlatform();
+
+                for(const dl of ver.platforms){
 
                     if(platform.compare(getPlatformByID(dl.os))){
 
@@ -138,7 +138,7 @@ function getDownloadForPlatform(id, platform = getCurrentPlatform()){
                     }
                 }
             }
-            
+
             return null;
         }
     }
@@ -149,11 +149,11 @@ function getDownloadForPlatform(id, platform = getCurrentPlatform()){
 
 function getDownloadByOSID(id, osid){
 
-    for(let ver of versionData.versions){
+    for(const ver of versionData.versions){
 
         if(ver.id == id){
 
-            for(let dl of ver.platforms){
+            for(const dl of ver.platforms){
 
                 if(osid == dl.os){
 
@@ -162,13 +162,13 @@ function getDownloadByOSID(id, osid){
             }
         }
     }
-    
+
     return null;
 }
 
 function getRecommendedVersion(type = "stable"){
-    
-    for(let ver of versionData.latest){
+
+    for(const ver of versionData.latest){
 
         if(ver.type == type)
             return getVersionByID(ver.id);
@@ -180,47 +180,44 @@ function getRecommendedVersion(type = "stable"){
 // Returns objects with "version" and "download" items
 function getAllValidVersions(platform = getCurrentPlatform()){
 
-    let options = [];
+    const options = [];
 
-    for(let ver of versionData.versions){
+    for(const ver of versionData.versions){
 
         // Add to options if a valid download is found
-        for(let dl of ver.platforms){
+        for(const dl of ver.platforms){
 
             if(platform.compare(getPlatformByID(dl.os))){
 
-                options.push(
-                    {
+                options.push({
+                    version: ver,
+                    download: dl
+                });
+
+            } else if(useWin32Workaround(platform)){
+                // Win32 workaround
+
+                const platform = getWin32BitPlatform();
+
+                if(platform.compare(getPlatformByID(dl.os))){
+
+                    options.push({
                         version: ver,
-                        download: dl
+                        download: dl,
+                        win32On64Bit: true
                     });
-                
-            } else {
-
-                // Win32 workaround check
-                if(useWin32Workaround(platform)){
-
-                    let platform = getWin32BitPlatform();
-                    
-                    if(platform.compare(getPlatformByID(dl.os))){
-
-                        options.push(
-                            {
-                                version: ver,
-                                download: dl,
-                                win32On64Bit: true
-                            });
-                    }
                 }
             }
         }
     }
-    
+
     return options;
 }
 
 
-module.exports.getVersionData = function(){ return versionData };
+module.exports.getVersionData = function(){
+    return versionData;
+};
 module.exports.parseData = parseData;
 module.exports.getRecommendedVersion = getRecommendedVersion;
 module.exports.getVersionByID = getVersionByID;
@@ -235,7 +232,4 @@ module.exports.getLauncherMeta = () => {
     };
 };
 module.exports.getDownloadByOSID = getDownloadByOSID;
-
-
-
 

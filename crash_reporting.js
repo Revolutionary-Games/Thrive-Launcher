@@ -1,16 +1,18 @@
 //
 // Functionality for reporting crashes
 //
-const fs = require('fs');
-const path = require('path');
-const url = require('url');
+"use strict";
 
-var {shell} = require('electron');
+const fs = require("fs");
+const path = require("path");
+const url = require("url");
 
-const moment = require('moment');
-const request = require('request');
+const {shell} = require("electron");
 
-const { Modal, showGenericError} = require('./modal');
+const moment = require("moment");
+const request = require("request");
+
+const {Modal, showGenericError} = require("./modal");
 
 const logFilenamesToCheck = ["ThriveLog.txt", "ThriveLogCEF.txt", "ThriveLogOGRE.txt"];
 
@@ -30,13 +32,13 @@ function getCrashDumpsInFolder(folder){
                 return;
             }
 
-            let dumps = [];
+            const dumps = [];
 
-            for(let file of files){
+            for(const file of files){
 
                 if(file.endsWith(".dmp")){
 
-                    let data = {name: file, path: path.join(folder, file)};
+                    const data = {name: file, path: path.join(folder, file)};
 
                     try{
                         const stats = fs.lstatSync(data.path);
@@ -66,9 +68,9 @@ function findLogsInFolder(folder){
                 return;
             }
 
-            let logs = [];
+            const logs = [];
 
-            for(let file of files){
+            for(const file of files){
                 if(logFilenamesToCheck.includes(file)){
 
                     logs.push({name: file, path: path.join(folder, file)});
@@ -80,11 +82,10 @@ function findLogsInFolder(folder){
     });
 }
 
-let currentReportSettings = {};
-
 const crashReporterModal = new Modal("crashReportingModal", "crashReportingModalDialog", {
     closeButton: "crashReportingClose",
     autoClose: false,
+
     // TODO: confirm cancel report
     // onClose:
 });
@@ -93,7 +94,7 @@ function formatTime(ms){
     return moment(ms).format("L LTS");
 }
 
-let crashReportingContent = document.getElementById("crashReportingContent");
+const crashReportingContent = document.getElementById("crashReportingContent");
 
 function onAgreeChanged(value, settings){
 
@@ -115,7 +116,7 @@ function onTrySubmit(settings){
 
     settings.uploading = true;
 
-    // console.log("Starting reporting crash", settings);
+    // Console.log("Starting reporting crash", settings);
     settings.submit.textContent = "Creating request...";
 
     // Get selected log file contents
@@ -124,7 +125,7 @@ function onTrySubmit(settings){
 
     try{
 
-        for(let log of settings.selectedLogs){
+        for(const log of settings.selectedLogs){
 
             logs += "==== START OF " + log.name + " ===\n" + fs.readFileSync(log.path) +
                 "=== END OF " + log.name + " ====";
@@ -153,37 +154,37 @@ function onTrySubmit(settings){
 
     settings.submit.textContent = "Sending request...";
 
-    request.post({url: devCenterReportAPI, formData: formData}, function(
-        err, httpResponse, body) {
+    request.post({url: devCenterReportAPI, formData: formData},
+        function(err, httpResponse, body){
+            let data = {};
 
-        let data = {};
+            try{
+                data = JSON.parse(body);
+            } catch(ignore){
+                err = "JSON parsing failed";
+            }
 
-        try{
-            data = JSON.parse(body);
-        } catch(ignore){
-        }
+            if (err || httpResponse.statusCode != 201) {
 
-        if (err || httpResponse.statusCode != 201) {
+                console.log("error in creating report: err:", err, "status:",
+                    httpResponse.statusCode, "response:", httpResponse, "body:", body);
 
-            console.log("error in creating report: err:", err, "status:",
-                        httpResponse.statusCode, "response:", httpResponse, "body:", body);
+                if(!err)
+                    err = data.error;
 
-            if(!err)
-                err = data.error;
-
-            settings.statusText.textContent =
+                settings.statusText.textContent =
                 "Error sending request, please try again later. " +
                 "status code: " + httpResponse.statusCode + " error: " +
                 err;
-            settings.submit.textContent = "Retry";
-            settings.uploading = false;
-            return;
-        }
+                settings.submit.textContent = "Retry";
+                settings.uploading = false;
+                return;
+            }
 
-        console.log("successfully created report:", body);
-        onSuccess(url.resolve(devCenterURL, "/report/" + data.created_id),
-                  url.resolve(devCenterURL, "/delete_report/" + data.delete_key));
-    });
+            console.log("successfully created report:", body);
+            onSuccess(url.resolve(devCenterURL, "/report/" + data.created_id),
+                url.resolve(devCenterURL, "/delete_report/" + data.delete_key));
+        });
 
     settings.submit.textContent = "Waiting for server response...";
 
@@ -195,15 +196,16 @@ function onSuccess(reportURL, privateURL){
 
     crashReportingContent.innerHTML = "";
 
-    crashReportingContent.append(document.createTextNode(
-        "Your report has been successfully submitted. Thank you for your report."));
+    crashReportingContent.
+        append(document.createTextNode("Your report has been successfully " +
+                                       "submitted. Thank you for your report."));
 
     crashReportingContent.append(document.createElement("hr"));
 
-    crashReportingContent.append(document.createTextNode(
-        "You can view your report, if it is public, here: "));
+    crashReportingContent.append(document.createTextNode("You can view your report, " +
+                                                         "if it is public, here: "));
 
-    let reportLink = document.createElement("a");
+    const reportLink = document.createElement("a");
     reportLink.textContent = reportURL;
     reportLink.href = reportURL;
 
@@ -211,10 +213,10 @@ function onSuccess(reportURL, privateURL){
 
     crashReportingContent.append(document.createElement("br"));
 
-    crashReportingContent.append(document.createTextNode(
-        "If you want to delete your report you can do so here: "));
+    crashReportingContent.append(document.createTextNode("If you want to delete your report " +
+                                                         "you can do so here: "));
 
-    let privateLink = document.createElement("a");
+    const privateLink = document.createElement("a");
     privateLink.textContent = privateURL;
     privateLink.href = privateURL;
 
@@ -222,53 +224,53 @@ function onSuccess(reportURL, privateURL){
 
     crashReportingContent.append(document.createElement("br"));
 
-    crashReportingContent.append(document.createTextNode(
-        "IMPORTANT if you lose your delete link you won't be able to delete your " +
-            "report. So save it!"));
+    crashReportingContent.
+        append(document.createTextNode("IMPORTANT if you lose your delete " +
+                                       "link you won't be able to delete your " +
+                                       "report. So save it!"));
 
 
     crashReportingContent.append(document.createElement("br"));
     crashReportingContent.append(document.createElement("br"));
-    crashReportingContent.append(document.createTextNode(
-        "You can now safely close this reporter."));
+    crashReportingContent.append(document.
+        createTextNode("You can now safely close this reporter."));
 }
 
 function updateShownLogFiles(settings){
     settings.logsWidget.innerHTML = "";
 
-    for(let log of settings.selectedLogs){
-        let li = document.createElement("li");
-        let span = document.createElement("span");
+    for(const log of settings.selectedLogs){
+        const li = document.createElement("li");
+        const span = document.createElement("span");
         span.append(document.createTextNode(log.name));
 
-        let folderLink = document.createElement("a");
+        const folderLink = document.createElement("a");
         folderLink.textContent = "View in folder";
         folderLink.href = "#";
         folderLink.style.paddingLeft = "15px";
         folderLink.style.paddingRight = "15px";
-        folderLink.addEventListener("click", function(event){
-
+        folderLink.addEventListener("click", function(){
             shell.showItemInFolder(log.path);
         });
 
         span.append(folderLink);
 
-        let fileLink = document.createElement("a");
+        const fileLink = document.createElement("a");
         fileLink.textContent = "View file";
         fileLink.href = "#";
         fileLink.style.paddingRight = "15px";
-        fileLink.addEventListener("click", function(event){
+        fileLink.addEventListener("click", function(){
             shell.openItem(log.path);
         });
 
         span.append(fileLink);
 
-        let removeLink = document.createElement("a");
+        const removeLink = document.createElement("a");
         removeLink.textContent = "Remove";
         removeLink.href = "#";
-        removeLink.addEventListener("click", function(event){
+        removeLink.addEventListener("click", function(){
 
-            settings.selectedLogs = settings.selectedLogs.filter(value => value != log);
+            settings.selectedLogs = settings.selectedLogs.filter((value) => value != log);
             updateShownLogFiles(settings);
         });
 
@@ -280,7 +282,7 @@ function updateShownLogFiles(settings){
 }
 
 function setLogFileStatus(settings, status){
-    let li = document.createElement("li");
+    const li = document.createElement("li");
     li.textContent = status;
     settings.logsWidget.innerHTML = "";
     settings.logsWidget.append(li);
@@ -289,12 +291,12 @@ function setLogFileStatus(settings, status){
 function findALlLogFiles(settings){
     setLogFileStatus(settings, "Searching for log files");
 
-    findLogsInFolder(settings.dumpFolder).then(logs => {
+    findLogsInFolder(settings.dumpFolder).then((logs) => {
 
         settings.selectedLogs = logs;
         updateShownLogFiles(settings);
 
-    }).catch(err => {
+    }).catch((err) => {
 
         setLogFileStatus(settings, "Error finding log files: " + err);
     });
@@ -305,8 +307,8 @@ function onBeginReportingCrash(dump, settings){
     settings.selectedDump = dump;
 
     crashReportingContent.innerHTML = "";
-    crashReportingContent.append(document.createTextNode(
-        "reporting crash: " + dump.name + " " + formatTime(dump.mtimeMs)));
+    crashReportingContent.append(document.createTextNode("reporting crash: " + dump.name +
+                                                         " " + formatTime(dump.mtimeMs)));
 
     crashReportingContent.append(document.createElement("hr"));
 
@@ -314,8 +316,9 @@ function onBeginReportingCrash(dump, settings){
     // Logs part
     //
 
-    crashReportingContent.append(document.createTextNode(
-        "Please keep the logs included if they are from the same run as the crash. " +
+    crashReportingContent.
+        append(document.createTextNode("Please keep the logs included if they are from the " +
+                                       "same run as the crash. " +
             "You can click the name of the file to view the folder it is in and edit it to " +
             "remove any personal details you want."));
 
@@ -326,11 +329,11 @@ function onBeginReportingCrash(dump, settings){
 
     crashReportingContent.append(settings.logsWidget);
 
-    let rescanButton = document.createElement("span");
+    const rescanButton = document.createElement("span");
     rescanButton.textContent = "Scan again for logs";
     rescanButton.classList.add("BottomButton");
 
-    rescanButton.addEventListener("click", function(event){
+    rescanButton.addEventListener("click", function(){
 
         findALlLogFiles(settings);
     });
@@ -343,11 +346,11 @@ function onBeginReportingCrash(dump, settings){
     // Extra info part
     //
 
-    crashReportingContent.append(document.createTextNode(
-        "Describe what you were doing when the crash happened (optional)"));
+    crashReportingContent.append(document.createTextNode("Describe what you were doing when " +
+                                                         "the crash happened (optional)"));
     crashReportingContent.append(document.createElement("br"));
 
-    let extraDescription = document.createElement("textarea");
+    const extraDescription = document.createElement("textarea");
     extraDescription.classList.add("Report");
 
     extraDescription.addEventListener("change", function(event){
@@ -359,10 +362,11 @@ function onBeginReportingCrash(dump, settings){
 
     crashReportingContent.append(document.createElement("br"));
 
-    crashReportingContent.append(document.createTextNode(
-        "Your email, if you want to receive updates about this report (optional):"));
+    crashReportingContent.
+        append(document.createTextNode("Your email, if you want to " +
+                                       "receive updates about this report (optional):"));
 
-    let optionalEmail = document.createElement("input");
+    const optionalEmail = document.createElement("input");
     optionalEmail.type = "text";
     optionalEmail.classList.add("Report");
 
@@ -375,8 +379,9 @@ function onBeginReportingCrash(dump, settings){
 
     crashReportingContent.append(document.createElement("br"));
 
-    crashReportingContent.append(document.createTextNode(
-        "Your email will only be visible to ThriveDevCenter administrators."));
+    crashReportingContent.
+        append(document.createTextNode("Your email will only be visible " +
+                                       "to ThriveDevCenter administrators."));
 
     //
     // Bottom part
@@ -384,7 +389,7 @@ function onBeginReportingCrash(dump, settings){
     crashReportingContent.append(document.createElement("hr"));
 
 
-    let publicBox = document.createElement("input");
+    const publicBox = document.createElement("input");
     publicBox.type = "checkbox";
     publicBox.checked = true;
     settings.public = true;
@@ -396,14 +401,15 @@ function onBeginReportingCrash(dump, settings){
     });
 
     crashReportingContent.append(publicBox);
-    crashReportingContent.append(document.createTextNode(
-        "Public. Public reports have their crash callstack and description publicly " +
+    crashReportingContent.
+        append(document.createTextNode("Public. Public reports have " +
+            "their crash callstack and description publicly " +
             "visible. Private reports are only visible to developers. Log files are always " +
             "only visible to developers."));
 
     crashReportingContent.append(document.createElement("br"));
 
-    let agreeBox = document.createElement("input");
+    const agreeBox = document.createElement("input");
     agreeBox.type = "checkbox";
     agreeBox.classList.add("Report");
 
@@ -414,14 +420,15 @@ function onBeginReportingCrash(dump, settings){
 
     crashReportingContent.append(agreeBox);
 
-    crashReportingContent.append(document.createTextNode(
-        "I agree that the information listed on this form, including any included files and " +
+    crashReportingContent.
+        append(document.createTextNode("I agree that the information " +
+            "listed on this form, including any included files and " +
             "the crash dump, along with my IP address  will be stored in the Thrive " +
             "crash database. And if this report is public anyone can read the crash " +
             "callstack and description."));
 
 
-    let submitContainer = document.createElement("div");
+    const submitContainer = document.createElement("div");
     submitContainer.style.textAlign = "center";
 
     settings.submit = document.createElement("span");
@@ -429,7 +436,7 @@ function onBeginReportingCrash(dump, settings){
     settings.submit.classList.add("Disabled");
     settings.submit.textContent = "Submit";
 
-    settings.submit.addEventListener("click", function(event){
+    settings.submit.addEventListener("click", function(){
         onTrySubmit(settings);
     });
 
@@ -447,20 +454,20 @@ function onReporterOpened(settings){
     crashReportingContent.append(document.createTextNode("Select a crash to report"));
 
     // List dumps
-    let ul = document.createElement("ul");
+    const ul = document.createElement("ul");
 
-    for(let dump of settings.dumps){
+    for(const dump of settings.dumps){
 
-        let li = document.createElement("li");
-        let span = document.createElement("span");
+        const li = document.createElement("li");
+        const span = document.createElement("span");
         span.append(document.createTextNode(moment(dump.mtimeMs).fromNow() + " (" +
                                             formatTime(dump.mtimeMs) + ") "));
 
-        let a = document.createElement("a");
+        const a = document.createElement("a");
         a.textContent = dump.name;
         a.href = "#";
         a.style.paddingLeft = "4px";
-        a.addEventListener("click", function(event){
+        a.addEventListener("click", function(){
 
             onBeginReportingCrash(dump, settings);
         });
@@ -476,17 +483,17 @@ function onReporterOpened(settings){
     if(settings.dumps.length < 1)
         return;
 
-    let button = document.createElement("span");
+    const button = document.createElement("span");
     button.classList.add("VersionDeleteButton");
     button.append(document.createTextNode("Delete All Crashdumps"));
 
-    button.addEventListener("click", function(event){
+    button.addEventListener("click", function(){
 
-        new Promise((resolve, reject) => {
+        new Promise((resolve) => {
 
             console.log("deleting stuff");
 
-            for(let dump of settings.dumps){
+            for(const dump of settings.dumps){
                 fs.unlinkSync(dump.path);
             }
 
@@ -495,10 +502,11 @@ function onReporterOpened(settings){
         }).then(() =>{
 
             crashReporterModal.hide();
+
             // This is not rechecked before running the game again
             settings.dumps = [];
 
-        }).catch(err => {
+        }).catch((err) => {
 
             showGenericError("Failed to delete some files. " + err);
         });
@@ -512,7 +520,7 @@ function showDumpsDialog(dumpFolder, exitCode, gameVersion){
     crashReporterModal.show();
     crashReportingContent.innerHTML = "Finding dump files";
 
-    let settings = {
+    const settings = {
         dumpFolder: dumpFolder,
         dumps: [],
         exitCode: exitCode,
@@ -521,12 +529,12 @@ function showDumpsDialog(dumpFolder, exitCode, gameVersion){
 
     // The dumps are searched for again here as otherwise the delete
     // button leaves a bunch of things showing
-    getCrashDumpsInFolder(dumpFolder).then(dumps => {
+    getCrashDumpsInFolder(dumpFolder).then((dumps) => {
 
         settings.dumps = dumps;
         onReporterOpened(settings);
 
-    }).catch(err => {
+    }).catch(() => {
         onReporterOpened(settings);
     });
 }
@@ -534,17 +542,17 @@ function showDumpsDialog(dumpFolder, exitCode, gameVersion){
 // Called when Thrive exits
 function onGameEnded(binFolder, exitCode, buttonContainer, gameVersion){
     // Look for .dmp files
-    getCrashDumpsInFolder(binFolder).then(dumps => {
+    getCrashDumpsInFolder(binFolder).then((dumps) => {
 
         if(dumps.length > 0){
 
             console.log("thrive has generated crash dump(s)");
 
-            let button = document.createElement("span");
+            const button = document.createElement("span");
             button.classList.add("AfterPlayReport");
             button.append(document.createTextNode("Report Crash"));
 
-            button.addEventListener("click", function(event){
+            button.addEventListener("click", function(){
 
                 showDumpsDialog(binFolder, exitCode, gameVersion);
             });
@@ -552,7 +560,7 @@ function onGameEnded(binFolder, exitCode, buttonContainer, gameVersion){
             buttonContainer.append(button);
         }
 
-    }).catch(err => {
+    }).catch((err) => {
 
         console.error("failed to read files for crash dump detection", err);
     });

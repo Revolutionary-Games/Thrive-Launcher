@@ -3,20 +3,20 @@
 //
 "use strict";
 
-const path = require('path');
-const fs = require('fs');
-const mkdirp = require('mkdirp');
+const path = require("path");
+const fs = require("fs");
+const mkdirp = require("mkdirp");
 
-var {remote} = require('electron');
+const {remote} = require("electron");
 
 module.exports.dataFolder = path.join(remote.app.getPath("appData"), "Revolutionary-Games",
-                                      "Launcher");
+    "Launcher");
 
 module.exports.tmpDLFolder = path.join(remote.app.getPath("temp"),
-                                       "Revolutionary-Games-Launcher");
+    "Revolutionary-Games-Launcher");
 
 module.exports.locallyCachedDLFile = path.join(module.exports.dataFolder,
-                                               "saved_version_db_v2.json");
+    "saved_version_db_v2.json");
 
 module.exports.defaultInstallPath = path.join(module.exports.dataFolder, "Installed");
 
@@ -41,7 +41,7 @@ module.exports.loadSettings = () => {
     try{
         const data = fs.readFileSync(settingsFile);
 
-        let newSettings = JSON.parse(data);
+        const newSettings = JSON.parse(data);
 
         Object.assign(module.exports.settings, newSettings);
 
@@ -50,5 +50,5 @@ module.exports.loadSettings = () => {
     }
 
     // Update controls
-    require('./settings_dialog.js').onSettingsLoaded();
+    require("./settings_dialog.js").onSettingsLoaded();
 };
