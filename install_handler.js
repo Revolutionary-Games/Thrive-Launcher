@@ -2,18 +2,17 @@
 // Helpers for installing and removing versions
 //
 // TODO: the installing functions are still in renderer.js and should be moved here
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const rimraf = require("rimraf");
 
 const {getVersionData} = require("./version_info.js");
 
-const {installPath} = require("./settings.js");
+const { settings } = require("./settings.js");
 
 const isDirectory = source => fs.lstatSync(source).isDirectory();
 const getDirectories = source =>
       fs.readdirSync(source).map(name => path.join(source, name)).filter(isDirectory);
-
 
 // Returns the names of all installed versions. And extra files in the installed folder
 function listInstalledVersions(){
@@ -21,7 +20,7 @@ function listInstalledVersions(){
 
         const versions = getVersionData().versions;
 
-        const directories = getDirectories(installPath);
+        const directories = getDirectories(settings.installPath);
 
         let result = {};
 
@@ -57,7 +56,7 @@ function listInstalledVersions(){
 function deleteInstalledVersion(name){
     return new Promise((resolve, reject) => {
 
-        const finalPath = path.join(installPath, name);
+        const finalPath = path.join(settings.installPath, name);
 
         if(!fs.existsSync(finalPath)){
             reject("path for version doesn't exist: " + finalPath);
@@ -75,7 +74,6 @@ function deleteInstalledVersion(name){
         });
     });
 }
-
 
 module.exports.listInstalledVersions = listInstalledVersions;
 module.exports.deleteInstalledVersion = deleteInstalledVersion;

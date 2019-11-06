@@ -11,10 +11,13 @@ const mkdirp = require('mkdirp');
 const os = require('os');
 const child_process = require('child_process');
 const url = require("url");
+const si = require("systeminformation");
 
 const sha3_256 = require('js-sha3').sha3_256;
 
-var {ipcRenderer, remote} = require('electron');
+var {remote} = require('electron');
+
+const win = remote.getCurrentWindow();
 
 const versionInfo = require('./version_info');
 const retrieveNews = require('./retrieve_news');
@@ -31,9 +34,15 @@ var pjson = require('./package.json');
 //
 // Settings thing
 //
-const { settings, loadSettings, saveSettings, dataFolder, tmpDLFolder, installPath,
-        locallyCachedDLFile} =
-      require('./settings.js');
+const { settings, loadSettings,
+        tmpDLFolder, locallyCachedDLFile }
+        = require('./settings.js');
+
+let cardsModel = [];
+
+let showIncompatiblePopup = false;
+
+let showHelpText = false;
 
 // This loads settings in sync mode here
 loadSettings();
@@ -92,6 +101,13 @@ const playModal = new Modal("playModal", "playModalDialog", {
     }
 });
 
+const incompatibleModal = new Modal("incompatibleModal", "incompatibleModalDialog", {
+    autoClose: true,
+    closeButton: "incompatibleModalClose",
+    onClose: function(){
+        showIncompatiblePopup = false;
+    }
+});
 
 // Use getLauncherKey instead
 let launcherKey = null;
@@ -202,7 +218,6 @@ function downloadFile(configuration){
         });
     });
 }
-
 
 //! Parses version information from data and adds it to all the places
 function onVersionDataReceived(data, unsigned = false){
@@ -355,7 +370,52 @@ function onVersionDataReceived(data, unsigned = false){
     });
 }
 
-function loadVersionData(){
+// Buttons
+let playButton = document.getElementById("playButton");
+
+let playButtonText = document.getElementById("playText");
+
+// Checks the graphics card
+async function checkIfCompatible() {
+    try {
+        playButtonText.textContent = "Checking graphics hardware...";
+
+        const data = await si.graphics();
+        const identifier = ["nvidia", "advanced micro devices", "amd"]; // and so on...
+
+        for(let i = 0; i < data.controllers.length; i++){
+			
+            let vendor = data.controllers[i].vendor.toLowerCase();
+
+            cardsModel.push(" " + data.controllers[i].model);
+
+            // Is incompatible if Intel is found in a substring
+            if(vendor.includes("intel")){
+
+                console.log("hardware is not compatible");
+                showIncompatiblePopup = true;
+            }
+			
+            for(let n = 0; n < identifier.length; n++){
+                if(vendor.includes(identifier[n])){
+                    showHelpText = true;
+                }
+            }
+        }
+
+        console.log("finished checking the graphics hardware");
+        
+    } catch (err) {
+        console.log(err)
+        showGenericError("Failed to check the graphics hardware: " + err)
+    }
+}
+
+async function loadVersionData(){
+
+    await checkIfCompatible();
+
+    playButtonText.textContent = "Retrieving version information...";
 
     if(loadTestVersionData){
         
@@ -443,7 +503,7 @@ function loadVersionData(){
                 
                 let dlnow = document.createElement("div");
                 dlnow.classList.add("BottomButton");
-                dlnow.style.fontSize = "3.4em";
+                dlnow.style.fontSize = "1.7em";
                 dlnow.style.marginRight = "5px";
                 dlnow.textContent = "Retry";
                 
@@ -464,7 +524,7 @@ function loadVersionData(){
 
                     let useLocal = document.createElement("div");
                     useLocal.classList.add("BottomButton");
-                    useLocal.style.fontSize = "3.4em";
+                    useLocal.style.fontSize = "1.7em";
                     useLocal.style.marginLeft = "5px";
                     useLocal.textContent = "Use Previous Version";
                     
@@ -531,13 +591,6 @@ function loadVersionData(){
     }
 };
 
-// Buttons
-let playButton = document.getElementById("playButton");
-
-let playButtonText = document.getElementById("playText");
-
-playButtonText.textContent = "Retrieving version information...";
-
 // Maybe this does something to the stuck downloading version info bug
 loadVersionData();
 
@@ -596,7 +649,7 @@ function verifyDLHash(version, download, localTarget){
 
 function onThriveFolderReady(version, download){
 
-    const installFolder = path.join(installPath, download.folderName);
+    const installFolder = path.join(settings.installPath, download.folderName);
     
     assert(fs.existsSync(installFolder));
 
@@ -645,6 +698,10 @@ function onThriveFolderReady(version, download){
                                          cwd: binFolder
                                      });
 
+    if(settings.hideLauncherOnPlay){
+        win.minimize();
+    }
+    
     status.innerHTML = "";
 
     let titleSpan = document.createElement("span");
@@ -712,6 +769,10 @@ function onThriveFolderReady(version, download){
 
     thrive.on('exit', (code, signal) => {
 
+        if(settings.hideLauncherOnPlay){
+            win.show();
+        }
+
         if(signal){
             console.log(`child process exited due to signal ${signal}`);
             appendMessage(`child process exited due to signal ${signal}`);
@@ -732,7 +793,7 @@ function onThriveFolderReady(version, download){
 
         close.textContent = "Close";
 
-        close.className = "AfterPlayClose";
+        close.className = "CloseButton";
 
         close.addEventListener('click', (event) => {
 
@@ -767,7 +828,7 @@ function onDLFileReady(version, download, fileName){
     status.innerHTML = "";
 
     // If unpacked already launch Thrive //
-    mkdirp(installPath, function (err){
+    mkdirp(settings.installPath, function (err){
         
         if(err){
             
@@ -777,7 +838,7 @@ function onDLFileReady(version, download, fileName){
         }
 
         // Check does it exist //
-        if(fs.existsSync(path.join(installPath, download.folderName))){
+        if(fs.existsSync(path.join(settings.installPath, download.folderName))){
 
             console.log("archive has already been extracted");
             onThriveFolderReady(version, download);
@@ -803,6 +864,10 @@ function onDLFileReady(version, download, fileName){
 
             status.append(document.createElement("br"));
             
+            status.append(document.createTextNode("To  '" + settings.installPath + "'"));
+
+            status.append(document.createElement("br"));
+
             status.append(document.createTextNode("This may take several minutes to " + 
                                                   "complete, please be patient."));
 
@@ -818,12 +883,12 @@ function onDLFileReady(version, download, fileName){
 
             console.log("beginning unpacking");
 
-            unpackRelease(installPath, download.folderName, localTarget, unpackProgress).then(
+            unpackRelease(settings.installPath, download.folderName, localTarget, unpackProgress).then(
                 () => {
 
-                    assert(fs.existsSync(path.join(installPath, download.folderName)));
+                    assert(fs.existsSync(path.join(settings.installPath, download.folderName)));
                     console.log("unpacking completed");
-                    
+
                     onThriveFolderReady(version, download);
 
                 }, (error) => {
@@ -842,7 +907,6 @@ function onDLFileReady(version, download, fileName){
                     status.append(document.createTextNode("To try redownloading delete '" +
                                                           localTarget + "'"));
                 });
-            
 
         }, () => {
 
@@ -887,7 +951,7 @@ function playPressed(){
 
     assert(fileName);
 
-    if(fs.existsSync(path.join(installPath, download.folderName))){
+    if(fs.existsSync(path.join(settings.installPath, download.folderName))){
 
         console.log("archive has already been extracted (assumed)");
         onThriveFolderReady(version, download);
@@ -985,14 +1049,63 @@ function playPressed(){
 
         playModalQuitDLCancel = dataObj.reqObj;
         
+        
     });
 
 }
 
 playButtonText.addEventListener("click", function(event){
-
     console.log("play clicked");
-    playPressed();
+
+    if(showIncompatiblePopup){
+        incompatibleModal.show();
+
+        let incompatibleBox = document.getElementById("incompatibleModalContent");
+        incompatibleBox.innerHTML = "<p id='text'></p>"
+    
+        let box = document.getElementById("text");
+
+        box.innerHTML = 'WARNING: Intel Integrated Graphics card may causes Thrive to crash due to some issues with the graphics engine ' + 
+                        'running on it: <a href="https://github.com/Revolutionary-Games/Thrive/issues/804">https://github.com/Revolutionary-Games/Thrive/issues/804.</a>';
+        
+        box.append(document.createElement("br"));
+        box.append(document.createTextNode("This is a known problem, any help fixing this would be very much appreciated!"));
+
+        box.append(document.createElement("br"));
+        box.append(document.createElement("br"));
+
+        box.append(document.createTextNode("Detected graphics card(s):" + cardsModel));
+
+        // Shows the help text if a non-Intel card is detected
+        if(showHelpText){
+            box.append(document.createElement("br"));
+            box.append(document.createElement("br"));
+            box.append(document.createTextNode("Another graphics card detected, you could configure " + 
+                                                "Thrive to run with that instead!"));
+        }
+
+        box.append(document.createElement("br"));
+        
+        let closeContainer = document.createElement("div");
+        closeContainer.style.marginTop = "20px";
+        closeContainer.style.textAlign = "center";
+        let close = document.createElement("div");
+        close.textContent = "Continue";
+        close.className = "CloseButton";
+    
+        close.addEventListener('click', (event) => {
+            incompatibleModal.hide();
+            showIncompatiblePopup = false;
+            playPressed();
+        });
+
+        closeContainer.append(close);
+        box.append(closeContainer);
+        settings.showIncompatiblePopup = false;
+    }
+    else{
+        playPressed();
+    }
 });
 
 let playComboPopup = document.getElementById("playComboPopup");
@@ -1187,9 +1300,5 @@ linksButton.addEventListener("click", function(event){
     linksModal.show();
 });
 
-
 // Settings dialog
 require('./settings_dialog.js');
-
-
-

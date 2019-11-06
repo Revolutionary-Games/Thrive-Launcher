@@ -6,6 +6,7 @@
 // Set this to true if you want to open the dev console
 let openDev = false;
 
+
 let args = process.argv.slice(2);
 args.forEach((val, index) =>{
 
@@ -75,10 +76,10 @@ function createWindow () {
     // Workaround for menu appearing (https://github.com/electron/electron/issues/16521)
     if(!openDev)
         electron.Menu.setApplicationMenu(null);
-    
+
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 1200 + (openDev ? 700 : 0), height: 700,
+        width: 950 + (openDev ? 700 : 0), height: 600,
         // This would disable the system title bar and frame window
         // so if this is false we need a custom window top bar
         frame: true,
@@ -196,4 +197,3 @@ electron.app.on('browser-window-created',function(e, window) {
     if(!openDev)
         window.setMenu(null);
 });
-
