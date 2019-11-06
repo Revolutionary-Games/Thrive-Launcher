@@ -385,19 +385,19 @@ async function checkIfCompatible() {
 
         for(let i = 0; i < data.controllers.length; i++){
 			
-            let vendor = data.controllers[i].vendor;
+            let vendor = data.controllers[i].vendor.toLowerCase();
 
             cardsModel.push(" " + data.controllers[i].model);
 
             // Is incompatible if Intel is found in a substring
-            if(vendor.search(/intel/i) != -1){
+            if(vendor.includes("intel")){
 
                 console.log("hardware is not compatible");
                 showIncompatiblePopup = true;
             }
-				
+			
             for(let n = 0; n < identifier.length; n++){
-                if(vendor.search(/identifier[n]/i) != -1){
+                if(vendor.includes(identifier[n])){
                     showHelpText = true;
                 }
             }
