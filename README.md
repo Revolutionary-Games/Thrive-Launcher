@@ -1,6 +1,8 @@
 Thrive Launcher
 ===============
 
+### Build Status [![CircleCI](https://circleci.com/gh/Revolutionary-Games/Thrive-Launcher.svg?style=svg)](https://circleci.com/gh/Revolutionary-Games/Thrive-Launcher)
+
 Thrive launcher is a desktop application that manages downloading and
 installing the game releases.
 
