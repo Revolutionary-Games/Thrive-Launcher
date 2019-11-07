@@ -472,6 +472,10 @@ input[type="text"].Report {
   background: rgba(43, 43, 43, 0.9);
 }
 
+#resetInstallLocation {
+  height: auto;
+}
+
 /* Tooltip container */
 .ResetInstallLocationTooltip {
   position: relative;
@@ -518,7 +522,7 @@ input[type="text"].Report {
   border-color: transparent #555 transparent transparent;
 }
 
-.ResetInstallLocationTooltip:hover .ResetInstallLocationTooltipText {
+#resetInstallLocation:hover .ResetInstallLocationTooltipText {
   visibility: visible;
   opacity: 1;
 }
