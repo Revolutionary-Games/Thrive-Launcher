@@ -216,7 +216,7 @@
 
     <!-- Crash reporting popup -->
     <div id="crashReportingModal" class="modal">
-      <div id="crashReportingModalDialog" class="modal-content" style="max-height: 85%; margin-top: 5%; font-size: 0.9em;">
+      <div id="crashReportingModalDialog" class="modal-content" style="max-height: 85%; margin-top: 2%; font-size: 0.9em;">
         <span id="crashReportingClose" class="close">&times;</span>
         <div id="crashReportingContent">
           Trying to load crash reporter
@@ -260,7 +260,11 @@
     </div>
     
   </body>
-  <script>window.$ = window.jQuery = require('jquery');</script>
+  <script>
+    "use strict";
+
+    window.$ = window.jQuery = require("jquery");
+  </script>
   <script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
   <script src="./renderer.js"></script>
 </html>

@@ -2,583 +2,526 @@
   Thrive style for the launcher
 */
 
-/* Thrive site font */
+
 body {
-    font-family: Roboto;
+  /* Thrive site font */
+  font-family: Roboto;
+  background-image: url('assets/Planet-1.jpg');
+  background-size: cover;
 }
 
 /* 100% height */
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-body {
-    background-image: url('assets/Planet-1.jpg');
-    background-size: cover;
-}
-
-h1, h2 {
-    color: #FFFFFF;
-    font-family: Century Gothic, Arial, sans-serif;
-    font-size: 2.5em;
-    text-align: justify;
-    margin-top: 8px;
-    margin-bottom: 8px;
-
-    padding-left: 5px;
+h1,
+h2 {
+  color: #fff;
+  font-family: Century Gothic, Arial, sans-serif;
+  font-size: 2.5em;
+  text-align: justify;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding-left: 5px;
 }
 
 h2 {
-    font-size: 1.7em;
+  font-size: 1.7em;
 }
 
 a {
-    color: #6ACDEB;
+  color: #6acdeb;
 }
 
 a:hover {
-    color: #56A7BF;
+  color: #56a7bf;
 }
 
 hr {
-    border: 0;
-    height: 2px;
-    background-image: linear-gradient(to right, #4dd5ff, #52e5ff, rgba(0, 0, 0, 0));
+  border: 0;
+  height: 2px;
+  background-image: linear-gradient(to right, #4dd5ff, #52e5ff, rgba(0, 0, 0, 0));
 }
 
 hr.style2 {
-    border: 0;
-    height: 2px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #00ffff, rgba(0, 0, 0, 0));
+  border: 0;
+  height: 2px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #0ff, rgba(0, 0, 0, 0));
 }
 
 .Inline {
-
-    display: inline-block;
+  display: inline-block;
 }
 
 /* News boxes */
 .ContentBlock {
-
-    overflow: auto;
-    display: inline-block;
-    height: auto;
-    width: auto;
-    vertical-align: top;
-    
-    position: absolute;
-
-    background: linear-gradient(to top left, rgb(41, 41, 41), rgba(48, 48, 48, 0.2));
+  overflow: auto;
+  display: inline-block;
+  height: auto;
+  width: auto;
+  vertical-align: top;
+  position: absolute;
+  background: linear-gradient(to top left, rgb(41, 41, 41), rgba(48, 48, 48, 0.2));
 }
 
 .BottomFade {
-    display: block;
-    height: auto;
-    width: auto;
-    z-index: 1;
-
-    position: fixed;
-    pointer-events: none;
-
-    background: linear-gradient(to top, rgb(20, 20, 20), rgba(0, 0, 0, 0));
+  display: block;
+  height: auto;
+  width: auto;
+  z-index: 1;
+  position: fixed;
+  pointer-events: none;
+  background: linear-gradient(to top, rgb(20, 20, 20), rgba(0, 0, 0, 0));
 }
 
 #buttonContainer {
-
-    height: 14%;
-    max-height: 14%;
-    width: 100%;
-    position: absolute;
-    bottom: 0px;
-    overflow: hidden;
-    text-align: center;
-
-    border-top: 1px solid rgba(68, 68, 68, 0.46);
-
-    background: linear-gradient(to bottom, rgb(48, 48, 48), rgba(20, 20, 20, 0.9));
+  height: 14%;
+  max-height: 14%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  overflow: hidden;
+  text-align: center;
+  border-top: 1px solid rgba(68, 68, 68, 0.46);
+  background: linear-gradient(to bottom, rgb(48, 48, 48), rgba(20, 20, 20, 0.9));
 }
 
 #innerButtons {
-
-    display: inline-block;
-    height: auto;
-    width: auto;
-
-    position: relative;
-    top: 50%;
-    transform: perspective(1px) translateY(-50%);
+  display: inline-block;
+  height: auto;
+  width: auto;
+  position: relative;
+  top: 50%;
+  transform: perspective(1px) translateY(-50%);
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-    background-color: rgba(44, 44, 44, 0.178);
-    -webkit-border-radius: 150px;
-  }
+  width: 10px;
+  height: 10px;
+  background-color: rgba(44, 44, 44, 0.178);
+  -webkit-border-radius: 150px;
+}
 
 ::-webkit-scrollbar:hover {
-    background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.15);
 }
-  
+
 ::-webkit-scrollbar-thumb:vertical {
-    background: #4dd5ff;
-    -webkit-border-radius: 150px;
+  background: #4dd5ff;
+  -webkit-border-radius: 150px;
 }
 
 ::-webkit-scrollbar-thumb:vertical:active {
-    background: #1dffff;
-    -webkit-border-radius: 150px;
+  background: #1dffff;
+  -webkit-border-radius: 150px;
 }
 
 /* A nice green colour: #73AD21 */
 
 .BottomButton {
-
-    vertical-align: middle;
-    text-align: center;
-    display: inline-block;
-    height: 45x;
-
-    color: #DEDEDE;
-    border-radius: 2px;
-    background: linear-gradient(to top, rgba(22, 22, 22, 0.6), rgb(63, 63, 63));
-
-    padding-left: 5px;
-    padding-right: 5px;
-
-    cursor: pointer;
+  vertical-align: middle;
+  text-align: center;
+  display: inline-block;
+  color: #dedede;
+  border-radius: 2px;
+  background: linear-gradient(to top, rgba(22, 22, 22, 0.6), rgb(63, 63, 63));
+  padding-left: 5px;
+  padding-right: 5px;
+  cursor: pointer;
 }
 
 .BottomButton:hover {
-
-    background: rgb(43, 43, 43);
+  background: rgb(43, 43, 43);
 }
 
 #playText:hover {
-
-    background: radial-gradient(#62c3e0, rgba(108, 193, 214, 0.37), rgba(0,0,0,0));
+  background: radial-gradient(#62c3e0, rgba(108, 193, 214, 0.37), rgba(0, 0, 0, 0));
 }
 
 #playComboPopup:hover {
-
-    background: radial-gradient(#66c5e2, rgba(108, 193, 214, 0.37), rgba(0,0,0,0));;
+  background: radial-gradient(#66c5e2, rgba(108, 193, 214, 0.37), rgba(0, 0, 0, 0));
 }
 
 #playButton {
-    font-size: 1.3em;
-    border: 4px solid #55dbdb;
-    background: #4890a7; 
-    padding: 0px;
+  font-size: 1.3em;
+  border: 4px solid #55dbdb;
+  background: #4890a7;
+  padding: 0;
 }
 
 /* Button Stuff */
 
 .Clickable {
-
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .CloseButton {
-
-    text-align: center;
-    display: inline-block;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    color: #DEDEDE;
-    border-radius: 5px;
-    background: rgba(43, 43, 43, 0.9);
-
-    font-size: 1.7em;
-
-    cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  color: #dedede;
+  border-radius: 5px;
+  background: rgba(43, 43, 43, 0.9);
+  font-size: 1.7em;
+  cursor: pointer;
 }
 
 .CloseButton:hover {
-
-    background: rgba(20, 20, 20, 1);
+  background: rgba(20, 20, 20, 1);
 }
 
-.AfterPlayReport{
-    text-align: center;
-    display: inline-block;
-
-    margin-left: 5px;
-    margin-right: auto;
-
-    color: #DEDEDE;
-    border-radius: 5px;
-    background: rgba(43, 43, 43, 0.9);
-
-    font-size: 1.7em;
-
-    cursor: pointer;
+.AfterPlayReport {
+  text-align: center;
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: auto;
+  color: #dedede;
+  border-radius: 5px;
+  background: rgba(43, 43, 43, 0.9);
+  font-size: 1.7em;
+  cursor: pointer;
 }
 
 .AfterPlayReport:hover {
-    background: rgba(20, 20, 20, 1);
+  background: rgba(20, 20, 20, 1);
 }
 
 /** Feed style **/
 .FeedPost {
-
-    color: #00ffff;
-    display: block;
+  color: #0ff;
+  display: block;
 }
 
 .FeedInfoBox {
-
-    padding-left: 15px;
-    color: #DEDEDE;
-    display: block;
+  padding-left: 15px;
+  color: #dedede;
+  display: block;
 }
 
-.FeedAuthorAndDate {
+/* .FeedAuthorAndDate { */
 
-}
+/* } */
 
 .FeedAuthor {
-
-    display: inline-block;
-    color: #00ffff;
+  display: inline-block;
+  color: #0ff;
 }
 
 .FeedPreview {
+  /* text body colour */
+  color: white;
+  margin-top: 12px;
+  margin-bottom: 30px;
+  margin-left: 10px;
+  margin-right: 3px;
+  font-size: 1em;
 
-    /* text body colour */
-    color: white;
-    
-    margin-top: 12px;
-    margin-bottom: 30px;
-    margin-left: 10px;
-    margin-right: 3px;
-    
-    font-size: 1.0em;
-
-    /* Margin doesn't work without this */
-    display: block;
+  /* Margin doesn't work without this */
+  display: block;
 }
 
 .FeedTitle {
-
-    margin-left: 10px;
-    margin-bottom: 5px;
-    margin-top: 2px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  margin-top: 2px;
 }
 
 
 .FeedCategories {
-
-    display: block;
-    padding-left: 30px;
-    font-size: 0.8em;
-    color: darkgray;
+  display: block;
+  padding-left: 30px;
+  font-size: 0.8em;
+  color: darkgray;
 }
 
 .RedWordFeedTruncated {
-
-    color: #d43a3a;
+  color: #d43a3a;
 }
 
 .FeedPost img {
-
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .FeedPost iframe {
-
-    max-width: 100%;
+  max-width: 100%;
 }
 
 .emoji {
-
-    width: 24px;
-    heigth: auto;
+  width: 24px;
+  height: auto;
 }
 
 
 .UpdateButtonContainer {
-
-    width: 100%;
-    height: auto;
-    display: block;
-    text-align: center;
-    margin-top: 35px;
-    margin-bottom: 10px;
+  width: 100%;
+  height: auto;
+  display: block;
+  text-align: center;
+  margin-top: 35px;
+  margin-bottom: 10px;
 }
 
 
 .UnpackProgressLog {
+  width: 100%;
+  height: auto;
 
-    width: 100%;
-    height: auto;
-    /* max-height: 350px; */
-    overflow: auto;
-    display: block;
+  /* max-height: 350px; */
+  overflow: auto;
+  display: block;
 }
 
- /* The Modal (background) */
+/* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.4);
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 /* Modal Content/Box */
 .modal-content {
-    display: none;
-    background-color: #fefefe;
+  display: none;
+  background-color: #fefefe;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8%;
+  margin-bottom: auto;
 
-    margin-left: auto;
-    margin-right: auto;
+  /* margin: 15% auto; /* 15% from the top and centered */
 
-    margin-top: 8%;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 70%; /* Could be more or less, depending on screen size */
+  max-width: 70%;
+  max-height: 80%;
+  overflow: auto;
 
-    margin-bottom: auto;
-    
-    /*margin: 15% auto; /* 15% from the top and centered */
-    
-    padding: 20px;
-    border: 1px solid #888;
-    width: 70%; /* Could be more or less, depending on screen size */
-    max-width: 70%;
-    max-height: 80%;
+  /* overflow: auto; */
 
-    overflow: auto;
-    /*overflow: auto;*/
-    /* animation-name: animatetop; */
-    /* animation-duration: 0.4s */
+  /* animation-name: animatetop; */
+
+  /* animation-duration: 0.4s */
 }
 
 #settingsModalDialog {
-    background: none;
+  background: none;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8%;
+  margin-bottom: auto;
 
-    margin-left: auto;
-    margin-right: auto;
+  /* margin: 15% auto; /* 15% from the top and centered */
 
-    margin-top: 8%;
-
-    margin-bottom: auto;
-    
-    /*margin: 15% auto; /* 15% from the top and centered */
-    
-    padding: 0px;
-    border: none;
-    width: 75%; /* Could be more or less, depending on screen size */
-    max-width: 75%;
-    max-height: 80%;
-
-    overflow: auto;
+  padding: 0;
+  border: none;
+  width: 75%; /* Could be more or less, depending on screen size */
+  max-width: 75%;
+  max-height: 80%;
+  overflow: auto;
 }
 
 /* @keyframes animatetop { */
+
 /*     from {margin-top: -50px; opacity: 0} */
+
 /*     to {margin-top: 15%; opacity: 1} */
+
 /* } */
 
 /* The Close Button */
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    z-index: 1;
-    cursor: pointer;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  z-index: 1;
+  cursor: pointer;
 }
 
-.close:hover, .close:focus {
-    
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 
 .ComboPopup {
-    display: none; 
-    position: fixed;
-    z-index: 1; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%;
-    overflow: auto; 
-    background-color: rgba(0,0,0,0);
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .ComboContent {
+  background: white;
+  max-height: 60%;
+  height: auto;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  overflow: auto;
+  display: none;
+  padding: 5px;
 
-    background: white;
-    max-height: 60%;
-    height: auto;
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    position: absolute;
-    overflow: auto;
-    display: none;
-    padding: 5px;
-    /* this is overwritten when opened */
-    width: 400px;
+  /* this is overwritten when opened */
+  width: 400px;
 }
 
 .ComboVersionSelect {
-
-    font-size: 1.2em;
-    background: none;
+  font-size: 1.2em;
+  background: none;
 }
 
 .ComboVersionSelect:hover {
-
-    background: #02a2a2;
+  background: #02a2a2;
 }
 
 /* Links in the "Links" dialog */
 .SiteLink {
-
-    font-size: 1.1em;
-    padding-bottom: 3px;
+  font-size: 1.1em;
+  padding-bottom: 3px;
 }
 
 /* Error suggestions in dialogs */
 .ErrorSuggestions {
-
-    margin-top: 5px;
-    display: block;
-    margin-bottom: 5px;
+  margin-top: 5px;
+  display: block;
+  margin-bottom: 5px;
 }
 
 
-.VersionDeleteButton{
-
-    margin-left: 5px;
-    vertical-align: middle;
-    text-align: center;
-    display: inline-block;
-
-    color: #DEDEDE;
-    border-radius: 2px;
-    background: rgba(128, 21, 21, 1);
-
-    padding-left: 4px;
-    padding-right: 4px;
-
-    cursor: pointer;    
+.VersionDeleteButton {
+  margin-left: 5px;
+  vertical-align: middle;
+  text-align: center;
+  display: inline-block;
+  color: #dedede;
+  border-radius: 2px;
+  background: rgba(128, 21, 21, 1);
+  padding-left: 4px;
+  padding-right: 4px;
+  cursor: pointer;
 }
 
 .VersionDeleteButton:hover {
-    background: rgba(212, 106, 106, 1);
+  background: rgba(212, 106, 106, 1);
 }
 
-#listOfInstalledVersions{
-    overflow: auto;
-    max-height: 320px;
+#listOfInstalledVersions {
+  overflow: auto;
+  max-height: 320px;
 }
 
-#crashReportingContent ul{
-    overflow: auto;
-    max-height: 220px;
+#crashReportingContent ul {
+  overflow: auto;
+  max-height: 220px;
 }
 
 textarea.Report {
-    width: 600px;
-    height: 80px;
+  width: 600px;
+  height: 80px;
 }
 
 input[type="text"].Report {
-    width: 200px;
+  width: 200px;
 }
 
 
 .Submit {
-    text-align: center;
-    display: inline-block;
-    font-size: 1.8em;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    color: #DEDEDE;
-    border-radius: 5px;
-    background: rgba(43, 43, 43, 0.9);
-
-    cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  font-size: 1.8em;
+  margin-left: auto;
+  margin-right: auto;
+  color: #dedede;
+  border-radius: 5px;
+  background: rgba(43, 43, 43, 0.9);
+  cursor: pointer;
 }
 
 .Submit:hover {
-
-    background: rgba(20, 20, 20, 1);
+  background: rgba(20, 20, 20, 1);
 }
 
-.Submit.Disabled{
-    
-    color: #222222;
-    cursor: not-allowed;
+.Submit.Disabled {
+  color: #222;
+  cursor: not-allowed;
 }
 
 .Submit.Disabled:hover {
+  background: rgba(43, 43, 43, 0.9);
+}
 
-    background: rgba(43, 43, 43, 0.9);
+#resetInstallLocation {
+  height: auto;
 }
 
 /* Tooltip container */
 .ResetInstallLocationTooltip {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
-.ResetInstallLocationTooltip.Disabled{
-    pointer-events: none;
+.ResetInstallLocationTooltip.Disabled {
+  pointer-events: none;
 }
-  
+
 /* Tooltip text */
 .ResetInstallLocationTooltip .ResetInstallLocationTooltipText {
-    visibility: hidden;
-    width: 150px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-  
-    /* Position the tooltip text */
-    position: absolute;
-    z-index: 1;
-    bottom: 5px;
-    left: 450%;
-    margin-left: -60px;
-    font-size: 0.5em;
-  
-    /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 0.3s;
+  visibility: hidden;
+  width: 150px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
 
-    pointer-events: none;
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 5px;
+  left: 450%;
+  margin-left: -60px;
+  font-size: 0.5em;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
 }
-  
+
 /* Tooltip arrow */
 .ResetInstallLocationTooltip .ResetInstallLocationTooltipText::after {
-    content: " ";
-    position: absolute;
-    top: 50%;
-    right: 100%; /* To the left of the tooltip */
-    margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent #555 transparent transparent;
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%; /* To the left of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #555 transparent transparent;
 }
-  
-.ResetInstallLocationTooltip:hover .ResetInstallLocationTooltipText {
-    visibility: visible;
-    opacity: 1;
+
+#resetInstallLocation:hover .ResetInstallLocationTooltipText {
+  visibility: visible;
+  opacity: 1;
 }

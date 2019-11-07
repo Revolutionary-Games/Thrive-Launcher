@@ -3,17 +3,16 @@
 //
 "use strict";
 
-const request = require('request');
-const assert = require('assert');
+const request = require("request");
 
-const FeedParser = require('feedparser');
+const FeedParser = require("feedparser");
 
-const moment = require('moment');
+const moment = require("moment");
 
-const truncate = require('./truncate');
+const truncate = require("./truncate");
 
 // For user agent version
-var pjson = require('./package.json');
+const pjson = require("./package.json");
 
 
 //
@@ -63,22 +62,24 @@ const allowXSSAttacks = false;
 //! the default format which resorts to Date.parse if it can't figure it out)
 function parseFeedDate(str){
 
-    return moment.parseZone(str, 'en');
+    return moment.parseZone(str, "en");
 }
 
 // Extra sanitization from here
 // https://gist.github.com/ufologist/5a0da51b2b9ef1b861c30254172ac3c9
 function trimAttributes(node) {
-    
+
     $.each(node.attributes, function() {
-        var attrName = this.name;
-        var attrValue = this.value;
-        // remove attribute name start with "on", possible unsafe,
+        const attrName = this.name;
+        const attrValue = this.value;
+
+
+        // Remove attribute name start with "on", possible unsafe,
         // for example: onload, onerror...
         //
         // remvoe attribute value start with "javascript:" pseudo protocol, possible unsafe,
         // for example href="javascript:alert(1)"
-        if (attrName.indexOf('on') == 0 || attrValue.indexOf('javascript:') == 0) {
+        if (attrName.indexOf("on") == 0 || attrValue.indexOf("javascript:") == 0) {
             $(node).removeAttr(attrName);
         }
     });
@@ -87,95 +88,98 @@ function trimAttributes(node) {
 
 function parseFeed(feed, resultObj){
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
 
-        let errorCallback = (error) => {
-            
+        const errorCallback = (error) => {
+
             resultObj.htmlNodes = null;
             resultObj.error = "Error failed to get content: " + error;
 
             resolve();
-            return;
-        };
-        
-        // Define our streams
-        var req = request(feed, {timeout: 10000, pool: false});
-        req.setMaxListeners(50);
-        // Some feeds do not respond without user-agent and accept headers.
-        req.setHeader('user-agent', "Thrive-Launcher " + pjson.version);
-        req.setHeader('accept', 'text/html,application/xhtml+xml');
 
-        let feedparser = new FeedParser();
+        };
+
+        // Define our streams
+        const req = request(feed, {timeout: 10000, pool: false});
+        req.setMaxListeners(50);
+
+        // Some feeds do not respond without user-agent and accept headers.
+        req.setHeader("user-agent", "Thrive-Launcher " + pjson.version);
+        req.setHeader("accept", "text/html,application/xhtml+xml");
+
+        const feedparser = new FeedParser();
 
         // Define our handlers
-        req.on('error', errorCallback);
-        req.on('response', function(res) {
-            
+        req.on("error", errorCallback);
+        req.on("response", function(res) {
+
             if(res.statusCode != 200)
-                return this.emit('error', new Error('Bad status code'));
+                return this.emit("error", new Error("Bad status code"));
 
             // There could be charset translation here, but iconv requires native extensions
-            //var charset = getParams(res.headers['content-type'] || '').charset;
-            //res = maybeTranslate(res, charset);
-            
+            // var charset = getParams(res.headers['content-type'] || '').charset;
+            // res = maybeTranslate(res, charset);
+
             // And boom goes the dynamite
             res.pipe(feedparser);
             return null;
         });
 
-        feedparser.on('error', errorCallback);
+        feedparser.on("error", errorCallback);
 
-        
-        feedparser.on('end', function(){
+
+        feedparser.on("end", function(){
 
             resolve();
         });
-        
-        feedparser.on('readable', function() {
-            var post;
-            while ((post = this.read())) {
+
+        feedparser.on("readable", function() {
+            let post = null;
+
+            do{
+                post = this.read();
 
                 // Use this to find properties you want to output
-                //console.log(JSON.stringify(post, ' ', 4));
+                // console.log(JSON.stringify(post, ' ', 4));
 
-                let span = document.createElement("span");
+                const span = document.createElement("span");
                 span.classList.add("FeedPost");
 
                 // Title
                 {
-                    let title = document.createElement("h3");
+                    const title = document.createElement("h3");
 
                     if(linkInTitle){
 
-                        let linkA = document.createElement("a");
+                        const linkA = document.createElement("a");
 
                         linkA.textContent = post.title;
                         linkA.href = post.link;
 
                         title.append(linkA);
-                        
+
                     } else {
-                    
+
                         title.textContent = post.title;
                     }
-                    
+
                     title.classList.add("FeedTitle");
 
                     span.append(title);
                 }
 
-                let infoBox = document.createElement("span");
+                const infoBox = document.createElement("span");
                 infoBox.classList.add("FeedInfoBox");
-                
+
 
                 // Link
                 if(!linkInTitle){
-                    
-                    let link = document.createElement("span");
+
+                    const link = document.createElement("span");
 
                     link.classList.add("FeedLink");
-                    
-                    let linkA = document.createElement("a");
+
+                    const linkA = document.createElement("a");
 
                     linkA.textContent = post.link;
                     linkA.href = post.link;
@@ -188,10 +192,10 @@ function parseFeed(feed, resultObj){
                 {
 
                     let dateStr = post.pubdate || post.date;
-                    let date = parseFeedDate(dateStr);
+                    const date = parseFeedDate(dateStr);
 
                     if(date){
-                        
+
                         // Plain javascript method
                         // dateStr = date.toLocaleDateString(language) + " " +
                         //     date.toLocaleTimeString(language) + " (UTC" +
@@ -199,23 +203,25 @@ function parseFeed(feed, resultObj){
 
 
                         dateStr = date.fromNow() + ", " +
-                            // Long date format
-                            date.format('dddd Do MMM YYYY HH:mm:ss Z', language);
-                            // Short format
-                            //date.format('DD.MM.YYYY HH:mm:ss Z', language);
-                        
+
+                        // Long date format
+                        date.format("dddd Do MMM YYYY HH:mm:ss Z", language);
+
+                        // Short format
+                        // date.format('DD.MM.YYYY HH:mm:ss Z', language);
+
                     } else {
 
                         dateStr = "(Unknown format) " + dateStr;
                     }
 
-                    let postedByAndDate = document.createElement("span");
+                    const postedByAndDate = document.createElement("span");
                     postedByAndDate.classList.add("FeedAuthorAndDate");
 
-                    let creatorName = document.createElement("span");
+                    const creatorName = document.createElement("span");
 
                     creatorName.classList.add("FeedAuthor");
-                    creatorName.textContent = (post.creator || post.author );
+                    creatorName.textContent = post.creator || post.author;
 
 
                     postedByAndDate.append(document.createTextNode("posted by "));
@@ -223,15 +229,15 @@ function parseFeed(feed, resultObj){
                     postedByAndDate.append(creatorName);
 
                     postedByAndDate.append(document.createTextNode(" " + dateStr));
-                    
+
                     infoBox.append(postedByAndDate);
                 }
 
-                //console.log(JSON.stringify(post.categories, ' ', 4));
+                // Console.log(JSON.stringify(post.categories, ' ', 4));
 
                 if(post.categories && post.categories.length > 0){
 
-                    let categories = document.createElement("span");
+                    const categories = document.createElement("span");
 
                     categories.textContent = "Categories: " + post.categories.join(", ");
                     categories.classList.add("FeedCategories");
@@ -253,17 +259,17 @@ function parseFeed(feed, resultObj){
                 // }
 
 
-                let content = document.createElement("span");
+                const content = document.createElement("span");
                 content.classList.add("FeedPreview");
 
                 // This needs to be sanitized! //
-                let remoteData = $.parseHTML(post.description,
-                                             null,
-                                             false);
+                const remoteData = $.parseHTML(post.description,
+                    null,
+                    false);
 
                 // Sanitize some attributes that might execute stuff //
                 if(!allowXSSAttacks){
-                    $( remoteData ).find('*').each(function() {
+                    $( remoteData ).find("*").each(function() {
                         trimAttributes(this);
                     });
                 }
@@ -275,10 +281,11 @@ function parseFeed(feed, resultObj){
 
                 if(rewriteYoutube){
                     $( remoteData ).find("iframe").each( function(){
-                        let matches = this.src.match(youtubeURLRegex);
+                        const matches = this.src.match(youtubeURLRegex);
+
                         if(matches){
-                            let url = "https://www.youtube.com/watch?v=" + matches[1];
-                            let anchor = document.createElement("a");
+                            const url = "https://www.youtube.com/watch?v=" + matches[1];
+                            const anchor = document.createElement("a");
                             anchor.href = url;
                             anchor.append(document.createTextNode(url));
                             this.replaceWith(anchor);
@@ -287,7 +294,7 @@ function parseFeed(feed, resultObj){
                 }
 
                 if(!showIFramesInFeed){
-                    
+
                     $( remoteData ).find("iframe").remove();
                 }
 
@@ -302,14 +309,13 @@ function parseFeed(feed, resultObj){
 
                 if(truncated){
 
-                    let truncateMessage = document.createElement("span");
+                    const truncateMessage = document.createElement("span");
                     truncateMessage.classList.add("FeedTruncated");
 
-                    truncateMessage.append(document.createTextNode(
-                        "This post was "));
+                    truncateMessage.append(document.createTextNode("This post was "));
 
                     {
-                        let span = document.createElement("span");
+                        const span = document.createElement("span");
                         span.classList.add("RedWordFeedTruncated");
 
                         span.textContent = "truncated! ";
@@ -318,46 +324,43 @@ function parseFeed(feed, resultObj){
 
                     // Link to full post
                     {
-                        let link = document.createElement("a");
+                        const link = document.createElement("a");
                         link.classList.add("FeedLink");
-                        
+
                         link.textContent = "click here";
                         link.href = post.link;
 
                         truncateMessage.append(link);
                     }
 
-                    truncateMessage.append(document.createTextNode(
-                        " to read the full post. "));
+                    truncateMessage.append(document.
+                        createTextNode(" to read the full post. "));
 
-                    $( content ).append($( truncateMessage ));   
+                    $( content ).append($( truncateMessage ));
                 }
-                
+
                 span.append(content);
 
-                // post.description should be truncated and sanitized to get a partial text
+                // Post.description should be truncated and sanitized to get a partial text
 
 
                 // post["content:encoded"] might have more text
                 resultObj.htmlNodes.append(span);
-            }
+
+            } while(post);
         });
     });
 }
 
-function retrieveNews(callback, url = "http://revolutionarygamesstudio.com/"){
+function retrieveNews(callback){
 
-    let news = {
-        htmlNodes: document.createElement("div")
-    };
-    
-    let devposts = {
-        htmlNodes: document.createElement("div")
-    };
+    const news = {htmlNodes: document.createElement("div")};
 
-    let newsPromise = parseFeed("http://revolutionarygamesstudio.com/feed/", news);
-    let devsPromise = parseFeed("https://forum.revolutionarygamesstudio.com/posts.rss",
-                                devposts);
+    const devposts = {htmlNodes: document.createElement("div")};
+
+    const newsPromise = parseFeed("http://revolutionarygamesstudio.com/feed/", news);
+    const devsPromise = parseFeed("https://forum.revolutionarygamesstudio.com/posts.rss",
+        devposts);
 
 
     if(feedWaitForAll){
@@ -368,7 +371,7 @@ function retrieveNews(callback, url = "http://revolutionarygamesstudio.com/"){
                 callback(news, devposts);
             });
         });
-        
+
     } else {
 
         callback(news, devposts);
