@@ -134,10 +134,9 @@ function parseFeed(feed, resultObj){
         });
 
         feedparser.on("readable", function() {
-            let post = null;
+            let post = this.read();
 
-            do{
-                post = this.read();
+            while(post !== null){
 
                 // Use this to find properties you want to output
                 // console.log(JSON.stringify(post, ' ', 4));
@@ -347,7 +346,8 @@ function parseFeed(feed, resultObj){
                 // post["content:encoded"] might have more text
                 resultObj.htmlNodes.append(span);
 
-            } while(post);
+                post = this.read();
+            }
         });
     });
 }
