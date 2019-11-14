@@ -51,11 +51,13 @@
 
         <div id="playButton" class="BottomButton">
 
-          <span id="playText" class="Inline" style="padding-left: 10px; padding-bottom: 10px; padding-top: 10px; color: white;">
+          <span id="playText" class="Inline" style="padding-left: 10px; padding-bottom: 10px;
+                                                    padding-top: 10px; color: white;">
             Play
           </span>
           <span id="playComboPopup" class="Inline"
-                style="border-left: 4px solid #55dbdb; padding-bottom: 3px; padding-top: 3px; padding-left: 12px; padding-right: 12px; vertical-align: middle; font-size: 1.7em;">
+                style="border-left: 4px solid #55dbdb; padding-bottom: 3px; padding-top: 3px; 
+                      padding-left: 12px; padding-right: 12px; vertical-align: middle; font-size: 1.7em;">
             &#x21E7
           </span>
         </div>
@@ -91,7 +93,8 @@
 
     <!-- Popup Launching window -->
     <div id="playModal" class="modal">
-      <div id="playModalDialog" class="modal-content" style="max-height: 85%; margin-top: 2%; overflow: hidden;">
+      <div id="playModalDialog" class="modal-content" style="margin-top: auto; height: 500px; max-height: 500px; position: absolute;
+                                                            top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%); overflow: hidden;">
         <span id="playModalClose" class="close">&times;</span>
         <span id="playModalContent">An unknown error happened</span>
       </div>

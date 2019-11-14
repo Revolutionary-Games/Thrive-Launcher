@@ -97,6 +97,8 @@ hr.style2 {
   position: relative;
   top: 50%;
   transform: perspective(1px) translateY(-50%);
+
+  user-select: none;
 }
 
 ::-webkit-scrollbar {
@@ -104,6 +106,7 @@ hr.style2 {
   height: 10px;
   background-color: rgba(44, 44, 44, 0.178);
   -webkit-border-radius: 150px;
+  border-radius: 150px;
 }
 
 ::-webkit-scrollbar:hover {
@@ -113,11 +116,13 @@ hr.style2 {
 ::-webkit-scrollbar-thumb:vertical {
   background: #4dd5ff;
   -webkit-border-radius: 150px;
+  border-radius: 150px;
 }
 
 ::-webkit-scrollbar-thumb:vertical:active {
   background: #1dffff;
   -webkit-border-radius: 150px;
+  border-radius: 150px;
 }
 
 /* A nice green colour: #73AD21 */
@@ -132,6 +137,8 @@ hr.style2 {
   padding-left: 5px;
   padding-right: 5px;
   cursor: pointer;
+
+  user-select: none;
 }
 
 .BottomButton:hover {
@@ -151,6 +158,8 @@ hr.style2 {
   border: 4px solid #55dbdb;
   background: #4890a7;
   padding: 0;
+
+  user-select: none;
 }
 
 /* Button Stuff */
@@ -185,6 +194,8 @@ hr.style2 {
   background: rgba(43, 43, 43, 0.9);
   font-size: 1.7em;
   cursor: pointer;
+
+  user-select: none;
 }
 
 .AfterPlayReport:hover {
@@ -348,6 +359,8 @@ hr.style2 {
   font-weight: bold;
   z-index: 1;
   cursor: pointer;
+
+  user-select: none;
 }
 
 .close:hover,
@@ -420,6 +433,8 @@ hr.style2 {
   padding-left: 4px;
   padding-right: 4px;
   cursor: pointer;
+
+  user-select: none;
 }
 
 .VersionDeleteButton:hover {
@@ -456,6 +471,8 @@ input[type="text"].Report {
   border-radius: 5px;
   background: rgba(43, 43, 43, 0.9);
   cursor: pointer;
+
+  user-select: none;
 }
 
 .Submit:hover {
