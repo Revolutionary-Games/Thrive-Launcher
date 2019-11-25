@@ -451,6 +451,16 @@ function onBeginReportingCrash(dump, settings){
 function onReporterOpened(settings){
 
     crashReportingContent.innerHTML = "";
+
+    crashReportingContent.
+        append(document.
+            createTextNode("If the game crashed on startup please, try the " +
+                                "thrive launch options first before " +
+                                "reporting a crash. They can be found in the launcher " +
+                                "options menu (button left of 'play')."));
+
+    crashReportingContent.append(document.createElement("br"));
+
     crashReportingContent.append(document.createTextNode("Select a crash to report"));
 
     // List dumps
