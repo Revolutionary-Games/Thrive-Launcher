@@ -22,7 +22,18 @@ function listInstalledVersions(){
 
         const versions = getVersionData().versions;
 
-        const directories = getDirectories(settings.installPath);
+        let directories = null;
+
+        try{
+            directories = getDirectories(settings.installPath);
+        } catch(err){
+            // Ignore error regarding the install directory not existing
+            if(err.code == "ENOENT"){
+                resolve({});
+                return;
+            }
+            throw err;
+        }
 
         const result = {};
 

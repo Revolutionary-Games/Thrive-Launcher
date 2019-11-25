@@ -1,6 +1,7 @@
 // Everything under the settings button
 "use strict";
 
+const fs = require("fs");
 const fsExtra = require("fs-extra");
 const path = require("path");
 
@@ -139,7 +140,12 @@ const browseFilesButton = document.getElementById("browseFilesButton");
 browseFilesButton.addEventListener("click", function(){
     const target = settings.installPath;
     console.log("Opening item:", target);
-    shell.openItem(target);
+
+    if(!fs.existsSync(target)){
+        showGenericError("Target folder (" + target + ") does not exist");
+    } else {
+        shell.openItem(target);
+    }
 });
 
 function changeInstallLocation(directory){
