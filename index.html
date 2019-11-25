@@ -162,7 +162,7 @@
           <ul>
             <li><a href="#settingsTabs-1">Installed Versions</a></li>
             <li><a href="#settingsTabs-2">Launcher Options</a></li>
-            <!-- <li><a href="#settingsTabs-3">Thrive Options</a></li> -->
+            <li><a href="#settingsTabs-3">Thrive Options</a></li>
           </ul>
           <div id="settingsTabs-1">
             <div id="browseFilesButton" class="BottomButton" style="height: 40px;">
@@ -197,9 +197,27 @@
               <input type="checkbox" id="hideLauncherOnPlay">
             </div>
           </div>
-          <!-- <div id="settingsTabs-3"> -->
-          <!--   <p>Put something here...</p> -->
-          <!-- </div> -->
+          <div id="settingsTabs-3">
+            <div>Launch Options</div>
+            <hr />
+            <div class="Inline" style="margin-top: 15px;">
+              CEF workarounds (try if the game doesn't start)
+            </div>
+            <div>
+              <label for="enableSingleProcessLaunch">
+                Don't run GUI in a separate process
+              </label>
+              <input type="checkbox" id="enableSingleProcessLaunch">
+            </div>
+            <div>
+              <label for="disableGUISandbox">Disable GUI sandbox</label>
+              <input type="checkbox" id="disableGUISandbox">
+            </div>
+            <div>
+              <label for="disableGUIGPU">Render GUI without GPU acceleration</label>
+              <input type="checkbox" id="disableGUIGPU">
+            </div>
+          </div>
         </div>
       </div>
     </div>

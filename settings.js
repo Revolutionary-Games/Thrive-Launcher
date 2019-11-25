@@ -26,6 +26,9 @@ mkdirp.sync(module.exports.dataFolder);
 module.exports.settings = {
     fetchNewsFromWeb: true,
     hideLauncherOnPlay: true,
+    launchOptionSingleProcess: false,
+    launchOptionNoGUISandbox: false,
+    launchOptionNoGUIGPU: false,
     installPath: module.exports.defaultInstallPath,
 };
 

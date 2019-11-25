@@ -240,12 +240,48 @@ hideLauncherOnPlayCheckbox.addEventListener("change", function(event){
     onSettingsChanged();
 });
 
+// --single-process flag option
+const enableSingleProcessLaunch = document.getElementById("enableSingleProcessLaunch");
+
+enableSingleProcessLaunch.addEventListener("change", function(event){
+    if(loadingSettings)
+        return;
+
+    settings.launchOptionSingleProcess = event.target.checked;
+    onSettingsChanged();
+});
+
+// --no-sandbox flag option
+const disableGUISandbox = document.getElementById("disableGUISandbox");
+
+disableGUISandbox.addEventListener("change", function(event){
+    if(loadingSettings)
+        return;
+
+    settings.launchOptionNoGUISandbox = event.target.checked;
+    onSettingsChanged();
+});
+
+// --disable-gpu flag option
+const disableGUIGPU = document.getElementById("disableGUIGPU");
+
+disableGUIGPU.addEventListener("change", function(event){
+    if(loadingSettings)
+        return;
+
+    settings.launchOptionNoGUIGPU = event.target.checked;
+    onSettingsChanged();
+});
+
 module.exports.onSettingsLoaded = () =>{
     try{
         loadingSettings = true;
 
         enableWebContentCheckbox.checked = settings.fetchNewsFromWeb;
         hideLauncherOnPlayCheckbox.checked = settings.hideLauncherOnPlay;
+        enableSingleProcessLaunch.checked = settings.launchOptionSingleProcess;
+        disableGUISandbox.checked = settings.launchOptionNoGUISandbox;
+        disableGUIGPU.checked = settings.launchOptionNoGUIGPU;
 
         console.log("Install path set to: " + settings.installPath);
 

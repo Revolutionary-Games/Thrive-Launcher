@@ -685,9 +685,23 @@ function onThriveFolderReady(version, download){
 
     status.textContent = "launching...";
 
+    const launchArgs = [];
+
+    if(settings.launchOptionSingleProcess)
+        launchArgs.push("--single-process");
+
+    if(settings.launchOptionNoGUISandbox)
+        launchArgs.push("--no-sandbox");
+
+    if(settings.launchOptionNoGUIGPU)
+        launchArgs.push("--disable-gpu");
+
+    console.log("launching thrive from folder '" + binFolder + "' with arguments: ",
+        launchArgs);
+
     // Cwd is where relative to things are installed
     const thrive = child_process.spawn(path.join(binFolder, exename),
-        [],
+        launchArgs,
         {cwd: binFolder});
 
     if(settings.hideLauncherOnPlay){
