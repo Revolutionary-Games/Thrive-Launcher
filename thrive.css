@@ -143,6 +143,15 @@ hr.style2 {
   background: rgb(43, 43, 43);
 }
 
+.Dangerous {
+  color: #dedede;
+  background: rgba(128, 21, 21, 1);
+}
+
+.Dangerous:hover {
+  background: rgba(212, 106, 106, 1);
+}
+
 #playText:hover {
   background: radial-gradient(#62c3e0, rgba(108, 193, 214, 0.37), rgba(0, 0, 0, 0));
 }

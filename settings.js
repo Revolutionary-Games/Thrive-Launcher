@@ -23,7 +23,7 @@ module.exports.defaultInstallPath = path.join(module.exports.dataFolder, "Instal
 // Make sure it exists. This simplifies a lot of code
 mkdirp.sync(module.exports.dataFolder);
 
-module.exports.settings = {
+const defaultSettings = {
     fetchNewsFromWeb: true,
     hideLauncherOnPlay: true,
     launchOptionSingleProcess: false,
@@ -32,7 +32,14 @@ module.exports.settings = {
     installPath: module.exports.defaultInstallPath,
 };
 
+module.exports.settings = Object.assign({}, defaultSettings);
+
 const settingsFile = path.join(module.exports.dataFolder, "launcher_settings.json");
+
+function updateSettingsDialog(){
+    // Update controls
+    require("./settings_dialog.js").onSettingsLoaded();
+}
 
 // Throws on error
 module.exports.saveSettings = () => {
@@ -52,6 +59,22 @@ module.exports.loadSettings = () => {
         console.log("Failed to read settings file, using defaults, error:", err);
     }
 
-    // Update controls
-    require("./settings_dialog.js").onSettingsLoaded();
+    updateSettingsDialog();
+};
+
+module.exports.resetSettings = () => {
+    // Clear properties
+    for (const variableKey in module.exports.settings){
+        if (Object.prototype.hasOwnProperty.call(module.exports.settings, variableKey)){
+            delete module.exports.settings[variableKey];
+        }
+    }
+
+    // Assign defaults
+    Object.assign(module.exports.settings, defaultSettings);
+    module.exports.saveSettings();
+
+    updateSettingsDialog();
+
+    console.log("Settings reset to defaults", module.exports.settings);
 };

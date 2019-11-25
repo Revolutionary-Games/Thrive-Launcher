@@ -11,7 +11,7 @@ const win = remote.getCurrentWindow();
 const {Modal, showGenericError} = require("./modal");
 const {listInstalledVersions, deleteInstalledVersion} = require("./install_handler.js");
 
-const {settings, saveSettings, defaultInstallPath} = require("./settings.js");
+const {settings, saveSettings, resetSettings, defaultInstallPath} = require("./settings.js");
 
 const settingsModal = new Modal("settingsModal", "settingsModalDialog",
     {closeButton: "settingsClose"});
@@ -214,6 +214,13 @@ resetInstallLocation.addEventListener("click", function(){
     if(settings.installPath != defaultInstallPath){
         changeInstallLocation(String(defaultInstallPath));
     }
+});
+
+// All settings reset option
+const resetAllSettingsButton = document.getElementById("resetAllSettingsButton");
+
+resetAllSettingsButton.addEventListener("click", function(){
+    resetSettings();
 });
 
 const enableWebContentCheckbox = document.getElementById("enableWebContentCheckbox");
