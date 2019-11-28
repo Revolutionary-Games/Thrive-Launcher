@@ -160,6 +160,9 @@ function getLauncherKey(){
 // save-it-and-show-download-progress (note: link split on two lines)
 // With some modifications
 function downloadFile(configuration){
+    const downloadProgress = Progress("download");
+    downloadProgress.formatter = formatBytes;
+
     return new Promise(function(resolve, reject){
         // Save variable to know progress
         let received_bytes = 0;
@@ -181,6 +184,7 @@ function downloadFile(configuration){
         req.on("response", function ( data ) {
             // Change the total bytes value to get progress later.
             total_bytes = parseInt(data.headers["content-length"]);
+            downloadProgress.max = total_bytes;
 
             contentType = data.headers["content-type"];
         });
@@ -986,14 +990,16 @@ function playPressed(){
 
         }
 
+        const downloadProgress = Progress("download");
+        const status = document.getElementById("dlProgress");
+        downloadProgress.render(status);
+
         const dlFailCallback = (error) => {
 
             if(fs.existsSync(localTarget)){
 
                 fs.unlinkSync(localTarget);
             }
-
-            const status = document.getElementById("dlProgress");
 
             if(status){
 
@@ -1005,16 +1011,8 @@ function playPressed(){
             remoteFile: download.url,
             localFile: localTarget,
 
-            onProgress: function (received, total){
-
-                const percentage = (received * 100) / total;
-                const status = document.getElementById("dlProgress");
-
-                if(status){
-
-                    status.textContent = percentage.toFixed(2) + "% | " + received +
-                        " bytes out of " + total + " bytes.";
-                }
+            onProgress: function (received){
+                downloadProgress.value = received;
             }
         };
 
