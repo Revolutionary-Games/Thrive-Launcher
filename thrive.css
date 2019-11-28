@@ -547,7 +547,7 @@ input[type="text"].Report {
 }
 
 .progress-bar {
-  --color: #000000;
+  --color: #000;
 
   border: var(--color) solid 2px;
   box-sizing: border-box;
@@ -563,7 +563,7 @@ input[type="text"].Report {
 }
 
 .progress-bar .progress-label {
-  color: #ffffff;
+  color: #fff;
   left: 0;
   mix-blend-mode: difference; /* From https://css-tricks.com/methods-contrasting-text-backgrounds/ */
   padding: 4px 5px;
