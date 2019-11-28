@@ -7,12 +7,12 @@
  * @param {string | number} bytes 
  */
 function formatBytes(bytes, precision = 2) {
-	const units = ["B", "KiB", "MiB", "GiB", "TiB", "PiB"];
-	const kb = 1024;
+    const units = ["B", "KiB", "MiB", "GiB", "TiB", "PiB"];
+    const kb = 1024;
 
-	if (bytes == 0) {
-		return "0 B";
-	}
+    if (bytes == 0) {
+        return "0 B";
+    }
 
     const unit = Math.floor(Math.log(Number(bytes)) / Math.log(kb));
     
