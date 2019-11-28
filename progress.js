@@ -4,11 +4,6 @@
  * Helper class for dealing with HTML progress bars.
  */
 class Progress {
-	// We don't have to keep a permanent reference to the progress bar that we
-	// want; we can just run the constructor with the same name to get the same
-	// object out.
-	static progressBars = {};
-
 	/**
 	 * `Progress :: String -> Progress`
 	 * 
@@ -140,6 +135,11 @@ class Progress {
 		base.append(this.domTree);
 	}
 }
+
+// We don't have to keep a permanent reference to the progress bar that we want;
+// we can just run the constructor with the same name to get the same object
+// out.
+Progress.progressBars = {};
 
 exports.Progress = function(name) {
 	return new Progress(name);
