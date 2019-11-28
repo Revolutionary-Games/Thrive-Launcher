@@ -23,6 +23,7 @@ const retrieveNews = require("./retrieve_news");
 const errorSuggestions = require("./error_suggestions");
 const {Modal, ComboBox, showGenericError} = require("./modal");
 const {unpackRelease, findBinInRelease} = require("./unpack");
+const {formatBytes} = require("./utils");
 
 const openpgp = require("openpgp");
 
