@@ -545,3 +545,28 @@ input[type="text"].Report {
   visibility: visible;
   opacity: 1;
 }
+
+.progress-bar {
+  --color: #000000;
+
+  border: var(--color) solid 2px;
+  box-sizing: border-box;
+  padding: 2px;
+  position: relative;
+}
+
+.progress-bar .progress-inner {
+  background-color: var(--color);
+  box-sizing: border-box;
+  height: 23px;
+  width: 0;
+}
+
+.progress-bar .progress-label {
+  color: #ffffff;
+  left: 0;
+  mix-blend-mode: difference; /* From https://css-tricks.com/methods-contrasting-text-backgrounds/ */
+  padding: 4px 5px;
+  position: absolute;
+  top: 0;
+}
