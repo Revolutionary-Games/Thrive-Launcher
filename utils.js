@@ -1,3 +1,5 @@
+"use strict";
+
 // Implementation taken from https://stackoverflow.com/a/18650828/9277476.
 /**
  * Convert a raw number of bytes into a human-readable notation.

@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Helper class for dealing with HTML progress bars.
  */
