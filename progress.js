@@ -26,13 +26,15 @@ class Progress {
 
     _updateLabel() {
         // Cast to string before setting.
-        this._progress.attr("aria-valuenow", String(this.value));
-        this._progress.attr("aria-valuemax", String(this.max));
-        this._progressLabel.text(`${this.formattedValue()} of ${this.formattedMax()}`);
+        this._progress.setAttribute("aria-valuenow", String(this.value));
+        this._progress.setAttribute("aria-valuemax", String(this.max));
+
+        this._progressLabel.textContent =
+            `${this.formattedValue()} of ${this.formattedMax()}`;
     }
 
     _updateView() {
-        this._progressBar.css("width", `${(this.position * 100).toFixed(2)}%`);
+        this._progressBar.style.width = `${(this.position * 100).toFixed(2)}%`;
     }
 
     /**
@@ -40,33 +42,33 @@ class Progress {
      */
     get domTree() {
         if (!this._progress) {
-            // Only the container should be visible to ARIA. The contents should be
-            // hidden from assistive technologies.
-            const container = $("<div></div>").
-                attr("id", `progress-${this.name}`).
-                attr("role", "progressbar").
-                attr("aria-valuemin", "0").
-                attr("aria-valuetext", "Downloading...").
-                addClass("progress-bar");
+            // Only the container should be visible to ARIA. The contents should
+            // be hidden from assistive technologies.
+            const container = document.createElement("div");
+            container.setAttribute("id", `progress-${this.name}`);
+            container.setAttribute("role", "progressbar");
+            container.setAttribute("aria-valuemin", "0");
+            container.setAttribute("aria-valuetext", "Downloading...");
+            container.classList.add("progress-bar");
 
-            const bar = $("<div></div>").
-                attr("id", `progress-${this.name}-bar`).
-                attr("aria-hidden", "true").
-                addClass("progress-inner").
-                appendTo(container);
+            const bar = document.createElement("div");
+            bar.setAttribute("id", `progress-${this.name}-bar`);
+            bar.setAttribute("aria-hidden", "true");
+            bar.classList.add("progress-inner");
+            container.append(bar);
 
-            const label = $("<span></span>").
-                attr("id", `progress-${this.name}-label`).
-                attr("aria-hidden", "true").
-                addClass("progress-label").
-                appendTo(container);
+            const label = document.createElement("span");
+            label.setAttribute("id", `progress-${this.name}-label`);
+            label.setAttribute("aria-hidden", "true");
+            label.classList.add("progress-label");
+            container.append(label);
 
             this._progress = container;
             this._progressBar = bar;
             this._progressLabel = label;
         }
 
-        return this._progress.get(0);
+        return this._progress;
     }
 
     /** @type {number} */
