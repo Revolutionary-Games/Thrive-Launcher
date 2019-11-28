@@ -22,6 +22,7 @@ const versionInfo = require("./version_info");
 const retrieveNews = require("./retrieve_news");
 const errorSuggestions = require("./error_suggestions");
 const {Modal, ComboBox, showGenericError} = require("./modal");
+const {Progress} = require("./progress");
 const {unpackRelease, findBinInRelease} = require("./unpack");
 const {formatBytes} = require("./utils");
 
