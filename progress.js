@@ -25,7 +25,7 @@ class Progress {
 		this.attached = false;
 		this.formatter = value => value.toString();
 		this.name = name;
-		
+
 		Progress.progressBars[name] = this;
 	}
 
@@ -53,12 +53,12 @@ class Progress {
 				.attr("aria-valuemin", "0")
 				.attr("aria-valuetext", "Downloading...")
 				.addClass("progress-bar");
-	
+
 			const bar = $(`<div></div>`)
 				.attr("id", `progress-${this.name}-bar`)
 				.attr("aria-hidden", "true")
 				.addClass("progress-inner")
-				.appendTo(container);
+                .appendTo(container);
 
 			const label = $(`<span></span>`)
 				.attr("id", `progress-${this.name}-label`)
@@ -112,7 +112,6 @@ class Progress {
 	 * 
 	 * @returns {any} The result of executing the formatter against `this.value`.
 	 */
-
 	formattedMax() {
 		return this.formatter(this.max);
 	}
