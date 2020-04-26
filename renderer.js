@@ -831,12 +831,74 @@ function onThriveFolderReady(version, download){
     });
 }
 
+function dlHelperUnPack(status, localTarget, version, download, fileName){
+    // Hash is verified before unpacking //
+    status.textContent = "Verifying archive '" + fileName + "'";
+    const element = document.createElement("p");
+    element.id = "playHashProgress";
+    status.append(element);
+
+    // Unpack archive //
+    verifyDLHash(version, download, localTarget).catch(() => {
+        // Fail //
+        status.textContent = "Hash for file '" + fileName + "' is invalid " +
+            "(download corrupted or wrong file was downloaded) please try again";
+    }).then(() => {
+        // Hash is correct //
+        status.innerHTML = "";
+        status.textContent = "Unpacking archive '" + fileName +
+            "'";
+
+        status.append(document.createElement("br"));
+
+        status.append(document.createTextNode("To  '" + settings.installPath + "'"));
+
+        status.append(document.createElement("br"));
+
+        status.append(document.createTextNode("This may take several minutes to " +
+                                              "complete, please be patient."));
+
+        let unpackProgress = null;
+
+        if(showUnpackMessages){
+
+            unpackProgress = document.createElement("div");
+            unpackProgress.classList.add("UnpackProgressLog");
+
+            status.append(unpackProgress);
+        }
+
+        console.log("beginning unpacking");
+
+        return unpackRelease(settings.installPath, download.folderName, localTarget,
+            unpackProgress);
+    }).then(() => {
+        assert(fs.existsSync(path.join(settings.installPath, download.folderName)));
+        console.log("unpacking completed");
+
+        onThriveFolderReady(version, download);
+
+    }).catch((error) => {
+        // Fail //
+        status.textContent = "Unpacking failed, File '" + fileName +
+            "' is invalid? " + error;
+
+        status.append(document.createElement("br"));
+
+        // Auto detect solutions //
+        errorSuggestions.unpackError(error, status);
+
+        status.append(document.createElement("br"));
+
+        status.append(document.createTextNode("To try redownloading delete '" +
+                                              localTarget + "'"));
+    });
+}
+
 //! Called once a file has been downloaded (or existed) and startup should continue
 function onDLFileReady(version, download, fileName){
-
     // Delete the download progress //
     $( "#dlProgress" ).remove();
-
 
     const localTarget = path.join(tmpDLFolder, fileName);
 
@@ -848,92 +910,19 @@ function onDLFileReady(version, download, fileName){
     status.innerHTML = "";
 
     // If unpacked already launch Thrive //
-    mkdirp(settings.installPath, function (err){
-
-        if(err){
-
-            console.error(err);
-            alert("failed to create install directory");
-            return;
-        }
-
+    mkdirp(settings.installPath).catch((err) =>{
+        console.error(err);
+        alert("failed to create install directory");
+    }).then(function(){
         // Check does it exist //
         if(fs.existsSync(path.join(settings.installPath, download.folderName))){
-
             console.log("archive has already been extracted");
             onThriveFolderReady(version, download);
             return;
         }
 
         // Need to unpack //
-
-
-        // Hash is verified before unpacking //
-        status.textContent = "Verifying archive '" + fileName + "'";
-        const element = document.createElement("p");
-        element.id = "playHashProgress";
-        status.append(element);
-
-        // Unpack archive //
-        verifyDLHash(version, download, localTarget).then(() => {
-
-            // Hash is correct //
-            status.innerHTML = "";
-            status.textContent = "Unpacking archive '" + fileName +
-                "'";
-
-            status.append(document.createElement("br"));
-
-            status.append(document.createTextNode("To  '" + settings.installPath + "'"));
-
-            status.append(document.createElement("br"));
-
-            status.append(document.createTextNode("This may take several minutes to " +
-                                                  "complete, please be patient."));
-
-            let unpackProgress = null;
-
-            if(showUnpackMessages){
-
-                unpackProgress = document.createElement("div");
-                unpackProgress.classList.add("UnpackProgressLog");
-
-                status.append(unpackProgress);
-            }
-
-            console.log("beginning unpacking");
-
-            unpackRelease(settings.installPath, download.folderName, localTarget,
-                unpackProgress).then(() => {
-
-                assert(fs.existsSync(path.join(settings.installPath, download.folderName)));
-                console.log("unpacking completed");
-
-                onThriveFolderReady(version, download);
-
-            }, (error) => {
-
-                // Fail //
-                status.textContent = "Unpacking failed, File '" + fileName +
-                        "' is invalid? " + error;
-
-                status.append(document.createElement("br"));
-
-                // Auto detect solutions //
-                errorSuggestions.unpackError(error, status);
-
-                status.append(document.createElement("br"));
-
-                status.append(document.createTextNode("To try redownloading delete '" +
-                                                          localTarget + "'"));
-            });
-
-        }, () => {
-
-            // Fail //
-            status.textContent = "Hash for file '" + fileName + "' is invalid " +
-                "(download corrupted or wrong file was downloaded) please try again";
-        });
+        dlHelperUnPack(status, localTarget, version, download, fileName);
     });
 }
 
@@ -987,32 +976,14 @@ function playPressed(){
         return;
     }
 
-    mkdirp(tmpDLFolder, function (err){
+    const status = document.getElementById("dlProgress");
 
-        if(err){
-
-            console.error(err);
-            alert("failed to create dl directory");
-            return;
-
-        }
-
+    mkdirp(tmpDLFolder).catch((err) =>{
+        console.error(err);
+        alert("failed to create dl directory");
+    }).then(() => {
         const downloadProgress = Progress("download");
-        const status = document.getElementById("dlProgress");
         downloadProgress.render(status);
-
-        const dlFailCallback = (error) => {
-
-            if(fs.existsSync(localTarget)){
-
-                fs.unlinkSync(localTarget);
-            }
-
-            if(status){
-
-                status.textContent = "Download Failed! " + error;
-            }
-        };
 
         const dataObj = {
             remoteFile: download.url,
@@ -1023,50 +994,53 @@ function playPressed(){
             }
         };
 
-        downloadFile(dataObj).then(function(contentType){
-
-            if(currentDLCanceled){
-
-                // It was canceled //
-                console.log("dl was canceled by user");
-
-                if(fs.existsSync(localTarget))
-                    fs.unlinkSync(localTarget);
-
-                return;
-            }
-
-            if(![
-                "application/x-7z-compressed",
-                "application/zip",
-                "application/octet-stream"
-            ].includes(contentType)) {
-                dlFailCallback("download type is wrong: " + contentType);
-                return;
-            }
-
-            console.log("Successfully downloaded");
-
-            // No longer need to cancel
-            playModalQuitDLCancel = null;
-
-            const status = document.getElementById("playingInternalP");
-            status.textContent = "Successfully downloaded " + version.releaseNum;
-
-            onDLFileReady(version, download, fileName);
-
-
-        }, function(error){
-
-            dlFailCallback("Download failed: " + error);
-        });
+        const promise = downloadFile(dataObj);
 
         // This object is for aborting a download
         assert(dataObj.reqObj);
 
         playModalQuitDLCancel = dataObj.reqObj;
 
+        return promise;
 
+    }).then((contentType) => {
+        if(currentDLCanceled){
+            // It was canceled //
+            console.log("dl was canceled by user");
+
+            if(fs.existsSync(localTarget))
+                fs.unlinkSync(localTarget);
+
+            return;
+        }
+
+        if(![
+            "application/x-7z-compressed",
+            "application/zip",
+            "application/octet-stream"
+        ].includes(contentType)) {
+            throw "download type is wrong: " + contentType;
+        }
+
+        console.log("Successfully downloaded");
+
+        // No longer need to cancel
+        playModalQuitDLCancel = null;
+
+        const status = document.getElementById("playingInternalP");
+        status.textContent = "Successfully downloaded " + version.releaseNum;
+
+        onDLFileReady(version, download, fileName);
+
+    }).catch((error) => {
+        if(fs.existsSync(localTarget)){
+
+            fs.unlinkSync(localTarget);
+        }
+
+        if(status){
+            status.textContent = "Download Failed! " + error;
+        }
     });
 
 }
