@@ -163,6 +163,7 @@
             <li><a href="#settingsTabs-1">Installed Versions</a></li>
             <li><a href="#settingsTabs-2">Launcher Options</a></li>
             <li><a href="#settingsTabs-3">Thrive Options</a></li>
+            <li><a href="#settingsTabs-4">Cache</a></li>
           </ul>
           <div id="settingsTabs-1">
             <div id="browseFilesButton" class="BottomButton" style="height: 40px;">
@@ -226,6 +227,30 @@
               <label for="disableGUIGPU">Render GUI without GPU acceleration</label>
               <input type="checkbox" id="disableGUIGPU">
             </div>
+          </div>
+          <div id="settingsTabs-4">
+            <span id="currentTmpDLFolder" class="Inline">
+              Temporary downloads: ...
+            </span>
+            <ul id="listOfTemporaryDownloads">
+            </ul>
+            <div id="clearTemporaryDownloads" class="BottomButton">
+              <p style="text-align: left;">
+                Clear
+              </p>
+            </div>
+            <hr/>
+            <span id="currentDehydratedCacheFolder" class="Inline">
+              Devbuilds file cache: not implemented
+            </span>
+            <p id="dehydratedCacheSize">
+              Size: 0 MiB
+            </p>
+            <div id="clearDehydratedCache" class="BottomButton">
+              <p style="text-align: left;">
+                Clear
+              </p>
+            </div>                        
           </div>
         </div>
       </div>

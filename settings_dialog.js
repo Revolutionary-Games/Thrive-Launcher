@@ -2,9 +2,11 @@
 "use strict";
 
 const remote = require("electron").remote;
+
 const fs = remote.require("fs");
 const fsExtra = remote.require("fs-extra");
 const path = require("path");
+const rimraf = remote.require("rimraf");
 
 const {shell, dialog} = remote;
 const win = remote.getCurrentWindow();
@@ -12,7 +14,8 @@ const win = remote.getCurrentWindow();
 const {Modal, showGenericError} = require("./modal");
 const {listInstalledVersions, deleteInstalledVersion} = require("./install_handler.js");
 
-const {settings, saveSettings, resetSettings, defaultInstallPath} = require("./settings.js");
+const {settings, saveSettings, resetSettings, defaultInstallPath, tmpDLFolder} =
+      require("./settings.js");
 
 const settingsModal = new Modal("settingsModal", "settingsModalDialog",
     {closeButton: "settingsClose"});
@@ -28,6 +31,12 @@ const settingsButton = document.getElementById("settingsButton");
 const listOfInstalledVersions = document.getElementById("listOfInstalledVersions");
 
 const currentInstallDir = document.getElementById("currentInstallDir");
+
+const currentTmpDLFolder = document.getElementById("currentTmpDLFolder");
+
+const listOfTemporaryDownloads = document.getElementById("listOfTemporaryDownloads");
+
+const clearTemporaryDownloads = document.getElementById("clearTemporaryDownloads");
 
 function updateInstalledVersions(){
     listOfInstalledVersions.innerHTML = "<li>Searching for files...</li>";
@@ -88,6 +97,44 @@ function updateInstalledVersions(){
     });
 }
 
+function updateTempDownloads(){
+    currentTmpDLFolder.textContent = "Temporary downloads folder: " + tmpDLFolder;
+
+    listOfTemporaryDownloads.innerHTML = "<li>Searching for files...</li>";
+
+    if(!fs.existsSync(tmpDLFolder)){
+        listOfTemporaryDownloads.innerHTML = "Temporary folder doesn't exist";
+        return;
+    }
+
+    fs.readdir(tmpDLFolder, (err, files) => {
+        if(err){
+            listOfTemporaryDownloads.innerHTML = "Failed to read folder contents: " + err;
+            return;
+        }
+
+        listOfTemporaryDownloads.innerHTML = "";
+
+        for(const file of files){
+            const li = document.createElement("li");
+
+            li.append(document.createTextNode(file));
+
+            listOfTemporaryDownloads.append(li);
+        }
+    });
+}
+
+function deleteTempFiles(){
+    rimraf(tmpDLFolder, (error) => {
+        if(error){
+            showGenericError("Failed to delete temporary files, error: " + error);
+        }
+
+        updateTempDownloads();
+    });
+}
+
 async function moveInstalledFiles(files, destination){
     movingFileModal.show();
     const content = document.getElementById("movingFileModalContent");
@@ -119,9 +166,15 @@ settingsButton.addEventListener("click", function(){
     settingsModal.show();
 
     updateInstalledVersions();
+    updateTempDownloads();
 });
 
 $("#settingsTabs").tabs();
+
+clearTemporaryDownloads.addEventListener("click", function(){
+
+    deleteTempFiles();
+});
 
 // This is bugged inside tabs
 // $("#enableWebContentCheckbox").checkboxradio();
