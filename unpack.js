@@ -126,7 +126,7 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
     });
 }
 
-function findBinInRelease(releaseFolder){
+function findBinInRelease(releaseFolder, fallBack = true){
 
     // We might already be in the right folder
     if(fs.existsSync(path.join(releaseFolder, "bin")))
@@ -134,20 +134,28 @@ function findBinInRelease(releaseFolder){
 
     const files = fs.readdirSync(releaseFolder);
 
+    let lastFolder = null;
+
     for(const dirEntry of files){
 
         const file = path.join(releaseFolder, dirEntry);
 
         if(fs.statSync(file).isDirectory()){
 
-            const bin = findBinInRelease(file);
+            const bin = findBinInRelease(file, false);
 
             if(bin)
                 return bin;
+
+            lastFolder = file;
         }
     }
 
-    // Not found //
+    // Newer releases have the executable in the root
+    // So we return the top level folder we found
+    if(fallBack)
+        return lastFolder;
+
     return null;
 }
 
