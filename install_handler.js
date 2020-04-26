@@ -4,9 +4,11 @@
 // TODO: the installing functions are still in renderer.js and should be moved here
 "use strict";
 
-const fs = require("fs-extra");
+const remote = require("electron").remote;
+
+const fs = remote.require("fs-extra");
 const path = require("path");
-const rimraf = require("rimraf");
+const rimraf = remote.require("rimraf");
 
 const {getVersionData} = require("./version_info.js");
 

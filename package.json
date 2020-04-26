@@ -79,8 +79,8 @@
         }
     },
     "devDependencies": {
-        "electron": "^5.0.13",
-        "electron-builder": "^20.44.4",
+        "electron": "^8.2.3",
+        "electron-builder": "^22.5.1",
         "eslint": "^6.8.0",
         "eslint-plugin-html": "^6.0.2",
         "stylelint": "^13.3.3"

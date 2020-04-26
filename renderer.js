@@ -3,18 +3,18 @@
 // All of the Node.js APIs are available in this process.
 "use strict";
 
-const fs = require("fs");
+const remote = require("electron").remote;
+
+const fs = remote.require("fs");
 const path = require("path");
 const assert = require("assert");
 const request = require("request");
-const mkdirp = require("mkdirp");
-const os = require("os");
-const child_process = require("child_process");
-const si = require("systeminformation");
+const mkdirp = remote.require("mkdirp");
+const os = remote.require("os");
+const child_process = remote.require("child_process");
+const si = remote.require("systeminformation");
 
 const sha3_256 = require("js-sha3").sha3_256;
-
-const {remote} = require("electron");
 
 const win = remote.getCurrentWindow();
 

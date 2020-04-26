@@ -3,12 +3,13 @@
 //
 "use strict";
 
-const os = require("os");
-const path = require("path");
-const fs = require("fs");
+const remote = require("electron").remote;
 
-const {spawn} = require("child_process");
-const {remote} = require("electron");
+const os = remote.require("os");
+const path = require("path");
+const fs = remote.require("fs");
+
+const {spawn} = remote.require("child_process");
 
 function sanityEscape(str){
 

@@ -1,12 +1,12 @@
 // Everything under the settings button
 "use strict";
 
-const fs = require("fs");
-const fsExtra = require("fs-extra");
+const remote = require("electron").remote;
+const fs = remote.require("fs");
+const fsExtra = remote.require("fs-extra");
 const path = require("path");
 
-const {shell} = require("electron");
-const {dialog} = require("electron").remote;
+const {shell, dialog} = remote;
 const win = remote.getCurrentWindow();
 
 const {Modal, showGenericError} = require("./modal");
@@ -181,16 +181,17 @@ function changeInstallLocation(directory){
                     "Do you want to move the files into the selected location?"
         };
 
-        dialog.showMessageBox(win, options, (response) => {
-            if(response == 0){
+        dialog.showMessageBox(win, options).then((response) => {
+            if(response.response === 0){
                 if(settings.installPath != directory){
                     moveInstalledFiles(files, directory);
                 }
-            }
-            if(response == 1){
+            } else if(response.response === 1){
                 settings.installPath = directory;
                 onSettingsChanged();
                 updateInstalledVersions();
+            } else {
+                showGenericError("Unknown dialog response");
             }
         });
     });
@@ -200,13 +201,15 @@ function changeInstallLocation(directory){
 const selectInstallLocation = document.getElementById("selectInstallLocation");
 
 selectInstallLocation.addEventListener("click", function(){
-    dialog.showOpenDialog(win,
-        {properties: ["openDirectory", "promptToCreate"]},
-        function(path) {
-            if(path == undefined){
-                console.log("No folder selected");
+    dialog.showOpenDialog(win, {properties: ["openDirectory", "promptToCreate"]}).
+        then((result) => {
+            if(result.canceled)
+                return;
+
+            if(result.filePaths.length != 1){
+                showGenericError("A single folder wasn't selected");
             } else {
-                changeInstallLocation(String(path));
+                changeInstallLocation(result.filePaths[0]);
             }
         });
 });

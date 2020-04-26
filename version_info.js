@@ -3,8 +3,10 @@
 //
 "use strict";
 
+const remote = require("electron").remote;
+
 const stripJsonComments = require("strip-json-comments");
-const os = require("os");
+const os = remote.require("os");
 const path = require("path");
 const url = require("url");
 

@@ -3,11 +3,13 @@
 //
 "use strict";
 
-const fs = require("fs");
+const remote = require("electron").remote;
+
+const fs = remote.require("fs");
 const path = require("path");
 const url = require("url");
 
-const {shell} = require("electron");
+const {shell} = remote;
 
 const moment = require("moment");
 const request = require("request");

@@ -26,6 +26,9 @@ const electron = require("electron");
 // Module to control application life.
 const app = electron.app;
 
+// Disable a deprecation warning
+app.allowRendererProcessReuse = true;
+
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
 
@@ -87,18 +90,21 @@ function createWindow () {
 
         autoHideMenuBar: !openDev,
 
-        webPreferences: {nodeIntegration: true},
+        webPreferences: {
+            nodeIntegration: true,
+            enableRemoteModule: true
+        },
 
         backgroundColor: "#404040",
 
-        icon: iconFile
+        icon: iconFile,
+
+        // We extensively just use the node stuff from renderer
+        enableRemoteModule: true
     });
 
     if(!openDev){
-        // Doesn't work. There's a bunch of open electron bugs for this
-        mainWindow.setMenu(null);
-
-        // Doesn't seem to work either
+        // Might work now as the old api was removed?
         mainWindow.removeMenu();
     }
 
