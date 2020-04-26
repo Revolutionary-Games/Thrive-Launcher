@@ -224,8 +224,6 @@ class ComboBox{
     //! Positions and sizes this dialog above an element
     position(element){
 
-        console.log("positioning thing");
-
         assert(element);
 
         $(this.dialog).width($(element).width());
