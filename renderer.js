@@ -32,25 +32,20 @@ const openpgp = require("openpgp");
 // clients, but we don't have separate things so that shouldn't apply
 const pjson = require("./package.json");
 
+const {onGameEnded} = require("./crash_reporting.js");
+
 //
 // Settings thing
 //
 const {
     settings, loadSettings,
     tmpDLFolder, locallyCachedDLFile
-} =
-        require("./settings.js");
-
-const cardsModel = [];
-
-let showIncompatiblePopup = false;
-
-let showHelpText = false;
+} = require("./settings.js");
 
 // This loads settings in sync mode here
 loadSettings();
 
-const {onGameEnded} = require("./crash_reporting.js");
+// Tweak parameters
 
 // Shows output from 7z. Not really usefull as it shows no actual progress
 const showUnpackMessages = false;
@@ -62,6 +57,15 @@ const loadTestVersionData = false;
 // Can be changed by user if no internet / download fails
 let loadPrePackagedVersionData = false;
 
+// When true checks if computer has intel graphics that likely cause problems
+const checkGraphicsCard = false;
+
+// Some other variables
+const cardsModel = [];
+
+let showIncompatiblePopup = false;
+
+let showHelpText = false;
 
 const linksModal = new Modal("linksModal", "linksModalDialog", {closeButton: "linksClose"});
 
@@ -382,6 +386,9 @@ const playButtonText = document.getElementById("playText");
 
 // Checks the graphics card
 async function checkIfCompatible() {
+    if(!checkGraphicsCard)
+        return;
+
     try {
         playButtonText.textContent = "Checking graphics hardware...";
 
@@ -1075,14 +1082,8 @@ playButtonText.addEventListener("click", function(){
 
         const box = document.getElementById("text");
 
-        box.innerHTML = "WARNING: Intel Integrated Graphics card may causes Thrive to " +
-            "crash due to some issues with the graphics engine running on it: <a href=\"" +
-            "https://github.com/Revolutionary-Games/Thrive/issues/804" +
-            "\">https://github.com/Revolutionary-Games/Thrive/issues/804.</a>";
-
-        box.append(document.createElement("br"));
-        box.append(document.createTextNode("This is a known problem, any help fixing " +
-                                           "this would be very much appreciated!"));
+        box.innerHTML = "WARNING: Intel Integrated Graphics card may cause Thrive to " +
+            "have low performance or even crash.</a>";
 
         box.append(document.createElement("br"));
         box.append(document.createElement("br"));
@@ -1094,7 +1095,7 @@ playButtonText.addEventListener("click", function(){
             box.append(document.createElement("br"));
             box.append(document.createElement("br"));
             box.append(document.createTextNode("Another graphics card detected, " +
-                                               "you could configure " +
+                                               "you should configure " +
                                                "Thrive to run with that instead!"));
         }
 
