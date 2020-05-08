@@ -1,4 +1,4 @@
-// Adds functionality to custom title bar
+// Adds functionality to custom title bar 
 "use strict";
 
 const remote = require("electron").remote;

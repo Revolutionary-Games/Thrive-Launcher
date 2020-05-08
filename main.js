@@ -1,4 +1,4 @@
-"use strict";
+"use strict"; 
 
 // Command line parsing
 
