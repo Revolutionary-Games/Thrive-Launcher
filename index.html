@@ -13,17 +13,19 @@
     <title>Thrive Launcher</title>
   </head>
   <body>
-    <div id="title-bar">
-      <img class="top-logo" src="assets/icons/128x128.png" width="15px" height="15px">
-      <span class="top-logo">Thrive Launcher</span>
-      <div class="windowButton" id="windowClose">
-        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" fill="currentColor"/></svg>
-      </div>
-      <div class="windowButton" id="windowMaximize">
-        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path id="maximizeIconPath" d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 2v14h14V5H5z" fill="currentColor"/></svg>
-      </div>
-      <div class="windowButton" id="windowMinimize">
-        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M5 11h14v2H5z" fill="currentColor"/></svg>
+    <div id="titleBar">
+      <div id="draggableRegion">
+        <img class="topLogo" src="assets/icons/128x128.png" width="15px" height="15px">
+        <span class="topLogo">Thrive Launcher</span>
+        <div class="windowButton" id="windowClose">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" fill="currentColor"/></svg>
+        </div>
+        <div class="windowButton" id="windowMaximize">
+          <svg viewBox="0 0 24 24" width="15" height="15"><path fill="none" d="M0 0h24v24H0z"/><path id="maximizeIconPath" d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 2v14h14V5H5z" fill="currentColor"/></svg>
+        </div>
+        <div class="windowButton" id="windowMinimize">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M5 11h14v2H5z" fill="currentColor"/></svg>
+        </div>
       </div>
     </div>
     <span class="ContentBlock"

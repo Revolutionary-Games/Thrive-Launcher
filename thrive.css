@@ -57,25 +57,34 @@ hr.style2 {
   display: inline-block;
 }
 
-#title-bar {
+#titleBar {
   width: 100%;
   height: 25px;
   background-color: rgb(22, 22, 22);
-  -webkit-app-region: drag;
+  position: relative;
 }
 
-.top-logo {
+#draggableRegion {
+  height: 22px;
+  width: 100%;
+  -webkit-app-region: drag;
+  position: absolute;
+  bottom: 0;
+}
+
+.topLogo {
   color: #bbb;
   float: left;
   line-height: 25px;
   user-select: none;
 }
 
-img.top-logo {
+img.topLogo {
   margin: 5px;
 }
 
 .windowButton {
+  margin-top: -3px;
   width: 35px;
   height: 20px;
   color: #fff;
@@ -84,6 +93,11 @@ img.top-logo {
   cursor: pointer;
   text-align: center;
   padding: 2.5px;
+}
+
+#windowMaximize {
+  height: 15px;
+  padding: 5px;
 }
 
 .windowButton:hover {
