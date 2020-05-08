@@ -34,6 +34,9 @@ const pjson = require("./package.json");
 
 const {onGameEnded} = require("./crash_reporting.js");
 
+const titleBar = require("./title_bar");
+titleBar.loadTitleBar();
+
 //
 // Settings thing
 //

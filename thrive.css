@@ -57,6 +57,57 @@ hr.style2 {
   display: inline-block;
 }
 
+#titleBar {
+  width: 100%;
+  height: 25px;
+  background-color: rgb(22, 22, 22);
+  position: relative;
+}
+
+#draggableRegion {
+  height: 22px;
+  width: 100%;
+  -webkit-app-region: drag;
+  position: absolute;
+  bottom: 0;
+}
+
+.topLogo {
+  color: #bbb;
+  float: left;
+  line-height: 25px;
+  user-select: none;
+}
+
+img.topLogo {
+  margin: 5px;
+}
+
+.windowButton {
+  margin-top: -3px;
+  width: 35px;
+  height: 20px;
+  color: #fff;
+  -webkit-app-region: no-drag;
+  float: right;
+  cursor: pointer;
+  text-align: center;
+  padding: 2.5px;
+}
+
+#windowMaximize {
+  height: 15px;
+  padding: 5px;
+}
+
+.windowButton:hover {
+  background-color: rgb(63, 63, 63);
+}
+
+#windowClose:hover {
+  background-color: #f5457a;
+}
+
 /* News boxes */
 .ContentBlock {
   overflow: auto;
