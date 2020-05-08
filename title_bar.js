@@ -1,4 +1,9 @@
 // Adds functionality to custom title bar
+"use strict";
+
+const remote = require("electron").remote;
+const win = remote.getCurrentWindow();
+
 const loadTitleBar = ()=>{
     const windowCloseButton = document.getElementById("windowClose");
     const windowMaximizeButton = document.getElementById("windowMaximize");
@@ -21,7 +26,7 @@ const loadTitleBar = ()=>{
             win.maximize();
             windowMaximizeIcon.setAttribute("d", maximizedIcon);
         }
-    windowMinimizeButton.addEventListener("click", ()=> win.minimize());
+        windowMinimizeButton.addEventListener("click", ()=> win.minimize());
     });
 };
 
