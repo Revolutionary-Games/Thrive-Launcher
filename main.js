@@ -82,11 +82,9 @@ function createWindow () {
 
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 950 + (openDev ? 700 : 0), height: 600,
+        width: 950 + (openDev ? 700 : 0), height: 625,
 
-        // This would disable the system title bar and frame window
-        // so if this is false we need a custom window top bar
-        frame: true,
+        frame: false,
 
         autoHideMenuBar: !openDev,
 
