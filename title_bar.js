@@ -4,7 +4,7 @@
 const remote = require("electron").remote;
 const win = remote.getCurrentWindow();
 
-const loadTitleBar = ()=>{
+const loadTitleBar = () => {
     const windowCloseButton = document.getElementById("windowClose");
     const windowMaximizeButton = document.getElementById("windowMaximize");
     const windowMinimizeButton = document.getElementById("windowMinimize");
@@ -17,8 +17,8 @@ const loadTitleBar = ()=>{
     const unmaximizedIcon =
     "M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 2v14h14V5H5z";
 
-    windowCloseButton.addEventListener("click", ()=> win.close());
-    windowMaximizeButton.addEventListener("click", ()=>{
+    windowCloseButton.addEventListener("click", () => win.close());
+    windowMaximizeButton.addEventListener("click", () => {
         if (win.isMaximized()){
             win.unmaximize();
             windowMaximizeIcon.setAttribute("d", unmaximizedIcon);
@@ -26,7 +26,7 @@ const loadTitleBar = ()=>{
             win.maximize();
             windowMaximizeIcon.setAttribute("d", maximizedIcon);
         }
-        windowMinimizeButton.addEventListener("click", ()=> win.minimize());
+        windowMinimizeButton.addEventListener("click", () => win.minimize());
     });
 };
 
