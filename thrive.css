@@ -62,6 +62,7 @@ hr.style2 {
   height: 25px;
   background-color: rgb(22, 22, 22);
   position: relative;
+  z-index: 2;
 }
 
 #draggableRegion {
@@ -75,12 +76,12 @@ hr.style2 {
 .topLogo {
   color: #bbb;
   float: left;
-  line-height: 25px;
+  line-height: 100%;
   user-select: none;
 }
 
 img.topLogo {
-  margin: 5px;
+  margin: auto 5px auto 5px;
 }
 
 .windowButton {
@@ -95,7 +96,7 @@ img.topLogo {
   padding: 2.5px;
 }
 
-#windowMaximize {
+#windowClose {
   height: 15px;
   padding: 5px;
 }

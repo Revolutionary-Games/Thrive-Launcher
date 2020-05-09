@@ -18,76 +18,80 @@
         <img class="topLogo" src="assets/icons/128x128.png" width="15px" height="15px">
         <span class="topLogo">Thrive Launcher</span>
         <div class="windowButton" id="windowClose">
-          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" fill="currentColor"/></svg>
+          <svg viewBox="0 0 24 24" width="15" height="15"><path d="M20.84 18.01C21.62 18.79 21.62 20.06 20.84 20.84C20.56 21.12 21.12 20.56 20.84 20.84C20.06 21.62 18.79 21.62 18.01 20.84C14.76 17.59 6.41 9.24 3.16 5.99C2.38 5.21 2.38 3.94 3.16 3.16C3.44 2.88 2.88 3.44 3.16 3.16C3.94 2.38 5.21 2.38 5.99 3.16C9.24 6.41 17.59 14.76 20.84 18.01Z" opacity="1" fill="currentColor" fill-opacity="1"/><path d="M5.99 20.84C5.21 21.62 3.94 21.62 3.16 20.84C2.88 20.56 3.44 21.12 3.16 20.84C2.38 20.06 2.38 18.79 3.16 18.01C6.41 14.76 14.76 6.41 18.01 3.16C18.79 2.38 20.06 2.38 20.84 3.16C21.12 3.44 20.56 2.88 20.84 3.16C21.62 3.94 21.62 5.21 20.84 5.99C17.59 9.24 9.24 17.59 5.99 20.84Z" opacity="1" fill="currentColor" fill-opacity="1"/></svg>
         </div>
         <div class="windowButton" id="windowMaximize">
-          <svg viewBox="0 0 24 24" width="15" height="15"><path fill="none" d="M0 0h24v24H0z"/><path id="maximizeIconPath" d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 2v14h14V5H5z" fill="currentColor"/></svg>
+          <svg  viewBox="0 0 24 24" width="20" height="20">
+            <g transform="translate(0,24) scale(0.1,-0.1)" fill="currentColor" stroke="none">
+              <path d="M40 120 l0 -80 80 0 80 0 0 80 0 80 -80 0 -80 0 0 -80z m140 0 l0 -60 -60 0 -60 0 0 60 0 60 60 0 60 0 0 -60z"/>
+            </g>
+          </svg>
         </div>
         <div class="windowButton" id="windowMinimize">
-          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M5 11h14v2H5z" fill="currentColor"/></svg>
+          <svg viewBox="0 0 24 24" width="24" height="24"><path d="M19.39 12C19.73 12 20 12.28 20 12.62C20 12.9 20 13.11 20 13.39C20 13.73 19.73 14 19.39 14C16.31 14 7.69 14 4.62 14C4.28 14 4 13.73 4 13.39C4 13.11 4 12.9 4 12.62C4 12.28 4.28 12 4.62 12C7.69 12.01 16.31 12.01 19.39 12Z" opacity="1" fill="currentColor" fill-opacity="1"/></svg>
         </div>
       </div>
     </div>
     <span class="ContentBlock"
-          style="height: calc(80% - 15px); width: calc(40% - 20px); top: 35px; margin-left: 8px;
-                 rgba(68, 68, 68, 0.46)">
+            style="height: calc(80% - 15px); width: calc(40% - 20px); top: 35px; margin-left: 8px;
+                  rgba(68, 68, 68, 0.46)">
 
-      <h2>DEVELOPMENT FORUMS</h2>
-      <hr>
+        <h2>DEVELOPMENT FORUMS</h2>
+        <hr>
 
-      <span id="devForumPosts">
-      </span>
+        <span id="devForumPosts">
+        </span>
 
-      <div class="BottomFade"
-      style="height: 6%; width: calc(40% - 20px); bottom: calc(20% - 22px); left: 8px;">
-    </div>
+        <div class="BottomFade"
+        style="height: 6%; width: calc(40% - 20px); bottom: calc(20% - 22px); left: 8px;">
+      </div>
     </span>
     
     <span class="ContentBlock"
-          style="height: calc(80% - 15px); width: calc(60% - 10px); top: 35px; left: calc(40% + 1px);">
+            style="height: calc(80% - 15px); width: calc(60% - 10px); top: 35px; left: calc(40% + 1px);">
 
-      <h2 style="padding-left: 20px;">NEWS</h2>
-      <hr>
-      <span id="newsContent">
-      </span>
+        <h2 style="padding-left: 20px;">NEWS</h2>
+        <hr>
+        <span id="newsContent">
+        </span>
 
-      <div class="BottomFade"
-      style="height: 6%; width: calc(60% - 10px); bottom: calc(20% - 22px); left: calc(40% + 1px);">
-      </div>
+        <div class="BottomFade"
+        style="height: 6%; width: calc(60% - 10px); bottom: calc(20% - 22px); left: calc(40% + 1px);">
+        </div>
     </span>
 
     <div id="buttonContainer">
-      <span id="innerButtons">
-        <!-- Settings button -->
-        <div id="settingsButton" class="BottomButton" style="padding-top: 3px; padding-bottom: 3px;">
-          <img src="assets/gear.png" style="width: 36px; height: 36px; padding-top: 5px; padding-bottom: 3px;">
-        </div>
+        <span id="innerButtons">
+          <!-- Settings button -->
+          <div id="settingsButton" class="BottomButton" style="padding-top: 3px; padding-bottom: 3px;">
+            <img src="assets/gear.png" style="width: 36px; height: 36px; padding-top: 5px; padding-bottom: 3px;">
+          </div>
 
-        <div id="playButton" class="BottomButton">
+          <div id="playButton" class="BottomButton">
 
-          <span id="playText" class="Inline" style="padding-left: 10px; padding-bottom: 10px;
-                                                    padding-top: 10px; color: white;">
-            Play
-          </span>
-          <span id="playComboPopup" class="Inline"
-                style="border-left: 4px solid #55dbdb; padding-bottom: 3px; padding-top: 3px; 
-                      padding-left: 12px; padding-right: 12px; vertical-align: middle; font-size: 1.7em;">
-            &#x21E7
-          </span>
-        </div>
+            <span id="playText" class="Inline" style="padding-left: 10px; padding-bottom: 10px;
+                                                      padding-top: 10px; color: white;">
+              Play
+            </span>
+            <span id="playComboPopup" class="Inline"
+                  style="border-left: 4px solid #55dbdb; padding-bottom: 3px; padding-top: 3px; 
+                        padding-left: 12px; padding-right: 12px; vertical-align: middle; font-size: 1.7em;">
+              &#x21E7
+            </span>
+          </div>
 
-        <div id="linksButton" class="BottomButton" style="">
-          <p style="text-align: left;">
-            Links
-          </p>
-        </div> 
-      </span>
+          <div id="linksButton" class="BottomButton" style="">
+            <p style="text-align: left;">
+              Links
+            </p>
+          </div> 
+        </span>
     </div>
 
     <!-- Popup for the version select combobox -->
     <div id="playComboBackground" class="ComboPopup">
-      <div id="versionSelectPopup" class="ComboContent">
-      </div>
+        <div id="versionSelectPopup" class="ComboContent">
+        </div>
     </div>
 
     <!-- Incompatible Popup -->
@@ -108,7 +112,7 @@
     <!-- Popup Launching window -->
     <div id="playModal" class="modal">
       <div id="playModalDialog" class="modal-content" style="position: absolute; margin-top: auto; max-height: 500px; width: 650px; max-width: 650px;
-                                                            margin: 0; top: 15%; left: 50%; transform: translateX(-50%) translateY(-14%); overflow: hidden;">
+                                                            margin: 0; margin-top:25px; top: 15%; left: 50%; transform: translateX(-50%) translateY(-14%); overflow: hidden;">
         <span id="playModalClose" class="close">&times;</span>
         <span id="playModalContent">An unknown error happened</span>
       </div>
