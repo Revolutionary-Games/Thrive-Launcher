@@ -142,6 +142,10 @@ function findBinInRelease(releaseFolder, fallBack = true){
 
         if(fs.statSync(file).isDirectory()){
 
+            // Skip mono folder
+            if(dirEntry.match(/Mono/i))
+                continue;
+
             const bin = findBinInRelease(file, false);
 
             if(bin)

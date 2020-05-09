@@ -1200,7 +1200,7 @@ function updatePlayButton(){
         if(a.version.releaseNum > b.version.releaseNum)
             return -1;
 
-        return a.version.download.os < b.version.download.os;
+        return a.download.os < b.download.os;
     });
 
     console.log("All valid versions: " + options.length);
