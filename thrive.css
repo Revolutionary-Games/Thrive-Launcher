@@ -65,7 +65,7 @@ hr.style2 {
   z-index: 2;
 }
 
-#draggableRegion {
+#titleDraggableRegion {
   height: 22px;
   width: 100%;
   -webkit-app-region: drag;
@@ -73,18 +73,18 @@ hr.style2 {
   bottom: 0;
 }
 
-.topLogo {
+.TopLogo {
   color: #bbb;
   float: left;
   line-height: 100%;
   user-select: none;
 }
 
-img.topLogo {
+img.TopLogo {
   margin: auto 5px auto 5px;
 }
 
-.windowButton {
+.WindowButton {
   margin-top: -3px;
   width: 35px;
   height: 20px;
@@ -101,7 +101,7 @@ img.topLogo {
   padding: 5px;
 }
 
-.windowButton:hover {
+.WindowButton:hover {
   background-color: rgb(63, 63, 63);
 }
 

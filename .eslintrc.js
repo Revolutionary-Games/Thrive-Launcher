@@ -29,8 +29,7 @@ module.exports = {
             { "code": 95 }
         ],
         "linebreak-style": [
-            "error",
-            "unix"
+            0
         ],
         "quotes": [
             "error",
