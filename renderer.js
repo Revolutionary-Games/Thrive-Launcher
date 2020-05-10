@@ -980,11 +980,14 @@ function playPressed(){
     }
 
     const status = document.getElementById("dlProgress");
-
-    mkdirp(tmpDLFolder).catch((err) =>{
+    const mkdir = mkdirp(tmpDLFolder);
+    
+    mkdir.catch((err) =>{
         console.error(err);
         alert("failed to create dl directory");
-    }).then(() => {
+    });
+    
+    mkdir.then(() => {
         const downloadProgress = Progress("download");
         downloadProgress.render(status);
 
