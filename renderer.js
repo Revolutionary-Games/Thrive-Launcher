@@ -912,11 +912,15 @@ function onDLFileReady(version, download, fileName){
     // Destroy the download progress indicator
     status.innerHTML = "";
 
+    const mkdir = mkdirp(settings.installPath);
+
     // If unpacked already launch Thrive //
-    mkdirp(settings.installPath).catch((err) =>{
+    mkdir.catch((err) =>{
         console.error(err);
         alert("failed to create install directory");
-    }).then(function(){
+    });
+
+    mkdir.then(function(){
         // Check does it exist //
         if(fs.existsSync(path.join(settings.installPath, download.folderName))){
             console.log("archive has already been extracted");
@@ -981,12 +985,12 @@ function playPressed(){
 
     const status = document.getElementById("dlProgress");
     const mkdir = mkdirp(tmpDLFolder);
-    
+
     mkdir.catch((err) =>{
         console.error(err);
         alert("failed to create dl directory");
     });
-    
+
     mkdir.then(() => {
         const downloadProgress = Progress("download");
         downloadProgress.render(status);
