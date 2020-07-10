@@ -30,7 +30,7 @@
     "build": {
         "appId": "com.revolutionarygamestudio.thrive-launcher",
         "productName": "Thrive Launcher",
-        "copyright": "Copyright © 2018-2019 ${author}",
+        "copyright": "Copyright © 2018-2020 ${author}",
         "files": [
             "*",
             "7zip",
