@@ -64,8 +64,8 @@ module.exports.loadSettings = () => {
 
 module.exports.resetSettings = () => {
     // Clear properties
-    for (const variableKey in module.exports.settings){
-        if (Object.prototype.hasOwnProperty.call(module.exports.settings, variableKey)){
+    for(const variableKey in module.exports.settings){
+        if(Object.prototype.hasOwnProperty.call(module.exports.settings, variableKey)){
             delete module.exports.settings[variableKey];
         }
     }

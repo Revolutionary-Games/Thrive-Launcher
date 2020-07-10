@@ -73,7 +73,7 @@ function getCurrentPlatform(){
 
         compare: function(other){
             return this.arch == other.arch && this.os == other.os;
-        }
+        },
     };
 }
 
@@ -193,7 +193,7 @@ function getAllValidVersions(platform = getCurrentPlatform()){
 
                 options.push({
                     version: ver,
-                    download: dl
+                    download: dl,
                 });
 
             } else if(useWin32Workaround(platform)){
@@ -206,7 +206,7 @@ function getAllValidVersions(platform = getCurrentPlatform()){
                     options.push({
                         version: ver,
                         download: dl,
-                        win32On64Bit: true
+                        win32On64Bit: true,
                     });
                 }
             }

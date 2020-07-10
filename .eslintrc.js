@@ -57,6 +57,9 @@ module.exports = {
             { "nestedBinaryExpressions": false }
         ],
         "arrow-parens": ["error", "always"],
+        "space-in-parens": ["error", "never"],
+        "array-bracket-spacing": ["error", "never"],
+        "arrow-spacing": ["error", { "before": true, "after": true }],
         "consistent-return": "error",
         "block-scoped-var": "error",
         "no-extra-bind": "error",
@@ -84,6 +87,18 @@ module.exports = {
             "error",
             { "afterColon": true, "beforeColon": false  }
         ],
+        "keyword-spacing": ["error", { "before": true, "after": false,
+            "overrides": {
+                "else": {
+                    "after": true
+                },
+                "const": {
+                    "after": true
+                },
+                "return": {
+                    "after": true
+                }
+            }}],
         "function-paren-newline": ["error", "never"],
         "func-call-spacing": ["error", "never"],
         "computed-property-spacing": ["error", "never"],
@@ -105,12 +120,18 @@ module.exports = {
                 "exceptions": ["-", "+", "*"]
             }
         ],
-        "array-bracket-spacing": ["error", "never"],
         "array-bracket-newline": [
             "error",
             { "multiline": true }
         ],
         "comma-style": ["error", "last"],
+        "comma-dangle": ["error", {
+            "arrays": "always-multiline",
+            "objects": "always-multiline",
+            "imports": "never",
+            "exports": "never",
+            "functions": "never"
+        }],
         "multiline-comment-style": ["error", "separate-lines"],
         "new-parens": "error",
         "no-lonely-if": "error",
@@ -143,6 +164,10 @@ module.exports = {
         ],
         "consistent-this": ["error", "that"],
         "prefer-rest-params": "error",
+        "space-before-function-paren": ["error", "never"],
+        "space-before-blocks": ["error", {
+            "functions": "never", "keywords": "never", "classes": "never"
+        }],
         "padding-line-between-statements": [
             "error",
             { blankLine: "always", prev: "*", next: "return" },

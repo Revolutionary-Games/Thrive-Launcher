@@ -6,11 +6,11 @@
  *
  * @param {string | number} bytes
  */
-function formatBytes(bytes, precision = 2) {
+function formatBytes(bytes, precision = 2){
     const units = ["B", "KiB", "MiB", "GiB", "TiB", "PiB"];
     const kb = 1024;
 
-    if (bytes == 0) {
+    if(bytes == 0){
         return "0 B";
     }
 

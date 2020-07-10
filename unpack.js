@@ -29,7 +29,7 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
             // By default use system installed 7zip
             const zPaths = [
                 "C:\\Program Files\\7-Zip\\7z.exe",
-                "C:\\Program Files (x86)\\7-Zip\\7z.exe"
+                "C:\\Program Files (x86)\\7-Zip\\7z.exe",
             ];
 
             for(const z of zPaths){

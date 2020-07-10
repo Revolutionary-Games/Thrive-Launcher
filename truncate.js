@@ -75,11 +75,11 @@ function truncateElement(element, o){
 }
 
 // Truncates jquery elements in place
-function truncate(htmlElement, length) {
+function truncate(htmlElement, length){
 
     const o = {
         length: length,
-        truncated: false
+        truncated: false,
     };
 
     // Length is how much text is allowed

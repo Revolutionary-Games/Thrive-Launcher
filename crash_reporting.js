@@ -166,7 +166,7 @@ function onTrySubmit(settings){
                 err = "JSON parsing failed";
             }
 
-            if (err || httpResponse.statusCode != 201) {
+            if(err || httpResponse.statusCode != 201){
 
                 console.log("error in creating report: err:", err, "status:",
                     httpResponse.statusCode, "response:", httpResponse, "body:", body);
@@ -511,7 +511,7 @@ function onReporterOpened(settings){
 
             resolve();
 
-        }).then(() =>{
+        }).then(() => {
 
             crashReporterModal.hide();
 

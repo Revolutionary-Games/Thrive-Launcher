@@ -12,14 +12,14 @@ function documentHeight(){
         html.clientHeight, html.scrollHeight, html.offsetHeight);
 }
 
-class Modal {
+class Modal{
 
     //! backdropID is the parent dark span on top of which the dialogID is shown
     //! Valid properties:
     //! autoClose: if true will close when clicked outside the dialog
     //! closeButton: id of element that when clicked closes this modal dialog
     //! onClose: close callback
-    constructor(backdropID, dialogID, properties = {}) {
+    constructor(backdropID, dialogID, properties = {}){
 
         this.backdrop = document.getElementById(backdropID);
         this.dialog = document.getElementById(dialogID);
@@ -87,7 +87,7 @@ class Modal {
 
         this.backdrop.style.display = "block";
 
-        $( this.dialog ).slideDown( 400, function() {
+        $(this.dialog).slideDown(400, function(){
             // Animation complete.
         });
     }
@@ -103,7 +103,7 @@ class Modal {
                 return;
         }
 
-        $( this.dialog ).slideUp( 400, () => {
+        $(this.dialog).slideUp(400, () => {
             this.backdrop.style.display = "none";
         });
     }
@@ -118,7 +118,7 @@ class ComboBox{
     //! closeButton: element that is clicked to toggle this
     //! onClose: close callback
     //! onOpen: open callback
-    constructor(backdropElement, popupElement, properties = {}) {
+    constructor(backdropElement, popupElement, properties = {}){
 
         this.backdrop = backdropElement;
         this.dialog = popupElement;
@@ -182,7 +182,7 @@ class ComboBox{
     //! Returns true if this is currently shown
     isShown(){
 
-        return $( this.backdrop ).is(":visible");
+        return $(this.backdrop).is(":visible");
     }
 
     //! Shows this dialog
@@ -190,7 +190,7 @@ class ComboBox{
 
         this.backdrop.style.display = "block";
 
-        $( this.dialog ).show();
+        $(this.dialog).show();
 
         if(this.onOpen){
 
@@ -200,7 +200,7 @@ class ComboBox{
 
                 // Undo the open //
                 this.backdrop.style.display = "none";
-                $( this.dialog ).hide();
+                $(this.dialog).hide();
             }
         }
     }
@@ -216,7 +216,7 @@ class ComboBox{
                 return;
         }
 
-        $( this.dialog ).slideUp( 50, () => {
+        $(this.dialog).slideUp(50, () => {
             this.backdrop.style.display = "none";
         });
     }

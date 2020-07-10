@@ -42,7 +42,7 @@ titleBar.loadTitleBar();
 //
 const {
     settings, loadSettings,
-    tmpDLFolder, locallyCachedDLFile
+    tmpDLFolder, locallyCachedDLFile,
 } = require("./settings.js");
 
 // This loads settings in sync mode here
@@ -102,7 +102,7 @@ const playModal = new Modal("playModal", "playModalDialog", {
 
         // Prevent closing //
         // return true;
-    }
+    },
 });
 
 const incompatibleModal = new Modal("incompatibleModal", "incompatibleModalDialog", {
@@ -110,7 +110,7 @@ const incompatibleModal = new Modal("incompatibleModal", "incompatibleModalDialo
     closeButton: "incompatibleModalClose",
     onClose: function(){
         showIncompatiblePopup = false;
-    }
+    },
 });
 
 // Use getLauncherKey instead
@@ -126,7 +126,7 @@ function getLauncherKey(){
         } else {
             fs.readFile(path.join(remote.app.getAppPath(), "version_data/launcher_key.pgp"),
                 "utf8",
-                function (err, data){
+                function(err, data){
 
                     if(err){
                         const msg = "Can't read launcher version info signing key";
@@ -177,7 +177,7 @@ function downloadFile(configuration){
 
         const req = request({
             method: "GET",
-            uri: configuration.remoteFile
+            uri: configuration.remoteFile,
         });
 
         configuration.reqObj = req;
@@ -188,7 +188,7 @@ function downloadFile(configuration){
 
         let contentType = "unknown";
 
-        req.on("response", function ( data ) {
+        req.on("response", function(data){
             // Change the total bytes value to get progress later.
             total_bytes = parseInt(data.headers["content-length"]);
             downloadProgress.max = total_bytes;
@@ -198,7 +198,7 @@ function downloadFile(configuration){
 
         // Get progress if callback exists
         if(Object.prototype.hasOwnProperty.call(configuration, "onProgress")){
-            req.on("data", function(chunk) {
+            req.on("data", function(chunk){
                 // Update the received bytes
                 received_bytes += chunk.length;
 
@@ -206,15 +206,15 @@ function downloadFile(configuration){
 
                 out.write(chunk);
             });
-        }else{
-            req.on("data", function(chunk) {
+        } else {
+            req.on("data", function(chunk){
                 // Update the received bytes
                 received_bytes += chunk.length;
                 out.write(chunk);
             });
         }
 
-        req.on("end", function() {
+        req.on("end", function(){
             out.end();
             resolve(contentType);
         });
@@ -242,7 +242,7 @@ function onVersionDataReceived(data, unsigned = false){
             return;
         }
 
-        getLauncherKey().then((key) =>{
+        getLauncherKey().then((key) => {
 
             if(!key){
 
@@ -255,13 +255,13 @@ function onVersionDataReceived(data, unsigned = false){
 
                 const options = {
                     message: message,
-                    publicKeys: key
+                    publicKeys: key,
                 };
 
-                openpgp.verify(options).then(function(verified) {
+                openpgp.verify(options).then(function(verified){
                     const validity = verified.signatures[0].valid;
 
-                    if (validity) {
+                    if(validity){
                         console.log("Version data signed by key id " +
                                     verified.signatures[0].keyid.toHex());
 
@@ -272,7 +272,7 @@ function onVersionDataReceived(data, unsigned = false){
                     } else {
                         const msg = "Error verifying signature validity. " +
                             "Did the download get corrupted?";
-                        showGenericError(msg, () =>{
+                        showGenericError(msg, () => {
 
                             reject(msg);
                         });
@@ -284,7 +284,7 @@ function onVersionDataReceived(data, unsigned = false){
             });
 
 
-        }, (err) =>{
+        }, (err) => {
             reject(err);
         });
     }).then(() => {
@@ -388,11 +388,11 @@ const playButton = document.getElementById("playButton");
 const playButtonText = document.getElementById("playText");
 
 // Checks the graphics card
-async function checkIfCompatible() {
+async function checkIfCompatible(){
     if(!checkGraphicsCard)
         return;
 
-    try {
+    try{
         playButtonText.textContent = "Checking graphics hardware...";
 
         const data = await si.graphics();
@@ -420,7 +420,7 @@ async function checkIfCompatible() {
 
         console.log("finished checking the graphics hardware");
 
-    } catch (err) {
+    } catch(err){
         console.log(err);
         showGenericError("Failed to check the graphics hardware: " + err);
     }
@@ -436,9 +436,9 @@ async function loadVersionData(){
 
         fs.readFile(path.join(remote.app.getAppPath(), "version_data/thrive_versions.json"),
             "utf8",
-            function (err, data){
+            function(err, data){
 
-                if (err) {
+                if(err){
                     const msg = "Failed to read test version data: " +
                                 err;
                     showGenericError(msg);
@@ -456,9 +456,9 @@ async function loadVersionData(){
         // Load potentially very old data //
         fs.readFile(path.join(remote.app.getAppPath(), "version_data/signed_versions.json"),
             "utf8",
-            function (err, data){
+            function(err, data){
 
-                if (err) {
+                if(err){
                     const msg = "Failed to read pre-packaged version data: " +
                                 err;
                     showGenericError(msg);
@@ -475,8 +475,8 @@ async function loadVersionData(){
             pool: null,
             uri: "https://raw.githubusercontent.com/Revolutionary-Games/Thrive-Launcher/" +
                 "master/version_data/signed_versions.json",
-            headers: {"User-Agent": "Thrive-Launcher " + pjson.version}
-        }, function (error, response, body){
+            headers: {"User-Agent": "Thrive-Launcher " + pjson.version},
+        }, function(error, response, body){
 
             if(error || !response || !body || response.statusCode != 200){
 
@@ -525,7 +525,7 @@ async function loadVersionData(){
                     versionDataFailedModal.hide();
 
                     // Wait for animation to end //
-                    setTimeout(() =>{
+                    setTimeout(() => {
                         loadVersionData();
                     }, 700);
                 });
@@ -752,7 +752,7 @@ function onThriveFolderReady(version, download){
         message.textContent = text;
         processOutput.append(message);
 
-        const container = $( processOutput );
+        const container = $(processOutput);
 
         // Max number of messages
         while(container.children().length > 1000){
@@ -901,7 +901,7 @@ function dlHelperUnPack(status, localTarget, version, download, fileName){
 //! Called once a file has been downloaded (or existed) and startup should continue
 function onDLFileReady(version, download, fileName){
     // Delete the download progress //
-    $( "#dlProgress" ).remove();
+    $("#dlProgress").remove();
 
     const localTarget = path.join(tmpDLFolder, fileName);
 
@@ -915,7 +915,7 @@ function onDLFileReady(version, download, fileName){
     const mkdir = mkdirp(settings.installPath);
 
     // If unpacked already launch Thrive //
-    mkdir.catch((err) =>{
+    mkdir.catch((err) => {
         console.error(err);
         alert("failed to create install directory");
     });
@@ -986,7 +986,7 @@ function playPressed(){
     const status = document.getElementById("dlProgress");
     const mkdir = mkdirp(tmpDLFolder);
 
-    mkdir.catch((err) =>{
+    mkdir.catch((err) => {
         console.error(err);
         alert("failed to create dl directory");
     });
@@ -999,9 +999,9 @@ function playPressed(){
             remoteFile: download.url,
             localFile: localTarget,
 
-            onProgress: function (received){
+            onProgress: function(received){
                 downloadProgress.value = received;
-            }
+            },
         };
 
         const promise = downloadFile(dataObj);
@@ -1027,9 +1027,9 @@ function playPressed(){
         if(![
             "application/x-7z-compressed",
             "application/zip",
-            "application/octet-stream"
-        ].includes(contentType)) {
-            throw "download type is wrong: " + contentType;
+            "application/octet-stream",
+        ].includes(contentType)){
+            throw"download type is wrong: " + contentType;
         }
 
         console.log("Successfully downloaded");
@@ -1101,7 +1101,7 @@ playButtonText.addEventListener("click", function(){
         closeContainer.append(close);
         box.append(closeContainer);
         settings.showIncompatiblePopup = false;
-    } else{
+    } else {
         playPressed();
     }
 });
@@ -1140,7 +1140,7 @@ const versionSelectCombo = new ComboBox(versionSelectPopupBackground, versionSel
             let prefix = "";
 
             if(version.version.id == playButtonText.dataset.selectedID &&
-               version.download.os == playButtonText.dataset.selectedDLOS) {
+               version.download.os == playButtonText.dataset.selectedDLOS){
                 prefix = "[SELECTED] ";
             }
 
@@ -1161,7 +1161,7 @@ const versionSelectCombo = new ComboBox(versionSelectPopupBackground, versionSel
                 versionSelectCombo.hide();
             });
         }
-    }
+    },
 });
 
 //! Updates play button text
@@ -1200,7 +1200,7 @@ function updatePlayButton(){
     playComboAllChoices = options;
 
     // Sort the versions //
-    playComboAllChoices.sort(function(a, b) {
+    playComboAllChoices.sort(function(a, b){
 
         if(a.version.releaseNum < b.version.releaseNum)
             return 1;

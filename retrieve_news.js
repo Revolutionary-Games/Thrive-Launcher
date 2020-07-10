@@ -71,9 +71,9 @@ function parseFeedDate(str){
 
 // Extra sanitization from here
 // https://gist.github.com/ufologist/5a0da51b2b9ef1b861c30254172ac3c9
-function trimAttributes(node) {
+function trimAttributes(node){
 
-    $.each(node.attributes, function() {
+    $.each(node.attributes, function(){
         const attrName = this.name;
         const attrValue = this.value;
 
@@ -83,7 +83,7 @@ function trimAttributes(node) {
         //
         // remvoe attribute value start with "javascript:" pseudo protocol, possible unsafe,
         // for example href="javascript:alert(1)"
-        if (attrName.indexOf("on") == 0 || attrValue.indexOf("javascript:") == 0) {
+        if(attrName.indexOf("on") == 0 || attrValue.indexOf("javascript:") == 0){
             $(node).removeAttr(attrName);
         }
     });
@@ -115,7 +115,7 @@ function parseFeed(feed, resultObj){
 
         // Define our handlers
         req.on("error", errorCallback);
-        req.on("response", function(res) {
+        req.on("response", function(res){
 
             if(res.statusCode != 200)
                 return this.emit("error", new Error("Bad status code"));
@@ -137,7 +137,7 @@ function parseFeed(feed, resultObj){
             resolve();
         });
 
-        feedparser.on("readable", function() {
+        feedparser.on("readable", function(){
             let post = this.read();
 
             while(post !== null){
@@ -272,23 +272,23 @@ function parseFeed(feed, resultObj){
 
                 // Sanitize some attributes that might execute stuff //
                 if(!allowXSSAttacks){
-                    $( remoteData ).find("*").each(function() {
+                    $(remoteData).find("*").each(function(){
                         trimAttributes(this);
                     });
                 }
 
                 if(!showImagesInFeed){
 
-                    $( remoteData ).find("img").remove();
+                    $(remoteData).find("img").remove();
                 } else {
                     // Fix images with relative links
-                    $( remoteData ).find("img").each(function(){
+                    $(remoteData).find("img").each(function(){
                         this.src = new URL(this.src, feed);
                     });
                 }
 
                 if(rewriteYoutube){
-                    $( remoteData ).find("iframe").each( function(){
+                    $(remoteData).find("iframe").each(function(){
                         const matches = this.src.match(youtubeURLRegex);
 
                         if(matches){
@@ -303,7 +303,7 @@ function parseFeed(feed, resultObj){
 
                 if(!showIFramesInFeed){
 
-                    $( remoteData ).find("iframe").remove();
+                    $(remoteData).find("iframe").remove();
                 }
 
                 let truncated = false;
@@ -313,7 +313,7 @@ function parseFeed(feed, resultObj){
                     truncated = truncate(remoteData, truncateLength);
                 }
 
-                $( content ).append(remoteData);
+                $(content).append(remoteData);
 
                 if(truncated){
 
@@ -344,7 +344,7 @@ function parseFeed(feed, resultObj){
                     truncateMessage.append(document.
                         createTextNode(" to read the full post. "));
 
-                    $( content ).append($( truncateMessage ));
+                    $(content).append($(truncateMessage));
                 }
 
                 span.append(content);

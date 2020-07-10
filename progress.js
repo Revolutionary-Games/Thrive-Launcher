@@ -3,7 +3,7 @@
 /**
  * Helper class for dealing with HTML progress bars.
  */
-class Progress {
+class Progress{
     /**
      * `Progress :: String -> Progress`
      *
@@ -12,8 +12,8 @@ class Progress {
      *
      * @param {string} name Name of the progress bar.
      */
-    constructor(name) {
-        if (Progress.progressBars[name]) {
+    constructor(name){
+        if(Progress.progressBars[name]){
             return Progress.progressBars[name];
         }
 
@@ -24,7 +24,7 @@ class Progress {
         Progress.progressBars[name] = this;
     }
 
-    _updateLabel() {
+    _updateLabel(){
         // Cast to string before setting.
         this._progress.setAttribute("aria-valuenow", String(this.value));
         this._progress.setAttribute("aria-valuemax", String(this.max));
@@ -33,15 +33,15 @@ class Progress {
             `${this.formattedValue()} of ${this.formattedMax()}`;
     }
 
-    _updateView() {
+    _updateView(){
         this._progressBar.style.width = `${(this.position * 100).toFixed(2)}%`;
     }
 
     /**
      * Only construct the DOM tree when it is accessed.
      */
-    get domTree() {
-        if (!this._progress) {
+    get domTree(){
+        if(!this._progress){
             // Only the container should be visible to ARIA. The contents should
             // be hidden from assistive technologies.
             const container = document.createElement("div");
@@ -72,29 +72,29 @@ class Progress {
     }
 
     /** @type {number} */
-    get max() {
-        if (!("_max" in this)) {
+    get max(){
+        if(!("_max" in this)){
             return 0;
         }
 
         return this._max;
     }
 
-    set max(number) {
+    set max(number){
         this._max = number;
         this._updateLabel();
     }
 
-    get position() {
+    get position(){
         return this.value / this.max;
     }
 
     /** @type {number} */
-    get value() {
+    get value(){
         return this._value;
     }
 
-    set value(number) {
+    set value(number){
         // Clamp the value to prevent overflow.
         this._value = Math.min(number, this.max);
         this._updateView();
@@ -109,7 +109,7 @@ class Progress {
      *
      * @returns {any} The result of executing the formatter against `this.value`.
      */
-    formattedMax() {
+    formattedMax(){
         return this.formatter(this.max);
     }
 
@@ -121,7 +121,7 @@ class Progress {
      *
      * @returns {any} The result of executing the formatter against `this.value`.
      */
-    formattedValue() {
+    formattedValue(){
         return this.formatter(this.value);
     }
 
@@ -133,7 +133,7 @@ class Progress {
      *
      * @param {HTMLElement} base Where to render this progress bar.
      */
-    render(base) {
+    render(base){
         base.append(this.domTree);
     }
 }
@@ -143,6 +143,6 @@ class Progress {
 // out.
 Progress.progressBars = {};
 
-exports.Progress = function(name) {
+exports.Progress = function(name){
     return new Progress(name);
 };

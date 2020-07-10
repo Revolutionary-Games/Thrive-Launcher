@@ -41,7 +41,7 @@ const clearTemporaryDownloads = document.getElementById("clearTemporaryDownloads
 function updateInstalledVersions(){
     listOfInstalledVersions.innerHTML = "<li>Searching for files...</li>";
 
-    listInstalledVersions().then((data) =>{
+    listInstalledVersions().then((data) => {
         listOfInstalledVersions.innerHTML = "";
         currentInstallDir.textContent = "Directory: " + settings.installPath;
 
@@ -66,7 +66,7 @@ function updateInstalledVersions(){
 
                     span.style.display = "none";
 
-                    deleteInstalledVersion(obj.name).then(() =>{
+                    deleteInstalledVersion(obj.name).then(() => {
 
                         updateInstalledVersions();
 
@@ -147,8 +147,8 @@ async function moveInstalledFiles(files, destination){
     await Promise.all(files.map((file) =>
         fsExtra.move(file, path.join(destination, path.basename(file))).then(() => {
             console.log("moved: " + path.basename(file));
-        } ))).
-        then(() =>{
+        }))).
+        then(() => {
             console.log("successfully moved all the files");
 
             settings.installPath = destination;
@@ -216,7 +216,7 @@ function changeInstallLocation(directory){
             }
         }
 
-        if (!Array.isArray(files) || !files.length) {
+        if(!Array.isArray(files) || !files.length){
             console.log("No files found");
 
             settings.installPath = directory;
@@ -231,7 +231,7 @@ function changeInstallLocation(directory){
             type: "warning",
             buttons: ["Yes", "No"],
             message: "A Thrive version already exist in the current directory \n" +
-                    "Do you want to move the files into the selected location?"
+                    "Do you want to move the files into the selected location?",
         };
 
         dialog.showMessageBox(win, options).then((response) => {
@@ -342,7 +342,7 @@ disableGUIGPU.addEventListener("change", function(event){
     onSettingsChanged();
 });
 
-module.exports.onSettingsLoaded = () =>{
+module.exports.onSettingsLoaded = () => {
     try{
         loadingSettings = true;
 
