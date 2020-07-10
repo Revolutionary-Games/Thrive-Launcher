@@ -15,6 +15,10 @@ const truncate = require("./truncate");
 const pjson = require("./package.json");
 
 
+// Feed URL configuration
+const devForumFeedURL = "https://forum.revolutionarygamesstudio.com/posts.rss";
+const mainSiteFeedURL = "https://revolutionarygamesstudio.com/feed/";
+
 //
 // These should be configuration options shown to users
 //
@@ -276,6 +280,11 @@ function parseFeed(feed, resultObj){
                 if(!showImagesInFeed){
 
                     $( remoteData ).find("img").remove();
+                } else {
+                    // Fix images with relative links
+                    $( remoteData ).find("img").each(function(){
+                        this.src = new URL(this.src, feed);
+                    });
                 }
 
                 if(rewriteYoutube){
@@ -358,9 +367,8 @@ function retrieveNews(callback){
 
     const devposts = {htmlNodes: document.createElement("div")};
 
-    const newsPromise = parseFeed("http://revolutionarygamesstudio.com/feed/", news);
-    const devsPromise = parseFeed("https://forum.revolutionarygamesstudio.com/posts.rss",
-        devposts);
+    const newsPromise = parseFeed(mainSiteFeedURL, news);
+    const devsPromise = parseFeed(devForumFeedURL, devposts);
 
 
     if(feedWaitForAll){
