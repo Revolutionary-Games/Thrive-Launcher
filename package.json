@@ -9,9 +9,11 @@
         "start-dev": "electron . --open-dev",
         "start-remote-debug": "electron . --remote-debugging-port=9222",
         "start-remote-debug-dev": "electron . --remote-debugging-port=9222 --open-dev",
-        "pack": "electron-builder --dir",
-        "dist": "electron-builder",
-        "dist:win": "electron-builder --win --x64 --ia32",
+        "pack": "electron-builder --dir -p never",
+        "dist": "electron-builder -p never",
+        "dist:win": "electron-builder --win --x64 --ia32 -p never",
+        "deploy": "electron-builder -p onTagOrDraft",
+        "deploy:win": "electron-builder --win --x64 --ia32 -p onTagOrDraft",
         "lint": "eslint *.js *.html && stylelint *.css",
         "lint-fix": "eslint *.js *.html --fix && stylelint *.css --fix"
     },
@@ -63,6 +65,9 @@
                 {
                     "target": "deb"
                 }
+            ],
+            "publish": [
+                "github"
             ]
         },
         "win": {
@@ -77,6 +82,9 @@
                 {
                     "target": "portable"
                 }
+            ],
+            "publish": [
+                "github"
             ]
         }
     },
@@ -88,6 +96,7 @@
         "stylelint": "^13.6.1"
     },
     "dependencies": {
+        "electron-updater": "^4.3.1",
         "feedparser": "^2.2.10",
         "fs-extra": "^9.0.1",
         "jquery": "^3.5.1",

@@ -25,6 +25,7 @@ const {Modal, ComboBox, showGenericError} = require("./modal");
 const {Progress} = require("./progress");
 const {unpackRelease, findBinInRelease} = require("./unpack");
 const {formatBytes} = require("./utils");
+const autoUpdateHandler = require("./src/auto_update_handler");
 
 const openpgp = require("openpgp");
 
@@ -36,6 +37,8 @@ const {onGameEnded} = require("./crash_reporting.js");
 
 const titleBar = require("./title_bar");
 titleBar.loadTitleBar();
+
+autoUpdateHandler();
 
 //
 // Settings thing

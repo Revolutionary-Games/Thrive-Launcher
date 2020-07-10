@@ -46,7 +46,7 @@
         style="height: 6%; width: calc(40% - 20px); bottom: calc(20% - 22px); left: 8px;">
       </div>
     </span>
-    
+
     <span class="ContentBlock"
           style="height: calc(80% - 15px); width: calc(60% - 10px); top: 35px; left: calc(40% + 1px);">
 
@@ -74,7 +74,7 @@
               Play
             </span>
             <span id="playComboPopup" class="Inline"
-                  style="border-left: 4px solid #55dbdb; padding-bottom: 3px; padding-top: 3px; 
+                  style="border-left: 4px solid #55dbdb; padding-bottom: 3px; padding-top: 3px;
                         padding-left: 12px; padding-right: 12px; vertical-align: middle; font-size: 1.7em;">
               &#x21E7
             </span>
@@ -84,7 +84,7 @@
             <p style="text-align: left;">
               Links
             </p>
-          </div> 
+          </div>
         </span>
     </div>
 
@@ -122,7 +122,7 @@
     <div id="linksModal" class="modal">
       <div id="linksModalDialog" class="modal-content"
            style="background: linear-gradient(to top left, rgb(68, 68, 68), rgba(48, 48, 48, 0.95))">
-        
+
         <span id="linksClose" class="close">&times;</span>
 
         <div><a class="SiteLink" style="font-size: 1.4em;"
@@ -150,11 +150,11 @@
 
         <div><a class="SiteLink"
                 href="https://dev.revolutionarygamesstudio.com/">ThriveDevCenter</a></div>
-        
+
         <div><a class="SiteLink"
                 href="http://thrive.wikia.com/wiki/Thrive_Wiki">Fan Wiki</a></div>
         <hr>
-        
+
         <div><a class="SiteLink"
                 href="https://discord.gg/FZxDQ4H">Discord server</a></div>
 
@@ -175,7 +175,7 @@
     <!-- Settings popup -->
     <div id="settingsModal" class="modal">
       <div id="settingsModalDialog" class="modal-content">
-        
+
         <span id="settingsClose" class="close"
               style="position: relative; right: 15px; top: 8px;">&times;</span>
 
@@ -271,7 +271,7 @@
               <p style="text-align: left;">
                 Clear
               </p>
-            </div>                        
+            </div>
           </div>
         </div>
       </div>
@@ -300,7 +300,7 @@
           Trying to load crash reporter
         </div>
       </div>
-    </div>    
+    </div>
 
     <!-- Generic Error popup -->
     <div id="genericErrorModal" class="modal">
@@ -336,7 +336,17 @@
         </span>
       </div>
     </div>
-    
+
+    <div id="autoUpdateNotificationModal" class="modal">
+      <div id="autoUpdateNotificationModalDialog" class="modal-content">
+        <span>
+          <span id="autoUpdateNotificationClose" class="close">&times;</span>
+          <p id="autoUpdateNotification"></p>
+          <button id="autoUpdateRestartButton" style="display: none;">Restart</button>
+        </span>
+      </div>
+    </div>
+
   </body>
   <script>
     "use strict";

@@ -21,10 +21,12 @@ args.forEach((val, index) => {
 });
 
 const electron = require("electron");
+const {autoUpdater} = require("electron-updater");
 
 
 // Module to control application life.
 const app = electron.app;
+const ipcMain = electron.ipcMain;
 
 // Disable a deprecation warning
 app.allowRendererProcessReuse = true;
@@ -158,6 +160,13 @@ function createWindow(){
     // process.versions.node process.versions.chrome process.versions.electron
     // console.log("os: " + os.platform() + " arch: " + os.arch());
 
+    autoUpdater.on("update-available", () => {
+        mainWindow.webContents.send("updateAvailable");
+    });
+
+    autoUpdater.on("update-downloaded", () => {
+        mainWindow.webContents.send("updateDownloaded");
+    });
 
 }
 
@@ -200,4 +209,9 @@ electron.app.on("browser-window-created", function(e, window){
     // Remove the menu bar with entries like "file" and "edit"
     if(!openDev)
         window.setMenu(null);
+});
+
+
+ipcMain.on("restartAndUpdate", () => {
+    autoUpdater.quitAndInstall();
 });
