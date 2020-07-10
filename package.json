@@ -81,24 +81,24 @@
         }
     },
     "devDependencies": {
-        "electron": "^8.2.4",
-        "electron-builder": "^22.5.1",
+        "electron": "^8.4.0",
+        "electron-builder": "^22.7.0",
         "eslint": "^6.8.0",
         "eslint-plugin-html": "^6.0.2",
-        "stylelint": "^13.3.3"
+        "stylelint": "^13.6.1"
     },
     "dependencies": {
-        "feedparser": "^2.2.9",
-        "fs-extra": "^9.0.0",
-        "jquery": "^3.5.0",
+        "feedparser": "^2.2.10",
+        "fs-extra": "^9.0.1",
+        "jquery": "^3.5.1",
         "js-sha3": "^0.8.0",
         "mkdirp": "^1.0.4",
-        "moment": "^2.24.0",
+        "moment": "^2.27.0",
         "openpgp": "^4.10.4",
         "request": "^2.88.2",
         "rimraf": "^3.0.2",
         "strip-json-comments": "^3.1.0",
-        "systeminformation": "^4.23.6"
+        "systeminformation": "^4.26.9"
     },
     "postinstall": "electron-builder install-app-deps"
 }
