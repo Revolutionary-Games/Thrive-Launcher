@@ -7,6 +7,8 @@
     "scripts": {
         "start": "electron .",
         "start-dev": "electron . --open-dev",
+        "start-remote-debug": "electron . --remote-debugging-port=9222",
+        "start-remote-debug-dev": "electron . --remote-debugging-port=9222 --open-dev",
         "pack": "electron-builder --dir",
         "dist": "electron-builder",
         "dist:win": "electron-builder --win --x64 --ia32",

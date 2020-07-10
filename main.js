@@ -8,13 +8,13 @@ let openDev = false;
 
 
 const args = process.argv.slice(2);
-args.forEach((val, index) =>{
+args.forEach((val, index) => {
 
-    switch(val){
-    case "--open-dev":
+    if(val === "--open-dev"){
         openDev = true;
-        break;
-    default:
+    } else if(/--remote-debugging-port.*/i.test(val)){
+        // Chrome handles this
+    } else {
         console.log("Invalid argument (" + index + "): " + val);
         process.exit();
     }
@@ -54,7 +54,7 @@ let mainWindow = null;
 
 
 // Setup code from the electron quickstart
-function createWindow () {
+function createWindow(){
 
     // This does not work. So this is directly in index.html
     // Setup a security policy to make this thing more secure (and quiet a warning)
@@ -91,7 +91,7 @@ function createWindow () {
 
         webPreferences: {
             nodeIntegration: true,
-            enableRemoteModule: true
+            enableRemoteModule: true,
         },
 
         backgroundColor: "#404040",
@@ -99,7 +99,7 @@ function createWindow () {
         icon: iconFile,
 
         // We extensively just use the node stuff from renderer
-        enableRemoteModule: true
+        enableRemoteModule: true,
     });
 
     if(!openDev){
@@ -116,7 +116,7 @@ function createWindow () {
         // This could probably also be __dirname
         pathname: path.join(app.getAppPath(), "index.html"),
         protocol: "file:",
-        slashes: true
+        slashes: true,
     }));
 
     // Open the DevTools.
@@ -125,7 +125,7 @@ function createWindow () {
     }
 
     // Emitted when the window is closed.
-    mainWindow.on("closed", function () {
+    mainWindow.on("closed", function(){
         // Dereference the window object, usually you would store windows
         // in an array if your app supports multi windows, this is the time
         // when you should delete the corresponding element.
@@ -135,7 +135,7 @@ function createWindow () {
     // Open in browser for links //
     // Because the forums don't display correctly
     if(openLinksInExternal){
-        mainWindow.webContents.on("new-window", function(e, url) {
+        mainWindow.webContents.on("new-window", function(e, url){
             e.preventDefault();
             require("electron").shell.openExternal(url);
         });
@@ -143,9 +143,9 @@ function createWindow () {
 
     // Open links in a browser, could probably also open a new electron window
     // depending on openLinksInExternal, but that hasn't been done
-    mainWindow.webContents.on("will-navigate", function(e, url) {
+    mainWindow.webContents.on("will-navigate", function(e, url){
 
-        if(url != mainWindow.webContents.getURL()) {
+        if(url != mainWindow.webContents.getURL()){
             e.preventDefault();
             require("electron").shell.openExternal(url);
         }
@@ -167,24 +167,24 @@ function createWindow () {
 app.on("ready", createWindow);
 
 // Quit when all windows are closed.
-app.on("window-all-closed", function () {
+app.on("window-all-closed", function(){
     // On OS X it is common for applications and their menu bar
     // to stay active until the user quits explicitly with Cmd + Q
-    if (process.platform !== "darwin") {
+    if(process.platform !== "darwin"){
         app.quit();
     }
 });
 
-app.on("activate", function () {
+app.on("activate", function(){
     // On OS X it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
-    if (mainWindow === null) {
+    if(mainWindow === null){
         createWindow();
     }
 });
 
 
-electron.app.on("browser-window-created", function(e, window) {
+electron.app.on("browser-window-created", function(e, window){
 
     if(window === mainWindow || mainWindow === null){
 
