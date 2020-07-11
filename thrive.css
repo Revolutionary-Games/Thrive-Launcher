@@ -152,11 +152,15 @@ img.TopLogo {
 }
 
 #buttonContainerRight {
-  /* width: 35%; */
-  height: 100%;
+  /* Without this the left buttons just explode */
+  position: fixed;
+  width: 35%;
+  height: 14%;
+  max-height: 14%;
   vertical-align: middle;
   box-sizing: border-box;
-  /* display: inline-block; */
+  font-size: 1.1em;
+  display: inline-block;
 }
 
 .InnerButtons {
@@ -167,6 +171,10 @@ img.TopLogo {
   top: 50%;
   transform: perspective(1px) translateY(-50%);
   user-select: none;
+}
+
+#linksButton {
+  min-height: 54px;
 }
 
 ::-webkit-scrollbar {
@@ -213,12 +221,11 @@ img.TopLogo {
 }
 
 .DevCenterStatusBox {
-  display: inline-block;
-  height: auto;
+  display: inline-flex;
+  height: 100%;
+  min-height: 100%;
+  align-items: center;
   width: auto;
-  /*position: relative;
-  top: 0%;
-  transform: perspective(1px) translateY(-50%); */
   user-select: none;
   color: #dedede;
   padding-left: 5px;
@@ -226,7 +233,7 @@ img.TopLogo {
 }
 
 #devCenterPopupOpen {
-  width: 90px;
+  width: 250px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
