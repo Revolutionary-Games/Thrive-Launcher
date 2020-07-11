@@ -13,6 +13,7 @@ const mkdirp = remote.require("mkdirp");
 const os = remote.require("os");
 const child_process = remote.require("child_process");
 const si = remote.require("systeminformation");
+const semver = require("semver");
 
 const sha3_256 = require("js-sha3").sha3_256;
 
@@ -149,7 +150,7 @@ function getLauncherKey(){
                             keyid = launcherKey["0"].primaryKey.keyid.toHex();
                         } catch(err){
                             reject(new Error("Loaded signing key but it is invalid " +
-                                             "(property error): " + err));
+                                "(property error): " + err));
                             return;
                         }
 
@@ -266,7 +267,7 @@ function onVersionDataReceived(data, unsigned = false){
 
                     if(validity){
                         console.log("Version data signed by key id " +
-                                    verified.signatures[0].keyid.toHex());
+                            verified.signatures[0].keyid.toHex());
 
                         versionInfo.parseData(verified.data);
 
@@ -301,12 +302,7 @@ function onVersionDataReceived(data, unsigned = false){
 
             const dlVersion = versionInfo.getLauncherMeta();
 
-            if(dlVersion.latestVersion == pjson.version){
-
-                console.log("Using latest version: " + dlVersion.latestVersion);
-
-            } else {
-
+            if(semver.gt(dlVersion.latestVersion, pjson.version)){
                 // Show update asking dialog //
                 updateModal.show();
                 updateModal.onClose = () => {
@@ -318,14 +314,14 @@ function onVersionDataReceived(data, unsigned = false){
 
                 message.
                     append(document.createTextNode("You are using Thrive launcher version " +
-                                            pjson.version + " but the latest version is " +
-                                            dlVersion.latestVersion));
+                        pjson.version + " but the latest version is " +
+                        dlVersion.latestVersion));
 
                 const link = document.createElement("a");
                 link.textContent = "Visit releases page";
 
                 const urlTarget = dlVersion.releaseDLURL ||
-                      "https://github.com/Revolutionary-Games/Thrive-Launcher/releases";
+                    "https://github.com/Revolutionary-Games/Thrive-Launcher/releases";
                 link.href = urlTarget;
 
                 message.append(document.createElement("br"));
@@ -362,6 +358,7 @@ function onVersionDataReceived(data, unsigned = false){
                 return;
             }
 
+            console.log("Version is latest or pre-release: " + pjson.version);
             resolve();
         });
     }).then(() => {
@@ -443,7 +440,7 @@ async function loadVersionData(){
 
                 if(err){
                     const msg = "Failed to read test version data: " +
-                                err;
+                        err;
                     showGenericError(msg);
                     console.log(msg);
                     return;
@@ -463,7 +460,7 @@ async function loadVersionData(){
 
                 if(err){
                     const msg = "Failed to read pre-packaged version data: " +
-                                err;
+                        err;
                     showGenericError(msg);
                     console.log(msg);
                     return;
@@ -495,7 +492,7 @@ async function loadVersionData(){
                 } else if(response.statusCode != 200){
 
                     message += "File not found on server, status code: " +
-                            response.statusCode;
+                        response.statusCode;
 
                 } else {
 
@@ -555,7 +552,7 @@ async function loadVersionData(){
 
                                     console.log(err);
                                     alert("locally cached file is missing, when " +
-                                                  "it shouldn't be? " + err);
+                                        "it shouldn't be? " + err);
                                     return;
                                 }
 
@@ -595,7 +592,7 @@ async function loadVersionData(){
                 if(err){
 
                     console.error("Unable to locally save downloaded version info: " +
-                                  err);
+                        err);
                 }
             });
 
@@ -862,7 +859,7 @@ function dlHelperUnPack(status, localTarget, version, download, fileName){
         status.append(document.createElement("br"));
 
         status.append(document.createTextNode("This may take several minutes to " +
-                                              "complete, please be patient."));
+            "complete, please be patient."));
 
         let unpackProgress = null;
 
@@ -897,7 +894,7 @@ function dlHelperUnPack(status, localTarget, version, download, fileName){
         status.append(document.createElement("br"));
 
         status.append(document.createTextNode("To try redownloading delete '" +
-                                              localTarget + "'"));
+            localTarget + "'"));
     });
 }
 
@@ -958,7 +955,7 @@ function playPressed(){
     assert(download);
 
     console.log("Playing thrive version: " + version.getDescriptionString() + " " +
-                download.getDescriptionString());
+        download.getDescriptionString());
 
     const playBox = document.getElementById("playModalContent");
 
@@ -1082,8 +1079,8 @@ playButtonText.addEventListener("click", function(){
             box.append(document.createElement("br"));
             box.append(document.createElement("br"));
             box.append(document.createTextNode("Another graphics card detected, " +
-                                               "you should configure " +
-                                               "Thrive to run with that instead!"));
+                "you should configure " +
+                "Thrive to run with that instead!"));
         }
 
         box.append(document.createElement("br"));
@@ -1143,7 +1140,7 @@ const versionSelectCombo = new ComboBox(versionSelectPopupBackground, versionSel
             let prefix = "";
 
             if(version.version.id == playButtonText.dataset.selectedID &&
-               version.download.os == playButtonText.dataset.selectedDLOS){
+                version.download.os == playButtonText.dataset.selectedDLOS){
                 prefix = "[SELECTED] ";
             }
 

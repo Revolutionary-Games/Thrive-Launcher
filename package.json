@@ -108,6 +108,7 @@
         "openpgp": "^4.10.4",
         "request": "^2.88.2",
         "rimraf": "^3.0.2",
+        "semver": "^7.3.2",
         "strip-json-comments": "^3.1.0",
         "systeminformation": "^4.26.9"
     },
