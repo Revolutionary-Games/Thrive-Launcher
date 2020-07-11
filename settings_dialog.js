@@ -14,8 +14,9 @@ const win = remote.getCurrentWindow();
 const {Modal, showGenericError} = require("./modal");
 const {listInstalledVersions, deleteInstalledVersion} = require("./install_handler.js");
 
-const {settings, saveSettings, resetSettings, defaultInstallPath, tmpDLFolder} =
-      require("./settings.js");
+const {
+    settings, saveSettings, resetSettings, defaultInstallPath, tmpDLFolder,
+} = require("./settings.js");
 
 const settingsModal = new Modal("settingsModal", "settingsModalDialog",
     {closeButton: "settingsClose"});

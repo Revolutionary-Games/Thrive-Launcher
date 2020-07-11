@@ -8,10 +8,6 @@ module.exports = {
     // If true then the testing data (local, unsigned) file is loaded
     loadTestVersionData: false,
 
-    // If true will only attempt reading the prepackaged version data
-    // Can be changed by user if no internet / download fails
-    loadPrePackagedVersionData: false,
-
     // When true checks if computer has intel graphics that likely cause problems
     checkGraphicsCard: false,
 

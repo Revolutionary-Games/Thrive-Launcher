@@ -160,7 +160,10 @@ module.exports = {
         "object-curly-spacing": ["error", "never"],
         "object-curly-newline": [
             "error",
-            { "multiline": true }
+            {
+                "consistent": true,
+                "minProperties": 4,
+            }
         ],
         "consistent-this": ["error", "that"],
         "prefer-rest-params": "error",

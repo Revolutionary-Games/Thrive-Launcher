@@ -20,7 +20,7 @@ const sha3_256 = require("js-sha3").sha3_256;
 const win = remote.getCurrentWindow();
 
 const {
-    showUnpackMessages, loadTestVersionData, loadPrePackagedVersionData,
+    showUnpackMessages, loadTestVersionData,
     checkGraphicsCard,
 } = require("./src/config");
 
@@ -62,6 +62,11 @@ loadSettings();
 checkConnectionStatus();
 
 // Some other variables
+
+// If true will only attempt reading the prepackaged version data
+// Can be changed by user if no internet / download fails
+let loadPrePackagedVersionData = false;
+
 const cardsModel = [];
 
 let showIncompatiblePopup = false;
