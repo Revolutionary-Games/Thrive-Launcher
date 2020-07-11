@@ -1,7 +1,7 @@
 {
     "name": "thrive-launcher",
     "productName": "Thrive Launcher",
-    "version": "1.1.2",
+    "version": "1.2.0",
     "description": "Thrive Launcher manages downloading Thrive releases",
     "main": "main.js",
     "scripts": {
@@ -49,6 +49,11 @@
             "oneClick": "false",
             "allowToChangeInstallationDirectory": "true"
         },
+        "publish": [
+          {
+            "provider":"github",
+            "vPrefixedTagName": true
+          }],
         "linux": {
             "category": "Game",
             "icon": "assets/icons",
@@ -65,9 +70,6 @@
                 {
                     "target": "deb"
                 }
-            ],
-            "publish": [
-                "github"
             ]
         },
         "win": {
@@ -82,9 +84,6 @@
                 {
                     "target": "portable"
                 }
-            ],
-            "publish": [
-                "github"
             ]
         }
     },
