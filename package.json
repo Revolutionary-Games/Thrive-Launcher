@@ -14,8 +14,8 @@
         "dist:win": "electron-builder --win --x64 --ia32 -p never",
         "deploy": "electron-builder -p onTagOrDraft",
         "deploy:win": "electron-builder --win --x64 --ia32 -p onTagOrDraft",
-        "lint": "eslint *.js *.html && stylelint *.css",
-        "lint-fix": "eslint *.js *.html --fix && stylelint *.css --fix"
+        "lint": "eslint *.js *.html src/**/*.js && stylelint *.css src/**/*.css",
+        "lint-fix": "eslint *.js *.html src/**/*.js --fix && stylelint *.css src/**/*.css --fix"
     },
     "repository": "https://github.com/Revolutionary-Games/Thrive-Launcher",
     "keywords": [
