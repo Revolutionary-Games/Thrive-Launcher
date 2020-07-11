@@ -49,11 +49,13 @@
             "oneClick": "false",
             "allowToChangeInstallationDirectory": "true"
         },
+        "electronUpdaterCompatibility": ">= 2.16",
         "publish": [
-          {
-            "provider":"github",
-            "vPrefixedTagName": true
-          }],
+            {
+                "provider": "github",
+                "vPrefixedTagName": true
+            }
+        ],
         "linux": {
             "category": "Game",
             "icon": "assets/icons",
@@ -95,6 +97,7 @@
         "stylelint": "^13.6.1"
     },
     "dependencies": {
+        "electron-log": "^4.2.2",
         "electron-updater": "^4.3.1",
         "feedparser": "^2.2.10",
         "fs-extra": "^9.0.1",

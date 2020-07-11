@@ -23,6 +23,9 @@ args.forEach((val, index) => {
 const electron = require("electron");
 const {autoUpdater} = require("electron-updater");
 
+// Logging for the updater
+autoUpdater.logger = require("electron-log");
+autoUpdater.logger.transports.file.level = "info";
 
 // Module to control application life.
 const app = electron.app;
@@ -111,6 +114,9 @@ function createWindow(){
 
     mainWindow.once("ready-to-show", () => {
         mainWindow.show();
+
+        // Hopefully this is not too early to trigger here (and not in did-stop-loading)
+        autoUpdater.checkForUpdatesAndNotify();
     });
 
     mainWindow.once("did-finish-load", () => {
@@ -165,17 +171,6 @@ function createWindow(){
     // Version info stuff
     // process.versions.node process.versions.chrome process.versions.electron
     // console.log("os: " + os.platform() + " arch: " + os.arch());
-
-    autoUpdater.on("update-available", () => {
-        console.log("Sending update available message");
-        mainWindow.webContents.send("updateAvailable");
-    });
-
-    autoUpdater.on("update-downloaded", () => {
-        console.log("sending update downloaded message");
-        mainWindow.webContents.send("updateDownloaded");
-    });
-
 }
 
 // This method will be called when Electron has finished
@@ -222,4 +217,14 @@ app.on("browser-window-created", function(e, window){
 
 ipcMain.on("restartAndUpdate", () => {
     autoUpdater.quitAndInstall();
+});
+
+autoUpdater.on("update-available", () => {
+    console.log("Sending update available message");
+    mainWindow.webContents.send("updateAvailable");
+});
+
+autoUpdater.on("update-downloaded", () => {
+    console.log("sending update downloaded message");
+    mainWindow.webContents.send("updateDownloaded");
 });
