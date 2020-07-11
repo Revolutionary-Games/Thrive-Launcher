@@ -20,11 +20,12 @@ args.forEach((val, index) => {
     }
 });
 
+const log = require("electron-log");
 const electron = require("electron");
 const {autoUpdater} = require("electron-updater");
 
 // Logging for the updater
-autoUpdater.logger = require("electron-log");
+autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = "info";
 
 // Module to control application life.
@@ -41,8 +42,11 @@ const path = require("path");
 const url = require("url");
 
 const fs = require("fs");
+const os = require("os");
 
 const openpgp = require("openpgp");
+
+const pjson = require("./package.json");
 
 // Hopefully this is the right place to do this
 openpgp.initWorker({path: "openpgp.worker.js"});
@@ -170,7 +174,8 @@ function createWindow(){
 
     // Version info stuff
     // process.versions.node process.versions.chrome process.versions.electron
-    // console.log("os: " + os.platform() + " arch: " + os.arch());
+    log.info("Started Thrive Launcher version: " + pjson.version + " os: " + os.platform() +
+        " arch: " + os.arch());
 }
 
 // This method will be called when Electron has finished
