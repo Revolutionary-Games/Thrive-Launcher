@@ -18,12 +18,9 @@ const {Modal, showGenericError} = require("./modal");
 
 const logFilenamesToCheck = ["ThriveLog.txt", "ThriveLogCEF.txt", "ThriveLogOGRE.txt"];
 
+const {devCenterURL} = require("./src/config");
 
-// For local testing
-// const devCenterURL = "http://localhost:5000";
-const devCenterURL = "https://dev.revolutionarygamesstudio.com/";
 const devCenterReportAPI = url.resolve(devCenterURL, "/api/v1/crash_report");
-
 
 function getCrashDumpsInFolder(folder){
     return new Promise((resolve, reject) => {
@@ -175,9 +172,9 @@ function onTrySubmit(settings){
                     err = data.error;
 
                 settings.statusText.textContent =
-                "Error sending request, please try again later. " +
-                "status code: " + httpResponse.statusCode + " error: " +
-                err;
+                    "Error sending request, please try again later. " +
+                    "status code: " + httpResponse.statusCode + " error: " +
+                    err;
                 settings.submit.textContent = "Retry";
                 settings.uploading = false;
                 return;
@@ -200,12 +197,12 @@ function onSuccess(reportURL, privateURL){
 
     crashReportingContent.
         append(document.createTextNode("Your report has been successfully " +
-                                       "submitted. Thank you for your report."));
+            "submitted. Thank you for your report."));
 
     crashReportingContent.append(document.createElement("hr"));
 
     crashReportingContent.append(document.createTextNode("You can view your report, " +
-                                                         "if it is public, here: "));
+        "if it is public, here: "));
 
     const reportLink = document.createElement("a");
     reportLink.textContent = reportURL;
@@ -216,7 +213,7 @@ function onSuccess(reportURL, privateURL){
     crashReportingContent.append(document.createElement("br"));
 
     crashReportingContent.append(document.createTextNode("If you want to delete your report " +
-                                                         "you can do so here: "));
+        "you can do so here: "));
 
     const privateLink = document.createElement("a");
     privateLink.textContent = privateURL;
@@ -228,8 +225,8 @@ function onSuccess(reportURL, privateURL){
 
     crashReportingContent.
         append(document.createTextNode("IMPORTANT if you lose your delete " +
-                                       "link you won't be able to delete your " +
-                                       "report. So save it!"));
+            "link you won't be able to delete your " +
+            "report. So save it!"));
 
 
     crashReportingContent.append(document.createElement("br"));
@@ -310,7 +307,7 @@ function onBeginReportingCrash(dump, settings){
 
     crashReportingContent.innerHTML = "";
     crashReportingContent.append(document.createTextNode("reporting crash: " + dump.name +
-                                                         " " + formatTime(dump.mtimeMs)));
+        " " + formatTime(dump.mtimeMs)));
 
     crashReportingContent.append(document.createElement("hr"));
 
@@ -320,7 +317,7 @@ function onBeginReportingCrash(dump, settings){
 
     crashReportingContent.
         append(document.createTextNode("Please keep the logs included if they are from the " +
-                                       "same run as the crash. " +
+            "same run as the crash. " +
             "You can click the name of the file to view the folder it is in and edit it to " +
             "remove any personal details you want."));
 
@@ -349,7 +346,7 @@ function onBeginReportingCrash(dump, settings){
     //
 
     crashReportingContent.append(document.createTextNode("Describe what you were doing when " +
-                                                         "the crash happened (optional)"));
+        "the crash happened (optional)"));
     crashReportingContent.append(document.createElement("br"));
 
     const extraDescription = document.createElement("textarea");
@@ -366,7 +363,7 @@ function onBeginReportingCrash(dump, settings){
 
     crashReportingContent.
         append(document.createTextNode("Your email, if you want to " +
-                                       "receive updates about this report (optional):"));
+            "receive updates about this report (optional):"));
 
     const optionalEmail = document.createElement("input");
     optionalEmail.type = "text";
@@ -383,7 +380,7 @@ function onBeginReportingCrash(dump, settings){
 
     crashReportingContent.
         append(document.createTextNode("Your email will only be visible " +
-                                       "to ThriveDevCenter administrators."));
+            "to ThriveDevCenter administrators."));
 
     //
     // Bottom part
@@ -457,9 +454,9 @@ function onReporterOpened(settings){
     crashReportingContent.
         append(document.
             createTextNode("If the game crashed on startup please, try the " +
-                                "thrive launch options first before " +
-                                "reporting a crash. They can be found in the launcher " +
-                                "options menu (button left of 'play')."));
+                "thrive launch options first before " +
+                "reporting a crash. They can be found in the launcher " +
+                "options menu (button left of 'play')."));
 
     crashReportingContent.append(document.createElement("br"));
 
@@ -473,7 +470,7 @@ function onReporterOpened(settings){
         const li = document.createElement("li");
         const span = document.createElement("span");
         span.append(document.createTextNode(moment(dump.mtimeMs).fromNow() + " (" +
-                                            formatTime(dump.mtimeMs) + ") "));
+            formatTime(dump.mtimeMs) + ") "));
 
         const a = document.createElement("a");
         a.textContent = dump.name;

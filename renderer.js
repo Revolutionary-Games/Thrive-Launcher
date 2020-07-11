@@ -19,6 +19,11 @@ const sha3_256 = require("js-sha3").sha3_256;
 
 const win = remote.getCurrentWindow();
 
+const {
+    showUnpackMessages, loadTestVersionData, loadPrePackagedVersionData,
+    checkGraphicsCard,
+} = require("./src/config");
+
 const versionInfo = require("./version_info");
 const retrieveNews = require("./retrieve_news");
 const errorSuggestions = require("./error_suggestions");
@@ -27,6 +32,7 @@ const {Progress} = require("./progress");
 const {unpackRelease, findBinInRelease} = require("./unpack");
 const {formatBytes} = require("./utils");
 const autoUpdateHandler = require("./src/auto_update_handler");
+const {checkConnectionStatus} = require("./src/dev_center");
 
 const openpgp = require("openpgp");
 
@@ -52,20 +58,8 @@ const {
 // This loads settings in sync mode here
 loadSettings();
 
-// Tweak parameters
-
-// Shows output from 7z. Not really usefull as it shows no actual progress
-const showUnpackMessages = false;
-
-// If true then the testing data (local, unsigned) file is loaded
-const loadTestVersionData = false;
-
-// If true will only attempt reading the prepackaged version data
-// Can be changed by user if no internet / download fails
-let loadPrePackagedVersionData = false;
-
-// When true checks if computer has intel graphics that likely cause problems
-const checkGraphicsCard = false;
+// Start checking DevCenter token
+checkConnectionStatus();
 
 // Some other variables
 const cardsModel = [];
