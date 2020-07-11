@@ -30,6 +30,7 @@ const defaultSettings = {
     launchOptionNoGUISandbox: false,
     launchOptionNoGUIGPU: false,
     installPath: module.exports.defaultInstallPath,
+    devCenterKey: null,
 };
 
 module.exports.settings = Object.assign({}, defaultSettings);

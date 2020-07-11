@@ -449,6 +449,23 @@ img.TopLogo {
   overflow: auto;
 }
 
+#devCenterModalDialog {
+  background: none;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8%;
+  margin-bottom: auto;
+
+  /* margin: 15% auto; /* 15% from the top and centered */
+
+  padding: 0;
+  border: none;
+  width: 75%; /* Could be more or less, depending on screen size */
+  max-width: 75%;
+  max-height: 80%;
+  overflow: auto;
+}
+
 /* @keyframes animatetop { */
 
 /*     from {margin-top: -50px; opacity: 0} */

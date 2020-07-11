@@ -143,7 +143,7 @@ async function moveInstalledFiles(files, destination){
     content.textContent = "Moving files to: " + destination + " ...";
     content.append(document.createElement("br"));
     content.append(document.createTextNode("This may take several minutes, " +
-                                           "please be patient."));
+        "please be patient."));
 
     await Promise.all(files.map((file) =>
         fsExtra.move(file, path.join(destination, path.basename(file))).then(() => {
@@ -232,7 +232,7 @@ function changeInstallLocation(directory){
             type: "warning",
             buttons: ["Yes", "No"],
             message: "A Thrive version already exist in the current directory \n" +
-                    "Do you want to move the files into the selected location?",
+                "Do you want to move the files into the selected location?",
         };
 
         dialog.showMessageBox(win, options).then((response) => {
@@ -357,7 +357,7 @@ module.exports.onSettingsLoaded = () => {
 
     } catch(err){
         showGenericError("Failed to update settings widgets from saved settings, error: " +
-                         err);
+            err);
     } finally{
 
         loadingSettings = false;
