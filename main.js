@@ -113,6 +113,9 @@ function createWindow(){
         mainWindow.show();
     });
 
+    mainWindow.once("did-finish-load", () => {
+    });
+
     // And load the index.html of the app.
     mainWindow.loadURL(url.format({
         // This could probably also be __dirname
@@ -125,6 +128,9 @@ function createWindow(){
     if(openDev){
         mainWindow.webContents.openDevTools();
     }
+
+    mainWindow.webContents.once("did-stop-loading", () => {
+    });
 
     // Emitted when the window is closed.
     mainWindow.on("closed", function(){
@@ -147,7 +153,7 @@ function createWindow(){
     // depending on openLinksInExternal, but that hasn't been done
     mainWindow.webContents.on("will-navigate", function(e, url){
 
-        if(url != mainWindow.webContents.getURL()){
+        if(url !== mainWindow.webContents.getURL()){
             e.preventDefault();
             require("electron").shell.openExternal(url);
         }
@@ -161,10 +167,12 @@ function createWindow(){
     // console.log("os: " + os.platform() + " arch: " + os.arch());
 
     autoUpdater.on("update-available", () => {
+        console.log("Sending update available message");
         mainWindow.webContents.send("updateAvailable");
     });
 
     autoUpdater.on("update-downloaded", () => {
+        console.log("sending update downloaded message");
         mainWindow.webContents.send("updateDownloaded");
     });
 
@@ -193,7 +201,7 @@ app.on("activate", function(){
 });
 
 
-electron.app.on("browser-window-created", function(e, window){
+app.on("browser-window-created", function(e, window){
 
     if(window === mainWindow || mainWindow === null){
 
