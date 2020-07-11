@@ -60,8 +60,15 @@
         </div>
     </span>
 
-    <div id="buttonContainer">
-        <span id="innerButtons">
+    <div id="buttonContainerParent">
+      <span id="buttonContainerLeft">
+        <span class="InnerButtons">
+          <!-- Links button -->
+          <div id="linksButton" class="BottomButton" style="">
+            <p style="text-align: left;">
+              Links
+            </p>
+          </div>
           <!-- Settings button -->
           <div id="settingsButton" class="BottomButton" style="padding-top: 3px; padding-bottom: 3px;">
             <img src="assets/gear.png" style="width: 36px; height: 36px; padding-top: 5px; padding-bottom: 3px;">
@@ -75,17 +82,18 @@
             </span>
             <span id="playComboPopup" class="Inline"
                   style="border-left: 4px solid #55dbdb; padding-bottom: 3px; padding-top: 3px;
-                        padding-left: 12px; padding-right: 12px; vertical-align: middle; font-size: 1.7em;">
-              &#x21E7
+                        padding-left: 12px; padding-right: 12px; vertical-align: middle; font-size: 1.7em;">&#x21E7
             </span>
           </div>
-
-          <div id="linksButton" class="BottomButton" style="">
-            <p style="text-align: left;">
-              Links
-            </p>
-          </div>
         </span>
+      </span>
+      <span id="buttonContainerRight">
+          <!-- DevCenter status and popup open button -->
+          <div id="devCenterStatus" class="DevCenterStatusBox">
+            <span id="devCenterStatusMessage">Loading...</span>
+            <a href="#" id="devCenterPopupOpen">Connect to DevCenter</a>
+          </div>
+      </span>
     </div>
 
     <!-- Popup for the version select combobox -->
@@ -272,6 +280,42 @@
                 Clear
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DevCenter connection popup -->
+    <div id="devCenterModal" class="modal">
+      <div id="devCenterModalDialog" class="modal-content">
+
+        <span id="devCenterConnectionClose" class="close"
+              style="position: relative; right: 15px; top: 8px;">&times;</span>
+
+        <div id="devCenterTabs">
+          <ul>
+            <li><a href="#devCenterTabs-1">Info</a></li>
+            <li><a href="#devCenterTabs-2">All Builds</a></li>
+          </ul>
+          <div id="devCenterTabs-1">
+            <div id="devCenterConnectedContent" style="display: none">
+              <div id="disconnectFromDevCenter" class="BottomButton" style="height: 40px;">
+                <p style="text-align: left; font-size: 0.8em;">
+                  Logout
+                </p>
+              </div>
+            </div>
+            <div id="devCenterLoginContent" class="BottomButton" style="height: 40px;">
+              <div id="loginToDevCenter" class="BottomButton" style="height:
+              40px;">
+                <p style="text-align: left; font-size: 0.8em;">
+                  Login
+                </p>
+              </div>
+            </div>
+          </div>
+          <div id="devCenterTabs-2">
+            <p>TODO: fetch all available builds from the DevCenter...</p>
           </div>
         </div>
       </div>

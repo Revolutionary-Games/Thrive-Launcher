@@ -130,19 +130,36 @@ img.TopLogo {
   background: linear-gradient(to top, rgb(20, 20, 20), rgba(0, 0, 0, 0));
 }
 
-#buttonContainer {
+#buttonContainerParent {
   height: 14%;
   max-height: 14%;
   width: 100%;
   position: absolute;
   bottom: 0;
   overflow: hidden;
-  text-align: center;
   border-top: 1px solid rgba(68, 68, 68, 0.46);
   background: linear-gradient(to bottom, rgb(48, 48, 48), rgba(20, 20, 20, 0.9));
+  box-sizing: border-box;
 }
 
-#innerButtons {
+#buttonContainerLeft {
+  width: 65%;
+  min-width: 65%;
+  height: 100%;
+  text-align: end;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+#buttonContainerRight {
+  /* width: 35%; */
+  height: 100%;
+  vertical-align: middle;
+  box-sizing: border-box;
+  /* display: inline-block; */
+}
+
+.InnerButtons {
   display: inline-block;
   height: auto;
   width: auto;
@@ -193,6 +210,26 @@ img.TopLogo {
 
 .BottomButton:hover {
   background: rgb(43, 43, 43);
+}
+
+.DevCenterStatusBox {
+  display: inline-block;
+  height: auto;
+  width: auto;
+  /*position: relative;
+  top: 0%;
+  transform: perspective(1px) translateY(-50%); */
+  user-select: none;
+  color: #dedede;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#devCenterPopupOpen {
+  width: 90px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .Dangerous {
