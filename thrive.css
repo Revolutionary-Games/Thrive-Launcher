@@ -239,6 +239,10 @@ img.TopLogo {
   text-overflow: ellipsis;
 }
 
+#devCenterStatusMessage {
+  margin-right: 3px;
+}
+
 .Dangerous {
   color: #dedede;
   background: rgba(128, 21, 21, 1);
