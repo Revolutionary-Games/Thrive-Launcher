@@ -38,6 +38,7 @@ const linkStatusContainer = document.getElementById("devCenterLinkCheckStatus");
 const retryButton = document.getElementById("retryLoginCode");
 const disconnectButton = document.getElementById("disconnectFromDevCenter");
 const disconnectInfo = document.getElementById("devCenterDisconnectStatus");
+const connectedDetails = document.getElementById("devCenterConnectedUserDetails");
 
 const connectedContent = [
     document.getElementById("devCenterConnectedContent"),
@@ -56,6 +57,7 @@ function resetInfoInStatus(){
     module.exports.status.email = null;
     module.exports.status.developer = false;
     module.exports.status.build_of_the_day = null;
+    connectedDetails.innerText = "";
 }
 
 function resetTokenInSettings(){
@@ -83,6 +85,22 @@ function updateConnectionPopupVisibleItems(){
     }
 }
 
+function updateCurrentUserDetails(){
+    connectedDetails.innerText = "";
+
+    connectedDetails.append(
+        document.createTextNode("Connected as: " + module.exports.status.email + " (" +
+            module.exports.status.username + ")"));
+
+    connectedDetails.append(document.createElement("br"));
+
+    if(module.exports.status.developer){
+        connectedDetails.append(document.createTextNode("You are a developer"));
+    } else {
+        connectedDetails.append(document.createTextNode("Thank you for your support!"));
+    }
+}
+
 function onNoDevCenterConnection(){
     statusLabel.innerText = "";
     linkMessage.innerText = "";
@@ -96,6 +114,7 @@ function onNoDevCenterConnection(){
 
     resetInfoInStatus();
     updateConnectionPopupVisibleItems();
+    sendExtraBuildTypes();
 }
 
 // Checks if we currently have a devcenter connection and it is valid
@@ -166,6 +185,8 @@ function checkConnectionStatus(){
         retryButton.style.display = "none";
 
         updateConnectionPopupVisibleItems();
+        updateCurrentUserDetails();
+        sendExtraBuildTypes();
 
     }).catch((error) => {
 
@@ -301,6 +322,10 @@ function disconnect(){
     });
 }
 
+// Send the extra build types to the version list object
+function sendExtraBuildTypes(){
+
+}
 
 // Init our callbacks
 openModalButton.addEventListener("click", (e) => {
