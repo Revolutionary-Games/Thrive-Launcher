@@ -97,6 +97,15 @@ module.exports = {
                 },
                 "return": {
                     "after": true
+                },
+                "of": {
+                    "after": true
+                },
+                "in": {
+                    "after": true
+                },
+                "throw": {
+                    "after": true
                 }
             }}],
         "function-paren-newline": ["error", "never"],

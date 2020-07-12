@@ -11,6 +11,8 @@ const noConnectionMessage = "Connect to DevCenter";
 
 
 const launcherCheckAPI = url.resolve(devCenterURL, "/api/v1/launcher/status");
+const launcherTestTokenAPI = url.resolve(devCenterURL, "/api/v1/launcher/check_link");
+const launcherFormConnectionAPI = url.resolve(devCenterURL, "/api/v1/launcher/link");
 
 const defaultConnectionStatus = {
     connected: false,
@@ -29,6 +31,23 @@ const devCenterModal = new Modal("devCenterModal", "devCenterModalDialog",
 
 const statusLabel = document.getElementById("devCenterStatusMessage");
 const openModalButton = document.getElementById("devCenterPopupOpen");
+const loginButton = document.getElementById("loginToDevCenter");
+const loginCode = document.getElementById("loginLinkCode");
+const linkMessage = document.getElementById("devCenterLinkCheckMessage");
+const linkStatusContainer = document.getElementById("devCenterLinkCheckStatus");
+const retryButton = document.getElementById("retryLoginCode");
+const disconnectButton = document.getElementById("disconnectFromDevCenter");
+const disconnectInfo = document.getElementById("devCenterDisconnectStatus");
+
+const connectedContent = [
+    document.getElementById("devCenterConnectedContent"),
+    document.getElementById("devCenterConnectedDevBuilds"),
+];
+
+const disconnectedContent = [
+    document.getElementById("devCenterLoginContent"),
+    document.getElementById("devCenterBuildsLoginMessage"),
+];
 
 function resetInfoInStatus(){
     module.exports.status.connected = false;
@@ -45,11 +64,38 @@ function resetTokenInSettings(){
     saveSettings();
 }
 
+// Updates the content blocks in the devcenter info popup based on if connection is good or not
+function updateConnectionPopupVisibleItems(){
+    if(module.exports.status.connected){
+        connectedContent.forEach((value) => {
+            value.style.display = "block";
+        });
+        disconnectedContent.forEach((value) => {
+            value.style.display = "none";
+        });
+    } else {
+        connectedContent.forEach((value) => {
+            value.style.display = "none";
+        });
+        disconnectedContent.forEach((value) => {
+            value.style.display = "block";
+        });
+    }
+}
+
 function onNoDevCenterConnection(){
     statusLabel.innerText = "";
+    linkMessage.innerText = "";
     openModalButton.innerText = noConnectionMessage;
 
+    if(settings.devCenterKey){
+        retryButton.style.display = "inline-block";
+    } else {
+        retryButton.style.display = "none";
+    }
+
     resetInfoInStatus();
+    updateConnectionPopupVisibleItems();
 }
 
 // Checks if we currently have a devcenter connection and it is valid
@@ -62,8 +108,6 @@ function checkConnectionStatus(){
     statusLabel.innerText = "Loading...";
     openModalButton.innerText = "";
 
-    // No valid token found
-    // openModalButton.innerText = noConnectionMessage;
     fetch(launcherCheckAPI, {
         headers: {
             Authorization: settings.devCenterKey,
@@ -73,7 +117,24 @@ function checkConnectionStatus(){
         return response.json().then((data) => {
             if(response.status !== 200){
                 // Failed
-                throw data.message;
+                const error = data.message ||
+                    `Invalid response from server (${response.status})`;
+
+                // Handle this way to not reset the token
+                if(response.status >= 500)
+                    throw error;
+
+                // If we get here the server told us the token is not good
+                onNoDevCenterConnection();
+
+                module.exports.status.error = `${error}`;
+
+                showGenericError(`Failed to connect to ThriveDevCenter: ${error}`, () => {
+                    resetTokenInSettings();
+                    onNoDevCenterConnection();
+                });
+
+                return null;
             }
 
             return data;
@@ -84,7 +145,8 @@ function checkConnectionStatus(){
         });
     }).then((data) => {
 
-        statusLabel.innerText = "";
+        if(!data)
+            return;
 
         resetInfoInStatus();
         module.exports.status.connected = true;
@@ -92,7 +154,18 @@ function checkConnectionStatus(){
         module.exports.status.email = data.email;
         module.exports.status.developer = data.developer;
 
-        openModalButton.innerText = module.exports.status.username;
+        if(data.developer){
+            statusLabel.innerText = "Howdy,";
+        } else {
+            statusLabel.innerText = "Thank you,";
+        }
+
+        openModalButton.innerText = module.exports.status.username ||
+            module.exports.status.email;
+
+        retryButton.style.display = "none";
+
+        updateConnectionPopupVisibleItems();
 
     }).catch((error) => {
 
@@ -100,16 +173,161 @@ function checkConnectionStatus(){
 
         module.exports.status.error = `${error}`;
 
-        showGenericError(`Failed to connect to ThriveDevCenter: ${error}`, () => {
-            resetTokenInSettings();
-        });
+        showGenericError(`Failed to connect to ThriveDevCenter: ${error}`);
     });
 }
+
+function formConnection(code){
+    linkMessage.innerText = "Forming connection...";
+
+    fetch(launcherFormConnectionAPI, {
+        method: "post",
+        headers: {
+            Authorization: code,
+        },
+        credentials: "omit",
+    }).then((response) => {
+        return response.json().then((data) => {
+            if(response.status !== 201){
+                throw data.message || `Invalid response from server (${response.status})`;
+            }
+
+            linkMessage.innerText = "Connection formed. Reading data...";
+            return data;
+        });
+    }).then((data) => {
+        // Code is now taken by us
+        settings.devCenterKey = data.code;
+        saveSettings();
+
+        checkConnectionStatus();
+    }).catch((error) => {
+        linkMessage.innerText = `Error linking: ${error}`;
+    });
+}
+
+function checkLinkCode(code){
+    linkMessage.innerText = "Checking code...";
+    linkStatusContainer.innerText = "";
+
+    fetch(launcherTestTokenAPI, {
+        headers: {
+            Authorization: code,
+        },
+        credentials: "omit",
+    }).then((response) => {
+        return response.json().then((data) => {
+            if(response.status !== 200){
+                throw data.message || `Invalid response from server (${response.status})`;
+            }
+
+            return data;
+        });
+    }).then((data) => {
+
+        linkMessage.innerText = "Code is valid. Confirm link:";
+
+        const ul = document.createElement("ul");
+
+        for(const prop of ["username", "email"]){
+            const item = document.createElement("li");
+            item.append(document.createTextNode(`${prop}: ${data[prop]}`));
+            ul.append(item);
+        }
+
+        linkStatusContainer.append(ul);
+
+        const accept = document.createElement("span");
+        accept.classList.add("BottomButton");
+        accept.style.height = "30px";
+        accept.innerText = "Looks good";
+
+        accept.addEventListener("click", () => {
+            linkStatusContainer.innerText = "";
+            formConnection(code);
+        });
+
+        linkStatusContainer.append(accept);
+
+        const decline = document.createElement("span");
+        decline.classList.add("BottomButton");
+        decline.style.height = "30px";
+        decline.style.marginLeft = "4px";
+        decline.innerText = "Cancel";
+
+        decline.addEventListener("click", () => {
+            linkMessage.innerText = "";
+            linkStatusContainer.innerText = "";
+        });
+
+        linkStatusContainer.append(decline);
+
+    }).catch((error) => {
+        linkMessage.innerText = `Error checking code: ${error}`;
+    });
+}
+
+function disconnect(){
+    disconnectInfo.innerText = "Disconnecting...";
+
+    fetch(launcherCheckAPI, {
+        method: "delete",
+        headers: {
+            Authorization: settings.devCenterKey,
+        },
+        credentials: "omit",
+    }).then((response) => {
+        return response.json().then((data) => {
+            if(response.status !== 200){
+                throw data.message || `Invalid response from server (${response.status})`;
+            }
+
+            return data;
+        });
+    }).then((data) => {
+        if(!data.success)
+            throw "Reply success was false";
+
+        resetInfoInStatus();
+        onNoDevCenterConnection();
+        updateConnectionPopupVisibleItems();
+
+        settings.devCenterKey = null;
+        saveSettings();
+
+    }).catch((error) => {
+        module.exports.status.error = `${error}`;
+        showGenericError(`Failed to disconnect: ${error}`);
+    });
+}
+
 
 // Init our callbacks
 openModalButton.addEventListener("click", (e) => {
     e.preventDefault();
     devCenterModal.show();
+});
+
+loginButton.addEventListener("click", () => {
+    if(!loginCode.value){
+        showGenericError("Link code is empty");
+        return;
+    }
+
+    checkLinkCode(loginCode.value);
+});
+
+retryButton.addEventListener("click", () => {
+    if(!settings.devCenterKey){
+        showGenericError("No previous connection code / it has been cleared.");
+        return;
+    }
+
+    checkConnectionStatus();
+});
+
+disconnectButton.addEventListener("click", () => {
+    disconnect();
 });
 
 $("#devCenterTabs").tabs();

@@ -301,23 +301,49 @@
           </ul>
           <div id="devCenterTabs-1">
             <div id="devCenterConnectedContent" style="display: none">
+              <p id="devCenterDisconnectStatus"></p>
               <div id="disconnectFromDevCenter" class="BottomButton" style="height: 40px;">
                 <p style="text-align: left; font-size: 0.8em;">
                   Logout
                 </p>
               </div>
             </div>
-            <div id="devCenterLoginContent" class="BottomButton" style="height: 40px;">
-              <div id="loginToDevCenter" class="BottomButton" style="height:
-              40px;">
+            <div id="devCenterLoginContent">
+              <p>
+                Here you can link the launcher to <a
+                  href="https://dev.revolutionarygamesstudio.com/">ThriveDevCenter</a>. You
+                can find detailed instructions on the
+                <a href="https://wiki.revolutionarygamesstudio.com/wiki/Linking_the_Launcher">
+                  wiki</a>.
+                You can get a link code from
+                <a href="https://dev.revolutionarygamesstudio.com/me">here</a>.
+              </p>
+              <div>
+                <span>Link code: </span>
+                <input type="text" placeholder="code" id="loginLinkCode" />
+              </div>
+              <p id="devCenterLinkCheckMessage"></p>
+              <div id="devCenterLinkCheckStatus"></div>
+              <div id="loginToDevCenter" class="BottomButton" style="height: 40px;">
                 <p style="text-align: left; font-size: 0.8em;">
                   Login
+                </p>
+              </div>
+              <div id="retryLoginCode" class="BottomButton" style="height: 40px; display:
+                none">
+                <p style="text-align: left; font-size: 0.8em;">
+                  Retry Previous Code
                 </p>
               </div>
             </div>
           </div>
           <div id="devCenterTabs-2">
-            <p>TODO: fetch all available builds from the DevCenter...</p>
+            <div id="devCenterConnectedDevBuilds" style="display: none">
+              <p>TODO: fetch all available builds from the DevCenter...</p>
+            </div>
+            <div id="devCenterBuildsLoginMessage">
+              <p>Login to see this content.</p>
+            </div>
           </div>
         </div>
       </div>
