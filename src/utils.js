@@ -20,23 +20,17 @@ function formatBytes(bytes, precision = 2){
         toFixed(Math.max(precision, 0)) + " " + units[unit];
 }
 
-// https://github.com/github/fetch/issues/175#issuecomment-216791333
-// Adds timeout to a promise
-function timeoutPromise(ms, promise){
-    return new Promise((resolve, reject) => {
-        const timeoutId = setTimeout(() => {
-            reject(new Error("timeout"));
-        }, ms);
-        promise.then((res) => {
-            clearTimeout(timeoutId);
-            resolve(res);
-        },
-        (err) => {
-            clearTimeout(timeoutId);
-            reject(err);
-        });
+// Fetch with a timeout
+function fetchWithTimeout(url, options, ms){
+    const controller = new AbortController();
+
+    const timeoutId = setTimeout(() => controller.abort(), ms);
+
+    return fetch(url, {...options, signal: controller.signal}).then((response) => {
+        clearTimeout(timeoutId);
+        return response;
     });
 }
 
 exports.formatBytes = formatBytes;
-exports.timeoutPromise = timeoutPromise;
+exports.fetchWithTimeout = fetchWithTimeout;

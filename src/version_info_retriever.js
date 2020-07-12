@@ -10,7 +10,7 @@ const {loadTestVersionData} = require("./config");
 const {Modal, showGenericError} = require("../modal");
 const {setPlayButtonText} = require("./version_select_button");
 const {locallyCachedDLFile} = require("../settings.js");
-const {timeoutPromise} = require("./utils");
+const {fetchWithTimeout} = require("./utils");
 
 const versionDataFailedModal = new Modal("versionDataDownloadFailedModal",
     "versionDataDownloadFailedModalDialog", {autoClose: false});
@@ -57,12 +57,11 @@ async function loadVersionData(callback){
                 callback(data);
             });
     } else {
-        timeoutPromise(1000,
-            fetch("https://raw.githubusercontent.com/Revolutionary-Games/Thrive-Launcher/" +
-                "master/version_data/signed_versions.json", {
-                mode: "no-cors",
-                credentials: "omit",
-            })).then((response) => {
+        fetchWithTimeout("https://raw.githubusercontent.com/" +
+            "Revolutionary-Games/Thrive-Launcher/master/version_data/signed_versions.json", {
+            mode: "no-cors",
+            credentials: "omit",
+        }, 1000).then((response) => {
             if(response.status !== 200){
                 throw `Invalid response code from server: (${response.status})`;
             }
