@@ -61,6 +61,7 @@ async function loadVersionData(callback){
             "Revolutionary-Games/Thrive-Launcher/master/version_data/signed_versions.json", {
             mode: "no-cors",
             credentials: "omit",
+            cache: "no-cache",
         }, 1000).then((response) => {
             if(response.status !== 200){
                 throw `Invalid response code from server: (${response.status})`;
