@@ -88,9 +88,8 @@ function updateConnectionPopupVisibleItems(){
 function updateCurrentUserDetails(){
     connectedDetails.innerText = "";
 
-    connectedDetails.append(
-        document.createTextNode("Connected as: " + module.exports.status.email + " (" +
-            module.exports.status.username + ")"));
+    connectedDetails.append(document.createTextNode("Connected as: " +
+        module.exports.status.email + " (" + module.exports.status.username + ")"));
 
     connectedDetails.append(document.createElement("br"));
 

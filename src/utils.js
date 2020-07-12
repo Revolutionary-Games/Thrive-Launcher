@@ -20,4 +20,23 @@ function formatBytes(bytes, precision = 2){
         toFixed(Math.max(precision, 0)) + " " + units[unit];
 }
 
+// https://github.com/github/fetch/issues/175#issuecomment-216791333
+// Adds timeout to a promise
+function timeoutPromise(ms, promise){
+    return new Promise((resolve, reject) => {
+        const timeoutId = setTimeout(() => {
+            reject(new Error("timeout"));
+        }, ms);
+        promise.then((res) => {
+            clearTimeout(timeoutId);
+            resolve(res);
+        },
+        (err) => {
+            clearTimeout(timeoutId);
+            reject(err);
+        });
+    });
+}
+
 exports.formatBytes = formatBytes;
+exports.timeoutPromise = timeoutPromise;

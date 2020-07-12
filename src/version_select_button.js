@@ -148,5 +148,5 @@ module.exports.setPlayButtonText = (text) => {
 };
 
 module.exports.getSelectedVersion = () => {
-    return {id: playButtonText.dataset.selectedID, os: playButtonText.dataset.selectedDLOS}
+    return {id: playButtonText.dataset.selectedID, os: playButtonText.dataset.selectedDLOS};
 };

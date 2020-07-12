@@ -24,7 +24,7 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
 
         let unpacker = null;
 
-        if(os.platform() == "win32"){
+        if(os.platform() === "win32"){
 
             // By default use system installed 7zip
             const zPaths = [
