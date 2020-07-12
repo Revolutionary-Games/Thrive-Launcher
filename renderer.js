@@ -27,12 +27,14 @@ const {
 const versionInfo = require("./version_info");
 const retrieveNews = require("./retrieve_news");
 const errorSuggestions = require("./error_suggestions");
-const {Modal, ComboBox, showGenericError} = require("./modal");
+const {Modal, showGenericError} = require("./modal");
 const {Progress} = require("./progress");
 const {unpackRelease, findBinInRelease} = require("./unpack");
 const {formatBytes} = require("./utils");
 const autoUpdateHandler = require("./src/auto_update_handler");
 const {checkConnectionStatus} = require("./src/dev_center");
+const {sendVersionInfoToPlayButton, setPlayButtonText, playCallback, getSelectedVersion} =
+    require("./src/version_select_button");
 
 const openpgp = require("openpgp");
 
@@ -362,7 +364,7 @@ function onVersionDataReceived(data, unsigned = false){
         });
     }).then(() => {
 
-        updatePlayButton();
+        sendVersionInfoToPlayButton(versionInfo);
 
     }).catch((err) => {
 
@@ -381,18 +383,13 @@ function onVersionDataReceived(data, unsigned = false){
     });
 }
 
-// Buttons
-const playButton = document.getElementById("playButton");
-
-const playButtonText = document.getElementById("playText");
-
 // Checks the graphics card
 async function checkIfCompatible(){
     if(!checkGraphicsCard)
         return;
 
     try{
-        playButtonText.textContent = "Checking graphics hardware...";
+        setPlayButtonText("Checking graphics hardware...");
 
         const data = await si.graphics();
         const identifier = ["nvidia", "advanced micro devices", "amd"]; // And so on...
@@ -429,7 +426,7 @@ async function loadVersionData(){
 
     await checkIfCompatible();
 
-    playButtonText.textContent = "Retrieving version information...";
+    setPlayButtonText("Retrieving version information...");
 
     if(loadTestVersionData){
 
@@ -934,7 +931,6 @@ function onDLFileReady(version, download, fileName){
 
 //! Called when the play button is pressed
 function playPressed(){
-
     // Cannot be downloading already //
     assert(playModalQuitDLCancel == null);
     currentDLCanceled = false;
@@ -942,14 +938,11 @@ function playPressed(){
     // Open play modal thing
     playModal.show();
 
-    assert(playButtonText.dataset.selectedID);
+    const {id, os} = getSelectedVersion();
 
-    const version = versionInfo.getVersionByID(playButtonText.dataset.selectedID);
+    const version = versionInfo.getVersionByID(id);
 
-    assert(version);
-
-    const download = versionInfo.getDownloadByOSID(version.id,
-        playButtonText.dataset.selectedDLOS);
+    const download = versionInfo.getDownloadByOSID(version.id, os);
 
     assert(download);
 
@@ -1054,9 +1047,7 @@ function playPressed(){
 
 }
 
-playButtonText.addEventListener("click", function(){
-    console.log("play clicked");
-
+playCallback(() => {
     if(showIncompatiblePopup){
         incompatibleModal.show();
 
@@ -1105,131 +1096,6 @@ playButtonText.addEventListener("click", function(){
     }
 });
 
-const playComboPopup = document.getElementById("playComboPopup");
-
-
-const versionSelectPopupBackground = document.getElementById("playComboBackground");
-const versionSelectPopup = document.getElementById("versionSelectPopup");
-
-
-let playComboAllChoices = null;
-
-const versionSelectCombo = new ComboBox(versionSelectPopupBackground, versionSelectPopup, {
-
-
-    closeButton: playComboPopup,
-    onClose: function(){
-
-
-    },
-    onOpen: function(){
-
-        console.log("open combo popup");
-        this.position(playButton);
-
-        versionSelectPopup.innerHTML = "";
-
-        // Add versions //
-        for(const version of playComboAllChoices){
-
-            const div = document.createElement("div");
-            div.classList.add("ComboVersionSelect");
-            div.classList.add("Clickable");
-
-            let prefix = "";
-
-            if(version.version.id == playButtonText.dataset.selectedID &&
-                version.download.os == playButtonText.dataset.selectedDLOS){
-                prefix = "[SELECTED] ";
-            }
-
-            div.textContent = prefix + version.version.getDescriptionString() + " " +
-                version.download.getDescriptionString();
-
-            versionSelectPopup.append(div);
-
-
-            div.addEventListener("click", function(){
-
-                console.log("selected new version");
-
-                playButtonText.dataset.selectedID = version.version.id;
-                playButtonText.dataset.selectedDLOS = version.download.os;
-
-                updatePlayButtonText();
-                versionSelectCombo.hide();
-            });
-        }
-    },
-});
-
-//! Updates play button text
-function updatePlayButtonText(){
-
-    const version = versionInfo.getVersionByID(playButtonText.dataset.selectedID);
-
-    assert(version);
-
-    const download = versionInfo.getDownloadByOSID(version.id,
-        playButtonText.dataset.selectedDLOS);
-
-    assert(download);
-
-    playButtonText.textContent = "Play " + version.getDescriptionString() + " " +
-        download.getDescriptionString();
-}
-
-//! Called once version info is loaded
-function updatePlayButton(){
-
-    playButtonText.textContent = "Processing Version Data...";
-
-    const version = versionInfo.getRecommendedVersion();
-
-    if(!version){
-        playButtonText.textContent = "Latest version has invalid number";
-        return;
-    }
-
-    const dl = versionInfo.getDownloadForPlatform(version.id);
-
-    // Dump the other versions to be selected in the combo box thing //
-    const options = versionInfo.getAllValidVersions();
-
-    playComboAllChoices = options;
-
-    // Sort the versions //
-    playComboAllChoices.sort(function(a, b){
-
-        if(a.version.releaseNum < b.version.releaseNum)
-            return 1;
-        if(a.version.releaseNum > b.version.releaseNum)
-            return -1;
-
-        return a.download.os < b.download.os;
-    });
-
-    console.log("All valid versions: " + options.length);
-
-    // If this is null then we should let the user know that there was no
-    // preferred version
-    if(!dl){
-        playButtonText.textContent = "Couldn't find recommended version for current platform";
-        return;
-    }
-
-    // Verify retrieve logic
-    assert(versionInfo.getCurrentPlatform().os == versionInfo.getPlatformByID(dl.os).os);
-
-    // I don't think this is needed
-    // playButtonText.textContent = "Play " + version.getDescriptionString() + " " +
-    //     dl.getDescriptionString();
-
-    playButtonText.dataset.selectedID = version.id;
-    playButtonText.dataset.selectedDLOS = dl.os;
-
-    updatePlayButtonText();
-}
 
 const newsContent = document.getElementById("newsContent");
 
