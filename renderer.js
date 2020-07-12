@@ -1028,7 +1028,7 @@ function playPressed(){
             "application/zip",
             "application/octet-stream",
         ].includes(contentType)){
-            throw"download type is wrong: " + contentType;
+            throw "download type is wrong: " + contentType;
         }
 
         console.log("Successfully downloaded");
