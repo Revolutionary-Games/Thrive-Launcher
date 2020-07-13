@@ -6,6 +6,7 @@ const url = require("url");
 const {devCenterURL} = require("./config");
 const {settings, saveSettings} = require("../settings");
 const {Modal, showGenericError} = require("../modal");
+const {setExtraVersions, devBuildIdentifier} = require("./version_select_button");
 
 const noConnectionMessage = "Connect to DevCenter";
 
@@ -39,6 +40,9 @@ const retryButton = document.getElementById("retryLoginCode");
 const disconnectButton = document.getElementById("disconnectFromDevCenter");
 const disconnectInfo = document.getElementById("devCenterDisconnectStatus");
 const connectedDetails = document.getElementById("devCenterConnectedUserDetails");
+const buildTypeBOTD = document.getElementById("devcenterBuildTypeBOTD");
+const buildTypeLatest = document.getElementById("devcenterBuildTypeLatest");
+const buildTypeManual = document.getElementById("devcenterBuildTypeManual");
 
 const connectedContent = [
     document.getElementById("devCenterConnectedContent"),
@@ -324,12 +328,75 @@ function disconnect(){
 // Send the extra build types to the version list object
 function sendExtraBuildTypes(){
 
+    if(!module.exports.status.connected){
+        setExtraVersions([]);
+        return;
+    }
+
+    setExtraVersions([
+        {
+            version: {
+                id: devBuildIdentifier,
+                getDescriptionString: () => "DevBuild",
+            },
+            download: {
+                os: devBuildIdentifier,
+                getDescriptionString: () => "",
+            },
+        },
+    ]);
 }
+
+let applyingSettings = false;
+
+function updateDevBuildTypeFromSettings(){
+    applyingSettings = true;
+
+    buildTypeBOTD.checked = false;
+    buildTypeLatest.checked = false;
+    buildTypeManual.checked = false;
+
+    if(settings.selectedDevBuildType === "botd" || settings.selectedDevBuildType === null){
+        buildTypeBOTD.checked = true;
+    } else if(settings.selectedDevBuildType === "latest"){
+        buildTypeLatest.checked = true;
+    } else if(settings.selectedDevBuildType === "manual"){
+        buildTypeManual.checked = true;
+    }
+
+    applyingSettings = false;
+}
+
+function onSelectedDevBuildTypeChanged(){
+    if(applyingSettings)
+        return;
+
+    let newValue = null;
+
+    if(buildTypeLatest.checked){
+        newValue = "latest";
+    } else if(buildTypeManual.checked){
+        newValue = "manual";
+    } else {
+        // Default option if nothing is selected for some reason
+        newValue = "botd";
+    }
+
+    if(settings.selectedDevBuildType !== newValue){
+        settings.selectedDevBuildType = newValue;
+        saveSettings();
+    }
+}
+
+buildTypeBOTD.addEventListener("change", onSelectedDevBuildTypeChanged);
+buildTypeLatest.addEventListener("change", onSelectedDevBuildTypeChanged);
+buildTypeManual.addEventListener("change", onSelectedDevBuildTypeChanged);
 
 // Init our callbacks
 openModalButton.addEventListener("click", (e) => {
     e.preventDefault();
     devCenterModal.show();
+    updateDevBuildTypeFromSettings();
 });
 
 loginButton.addEventListener("click", () => {

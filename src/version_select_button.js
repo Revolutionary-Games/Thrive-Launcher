@@ -2,6 +2,7 @@
 "use strict";
 
 const assert = require("assert");
+const {getPlatformForCurrentPlatform} = require("../version_info");
 
 const {ComboBox} = require("../modal");
 
@@ -18,10 +19,40 @@ const playComboPopup = document.getElementById("playComboPopup");
 const versionSelectPopupBackground = document.getElementById("playComboBackground");
 const versionSelectPopup = document.getElementById("versionSelectPopup");
 
+const devBuildIdentifier = -1;
 
 let playComboAllChoices = null;
 
 let versionInfo = null;
+let extraVersions = [];
+
+function createVersionSelectItem(version){
+    const div = document.createElement("div");
+    div.classList.add("ComboVersionSelect");
+    div.classList.add("Clickable");
+
+    let prefix = "";
+
+    if(version.version.id == playButtonText.dataset.selectedID &&
+        version.download.os == playButtonText.dataset.selectedDLOS){
+        prefix = "[SELECTED] ";
+    }
+
+    div.textContent = prefix + version.version.getDescriptionString() + " " +
+        version.download.getDescriptionString();
+
+    div.addEventListener("click", function(){
+        console.log("selected version:", version);
+
+        playButtonText.dataset.selectedID = version.version.id;
+        playButtonText.dataset.selectedDLOS = version.download.os;
+
+        updatePlayButtonText();
+        versionSelectCombo.hide();
+    });
+
+    return div;
+}
 
 const versionSelectCombo = new ComboBox(versionSelectPopupBackground, versionSelectPopup, {
     closeButton: playComboPopup,
@@ -33,51 +64,42 @@ const versionSelectCombo = new ComboBox(versionSelectPopupBackground, versionSel
         versionSelectPopup.innerHTML = "";
 
         // Add versions //
+        for(const version of extraVersions){
+            const div = createVersionSelectItem(version);
+            versionSelectPopup.append(div);
+        }
+
         for(const version of playComboAllChoices){
 
-            const div = document.createElement("div");
-            div.classList.add("ComboVersionSelect");
-            div.classList.add("Clickable");
-
-            let prefix = "";
-
-            if(version.version.id === playButtonText.dataset.selectedID &&
-                version.download.os === playButtonText.dataset.selectedDLOS){
-                prefix = "[SELECTED] ";
-            }
-
-            div.textContent = prefix + version.version.getDescriptionString() + " " +
-                version.download.getDescriptionString();
-
+            const div = createVersionSelectItem(version);
             versionSelectPopup.append(div);
-
-            div.addEventListener("click", function(){
-                console.log("selected version:", version);
-
-                playButtonText.dataset.selectedID = version.version.id;
-                playButtonText.dataset.selectedDLOS = version.download.os;
-
-                updatePlayButtonText();
-                versionSelectCombo.hide();
-            });
         }
     },
 });
 
+function isDevBuildSelected(){
+    return playButtonText.dataset.selectedID == devBuildIdentifier &&
+        playButtonText.dataset.selectedDLOS == devBuildIdentifier
+}
+
 //! Updates play button text
 function updatePlayButtonText(){
+    if(!isDevBuildSelected()){
 
-    const version = versionInfo.getVersionByID(playButtonText.dataset.selectedID);
+        const version = versionInfo.getVersionByID(playButtonText.dataset.selectedID);
 
-    assert(version);
+        assert(version);
 
-    const download = versionInfo.getDownloadByOSID(version.id,
-        playButtonText.dataset.selectedDLOS);
+        const download = versionInfo.getDownloadByOSID(version.id,
+            playButtonText.dataset.selectedDLOS);
 
-    assert(download);
+        assert(download);
 
-    playButtonText.textContent = "Play " + version.getDescriptionString() + " " +
-        download.getDescriptionString();
+        playButtonText.textContent = "Play " + version.getDescriptionString() + " " +
+            download.getDescriptionString();
+    } else {
+        playButtonText.textContent = "Play DevBuild " + getPlatformForCurrentPlatform().name;
+    }
 }
 
 //! Called once version info is loaded
@@ -102,7 +124,7 @@ function updatePlayButton(versions){
 
     // Sort the versions //
     playComboAllChoices.sort(function(a, b){
-
+        // TODO: could use semver here (probably)
         if(a.version.releaseNum < b.version.releaseNum)
             return 1;
         if(a.version.releaseNum > b.version.releaseNum)
@@ -150,3 +172,7 @@ module.exports.setPlayButtonText = (text) => {
 module.exports.getSelectedVersion = () => {
     return {id: playButtonText.dataset.selectedID, os: playButtonText.dataset.selectedDLOS};
 };
+module.exports.setExtraVersions = (versions) => {
+    extraVersions = versions;
+};
+module.exports.devBuildIdentifier = devBuildIdentifier;

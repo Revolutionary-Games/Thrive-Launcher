@@ -31,6 +31,8 @@ const defaultSettings = {
     launchOptionNoGUIGPU: false,
     installPath: module.exports.defaultInstallPath,
     devCenterKey: null,
+    selectedDevBuildType: null,
+    manuallySelectedBuildHash: null,
 };
 
 module.exports.settings = Object.assign({}, defaultSettings);

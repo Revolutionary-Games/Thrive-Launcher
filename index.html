@@ -302,6 +302,22 @@
           <div id="devCenterTabs-1">
             <div id="devCenterConnectedContent" style="display: none">
               <div id="devCenterConnectedUserDetails"></div>
+              <div>
+                <p>Selected DevBuild type:</p>
+                <div>
+                  <input type="radio" name="buildType" id="devcenterBuildTypeBOTD" checked>
+                  <label for="devcenterBuildTypeBOTD">Build of the Day (recommended)</label>
+                </div>
+                <div>
+                  <input type="radio" name="buildType" id="devcenterBuildTypeLatest">
+                  <label for="devcenterBuildTypeLatest">Latest</label>
+                </div>
+                <div>
+                  <input type="radio" name="buildType" id="devcenterBuildTypeManual">
+                  <label for="devcenterBuildTypeManual">Manually selected in "All Builds" tab
+                  </label>
+                </div>
+              </div>
               <p id="devCenterDisconnectStatus"></p>
               <div id="disconnectFromDevCenter" class="BottomButton" style="height: 40px;">
                 <p style="text-align: left; font-size: 0.8em;">

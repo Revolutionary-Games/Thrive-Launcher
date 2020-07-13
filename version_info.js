@@ -113,6 +113,16 @@ function getPlatformByID(osID){
     return null;
 }
 
+function getPlatformForCurrentPlatform(currentPlatform = getCurrentPlatform()){
+    for(const platform of versionData.platforms){
+
+        if(currentPlatform.compare(platform))
+            return platform;
+    }
+
+    return null;
+}
+
 function getDownloadForPlatform(id, platform = getCurrentPlatform()){
 
     for(const ver of versionData.versions){
@@ -225,6 +235,7 @@ module.exports.getRecommendedVersion = getRecommendedVersion;
 module.exports.getVersionByID = getVersionByID;
 module.exports.getDownloadForPlatform = getDownloadForPlatform;
 module.exports.getPlatformByID = getPlatformByID;
+module.exports.getPlatformForCurrentPlatform = getPlatformForCurrentPlatform;
 module.exports.getCurrentPlatform = getCurrentPlatform;
 module.exports.getAllValidVersions = getAllValidVersions;
 module.exports.getLauncherMeta = () => {
