@@ -325,6 +325,18 @@ function disconnect(){
     });
 }
 
+async function getCurrentDevBuild(){
+    if(settings.selectedDevBuildType === "botd" || settings.selectedDevBuildType === null){
+        return "aa";
+    } else if(settings.selectedDevBuildType === "latest"){
+        return "bb";
+    } else if(settings.selectedDevBuildType === "manual"){
+        return "cc";
+    } else {
+        throw "Unknown devbuild type";
+    }
+}
+
 // Send the extra build types to the version list object
 function sendExtraBuildTypes(){
 
@@ -335,6 +347,8 @@ function sendExtraBuildTypes(){
 
     setExtraVersions([
         {
+            devbuild: true,
+            getDevBuildInfo: getCurrentDevBuild,
             version: {
                 id: devBuildIdentifier,
                 getDescriptionString: () => "DevBuild",
@@ -342,6 +356,7 @@ function sendExtraBuildTypes(){
             download: {
                 os: devBuildIdentifier,
                 getDescriptionString: () => "",
+                folderName: "devbuild",
             },
         },
     ]);

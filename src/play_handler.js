@@ -4,14 +4,11 @@
 
 const remote = require("electron").remote;
 
-const win = remote.getCurrentWindow();
-
 const assert = require("assert");
 const fs = remote.require("fs");
 const path = require("path");
 const mkdirp = remote.require("mkdirp");
-const os = remote.require("os");
-const child_process = remote.require("child_process");
+
 
 const {settings, tmpDLFolder} = require("../settings.js");
 const {showUnpackMessages} = require("./config");
@@ -19,10 +16,11 @@ const {Modal} = require("../modal");
 const {onGameEnded} = require("./crash_reporting.js");
 const errorSuggestions = require("./error_suggestions");
 const {Progress} = require("./progress");
-const {unpackRelease, findBinInRelease} = require("./unpack");
+const {unpackRelease} = require("./unpack");
 const {getSelectedVersion} = require("./version_select_button");
 const {downloadFile, verifyDLHash} = require("./download_helper");
 const versionInfo = require("../version_info");
+const {runThrive} = require("./thrive_runner");
 
 
 let playModalQuitDLCancel = null;
@@ -46,181 +44,18 @@ const playModal = new Modal("playModal", "playModalDialog", {
     },
 });
 
-
+// Runs the game after the game folder is ready
 function onThriveFolderReady(version, download){
-
     const installFolder = path.join(settings.installPath, download.folderName);
 
     assert(fs.existsSync(installFolder));
 
     const status = document.getElementById("playingInternalP");
 
-    // Destroy the download progress indicator
-    status.innerHTML = "";
-
-    status.textContent = "preparing to launch";
-
-    // Find bin folder //
-    const binFolder = findBinInRelease(installFolder);
-
-    if(!fs.existsSync(binFolder)){
-
-        status.textContent = "Error 'bin' folder is missing! To redownload delete " +
-            installFolder;
-        return;
-    }
-
-    // Check that executable is there //
-    let exename = null;
-
-    if(os.platform() === "win32"){
-
-        exename = "Thrive.exe";
-
-    } else {
-
-        exename = "Thrive";
-    }
-
-    if(!fs.existsSync(path.join(binFolder, exename))){
-
-        status.textContent = "Error: Thrive executable is missing! To redownload delete " +
-            installFolder;
-        return;
-    }
-
-    status.textContent = "launching...";
-
-    const launchArgs = [];
-
-    if(settings.launchOptionSingleProcess)
-        launchArgs.push("--single-process");
-
-    if(settings.launchOptionNoGUISandbox)
-        launchArgs.push("--no-sandbox");
-
-    if(settings.launchOptionNoGUIGPU)
-        launchArgs.push("--disable-gpu");
-
-    console.log("launching thrive from folder '" + binFolder + "' with arguments: ",
-        launchArgs);
-
-    // Cwd is where relative to things are installed
-    const thrive = child_process.spawn(path.join(binFolder, exename),
-        launchArgs,
-        {cwd: binFolder});
-
-    if(settings.hideLauncherOnPlay){
-        win.minimize();
-    }
-
-    status.innerHTML = "";
-
-    const titleSpan = document.createElement("span");
-
-    const processOutput = document.createElement("div");
-
-    processOutput.style.overflow = "auto";
-
-    // This needs a fixed size for some reason
-    processOutput.style.maxHeight = "410px";
-    processOutput.style.height = "410px";
-    processOutput.style.paddingTop = "5px";
-    processOutput.style.width = "100%";
-
-    status.style.marginBottom = "1px";
-
-    titleSpan.textContent = "Thrive is running. Log output: ";
-
-    titleSpan.append(processOutput);
-
-    status.append(titleSpan);
-
-    const appendMessage = (text) => {
-
-        const message = document.createElement("div");
-        message.textContent = text;
-        processOutput.append(message);
-
-        const container = $(processOutput);
-
-        // Max number of messages
-        while(container.children().length > 1000){
-
-            // Remove elements //
-            container.children().first().remove();
-        }
-
-        // For some reason the jquery thing is not working so this is at least a decent choice
-        message.scrollIntoView(false);
-
-        // Let modalContainer = $( playModal.dialog );
-
-        // let check = $("#playModalDialog");
-
-        // //assert(modalContainer == check);
-
-        // check.scrollTop = check.scrollHeight;
-
-        // // modalContainer.animate({
-        // //     scrollTop: modalContainer.scrollHeight
-        // // }, 500);
-    };
-
-    appendMessage("Process Started");
-
-    thrive.stdout.on("data", (data) => {
-
-        for(const line of data.toString().split(/\r?\n/g))
-            appendMessage(line);
-    });
-
-    thrive.stderr.on("data", (data) => {
-
-        appendMessage("ERROR: " + data);
-    });
-
-    thrive.on("exit", (code, signal) => {
-
-        if(settings.hideLauncherOnPlay){
-            win.show();
-        }
-
-        if(signal){
-            console.log(`child process exited due to signal ${signal}`);
-            appendMessage(`child process exited due to signal ${signal}`);
-
-        } else {
-            console.log(`child process exited with code ${code}`);
-            appendMessage(`child process exited with code ${code}`);
-
-            if(code === 0)
-                appendMessage("Thrive has exited normally (exit code 0).");
-        }
-
-        const closeContainer = document.createElement("div");
-
-        closeContainer.style.textAlign = "center";
-
-        const close = document.createElement("div");
-
-        close.textContent = "Close";
-
-        close.className = "CloseButton";
-
-        close.addEventListener("click", () => {
-
-            console.log("extra close clicked");
-            playModal.hide();
-        });
-
-        closeContainer.append(close);
-
-        status.append(closeContainer);
-
-        // Let crash reporter do things
-        onGameEnded(binFolder, signal != null ? signal : code, closeContainer,
-            version.releaseNum);
+    runThrive(installFolder, status, () => {
+        playModal.hide();
+    }, (bin, signal, closeContainer) => {
+        onGameEnded(bin, signal, closeContainer, version.releaseNum);
     });
 }
 

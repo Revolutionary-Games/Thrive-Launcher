@@ -79,7 +79,7 @@ const versionSelectCombo = new ComboBox(versionSelectPopupBackground, versionSel
 
 function isDevBuildSelected(){
     return playButtonText.dataset.selectedID == devBuildIdentifier &&
-        playButtonText.dataset.selectedDLOS == devBuildIdentifier
+        playButtonText.dataset.selectedDLOS == devBuildIdentifier;
 }
 
 //! Updates play button text
