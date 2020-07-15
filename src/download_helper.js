@@ -5,7 +5,6 @@ const {remote} = require("electron");
 
 const fs = remote.require("fs");
 const request = require("request");
-const zlib = remote.require("zlib");
 
 const sha3_256 = require("js-sha3").sha3_256;
 
@@ -15,9 +14,11 @@ const {formatBytes} = require("./utils");
 // http://ourcodeworld.com/articles/read/228/how-to-download-a-webfile-with-electron-
 // save-it-and-show-download-progress (note: link split on two lines)
 // With some modifications
-function downloadFile(configuration){
-    const downloadProgress = Progress("download");
-    downloadProgress.formatter = formatBytes;
+function downloadFile(configuration, useProgress = true){
+    const downloadProgress = useProgress ? Progress("download") : null;
+
+    if(useProgress)
+        downloadProgress.formatter = formatBytes;
 
     return new Promise(function(resolve, reject){
         // Save variable to know progress
@@ -47,7 +48,8 @@ function downloadFile(configuration){
 
             // Change the total bytes value to get progress later.
             total_bytes = parseInt(data.headers["content-length"]);
-            downloadProgress.max = total_bytes;
+            if(useProgress)
+                downloadProgress.max = total_bytes;
 
             contentType = data.headers["content-type"];
         });
@@ -77,74 +79,6 @@ function downloadFile(configuration){
 
         req.on("error", function(err){
 
-            out.end();
-            fs.unlinkSync(configuration.localFile);
-            reject(err);
-        });
-    });
-}
-
-// Variant of download that ungzips to a local file
-async function downloadAndUnGZip(configuration){
-    return new Promise(function(resolve, reject){
-        // Save variable to know progress
-        let received_bytes = 0;
-        let total_bytes = 0;
-
-        const req = request({
-            method: "GET",
-            uri: configuration.remoteFile,
-        });
-
-        configuration.reqObj = req;
-
-        const out = fs.createWriteStream(configuration.localFile, {encoding: null});
-        const unGZip = zlib.createGunzip();
-
-        unGZip.pipe(out);
-
-        let contentType = "unknown";
-
-        req.on("response", function(data){
-            // If we get invalid response code fail
-            if(data.statusCode !== 200){
-                reject(new Error("Got response with unexpected status code: " +
-                    data.statusCode));
-                return;
-            }
-
-            // Change the total bytes value to get progress later.
-            total_bytes = parseInt(data.headers["content-length"]);
-
-            contentType = data.headers["content-type"];
-        });
-
-        // Get progress if callback exists
-        if(Object.prototype.hasOwnProperty.call(configuration, "onProgress")){
-            req.on("data", function(chunk){
-                // Update the received bytes
-                received_bytes += chunk.length;
-
-                configuration.onProgress(received_bytes, total_bytes);
-
-                unGZip.write(chunk);
-            });
-        } else {
-            req.on("data", function(chunk){
-                // Update the received bytes
-                received_bytes += chunk.length;
-                unGZip.write(chunk);
-            });
-        }
-
-        req.on("end", function(){
-            unGZip.end();
-            out.end();
-            resolve(contentType);
-        });
-
-        req.on("error", function(err){
-            unGZip.end();
             out.end();
             fs.unlinkSync(configuration.localFile);
             reject(err);
@@ -215,5 +149,4 @@ function verifyDLHash(version, download, localTarget){
 
 module.exports.downloadFile = downloadFile;
 module.exports.verifyDLHash = verifyDLHash;
-module.exports.downloadAndUnGZip = downloadAndUnGZip;
 module.exports.computeFileHashSHA3 = computeFileHashSHA3;

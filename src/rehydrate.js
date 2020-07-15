@@ -6,14 +6,14 @@ const remote = require("electron").remote;
 const fs = remote.require("fs");
 const path = require("path");
 
-
 const mkdirp = remote.require("mkdirp");
 const rimraf = remote.require("rimraf");
 
 const {getDehydrateCacheFolder} = require("../settings");
-const {downloadAndUnGZip} = require("./download_helper");
+const {downloadFile} = require("./download_helper");
 const {getDownloadForDehydrated} = require("./dev_center");
 const {computeFileHashSHA3} = require("./download_helper");
+const {unGZip} = require("./file_utils");
 
 // Shows rehydrate progress
 // TODO: make a progress bar for this
@@ -58,14 +58,19 @@ async function downloadDehydratedObjects(missingHashes, status){
 
             const target = dehydratedTarget(item.sha3);
 
-            await downloadAndUnGZip({
+            await downloadFile({
                 remoteFile: item.download_url,
-                localFile: target,
+                localFile: target + ".gz",
 
                 onProgress: (/* received */) => {
                     // TODO: progress indicator
                 },
-            });
+            }, false);
+
+            // Unzip it
+            await unGZip(target + ".gz", target);
+
+            fs.unlinkSync(target + ".gz");
 
             // Check that downloaded hash is good
             const hash = await computeFileHashSHA3(target, null);

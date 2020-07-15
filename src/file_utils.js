@@ -6,6 +6,8 @@ const remote = require("electron").remote;
 const fs = remote.require("fs");
 const path = require("path");
 const du = require("du");
+const zlib = remote.require("zlib");
+const {pipeline} = remote.require("stream");
 
 function isDirectorySync(folder){
     return fs.lstatSync(folder).isDirectory();
@@ -35,7 +37,26 @@ async function calculateFolderSize(folder){
     }
 }
 
+// Ungzips a file
+async function unGZip(file, target){
+    return new Promise(function(resolve, reject){
+        const gzip = zlib.createGunzip();
+        const source = fs.createReadStream(file);
+        const destination = fs.createWriteStream(target);
+
+        pipeline(source, gzip, destination, (error) => {
+            if(error){
+                reject(new Error("Unzipping failed: " + error));
+                return;
+            }
+
+            resolve();
+        });
+    });
+}
+
 exports.findFirstSubFolder = findFirstSubFolder;
 exports.calculateFolderSize = calculateFolderSize;
 exports.getDirectoriesSync = getDirectoriesSync;
 exports.isDirectorySync = isDirectorySync;
+exports.unGZip = unGZip;
