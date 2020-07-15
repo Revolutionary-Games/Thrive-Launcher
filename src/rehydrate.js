@@ -9,7 +9,7 @@ const path = require("path");
 const mkdirp = remote.require("mkdirp");
 const rimraf = remote.require("rimraf");
 
-const {getDehydrateCacheFolder} = require("../settings");
+const {getDehydrateCacheFolder, tmpDLFolder} = require("../settings");
 const {downloadFile} = require("./download_helper");
 const {getDownloadForDehydrated} = require("./dev_center");
 const {computeFileHashSHA3} = require("./download_helper");
@@ -57,10 +57,11 @@ async function downloadDehydratedObjects(missingHashes, status){
                 processed + " / " + total;
 
             const target = dehydratedTarget(item.sha3);
+            const tmpZip = path.join(tmpDLFolder, item.sha3 + ".gz");
 
             await downloadFile({
                 remoteFile: item.download_url,
-                localFile: target + ".gz",
+                localFile: tmpZip,
 
                 onProgress: (/* received */) => {
                     // TODO: progress indicator
@@ -68,9 +69,13 @@ async function downloadDehydratedObjects(missingHashes, status){
             }, false);
 
             // Unzip it
-            await unGZip(target + ".gz", target);
+            await unGZip(tmpZip, target);
 
-            fs.unlinkSync(target + ".gz");
+            fs.unlink(tmpZip, (error) => {
+                if(error){
+                    console.error("Failed to delete temporary gz file:", error);
+                }
+            });
 
             // Check that downloaded hash is good
             const hash = await computeFileHashSHA3(target, null);
@@ -146,6 +151,8 @@ async function rehydrate(thriveFolder, dehydratedData, status){
             ++processed;
         }
     }
+
+    status.textContent = "Rehydration complete";
 }
 
 async function checkIsDehydrated(thriveFolder, status){

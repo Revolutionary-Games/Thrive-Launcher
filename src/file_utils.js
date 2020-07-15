@@ -7,7 +7,6 @@ const fs = remote.require("fs");
 const path = require("path");
 const du = require("du");
 const zlib = remote.require("zlib");
-const {pipeline} = remote.require("stream");
 
 function isDirectorySync(folder){
     return fs.lstatSync(folder).isDirectory();
@@ -40,18 +39,20 @@ async function calculateFolderSize(folder){
 // Ungzips a file
 async function unGZip(file, target){
     return new Promise(function(resolve, reject){
-        const gzip = zlib.createGunzip();
-        const source = fs.createReadStream(file);
-        const destination = fs.createWriteStream(target);
+        try{
+            const gzip = zlib.createGunzip();
+            const source = fs.createReadStream(file);
+            const destination = fs.createWriteStream(target);
 
-        pipeline(source, gzip, destination, (error) => {
-            if(error){
-                reject(new Error("Unzipping failed: " + error));
-                return;
-            }
+            source.pipe(gzip).pipe(destination);
 
-            resolve();
-        });
+            destination.on("close", () => {
+                resolve();
+            });
+
+        } catch(error){
+            reject(error);
+        }
     });
 }
 
