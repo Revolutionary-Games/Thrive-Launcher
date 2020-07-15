@@ -35,6 +35,13 @@ function downloadFile(configuration){
         let contentType = "unknown";
 
         req.on("response", function(data){
+            // If we get invalid response code fail
+            if(data.statusCode !== 200){
+                reject(new Error("Got response with unexpected status code: " +
+                    data.statusCode));
+                return;
+            }
+
             // Change the total bytes value to get progress later.
             total_bytes = parseInt(data.headers["content-length"]);
             downloadProgress.max = total_bytes;
@@ -70,7 +77,6 @@ function downloadFile(configuration){
             out.end();
             fs.unlinkSync(configuration.localFile);
             reject(err);
-
         });
     });
 }
@@ -80,6 +86,8 @@ function downloadFile(configuration){
 function verifyDLHash(version, download, localTarget){
 
     return new Promise((resolve, reject) => {
+
+        fs.accessSync(localTarget, fs.constants.R_OK);
 
         const totalSize = fs.statSync(localTarget).size;
 

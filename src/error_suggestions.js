@@ -18,6 +18,8 @@ function appendSuggestion(suggestionText, element){
 }
 
 function unpackError(message, element){
+    if(!message)
+        return;
 
     if(message.includes("ENOENT")){
         // ENOENT, missing 32bit support

@@ -8,11 +8,12 @@ const assert = require("assert");
 const fs = remote.require("fs");
 const path = require("path");
 const mkdirp = remote.require("mkdirp");
+const rimraf = remote.require("rimraf");
+const nodeURL = require("url");
 
-
-const {settings, tmpDLFolder} = require("../settings.js");
-const {showUnpackMessages} = require("./config");
-const {Modal} = require("../modal");
+const {settings, tmpDLFolder, getDevBuildFolder} = require("../settings.js");
+const {showUnpackMessages, devBuildCacheName} = require("./config");
+const {Modal, showGenericError} = require("../modal");
 const {onGameEnded} = require("./crash_reporting.js");
 const errorSuggestions = require("./error_suggestions");
 const {Progress} = require("./progress");
@@ -20,8 +21,15 @@ const {unpackRelease} = require("./unpack");
 const {getSelectedVersion} = require("./version_select_button");
 const {downloadFile, verifyDLHash} = require("./download_helper");
 const versionInfo = require("../version_info");
+const {findFirstSubFolder} = require("./file_utils");
+const {
+    getCurrentDevBuildType, getDevBuildPlatform, fetchDevBuildInfo,
+    getDownloadForBuild, getCurrentDevBuildVersion,
+} = require("./dev_center");
+const {devBuildIdentifier} = require("./version_select_button");
 const {runThrive} = require("./thrive_runner");
 
+const playBox = document.getElementById("playModalContent");
 
 let playModalQuitDLCancel = null;
 let currentDLCanceled = false;
@@ -46,7 +54,8 @@ const playModal = new Modal("playModal", "playModalDialog", {
 
 // Runs the game after the game folder is ready
 function onThriveFolderReady(version, download){
-    const installFolder = path.join(settings.installPath, download.folderName);
+    const installFolder = version.devbuild ? path.join(getDevBuildFolder(), "build") :
+        path.join(settings.installPath, download.folderName);
 
     assert(fs.existsSync(installFolder));
 
@@ -59,7 +68,8 @@ function onThriveFolderReady(version, download){
     });
 }
 
-function dlHelperUnPack(status, localTarget, version, download, fileName){
+function dlHelperUnPack(status, localTarget, version, download, fileName,
+    customUnzipMove = null, installFolder = settings.installPath){
     // Hash is verified before unpacking //
     status.textContent = "Verifying archive '" + fileName + "'";
     const element = document.createElement("p");
@@ -67,11 +77,13 @@ function dlHelperUnPack(status, localTarget, version, download, fileName){
     status.append(element);
 
     // Unpack archive //
-    verifyDLHash(version, download, localTarget).catch(() => {
+    const verify = verifyDLHash(version, download, localTarget).catch(() => {
         // Fail //
         status.textContent = "Hash for file '" + fileName + "' is invalid " +
             "(download corrupted or wrong file was downloaded) please try again";
-    }).then(() => {
+    });
+
+    verify.then(() => {
         // Hash is correct //
         status.innerHTML = "";
         status.textContent = "Unpacking archive '" + fileName +
@@ -98,14 +110,60 @@ function dlHelperUnPack(status, localTarget, version, download, fileName){
 
         console.log("beginning unpacking");
 
-        return unpackRelease(settings.installPath, download.folderName, localTarget,
+        return unpackRelease(installFolder, download.folderName, localTarget,
             unpackProgress);
     }).then(() => {
-        assert(fs.existsSync(path.join(settings.installPath, download.folderName)));
+        // This is the top level unzip target
+        const created = path.join(installFolder, download.folderName);
+        assert(fs.existsSync(created));
+
+        // Custom rename
+        if(customUnzipMove){
+            // The rename requires there to be another folder within the unpack folder
+
+            const finalPath = path.join(installFolder, customUnzipMove);
+            const source = findFirstSubFolder(created);
+
+            if(!source){
+                throw new Error("The unpacked folder doesn't contain any folders for" +
+                    " move");
+            }
+
+            assert(fs.existsSync(source));
+
+            return new Promise((resolve, reject) => {
+                // First delete existing
+                rimraf(finalPath, (error) => {
+                    if(error){
+                        console.log("rimraf on existing file to rename over failed:", error);
+                    }
+
+                    // And then rename
+                    fs.rename(source, finalPath,
+                        (error) => {
+
+                            if(error){
+                                reject(new Error("Failed to rename extracted file: " + error));
+                                return;
+                            }
+
+                            // Delete the folder to not leave it over, don't need error
+                            // checking on this
+                            rimraf(created, () => {
+                            });
+
+                            resolve();
+                        });
+                });
+            });
+        }
+
+        return true;
+
+    }).then(() => {
+
         console.log("unpacking completed");
-
         onThriveFolderReady(version, download);
-
     }).catch((error) => {
         // Fail //
         status.textContent = "Unpacking failed, File '" + fileName +
@@ -114,7 +172,7 @@ function dlHelperUnPack(status, localTarget, version, download, fileName){
         status.append(document.createElement("br"));
 
         // Auto detect solutions //
-        errorSuggestions.unpackError(error, status);
+        errorSuggestions.unpackError("" + error, status);
 
         status.append(document.createElement("br"));
 
@@ -158,53 +216,8 @@ function onDLFileReady(version, download, fileName){
     });
 }
 
-// Called when the play button is pressed
-function playPressed(){
-    // Cannot be downloading already //
-    assert(playModalQuitDLCancel == null);
-    currentDLCanceled = false;
+async function downloadTheGame(url, localTarget, status){
 
-    // Open play modal thing
-    playModal.show();
-
-    const {id, os} = getSelectedVersion();
-
-    const version = versionInfo.getVersionByID(id);
-
-    const download = versionInfo.getDownloadByOSID(version.id, os);
-
-    assert(download);
-
-    console.log("Playing thrive version: " + version.getDescriptionString() + " " +
-        download.getDescriptionString());
-
-    const playBox = document.getElementById("playModalContent");
-
-    playBox.innerHTML = "Playing Thrive " + version.releaseNum +
-        "<p id='playingInternalP'>Downloading: " + download.url +
-        "</p><div id='dlProgress'></div>";
-
-    const fileName = download.fileName;
-
-    assert(fileName);
-
-    if(fs.existsSync(path.join(settings.installPath, download.folderName))){
-
-        console.log("archive has already been extracted (assumed)");
-        onThriveFolderReady(version, download);
-        return;
-    }
-
-    const localTarget = path.join(tmpDLFolder, fileName);
-
-    if(fs.existsSync(localTarget)){
-
-        console.log("already exists: " + fileName);
-        onDLFileReady(version, download, fileName);
-        return;
-    }
-
-    const status = document.getElementById("dlProgress");
     const mkdir = mkdirp(tmpDLFolder);
 
     mkdir.catch((err) => {
@@ -212,12 +225,12 @@ function playPressed(){
         alert("failed to create dl directory");
     });
 
-    mkdir.then(() => {
+    const op = mkdir.then(() => {
         const downloadProgress = Progress("download");
         downloadProgress.render(status);
 
         const dataObj = {
-            remoteFile: download.url,
+            remoteFile: url,
             localFile: localTarget,
 
             onProgress: function(received){
@@ -249,6 +262,9 @@ function playPressed(){
             "application/x-7z-compressed",
             "application/zip",
             "application/octet-stream",
+
+            // This seems to happen when downloading devbuilds
+            "application/x-www-form-urlencoded",
         ].includes(contentType)){
             throw "download type is wrong: " + contentType;
         }
@@ -257,13 +273,9 @@ function playPressed(){
 
         // No longer need to cancel
         playModalQuitDLCancel = null;
+    });
 
-        const status = document.getElementById("playingInternalP");
-        status.textContent = "Successfully downloaded " + version.releaseNum;
-
-        onDLFileReady(version, download, fileName);
-
-    }).catch((error) => {
+    op.catch((error) => {
         if(fs.existsSync(localTarget)){
 
             fs.unlinkSync(localTarget);
@@ -273,6 +285,185 @@ function playPressed(){
             status.textContent = "Download Failed! " + error;
         }
     });
+
+    return op;
+}
+
+// Once devbuild URL is figured out this determines if it needs to be downloaded and then
+// goes on to the game start function
+async function onDevBuildURLReceived(url, hash){
+    const cacheFile = path.join(getDevBuildFolder(), devBuildCacheName);
+
+    // This is used to determine if we have already downloaded something despite the tokens
+    // changing
+    const fileUrl = url.substr(0, url.indexOf("?"));
+
+    const parsedUrl = nodeURL.parse(url);
+    const fileName = path.basename(parsedUrl.pathname);
+
+    const ext = path.extname(fileName);
+
+    const version = getCurrentDevBuildVersion();
+    const download = {
+        devbuild: true,
+        folderName: path.basename(fileName, ext),
+        hash: hash,
+    };
+
+    fs.readFile(cacheFile, (error, data) => {
+        let cache = {};
+
+        if(!error){
+            cache = JSON.parse(data);
+        }
+
+        if(cache.unpackedBuild === fileUrl &&
+            fs.existsSync(path.join(getDevBuildFolder(), "build"))){
+
+            console.log("Currently selected devbuild is already unpacked");
+            onThriveFolderReady(version, download);
+        } else {
+            const localTarget = path.join(tmpDLFolder, "devbuild.7z");
+
+            if(fs.existsSync(localTarget)){
+                fs.unlinkSync(localTarget);
+            }
+
+            const status = document.getElementById("dlProgress");
+
+            downloadTheGame(url, localTarget, status).then(() => {
+
+                const status = document.getElementById("playingInternalP");
+                status.textContent = "Successfully downloaded devbuild";
+
+                dlHelperUnPack(status, localTarget, version, download, "devbuild.7z",
+                    "build", getDevBuildFolder());
+
+                cache.unpackedBuild = fileUrl;
+
+                fs.writeFile(cacheFile, JSON.stringify(cache), (error) => {
+                    if(error)
+                        console.log("failed to write devbuild cache file");
+                });
+            });
+        }
+    });
+}
+
+function playDevBuild(){
+    playBox.innerHTML = "Playing Thrive DevBuild (" + getCurrentDevBuildType() +
+        ") for " + getDevBuildPlatform() +
+        "<p id='playingInternalP'>Retrieving build info " +
+        "</p><div id='dlProgress'></div>";
+
+    const status = document.getElementById("playingInternalP");
+
+    const build = fetchDevBuildInfo().then((build) => {
+        if(!build){
+            throw "Could not find build information.";
+        }
+
+        console.log("received build info:", build);
+
+        status.innerText = `Found build: ${build.id} hash: ${build.build_hash}. ` +
+            "Starting download...";
+
+        return new Promise((resolve) => {
+            if(!build.verified && build.anonymous){
+                showGenericError("The found build is anonymous and unverified, as such it is" +
+                    " (potentially) unsafe to play. TODO: allow playing anyway.");
+            } else {
+                resolve(build);
+            }
+        });
+    }).then((build) => {
+        return getDownloadForBuild(build);
+    });
+
+    build.catch((error) => {
+        status.innerText = "Error retrieving build information: " + error;
+    });
+
+    build.then((download) => {
+        return mkdirp(getDevBuildFolder()).then(() => {
+            return download;
+        });
+    });
+
+    build.then((download) => {
+        status.innerText = "Downloading: " +
+            download.download_url.substr(0, download.download_url.indexOf("?"));
+
+        return onDevBuildURLReceived(download.download_url, download.dl_hash);
+
+    }).catch((error) => {
+        status.innerText = "Error downloading build: " + error;
+    });
+}
+
+function playNormalVersion(version, download){
+
+    playBox.innerHTML = "Playing Thrive " + version.releaseNum +
+        "<p id='playingInternalP'>Downloading: " + download.url +
+        "</p><div id='dlProgress'></div>";
+
+    const fileName = download.fileName;
+
+    assert(fileName);
+
+    if(fs.existsSync(path.join(settings.installPath, download.folderName))){
+
+        console.log("archive has already been extracted (assumed)");
+        onThriveFolderReady(version, download);
+        return;
+    }
+
+    const localTarget = path.join(tmpDLFolder, fileName);
+
+    if(fs.existsSync(localTarget)){
+
+        console.log("already exists: " + fileName);
+        onDLFileReady(version, download, fileName);
+        return;
+    }
+
+    const status = document.getElementById("dlProgress");
+
+    downloadTheGame(download.url, localTarget, status).then(() => {
+
+        const status = document.getElementById("playingInternalP");
+        status.textContent = "Successfully downloaded " + version.releaseNum;
+
+        onDLFileReady(version, download, fileName);
+    });
+}
+
+// Called when the play button is pressed
+function playPressed(){
+    // Cannot be downloading already //
+    assert(playModalQuitDLCancel == null);
+    currentDLCanceled = false;
+
+    // Open play modal thing
+    playModal.show();
+
+    const {id, os} = getSelectedVersion();
+
+    if(id == devBuildIdentifier && os == devBuildIdentifier){
+        console.log("Playing devbuild");
+        playDevBuild();
+    } else {
+        const version = versionInfo.getVersionByID(id);
+
+        const download = versionInfo.getDownloadByOSID(version.id, os);
+
+        assert(download);
+
+        console.log("Playing thrive version: " + version.getDescriptionString() + " " +
+            download.getDescriptionString());
+
+        playNormalVersion(version, download);
+    }
 }
 
 exports.playPressed = playPressed;

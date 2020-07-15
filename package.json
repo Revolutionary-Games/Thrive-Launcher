@@ -97,6 +97,7 @@
         "stylelint": "^13.6.1"
     },
     "dependencies": {
+        "du": "^1.0.0",
         "electron-log": "^4.2.2",
         "electron-updater": "^4.3.1",
         "feedparser": "^2.2.10",

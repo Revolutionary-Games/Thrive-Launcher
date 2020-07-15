@@ -74,8 +74,9 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
 
         let message = "";
 
+        // -aoa is overwrite all
         const unpackProcess = spawn(unpacker,
-            ["x", sanityEscape(archiveFile), "-O" + sanityEscape(target) + ""]);
+            ["x", sanityEscape(archiveFile), "-aoa", "-O" + sanityEscape(target) + ""]);
 
         if(!unpackProcess){
 

@@ -11,6 +11,8 @@ module.exports = {
     // When true checks if computer has intel graphics that likely cause problems
     checkGraphicsCard: false,
 
+    devBuildCacheName: "devbuild_cache.json",
+
     // For local testing
     // devCenterURL: "http://localhost:5000",
     devCenterURL: "https://dev.revolutionarygamesstudio.com/",

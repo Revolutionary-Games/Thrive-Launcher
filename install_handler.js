@@ -8,15 +8,14 @@ const remote = require("electron").remote;
 
 const fs = remote.require("fs-extra");
 const path = require("path");
+
 const rimraf = remote.require("rimraf");
 
+const {getDirectoriesSync} = require("./src/file_utils");
 const {getVersionData} = require("./version_info.js");
 
 const {settings} = require("./settings.js");
 
-const isDirectory = (source) => fs.lstatSync(source).isDirectory();
-const getDirectories = (source) =>
-    fs.readdirSync(source).map((name) => path.join(source, name)).filter(isDirectory);
 
 // Returns the names of all installed versions. And extra files in the installed folder
 function listInstalledVersions(){
@@ -27,7 +26,7 @@ function listInstalledVersions(){
         let directories = null;
 
         try{
-            directories = getDirectories(settings.installPath);
+            directories = getDirectoriesSync(settings.installPath);
         } catch(err){
             // Ignore error regarding the install directory not existing
             if(err.code == "ENOENT"){

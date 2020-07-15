@@ -20,6 +20,9 @@ module.exports.locallyCachedDLFile = path.join(module.exports.dataFolder,
 
 module.exports.defaultInstallPath = path.join(module.exports.dataFolder, "Installed");
 
+module.exports.getDevBuildFolder = () => path.join(module.exports.settings.installPath,
+    "devbuild");
+
 // Make sure it exists. This simplifies a lot of code
 mkdirp.sync(module.exports.dataFolder);
 

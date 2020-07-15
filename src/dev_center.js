@@ -2,6 +2,7 @@
 "use strict";
 
 const url = require("url");
+const {getCurrentPlatform} = require("../version_info");
 
 const {devCenterURL} = require("./config");
 const {settings, saveSettings} = require("../settings");
@@ -14,6 +15,10 @@ const noConnectionMessage = "Connect to DevCenter";
 const launcherCheckAPI = url.resolve(devCenterURL, "/api/v1/launcher/status");
 const launcherTestTokenAPI = url.resolve(devCenterURL, "/api/v1/launcher/check_link");
 const launcherFormConnectionAPI = url.resolve(devCenterURL, "/api/v1/launcher/link");
+const launcherFindAPI = url.resolve(devCenterURL, "/api/v1/launcher/find");
+const launcherSearchAPI = url.resolve(devCenterURL, "/api/v1/launcher/search");
+const launcherDownloadBuildAPI = url.resolve(devCenterURL,
+    "/api/v1/launcher/builds/download/");
 
 const defaultConnectionStatus = {
     connected: false,
@@ -197,7 +202,14 @@ function checkConnectionStatus(){
 
         module.exports.status.error = `${error}`;
 
-        showGenericError(`Failed to connect to ThriveDevCenter: ${error}`);
+        let extraMessage = "";
+
+        if(module.exports.status.error.includes("TypeError: Failed to fetch")){
+            extraMessage = " (connection error)";
+        }
+
+        showGenericError(`Failed to connect to ThriveDevCenter: ${error}` +
+            extraMessage);
     });
 }
 
@@ -337,6 +349,156 @@ async function getCurrentDevBuild(){
     }
 }
 
+function getDevBuildPlatform(){
+    const platform = getCurrentPlatform();
+
+    if(platform.os === "win32" && platform.arch === "x64"){
+        return "Windows Desktop";
+    } else if(platform.os === "win32" && platform.arch === "ia32"){
+        return "Windows Desktop (32-bit)";
+    } else if(platform.os === "linux" && platform.arch === "x64"){
+        return "Linux/X11";
+    } else {
+        return `Unknown platform for devbuilds: ${platform.os} arch: ${platform.arch} `;
+    }
+}
+
+function getCurrentDevBuildVersion(){
+    return {
+        devbuild: true,
+        getDevBuildInfo: getCurrentDevBuild,
+        version: {
+            id: devBuildIdentifier,
+            getDescriptionString: () => "DevBuild",
+        },
+        download: {
+            os: devBuildIdentifier,
+            getDescriptionString: () => "",
+            folderName: "devbuild",
+        },
+    };
+}
+
+// Returns a type string for the currently selected devbuild type for display in the play popup
+function getCurrentDevBuildType(){
+    if(settings.selectedDevBuildType === "botd" || settings.selectedDevBuildType === null){
+        return "botd";
+    } else if(settings.selectedDevBuildType === "latest"){
+        return "latest";
+    } else if(settings.selectedDevBuildType === "manual"){
+        return "manual (" + settings.manuallySelectedBuildHash + ")";
+    }
+
+    throw "Unknown devbuild type";
+}
+
+async function queryFindAPI(type){
+    return fetch(launcherFindAPI, {
+        method: "post",
+        body: JSON.stringify({
+            type: type,
+            platform: getDevBuildPlatform(),
+        }),
+        headers: {
+            Authorization: settings.devCenterKey,
+            "Content-Type": "application/json",
+        },
+        credentials: "omit",
+    }).then((response) => {
+        return response.json().then((data) => {
+            if(response.status !== 200){
+                throw data.message || `Invalid response from server (${response.status})`;
+            }
+
+            return data;
+        });
+    });
+}
+
+async function querySearchAPI(hash){
+    return fetch(launcherSearchAPI, {
+        method: "post",
+        body: JSON.stringify({
+            devbuild_hash: hash,
+            platform: getDevBuildPlatform(),
+        }),
+        headers: {
+            Authorization: settings.devCenterKey,
+            "Content-Type": "application/json",
+        },
+        credentials: "omit",
+    }).then((response) => {
+        return response.json().then((data) => {
+            if(response.status !== 200){
+                throw data.message || `Invalid response from server (${response.status})`;
+            }
+
+            return data;
+        });
+    }).then((data) => {
+        if(data.result.length < 1)
+            throw "No builds found for current platform with a matching hash";
+
+        // Find the most promising entry
+        let mostPromising = null;
+
+        for(const entry of data.result){
+            if(mostPromising === null){
+                mostPromising = entry;
+                continue;
+            }
+
+            if(mostPromising.anonymous && !entry.anonymous){
+                mostPromising = entry;
+                continue;
+            }
+
+            if(!mostPromising.verified && entry.verified){
+                mostPromising = entry;
+            }
+        }
+
+        if(mostPromising)
+            return mostPromising;
+
+        return data.result[0];
+    });
+}
+
+// Retrieves info from the devcenter about the build we want to play
+async function fetchDevBuildInfo(){
+    if(settings.selectedDevBuildType === "botd" || settings.selectedDevBuildType === null){
+        return queryFindAPI("botd");
+    } else if(settings.selectedDevBuildType === "latest"){
+        return queryFindAPI("latest");
+    } else if(settings.selectedDevBuildType === "manual"){
+        if(!settings.manuallySelectedBuildHash)
+            throw "No manually selected hash found. Please set it and try again.";
+
+        return querySearchAPI(settings.manuallySelectedBuildHash);
+    } else {
+        throw "Unknown selected build type";
+    }
+}
+
+// Gets download info for a build. Returns an object of download_url and dl_hash
+async function getDownloadForBuild(build){
+    return fetch(launcherDownloadBuildAPI + build.id, {
+        headers: {
+            Authorization: settings.devCenterKey,
+        },
+        credentials: "omit",
+    }).then((response) => {
+        return response.json().then((data) => {
+            if(response.status !== 200){
+                throw data.message || `Invalid response from server (${response.status})`;
+            }
+
+            return data;
+        });
+    });
+}
+
 // Send the extra build types to the version list object
 function sendExtraBuildTypes(){
 
@@ -345,21 +507,7 @@ function sendExtraBuildTypes(){
         return;
     }
 
-    setExtraVersions([
-        {
-            devbuild: true,
-            getDevBuildInfo: getCurrentDevBuild,
-            version: {
-                id: devBuildIdentifier,
-                getDescriptionString: () => "DevBuild",
-            },
-            download: {
-                os: devBuildIdentifier,
-                getDescriptionString: () => "",
-                folderName: "devbuild",
-            },
-        },
-    ]);
+    setExtraVersions([getCurrentDevBuildVersion()]);
 }
 
 let applyingSettings = false;
@@ -439,3 +587,9 @@ disconnectButton.addEventListener("click", () => {
 $("#devCenterTabs").tabs();
 
 module.exports.checkConnectionStatus = checkConnectionStatus;
+module.exports.getCurrentDevBuildType = getCurrentDevBuildVersion;
+module.exports.getDevBuildPlatform = getDevBuildPlatform;
+module.exports.getCurrentDevBuildType = getCurrentDevBuildType;
+module.exports.fetchDevBuildInfo = fetchDevBuildInfo;
+module.exports.getDownloadForBuild = getDownloadForBuild;
+module.exports.getCurrentDevBuildVersion = getCurrentDevBuildVersion;

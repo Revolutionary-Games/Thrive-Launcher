@@ -8,15 +8,13 @@ const win = remote.getCurrentWindow();
 const fs = remote.require("fs");
 const os = remote.require("os");
 const path = require("path");
+const {checkIsDehydrated} = require("./rehydrate");
 const child_process = remote.require("child_process");
 
 const {settings} = require("../settings.js");
 const {findBinInRelease} = require("./unpack");
 
-function runThrive(installFolder, status, onClose, onEnded){
-    // Destroy the download progress indicator
-    status.innerHTML = "";
-
+function onCanRun(installFolder, status, onClose, onEnded){
     status.textContent = "preparing to launch";
 
     // Find bin folder //
@@ -177,6 +175,18 @@ function runThrive(installFolder, status, onClose, onEnded){
 
         // Let crash reporter do things
         onEnded(binFolder, signal != null ? signal : code, closeContainer);
+    });
+}
+
+function runThrive(installFolder, status, onClose, onEnded){
+    // Destroy the download progress indicator
+    status.innerHTML = "";
+
+    // Check if this is a dehydrated build before running
+    checkIsDehydrated(installFolder, status).then(() => {
+        onCanRun(installFolder, status, onClose, onEnded);
+    }).catch((error) => {
+        status.textContent = "Error running: " + error;
     });
 }
 
