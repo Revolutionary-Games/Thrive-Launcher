@@ -23,6 +23,10 @@ module.exports.defaultInstallPath = path.join(module.exports.dataFolder, "Instal
 module.exports.getDevBuildFolder = () => path.join(module.exports.settings.installPath,
     "devbuild");
 
+// TODO: make this configurable
+module.exports.getDehydrateCacheFolder = () => path.join(module.exports.dataFolder,
+    "DehydratedCache");
+
 // Make sure it exists. This simplifies a lot of code
 mkdirp.sync(module.exports.dataFolder);
 

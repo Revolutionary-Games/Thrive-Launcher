@@ -70,6 +70,9 @@ function onThriveFolderReady(version, download){
 
 function dlHelperUnPack(status, localTarget, version, download, fileName,
     customUnzipMove = null, installFolder = settings.installPath){
+
+    removeDLProgress();
+
     // Hash is verified before unpacking //
     status.textContent = "Verifying archive '" + fileName + "'";
     const element = document.createElement("p");
@@ -181,10 +184,17 @@ function dlHelperUnPack(status, localTarget, version, download, fileName,
     });
 }
 
+function removeDLProgress(){
+    try{
+        $("#dlProgress").remove();
+    } catch(error){
+        console.log("couldn't remove dl progress, was probably gone already");
+    }
+}
+
 // Called once a file has been downloaded (or existed) and startup should continue
 function onDLFileReady(version, download, fileName){
-    // Delete the download progress //
-    $("#dlProgress").remove();
+    removeDLProgress();
 
     const localTarget = path.join(tmpDLFolder, fileName);
 
@@ -321,6 +331,7 @@ async function onDevBuildURLReceived(url, hash){
             fs.existsSync(path.join(getDevBuildFolder(), "build"))){
 
             console.log("Currently selected devbuild is already unpacked");
+            removeDLProgress();
             onThriveFolderReady(version, download);
         } else {
             const localTarget = path.join(tmpDLFolder, "devbuild.7z");

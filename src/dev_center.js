@@ -19,6 +19,8 @@ const launcherFindAPI = url.resolve(devCenterURL, "/api/v1/launcher/find");
 const launcherSearchAPI = url.resolve(devCenterURL, "/api/v1/launcher/search");
 const launcherDownloadBuildAPI = url.resolve(devCenterURL,
     "/api/v1/launcher/builds/download/");
+const launcherDownloadDehydratedAPI = url.resolve(devCenterURL,
+    "/api/v1/launcher/dehydrated/download");
 
 const defaultConnectionStatus = {
     connected: false,
@@ -499,6 +501,37 @@ async function getDownloadForBuild(build){
     });
 }
 
+// Gets download urls for dehydrated objects based on on their hashes
+// Returns an array of objects with download_url properties
+async function getDownloadForDehydrated(objectHashes){
+    return fetch(launcherDownloadDehydratedAPI, {
+        method: "post",
+        body: JSON.stringify({
+            objects: objectHashes.map((i) => {
+                return {sha3: i};
+            }),
+        }),
+        headers: {
+            Authorization: settings.devCenterKey,
+            "Content-Type": "application/json",
+        },
+        credentials: "omit",
+    }).then((response) => {
+        return response.json().then((data) => {
+            if(response.status !== 200){
+                throw data.message || `Invalid response from server (${response.status})`;
+            }
+
+            return data;
+        });
+    }).then((data) => {
+        if(!data.downloads || data.downloads.length < 1)
+            throw "No downloads found for the objects";
+
+        return data.downloads;
+    });
+}
+
 // Send the extra build types to the version list object
 function sendExtraBuildTypes(){
 
@@ -593,3 +626,4 @@ module.exports.getCurrentDevBuildType = getCurrentDevBuildType;
 module.exports.fetchDevBuildInfo = fetchDevBuildInfo;
 module.exports.getDownloadForBuild = getDownloadForBuild;
 module.exports.getCurrentDevBuildVersion = getCurrentDevBuildVersion;
+module.exports.getDownloadForDehydrated = getDownloadForDehydrated;
