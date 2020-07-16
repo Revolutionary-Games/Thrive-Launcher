@@ -45,7 +45,7 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
 
                 if(!fs.existsSync(unpacker)){
                     reject(new Error("You don't have 7Zip installed!. Download here: " +
-                                     "http://www.7-zip.org/download.html"));
+                        "http://www.7-zip.org/download.html"));
 
                     return;
                 }
@@ -112,7 +112,7 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
                 console.log(`Unpacker exited with code ${code}`);
 
                 reject(new Error("Unpacker exited with code: " + code + ", message: " +
-                                 message));
+                    message));
                 return;
             }
 
@@ -129,7 +129,7 @@ function getThriveExecutableName(){
 
         return "Thrive.exe";
 
-    } else if(os.platform() === "linux") {
+    } else if(os.platform() === "linux"){
 
         return "Thrive";
     } else {

@@ -6,7 +6,6 @@ const remote = require("electron").remote;
 const win = remote.getCurrentWindow();
 
 const fs = remote.require("fs");
-const os = remote.require("os");
 const path = require("path");
 const child_process = remote.require("child_process");
 
@@ -28,9 +27,7 @@ function onCanRun(installFolder, status, onClose, onEnded){
     }
 
     // Check that executable is there //
-    let exename = getThriveExecutableName();
-
-
+    const exename = getThriveExecutableName();
 
     if(!fs.existsSync(path.join(binFolder, exename))){
 
