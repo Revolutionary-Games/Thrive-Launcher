@@ -88,6 +88,26 @@ async function downloadDehydratedObjects(missingHashes, status){
     }
 }
 
+// Workaround for executable bit not being preserved. Sets the execute bit on "Thrive"
+function specialFileActions(fullPath, relative){
+    if(relative === "Thrive"){
+        fs.chmodSync(fullPath, 0o755);
+    }
+}
+
+async function copyFromDehydrateCache(hash, target){
+    return new Promise((resolve, reject) => {
+        fs.copyFile(dehydratedTarget(hash), target, (error) => {
+            if(error){
+                reject(error);
+                return;
+            }
+
+            resolve();
+        });
+    });
+}
+
 // Rehydrates a thrive install according to info in dehydratedData
 async function rehydrate(thriveFolder, dehydratedData, status){
     await mkdirp(getDehydrateCacheFolder());
@@ -148,6 +168,15 @@ async function rehydrate(thriveFolder, dehydratedData, status){
         } else {
             // Just a single file. Copy it to the target folder
 
+            const targetPath = path.join(thriveFolder, fileName);
+
+            await copyFromDehydrateCache(file.sha3, targetPath);
+
+            if(!fs.existsSync(targetPath)){
+                throw `Failed to copy file (${fileName}) from dehydrate cache`;
+            }
+
+            specialFileActions(targetPath, fileName);
             ++processed;
         }
     }
