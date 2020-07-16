@@ -43,7 +43,7 @@
             "!release-builds"
         ],
         "asarUnpack": [
-            "7zip"
+            "tools"
         ],
         "nsis": {
             "oneClick": "false",

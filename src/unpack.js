@@ -17,15 +17,12 @@ function sanityEscape(str){
 }
 
 function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElement){
-
     const target = path.join(unpackFolder, targetFolderName);
 
     return new Promise(function(resolve, reject){
-
         let unpacker = null;
 
         if(os.platform() === "win32"){
-
             // By default use system installed 7zip
             const zPaths = [
                 "C:\\Program Files\\7-Zip\\7z.exe",
@@ -33,20 +30,17 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
             ];
 
             for(const z of zPaths){
-
                 if(fs.existsSync(z)){
-
                     unpacker = z;
                     break;
                 }
             }
 
             if(!unpacker){
-
                 // Use packed in version //
                 console.log("No system installed 7z found, using packed in one");
 
-                unpacker = path.join(remote.app.getAppPath(), "7zip\\7za.exe");
+                unpacker = path.join(remote.app.getAppPath(), "tools\\7zip\\7za.exe");
 
                 if(!fs.existsSync(unpacker)){
                     reject(new Error("You don't have 7Zip installed!. Download here: " +
@@ -59,7 +53,7 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
         } else {
             // TODO: allow using system 7za if present to not need to have 32 bit
             // libs installed
-            unpacker = path.join(remote.app.getAppPath(), "7zip/7za");
+            unpacker = path.join(remote.app.getAppPath(), "tools/7zip/7za");
         }
 
         // In packaged builds this is needed for this to work
@@ -79,13 +73,11 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
             ["x", sanityEscape(archiveFile), "-aoa", "-O" + sanityEscape(target) + ""]);
 
         if(!unpackProcess){
-
             reject(new Error("unpack process wasn't started for some reason"));
             return;
         }
 
         const onProgressMessage = (data) => {
-
             if(progressElement){
                 const div = document.createElement("div");
                 div.textContent = data;
@@ -128,7 +120,6 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
 }
 
 function findBinInRelease(releaseFolder, fallBack = true){
-
     // We might already be in the right folder
     if(fs.existsSync(path.join(releaseFolder, "bin")))
         return path.join(releaseFolder, "bin");
