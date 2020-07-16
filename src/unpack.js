@@ -11,8 +11,9 @@ const fs = remote.require("fs");
 
 const {spawn} = remote.require("child_process");
 
-function sanityEscape(str){
+const {convertPackedExecutablePath} = require("./utils");
 
+function sanityEscape(str){
     return str.replace(/'/gi, "").replace(/"/gi, "");
 }
 
@@ -50,14 +51,17 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
                 }
             }
 
-        } else {
+        } else if(os.platform() === "linux"){
             // TODO: allow using system 7za if present to not need to have 32 bit
             // libs installed
             unpacker = path.join(remote.app.getAppPath(), "tools/7zip/7za");
+        } else {
+            reject(new Error("Unknown platform for 7zip tool"));
+            return;
         }
 
         // In packaged builds this is needed for this to work
-        unpacker = unpacker.replace("app.asar", "app.asar.unpacked");
+        unpacker = convertPackedExecutablePath(unpacker);
 
         // Verify unpacker is installed
         if(!fs.existsSync(unpacker)){

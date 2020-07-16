@@ -14,6 +14,7 @@ const {downloadFile} = require("./download_helper");
 const {getDownloadForDehydrated} = require("./dev_center");
 const {computeFileHashSHA3} = require("./download_helper");
 const {unGZip} = require("./file_utils");
+const {runJSONRepackOperation} = require("./pck_tool");
 
 // Shows rehydrate progress
 // TODO: make a progress bar for this
@@ -163,6 +164,22 @@ async function rehydrate(thriveFolder, dehydratedData, status){
 
         if(file.type === "pck"){
             // Run pck tool to repack it
+            const operations = [];
+
+            for(const pckContainedFile in file.data.files){
+                if(!Object.hasOwnProperty.call(file.data.files, pckContainedFile))
+                    continue;
+
+                const containedData = file.data.files[pckContainedFile];
+
+                operations.push({
+                    file: dehydratedTarget(containedData.sha3),
+                    target: pckContainedFile,
+                });
+            }
+
+            // TODO: could have a progress indicator for this
+            await runJSONRepackOperation(path.join(thriveFolder, fileName), operations);
 
             processed += Object.keys(file.data.files).length;
         } else {
@@ -209,7 +226,6 @@ async function checkIsDehydrated(thriveFolder, status){
             status.textContent = "This is a dehydrated build. Rehydrating...";
 
             rehydrate(thriveFolder, dehydrated, status).then(() => {
-                return;
                 rimraf(dehydrateInfo, (error) => {
                     if(error){
                         console.error("Failed to delete dehydrate info file:", error);

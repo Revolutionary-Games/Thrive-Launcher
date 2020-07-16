@@ -32,5 +32,11 @@ function fetchWithTimeout(url, options, ms){
     });
 }
 
+// Fixes executable path if this is a packaged release
+function convertPackedExecutablePath(executablePath){
+    return executablePath.replace("app.asar", "app.asar.unpacked");
+}
+
 exports.formatBytes = formatBytes;
 exports.fetchWithTimeout = fetchWithTimeout;
+exports.convertPackedExecutablePath = convertPackedExecutablePath;
