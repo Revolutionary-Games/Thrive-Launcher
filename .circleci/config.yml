@@ -3,18 +3,32 @@ jobs:
    lint:
      working_directory: ~/thrive-launcher
      docker:
-       - image: circleci/node:10
+       - image: hhyyrylainen/thrive-launcher:v1
+     environment:
+       GIT_LFS_SKIP_SMUDGE: 1
      steps:
-        - checkout
-        - restore_cache:
+       - checkout
+       - restore_cache:
+           keys:
+             - v1-lfs-{{ .Branch }}
+             - v1-lfs-master
+       - shell:
+           name: Pull Git LFS files, retry up to 5 times
+           command: |
+             for i in {1..5}; do git reset --hard HEAD && git clean -fd && git lfs pull && exit 0; done; exit 1
+       - save_cache:
+          key: v1-lfs-{{ .Branch }}
+          paths:
+            - .git/lfs
+       - restore_cache:
             keys:
-              - v1-deps-{{ checksum "package-lock.json" }}
-        - run: npm install
-        - save_cache:
-            key: v1-deps-{{ checksum "package-lock.json" }}
+              - v2-deps-{{ checksum "package-lock.json" }}
+       - run: npm install
+       - save_cache:
+            key: v2-deps-{{ checksum "package-lock.json" }}
             paths:
               - ./node_modules
-        - run:
+       - run:
             name: linters
             command: npm run lint
 
