@@ -123,6 +123,32 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
     });
 }
 
+// Returns the name of Thrive executable on this platform
+function getThriveExecutableName(){
+    if(os.platform() === "win32"){
+
+        return "Thrive.exe";
+
+    } else if(os.platform() === "linux") {
+
+        return "Thrive";
+    } else {
+        throw "Unknown Thrive exe name for this platform";
+    }
+}
+
+// Returns true if Thrive executable exists in the current folder
+function thriveExecutableExistsInFolder(folderToCheck){
+    try{
+        const info = fs.lstatSync(path.join(folderToCheck, getThriveExecutableName()));
+
+        return info && !info.isDirectory();
+
+    } catch(error){
+        return false;
+    }
+}
+
 function findBinInRelease(releaseFolder, fallBack = true){
     // We might already be in the right folder
     if(fs.existsSync(path.join(releaseFolder, "bin")))
@@ -153,12 +179,19 @@ function findBinInRelease(releaseFolder, fallBack = true){
 
     // Newer releases have the executable in the root
     // So we return the top level folder we found
-    if(fallBack)
+    if(fallBack){
+        // And devbuilds directly have a thrive exe in the folder to check
+        if(thriveExecutableExistsInFolder(releaseFolder)){
+            return releaseFolder;
+        }
+
         return lastFolder;
+    }
 
     return null;
 }
 
 module.exports.unpackRelease = unpackRelease;
 module.exports.findBinInRelease = findBinInRelease;
-
+module.exports.thriveExecutableExistsInFolder = thriveExecutableExistsInFolder;
+module.exports.getThriveExecutableName = getThriveExecutableName;

@@ -8,11 +8,11 @@ const win = remote.getCurrentWindow();
 const fs = remote.require("fs");
 const os = remote.require("os");
 const path = require("path");
-const {checkIsDehydrated} = require("./rehydrate");
 const child_process = remote.require("child_process");
 
 const {settings} = require("../settings.js");
-const {findBinInRelease} = require("./unpack");
+const {findBinInRelease, getThriveExecutableName} = require("./unpack");
+const {checkIsDehydrated} = require("./rehydrate");
 
 function onCanRun(installFolder, status, onClose, onEnded){
     status.textContent = "preparing to launch";
@@ -28,16 +28,9 @@ function onCanRun(installFolder, status, onClose, onEnded){
     }
 
     // Check that executable is there //
-    let exename = null;
+    let exename = getThriveExecutableName();
 
-    if(os.platform() === "win32"){
 
-        exename = "Thrive.exe";
-
-    } else {
-
-        exename = "Thrive";
-    }
 
     if(!fs.existsSync(path.join(binFolder, exename))){
 
