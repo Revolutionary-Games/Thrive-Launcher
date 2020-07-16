@@ -12,7 +12,7 @@ jobs:
            keys:
              - v1-lfs-{{ .Branch }}
              - v1-lfs-master
-       - shell:
+       - run:
            name: Pull Git LFS files, retry up to 5 times
            command: |
              for i in {1..5}; do git reset --hard HEAD && git clean -fd && git lfs pull && exit 0; done; exit 1
