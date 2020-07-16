@@ -1,0 +1,9 @@
+*.dll filter=lfs diff=lfs merge=lfs -text
+*.exe filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.min.css filter=lfs diff=lfs merge=lfs -text
+*.min.js filter=lfs diff=lfs merge=lfs -text
+*.ttf filter=lfs diff=lfs merge=lfs -text
+tools/pck/godotpcktool filter=lfs diff=lfs merge=lfs -text
+tools/7zip/7za filter=lfs diff=lfs merge=lfs -text
