@@ -13,9 +13,12 @@ const win = remote.getCurrentWindow();
 
 const {Modal, showGenericError} = require("./modal");
 const {listInstalledVersions, deleteInstalledVersion} = require("./install_handler.js");
+const {calculateFolderSize} = require("./src/file_utils");
+const {formatBytes} = require("./src/utils");
 
 const {
     settings, saveSettings, resetSettings, defaultInstallPath, tmpDLFolder,
+    getDehydrateCacheFolder,
 } = require("./settings.js");
 
 const settingsModal = new Modal("settingsModal", "settingsModalDialog",
@@ -38,6 +41,10 @@ const currentTmpDLFolder = document.getElementById("currentTmpDLFolder");
 const listOfTemporaryDownloads = document.getElementById("listOfTemporaryDownloads");
 
 const clearTemporaryDownloads = document.getElementById("clearTemporaryDownloads");
+
+const currentDehydratedCacheFolder = document.getElementById("currentDehydratedCacheFolder");
+const dehydratedCacheSize = document.getElementById("dehydratedCacheSize");
+const clearDehydratedCache = document.getElementById("clearDehydratedCache");
 
 function updateInstalledVersions(){
     listOfInstalledVersions.innerHTML = "<li>Searching for files...</li>";
@@ -136,6 +143,32 @@ function deleteTempFiles(){
     });
 }
 
+function updateDehydratedCache(){
+    currentDehydratedCacheFolder.textContent =
+        "DevBuilds file cache: " + getDehydrateCacheFolder();
+
+    if(!fs.existsSync(getDehydrateCacheFolder())){
+        dehydratedCacheSize.textContent = "Folder doesn't exist";
+        return;
+    }
+
+    calculateFolderSize(getDehydrateCacheFolder()).then((size) => {
+        dehydratedCacheSize.textContent = "Size: " + formatBytes(size);
+    }).catch((error) => {
+        dehydratedCacheSize.textContent = "Failed to read size: " + error;
+    });
+}
+
+function deleteDehydratedFiles(){
+    rimraf(getDehydrateCacheFolder(), (error) => {
+        if(error){
+            showGenericError("Failed to delete dehydrated files, error: " + error);
+        }
+
+        updateDehydratedCache();
+    });
+}
+
 async function moveInstalledFiles(files, destination){
     movingFileModal.show();
     const content = document.getElementById("movingFileModalContent");
@@ -168,6 +201,7 @@ settingsButton.addEventListener("click", function(){
 
     updateInstalledVersions();
     updateTempDownloads();
+    updateDehydratedCache();
 });
 
 $("#settingsTabs").tabs();
@@ -341,6 +375,10 @@ disableGUIGPU.addEventListener("change", function(event){
 
     settings.launchOptionNoGUIGPU = event.target.checked;
     onSettingsChanged();
+});
+
+clearDehydratedCache.addEventListener("click", () => {
+    deleteDehydratedFiles();
 });
 
 module.exports.onSettingsLoaded = () => {
