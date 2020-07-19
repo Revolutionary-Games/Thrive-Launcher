@@ -254,10 +254,44 @@ app.on("browser-window-created", function(e, window){
 });
 
 function unGZipMain(file, target, respondTo){
-    pipeline(fs.createReadStream(file), zlib.createGunzip(), fs.createWriteStream(target),
-        (error) => {
+    if(os.platform() === "windows"){
+        // This approach seems to not get stuck on Windows
+        // But has a chance to get stuck on Linux
+        pipeline(fs.createReadStream(file), zlib.createGunzip(), fs.createWriteStream(target),
+            (error) => {
+                mainWindow.webContents.send(respondTo, {error: error});
+            });
+    } else {
+        try{
+            const gzip = zlib.createGunzip();
+            const source = fs.createReadStream(file);
+            const destination = fs.createWriteStream(target);
+
+            source.pipe(gzip).pipe(destination);
+
+            destination.on("close", () => {
+                mainWindow.webContents.send(respondTo, {error: null});
+            });
+
+            destination.on("error", (error) => {
+                mainWindow.webContents.send(respondTo, {error: "Error on destination" +
+                        " stream: " + error});
+            });
+
+            source.on("error", (error) => {
+                mainWindow.webContents.send(respondTo, {error: "Error on source" +
+                        " stream: " + error});
+            });
+
+            gzip.on("error", (error) => {
+                mainWindow.webContents.send(respondTo, {error: "Error on gzip" +
+                        " stream: " + error});
+            });
+
+        } catch(error){
             mainWindow.webContents.send(respondTo, {error: error});
-        });
+        }
+    }
 }
 
 ipcMain.on("restartAndUpdate", () => {
