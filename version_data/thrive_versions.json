@@ -7,12 +7,12 @@
     // launcher version info
     "launcher-meta": {
 
-        "latestVersion": "1.2.0",
+        "latestVersion": "1.2.1",
         "dlURL": "https://github.com/Revolutionary-Games/Thrive-Launcher/releases"
     },
-    
+
     "platforms": [
-        
+
         {
             // These ids should stay the same, same as the version ids
             "id": 1,
@@ -22,14 +22,14 @@
             // from os.platform
             "os": "win32"
         },
-        
+
         {
             "id": 2,
             "name": "Windows 64-bit",
             "arch": "x64",
             "os": "win32"
         },
-        
+
         {
             "id": 3,
             "name": "Linux x64",
@@ -37,7 +37,7 @@
             "os": "linux"
         }
     ],
-    
+
     "latest": [
 
         {
@@ -45,7 +45,7 @@
             "id": 13
         }
     ],
-    
+
     "versions": [
 
         {
@@ -263,7 +263,7 @@
                     "os": 1,
                     "url": "https://boostslair.com/files/thrive/Thrive_0.5.0.0-beta_windows_desktop_%2832-bit%29.7z",
                     "hash": "b0630640a3a1091288ea5b7e5124693d3606251f7fb46263343b29a8cfa26d64"
-                },                
+                },
                 {
                     "os": 2,
                     "url": "https://boostslair.com/files/thrive/Thrive_0.5.0.0-beta_windows_desktop.7z",
@@ -301,10 +301,10 @@
             ]
         }
 
-        
-        
+
+
     ]
-    
-    
+
+
 
 }
