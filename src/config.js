@@ -13,6 +13,9 @@ module.exports = {
 
     devBuildCacheName: "devbuild_cache.json",
 
+    // When true errors in the renderer process is caught with electron-log
+    catchErrors: true,
+
     // For local testing
     // devCenterURL: "http://localhost:5000",
     devCenterURL: "https://dev.revolutionarygamesstudio.com/",

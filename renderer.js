@@ -3,6 +3,9 @@
 // All of the Node.js APIs are available in this process.
 "use strict";
 
+const log = require("electron-log");
+Object.assign(console, log.functions);
+
 const assert = require("assert");
 
 const versionInfo = require("./version_info");
@@ -17,11 +20,18 @@ const {checkIfCompatible, performCompatibilityCheck} =
 const {getLauncherKey} = require("./src/launcher_key");
 const {loadVersionData} = require("./src/version_info_retriever");
 const {playPressed} = require("./src/play_handler");
+const {catchErrors} = require("./src/config");
 
 const openpgp = require("openpgp");
 
+if(catchErrors){
+    log.catchErrors();
+}
+
 const titleBar = require("./title_bar");
 titleBar.loadTitleBar();
+
+log.info("Renderer.js script started");
 
 autoUpdateHandler();
 

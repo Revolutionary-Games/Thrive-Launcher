@@ -21,6 +21,9 @@ args.forEach((val, index) => {
 });
 
 const log = require("electron-log");
+Object.assign(console, log.functions);
+log.catchErrors();
+
 const electron = require("electron");
 const {autoUpdater} = require("electron-updater");
 
@@ -142,6 +145,7 @@ function createWindow(){
     // Open the DevTools.
     if(openDev){
         mainWindow.webContents.openDevTools();
+        log.info("Started with dev tools enabled");
     }
 
     mainWindow.webContents.once("did-stop-loading", () => {
