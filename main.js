@@ -5,13 +5,15 @@
 // use `npm run start-dev` if you want the dev tools
 // Set this to true if you want to open the dev console
 let openDev = false;
-
+let skipAutoUpdate = false;
 
 const args = process.argv.slice(2);
 args.forEach((val, index) => {
 
     if(val === "--open-dev"){
         openDev = true;
+    } else if(val === "--skip-autoupdate"){
+        skipAutoUpdate = true;
     } else if(/--remote-debugging-port.*/i.test(val)){
         // Chrome handles this
     } else {
@@ -24,12 +26,17 @@ const log = require("electron-log");
 Object.assign(console, log.functions);
 log.catchErrors();
 
+if(openDev){
+    log.transports.file.level = "debug";
+} else {
+    log.transports.file.level = "info";
+}
+
 const electron = require("electron");
 const {autoUpdater} = require("electron-updater");
 
 // Logging for the updater
 autoUpdater.logger = log;
-autoUpdater.logger.transports.file.level = "info";
 
 // Module to control application life.
 const app = electron.app;
@@ -68,6 +75,21 @@ const openLinksInExternal = true;
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow = null;
+
+let updateCheckStarted = false;
+
+function startUpdateChecksIfNotStarted(){
+    if(updateCheckStarted)
+        return;
+    updateCheckStarted = true;
+
+    if(skipAutoUpdate)
+        return;
+
+    log.debug("Starting updates check");
+    autoUpdater.checkForUpdatesAndNotify();
+    log.debug("Updates check is probably running");
+}
 
 
 // Setup code from the electron quickstart
@@ -127,11 +149,11 @@ function createWindow(){
     mainWindow.once("ready-to-show", () => {
         mainWindow.show();
 
-        // Hopefully this is not too early to trigger here (and not in did-stop-loading)
-        autoUpdater.checkForUpdatesAndNotify();
+        startUpdateChecksIfNotStarted();
     });
 
-    mainWindow.once("did-finish-load", () => {
+    mainWindow.once("show", () => {
+        setTimeout(startUpdateChecksIfNotStarted, 200);
     });
 
     // And load the index.html of the app.
@@ -185,6 +207,9 @@ function createWindow(){
     // process.versions.node process.versions.chrome process.versions.electron
     log.info("Started Thrive Launcher version: " + pjson.version + " os: " + os.platform() +
         " arch: " + os.arch());
+
+    // Just to make sure this is fired
+    setTimeout(startUpdateChecksIfNotStarted, 800);
 }
 
 // This method will be called when Electron has finished
@@ -236,16 +261,17 @@ function unGZipMain(file, target, respondTo){
 }
 
 ipcMain.on("restartAndUpdate", () => {
+    log.info("Quitting and installing update");
     autoUpdater.quitAndInstall();
 });
 
 autoUpdater.on("update-available", () => {
-    console.log("Sending update available message");
+    log.info("Sending update available message");
     mainWindow.webContents.send("updateAvailable");
 });
 
 autoUpdater.on("update-downloaded", () => {
-    console.log("sending update downloaded message");
+    log.info("sending update downloaded message");
     mainWindow.webContents.send("updateDownloaded");
 });
 
