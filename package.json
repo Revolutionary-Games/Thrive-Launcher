@@ -43,7 +43,8 @@
             "!release-builds"
         ],
         "asarUnpack": [
-            "tools"
+            "tools/7zip/*",
+            "tools/pck/*"
         ],
         "nsis": {
             "oneClick": "false",
