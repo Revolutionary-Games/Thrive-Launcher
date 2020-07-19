@@ -55,6 +55,7 @@ openpgp.config.aead_protect = true; // Activate fast AES-GCM mode (not yet OpenP
 
 // Used for provided services to the renderer process
 const zlib = require("zlib");
+const {pipeline} = require("stream");
 
 
 
@@ -224,35 +225,10 @@ app.on("browser-window-created", function(e, window){
 });
 
 function unGZipMain(file, target, respondTo){
-    try{
-        const gzip = zlib.createGunzip();
-        const source = fs.createReadStream(file);
-        const destination = fs.createWriteStream(target);
-
-        source.pipe(gzip).pipe(destination);
-
-        destination.on("close", () => {
-            mainWindow.webContents.send(respondTo, {error: null});
+    pipeline(fs.createReadStream(file), zlib.createGunzip(), fs.createWriteStream(target),
+        (error) => {
+            mainWindow.webContents.send(respondTo, {error: error});
         });
-
-        destination.on("error", (error) => {
-            mainWindow.webContents.send(respondTo, {error: "Error on destination" +
-                    " stream: " + error});
-        });
-
-        source.on("error", (error) => {
-            mainWindow.webContents.send(respondTo, {error: "Error on source" +
-                    " stream: " + error});
-        });
-
-        gzip.on("error", (error) => {
-            mainWindow.webContents.send(respondTo, {error: "Error on gzip" +
-                    " stream: " + error});
-        });
-
-    } catch(error){
-        mainWindow.webContents.send(respondTo, {error: error});
-    }
 }
 
 ipcMain.on("restartAndUpdate", () => {
