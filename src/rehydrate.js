@@ -70,7 +70,18 @@ async function downloadDehydratedObjects(missingHashes, status){
             }, false);
 
             // Unzip it
-            await unGZip(tmpZip, target);
+            try{
+                await unGZip(tmpZip, target);
+            } catch(error){
+                console.error("failed to unzip dehydrated file:", error);
+                setTimeout(() => {
+                    rimraf(target, (error) => {
+                        if(error)
+                            console.error("dehydrate unzip target deletion failed", error);
+                    });
+                }, 250);
+                throw error;
+            }
 
             fs.unlink(tmpZip, (error) => {
                 if(error){

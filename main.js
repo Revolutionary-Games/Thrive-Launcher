@@ -235,6 +235,21 @@ function unGZipMain(file, target, respondTo){
             mainWindow.webContents.send(respondTo, {error: null});
         });
 
+        destination.on("error", (error) => {
+            mainWindow.webContents.send(respondTo, {error: "Error on destination" +
+                    " stream: " + error});
+        });
+
+        source.on("error", (error) => {
+            mainWindow.webContents.send(respondTo, {error: "Error on source" +
+                    " stream: " + error});
+        });
+
+        gzip.on("error", (error) => {
+            mainWindow.webContents.send(respondTo, {error: "Error on gzip" +
+                    " stream: " + error});
+        });
+
     } catch(error){
         mainWindow.webContents.send(respondTo, {error: error});
     }

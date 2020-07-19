@@ -34,8 +34,6 @@ function downloadFile(configuration, useProgress = true){
 
         const out = fs.createWriteStream(configuration.localFile, {encoding: null});
 
-        // Req.pipe(out);
-
         let contentType = "unknown";
 
         req.on("response", function(data){
