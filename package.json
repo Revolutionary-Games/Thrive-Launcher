@@ -35,12 +35,12 @@
         "copyright": "Copyright © 2018-2020 ${author}",
         "files": [
             "*",
-            "7zip",
             "assets",
             "version_data",
             "jquery-ui-1.12.1/**/*",
             "Roboto/*",
-            "!release-builds"
+            "!release-builds",
+            "tools"
         ],
         "asarUnpack": [
             "tools/7zip/*",
