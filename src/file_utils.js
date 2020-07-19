@@ -1,12 +1,12 @@
 // Some random file helper utils
 "use strict";
 
+const {ipcRenderer} = require("electron");
 const remote = require("electron").remote;
 
 const fs = remote.require("fs");
 const path = require("path");
 const du = require("du");
-const zlib = remote.require("zlib");
 
 function isDirectorySync(folder){
     return fs.lstatSync(folder).isDirectory();
@@ -36,23 +36,25 @@ async function calculateFolderSize(folder){
     }
 }
 
-// Ungzips a file
+// Ungzips a file (request goes through the main process)
 async function unGZip(file, target){
     return new Promise(function(resolve, reject){
-        try{
-            const gzip = zlib.createGunzip();
-            const source = fs.createReadStream(file);
-            const destination = fs.createWriteStream(target);
+        const responseEvent = "gunzipResult-" + Math.random();
 
-            source.pipe(gzip).pipe(destination);
+        ipcRenderer.once(responseEvent, (event, arg) => {
+            if(arg.error){
+                reject(arg.error);
+                return;
+            }
 
-            destination.on("close", () => {
-                resolve();
-            });
+            resolve();
+        });
 
-        } catch(error){
-            reject(error);
-        }
+        ipcRenderer.send("requestGunzip", {
+            file: file,
+            target: target,
+            responseEvent: responseEvent,
+        });
     });
 }
 

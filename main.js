@@ -53,6 +53,10 @@ openpgp.initWorker({path: "openpgp.worker.js"});
 
 openpgp.config.aead_protect = true; // Activate fast AES-GCM mode (not yet OpenPGP standard)
 
+// Used for provided services to the renderer process
+const zlib = require("zlib");
+
+
 
 // When true links are opened in an external browser
 const openLinksInExternal = true;
@@ -219,6 +223,22 @@ app.on("browser-window-created", function(e, window){
         window.setMenu(null);
 });
 
+function unGZipMain(file, target, respondTo){
+    try{
+        const gzip = zlib.createGunzip();
+        const source = fs.createReadStream(file);
+        const destination = fs.createWriteStream(target);
+
+        source.pipe(gzip).pipe(destination);
+
+        destination.on("close", () => {
+            mainWindow.webContents.send(respondTo, {error: null});
+        });
+
+    } catch(error){
+        mainWindow.webContents.send(respondTo, {error: error});
+    }
+}
 
 ipcMain.on("restartAndUpdate", () => {
     autoUpdater.quitAndInstall();
@@ -232,4 +252,8 @@ autoUpdater.on("update-available", () => {
 autoUpdater.on("update-downloaded", () => {
     console.log("sending update downloaded message");
     mainWindow.webContents.send("updateDownloaded");
+});
+
+ipcMain.on("requestGunzip", (event, arg) => {
+    unGZipMain(arg.file, arg.target, arg.responseEvent);
 });
