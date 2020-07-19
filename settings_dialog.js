@@ -55,7 +55,7 @@ function updateInstalledVersions(){
 
             if(obj.valid){
 
-                span.append(document.createTextNode(obj.name));
+                span.append(document.createTextNode(obj.special + obj.name));
 
                 const button = document.createElement("span");
                 button.classList.add("VersionDeleteButton");

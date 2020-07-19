@@ -46,8 +46,7 @@ function listInstalledVersions(){
             for(const ver of versions){
                 for(const dl of ver.platforms){
 
-                    if(dl.folderName == name){
-
+                    if(dl.folderName === name){
                         good = true;
                         break;
                     }
@@ -57,9 +56,24 @@ function listInstalledVersions(){
                     break;
             }
 
+            let special = "";
+
+            // Special handle entries
+            if(!good){
+                if(name === "devbuild"){
+                    good = true;
+                    special = "DevBuild folder: ";
+                } else if(/Thrive_.+/.test(name)){
+                    good = true;
+                    special = "Unknown version: ";
+                }
+            }
+
             // TODO: calculate folder size
 
-            result[dir] = {path: dir, valid: good, name: name};
+            result[dir] = {
+                path: dir, valid: good, name: name, special: special,
+            };
         }
 
         resolve(result);
