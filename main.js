@@ -254,7 +254,7 @@ app.on("browser-window-created", function(e, window){
 });
 
 function unGZipMain(file, target, respondTo){
-    if(os.platform() === "windows"){
+    if(os.platform() === "win32"){
         // This approach seems to not get stuck on Windows
         // But has a chance to get stuck on Linux
         pipeline(fs.createReadStream(file), zlib.createGunzip(), fs.createWriteStream(target),
