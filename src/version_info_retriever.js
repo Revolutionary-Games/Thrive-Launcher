@@ -117,7 +117,7 @@ async function loadVersionData(callback){
 
                 // Wait for animation to end //
                 setTimeout(() => {
-                    loadVersionData();
+                    loadVersionData(callback);
                 }, 700);
             });
 
