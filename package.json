@@ -1,7 +1,7 @@
 {
     "name": "thrive-launcher",
     "productName": "Thrive Launcher",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "description": "Thrive Launcher manages downloading Thrive releases",
     "main": "main.js",
     "scripts": {
