@@ -62,7 +62,7 @@ async function loadVersionData(callback){
             mode: "no-cors",
             credentials: "omit",
             cache: "no-cache",
-        }, 1000).then((response) => {
+        }, 15000).then((response) => {
             if(response.status !== 200){
                 throw `Invalid response code from server: (${response.status})`;
             }
