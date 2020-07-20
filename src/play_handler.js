@@ -364,9 +364,10 @@ async function onDevBuildURLReceived(url, hash){
 function playDevBuild(){
     playBox.innerHTML = "Playing Thrive DevBuild (" + getCurrentDevBuildType() +
         ") for " + getDevBuildPlatform() +
-        "<p id='playingInternalP'>Retrieving build info " +
-        "</p><div id='dlProgress'></div>";
+        "<div id='playingDevBuildInfo'>Retrieving build info... </div>" +
+        "<p id='playingInternalP'></p><div id='dlProgress'></div>";
 
+    const buildInfo = document.getElementById("playingDevBuildInfo");
     const status = document.getElementById("playingInternalP");
 
     const build = fetchDevBuildInfo().then((build) => {
@@ -376,8 +377,14 @@ function playDevBuild(){
 
         console.log("received build info:", build);
 
-        status.innerText = `Found build: ${build.id} hash: ${build.build_hash}. ` +
-            "Starting download...";
+        // Make build info visible
+        buildInfo.innerText = `Found build: ${build.id} hash: ${build.build_hash}. ` +
+            `BOTD: ${build.build_of_the_day}, description:`;
+        const description = document.createElement("pre");
+        description.innerText = build.description;
+        buildInfo.append(description);
+
+        status.innerText = "Fetching download for build...";
 
         return new Promise((resolve) => {
             if(!build.verified && build.anonymous){

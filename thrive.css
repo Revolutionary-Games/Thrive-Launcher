@@ -432,6 +432,12 @@ img.TopLogo {
   /* animation-duration: 0.4s */
 }
 
+#playModalContent {
+  max-height: 500px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
 #settingsModalDialog {
   background: none;
   margin-left: auto;

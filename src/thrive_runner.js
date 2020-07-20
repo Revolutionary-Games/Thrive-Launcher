@@ -65,13 +65,15 @@ function onCanRun(installFolder, status, onClose, onEnded){
 
     const titleSpan = document.createElement("span");
 
+    // TODO: Make the close button more likely to be visible, maybe flexboxes could set
+    //  the game output size to make everything fit
     const processOutput = document.createElement("div");
 
     processOutput.style.overflow = "auto";
 
     // This needs a fixed size for some reason
-    processOutput.style.maxHeight = "410px";
-    processOutput.style.height = "410px";
+    processOutput.style.maxHeight = "390px";
+    processOutput.style.height = "390px";
     processOutput.style.paddingTop = "5px";
     processOutput.style.width = "100%";
 
