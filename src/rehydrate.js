@@ -15,6 +15,7 @@ const {getDownloadForDehydrated} = require("./dev_center");
 const {computeFileHashSHA3} = require("./download_helper");
 const {unGZip} = require("./file_utils");
 const {runJSONRepackOperation} = require("./pck_tool");
+const {showGenericError} = require("../modal");
 
 // Shows rehydrate progress
 // TODO: make a progress bar for this
@@ -76,8 +77,11 @@ async function downloadDehydratedObjects(missingHashes, status){
                 console.error("failed to unzip dehydrated file:", error);
                 setTimeout(() => {
                     rimraf(target, (error) => {
-                        if(error)
-                            console.error("dehydrate unzip target deletion failed", error);
+                        if(!error)
+                            return;
+
+                        showGenericError("Dehydrate unzip target deletion failed (" + error +
+                            "), please delete: " + target + "and try again");
                     });
                 }, 250);
                 throw error;

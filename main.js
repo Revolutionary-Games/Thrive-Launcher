@@ -67,7 +67,8 @@ openpgp.config.aead_protect = true; // Activate fast AES-GCM mode (not yet OpenP
 const zlib = require("zlib");
 const {pipeline} = require("stream");
 
-
+// Maximum time that unzipping a file may take
+const maximumUnzipTime = 3 * 60 * 1000;
 
 // When true links are opened in an external browser
 const openLinksInExternal = true;
@@ -255,11 +256,18 @@ app.on("browser-window-created", function(e, window){
 });
 
 function unGZipMain(file, target, respondTo){
+    // Timeout prevention
+    const timeoutId = setTimeout(() => {
+        mainWindow.webContents.send(respondTo, {error: "File unzipping took too long, it" +
+                " probably got stuck"});
+    }, maximumUnzipTime);
+
     if(os.platform() === "win32"){
         // This approach seems to not get stuck on Windows
         // But has a chance to get stuck on Linux
         pipeline(fs.createReadStream(file), zlib.createGunzip(), fs.createWriteStream(target),
             (error) => {
+                clearTimeout(timeoutId);
                 mainWindow.webContents.send(respondTo, {error: error});
             });
     } else {
@@ -271,6 +279,7 @@ function unGZipMain(file, target, respondTo){
             source.pipe(gzip).pipe(destination);
 
             destination.on("close", () => {
+                clearTimeout(timeoutId);
                 mainWindow.webContents.send(respondTo, {error: null});
             });
 
@@ -290,6 +299,7 @@ function unGZipMain(file, target, respondTo){
             });
 
         } catch(error){
+            clearTimeout(timeoutId);
             mainWindow.webContents.send(respondTo, {error: error});
         }
     }
