@@ -36,6 +36,9 @@ launcher you will need to follow these instructions to build it.
 
 ### Dependencies
 
+In order to properly clone this repository you need to make sure you
+have [Git LFS](https://git-lfs.github.com/) installed.
+
 You first need npm before you can build Thrive Launcher. So
 check [here](https://docs.npmjs.com/getting-started/installing-node)
 how to install it.
