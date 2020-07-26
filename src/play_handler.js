@@ -378,11 +378,20 @@ function playDevBuild(){
         console.log("received build info:", build);
 
         // Make build info visible
-        buildInfo.innerText = `Found build: ${build.id} hash: ${build.build_hash}. ` +
-            `BOTD: ${build.build_of_the_day}, description:`;
-        const description = document.createElement("pre");
-        description.innerText = build.description;
-        buildInfo.append(description);
+        let info = `Found build: ${build.id} hash: ${build.build_hash}. ` +
+            `BOTD: ${build.build_of_the_day}, branch: ${build.branch}`;
+
+        if(build.description){
+            info += ", description: ";
+        }
+
+        buildInfo.innerText = info;
+
+        if(build.description){
+            const description = document.createElement("pre");
+            description.innerText = build.description;
+            buildInfo.append(description);
+        }
 
         status.innerText = "Fetching download for build...";
 
