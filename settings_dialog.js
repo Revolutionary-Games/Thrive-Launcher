@@ -99,6 +99,9 @@ function updateInstalledVersions(){
     }).catch((err) => {
         listOfInstalledVersions.innerHTML = "";
 
+        console.error("failed to display list of installed versions:", err,
+            "trace:", err.stack);
+
         const li = document.createElement("li");
         li.textContent = "An error happened: " + err;
         listOfInstalledVersions.append(li);
