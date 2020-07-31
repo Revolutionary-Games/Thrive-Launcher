@@ -40,6 +40,9 @@ autoUpdateHandler();
 //
 const {settings, loadSettings} = require("./settings.js");
 
+const {reportLatestVersion, loadSelectedVersion} = require("./src/remembered_version");
+const {checkLauncherVersion} = require("./src/check_launcher_version");
+
 // This loads settings in sync mode here
 loadSettings();
 
@@ -111,6 +114,13 @@ function onVersionDataReceived(data, unsigned = false){
     }).then(() => {
         return checkLauncherVersion(versionInfo);
     }).then(() => {
+
+        loadSelectedVersion();
+
+        const latest = versionInfo.getRecommendedVersion();
+
+        if(latest)
+            reportLatestVersion(latest.id);
 
         sendVersionInfoToPlayButton(versionInfo);
 
@@ -205,4 +215,3 @@ linksButton.addEventListener("click", function(){
 
 // Settings dialog
 require("./settings_dialog.js");
-const {checkLauncherVersion} = require("./src/check_launcher_version");

@@ -2,6 +2,7 @@
 "use strict";
 
 const assert = require("assert");
+const {getCurrentlySelected, setCurrentlySelectedVersion} = require("./remembered_version");
 const {getPlatformForCurrentPlatform} = require("../version_info");
 
 const {ComboBox} = require("../modal");
@@ -46,6 +47,9 @@ function createVersionSelectItem(version){
 
         playButtonText.dataset.selectedID = version.version.id;
         playButtonText.dataset.selectedDLOS = version.download.os;
+
+        setCurrentlySelectedVersion(playButtonText.dataset.selectedID,
+            playButtonText.dataset.selectedDLOS);
 
         updatePlayButtonText();
         versionSelectCombo.hide();
@@ -135,22 +139,31 @@ function updatePlayButton(versions){
 
     console.log("All valid versions: " + options.length);
 
-    // If this is null then we should let the user know that there was no
-    // preferred version
-    if(!dl){
-        playButtonText.textContent = "Couldn't find recommended version for current platform";
-        return;
+    // Restore last selected version (if there is one)
+    const selected = getCurrentlySelected();
+
+    if(selected.selectedVersion){
+        playButtonText.dataset.selectedID = selected.selectedVersion;
+    } else {
+        // If this is null then we should let the user know that there was no
+        // preferred version
+        if(!dl){
+            playButtonText.textContent = "Couldn't find recommended version for current" +
+                " platform";
+            return;
+        }
+
+        // Verify retrieve logic
+        assert(versionInfo.getCurrentPlatform().os === versionInfo.getPlatformByID(dl.os).os);
+
+        playButtonText.dataset.selectedID = version.id;
     }
 
-    // Verify retrieve logic
-    assert(versionInfo.getCurrentPlatform().os === versionInfo.getPlatformByID(dl.os).os);
-
-    // I don't think this is needed
-    // playButtonText.textContent = "Play " + version.getDescriptionString() + " " +
-    //     dl.getDescriptionString();
-
-    playButtonText.dataset.selectedID = version.id;
-    playButtonText.dataset.selectedDLOS = dl.os;
+    if(selected.selectedOS){
+        playButtonText.dataset.selectedDLOS = selected.selectedOS;
+    } else {
+        playButtonText.dataset.selectedDLOS = dl.os;
+    }
 
     updatePlayButtonText();
 }
