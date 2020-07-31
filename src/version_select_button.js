@@ -3,7 +3,7 @@
 
 const assert = require("assert");
 const {getCurrentlySelected, setCurrentlySelectedVersion} = require("./remembered_version");
-const {getPlatformForCurrentPlatform} = require("../version_info");
+const {getPlatformForCurrentPlatform, getVersionByID} = require("../version_info");
 
 const {ComboBox} = require("../modal");
 
@@ -142,9 +142,24 @@ function updatePlayButton(versions){
     // Restore last selected version (if there is one)
     const selected = getCurrentlySelected();
 
+    let playLatest = true;
+
     if(selected.selectedVersion){
-        playButtonText.dataset.selectedID = selected.selectedVersion;
-    } else {
+        // Version is valid or it is the devbuild
+        // noinspection EqualityComparisonWithCoercionJS
+        if(getVersionByID(selected.selectedVersion) ||
+            (selected.selectedVersion == devBuildIdentifier &&
+                selected.selectedOS == devBuildIdentifier)){
+            playLatest = false;
+            playButtonText.dataset.selectedID = selected.selectedVersion;
+        } else {
+            console.log("Selected version is no longer valid");
+            selected.selectedVersion = null;
+            selected.selectedOS = null;
+        }
+    }
+
+    if(playLatest){
         // If this is null then we should let the user know that there was no
         // preferred version
         if(!dl){
