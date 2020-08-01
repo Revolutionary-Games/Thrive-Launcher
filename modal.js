@@ -28,24 +28,26 @@ class Modal{
         this.autoClose = true;
 
         // Override properties
-        if(properties != undefined && properties != null){
-
-            if(properties.autoClose != undefined){
+        if(properties !== undefined && properties !== null){
+            if(properties.autoClose !== undefined){
 
                 this.autoClose = properties.autoClose;
 
             }
 
-            if(properties.closeButton != undefined){
-
-                this.closeButton = document.getElementById(properties.closeButton);
+            if(properties.closeButton !== undefined){
+                if(Array.isArray(properties.closeButton)){
+                    this.closeButton =
+                        properties.closeButton.map((item) => document.getElementById(item));
+                } else {
+                    this.closeButton = document.getElementById(properties.closeButton);
+                }
             }
 
-            if(properties.onClose != undefined){
+            if(properties.onClose !== undefined){
 
                 this.onClose = properties.onClose;
             }
-
         }
 
         this.invariant();
@@ -56,8 +58,7 @@ class Modal{
         if(this.autoClose){
 
             this.backdrop.onclick = (event) => {
-
-                if(event.target == this.backdrop){
+                if(event.target === this.backdrop){
 
                     this.hide();
                 }
@@ -65,26 +66,31 @@ class Modal{
         }
 
         if(this.closeButton){
-
-            this.closeButton.addEventListener("click", () => {
-                this.hide();
-            });
+            if(Array.isArray(this.closeButton)){
+                for(const item of this.closeButton){
+                    item.addEventListener("click", () => {
+                        this.hide();
+                    });
+                }
+            } else {
+                this.closeButton.addEventListener("click", () => {
+                    this.hide();
+                });
+            }
         }
     }
 
     invariant(){
-
         assert(this.backdrop);
         assert(this.dialog);
     }
 
     visible(){
-        return this.backdrop.style.display == "block";
+        return this.backdrop.style.display === "block";
     }
 
     //! Shows this dialog
     show(){
-
         this.backdrop.style.display = "block";
 
         $(this.dialog).slideDown(400, function(){
@@ -94,7 +100,6 @@ class Modal{
 
     //! Hides this dialog
     hide(){
-
         if(this.onClose){
 
             const prevent = this.onClose();
@@ -126,19 +131,19 @@ class ComboBox{
         // Default properties //
 
         // Override properties
-        if(properties != undefined && properties != null){
+        if(properties !== undefined && properties !== null){
 
-            if(properties.closeButton != undefined){
+            if(properties.closeButton !== undefined){
 
                 this.closeButton = properties.closeButton;
             }
 
-            if(properties.onClose != undefined){
+            if(properties.onClose !== undefined){
 
                 this.onClose = properties.onClose;
             }
 
-            if(properties.onOpen != undefined){
+            if(properties.onOpen !== undefined){
 
                 this.onOpen = properties.onOpen;
             }
@@ -151,7 +156,7 @@ class ComboBox{
         // Click outside the dialog and on the background, close if autoClose
         this.backdrop.onclick = (event) => {
 
-            if(event.target == this.backdrop){
+            if(event.target === this.backdrop){
 
                 this.hide();
             }

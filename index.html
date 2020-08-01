@@ -452,6 +452,41 @@
       </div>
     </div>
 
+    <!-- User is trying to play an unsafe build -->
+    <div id="tryingToPlayUnsafeDevBuildModal" class="modal">
+      <div id="tryingToPlayUnsafeDevBuildModalDialog" class="modal-content">
+        <span id="tryingToPlayUnsafeCross" class="close">&times;</span>
+        <span>
+          <h3>The Selected DevBuild Is Unsafe</h3>
+          <p>
+            Normal DevBuilds are uploaded automatically by a CI server with a verified key.
+            These builds can only be triggered by Thrive repository members. Unless such a
+            person's account is compromised (or they act maliciously) the builds are as safe
+            to play as official releases. DevBuilds are also accepted from PRs, but in this
+            case they are specifically marked unsafe (such as the currently selected builds)
+            as the pull request could contain all kinds of nasty stuff.
+          </p>
+          <p>
+            If a Thrive team member verifies that the PR is safe this warning goes away.
+            Alternative you can continue if you believe that this build is safe. Before
+            doing so you should check the PR on Github to see that the latest commit hash
+            matches and that the CircleCI build says that it has uploaded a DevBuild with
+            the hash. Additionally it should be checked that the PR does not change any
+            build scripts. After doing that it should be relatively safe to continue, this
+            is the same process Thrive team members use to verify PRs.
+          </p>
+          <span id="closeTryingToPlayUnsafe" class="BottomButton" style="height: 60px;">
+            <p style="text-align: left; font-size: 1.2em;">
+              Close
+            </p>
+          </span>
+          <span id="unsafePlayAnyway" class="Dangerous Clickable">
+            I understand the risk, play anyway
+          </span>
+        </span>
+      </div>
+    </div>
+
   </body>
   <script>
     "use strict";

@@ -13,7 +13,7 @@ const nodeURL = require("url");
 
 const {settings, tmpDLFolder, getDevBuildFolder} = require("../settings.js");
 const {showUnpackMessages, devBuildCacheName} = require("./config");
-const {Modal, showGenericError} = require("../modal");
+const {Modal} = require("../modal");
 const {onGameEnded} = require("./crash_reporting.js");
 const errorSuggestions = require("./error_suggestions");
 const {Progress} = require("./progress");
@@ -30,6 +30,7 @@ const {devBuildIdentifier} = require("./version_select_button");
 const {runThrive} = require("./thrive_runner");
 
 const playBox = document.getElementById("playModalContent");
+const unsafePlayAnyway = document.getElementById("unsafePlayAnyway");
 
 let playModalQuitDLCancel = null;
 let currentDLCanceled = false;
@@ -51,6 +52,13 @@ const playModal = new Modal("playModal", "playModalDialog", {
         // return true;
     },
 });
+
+const unsafeModal = new Modal("tryingToPlayUnsafeDevBuildModal",
+    "tryingToPlayUnsafeDevBuildModalDialog", {
+        autoClose: true,
+        closeButton: ["tryingToPlayUnsafeCross", "closeTryingToPlayUnsafe"],
+    });
+
 
 // Runs the game after the game folder is ready
 function onThriveFolderReady(version, download){
@@ -395,10 +403,29 @@ function playDevBuild(){
 
         status.innerText = "Fetching download for build...";
 
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             if(!build.verified && build.anonymous){
-                showGenericError("The found build is anonymous and unverified, as such it is" +
-                    " (potentially) unsafe to play. TODO: allow playing anyway.");
+                unsafeModal.show();
+
+                const dataHolder = {
+                    allowed: false,
+                };
+
+                unsafeModal.onClose = () => {
+                    if(!dataHolder.allowed){
+                        reject(new Error("Not playing an unsafe build"));
+                    }
+
+                    unsafeModal.onClose = null;
+                    return false;
+                };
+
+                unsafePlayAnyway.addEventListener("click", () => {
+                    console.log("Playing an unsafe build anyway:", build);
+                    dataHolder.allowed = true;
+                    unsafeModal.hide();
+                    resolve(build);
+                }, {once: true});
             } else {
                 resolve(build);
             }
