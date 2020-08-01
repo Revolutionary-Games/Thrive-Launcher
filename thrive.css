@@ -472,6 +472,21 @@ img.TopLogo {
   overflow: auto;
 }
 
+#latestDevBuildsList {
+  overflow-y: scroll;
+  max-height: 240px;
+}
+
+a.DevBuildLink {
+  color: #6acdeb;
+  cursor: pointer;
+}
+
+a.DevBuildLink:hover {
+  color: #56a7bf;
+  cursor: pointer;
+}
+
 /* @keyframes animatetop { */
 
 /*     from {margin-top: -50px; opacity: 0} */

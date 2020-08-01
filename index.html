@@ -356,7 +356,23 @@
           </div>
           <div id="devCenterTabs-2">
             <div id="devCenterConnectedDevBuilds" style="display: none">
-              <p>TODO: fetch all available builds from the DevCenter...</p>
+              <span>Selected specific hash: <span id="selectedBuildHash">none</span></span>
+              <br/>
+              <input type="text" placeholder="manually enter hash" id="manuallyEnteredHash" />
+              <span id="selectManualInputHash" class="BottomButton" style="height: 40px;
+                margin-left: 3px">
+                <p style="text-align: left; font-size: 0.8em;">
+                  Select
+                </p>
+              </span>
+              <hr/>
+              <div>Latest DevBuilds</div>
+              <div id="latestDevBuildsList"></div>
+              <div id="refreshLatestBuilds" class="BottomButton" style="height: 40px;">
+                <p style="text-align: left; font-size: 0.8em;">
+                  Refresh List
+                </p>
+              </div>
             </div>
             <div id="devCenterBuildsLoginMessage">
               <p>Login to see this content.</p>

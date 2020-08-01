@@ -16,6 +16,7 @@ const launcherCheckAPI = url.resolve(devCenterURL, "/api/v1/launcher/status");
 const launcherTestTokenAPI = url.resolve(devCenterURL, "/api/v1/launcher/check_link");
 const launcherFormConnectionAPI = url.resolve(devCenterURL, "/api/v1/launcher/link");
 const launcherFindAPI = url.resolve(devCenterURL, "/api/v1/launcher/find");
+const launcherBuildsListAPI = url.resolve(devCenterURL, "/api/v1/launcher/builds");
 const launcherSearchAPI = url.resolve(devCenterURL, "/api/v1/launcher/search");
 const launcherDownloadBuildAPI = url.resolve(devCenterURL,
     "/api/v1/launcher/builds/download/");
@@ -50,6 +51,11 @@ const connectedDetails = document.getElementById("devCenterConnectedUserDetails"
 const buildTypeBOTD = document.getElementById("devcenterBuildTypeBOTD");
 const buildTypeLatest = document.getElementById("devcenterBuildTypeLatest");
 const buildTypeManual = document.getElementById("devcenterBuildTypeManual");
+const selectedBuildHash = document.getElementById("selectedBuildHash");
+const manuallyEnteredHash = document.getElementById("manuallyEnteredHash");
+const selectManualInputHash = document.getElementById("selectManualInputHash");
+const latestDevBuildsList = document.getElementById("latestDevBuildsList");
+const refreshLatestBuilds = document.getElementById("refreshLatestBuilds");
 
 const connectedContent = [
     document.getElementById("devCenterConnectedContent"),
@@ -532,6 +538,77 @@ async function getDownloadForDehydrated(objectHashes){
     });
 }
 
+// Queries the devcenter for the latest builds
+function fetchLatestBuilds(offset = 0){
+    latestDevBuildsList.innerText = "Fetching latest builds...";
+
+    return fetch(launcherBuildsListAPI, {
+        method: "post",
+        body: JSON.stringify({
+            platform: getDevBuildPlatform(),
+            offset: offset,
+            page_size: 75,
+        }),
+        headers: {
+            Authorization: settings.devCenterKey,
+            "Content-Type": "application/json",
+        },
+        credentials: "omit",
+    }).then((response) => {
+        return response.json().then((data) => {
+            if(response.status !== 200){
+                throw data.message || `Invalid response from server (${response.status})`;
+            }
+
+            return data;
+        });
+    }).then((data) => {
+        if(!data.result || data.result.length < 1){
+            latestDevBuildsList.innerText = "No builds found";
+            return;
+        }
+
+        if(data.next_offset){
+            console.log("Next offset to fetch more builds:", data.next_offset);
+
+            // TODO: handle pagination
+        }
+
+        latestDevBuildsList.innerHTML = "";
+
+        const list = document.createElement("ul");
+
+        for(const build of data.result){
+            const item = document.createElement("li");
+
+            const link = document.createElement("a");
+            link.classList.add("DevBuildLink");
+            link.innerText = build.build_hash;
+            link.addEventListener("click", () => {
+                setSelectedSpecificHash(build.build_hash);
+            });
+
+            item.append(link);
+
+            const unsafe = !build.verified && build.anonymous ? "unsafe " : "";
+            const BODT = build.build_of_the_day ? "BODT " : "";
+            const description = build.description ? "desc: " +
+                build.description.substring(0, 80) : "";
+
+            const infoText = document.createTextNode(` (${build.id}) ${unsafe}${BODT}` +
+                description);
+
+            item.append(infoText);
+            list.append(item);
+        }
+
+        latestDevBuildsList.append(list);
+
+    }).catch((error) => {
+        latestDevBuildsList.innerText = "Error: " + error;
+    });
+}
+
 // Send the extra build types to the version list object
 function sendExtraBuildTypes(){
 
@@ -584,6 +661,26 @@ function onSelectedDevBuildTypeChanged(){
     }
 }
 
+function setSelectedSpecificHash(value){
+    if(value === settings.manuallySelectedBuildHash)
+        return;
+
+    if(value){
+        settings.manuallySelectedBuildHash = value;
+    } else {
+        settings.manuallySelectedBuildHash = null;
+    }
+
+    console.log("Specifically selected hash is now:", settings.manuallySelectedBuildHash);
+
+    updateSpecificallySelectedDevBuildHash();
+    saveSettings();
+}
+
+function updateSpecificallySelectedDevBuildHash(){
+    selectedBuildHash.innerText = settings.manuallySelectedBuildHash || "none";
+}
+
 buildTypeBOTD.addEventListener("change", onSelectedDevBuildTypeChanged);
 buildTypeLatest.addEventListener("change", onSelectedDevBuildTypeChanged);
 buildTypeManual.addEventListener("change", onSelectedDevBuildTypeChanged);
@@ -592,6 +689,7 @@ buildTypeManual.addEventListener("change", onSelectedDevBuildTypeChanged);
 openModalButton.addEventListener("click", (e) => {
     e.preventDefault();
     devCenterModal.show();
+    updateSpecificallySelectedDevBuildHash();
     updateDevBuildTypeFromSettings();
 });
 
@@ -615,6 +713,14 @@ retryButton.addEventListener("click", () => {
 
 disconnectButton.addEventListener("click", () => {
     disconnect();
+});
+
+selectManualInputHash.addEventListener("click", () => {
+    setSelectedSpecificHash(manuallyEnteredHash.value);
+});
+
+refreshLatestBuilds.addEventListener("click", () => {
+    fetchLatestBuilds();
 });
 
 $("#devCenterTabs").tabs();
