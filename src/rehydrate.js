@@ -59,6 +59,7 @@ async function downloadDehydratedObjects(missingHashes, status){
                 processed + " / " + total;
 
             const target = dehydratedTarget(item.sha3);
+            const tmpTarget = dehydratedTarget(item.sha3) + ".tmp";
             const tmpZip = path.join(tmpDLFolder, item.sha3 + ".gz");
 
             await downloadFile({
@@ -75,7 +76,7 @@ async function downloadDehydratedObjects(missingHashes, status){
 
             // Unzip it
             try{
-                await unGZip(tmpZip, target);
+                await unGZip(tmpZip, tmpTarget);
             } catch(error){
                 console.error("failed to unzip dehydrated file:", error);
                 setTimeout(() => {
@@ -96,13 +97,18 @@ async function downloadDehydratedObjects(missingHashes, status){
                 }
             });
 
+            status.textContent = "Rehydrating... verifying item '" + item.sha3 + "' " +
+                processed + " / " + total;
+
             // Check that downloaded hash is good
-            const hash = await computeFileHashSHA3(target, null);
+            const hash = await computeFileHashSHA3(tmpTarget, null);
 
             if(hash !== item.sha3 || !chunk.includes(hash)){
-                fs.unlinkSync(target);
+                fs.unlinkSync(tmpTarget);
                 throw "Invalid hash of unzipped dehydrated object";
             }
+
+            fs.renameSync(tmpTarget, target);
         }
     }
 }

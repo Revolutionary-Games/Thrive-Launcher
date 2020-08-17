@@ -37,6 +37,11 @@ function convertPackedExecutablePath(executablePath){
     return executablePath.replace("app.asar", "app.asar.unpacked");
 }
 
+function sleep(ms){
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 exports.formatBytes = formatBytes;
 exports.fetchWithTimeout = fetchWithTimeout;
 exports.convertPackedExecutablePath = convertPackedExecutablePath;
+exports.sleep = sleep;
