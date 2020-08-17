@@ -84,12 +84,37 @@ function downloadFile(configuration, useProgress = true){
     });
 }
 
-// Returns a file hash
-async function computeFileHashSHA3(file, progressCallback){
-    return new Promise((resolve) => {
-        fs.accessSync(file, fs.constants.R_OK);
+function computeHashTimeoutHandler(progressTracker, reject, attemptNumber){
+    if(progressTracker.aborted)
+        return;
+
+    ++progressTracker.secondsWithoutProgress;
+
+    const allowedNoProgress = attemptNumber * attemptNumber + 1;
+
+    if(progressTracker.secondsWithoutProgress > allowedNoProgress){
+        console.error("Hashing hasn't progressed in the last " + allowedNoProgress +
+            " seconds, aborting");
+        reject(new Error("File hashing is stuck"));
+        progressTracker.aborted = true;
+        return;
+    }
+
+    setTimeout(() => {
+        computeHashTimeoutHandler(progressTracker, reject, attemptNumber);
+    }, 1000);
+}
+
+async function computeHashInternal(file, progressCallback, attemptNumber){
+    return new Promise((resolve, reject) => {
+        const progressTracker = {
+            secondsWithoutProgress: 0,
+            aborted: false,
+        };
 
         const totalSize = fs.statSync(file).size;
+
+        computeHashTimeoutHandler(progressTracker, reject, attemptNumber);
 
         const hasher = sha3_256.create();
 
@@ -102,13 +127,53 @@ async function computeFileHashSHA3(file, progressCallback){
             if(progressCallback)
                 progressCallback(percentage);
 
-            hasher.update(chunk);
+            progressTracker.secondsWithoutProgress = 0;
+
+            try{
+                hasher.update(chunk);
+            } catch(error){
+                console.error("Error updating hasher");
+                reject(error);
+                readable.close();
+            }
         });
 
         readable.on("end", () => {
+            progressTracker.aborted = true;
             resolve(hasher.hex());
         });
+
+        readable.on("close", () => {
+            progressTracker.aborted = true;
+            resolve(hasher.hex());
+        });
+
+        readable.on("error", () => {
+            progressTracker.aborted = true;
+            reject(new Error("File read stream error for computing hash"));
+        });
     });
+}
+
+// Returns a file hash
+async function computeFileHashSHA3(file, progressCallback){
+    fs.accessSync(file, fs.constants.R_OK);
+
+    // Attempt a few times as sometimes when checking devbuild dehydrated objects, this
+    // gets stuck
+    for(let attempt = 1; attempt < 6; ++attempt){
+        try{
+            return await computeHashInternal(file, progressCallback, attempt);
+        } catch(error){
+            if(attempt < 5){
+                console.error("Failed to compute file hash, retrying, " + error);
+            } else {
+                throw error;
+            }
+        }
+    }
+
+    throw new Error("ran out of retries for hash compute");
 }
 
 // Verifies file hash
