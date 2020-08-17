@@ -70,6 +70,9 @@ async function downloadDehydratedObjects(missingHashes, status){
                 },
             }, false);
 
+            status.textContent = "Rehydrating... extracting item '" + item.sha3 + "' " +
+                processed + " / " + total;
+
             // Unzip it
             try{
                 await unGZip(tmpZip, target);

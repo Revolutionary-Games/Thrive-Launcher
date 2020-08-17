@@ -258,6 +258,7 @@ app.on("browser-window-created", function(e, window){
 function unGZipMain(file, target, respondTo){
     // Timeout prevention
     const timeoutId = setTimeout(() => {
+        log.warn("Hit stuck timeout for file extract");
         mainWindow.webContents.send(respondTo, {error: "File unzipping took too long, it" +
                 " probably got stuck"});
     }, maximumUnzipTime);
@@ -267,8 +268,8 @@ function unGZipMain(file, target, respondTo){
         // But has a chance to get stuck on Linux
         pipeline(fs.createReadStream(file), zlib.createGunzip(), fs.createWriteStream(target),
             (error) => {
+                mainWindow.webContents.send(respondTo, {error: "" + error});
                 clearTimeout(timeoutId);
-                mainWindow.webContents.send(respondTo, {error: error});
             });
     } else {
         try{
@@ -276,11 +277,9 @@ function unGZipMain(file, target, respondTo){
             const source = fs.createReadStream(file);
             const destination = fs.createWriteStream(target);
 
-            source.pipe(gzip).pipe(destination);
-
             destination.on("close", () => {
-                clearTimeout(timeoutId);
                 mainWindow.webContents.send(respondTo, {error: null});
+                clearTimeout(timeoutId);
             });
 
             destination.on("error", (error) => {
@@ -298,9 +297,11 @@ function unGZipMain(file, target, respondTo){
                         " stream: " + error});
             });
 
+            source.pipe(gzip).pipe(destination);
+
         } catch(error){
+            mainWindow.webContents.send(respondTo, {error: "" + error});
             clearTimeout(timeoutId);
-            mainWindow.webContents.send(respondTo, {error: error});
         }
     }
 }
