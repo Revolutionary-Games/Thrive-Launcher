@@ -259,7 +259,7 @@ function updateShownLogFiles(settings){
         fileLink.href = "#";
         fileLink.style.paddingRight = "15px";
         fileLink.addEventListener("click", function(){
-            shell.openItem(log.path);
+            shell.openPath(log.path);
         });
 
         span.append(fileLink);

@@ -235,7 +235,7 @@ browseFilesButton.addEventListener("click", function(){
     if(!fs.existsSync(target)){
         showGenericError("Target folder (" + target + ") does not exist");
     } else {
-        shell.openItem(target);
+        shell.openPath(target);
     }
 });
 
