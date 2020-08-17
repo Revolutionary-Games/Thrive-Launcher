@@ -259,8 +259,10 @@ function unGZipMain(file, target, respondTo){
     // Timeout prevention
     const timeoutId = setTimeout(() => {
         log.warn("Hit stuck timeout for file extract");
-        mainWindow.webContents.send(respondTo, {error: "File unzipping took too long, it" +
-                " probably got stuck"});
+        mainWindow.webContents.send(respondTo, {
+            error: "File unzipping took too long, it" +
+                " probably got stuck",
+        });
     }, maximumUnzipTime);
 
     if(os.platform() === "win32"){
@@ -268,7 +270,12 @@ function unGZipMain(file, target, respondTo){
         // But has a chance to get stuck on Linux
         pipeline(fs.createReadStream(file), zlib.createGunzip(), fs.createWriteStream(target),
             (error) => {
-                mainWindow.webContents.send(respondTo, {error: "" + error});
+                if(error){
+                    mainWindow.webContents.send(respondTo, {error: "" + error});
+                } else {
+                    mainWindow.webContents.send(respondTo, {error: null});
+                }
+
                 clearTimeout(timeoutId);
             });
     } else {
@@ -283,18 +290,24 @@ function unGZipMain(file, target, respondTo){
             });
 
             destination.on("error", (error) => {
-                mainWindow.webContents.send(respondTo, {error: "Error on destination" +
-                        " stream: " + error});
+                mainWindow.webContents.send(respondTo, {
+                    error: "Error on destination" +
+                        " stream: " + error,
+                });
             });
 
             source.on("error", (error) => {
-                mainWindow.webContents.send(respondTo, {error: "Error on source" +
-                        " stream: " + error});
+                mainWindow.webContents.send(respondTo, {
+                    error: "Error on source" +
+                        " stream: " + error,
+                });
             });
 
             gzip.on("error", (error) => {
-                mainWindow.webContents.send(respondTo, {error: "Error on gzip" +
-                        " stream: " + error});
+                mainWindow.webContents.send(respondTo, {
+                    error: "Error on gzip" +
+                        " stream: " + error,
+                });
             });
 
             source.pipe(gzip).pipe(destination);
