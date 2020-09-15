@@ -16,9 +16,9 @@ const pjson = require("./package.json");
 
 
 // Feed URL configuration
-// Now uses a CDN to cache
-const devForumFeedURL = "https://thrivedevforum.b-cdn.net/posts.rss";
-const mainSiteFeedURL = "https://thrivemainsite.b-cdn.net/feed/";
+// Now uses a CDN to cache (and pre-processed feeds)
+const devForumFeedURL = "https://thrivefeeds.b-cdn.net/posts.rss";
+const mainSiteFeedURL = "https://thrivefeeds.b-cdn.net/feed.rss";
 
 //
 // These should be configuration options shown to users
