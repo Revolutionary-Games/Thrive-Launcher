@@ -4,7 +4,7 @@
 const si = require("electron").remote.require("systeminformation");
 
 const {checkGraphicsCard} = require("./config");
-const {Modal, showGenericError} = require("../modal");
+const {Modal, showGenericError} = require("./modal");
 const {setPlayButtonText} = require("./version_select_button");
 
 let showIncompatiblePopup = false;

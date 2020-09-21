@@ -56,7 +56,7 @@ const os = require("os");
 
 const openpgp = require("openpgp");
 
-const pjson = require("./package.json");
+const pjson = require("../package.json");
 
 // Hopefully this is the right place to do this
 openpgp.initWorker({path: "openpgp.worker.js"});
@@ -160,7 +160,7 @@ function createWindow(){
     // And load the index.html of the app.
     mainWindow.loadURL(url.format({
         // This could probably also be __dirname
-        pathname: path.join(app.getAppPath(), "index.html"),
+        pathname: path.join(app.getAppPath(), "src", "index.html"),
         protocol: "file:",
         slashes: true,
     }));

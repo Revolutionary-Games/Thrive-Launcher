@@ -6,7 +6,7 @@ const remote = require("electron").remote;
 const path = require("path");
 const fs = remote.require("fs");
 
-const {dataFolder} = require("../settings");
+const {dataFolder} = require("./settings");
 
 
 const selectedVersionFile = path.join(dataFolder, "selected_version.json");

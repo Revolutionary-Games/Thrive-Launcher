@@ -4,7 +4,7 @@
 
 const semver = require("semver");
 
-const {Modal} = require("../modal");
+const {Modal} = require("./modal");
 
 // There's warnings that this could expose some server-only data to
 // clients, but we don't have separate things so that shouldn't apply

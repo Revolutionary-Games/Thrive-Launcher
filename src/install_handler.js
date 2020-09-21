@@ -11,7 +11,7 @@ const path = require("path");
 
 const rimraf = remote.require("rimraf");
 
-const {getDirectoriesSync} = require("./src/file_utils");
+const {getDirectoriesSync} = require("./file_utils");
 const {getVersionData} = require("./version_info.js");
 
 const {settings} = require("./settings.js");

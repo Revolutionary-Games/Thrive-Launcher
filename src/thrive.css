@@ -6,7 +6,7 @@
 body {
   /* Thrive site font */
   font-family: Roboto;
-  background-image: url('assets/Planet-1.jpg');
+  background-image: url('../assets/Planet-1.jpg');
   background-size: cover;
 }
 

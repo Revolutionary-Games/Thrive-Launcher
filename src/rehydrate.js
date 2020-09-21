@@ -9,13 +9,13 @@ const path = require("path");
 const mkdirp = remote.require("mkdirp");
 const rimraf = remote.require("rimraf");
 
-const {getDehydrateCacheFolder, tmpDLFolder} = require("../settings");
+const {getDehydrateCacheFolder, tmpDLFolder} = require("./settings");
 const {downloadFile} = require("./download_helper");
 const {getDownloadForDehydrated} = require("./dev_center");
 const {computeFileHashSHA3} = require("./download_helper");
 const {unGZip} = require("./file_utils");
 const {runJSONRepackOperation} = require("./pck_tool");
-const {showGenericError} = require("../modal");
+const {showGenericError} = require("./modal");
 
 // Shows rehydrate progress
 // TODO: make a progress bar for this

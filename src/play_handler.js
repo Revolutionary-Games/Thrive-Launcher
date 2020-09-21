@@ -11,16 +11,16 @@ const mkdirp = remote.require("mkdirp");
 const rimraf = remote.require("rimraf");
 const nodeURL = require("url");
 
-const {settings, tmpDLFolder, getDevBuildFolder} = require("../settings.js");
+const {settings, tmpDLFolder, getDevBuildFolder} = require("./settings.js");
 const {showUnpackMessages, devBuildCacheName} = require("./config");
-const {Modal} = require("../modal");
+const {Modal} = require("./modal");
 const {onGameEnded} = require("./crash_reporting.js");
 const errorSuggestions = require("./error_suggestions");
 const {Progress} = require("./progress");
 const {unpackRelease} = require("./unpack");
 const {getSelectedVersion} = require("./version_select_button");
 const {downloadFile, verifyDLHash} = require("./download_helper");
-const versionInfo = require("../version_info");
+const versionInfo = require("./version_info");
 const {findFirstSubFolder} = require("./file_utils");
 const {
     getCurrentDevBuildType, getDevBuildPlatform, fetchDevBuildInfo,

@@ -7,9 +7,9 @@ const fs = remote.require("fs");
 const path = require("path");
 
 const {loadTestVersionData} = require("./config");
-const {Modal, showGenericError} = require("../modal");
+const {Modal, showGenericError} = require("./modal");
 const {setPlayButtonText} = require("./version_select_button");
-const {locallyCachedDLFile} = require("../settings.js");
+const {locallyCachedDLFile} = require("./settings.js");
 const {fetchWithTimeout} = require("./utils");
 
 const versionDataFailedModal = new Modal("versionDataDownloadFailedModal",

@@ -12,15 +12,15 @@ const versionInfo = require("./version_info");
 const retrieveNews = require("./retrieve_news");
 
 const {Modal, showGenericError} = require("./modal");
-const autoUpdateHandler = require("./src/auto_update_handler");
-const {checkConnectionStatus} = require("./src/dev_center");
-const {sendVersionInfoToPlayButton, playCallback} = require("./src/version_select_button");
+const autoUpdateHandler = require("./auto_update_handler");
+const {checkConnectionStatus} = require("./dev_center");
+const {sendVersionInfoToPlayButton, playCallback} = require("./version_select_button");
 const {checkIfCompatible, performCompatibilityCheck} =
-    require("./src/compatibility_check");
-const {getLauncherKey} = require("./src/launcher_key");
-const {loadVersionData} = require("./src/version_info_retriever");
-const {playPressed} = require("./src/play_handler");
-const {catchErrors} = require("./src/config");
+    require("./compatibility_check");
+const {getLauncherKey} = require("./launcher_key");
+const {loadVersionData} = require("./version_info_retriever");
+const {playPressed} = require("./play_handler");
+const {catchErrors} = require("./config");
 
 const openpgp = require("openpgp");
 
@@ -40,8 +40,8 @@ autoUpdateHandler();
 //
 const {settings, loadSettings} = require("./settings.js");
 
-const {reportLatestVersion, loadSelectedVersion} = require("./src/remembered_version");
-const {checkLauncherVersion} = require("./src/check_launcher_version");
+const {reportLatestVersion, loadSelectedVersion} = require("./remembered_version");
+const {checkLauncherVersion} = require("./check_launcher_version");
 
 // This loads settings in sync mode here
 loadSettings();

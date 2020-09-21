@@ -2,11 +2,11 @@
 "use strict";
 
 const url = require("url");
-const {getCurrentPlatform} = require("../version_info");
+const {getCurrentPlatform} = require("./version_info");
 
 const {devCenterURL} = require("./config");
-const {settings, saveSettings} = require("../settings");
-const {Modal, showGenericError} = require("../modal");
+const {settings, saveSettings} = require("./settings");
+const {Modal, showGenericError} = require("./modal");
 const {setExtraVersions, devBuildIdentifier} = require("./version_select_button");
 
 const noConnectionMessage = "Connect to DevCenter";

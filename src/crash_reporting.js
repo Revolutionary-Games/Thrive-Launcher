@@ -14,7 +14,7 @@ const {shell} = remote;
 const moment = require("moment");
 const request = require("request");
 
-const {Modal, showGenericError} = require("../modal");
+const {Modal, showGenericError} = require("./modal");
 
 const logFilenamesToCheck = ["ThriveLog.txt", "ThriveLogCEF.txt", "ThriveLogOGRE.txt"];
 

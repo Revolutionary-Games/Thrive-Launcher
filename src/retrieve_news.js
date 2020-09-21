@@ -12,7 +12,7 @@ const moment = require("moment");
 const truncate = require("./truncate");
 
 // For user agent version
-const pjson = require("./package.json");
+const pjson = require("../package.json");
 
 
 // Feed URL configuration

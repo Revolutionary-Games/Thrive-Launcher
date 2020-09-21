@@ -3,9 +3,9 @@
 
 const assert = require("assert");
 const {getCurrentlySelected, setCurrentlySelectedVersion} = require("./remembered_version");
-const {getPlatformForCurrentPlatform, getVersionByID} = require("../version_info");
+const {getPlatformForCurrentPlatform, getVersionByID} = require("./version_info");
 
-const {ComboBox} = require("../modal");
+const {ComboBox} = require("./modal");
 
 let playCallback = null;
 

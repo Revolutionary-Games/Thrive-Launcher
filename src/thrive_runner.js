@@ -9,7 +9,7 @@ const fs = remote.require("fs");
 const path = require("path");
 const child_process = remote.require("child_process");
 
-const {settings} = require("../settings.js");
+const {settings} = require("./settings.js");
 const {findBinInRelease, getThriveExecutableName} = require("./unpack");
 const {checkIsDehydrated} = require("./rehydrate");
 

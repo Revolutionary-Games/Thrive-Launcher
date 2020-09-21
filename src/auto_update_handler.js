@@ -3,7 +3,7 @@
 
 const {ipcRenderer} = require("electron");
 
-const {Modal} = require("../modal");
+const {Modal} = require("./modal");
 
 const updaterModal = new Modal("autoUpdateNotificationModal",
     "autoUpdateNotificationModalDialog", {closeButton: "autoUpdateNotificationClose"});

@@ -13,8 +13,8 @@ const win = remote.getCurrentWindow();
 
 const {Modal, showGenericError} = require("./modal");
 const {listInstalledVersions, deleteInstalledVersion} = require("./install_handler.js");
-const {calculateFolderSize} = require("./src/file_utils");
-const {formatBytes} = require("./src/utils");
+const {calculateFolderSize} = require("./file_utils");
+const {formatBytes} = require("./utils");
 
 const {
     settings, saveSettings, resetSettings, defaultInstallPath, tmpDLFolder,
