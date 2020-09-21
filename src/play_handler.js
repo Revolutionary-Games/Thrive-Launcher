@@ -370,10 +370,10 @@ async function onDevBuildURLReceived(url, hash){
 }
 
 function playDevBuild(){
-    playBox.innerHTML = "Playing Thrive DevBuild (" + getCurrentDevBuildType() +
-        ") for " + getDevBuildPlatform() +
+    playBox.innerHTML = "<div>Playing Thrive DevBuild (" + getCurrentDevBuildType() +
+        ") for " + getDevBuildPlatform() + "</div>" +
         "<div id='playingDevBuildInfo'>Retrieving build info... </div>" +
-        "<p id='playingInternalP'></p><div id='dlProgress'></div>";
+        "<div id='playingInternalP'></div><div id='dlProgress'></div>";
 
     const buildInfo = document.getElementById("playingDevBuildInfo");
     const status = document.getElementById("playingInternalP");
@@ -457,9 +457,9 @@ function playDevBuild(){
 
 function playNormalVersion(version, download){
 
-    playBox.innerHTML = "Playing Thrive " + version.releaseNum +
-        "<p id='playingInternalP'>Downloading: " + download.url +
-        "</p><div id='dlProgress'></div>";
+    playBox.innerHTML = "<div>Playing Thrive " + version.releaseNum + "</div>" +
+        "<div id='playingInternalP'>Downloading: " + download.url +
+        "</div><div id='dlProgress'></div>";
 
     const fileName = download.fileName;
 

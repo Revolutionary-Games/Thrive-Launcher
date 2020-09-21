@@ -63,27 +63,14 @@ function onCanRun(installFolder, status, onClose, onEnded){
 
     status.innerHTML = "";
 
-    const titleSpan = document.createElement("span");
-
-    // TODO: Make the close button more likely to be visible, maybe flexboxes could set
-    //  the game output size to make everything fit
     const processOutput = document.createElement("div");
+    processOutput.classList.add("gameOutput");
 
-    processOutput.style.overflow = "auto";
-
-    // This needs a fixed size for some reason
-    processOutput.style.maxHeight = "390px";
-    processOutput.style.height = "390px";
-    processOutput.style.paddingTop = "5px";
-    processOutput.style.width = "100%";
-
-    status.style.marginBottom = "1px";
-
+    const titleSpan = document.createElement("div");
     titleSpan.textContent = "Thrive is running. Log output: ";
-
-    titleSpan.append(processOutput);
-
     status.append(titleSpan);
+
+    status.append(processOutput);
 
     const appendMessage = (text) => {
 
@@ -102,18 +89,6 @@ function onCanRun(installFolder, status, onClose, onEnded){
 
         // For some reason the jquery thing is not working so this is at least a decent choice
         message.scrollIntoView(false);
-
-        // Let modalContainer = $( playModal.dialog );
-
-        // let check = $("#playModalDialog");
-
-        // //assert(modalContainer == check);
-
-        // check.scrollTop = check.scrollHeight;
-
-        // // modalContainer.animate({
-        // //     scrollTop: modalContainer.scrollHeight
-        // // }, 500);
     };
 
     appendMessage("Process Started");
@@ -133,18 +108,6 @@ function onCanRun(installFolder, status, onClose, onEnded){
 
         if(settings.hideLauncherOnPlay){
             win.show();
-        }
-
-        if(signal){
-            console.log(`child process exited due to signal ${signal}`);
-            appendMessage(`child process exited due to signal ${signal}`);
-
-        } else {
-            console.log(`child process exited with code ${code}`);
-            appendMessage(`child process exited with code ${code}`);
-
-            if(code === 0)
-                appendMessage("Thrive has exited normally (exit code 0).");
         }
 
         const closeContainer = document.createElement("div");
@@ -167,6 +130,19 @@ function onCanRun(installFolder, status, onClose, onEnded){
 
         // Let crash reporter do things
         onEnded(binFolder, signal != null ? signal : code, closeContainer);
+
+        // Final log message is printed here to make sure it is visible
+        if(signal){
+            console.log(`child process exited due to signal ${signal}`);
+            appendMessage(`child process exited due to signal ${signal}`);
+
+        } else {
+            console.log(`child process exited with code ${code}`);
+            appendMessage(`child process exited with code ${code}`);
+
+            if(code === 0)
+                appendMessage("Thrive has exited normally (exit code 0).");
+        }
     });
 }
 

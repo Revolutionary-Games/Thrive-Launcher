@@ -433,9 +433,32 @@ img.TopLogo {
 }
 
 #playModalContent {
+  min-height: 500px;
   max-height: 500px;
-  overflow-y: auto;
+  overflow: hidden;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+#playModalContent div {
+  flex: 0 1 0;
+}
+
+#playingInternalP {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1 !important;
+}
+
+.gameOutput {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1 !important;
+  overflow-y: auto;
+  padding-top: 5px;
+  padding-bottom: 1px;
+  min-height: 20px;
 }
 
 #settingsModalDialog {
