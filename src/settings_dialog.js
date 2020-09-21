@@ -64,6 +64,25 @@ function updateInstalledVersions(){
 
                 span.append(document.createTextNode(obj.special + obj.name));
 
+                // Show size if this is a thrive version folder
+                if(!obj.special || obj.special === "DevBuild folder: "){
+                    const sizeContainer = document.createElement("span");
+                    const sizeLabel = document.createElement("span");
+                    sizeLabel.innerText = "?";
+
+                    sizeContainer.append(document.createTextNode(" (size: "));
+                    sizeContainer.append(sizeLabel);
+                    sizeContainer.append(document.createTextNode(")"));
+
+                    span.append(sizeContainer);
+
+                    calculateFolderSize(obj.path).then((size) => {
+                        sizeLabel.innerText = formatBytes(size);
+                    }).catch((error) => {
+                        console.error($`Failed to compute folder (${obj.path}) size:` + error);
+                    });
+                }
+
                 const button = document.createElement("span");
                 button.classList.add("VersionDeleteButton");
                 button.append(document.createTextNode("DELETE"));
