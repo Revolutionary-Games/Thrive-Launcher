@@ -373,7 +373,7 @@ function playDevBuild(){
     playBox.innerHTML = "<div>Playing Thrive DevBuild (" + getCurrentDevBuildType() +
         ") for " + getDevBuildPlatform() + "</div>" +
         "<div id='playingDevBuildInfo'>Retrieving build info... </div>" +
-        "<div id='playingInternalP'></div><div id='dlProgress'></div>";
+        "<div id='dlProgress'></div><div id='playingInternalP'></div>";
 
     const buildInfo = document.getElementById("playingDevBuildInfo");
     const status = document.getElementById("playingInternalP");
@@ -458,8 +458,8 @@ function playDevBuild(){
 function playNormalVersion(version, download){
 
     playBox.innerHTML = "<div>Playing Thrive " + version.releaseNum + "</div>" +
-        "<div id='playingInternalP'>Downloading: " + download.url +
-        "</div><div id='dlProgress'></div>";
+        "<div id='dlProgress'></div><div id='playingInternalP'>Downloading: " + download.url +
+        "</div>";
 
     const fileName = download.fileName;
 
