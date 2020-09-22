@@ -61,7 +61,7 @@ have [ImageMagick](https://www.imagemagick.org/) installed.
 ### Running
 
 Now you should have everything set up. You can run Thrive launcher
-with `npm start` in the thrive-launcher directory.
+with `npm start` in the thrive-launcher directory. If you wish to enable devtools (inspector, console etc.), use `npm run start-dev` instead.
 
 ### Issues
 
