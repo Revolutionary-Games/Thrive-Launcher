@@ -41,7 +41,39 @@ function sleep(ms){
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+/**
+ * Checks if the OS is 64-bit or 32-bit.
+ *
+ * @returns {string} either 64x or 86x
+ */
+function getOSBit() {
+    //If node is 64-bit we can safely assume the OS is the same
+    if(process.arch === "x64" || process.env.hasOwnProperty('PROCESSOR_ARCHITEW6432') || process.arch === "arm64" || process.arch === "ppc64") {
+        return "x64"
+    }
+
+    /* 
+     * In case the above does not catch a 64-bit OS (running the 32-bit launcher on a 64-bit OS may mess up the check),
+     * check the old fashioned way. 
+     */
+
+    //The different 64-bit signatures
+    const signatures = ["x86_64", "x86-64", "Win64", "x64;", "amd64", "AMD64", "WOW64", "x64_64", "ia64", "sparc64", "ppc64", "IRIX64"] ;
+
+    //Check the signatures against the userAgent. If a match is found, OS is 64-bit.
+    for(const signature of signatures) {
+        if(navigator.userAgent.indexOf(signature) != -1) {
+            return "x64";
+        }
+    }
+
+    //If we get here, the OS is most likely 32-bit.
+    return "x86"
+
+}
+
 exports.formatBytes = formatBytes;
 exports.fetchWithTimeout = fetchWithTimeout;
 exports.convertPackedExecutablePath = convertPackedExecutablePath;
 exports.sleep = sleep;
+exports.getOSBit = getOSBit;
