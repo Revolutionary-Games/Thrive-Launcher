@@ -4,6 +4,7 @@
 const assert = require("assert");
 const {getCurrentlySelected, setCurrentlySelectedVersion} = require("./remembered_version");
 const {getPlatformForCurrentPlatform, getVersionByID} = require("./version_info");
+const {getOSArch} = require("./utils");
 
 const {ComboBox} = require("./modal");
 
@@ -124,7 +125,19 @@ function updatePlayButton(versions){
     // Dump the other versions to be selected in the combo box thing //
     const options = versionInfo.getAllValidVersions();
 
+    console.log("All valid versions: " + options.length);
+
     playComboAllChoices = options;
+
+    // Hide 32-bit releases if on a 64-bit OS
+    if(getOSArch() === "x64") {
+        playComboAllChoices = playComboAllChoices.filter(function(combo){
+            //os = 1 is Win32
+            return combo.download.os !== 1;
+        });
+
+        console.log("Hid " + (options.length - playComboAllChoices.length) + " 32-bit releases");
+    }
 
     // Sort the versions //
     playComboAllChoices.sort(function(a, b){
@@ -136,8 +149,6 @@ function updatePlayButton(versions){
 
         return a.download.os < b.download.os;
     });
-
-    console.log("All valid versions: " + options.length);
 
     // Restore last selected version (if there is one)
     const selected = getCurrentlySelected();

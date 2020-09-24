@@ -46,7 +46,7 @@ function sleep(ms){
  *
  * @returns {string} either 64x or 86x
  */
-function getOSBit() {
+function getOSArch() {
     //If node is 64-bit we can safely assume the OS is the same
     if(process.arch === "x64" || process.env.hasOwnProperty('PROCESSOR_ARCHITEW6432') || process.arch === "arm64" || process.arch === "ppc64") {
         return "x64"
@@ -76,4 +76,4 @@ exports.formatBytes = formatBytes;
 exports.fetchWithTimeout = fetchWithTimeout;
 exports.convertPackedExecutablePath = convertPackedExecutablePath;
 exports.sleep = sleep;
-exports.getOSBit = getOSBit;
+exports.getOSArch = getOSArch;
