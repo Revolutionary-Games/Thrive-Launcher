@@ -34,7 +34,7 @@ function createVersionSelectItem(version){
     div.classList.add("Clickable");
 
     // Hide 32-bit releases if on a 64-bit OS
-    if(settings.hide32bit && version.win32On64Bit) {
+    if(settings.hide32bit && version.win32On64Bit){
         div.classList.add("Hidden");
     }
 
