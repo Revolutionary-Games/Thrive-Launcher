@@ -48,17 +48,15 @@ function sleep(ms){
  */
 function getOSArch(){
     // If node is 64-bit we can safely assume the OS is the same
-    if(process.arch === "x64" || 
-        Object.prototype.hasOwnProperty.call(process.env, "PROCESSOR_ARCHITEW6432") || 
-        process.arch === "arm64" || 
+    if(process.arch === "x64" ||
+        Object.prototype.hasOwnProperty.call(process.env, "PROCESSOR_ARCHITEW6432") ||
+        process.arch === "arm64" ||
         process.arch === "ppc64"){
         return "x64";
     }
 
-    /*
-     * In case the above does not catch a 64-bit OS (running the 32-bit launcher on a
-     * 64-bit OS may mess up the check), check the old fashioned way.
-     */
+     // In case the above does not catch a 64-bit OS (running the 32-bit launcher on a
+     // 64-bit OS may mess up the check), check the old fashioned way.
     const signatures = [
         "x86_64",
         "x86-64",
@@ -71,7 +69,7 @@ function getOSArch(){
         "ia64",
         "sparc64",
         "ppc64",
-        "IRIX64"
+        "IRIX64",
     ];
 
     // Check the signatures against the userAgent. If a match is found, OS is 64-bit.
