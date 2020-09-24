@@ -355,7 +355,7 @@ enableWebContentCheckbox.addEventListener("change", function(event){
 });
 
 // Button to hide the window if the game is launched
-const hideLauncherOnPlayCheckbox = document.getElementById("hideLauncherOnPlay");
+const hideLauncherOnPlayCheckbox = document.getElementById("hideLauncherOnPlayCheckbox");
 
 hideLauncherOnPlayCheckbox.addEventListener("change", function(event){
     if(loadingSettings)
@@ -363,6 +363,19 @@ hideLauncherOnPlayCheckbox.addEventListener("change", function(event){
 
     console.log("updating hide launcher setting", event.target.checked);
     settings.hideLauncherOnPlay = event.target.checked;
+    onSettingsChanged();
+});
+
+// Button to hide 32-bit releases
+const hide32bitCheckbox = document.getElementById("hide32bitCheckbox");
+
+hide32bitCheckbox.addEventListener("change", function(event){
+    if(loadingSettings)
+        return;
+
+    console.log("updating hide 32-bit releases", event.target.checked);
+    settings.hide32bit = event.target.checked;
+
     onSettingsChanged();
 });
 
@@ -409,6 +422,7 @@ module.exports.onSettingsLoaded = () => {
 
         enableWebContentCheckbox.checked = settings.fetchNewsFromWeb;
         hideLauncherOnPlayCheckbox.checked = settings.hideLauncherOnPlay;
+        hide32bitCheckbox.checked = settings.hide32bit;
         enableSingleProcessLaunch.checked = settings.launchOptionSingleProcess;
         disableGUISandbox.checked = settings.launchOptionNoGUISandbox;
         disableGUIGPU.checked = settings.launchOptionNoGUIGPU;
