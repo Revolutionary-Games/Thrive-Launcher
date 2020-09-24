@@ -55,8 +55,8 @@ function getOSArch(){
         return "x64";
     }
 
-     // In case the above does not catch a 64-bit OS (running the 32-bit launcher on a
-     // 64-bit OS may mess up the check), check the old fashioned way.
+    // In case the above does not catch a 64-bit OS (running the 32-bit launcher on a
+    // 64-bit OS may mess up the check), check the old fashioned way.
     const signatures = [
         "x86_64",
         "x86-64",
