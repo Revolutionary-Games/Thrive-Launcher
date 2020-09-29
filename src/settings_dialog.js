@@ -122,7 +122,10 @@ function updateInstalledVersions(){
             "trace:", err.stack);
 
         const li = document.createElement("li");
-        li.textContent = "An error happened: " + err;
+        li.textContent = "Unable to find installed versions in \"" +
+            settings.installPath +
+            "\". Install folder has most likely been moved or deleted. " +
+            "Please select a new install location.";
         listOfInstalledVersions.append(li);
     });
 }
@@ -191,6 +194,12 @@ function deleteDehydratedFiles(){
     });
 }
 
+function updateInstallLocation(directory){
+    settings.installPath = directory;
+    onSettingsChanged();
+    updateInstalledVersions();
+}
+
 async function moveInstalledFiles(files, destination){
     movingFileModal.show();
     const content = document.getElementById("movingFileModalContent");
@@ -207,9 +216,7 @@ async function moveInstalledFiles(files, destination){
         then(() => {
             console.log("successfully moved all the files");
 
-            settings.installPath = destination;
-            onSettingsChanged();
-            updateInstalledVersions();
+            updateInstallLocation(destination);
             movingFileModal.hide();
         }).
         catch((err) => {
@@ -259,7 +266,6 @@ browseFilesButton.addEventListener("click", function(){
 });
 
 function changeInstallLocation(directory){
-
     listInstalledVersions().then((data) => {
 
         const files = [];
@@ -276,9 +282,7 @@ function changeInstallLocation(directory){
         if(!Array.isArray(files) || !files.length){
             console.log("No files found");
 
-            settings.installPath = directory;
-            onSettingsChanged();
-            updateInstalledVersions();
+            updateInstallLocation(directory);
 
             return;
         }
@@ -297,13 +301,17 @@ function changeInstallLocation(directory){
                     moveInstalledFiles(files, directory);
                 }
             } else if(response.response === 1){
-                settings.installPath = directory;
-                onSettingsChanged();
-                updateInstalledVersions();
+                updateInstallLocation(directory);
             } else {
                 showGenericError("Unknown dialog response");
             }
         });
+    }).catch((err) => {
+        console.error("failed to get list of installed versions:", err,
+            "trace:", err.stack);
+        console.log("Changing install location without moving files");
+
+        updateInstallLocation(directory);
     });
 }
 
