@@ -3,8 +3,14 @@
 
 const assert = require("assert");
 const {getCurrentlySelected, setCurrentlySelectedVersion} = require("./remembered_version");
-const {getPlatformForCurrentPlatform, getVersionByID} = require("./version_info");
 
+const {
+    getPlatformForCurrentPlatform,
+    getVersionByID,
+    getCurrentPlatform,
+} = require("./version_info");
+
+const {settings} = require("./settings.js");
 const {ComboBox} = require("./modal");
 
 let playCallback = null;
@@ -31,6 +37,11 @@ function createVersionSelectItem(version){
     const div = document.createElement("div");
     div.classList.add("ComboVersionSelect");
     div.classList.add("Clickable");
+
+    // Hide 32-bit releases if on a 64-bit OS
+    if(getCurrentPlatform().arch === "x64" && settings.hide32bit && version.win32On64Bit){
+        div.classList.add("Hidden");
+    }
 
     let prefix = "";
 
@@ -124,6 +135,8 @@ function updatePlayButton(versions){
     // Dump the other versions to be selected in the combo box thing //
     const options = versionInfo.getAllValidVersions();
 
+    console.log("All valid versions: " + options.length);
+
     playComboAllChoices = options;
 
     // Sort the versions //
@@ -136,8 +149,6 @@ function updatePlayButton(versions){
 
         return a.download.os < b.download.os;
     });
-
-    console.log("All valid versions: " + options.length);
 
     // Restore last selected version (if there is one)
     const selected = getCurrentlySelected();

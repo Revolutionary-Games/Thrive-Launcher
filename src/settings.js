@@ -33,6 +33,7 @@ mkdirp.sync(module.exports.dataFolder);
 const defaultSettings = {
     fetchNewsFromWeb: true,
     hideLauncherOnPlay: true,
+    hide32bit: true,
     launchOptionSingleProcess: false,
     launchOptionNoGUISandbox: false,
     launchOptionNoGUIGPU: false,

@@ -731,3 +731,7 @@ input[type="text"].Report {
   position: absolute;
   top: 0;
 }
+
+.Hidden {
+  display: none;
+}
