@@ -124,7 +124,7 @@ function updateInstalledVersions(){
         const li = document.createElement("li");
         li.textContent = "Unable to find installed versions in \"" +
             settings.installPath +
-            "\". Install folder has most likely been moved or deleted. " +
+            "\". Install directory has most likely been moved or deleted. " +
             "Please select a new install location.";
         listOfInstalledVersions.append(li);
     });
