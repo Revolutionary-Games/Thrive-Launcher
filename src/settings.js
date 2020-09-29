@@ -8,7 +8,6 @@ const remote = require("electron").remote;
 const path = require("path");
 const fs = remote.require("fs");
 const mkdirp = remote.require("mkdirp");
-const {getOSArch} = require("./utils");
 
 module.exports.dataFolder = path.join(remote.app.getPath("appData"), "Revolutionary-Games",
     "Launcher");
@@ -34,7 +33,7 @@ mkdirp.sync(module.exports.dataFolder);
 const defaultSettings = {
     fetchNewsFromWeb: true,
     hideLauncherOnPlay: true,
-    hide32bit: getOSArch() === "x64",
+    hide32bit: true,
     launchOptionSingleProcess: false,
     launchOptionNoGUISandbox: false,
     launchOptionNoGUIGPU: false,

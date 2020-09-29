@@ -3,9 +3,14 @@
 
 const assert = require("assert");
 const {getCurrentlySelected, setCurrentlySelectedVersion} = require("./remembered_version");
-const {getPlatformForCurrentPlatform, getVersionByID} = require("./version_info");
-const {settings} = require("./settings.js");
 
+const {
+    getPlatformForCurrentPlatform,
+    getVersionByID,
+    getCurrentPlatform
+} = require("./version_info");
+
+const {settings} = require("./settings.js");
 const {ComboBox} = require("./modal");
 
 let playCallback = null;
@@ -34,7 +39,7 @@ function createVersionSelectItem(version){
     div.classList.add("Clickable");
 
     // Hide 32-bit releases if on a 64-bit OS
-    if(settings.hide32bit && version.win32On64Bit){
+    if(getCurrentPlatform().arch === "x64" && settings.hide32bit && version.win32On64Bit){
         div.classList.add("Hidden");
     }
 
