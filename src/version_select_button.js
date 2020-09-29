@@ -7,7 +7,7 @@ const {getCurrentlySelected, setCurrentlySelectedVersion} = require("./remembere
 const {
     getPlatformForCurrentPlatform,
     getVersionByID,
-    getCurrentPlatform
+    getCurrentPlatform,
 } = require("./version_info");
 
 const {settings} = require("./settings.js");
