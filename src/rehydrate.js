@@ -108,7 +108,19 @@ async function downloadDehydratedObjects(missingHashes, status){
                 throw "Invalid hash of unzipped dehydrated object";
             }
 
-            fs.renameSync(tmpTarget, target);
+            try{
+                fs.renameSync(tmpTarget, target);
+            } catch(error){
+                fs.unlinkSync(tmpTarget);
+                throw "Could not move verified downloaded file to target, error: " + error;
+            }
+
+            const isMissingNow = await isDehydratedMissing(item.sha3);
+
+            if(isMissingNow){
+                throw "Downloaded and verified dehydrated cache item is missing after copy" +
+                " to folder";
+            }
         }
     }
 }
@@ -195,6 +207,11 @@ async function rehydrate(thriveFolder, dehydratedData, status){
                     continue;
 
                 const containedData = file.data.files[pckContainedFile];
+
+                if(await isDehydratedMissing(containedData.sha3)){
+                    throw `Dehydrate cache item (${fileName}) should have been downloaded, ` +
+                    "but is missing from cache folder";
+                }
 
                 operations.push({
                     file: dehydratedTarget(containedData.sha3),
