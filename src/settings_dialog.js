@@ -124,8 +124,8 @@ function updateInstalledVersions(){
         const li = document.createElement("li");
         li.textContent = "Unable to find installed versions in \"" +
             settings.installPath +
-            "\". Install directory has most likely been moved or deleted. " +
-            "Please select a new install location.";
+            "\". No Thrive versions have been played yet or the install directory has " +
+            "been deleted. ";
         listOfInstalledVersions.append(li);
     });
 }
@@ -280,7 +280,7 @@ function changeInstallLocation(directory){
         }
 
         if(!Array.isArray(files) || !files.length){
-            console.log("No files found");
+            console.log("No files found to move");
 
             updateInstallLocation(directory);
 
@@ -309,7 +309,7 @@ function changeInstallLocation(directory){
     }).catch((err) => {
         console.error("failed to get list of installed versions:", err,
             "trace:", err.stack);
-        console.log("Changing install location without moving files");
+        console.log("Changing install location without moving files due to error (see above)");
 
         updateInstallLocation(directory);
     });
