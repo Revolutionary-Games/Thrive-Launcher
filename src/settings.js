@@ -23,9 +23,10 @@ module.exports.defaultInstallPath = path.join(module.exports.dataFolder, "Instal
 module.exports.getDevBuildFolder = () => path.join(module.exports.settings.installPath,
     "devbuild");
 
-// TODO: make this configurable
-module.exports.getDehydrateCacheFolder = () => path.join(module.exports.dataFolder,
+module.exports.defaultDehydratedCacheFolder = path.join(module.exports.dataFolder,
     "DehydratedCache");
+
+module.exports.getDehydrateCacheFolder = () => module.exports.settings.cacheFolderPath;
 
 // Make sure it exists. This simplifies a lot of code
 mkdirp.sync(module.exports.dataFolder);
@@ -38,6 +39,7 @@ const defaultSettings = {
     launchOptionNoGUISandbox: false,
     launchOptionNoGUIGPU: false,
     installPath: module.exports.defaultInstallPath,
+    cacheFolderPath: module.exports.defaultDehydratedCacheFolder,
     devCenterKey: null,
     selectedDevBuildType: null,
     manuallySelectedBuildHash: null,

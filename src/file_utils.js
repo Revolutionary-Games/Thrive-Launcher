@@ -36,6 +36,26 @@ async function calculateFolderSize(folder){
     }
 }
 
+async function listFolderContents(folder){
+    return new Promise((resolve, reject) => {
+        let contents = null;
+
+        try{
+            contents = fs.readdirSync(folder).map((name) => path.join(folder, name));
+        } catch(err){
+            // Ignore error regarding the directory not existing
+            if(err.code === "ENOENT"){
+                resolve([]);
+                return;
+            }
+            reject(err);
+            return;
+        }
+
+        resolve(contents);
+    });
+}
+
 // Ungzips a file (request goes through the main process)
 async function unGZip(file, target){
     return new Promise(function(resolve, reject){
@@ -63,3 +83,4 @@ exports.calculateFolderSize = calculateFolderSize;
 exports.getDirectoriesSync = getDirectoriesSync;
 exports.isDirectorySync = isDirectorySync;
 exports.unGZip = unGZip;
+exports.listFolderContents = listFolderContents;

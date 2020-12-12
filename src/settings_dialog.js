@@ -13,12 +13,12 @@ const win = remote.getCurrentWindow();
 
 const {Modal, showGenericError} = require("./modal");
 const {listInstalledVersions, deleteInstalledVersion} = require("./install_handler.js");
-const {calculateFolderSize} = require("./file_utils");
+const {calculateFolderSize, listFolderContents} = require("./file_utils");
 const {formatBytes} = require("./utils");
 
 const {
     settings, saveSettings, resetSettings, defaultInstallPath, tmpDLFolder,
-    getDehydrateCacheFolder,
+    getDehydrateCacheFolder, defaultDehydratedCacheFolder,
 } = require("./settings.js");
 
 const settingsModal = new Modal("settingsModal", "settingsModalDialog",
@@ -184,6 +184,10 @@ function updateDehydratedCache(){
     });
 }
 
+function listDehydrateCacheContents(){
+    return listFolderContents(settings.cacheFolderPath);
+}
+
 function deleteDehydratedFiles(){
     rimraf(getDehydrateCacheFolder(), (error) => {
         if(error){
@@ -200,7 +204,13 @@ function updateInstallLocation(directory){
     updateInstalledVersions();
 }
 
-async function moveInstalledFiles(files, destination){
+function updateDehydrateCacheLocation(directory){
+    settings.cacheFolderPath = directory;
+    onSettingsChanged();
+    updateDehydratedCache();
+}
+
+async function moveInstalledFiles(files, destination, successCallback){
     movingFileModal.show();
     const content = document.getElementById("movingFileModalContent");
 
@@ -216,7 +226,7 @@ async function moveInstalledFiles(files, destination){
         then(() => {
             console.log("successfully moved all the files");
 
-            updateInstallLocation(destination);
+            successCallback(destination);
             movingFileModal.hide();
         }).
         catch((err) => {
@@ -298,7 +308,7 @@ function changeInstallLocation(directory){
         dialog.showMessageBox(win, options).then((response) => {
             if(response.response === 0){
                 if(settings.installPath != directory){
-                    moveInstalledFiles(files, directory);
+                    moveInstalledFiles(files, directory, updateInstallLocation);
                 }
             } else if(response.response === 1){
                 updateInstallLocation(directory);
@@ -422,6 +432,70 @@ disableGUIGPU.addEventListener("change", function(event){
 
 clearDehydratedCache.addEventListener("click", () => {
     deleteDehydratedFiles();
+});
+
+function changeDehydrateCacheLocation(directory){
+    listDehydrateCacheContents().then((files) => {
+        if(!files || !files.length){
+            console.log("No files found to move");
+
+            updateDehydrateCacheLocation(directory);
+            return;
+        }
+
+        const options = {
+            title: "Warning!",
+            type: "warning",
+            buttons: ["Yes", "No"],
+            message: "The cache folder contains files. \n" +
+                "Do you want to move the files into the selected location?",
+        };
+
+        dialog.showMessageBox(win, options).then((response) => {
+            if(response.response === 0){
+                if(settings.cacheFolderPath !== directory){
+                    moveInstalledFiles(files, directory, updateDehydrateCacheLocation);
+                }
+            } else if(response.response === 1){
+                updateDehydrateCacheLocation(directory);
+            } else {
+                showGenericError("Unknown dialog response");
+            }
+        });
+    }).catch((err) => {
+        console.error("failed to get list of dehydrate items:", err,
+            "trace:", err.stack);
+        console.log("Changing cache location without moving files due to error (see above)");
+
+        updateDehydrateCacheLocation(directory);
+    });
+}
+
+// Button to select the install location
+const selectDehydrateCacheLocation = document.getElementById("selectDehydrateCacheLocation");
+
+selectDehydrateCacheLocation.addEventListener("click", function(){
+    dialog.showOpenDialog(win, {properties: ["openDirectory", "promptToCreate"]}).
+        then((result) => {
+            if(result.canceled)
+                return;
+
+            if(result.filePaths.length !== 1){
+                showGenericError("A single folder wasn't selected");
+            } else {
+                changeDehydrateCacheLocation(result.filePaths[0]);
+            }
+        });
+});
+
+// Button to reset the dehydrate cache location
+const resetDehydrateCacheLocation = document.getElementById("resetDehydrateCacheLocation");
+
+resetDehydrateCacheLocation.addEventListener("click", function(){
+    // Ignore if default setting is on
+    if(settings.cacheFolderPath !== defaultDehydratedCacheFolder){
+        changeDehydrateCacheLocation(defaultDehydratedCacheFolder);
+    }
 });
 
 module.exports.onSettingsLoaded = () => {
