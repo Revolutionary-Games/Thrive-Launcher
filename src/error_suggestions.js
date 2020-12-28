@@ -27,8 +27,9 @@ function unpackError(message, element){
         appendSuggestion("ENOENT error can mean that you are missing 32-bit library support. \
 You should try installing 'glibc.i686' or if you are on ubuntu follow instructions here: \
 <a href='https://blog.teststation.org/ubuntu/2016/05/12/\
-installing-32-bit-software-on-ubuntu-16.04/'>Installing 32-bit libraries on Ubuntu 16.04</a>.\
-If these don't help try searching for 'YOUROSHERE install 32 bit library support'.",
+installing-32-bit-software-on-ubuntu-16.04/'>Installing 32-bit libraries on Ubuntu 16.04</a>. \
+If these don't help try searching for 'YOUROSHERE install 32 bit library support'. You can\
+ also install p7zip package and restart the launcher to use the system version.",
         element);
 
 
