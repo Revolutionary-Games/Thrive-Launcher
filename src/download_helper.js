@@ -161,11 +161,11 @@ async function computeFileHashSHA3(file, progressCallback){
 
     // Attempt a few times as sometimes when checking devbuild dehydrated objects, this
     // gets stuck
-    for(let attempt = 1; attempt < 6; ++attempt){
+    for(let attempt = 1; attempt < 11; ++attempt){
         try{
             return await computeHashInternal(file, progressCallback, attempt);
         } catch(error){
-            if(attempt < 5){
+            if(attempt < 10){
                 console.error("Failed to compute file hash, retrying, " + error);
             } else {
                 throw error;
