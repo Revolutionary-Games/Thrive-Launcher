@@ -8,6 +8,7 @@ const remote = require("electron").remote;
 const os = remote.require("os");
 const path = require("path");
 const fs = remote.require("fs");
+const which = remote.require("which");
 
 // This can't be required through remote as otherwise we won't get the error messages to us
 // and instead the main process reports the error with a popup
@@ -54,9 +55,15 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
             }
 
         } else if(os.platform() === "linux"){
-            // TODO: allow using system 7za if present to not need to have 32 bit
-            // libs installed
-            unpacker = path.join(remote.app.getAppPath(), "tools/7zip/7za");
+            // Find from PATH
+            unpacker = which.sync("7za", {nothrow: true});
+
+            if(!unpacker){
+                // Use packed in version //
+                console.log("No 7za found in PATH, using packed in one");
+
+                unpacker = path.join(remote.app.getAppPath(), "tools/7zip/7za");
+            }
         } else {
             reject(new Error("Unknown platform for 7zip tool"));
             return;
