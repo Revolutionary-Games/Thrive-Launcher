@@ -595,8 +595,8 @@ function fetchLatestBuilds(offset = 0){
             const description = build.description ? "desc: " +
                 build.description.substring(0, 80) : "";
 
-            const infoText = document.createTextNode(` (${build.id}) ${unsafe}${BODT}` +
-                description);
+            const infoText = document.createTextNode(` (${build.id}, ${build.branch}) ` +
+                `${unsafe}${BODT}` + description);
 
             item.append(infoText);
             list.append(item);
