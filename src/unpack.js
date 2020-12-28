@@ -9,7 +9,9 @@ const os = remote.require("os");
 const path = require("path");
 const fs = remote.require("fs");
 
-const {spawn} = remote.require("child_process");
+// This can't be required through remote as otherwise we won't get the error messages to us
+// and instead the main process reports the error with a popup
+const {spawn} = require("child_process");
 
 const {convertPackedExecutablePath} = require("./utils");
 
