@@ -64,6 +64,25 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
 
                 unpacker = path.join(remote.app.getAppPath(), "tools/7zip/7za");
             }
+        } else if(os.platform() === "darwin"){
+            // Find from PATH
+            unpacker = which.sync("7za", {nothrow: true});
+
+            if(!unpacker){
+                // Some users on Mac import Linux versions of 7zip through homebrew //
+                console.log("No 7za found in PATH, using packed in one");
+
+                // Popular 7zip alternative for Mac users, linked on 7zip page at line 81 //
+                unpacker = path.join(remote.app.getAppPath(),
+                    "tools/7zip/Keka.app/Contents/MacOS/keka7z");
+
+                if(!fs.existsSync(unpacker)){
+                    reject(new Error("You don't have 7Zip installed!. Download here: " +
+                        "http://www.7-zip.org/download.html"));
+
+                    return;
+                }
+            }
         } else {
             reject(new Error("Unknown platform for 7zip tool"));
             return;
@@ -141,6 +160,9 @@ function getThriveExecutableName(){
     } else if(os.platform() === "linux"){
 
         return "Thrive";
+    } else if(os.platform() === "darwin"){
+
+        return "Thrive.app/Contents/MacOS/Thrive";
     } else {
         throw "Unknown Thrive exe name for this platform";
     }

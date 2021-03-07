@@ -35,6 +35,12 @@
             "name": "Linux x64",
             "arch": "x64",
             "os": "linux"
+        },
+        {
+            "id": 4,
+            "name": "Darwin x64",
+            "arch": "x64",
+            "os": "darwin"
         }
     ],
 
@@ -386,6 +392,11 @@
                     "os": 3,
                     "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.3.1/Thrive_0.5.3.1_linux_x11.7z",
                     "hash": "1fd9d3f52762b8cb0257d010e7eec140830761a70322409774237c87730a7b91"
+                },
+                {
+                    "os": 4,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.3.1/Thrive_0.5.3.1_mac_osx.zip",
+                    "hash": "f05328b8ad07a65fcf423d43f872af2b4e0a23db9b153e55a6d29f288ce135e3"
                 }
             ]
         }
