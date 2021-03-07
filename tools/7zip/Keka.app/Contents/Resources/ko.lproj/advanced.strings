@@ -1,0 +1,87 @@
+﻿
+/* Class = "NSButtonCell"; title = "Archive items separately"; ObjectID = "2221"; */
+"2221.title" = "따로따로 압축하기";
+
+/* Class = "NSButtonCell"; title = "Delete file(s) after compression"; ObjectID = "2222"; */
+"2222.title" = "압축 완료 후 파일 삭제";
+
+/* Class = "NSButtonCell"; title = "Exclude Mac resource forks"; ObjectID = "2244"; */
+"2244.title" = "Mac 리소스 포크 (예: .DS_Store) 포함 안 함";
+
+/* Class = "NSTextFieldCell"; title = "Password:"; ObjectID = "2262"; */
+"2262.title" = "암호:";
+
+/* Class = "NSTextFieldCell"; title = "Split:"; ObjectID = "2270"; */
+"2270.title" = "분할 압축:";
+
+/* Class = "NSComboBoxCell"; placeholderString = "Example: 5 MB"; ObjectID = "2271"; */
+"2271.placeholderString" = "예: 5 MB";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[0] = "1.4 MB Floppy disk"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[0]" = "1.4 MB 플로피 디스크";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[1] = "650 MB CD"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[1]" = "650 MB CD";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[2] = "700 MB CD"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[2]" = "700 MB CD";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[3] = "4.7 GB DVD"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[3]" = "4.7 GB DVD";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[4] = "8.5 GB DVD (DL)"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[4]" = "8.5 GB DVD (DL)";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[5] = "7.8 GB Mini Blu-ray (SL)"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[5]" = "7.8 GB 미니 블루레이 (SL)";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[6] = "15.6 GB Mini Blu-ray (DL)"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[6]" = "15.6 GB 미니 블루레이 (DL)";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[7] = "25 GB Blu-ray (SL)"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[7]" = "25 GB 블루레이 (SL)";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[8] = "50 GB Blu-ray (DL)"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[8]" = "50 GB 블루레이 (DL)";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[9] = "100 GB Blu-ray XL (TL)"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[9]" = "100 GB 블루레이 XL (TL)";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[10] = "128 GB Blu-ray XL (QL)"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[10]" = "128 GB 블루레이 XL (QL)";
+
+/* Class = "NSTextFieldCell"; title = "Volume name:"; ObjectID = "2343"; */
+"2343.title" = "볼륨 이름:";
+
+/* Class = "NSTextFieldCell"; placeholderString = "custom name"; ObjectID = "2354"; */
+"2354.placeholderString" = "사용자 지정 이름";
+
+/* Class = "NSTextFieldCell"; title = "You can create a ISO volume that will be read-only and compressed. ISO volumes can be only created from a folder.\n\nSet a volume name to this ISO or use the default name based on the files you compress."; ObjectID = "2363"; */
+"2363.title" = "압축된 읽기 전용 ISO 볼륨을 만들 수 있습니다. 단일 폴더를 ISO 볼륨으로 만들 수 있습니다.\n\n볼륨 이름을 지정하지 않으면 압축하는 파일에 따른 기본 이름이 사용됩니다.";
+
+/* Class = "NSTextFieldCell"; title = "Store"; ObjectID = "2390"; */
+"2390.title" = "저장";
+
+/* Class = "NSTextFieldCell"; title = "Fast"; ObjectID = "2392"; */
+"2392.title" = "빠르게";
+
+/* Class = "NSTextFieldCell"; title = "Slow"; ObjectID = "2394"; */
+"2394.title" = "느리게";
+
+/* Class = "NSTextFieldCell"; title = "Normal"; ObjectID = "2398"; */
+"2398.title" = "보통";
+
+/* Class = "NSTextFieldCell"; title = "Repeat:"; ObjectID = "2426"; */
+"2426.title" = "암호 다시 입력:";
+
+/* Class = "NSButtonCell"; title = "Encrypt filenames"; ObjectID = "L2I-Q8-zqc"; */
+"L2I-Q8-zqc.title" = "파일 이름 암호화";
+
+/* Class = "NSButtonCell"; title = "Use AES-256 encryption"; ObjectID = "Lw7-h9-3Qh"; */
+"Lw7-h9-3Qh.title" = "AES-256 암호화 사용";
+
+/* Class = "NSButtonCell"; title = "Solid archive"; ObjectID = "UYy-aQ-V1a"; */
+"UYy-aQ-V1a.title" = "솔리드 압축";
+
+/* Class = "NSButtonCell"; title = "Use BZIP2 compression"; ObjectID = "qhy-NU-Cts"; */
+"qhy-NU-Cts.title" = "BZIP2 압축 사용";

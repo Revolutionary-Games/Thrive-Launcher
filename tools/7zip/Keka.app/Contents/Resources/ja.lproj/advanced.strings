@@ -1,0 +1,87 @@
+﻿
+/* Class = "NSButtonCell"; title = "Archive items separately"; ObjectID = "2221"; */
+"2221.title" = "個別の圧縮ファイルを作成する";
+
+/* Class = "NSButtonCell"; title = "Delete file(s) after compression"; ObjectID = "2222"; */
+"2222.title" = "圧縮後にオリジナルファイルをゴミ箱に入れる";
+
+/* Class = "NSButtonCell"; title = "Exclude Mac resource forks"; ObjectID = "2244"; */
+"2244.title" = "Mac のリソースフォークを含めない";
+
+/* Class = "NSTextFieldCell"; title = "Password:"; ObjectID = "2262"; */
+"2262.title" = "パスワード:";
+
+/* Class = "NSTextFieldCell"; title = "Split:"; ObjectID = "2270"; */
+"2270.title" = "分割:";
+
+/* Class = "NSComboBoxCell"; placeholderString = "Example: 5 MB"; ObjectID = "2271"; */
+"2271.placeholderString" = "例: 5 MB";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[0] = "1.4 MB Floppy disk"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[0]" = "1.4MBのFD";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[1] = "650 MB CD"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[1]" = "650MBのCD";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[2] = "700 MB CD"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[2]" = "700MBのCD";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[3] = "4.7 GB DVD"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[3]" = "4.7GBのDVD";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[4] = "8.5 GB DVD (DL)"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[4]" = "8.5 GB DVD (DL)";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[5] = "7.8 GB Mini Blu-ray (SL)"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[5]" = "7.8 GB Mini Blu-ray (SL)";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[6] = "15.6 GB Mini Blu-ray (DL)"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[6]" = "15.6 GB Mini Blu-ray (DL)";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[7] = "25 GB Blu-ray (SL)"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[7]" = "25 GB Blu-ray (SL)";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[8] = "50 GB Blu-ray (DL)"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[8]" = "50 GB Blu-ray (DL)";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[9] = "100 GB Blu-ray XL (TL)"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[9]" = "100 GB Blu-ray XL (TL)";
+
+/* Class = "NSComboBoxCell"; 2271.ibShadowedObjectValues[10] = "128 GB Blu-ray XL (QL)"; ObjectID = "2271"; */
+"2271.ibShadowedObjectValues[10]" = "128 GB Blu-ray XL (QL)";
+
+/* Class = "NSTextFieldCell"; title = "Volume name:"; ObjectID = "2343"; */
+"2343.title" = "ボリューム名:";
+
+/* Class = "NSTextFieldCell"; placeholderString = "custom name"; ObjectID = "2354"; */
+"2354.placeholderString" = "指定するファイル名";
+
+/* Class = "NSTextFieldCell"; title = "You can create a ISO volume that will be read-only and compressed. ISO volumes can be only created from a folder.\n\nSet a volume name to this ISO or use the default name based on the files you compress."; ObjectID = "2363"; */
+"2363.title" = "圧縮された読み取り専用の iso ディスクイメージを作成することができます。フォルダのみから iso ボリュームが作成できます。\n \n圧縮するファイルのフォルダ名を自動に使用するもしくは dmg のボリューム名を設定することができます。";
+
+/* Class = "NSTextFieldCell"; title = "Store"; ObjectID = "2390"; */
+"2390.title" = "まとめる";
+
+/* Class = "NSTextFieldCell"; title = "Fast"; ObjectID = "2392"; */
+"2392.title" = "早い";
+
+/* Class = "NSTextFieldCell"; title = "Slow"; ObjectID = "2394"; */
+"2394.title" = "遅い";
+
+/* Class = "NSTextFieldCell"; title = "Normal"; ObjectID = "2398"; */
+"2398.title" = "通常";
+
+/* Class = "NSTextFieldCell"; title = "Repeat:"; ObjectID = "2426"; */
+"2426.title" = "確認:";
+
+/* Class = "NSButtonCell"; title = "Encrypt filenames"; ObjectID = "L2I-Q8-zqc"; */
+"L2I-Q8-zqc.title" = "ファイル名を暗号化する";
+
+/* Class = "NSButtonCell"; title = "Use AES-256 encryption"; ObjectID = "Lw7-h9-3Qh"; */
+"Lw7-h9-3Qh.title" = "AES-256暗号化を使用する";
+
+/* Class = "NSButtonCell"; title = "Solid archive"; ObjectID = "UYy-aQ-V1a"; */
+"UYy-aQ-V1a.title" = "ソリッド圧縮";
+
+/* Class = "NSButtonCell"; title = "Use BZIP2 compression"; ObjectID = "qhy-NU-Cts"; */
+"qhy-NU-Cts.title" = "Use BZIP2 compression";
