@@ -72,7 +72,7 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
                 // Some users on Mac import Linux versions of 7zip through homebrew //
                 console.log("No 7za found in PATH, using packed in one");
 
-                // Popular 7zip alternative for Mac users, linked on 7zip page at line 80 //
+                // Popular 7zip alternative for Mac users, linked on 7zip page at line 81 //
                 unpacker = path.join(remote.app.getAppPath(),
                     "tools/7zip/Keka.app/Contents/MacOS/keka7z");
 
