@@ -156,13 +156,11 @@ function getThriveExecutableName(){
 
         return "Thrive.exe";
 
-    } else if(os.platform() === "linux"){
+    } else if(os.platform() === "linux" || "darwin"){
 
         return "Thrive";
-    } else if(os.platform() === "darwin"){
-
-        return "Thrive.app/Contents/MacOS/Thrive";
     } else {
+
         throw "Unknown Thrive exe name for this platform";
     }
 }
@@ -213,6 +211,12 @@ function findBinInRelease(releaseFolder, fallBack = true){
         // And devbuilds directly have a thrive exe in the folder to check
         if(thriveExecutableExistsInFolder(releaseFolder)){
             return releaseFolder;
+        }
+
+        if(os.platform() === "darwin"){
+            const macApp = "Thrive.app/Contents/MacOS";
+
+            return path.join(releaseFolder, macApp);
         }
 
         return lastFolder;
