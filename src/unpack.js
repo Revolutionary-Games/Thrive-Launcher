@@ -69,16 +69,15 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
             unpacker = which.sync("7za", {nothrow: true});
 
             if(!unpacker){
-                // Some users on Mac import Linux versions of 7zip through homebrew //
+                // Use packed in version for mac //
                 console.log("No 7za found in PATH, using packed in one");
 
-                // Popular 7zip alternative for Mac users, linked on 7zip page at line 81 //
                 unpacker = path.join(remote.app.getAppPath(),
-                    "tools/7zip/Keka.app/Contents/MacOS/keka7z");
+                    "tools/7zip/7za(mac)");
 
                 if(!fs.existsSync(unpacker)){
                     reject(new Error("You don't have 7Zip installed!. Download here: " +
-                        "http://www.7-zip.org/download.html"));
+                        "https://formulae.brew.sh/formula/p7zip"));
 
                     return;
                 }

@@ -7,3 +7,4 @@
 *.ttf filter=lfs diff=lfs merge=lfs -text
 tools/pck/godotpcktool filter=lfs diff=lfs merge=lfs -text
 tools/7zip/7za filter=lfs diff=lfs merge=lfs -text
+tools/7zip/7za_mac filter=lfs diff=lfs merge=lfs -text
