@@ -64,6 +64,24 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
 
                 unpacker = path.join(remote.app.getAppPath(), "tools/7zip/7za");
             }
+        } else if(os.platform() === "darwin"){
+            // Find from PATH
+            unpacker = which.sync("7za", {nothrow: true});
+
+            if(!unpacker){
+                // Use packed in version for mac //
+                console.log("No 7za found in PATH, using packed in one");
+
+                unpacker = path.join(remote.app.getAppPath(),
+                    "tools/7zip/7za_mac");
+
+                if(!fs.existsSync(unpacker)){
+                    reject(new Error("You don't have 7Zip installed!. Download here: " +
+                        "https://formulae.brew.sh/formula/p7zip"));
+
+                    return;
+                }
+            }
         } else {
             reject(new Error("Unknown platform for 7zip tool"));
             return;
@@ -138,10 +156,11 @@ function getThriveExecutableName(){
 
         return "Thrive.exe";
 
-    } else if(os.platform() === "linux"){
+    } else if(os.platform() === "linux" || os.platform() === "darwin"){
 
         return "Thrive";
     } else {
+
         throw "Unknown Thrive exe name for this platform";
     }
 }
@@ -192,6 +211,12 @@ function findBinInRelease(releaseFolder, fallBack = true){
         // And devbuilds directly have a thrive exe in the folder to check
         if(thriveExecutableExistsInFolder(releaseFolder)){
             return releaseFolder;
+        }
+
+        if(os.platform() === "darwin"){
+            const macApp = "Thrive.app/Contents/MacOS";
+
+            return path.join(releaseFolder, macApp);
         }
 
         return lastFolder;

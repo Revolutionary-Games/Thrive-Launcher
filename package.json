@@ -12,8 +12,10 @@
         "pack": "electron-builder --dir -p never",
         "dist": "electron-builder -p never",
         "dist:win": "electron-builder --win --x64 --ia32 -p never",
+        "dist:mac": "electron-builder --mac --x64 -p never",
         "deploy": "electron-builder -p onTagOrDraft",
         "deploy:win": "electron-builder --win --x64 --ia32 -p onTagOrDraft",
+        "deploy:mac": "electron-builder --mac --x64 -p onTagOrDraft",
         "lint": "eslint src/**/*.html src/**/*.js && stylelint src/**/*.css",
         "lint-fix": "eslint src/**/*.html src/**/*.js --fix && stylelint src/**/*.css --fix"
     },
@@ -32,7 +34,7 @@
     "build": {
         "appId": "com.revolutionarygamestudio.thrive-launcher",
         "productName": "Thrive Launcher",
-        "copyright": "Copyright © 2018-2020 ${author}",
+        "copyright": "Copyright © 2018-2021 ${author}",
         "files": [
             "*",
             "assets",
@@ -87,6 +89,15 @@
                 },
                 {
                     "target": "portable"
+                }
+            ]
+        },
+        "mac":{
+            "category": "Game",
+            "icon": "assets/icons",
+            "target": [
+                {
+                    "target": "dmg"
                 }
             ]
         }
