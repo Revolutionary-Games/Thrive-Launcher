@@ -156,7 +156,7 @@ function getThriveExecutableName(){
 
         return "Thrive.exe";
 
-    } else if(os.platform() === "linux" || "darwin"){
+    } else if(os.platform() === "linux" || os.platform() === "darwin"){
 
         return "Thrive";
     } else {
