@@ -73,7 +73,7 @@ function unpackRelease(unpackFolder, targetFolderName, archiveFile, progressElem
                 console.log("No 7za found in PATH, using packed in one");
 
                 unpacker = path.join(remote.app.getAppPath(),
-                    "tools/7zip/7za(mac)");
+                    "tools/7zip/7za_mac");
 
                 if(!fs.existsSync(unpacker)){
                     reject(new Error("You don't have 7Zip installed!. Download here: " +
