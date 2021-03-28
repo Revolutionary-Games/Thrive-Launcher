@@ -8,7 +8,7 @@ const fsExtra = remote.require("fs-extra");
 const path = require("path");
 const rimraf = remote.require("rimraf");
 
-const {shell, dialog} = remote;
+const {shell, dialog, app} = remote;
 const win = remote.getCurrentWindow();
 
 const {Modal, showGenericError} = require("./modal");
@@ -497,6 +497,10 @@ resetDehydrateCacheLocation.addEventListener("click", function(){
         changeDehydrateCacheLocation(defaultDehydratedCacheFolder);
     }
 });
+
+// Specifies launcher version that currently running
+const launcherVersion = document.getElementById("launcherVersion");
+launcherVersion.textContent = `Launcher Version: ${app.getVersion()}`;
 
 module.exports.onSettingsLoaded = () => {
     try{
