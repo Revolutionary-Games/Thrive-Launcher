@@ -8,13 +8,14 @@ const fsExtra = remote.require("fs-extra");
 const path = require("path");
 const rimraf = remote.require("rimraf");
 
-const {shell, dialog, app} = remote;
+const {shell, dialog} = remote;
 const win = remote.getCurrentWindow();
 
 const {Modal, showGenericError} = require("./modal");
 const {listInstalledVersions, deleteInstalledVersion} = require("./install_handler.js");
 const {calculateFolderSize, listFolderContents} = require("./file_utils");
 const {formatBytes} = require("./utils");
+const pjson = require("../package.json");
 
 const {
     settings, saveSettings, resetSettings, defaultInstallPath, tmpDLFolder,
@@ -500,7 +501,7 @@ resetDehydrateCacheLocation.addEventListener("click", function(){
 
 // Specifies launcher version that currently running
 const launcherVersion = document.getElementById("launcherVersion");
-launcherVersion.textContent = `Launcher Version: ${app.getVersion()}`;
+launcherVersion.textContent = `Launcher Version: ${pjson.version}`;
 
 module.exports.onSettingsLoaded = () => {
     try{
