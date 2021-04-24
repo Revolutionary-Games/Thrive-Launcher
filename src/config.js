@@ -18,5 +18,6 @@ module.exports = {
 
     // For local testing
     // devCenterURL: "http://localhost:5000",
+    // devCenterURL: "https://staging.dev.revolutionarygamesstudio.com/",
     devCenterURL: "https://dev.revolutionarygamesstudio.com/",
 };
