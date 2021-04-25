@@ -43,6 +43,8 @@ const defaultSettings = {
     devCenterKey: null,
     selectedDevBuildType: null,
     manuallySelectedBuildHash: null,
+    beginningKeptGameOutput: 100,
+    lastKeptGameOutput: 900,
 };
 
 module.exports.settings = Object.assign({}, defaultSettings);

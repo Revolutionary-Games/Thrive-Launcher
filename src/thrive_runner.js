@@ -66,6 +66,23 @@ function onCanRun(installFolder, status, onClose, onEnded){
     const processOutput = document.createElement("div");
     processOutput.classList.add("gameOutput");
 
+    const beginningOutput = document.createElement("div");
+    const truncatedWarning = document.createElement("p");
+    truncatedWarning.textContent = "Output is too long, it was truncated! See the log file" +
+        " for full output.";
+    truncatedWarning.style.display = "none";
+    const endingOutput = document.createElement("div");
+
+    processOutput.append(beginningOutput);
+    processOutput.append(truncatedWarning);
+    processOutput.append(endingOutput);
+
+    const gameOutputStats = {
+        totalLines: 0,
+        currentLines: 0,
+        appendToEnd: false,
+    };
+
     const titleSpan = document.createElement("div");
     titleSpan.textContent = "Thrive is running. Log output: ";
     status.append(titleSpan);
@@ -76,15 +93,29 @@ function onCanRun(installFolder, status, onClose, onEnded){
 
         const message = document.createElement("div");
         message.textContent = text;
-        processOutput.append(message);
 
-        const container = $(processOutput);
+        gameOutputStats.totalLines += 1;
+        gameOutputStats.currentLines += 1;
 
-        // Max number of messages
-        while(container.children().length > 1000){
+        if(!gameOutputStats.appendToEnd){
+            if(gameOutputStats.currentLines > settings.beginningKeptGameOutput){
+                // Switch to outputting to the end
+                gameOutputStats.appendToEnd = true;
+                gameOutputStats.currentLines = 1;
+                truncatedWarning.style.display = "block";
+            } else {
+                beginningOutput.append(message);
+            }
+        }
 
-            // Remove elements //
-            container.children().first().remove();
+        if(gameOutputStats.appendToEnd){
+            // Remove from beginning (of the second part) if too many messages
+            if(gameOutputStats.currentLines > settings.lastKeptGameOutput){
+                gameOutputStats.currentLines -= 1;
+                endingOutput.removeChild(endingOutput.children[0]);
+            }
+
+            endingOutput.append(message);
         }
 
         // For some reason the jquery thing is not working so this is at least a decent choice
