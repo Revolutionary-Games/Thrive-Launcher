@@ -226,8 +226,11 @@ function formConnection(code){
 
     fetch(launcherFormConnectionAPI, {
         method: "post",
+        body: JSON.stringify({
+            code: code,
+        }),
         headers: {
-            Authorization: code,
+            "Content-Type": "application/json",
         },
         credentials: "omit",
     }).then((response) => {
@@ -255,8 +258,12 @@ function checkLinkCode(code){
     linkStatusContainer.innerText = "";
 
     fetch(launcherTestTokenAPI, {
+        method: "post",
+        body: JSON.stringify({
+            code: code,
+        }),
         headers: {
-            Authorization: code,
+            "Content-Type": "application/json",
         },
         credentials: "omit",
     }).then((response) => {
