@@ -10,7 +10,7 @@ Hash: SHA256
     // launcher version info
     "launcher-meta": {
 
-        "latestVersion": "1.2.7",
+        "latestVersion": "1.2.8",
         "dlURL": "https://github.com/Revolutionary-Games/Thrive-Launcher/releases"
     },
 
@@ -410,18 +410,18 @@ Hash: SHA256
 }
 -----BEGIN PGP SIGNATURE-----
 
-iQJXBAEBCABBFiEELEiDYd8a73luvWURdf2+KhSzR70FAmBGZDAjHHJldm9sdXRp
-b25hcnlnYW1lc3N0dWRpb0BnbWFpbC5jb20ACgkQdf2+KhSzR71HYhAAq2Euop17
-uxkOWsCeSXOXxI9/fjW9CLJlfJIWmeRadiwGfgoaSm+yRV9vBDi8rxzbZMXRAAzq
-C+Di1uLWvmjz3oGGQaXNMvaY7ci3d+RCu6ZRTSyMd6/mVlmOxlAJCMylydLSYef9
-eA1SjLBb0PhqYPR0bNDmb0dgcBMwSbCOAubCto4fOaagkwlfRIIpkRVjwnGWNTf/
-Ep9S9RqMeGba4k6r1atF/j5UIorP67x79l8QuETHv6xgXGTJeRHzUpR2qBJuIkqO
-LFXiw+i7qp7e5ZURAifOgYHLsjAsKMhpSYYEdYhqVpGLOgQ1DT5R9W1O+0a2UZ+q
-MQwe6/nrDIygxTAQrwty35UxQjlzWul1rDwtQ61xo3Kv0mziHreis2/ughd2UXVc
-aWqRihHatSdajrxTtGUy/gqUnGAvyH0XKYH4ogvtrHEfxBPhiJtVDROiPkStr1er
-aUyL45q3vhgzzPr4gMEX8bLZ2ppdmmAy72XO4dZC5YZBHPaKRqx2P+VUq7RQbqU0
-MURtOFteEZJX33W+gQROLddt8cfKYcQnhM/pCS0q8J4bA338C6aLq7yyy2savgRe
-EG55YYNj8bd5yy19NwkdcAViIhIUJL5NL2qr5mTmkDblZfMlEDa9JEhb6hDgdBjk
-G6B6zUCCbTd1rrqWeNy5n9j7iJQEWiY4weY=
-=ZJ2l
+iQJXBAEBCABBFiEELEiDYd8a73luvWURdf2+KhSzR70FAmCMLg0jHHJldm9sdXRp
+b25hcnlnYW1lc3N0dWRpb0BnbWFpbC5jb20ACgkQdf2+KhSzR70Z+Q/+NVPWjwsw
+AS6aPiKvIw3nPh/uLLMQ/sPpzzjkWShZtVjo+nBKENh50CC+uIgdwJJ1n004oDyW
+LM56nzxFxTyfhi0jxPxYV76G18SuFH+6Znana2vkn/4oMjfTAB2/185LEs4J1UwL
+BQ2nmlK3wHXa2lPmwhBLHxbPZ2ZwNOwdF71PW/BH1/y4PmWYcjJjRdTerIzjElps
+ZUp5k6CsetSnZl3kPQvnSJLrcGSEELZq0l42ahcAkcbJ2bf415iHXDj2dP4IN08I
+bAr/LNqpvp2nB7emG8tnpnX2lXVr11B7fuo1rfMsBbjQ2Uv7deym58L2aKuDHkMK
+YtbEOkTje2QNbZuaUk9MKfRsT/ivjgydfLhmo9VllKcGOo1pbr+6UCvjlGwfQxAY
+qmpf7veSDeZmdZlZax0YwAIJ6IJa205ZGNpqU5zYRSOVMg89TN6E1h9kmZbCJatV
++6siq5sQe402NOhy4+JN6Oty8CAdMbJzvsc+Zb2duRz8VYtnNukyo2ojfdA8t3RY
+YqF5hP1EGdxnDGuffJ6Y4npPav5+uMFm3Zyev/Erzx867FUWALRF+qFcCh6AGUIc
+dhrCJMu5FlK5OVAOHd2FHSbxr6orBH9WxLFdFx5O0TlCEc1FB4Tt/7Y3XmTXHB76
+EeoK8/6nGjQcg7efoiRa+yWwRBCkpnqmJGU=
+=JxUd
 -----END PGP SIGNATURE-----
