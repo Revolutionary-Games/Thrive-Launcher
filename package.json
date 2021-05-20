@@ -105,9 +105,9 @@
     "devDependencies": {
         "electron": "^9.4.4",
         "electron-builder": "^22.10.5",
-        "eslint": "^7.23.0",
+        "eslint": "^7.26.0",
         "eslint-plugin-html": "^6.1.2",
-        "stylelint": "^13.12.0"
+        "stylelint": "^13.13.1"
     },
     "dependencies": {
         "du": "^1.0.0",
@@ -124,7 +124,7 @@
         "rimraf": "^3.0.2",
         "semver": "^7.3.5",
         "strip-json-comments": "^3.1.1",
-        "systeminformation": "^5.6.10",
+        "systeminformation": "^5.7.0",
         "which": "^2.0.2"
     },
     "postinstall": "electron-builder install-app-deps"
