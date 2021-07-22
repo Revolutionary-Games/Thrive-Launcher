@@ -29,14 +29,12 @@ function getLauncherKey(){
                         return;
                     }
 
-                    openpgp.key.readArmored(data).then((key) => {
+                    openpgp.readKey({armoredKey: data}).then((key) => {
 
-                        launcherKey = key.keys;
-
-                        let keyid = null;
+                        let keyId = null;
 
                         try{
-                            keyid = launcherKey["0"].primaryKey.keyid.toHex();
+                            keyId = key.keyPacket.keyID.toHex();
                         } catch(err){
                             reject(new Error("Loaded signing key but it is invalid " +
                                 "(property error): " + err));
@@ -44,8 +42,8 @@ function getLauncherKey(){
                         }
 
                         // Console.log("Key: " + launcherKey);
-                        console.log("Signing key loaded: " + keyid);
-                        resolve(launcherKey);
+                        console.log("Signing key loaded: " + keyId);
+                        resolve(key);
 
                     }, (err) => {
                         reject(new Error("Couldn't parse signing key: " + err));
