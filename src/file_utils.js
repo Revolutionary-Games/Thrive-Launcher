@@ -2,7 +2,7 @@
 "use strict";
 
 const {ipcRenderer} = require("electron");
-const remote = require("electron").remote;
+const remote = require("@electron/remote");
 
 const fs = remote.require("fs");
 const path = require("path");

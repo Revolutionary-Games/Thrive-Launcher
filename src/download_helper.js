@@ -1,9 +1,7 @@
 // Functions for downloading stuff using node js APIs
 "use strict";
 
-const {remote} = require("electron");
-
-const fs = remote.require("fs");
+const fs = require("@electron/remote").require("fs");
 const request = require("request");
 
 const sha3_256 = require("js-sha3").sha3_256;

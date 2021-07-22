@@ -3,7 +3,7 @@
 //
 "use strict";
 
-const remote = require("electron").remote;
+const remote = require("@electron/remote");
 
 const path = require("path");
 const fs = remote.require("fs");

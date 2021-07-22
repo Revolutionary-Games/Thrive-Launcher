@@ -4,7 +4,7 @@
 // TODO: the installing functions are still in renderer.js and should be moved here
 "use strict";
 
-const remote = require("electron").remote;
+const remote = require("@electron/remote");
 
 const fs = remote.require("fs-extra");
 const path = require("path");

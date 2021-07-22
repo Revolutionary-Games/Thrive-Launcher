@@ -110,8 +110,9 @@
         "stylelint": "^13.13.1"
     },
     "dependencies": {
+        "@electron/remote": "^1.2.0",
         "du": "^1.0.0",
-        "electron-log": "^4.3.2",
+        "electron-log": "^4.3.5",
         "electron-updater": "^4.3.8",
         "feedparser": "^2.2.10",
         "fs-extra": "^10.0.0",

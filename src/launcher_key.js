@@ -1,7 +1,7 @@
 // Code for getting the public launcher signing key for signature validation
 "use strict";
 
-const remote = require("electron").remote;
+const remote = require("@electron/remote");
 
 const fs = remote.require("fs");
 const path = require("path");
@@ -31,6 +31,7 @@ function getLauncherKey(){
 
                     openpgp.readKey({armoredKey: data}).then((key) => {
 
+                        launcherKey = key;
                         let keyId = null;
 
                         try{

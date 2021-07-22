@@ -1,7 +1,7 @@
 // Handles running the godot pck tool
 "use strict";
 
-const remote = require("electron").remote;
+const remote = require("@electron/remote");
 
 const os = remote.require("os");
 const path = require("path");

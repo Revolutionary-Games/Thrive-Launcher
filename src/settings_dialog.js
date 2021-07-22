@@ -1,7 +1,7 @@
 // Everything under the settings button
 "use strict";
 
-const remote = require("electron").remote;
+const remote = require("@electron/remote");
 
 const fs = remote.require("fs");
 const fsExtra = remote.require("fs-extra");

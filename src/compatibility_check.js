@@ -1,7 +1,7 @@
 // Code for checking if the user's computer can probably run thrive or not
 "use strict";
 
-const si = require("electron").remote.require("systeminformation");
+const si = require("@electron/remote").require("systeminformation");
 
 const {checkGraphicsCard} = require("./config");
 const {Modal, showGenericError} = require("./modal");

@@ -1,7 +1,7 @@
 // Handles starting the child thrive process
 "use strict";
 
-const remote = require("electron").remote;
+const remote = require("@electron/remote");
 
 const win = remote.getCurrentWindow();
 

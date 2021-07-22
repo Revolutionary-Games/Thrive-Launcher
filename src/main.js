@@ -33,6 +33,8 @@ if(openDev){
 }
 
 const electron = require("electron");
+require("@electron/remote/main").initialize();
+
 const {autoUpdater} = require("electron-updater");
 
 // Logging for the updater
