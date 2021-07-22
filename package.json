@@ -103,7 +103,7 @@
         }
     },
     "devDependencies": {
-        "electron": "^9.4.4",
+        "electron": "^13.1.7",
         "electron-builder": "^22.10.5",
         "eslint": "^7.26.0",
         "eslint-plugin-html": "^6.1.2",
@@ -114,11 +114,12 @@
         "electron-log": "^4.3.2",
         "electron-updater": "^4.3.8",
         "feedparser": "^2.2.10",
-        "fs-extra": "^9.1.0",
+        "fs-extra": "^10.0.0",
         "jquery": "^3.6.0",
         "js-sha3": "^0.8.0",
         "mkdirp": "^1.0.4",
         "moment": "^2.29.1",
+        "open": "^8.2.1",
         "openpgp": "^5.0.0-4",
         "request": "^2.88.2",
         "rimraf": "^3.0.2",
