@@ -2,7 +2,7 @@
 // TODO: this is now the hugest file, perhaps this could be chopped up?
 "use strict";
 
-const remote = require("electron").remote;
+const remote = require("@electron/remote");
 
 const assert = require("assert");
 const fs = remote.require("fs");

@@ -1,7 +1,7 @@
 // Adds functionality to custom title bar
 "use strict";
 
-const remote = require("electron").remote;
+const remote = require("@electron/remote");
 const win = remote.getCurrentWindow();
 
 const loadTitleBar = () => {

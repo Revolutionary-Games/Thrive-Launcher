@@ -77,32 +77,33 @@ function onVersionDataReceived(data, unsigned = false){
             }
 
             // Unpack and verify signature //
-            openpgp.cleartext.readArmored(data).then((message) => {
+            openpgp.readCleartextMessage({cleartextMessage: data}).then((message) => {
 
                 const options = {
                     message: message,
-                    publicKeys: key,
+                    verificationKeys: key,
                 };
 
-                openpgp.verify(options).then(function(verified){
-                    const validity = verified.signatures[0].valid;
+                openpgp.verify(options).then((verified) => {
 
-                    if(validity){
-                        console.log("Version data signed by key id " +
-                            verified.signatures[0].keyid.toHex());
+                    verified.signatures[0].verified.then(function(validity){
+                        if(validity){
+                            console.log("Version data signed by key id " +
+                                verified.signatures[0].keyID.toHex());
 
-                        versionInfo.parseData(verified.data);
+                            versionInfo.parseData(verified.data);
 
-                        resolve();
+                            resolve();
 
-                    } else {
-                        const msg = "Error verifying signature validity. " +
-                            "Did the download get corrupted?";
-                        showGenericError(msg, () => {
+                        } else {
+                            const msg = "Error verifying signature validity. " +
+                                "Did the download get corrupted?";
+                            showGenericError(msg, () => {
 
-                            reject(msg);
-                        });
-                    }
+                                reject(msg);
+                            });
+                        }
+                    });
                 });
 
             }, (err) => {

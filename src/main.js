@@ -33,6 +33,8 @@ if(openDev){
 }
 
 const electron = require("electron");
+require("@electron/remote/main").initialize();
+
 const {autoUpdater} = require("electron-updater");
 
 // Logging for the updater
@@ -41,6 +43,7 @@ autoUpdater.logger = log;
 // Module to control application life.
 const app = electron.app;
 const ipcMain = electron.ipcMain;
+const shell = electron.shell;
 
 // Disable a deprecation warning
 app.allowRendererProcessReuse = true;
@@ -55,11 +58,9 @@ const fs = require("fs");
 const os = require("os");
 
 const openpgp = require("openpgp");
+const open = require("open");
 
 const pjson = require("../package.json");
-
-// Hopefully this is the right place to do this
-openpgp.initWorker({path: "openpgp.worker.js"});
 
 openpgp.config.aead_protect = true; // Activate fast AES-GCM mode (not yet OpenPGP standard)
 
@@ -72,6 +73,7 @@ const maximumUnzipTime = 3 * 60 * 1000;
 
 // When true links are opened in an external browser
 const openLinksInExternal = true;
+const useOpenPackage = true;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -132,6 +134,7 @@ function createWindow(){
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true,
+            contextIsolation: false,
         },
 
         backgroundColor: "#404040",
@@ -185,19 +188,19 @@ function createWindow(){
     // Open in browser for links //
     // Because the forums don't display correctly
     if(openLinksInExternal){
-        mainWindow.webContents.on("new-window", function(e, url){
-            e.preventDefault();
-            require("electron").shell.openExternal(url);
+        mainWindow.webContents.setWindowOpenHandler((details) => {
+            handleExternalLinkOpen(details.url);
+
+            return {action: "deny"};
         });
     }
 
-    // Open links in a browser, could probably also open a new electron window
-    // depending on openLinksInExternal, but that hasn't been done
+    // Open links in a browser
     mainWindow.webContents.on("will-navigate", function(e, url){
 
-        if(url !== mainWindow.webContents.getURL()){
+        if(url !== mainWindow.webContents.getURL() && openLinksInExternal){
             e.preventDefault();
-            require("electron").shell.openExternal(url);
+            handleExternalLinkOpen(url);
         }
     });
 
@@ -254,6 +257,20 @@ app.on("browser-window-created", function(e, window){
     if(!openDev)
         window.setMenu(null);
 });
+
+function handleExternalLinkOpen(url){
+    if(useOpenPackage){
+        if(url.startsWith("http")){
+            open(url).catch((error) => {
+                console.error("Failed to open external link: ", error);
+            });
+        }
+    } else {
+        shell.openExternal(url).catch((error) => {
+            console.error("Failed to open external link: ", error);
+        });
+    }
+}
 
 function unGZipMain(file, target, respondTo){
     // Timeout prevention

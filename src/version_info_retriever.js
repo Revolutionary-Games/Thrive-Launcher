@@ -1,7 +1,7 @@
 // Retrieves Thrive version info
 "use strict";
 
-const remote = require("electron").remote;
+const remote = require("@electron/remote");
 
 const fs = remote.require("fs");
 const path = require("path");
