@@ -33,7 +33,8 @@ if(openDev){
 }
 
 const electron = require("electron");
-require("@electron/remote/main").initialize();
+const remoteMain = require("@electron/remote/main");
+remoteMain.initialize();
 
 const {autoUpdater} = require("electron-updater");
 
@@ -133,17 +134,16 @@ function createWindow(){
 
         webPreferences: {
             nodeIntegration: true,
-            enableRemoteModule: true,
             contextIsolation: false,
+            preload: path.join(app.getAppPath(), "src/preload.js"),
         },
 
         backgroundColor: "#404040",
 
         icon: iconFile,
-
-        // We extensively just use the node stuff from renderer
-        enableRemoteModule: true,
     });
+
+    remoteMain.enable(mainWindow.webContents);
 
     if(!openDev){
         // Might work now as the old api was removed?
