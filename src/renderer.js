@@ -4,7 +4,6 @@
 "use strict";
 
 const log = require("electron-log");
-Object.assign(console, log.functions);
 
 const {assert} = require("./utils");
 
