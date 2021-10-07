@@ -1,7 +1,7 @@
 // The version select button as well as the play button
 "use strict";
 
-const assert = require("assert");
+const {assert} = require("./utils");
 const {getCurrentlySelected, setCurrentlySelectedVersion} = require("./remembered_version");
 
 const {

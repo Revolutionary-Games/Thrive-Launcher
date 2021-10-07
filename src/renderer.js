@@ -6,7 +6,7 @@
 const log = require("electron-log");
 Object.assign(console, log.functions);
 
-const assert = require("assert");
+const {assert} = require("./utils");
 
 const versionInfo = require("./version_info");
 const retrieveNews = require("./retrieve_news");

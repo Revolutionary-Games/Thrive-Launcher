@@ -41,7 +41,16 @@ function sleep(ms){
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+//! Actually working assert. The normal assert should be fixed in electron, but maybe
+//! they broke it again?
+//! https://github.com/electron/electron/issues/24577
+function assert(bool){
+    if(!bool)
+        throw new Error("Assertion failed");
+}
+
 exports.formatBytes = formatBytes;
 exports.fetchWithTimeout = fetchWithTimeout;
 exports.convertPackedExecutablePath = convertPackedExecutablePath;
 exports.sleep = sleep;
+exports.assert = assert;

@@ -4,7 +4,7 @@
 
 const remote = require("@electron/remote");
 
-const assert = require("assert");
+const {assert} = require("./utils");
 const fs = remote.require("fs");
 const path = require("path");
 const mkdirp = remote.require("mkdirp");
