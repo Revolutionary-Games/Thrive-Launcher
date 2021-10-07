@@ -786,3 +786,7 @@ input[type="text"].Report {
 .Hidden {
   display: none;
 }
+
+#storeVersionSettings {
+  margin-bottom: 8px;
+}

@@ -2,6 +2,7 @@
 // TODO: this is now the hugest file, perhaps this could be chopped up?
 "use strict";
 
+const log = require("electron-log");
 const remote = require("@electron/remote");
 
 const {assert} = require("./utils");
@@ -18,7 +19,7 @@ const {onGameEnded} = require("./crash_reporting.js");
 const errorSuggestions = require("./error_suggestions");
 const {Progress} = require("./progress");
 const {unpackRelease} = require("./unpack");
-const {getSelectedVersion} = require("./version_select_button");
+const {getSelectedVersion, storeVersionObject} = require("./version_select_button");
 const {downloadFile, verifyDLHash} = require("./download_helper");
 const versionInfo = require("./version_info");
 const {findFirstSubFolder} = require("./file_utils");
@@ -26,7 +27,7 @@ const {
     getCurrentDevBuildType, getDevBuildPlatform, fetchDevBuildInfo,
     getDownloadForBuild, getCurrentDevBuildVersion,
 } = require("./dev_center");
-const {devBuildIdentifier} = require("./version_select_button");
+const {devBuildIdentifier, storeBuildIdentifier} = require("./version_select_button");
 const {runThrive} = require("./thrive_runner");
 
 const playBox = document.getElementById("playModalContent");
@@ -62,12 +63,22 @@ const unsafeModal = new Modal("tryingToPlayUnsafeDevBuildModal",
 
 // Runs the game after the game folder is ready
 function onThriveFolderReady(version, download){
-    const installFolder = version.devbuild ? path.join(getDevBuildFolder(), "build") :
-        path.join(settings.installPath, download.folderName);
+    let installFolder = null;
 
-    assert(fs.existsSync(installFolder));
+    if(version.devbuild){
+        installFolder = path.join(getDevBuildFolder(), "build");
+    } else if(version.store){
+        installFolder = path.join(remote.app.getAppPath(), download.folderName);
+    } else {
+        installFolder = path.join(settings.installPath, download.folderName);
+    }
 
     const status = document.getElementById("playingInternalP");
+
+    if(!fs.existsSync(installFolder)){
+        status.innerText = "Error, required folder doesn't exist: " + installFolder;
+        return;
+    }
 
     runThrive(installFolder, status, () => {
         playModal.hide();
@@ -492,6 +503,14 @@ function playNormalVersion(version, download){
     });
 }
 
+function playStoreVersion(){
+
+    playBox.innerHTML =
+        "<div>Playing bundled Thrive version</div><div id='playingInternalP'></div>";
+
+    onThriveFolderReady(storeVersionObject.version, storeVersionObject.download);
+}
+
 // Called when the play button is pressed
 function playPressed(){
     // Cannot be downloading already //
@@ -503,9 +522,17 @@ function playPressed(){
 
     const {id, os} = getSelectedVersion();
 
+    // Due to dataset use the ids are strings
+    // noinspection EqualityComparisonWithCoercionJS
     if(id == devBuildIdentifier && os == devBuildIdentifier){
-        console.log("Playing devbuild");
+        log.log("Playing devbuild");
         playDevBuild();
+
+        // Due to dataset use the ids are strings
+        // noinspection EqualityComparisonWithCoercionJS
+    } else if(id == storeBuildIdentifier && os == storeBuildIdentifier){
+        log.log("Playing store build");
+        playStoreVersion();
     } else {
         const version = versionInfo.getVersionByID(id);
 

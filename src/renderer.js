@@ -20,6 +20,7 @@ const {getLauncherKey} = require("./launcher_key");
 const {loadVersionData} = require("./version_info_retriever");
 const {playPressed} = require("./play_handler");
 const {catchErrors} = require("./config");
+const {storeInfo, applyHiddenElements} = require("./store_handler");
 
 const openpgp = require("openpgp");
 
@@ -33,6 +34,13 @@ titleBar.loadTitleBar();
 log.info("Renderer.js script started");
 
 autoUpdateHandler();
+
+const parsedUrl = new URL(document.URL);
+storeInfo.isStoreVersion = parsedUrl.searchParams.get("isStoreVersion");
+storeInfo.store = parsedUrl.searchParams.get("store");
+
+log.debug("Renderer detected store params:", storeInfo.isStoreVersion, storeInfo.store);
+applyHiddenElements();
 
 //
 // Settings thing
@@ -127,6 +135,8 @@ function onVersionDataReceived(data, unsigned = false){
     }).catch((err) => {
         // Fail //
         constOldVersionErrorModal.show();
+
+        log.error("Failed to load version info / problem while loading:", err);
 
         if(err){
 

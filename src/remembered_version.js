@@ -7,6 +7,7 @@ const path = require("path");
 const fs = remote.require("fs");
 
 const {dataFolder} = require("./settings");
+const {storeInfo} = require("./store_handler");
 
 
 const selectedVersionFile = path.join(dataFolder, "selected_version.json");
@@ -46,7 +47,7 @@ function setCurrentlySelectedVersion(version, selectedOS){
         return;
 
     // Detection of latest version
-    if(version === latestVersion){
+    if(version === latestVersion && !storeInfo.isStoreVersion){
         currentlySelected.selectedVersion = null;
     } else {
         currentlySelected.selectedVersion = version;

@@ -45,6 +45,7 @@ const defaultSettings = {
     manuallySelectedBuildHash: null,
     beginningKeptGameOutput: 100,
     lastKeptGameOutput: 900,
+    storeVersionShowExternalVersions: false,
 };
 
 module.exports.settings = Object.assign({}, defaultSettings);

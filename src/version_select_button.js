@@ -1,8 +1,11 @@
 // The version select button as well as the play button
 "use strict";
 
+const log = require("electron-log");
+
 const {assert} = require("./utils");
 const {getCurrentlySelected, setCurrentlySelectedVersion} = require("./remembered_version");
+const {storeInfo, getStylizedName} = require("./store_handler");
 
 const {
     getPlatformForCurrentPlatform,
@@ -27,11 +30,25 @@ const versionSelectPopupBackground = document.getElementById("playComboBackgroun
 const versionSelectPopup = document.getElementById("versionSelectPopup");
 
 const devBuildIdentifier = -1;
+const storeBuildIdentifier = -2;
 
 let playComboAllChoices = null;
 
 let versionInfo = null;
 let extraVersions = [];
+
+const storeVersionObject = {
+    version: {
+        store: true,
+        id: storeBuildIdentifier,
+        getDescriptionString: () => getStylizedName() + " version",
+    },
+    download: {
+        os: storeBuildIdentifier,
+        getDescriptionString: () => "",
+        folderName: "BundledThrive",
+    },
+};
 
 function createVersionSelectItem(version){
     const div = document.createElement("div");
@@ -45,6 +62,8 @@ function createVersionSelectItem(version){
 
     let prefix = "";
 
+    // These have to be these not exact compares as the dataset stores everything as strings
+    // noinspection EqualityComparisonWithCoercionJS
     if(version.version.id == playButtonText.dataset.selectedID &&
         version.download.os == playButtonText.dataset.selectedDLOS){
         prefix = "[SELECTED] ";
@@ -54,7 +73,7 @@ function createVersionSelectItem(version){
         version.download.getDescriptionString();
 
     div.addEventListener("click", function(){
-        console.log("selected version:", version);
+        log.log("selected version:", version);
 
         playButtonText.dataset.selectedID = version.version.id;
         playButtonText.dataset.selectedDLOS = version.download.os;
@@ -79,15 +98,22 @@ const versionSelectCombo = new ComboBox(versionSelectPopupBackground, versionSel
         versionSelectPopup.innerHTML = "";
 
         // Add versions //
+        if(storeInfo.isStoreVersion){
+            const div = createVersionSelectItem(storeVersionObject);
+            versionSelectPopup.append(div);
+        }
+
         for(const version of extraVersions){
             const div = createVersionSelectItem(version);
             versionSelectPopup.append(div);
         }
 
-        for(const version of playComboAllChoices){
+        if(!storeInfo.isStoreVersion || settings.storeVersionShowExternalVersions){
+            for(const version of playComboAllChoices){
 
-            const div = createVersionSelectItem(version);
-            versionSelectPopup.append(div);
+                const div = createVersionSelectItem(version);
+                versionSelectPopup.append(div);
+            }
         }
     },
 });
@@ -97,10 +123,20 @@ function isDevBuildSelected(){
         playButtonText.dataset.selectedDLOS == devBuildIdentifier;
 }
 
+function isStoreVersionSelected(){
+    return playButtonText.dataset.selectedID == storeBuildIdentifier &&
+        playButtonText.dataset.selectedDLOS == storeBuildIdentifier;
+}
+
 //! Updates play button text
 function updatePlayButtonText(){
-    if(!isDevBuildSelected()){
+    if(isDevBuildSelected()){
+        playButtonText.textContent = "Play DevBuild " + getPlatformForCurrentPlatform().name;
 
+    } else if(isStoreVersionSelected()){
+        playButtonText.textContent = "Play " + getStylizedName() + " Version";
+
+    } else {
         const version = versionInfo.getVersionByID(playButtonText.dataset.selectedID);
 
         assert(version);
@@ -112,15 +148,39 @@ function updatePlayButtonText(){
 
         playButtonText.textContent = "Play " + version.getDescriptionString() + " " +
             download.getDescriptionString();
-    } else {
-        playButtonText.textContent = "Play DevBuild " + getPlatformForCurrentPlatform().name;
     }
+}
+
+function isValidVersion(selected){
+    if(getVersionByID(selected.selectedVersion) &&
+        (!storeInfo.isStoreVersion || settings.storeVersionShowExternalVersions)){
+        return true;
+    }
+
+    // Dataset has everything as strings in it
+    // noinspection EqualityComparisonWithCoercionJS
+    if(selected.selectedVersion == devBuildIdentifier &&
+        selected.selectedOS == devBuildIdentifier){
+        return true;
+    }
+
+    // Dataset has everything as strings in it
+    // noinspection EqualityComparisonWithCoercionJS
+    if(selected.selectedVersion == storeBuildIdentifier &&
+        selected.selectedOS == storeBuildIdentifier && storeInfo.isStoreVersion){
+        return true;
+    }
+
+    return false;
 }
 
 //! Called once version info is loaded
 function updatePlayButton(versions){
     versionInfo = versions;
+    refreshVersionList();
+}
 
+function refreshVersionList(){
     playButtonText.textContent = "Processing Version Data...";
 
     const version = versionInfo.getRecommendedVersion();
@@ -135,7 +195,7 @@ function updatePlayButton(versions){
     // Dump the other versions to be selected in the combo box thing //
     const options = versionInfo.getAllValidVersions();
 
-    console.log("All valid versions: " + options.length);
+    log.debug("All valid versions: " + options.length);
 
     playComboAllChoices = options;
 
@@ -157,17 +217,22 @@ function updatePlayButton(versions){
 
     if(selected.selectedVersion){
         // Version is valid or it is the devbuild
-        // noinspection EqualityComparisonWithCoercionJS
-        if(getVersionByID(selected.selectedVersion) ||
-            (selected.selectedVersion == devBuildIdentifier &&
-                selected.selectedOS == devBuildIdentifier)){
+        if(isValidVersion(selected)){
             playLatest = false;
             playButtonText.dataset.selectedID = selected.selectedVersion;
         } else {
-            console.log("Selected version is no longer valid");
+            log.info("Selected version is no longer valid");
             selected.selectedVersion = null;
             selected.selectedOS = null;
         }
+    }
+
+    if(playLatest && storeInfo.isStoreVersion){
+        playLatest = false;
+        selected.selectedVersion = storeBuildIdentifier;
+        selected.selectedOS = storeBuildIdentifier;
+        playButtonText.dataset.selectedID = selected.selectedVersion;
+        playButtonText.dataset.selectedDLOS = selected.selectedOS;
     }
 
     if(playLatest){
@@ -195,7 +260,7 @@ function updatePlayButton(versions){
 }
 
 playButtonText.addEventListener("click", () => {
-    console.log("play clicked");
+    log.debug("play clicked");
 
     playCallback();
 });
@@ -215,3 +280,6 @@ module.exports.setExtraVersions = (versions) => {
     extraVersions = versions;
 };
 module.exports.devBuildIdentifier = devBuildIdentifier;
+module.exports.storeBuildIdentifier = storeBuildIdentifier;
+module.exports.refreshVersionList = refreshVersionList;
+module.exports.storeVersionObject = storeVersionObject;

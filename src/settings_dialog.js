@@ -1,6 +1,7 @@
 // Everything under the settings button
 "use strict";
 
+const log = require("electron-log");
 const remote = require("@electron/remote");
 
 const fs = remote.require("fs");
@@ -15,6 +16,7 @@ const {Modal, showGenericError} = require("./modal");
 const {listInstalledVersions, deleteInstalledVersion} = require("./install_handler.js");
 const {calculateFolderSize, listFolderContents} = require("./file_utils");
 const {formatBytes} = require("./utils");
+const {refreshVersionList} = require("./version_select_button");
 const pjson = require("../package.json");
 
 const {
@@ -80,7 +82,7 @@ function updateInstalledVersions(){
                     calculateFolderSize(obj.path).then((size) => {
                         sizeLabel.innerText = formatBytes(size);
                     }).catch((error) => {
-                        console.error($`Failed to compute folder (${obj.path}) size:` + error);
+                        log.error($`Failed to compute folder (${obj.path}) size:` + error);
                     });
                 }
 
@@ -90,7 +92,7 @@ function updateInstalledVersions(){
 
                 button.addEventListener("click", function(){
 
-                    console.log("deleting release:", obj.name);
+                    log.log("deleting release:", obj.name);
 
                     span.style.display = "none";
 
@@ -119,7 +121,7 @@ function updateInstalledVersions(){
     }).catch((err) => {
         listOfInstalledVersions.innerHTML = "";
 
-        console.error("failed to display list of installed versions:", err,
+        log.error("failed to display list of installed versions:", err,
             "trace:", err.stack);
 
         const li = document.createElement("li");
@@ -222,10 +224,10 @@ async function moveInstalledFiles(files, destination, successCallback){
 
     await Promise.all(files.map((file) =>
         fsExtra.move(file, path.join(destination, path.basename(file))).then(() => {
-            console.log("moved: " + path.basename(file));
+            log.log("moved: " + path.basename(file));
         }))).
         then(() => {
-            console.log("successfully moved all the files");
+            log.log("successfully moved all the files");
 
             successCallback(destination);
             movingFileModal.hide();
@@ -267,7 +269,7 @@ const browseFilesButton = document.getElementById("browseFilesButton");
 
 browseFilesButton.addEventListener("click", function(){
     const target = settings.installPath;
-    console.log("Opening item:", target);
+    log.log("Opening item:", target);
 
     if(!fs.existsSync(target)){
         showGenericError("Target folder (" + target + ") does not exist");
@@ -291,7 +293,7 @@ function changeInstallLocation(directory){
         }
 
         if(!Array.isArray(files) || !files.length){
-            console.log("No files found to move");
+            log.log("No files found to move");
 
             updateInstallLocation(directory);
 
@@ -318,9 +320,9 @@ function changeInstallLocation(directory){
             }
         });
     }).catch((err) => {
-        console.error("failed to get list of installed versions:", err,
+        log.error("failed to get list of installed versions:", err,
             "trace:", err.stack);
-        console.log("Changing install location without moving files due to error (see above)");
+        log.log("Changing install location without moving files due to error (see above)");
 
         updateInstallLocation(directory);
     });
@@ -361,13 +363,27 @@ resetAllSettingsButton.addEventListener("click", function(){
     resetSettings();
 });
 
+const enableExternalVersionsCheckbox = document.
+    getElementById("enableExternalVersionsCheckbox");
+
+enableExternalVersionsCheckbox.addEventListener("change", function(event){
+    if(loadingSettings)
+        return;
+
+    log.log("updating show external versions setting", event.target.checked);
+
+    settings.storeVersionShowExternalVersions = event.target.checked;
+    refreshVersionList();
+    onSettingsChanged();
+});
+
 const enableWebContentCheckbox = document.getElementById("enableWebContentCheckbox");
 
 enableWebContentCheckbox.addEventListener("change", function(event){
     if(loadingSettings)
         return;
 
-    console.log("updating fetch news setting", event.target.checked);
+    log.log("updating fetch news setting", event.target.checked);
 
     settings.fetchNewsFromWeb = event.target.checked;
     onSettingsChanged();
@@ -380,7 +396,7 @@ hideLauncherOnPlayCheckbox.addEventListener("change", function(event){
     if(loadingSettings)
         return;
 
-    console.log("updating hide launcher setting", event.target.checked);
+    log.log("updating hide launcher setting", event.target.checked);
     settings.hideLauncherOnPlay = event.target.checked;
     onSettingsChanged();
 });
@@ -392,7 +408,7 @@ hide32bitCheckbox.addEventListener("change", function(event){
     if(loadingSettings)
         return;
 
-    console.log("updating hide 32-bit releases", event.target.checked);
+    log.log("updating hide 32-bit releases", event.target.checked);
     settings.hide32bit = event.target.checked;
 
     onSettingsChanged();
@@ -438,7 +454,7 @@ clearDehydratedCache.addEventListener("click", () => {
 function changeDehydrateCacheLocation(directory){
     listDehydrateCacheContents().then((files) => {
         if(!files || !files.length){
-            console.log("No files found to move");
+            log.log("No files found to move");
 
             updateDehydrateCacheLocation(directory);
             return;
@@ -464,9 +480,9 @@ function changeDehydrateCacheLocation(directory){
             }
         });
     }).catch((err) => {
-        console.error("failed to get list of dehydrate items:", err,
+        log.error("failed to get list of dehydrate items:", err,
             "trace:", err.stack);
-        console.log("Changing cache location without moving files due to error (see above)");
+        log.log("Changing cache location without moving files due to error (see above)");
 
         updateDehydrateCacheLocation(directory);
     });
@@ -507,6 +523,7 @@ module.exports.onSettingsLoaded = () => {
     try{
         loadingSettings = true;
 
+        enableExternalVersionsCheckbox.checked = settings.storeVersionShowExternalVersions;
         enableWebContentCheckbox.checked = settings.fetchNewsFromWeb;
         hideLauncherOnPlayCheckbox.checked = settings.hideLauncherOnPlay;
         hide32bitCheckbox.checked = settings.hide32bit;
@@ -514,7 +531,7 @@ module.exports.onSettingsLoaded = () => {
         disableGUISandbox.checked = settings.launchOptionNoGUISandbox;
         disableGUIGPU.checked = settings.launchOptionNoGUIGPU;
 
-        console.log("Install path set to: " + settings.installPath);
+        log.log("Install path set to: " + settings.installPath);
 
     } catch(err){
         showGenericError("Failed to update settings widgets from saved settings, error: " +

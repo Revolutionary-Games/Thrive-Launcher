@@ -41,6 +41,10 @@ function sleep(ms){
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function hideElement(id){
+    document.getElementById(id).style.display = "none";
+}
+
 //! Actually working assert. The normal assert should be fixed in electron, but maybe
 //! they broke it again?
 //! https://github.com/electron/electron/issues/24577
@@ -53,4 +57,5 @@ exports.formatBytes = formatBytes;
 exports.fetchWithTimeout = fetchWithTimeout;
 exports.convertPackedExecutablePath = convertPackedExecutablePath;
 exports.sleep = sleep;
+exports.hideElement = hideElement;
 exports.assert = assert;

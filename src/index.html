@@ -148,11 +148,17 @@
         <div><a class="SiteLink"
                 href="https://github.com/Revolutionary-Games/Thrive">Thrive on GitHub</a></div>
 
-        <div><a class="SiteLink"
+        <div><a class="SiteLink" id="patreonLink"
                 href="https://www.patreon.com/thrivegame">Patreon</a></div>
 
-        <div><a class="SiteLink"
+        <div><a class="SiteLink" id="donateLink"
                 href="https://revolutionarygamesstudio.com/donate/">Donate</a></div>
+
+        <div><a class="SiteLink" id="thriveSteamLink"
+                href="https://revolutionarygamesstudio.com/releases/">TODO: Steam</a></div>
+
+        <div><a class="SiteLink" id="thriveItchLink"
+                href="https://revolutionarygames.itch.io/thrive">Thrive on itch.io</a></div>
 
         <div><a class="SiteLink"
                 href="https://github.com/Revolutionary-Games/Thrive-Launcher">
@@ -200,6 +206,12 @@
             <li><a href="#settingsTabs-4">Cache</a></li>
           </ul>
           <div id="settingsTabs-1">
+            <p id="installedVersionsNoteForStore">
+              This tab lists externally installed versions. This is a store version of Thrive
+              that includes a bundled (latest) game version. You can enable downloading these
+              external versions in the launcher options. Once downloaded those versions show
+              up here.
+            </p>
             <div id="browseFilesButton" class="BottomButton" style="height: 40px;">
               <p style="text-align: left; font-size: 0.8em;">
                 Browse Installed Files
@@ -227,6 +239,13 @@
               Launcher Version: ...
             </div>
             <hr />
+            <div id="storeVersionSettings">
+              <div>
+                <label for="enableExternalVersionsCheckbox">Show external versions (these
+                  require separate downloads)</label>
+                <input type="checkbox" id="enableExternalVersionsCheckbox">
+              </div>
+            </div>
             <div>
               <label for="enableWebContentCheckbox">Enable Web Content</label>
               <input type="checkbox" id="enableWebContentCheckbox">

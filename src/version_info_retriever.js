@@ -5,11 +5,13 @@ const remote = require("@electron/remote");
 
 const fs = remote.require("fs");
 const path = require("path");
+const log = require("electron-log");
 
 const {loadTestVersionData} = require("./config");
+const {storeInfo} = require("./store_handler");
 const {Modal, showGenericError} = require("./modal");
 const {setPlayButtonText} = require("./version_select_button");
-const {locallyCachedDLFile} = require("./settings.js");
+const {locallyCachedDLFile, settings} = require("./settings.js");
 const {fetchWithTimeout} = require("./utils");
 
 const versionDataFailedModal = new Modal("versionDataDownloadFailedModal",
@@ -31,7 +33,7 @@ async function loadVersionData(callback){
                     const msg = "Failed to read test version data: " +
                         err;
                     showGenericError(msg);
-                    console.log(msg);
+                    log.error(msg);
                     return;
                 }
 
@@ -40,8 +42,11 @@ async function loadVersionData(callback){
         return;
     }
 
-    if(loadPrePackagedVersionData){
+    if(loadPrePackagedVersionData ||
+        (storeInfo.isStoreVersion && !settings.storeVersionShowExternalVersions)){
         // Load potentially very old data //
+        log.info("Using pre-packaged version data");
+
         fs.readFile(path.join(remote.app.getAppPath(), "version_data/signed_versions.json"),
             "utf8",
             function(err, data){
@@ -50,7 +55,7 @@ async function loadVersionData(callback){
                     const msg = "Failed to read pre-packaged version data: " +
                         err;
                     showGenericError(msg);
-                    console.log(msg);
+                    log.error(msg);
                     return;
                 }
 
@@ -69,11 +74,11 @@ async function loadVersionData(callback){
 
             return response.text();
         }).then((data) => {
-            console.log("successfully downloaded version information");
+            log.info("successfully downloaded version information");
 
             fs.writeFile(locallyCachedDLFile, data, (err) => {
                 if(err){
-                    console.error("Unable to locally save downloaded version info: " +
+                    log.error("Unable to locally save downloaded version info: " +
                         err);
                 }
             });
@@ -89,7 +94,7 @@ async function loadVersionData(callback){
                 message += error;
             }
 
-            console.log(message);
+            log.error(message);
 
             versionDataFailedModal.show();
 
@@ -112,7 +117,7 @@ async function loadVersionData(callback){
 
             dlnow.addEventListener("click", () => {
 
-                console.log("Clicked retry");
+                log.info("Clicked retry");
                 versionDataFailedModal.hide();
 
                 // Wait for animation to end //
@@ -133,7 +138,7 @@ async function loadVersionData(callback){
 
                 useLocal.addEventListener("click", () => {
 
-                    console.log("Clicked use local file");
+                    log.info("Clicked use local file");
 
                     fs.readFile(locallyCachedDLFile,
                         "utf8",
@@ -141,7 +146,7 @@ async function loadVersionData(callback){
 
                             if(err){
 
-                                console.log(err);
+                                log.error(err);
                                 alert("locally cached file is missing, when " +
                                     "it shouldn't be? " + err);
                                 return;
@@ -164,7 +169,7 @@ async function loadVersionData(callback){
 
                 usePrepackaged.addEventListener("click", () => {
 
-                    console.log("Clicked use prepackaged");
+                    log.info("Clicked use prepackaged");
                     loadPrePackagedVersionData = true;
                     versionDataFailedModal.hide();
 
