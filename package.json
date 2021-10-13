@@ -103,8 +103,8 @@
         }
     },
     "devDependencies": {
-        "electron": "^15.1.1",
-        "electron-builder": "^22.11.7",
+        "electron": "^15.1.2",
+        "electron-builder": "^22.13.1",
         "eslint": "^7.32.0",
         "eslint-plugin-html": "^6.2.0",
         "stylelint": "^13.13.1"
@@ -120,13 +120,13 @@
         "js-sha3": "^0.8.0",
         "mkdirp": "^1.0.4",
         "moment": "^2.29.1",
-        "open": "^8.2.1",
+        "open": "^8.3.0",
         "openpgp": "^5.0.0-4",
         "request": "^2.88.2",
         "rimraf": "^3.0.2",
         "semver": "^7.3.5",
         "strip-json-comments": "^3.1.1",
-        "systeminformation": "^5.9.4",
+        "systeminformation": "^5.9.7",
         "which": "^2.0.2"
     },
     "postinstall": "electron-builder install-app-deps"
