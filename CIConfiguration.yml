@@ -11,7 +11,8 @@ jobs:
         .git/lfs: v1-lfs
         node_modules: v1-node-modules
     steps:
-      - run: npm install
+      - run:
+          command: npm install
       - run:
           name: linters
           command: npm run lint
