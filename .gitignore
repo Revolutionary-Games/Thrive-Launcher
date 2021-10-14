@@ -5,3 +5,4 @@ node_modules
 /assets/icons
 
 /dist
+*.tar.xz
