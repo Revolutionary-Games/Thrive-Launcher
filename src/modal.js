@@ -32,7 +32,6 @@ class Modal{
             if(properties.autoClose !== undefined){
 
                 this.autoClose = properties.autoClose;
-
             }
 
             if(properties.closeButton !== undefined){

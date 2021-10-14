@@ -9,6 +9,7 @@ const {Modal} = require("./modal");
 // There's warnings that this could expose some server-only data to
 // clients, but we don't have separate things so that shouldn't apply
 const pjson = require("../package.json");
+const {storeInfo} = require("./store_handler");
 
 const updateModal = new Modal("newReleaseAvailableModal",
     "newReleaseAvailableModalDialog", {
@@ -18,6 +19,12 @@ const updateModal = new Modal("newReleaseAvailableModal",
 
 function checkLauncherVersion(versionInfo){
     return new Promise(function(resolve, reject){
+
+        // Store versions are not updated through the launcher
+        if(storeInfo.isStoreVersion){
+            resolve();
+            return;
+        }
 
         if(!versionInfo.getVersionData().versions){
 
@@ -62,22 +69,21 @@ function checkLauncherVersion(versionInfo){
 
             container.classList.add("UpdateButtonContainer");
 
-            const dlnow = document.createElement("div");
-            dlnow.classList.add("BottomButton");
-            dlnow.style.fontSize = "3.4em";
+            const dlNow = document.createElement("div");
+            dlNow.classList.add("BottomButton");
+            dlNow.style.fontSize = "3.4em";
 
-            // Dlnow.textContent = "Download Now";
-            dlnow.textContent = "Download Updated Launcher";
+            dlNow.textContent = "Download Updated Launcher";
 
-            container.append(dlnow);
+            container.append(dlNow);
             textParent.append($(container));
 
 
-            dlnow.addEventListener("click", () => {
+            dlNow.addEventListener("click", () => {
 
                 console.log("Clicked download now");
                 require("electron").shell.openExternal(urlTarget);
-                dlnow.textContent = "Opening link...";
+                dlNow.textContent = "Opening link...";
             });
 
             return;

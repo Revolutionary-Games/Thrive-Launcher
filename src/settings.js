@@ -45,7 +45,11 @@ const defaultSettings = {
     manuallySelectedBuildHash: null,
     beginningKeptGameOutput: 100,
     lastKeptGameOutput: 900,
+    closeLauncherAfterGameExit: false,
+    closeLauncherOnGameStart: false,
     storeVersionShowExternalVersions: false,
+    thanksDialogDismissed: false,
+    autoStartStoreVersion: false,
 };
 
 module.exports.settings = Object.assign({}, defaultSettings);
@@ -94,3 +98,5 @@ module.exports.resetSettings = () => {
 
     console.log("Settings reset to defaults", module.exports.settings);
 };
+
+module.exports.settingsFile = settingsFile;

@@ -377,6 +377,19 @@ enableExternalVersionsCheckbox.addEventListener("change", function(event){
     onSettingsChanged();
 });
 
+const autoStartStoreVersionCheckbox = document.
+    getElementById("autoStartStoreVersionCheckbox");
+
+autoStartStoreVersionCheckbox.addEventListener("change", function(event){
+    if(loadingSettings)
+        return;
+
+    log.log("updating auto start store version setting", event.target.checked);
+
+    settings.autoStartStoreVersion = event.target.checked;
+    onSettingsChanged();
+});
+
 const enableWebContentCheckbox = document.getElementById("enableWebContentCheckbox");
 
 enableWebContentCheckbox.addEventListener("change", function(event){
@@ -398,6 +411,30 @@ hideLauncherOnPlayCheckbox.addEventListener("change", function(event){
 
     log.log("updating hide launcher setting", event.target.checked);
     settings.hideLauncherOnPlay = event.target.checked;
+    onSettingsChanged();
+});
+
+const autoCloseLauncherAfterPlayCheckbox = document.
+    getElementById("autoCloseLauncherAfterPlayCheckbox");
+
+autoCloseLauncherAfterPlayCheckbox.addEventListener("change", function(event){
+    if(loadingSettings)
+        return;
+
+    log.log("updating close launcher after play setting", event.target.checked);
+    settings.closeLauncherAfterGameExit = event.target.checked;
+    onSettingsChanged();
+});
+
+const autoCloseLauncherAfterStartCheckbox = document.
+    getElementById("autoCloseLauncherAfterStartCheckbox");
+
+autoCloseLauncherAfterStartCheckbox.addEventListener("change", function(event){
+    if(loadingSettings)
+        return;
+
+    log.log("updating close launcher after start setting", event.target.checked);
+    settings.closeLauncherOnGameStart = event.target.checked;
     onSettingsChanged();
 });
 
@@ -524,8 +561,11 @@ module.exports.onSettingsLoaded = () => {
         loadingSettings = true;
 
         enableExternalVersionsCheckbox.checked = settings.storeVersionShowExternalVersions;
+        autoStartStoreVersionCheckbox.checked = settings.autoStartStoreVersion;
         enableWebContentCheckbox.checked = settings.fetchNewsFromWeb;
         hideLauncherOnPlayCheckbox.checked = settings.hideLauncherOnPlay;
+        autoCloseLauncherAfterPlayCheckbox.checked = settings.closeLauncherAfterGameExit;
+        autoCloseLauncherAfterStartCheckbox.checked = settings.closeLauncherOnGameStart;
         hide32bitCheckbox.checked = settings.hide32bit;
         enableSingleProcessLaunch.checked = settings.launchOptionSingleProcess;
         disableGUISandbox.checked = settings.launchOptionNoGUISandbox;

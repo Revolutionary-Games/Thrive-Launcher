@@ -245,6 +245,11 @@
                   require separate downloads)</label>
                 <input type="checkbox" id="enableExternalVersionsCheckbox">
               </div>
+              <div>
+                <label for="autoStartStoreVersionCheckbox">Automatically start the game when
+                  the launcher opens</label>
+                <input type="checkbox" id="autoStartStoreVersionCheckbox">
+              </div>
             </div>
             <div>
               <label for="enableWebContentCheckbox">Enable Web Content</label>
@@ -253,6 +258,16 @@
             <div>
               <label for="hideLauncherOnPlayCheckbox">Hide Launcher On Play</label>
               <input type="checkbox" id="hideLauncherOnPlayCheckbox">
+            </div>
+            <div>
+              <label for="autoCloseLauncherAfterPlayCheckbox">Close Launcher after playing (if
+                no error)</label>
+              <input type="checkbox" id="autoCloseLauncherAfterPlayCheckbox">
+            </div>
+            <div>
+              <label for="autoCloseLauncherAfterStartCheckbox">Close Launcher after starting
+                the game</label>
+              <input type="checkbox" id="autoCloseLauncherAfterStartCheckbox">
             </div>
             <div>
               <label for="hide32bitCheckbox">Hide 32-bit releases (on 64 bit OS)</label>
@@ -525,6 +540,50 @@
             I understand the risk, play anyway
           </span>
         </span>
+      </div>
+    </div>
+
+    <!-- Store version thanks Popup -->
+    <div id="storeVersionThanksModal" class="modal" style="z-index: 2;">
+      <div id="storeVersionThanksModalDialog" class="modal-content" style="z-index: 2; margin-top: 15%; max-height: 80%;">
+        <span id="thanksModalClose" class="close">&times;</span>
+        <div>
+          <p>Thank you for supporting Thrive development by purchasing this copy of Thrive!</p>
+          <p>If you did not buy this copy get yours <span
+              id="storeVersionThanksSpecificContent"></span> or check out our <a
+              href="https://revolutionarygamesstudio.com/releases/">website</a>.</p>
+          <div style="margin-top: 10px; margin-bottom: 5px;">
+            <span>We know some people dislike launchers, so you have a few options to skip the
+              launcher in the future:</span>
+            <div>
+              <label for="thanksAutoStartGame">Automatically start the game</label>
+              <input type="checkbox" id="thanksAutoStartGame">
+            </div>
+            <div>
+              <label for="thanksAutoCloseLauncher">Automatically close the launcher after
+                playing (if no error)</label>
+              <input type="checkbox" id="thanksAutoCloseLauncher">
+            </div>
+            <div>
+              <label for="thanksCloseLauncherAfterStarting">Close the launcher after
+                starting the game</label>
+              <input type="checkbox" id="thanksCloseLauncherAfterStarting">
+            </div>
+            <div id="thanksWarningLauncherNotAvailable" style="display: none; margin-top:
+                3px; color: rgba(158, 21, 21, 1)">
+            </div>
+            <br/>
+            <div>
+              <label for="dontThankAgain">Don't show this message again</label>
+              <input type="checkbox" id="dontThankAgain">
+            </div>
+          </div>
+          <span id="closeThanksMessage" class="BottomButton" style="height: 32px;">
+            <div style="text-align: left; font-size: 1.5em;">
+              Close
+            </div>
+          </span>
+        </div>
       </div>
     </div>
 

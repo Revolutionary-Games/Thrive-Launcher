@@ -20,7 +20,7 @@ const {getLauncherKey} = require("./launcher_key");
 const {loadVersionData} = require("./version_info_retriever");
 const {playPressed} = require("./play_handler");
 const {catchErrors} = require("./config");
-const {storeInfo, applyHiddenElements} = require("./store_handler");
+const {storeInfo, applyHiddenElements, showThanksMessage} = require("./store_handler");
 
 const openpgp = require("openpgp");
 
@@ -225,3 +225,7 @@ linksButton.addEventListener("click", function(){
 
 // Settings dialog
 require("./settings_dialog.js");
+
+if(storeInfo.isStoreVersion){
+    showThanksMessage();
+}
