@@ -5,11 +5,11 @@ jobs:
     image: thrive/launcher:v2
     cache:
       loadFrom:
-        - v1-{Branch}-lint
-      writeTo: v1-{Branch}-lint
+        - v2-{Branch}-lint
+        - v2-master-lint
+      writeTo: v2-{Branch}-lint
       shared:
         .git/lfs: v1-lfs
-        node_modules: v1-node-modules
     steps:
       - run:
           command: npm install
