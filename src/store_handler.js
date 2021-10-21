@@ -4,12 +4,17 @@ const log = require("electron-log");
 
 const {hideElement} = require("./utils");
 const {Modal} = require("./modal");
-const {settings, onSettingsChanged, settingsFile} = require("./settings");
+const {settings, settingsFile} = require("./settings");
+const {onSettingsChanged} = require("./settings_dialog");
 
 const info = {
     store: null,
     isStoreVersion: false,
 };
+
+// If updating these also update the links in index.html
+const itchPage = "https://revolutionarygames.itch.io/thrive";
+const steamPage = "https://store.steampowered.com/app/1779200";
 
 const thanksModal = new Modal("storeVersionThanksModal",
     "storeVersionThanksModalDialog",
@@ -63,6 +68,24 @@ function applyHiddenElements(){
     }
 }
 
+function setThanksStoreLink(){
+    const element = document.getElementById("storeVersionThanksSpecificContent");
+
+    element.innerText = "";
+
+    const link = document.createElement("a");
+
+    if(info.store === "steam"){
+        link.innerText = "from Steam";
+        link.href = steamPage;
+    } else if(info.store === "itch"){
+        link.innerText = "from itch.io";
+        link.href = itchPage;
+    }
+
+    element.appendChild(link);
+}
+
 function showThanksMessage(){
     if(settings.thanksDialogDismissed)
         return;
@@ -71,6 +94,8 @@ function showThanksMessage(){
     thanksAutoCloseLauncher.checked = settings.closeLauncherAfterGameExit;
     thanksCloseLauncherAfterStarting.checked = settings.closeLauncherOnGameStart;
     dontThankAgain.checked = true;
+
+    setThanksStoreLink();
 
     thanksModal.show();
     updateLauncherUnavailableWarning();

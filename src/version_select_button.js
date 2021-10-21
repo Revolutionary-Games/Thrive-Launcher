@@ -180,6 +180,15 @@ function updatePlayButton(versions){
     refreshVersionList();
 }
 
+function setStoreVersionAsSelected(){
+    log.debug("force set store version as selected");
+    playButtonText.dataset.selectedID = "" + storeBuildIdentifier;
+    playButtonText.dataset.selectedDLOS = "" + storeBuildIdentifier;
+
+    updatePlayButtonText();
+    versionSelectCombo.hide();
+}
+
 function refreshVersionList(){
     playButtonText.textContent = "Processing Version Data...";
 
@@ -283,3 +292,4 @@ module.exports.devBuildIdentifier = devBuildIdentifier;
 module.exports.storeBuildIdentifier = storeBuildIdentifier;
 module.exports.refreshVersionList = refreshVersionList;
 module.exports.storeVersionObject = storeVersionObject;
+module.exports.setStoreVersionAsSelected = setStoreVersionAsSelected;

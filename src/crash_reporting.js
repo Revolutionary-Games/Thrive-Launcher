@@ -3,7 +3,10 @@
 //
 "use strict";
 
+const log = require("electron-log");
 const remote = require("@electron/remote");
+
+const win = remote.getCurrentWindow();
 
 const fs = remote.require("fs");
 const path = require("path");
@@ -19,6 +22,7 @@ const {Modal, showGenericError} = require("./modal");
 const logFilenamesToCheck = ["ThriveLog.txt", "ThriveLogCEF.txt", "ThriveLogOGRE.txt"];
 
 const {devCenterURL} = require("./config");
+const {settings} = require("./settings");
 
 const devCenterReportAPI = url.resolve(devCenterURL, "/api/v1/crash_report");
 
@@ -165,7 +169,7 @@ function onTrySubmit(settings){
 
             if(err || httpResponse.statusCode != 201){
 
-                console.log("error in creating report: err:", err, "status:",
+                log.error("error in creating report: err:", err, "status:",
                     httpResponse.statusCode, "response:", httpResponse, "body:", body);
 
                 if(!err)
@@ -180,7 +184,7 @@ function onTrySubmit(settings){
                 return;
             }
 
-            console.log("successfully created report:", body);
+            log.info("successfully created report:", body);
             onSuccess(url.resolve(devCenterURL, "/report/" + data.created_id),
                 url.resolve(devCenterURL, "/delete_report/" + data.delete_key));
         });
@@ -500,7 +504,7 @@ function onReporterOpened(settings){
 
         new Promise((resolve) => {
 
-            console.log("deleting stuff");
+            log.debug("deleting crash report related stuff");
 
             for(const dump of settings.dumps){
                 fs.unlinkSync(dump.path);
@@ -555,7 +559,7 @@ function onGameEnded(binFolder, exitCode, buttonContainer, gameVersion){
 
         if(dumps.length > 0){
 
-            console.log("thrive has generated crash dump(s)");
+            log.info("thrive has generated crash dump(s)");
 
             const button = document.createElement("span");
             button.classList.add("AfterPlayReport");
@@ -567,11 +571,15 @@ function onGameEnded(binFolder, exitCode, buttonContainer, gameVersion){
             });
 
             buttonContainer.append(button);
+        } else if(settings.closeLauncherAfterGameExit){
+            log.info("Closing launcher after game exit (without error to report) as" +
+                " configured");
+            win.close();
         }
 
     }).catch((err) => {
 
-        console.error("failed to read files for crash dump detection", err);
+        log.error("failed to read files for crash dump detection", err);
     });
 }
 

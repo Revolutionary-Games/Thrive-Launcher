@@ -581,3 +581,5 @@ module.exports.onSettingsLoaded = () => {
         loadingSettings = false;
     }
 };
+
+module.exports.onSettingsChanged = onSettingsChanged;
