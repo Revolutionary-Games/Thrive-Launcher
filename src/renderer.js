@@ -13,8 +13,8 @@ const retrieveNews = require("./retrieve_news");
 const {Modal, showGenericError} = require("./modal");
 const autoUpdateHandler = require("./auto_update_handler");
 const {checkConnectionStatus} = require("./dev_center");
-const {sendVersionInfoToPlayButton, playCallback, setStoreVersionAsSelected} = require(
-    "./version_select_button");
+const {sendVersionInfoToPlayButton, playCallback, setStoreVersionAsSelected} =
+    require("./version_select_button");
 const {checkIfCompatible, performCompatibilityCheck} =
     require("./compatibility_check");
 const {getLauncherKey} = require("./launcher_key");
