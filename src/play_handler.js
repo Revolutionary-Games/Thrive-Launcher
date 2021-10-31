@@ -5,7 +5,7 @@
 const log = require("electron-log");
 const remote = require("@electron/remote");
 
-const {assert} = require("./utils");
+const {assert, getApplicationFolder} = require("./utils");
 const fs = remote.require("fs");
 const path = require("path");
 const mkdirp = remote.require("mkdirp");
@@ -68,7 +68,7 @@ function onThriveFolderReady(version, download){
     if(version.devbuild){
         installFolder = path.join(getDevBuildFolder(), "build");
     } else if(version.store){
-        installFolder = path.join(remote.app.getAppPath(), download.folderName);
+        installFolder = path.join(getApplicationFolder(), download.folderName);
     } else {
         installFolder = path.join(settings.installPath, download.folderName);
     }

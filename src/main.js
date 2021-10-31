@@ -121,11 +121,20 @@ function createWindow(){
         return;
     }
 
-    const steamVersionFile = path.join(app.getAppPath(), "steam_appid.txt");
+    // Store files are not packed, so we need special handling, this needs to match the one
+    // in utils.js
+    let storeAppPath = app.getAppPath();
+
+    if(storeAppPath.includes("app.asar")){
+        // Packaged version
+        storeAppPath = path.dirname(app.getPath("exe"));
+    }
+
+    const steamVersionFile = path.join(storeAppPath, "steam_appid.txt");
 
     const isSteamVersion = fs.existsSync(steamVersionFile);
 
-    const itchVersionFile = path.join(app.getAppPath(), "itch_readme.txt");
+    const itchVersionFile = path.join(storeAppPath, "itch_readme.txt");
 
     const isItchVersion = fs.existsSync(itchVersionFile);
 

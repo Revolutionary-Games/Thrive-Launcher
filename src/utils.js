@@ -1,5 +1,9 @@
 "use strict";
 
+const remote = require("@electron/remote");
+
+const path = require("path");
+
 // Implementation taken from https://stackoverflow.com/a/18650828/9277476.
 /**
  * Convert a raw number of bytes into a human-readable notation.
@@ -45,6 +49,19 @@ function hideElement(id){
     document.getElementById(id).style.display = "none";
 }
 
+//! Returns the application folder. Handling for both packed and unpacked version
+//! \remarks main.js Has this same functionality and these need to be kept in sync
+function getApplicationFolder(){
+    const appPath = remote.app.getAppPath();
+
+    if(appPath.includes("app.asar")){
+        // Packaged version
+        return path.dirname(remote.app.getPath("exe"));
+    } else {
+        return appPath;
+    }
+}
+
 //! Actually working assert. The normal assert should be fixed in electron, but maybe
 //! they broke it again?
 //! https://github.com/electron/electron/issues/24577
@@ -58,4 +75,5 @@ exports.fetchWithTimeout = fetchWithTimeout;
 exports.convertPackedExecutablePath = convertPackedExecutablePath;
 exports.sleep = sleep;
 exports.hideElement = hideElement;
+exports.getApplicationFolder = getApplicationFolder;
 exports.assert = assert;
