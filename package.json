@@ -10,6 +10,8 @@
         "start-remote-debug": "electron . --remote-debugging-port=9222",
         "start-remote-debug-dev": "electron . --remote-debugging-port=9222 --open-dev",
         "pack": "electron-builder --dir -p never",
+        "pack:win": "electron-builder --dir --win --x64 --ia32 -p never",
+        "pack:mac": "electron-builder --dir --mac --x64 -p never",
         "dist": "electron-builder -p never",
         "dist:win": "electron-builder --win --x64 --ia32 -p never",
         "dist:mac": "electron-builder --mac --x64 -p never",
