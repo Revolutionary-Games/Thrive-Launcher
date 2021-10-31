@@ -1,0 +1,18 @@
+version: 1
+
+jobs:
+  lint:
+    image: thrive/launcher:v2
+    cache:
+      loadFrom:
+        - v2-{Branch}-lint
+        - v2-master-lint
+      writeTo: v2-{Branch}-lint
+      shared:
+        .git/lfs: v1-lfs
+    steps:
+      - run:
+          command: npm install
+      - run:
+          name: linters
+          command: npm run lint

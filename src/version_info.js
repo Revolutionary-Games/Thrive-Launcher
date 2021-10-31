@@ -21,7 +21,7 @@ function parseData(data){
     // Set recommended version data //
     for(const tags of versionData.latest){
 
-        if(tags.type == "stable"){
+        if(tags.type === "stable"){
             const ver = getVersionByID(tags.id);
 
             if(ver){
@@ -70,7 +70,7 @@ function getCurrentPlatform(){
         // os: "win32",
 
         compare: function(other){
-            return this.arch == other.arch && this.os == other.os;
+            return this.arch === other.arch && this.os === other.os;
         },
     };
 }
@@ -86,6 +86,8 @@ function getWin32BitPlatform(){
 }
 
 function useWin32Workaround(platform){
+    // This check is left this way as I can't debug if this works correctly or not
+    // noinspection EqualityComparisonWithCoercionJS
     return windowsAuto32Bits && (platform.os == "win32" && platform.arch == "x64");
 }
 
@@ -93,6 +95,8 @@ function getVersionByID(id){
 
     for(const ver of versionData.versions){
 
+        // Suppressed to allow passing string form ids to this function
+        // noinspection EqualityComparisonWithCoercionJS
         if(ver.id == id)
             return ver;
     }
@@ -104,6 +108,8 @@ function getPlatformByID(osID){
 
     for(const platform of versionData.platforms){
 
+        // Suppressed to allow passing string form identifiers to this function
+        // noinspection EqualityComparisonWithCoercionJS
         if(platform.id == osID)
             return platform;
     }
@@ -124,7 +130,8 @@ function getPlatformForCurrentPlatform(currentPlatform = getCurrentPlatform()){
 function getDownloadForPlatform(id, platform = getCurrentPlatform()){
 
     for(const ver of versionData.versions){
-
+        // Suppressed to allow passing string form ids to this function
+        // noinspection EqualityComparisonWithCoercionJS
         if(ver.id == id){
 
             for(const dl of ver.platforms){
@@ -160,11 +167,14 @@ function getDownloadForPlatform(id, platform = getCurrentPlatform()){
 function getDownloadByOSID(id, osid){
 
     for(const ver of versionData.versions){
-
+        // Suppressed to allow passing string form ids to this function
+        // noinspection EqualityComparisonWithCoercionJS
         if(ver.id == id){
 
             for(const dl of ver.platforms){
 
+                // Allow string compare
+                // noinspection EqualityComparisonWithCoercionJS
                 if(osid == dl.os){
 
                     return dl;
@@ -180,7 +190,7 @@ function getRecommendedVersion(type = "stable"){
 
     for(const ver of versionData.latest){
 
-        if(ver.type == type)
+        if(ver.type === type)
             return getVersionByID(ver.id);
     }
 

@@ -4,9 +4,8 @@
 "use strict";
 
 const log = require("electron-log");
-Object.assign(console, log.functions);
 
-const assert = require("assert");
+const {assert} = require("./utils");
 
 const versionInfo = require("./version_info");
 const retrieveNews = require("./retrieve_news");
@@ -14,13 +13,15 @@ const retrieveNews = require("./retrieve_news");
 const {Modal, showGenericError} = require("./modal");
 const autoUpdateHandler = require("./auto_update_handler");
 const {checkConnectionStatus} = require("./dev_center");
-const {sendVersionInfoToPlayButton, playCallback} = require("./version_select_button");
+const {sendVersionInfoToPlayButton, playCallback, setStoreVersionAsSelected} =
+    require("./version_select_button");
 const {checkIfCompatible, performCompatibilityCheck} =
     require("./compatibility_check");
 const {getLauncherKey} = require("./launcher_key");
 const {loadVersionData} = require("./version_info_retriever");
 const {playPressed} = require("./play_handler");
 const {catchErrors} = require("./config");
+const {storeInfo, applyHiddenElements, showThanksMessage} = require("./store_handler");
 
 const openpgp = require("openpgp");
 
@@ -34,6 +35,13 @@ titleBar.loadTitleBar();
 log.info("Renderer.js script started");
 
 autoUpdateHandler();
+
+const parsedUrl = new URL(document.URL);
+storeInfo.isStoreVersion = parsedUrl.searchParams.get("isStoreVersion") === "true";
+storeInfo.store = parsedUrl.searchParams.get("store");
+
+log.debug("Renderer detected store params:", storeInfo.isStoreVersion, storeInfo.store);
+applyHiddenElements();
 
 //
 // Settings thing
@@ -125,9 +133,21 @@ function onVersionDataReceived(data, unsigned = false){
 
         sendVersionInfoToPlayButton(versionInfo);
 
+        if(storeInfo.isStoreVersion && settings.autoStartStoreVersion){
+            log.info("Auto starting store version");
+
+            // Switch to the right version
+            setStoreVersionAsSelected();
+
+            // And act as if the user pressed the play button
+            performCompatibilityCheck(playPressed);
+        }
+
     }).catch((err) => {
         // Fail //
         constOldVersionErrorModal.show();
+
+        log.error("Failed to load version info / problem while loading:", err);
 
         if(err){
 
@@ -216,3 +236,7 @@ linksButton.addEventListener("click", function(){
 
 // Settings dialog
 require("./settings_dialog.js");
+
+if(storeInfo.isStoreVersion){
+    showThanksMessage();
+}

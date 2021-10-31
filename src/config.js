@@ -20,4 +20,10 @@ module.exports = {
     // devCenterURL: "http://localhost:5000",
     // devCenterURL: "https://staging.dev.revolutionarygamesstudio.com/",
     devCenterURL: "https://dev.revolutionarygamesstudio.com/",
+
+    // Hides main website link in steam version
+    hideMainWebsiteInSteam: false,
+
+    // Hides the DevBuild options (login, selecting DevBuild, clearing cache)
+    hideDevBuildsInSteam: true,
 };

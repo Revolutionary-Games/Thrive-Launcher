@@ -135,7 +135,7 @@
 
         <span id="linksClose" class="close">&times;</span>
 
-        <div><a class="SiteLink" style="font-size: 1.4em;"
+        <div><a class="SiteLink" id="mainSiteLink" style="font-size: 1.4em;"
                 href="https://revolutionarygamesstudio.com/">Main website</a></div>
 
         <hr>
@@ -148,11 +148,17 @@
         <div><a class="SiteLink"
                 href="https://github.com/Revolutionary-Games/Thrive">Thrive on GitHub</a></div>
 
-        <div><a class="SiteLink"
+        <div><a class="SiteLink" id="patreonLink"
                 href="https://www.patreon.com/thrivegame">Patreon</a></div>
 
-        <div><a class="SiteLink"
+        <div><a class="SiteLink" id="donateLink"
                 href="https://revolutionarygamesstudio.com/donate/">Donate</a></div>
+
+        <div><a class="SiteLink" id="thriveSteamLink"
+                href="https://store.steampowered.com/app/1779200">Thrive on Steam</a></div>
+
+        <div><a class="SiteLink" id="thriveItchLink"
+                href="https://revolutionarygames.itch.io/thrive">Thrive on itch.io</a></div>
 
         <div><a class="SiteLink"
                 href="https://github.com/Revolutionary-Games/Thrive-Launcher">
@@ -200,6 +206,12 @@
             <li><a href="#settingsTabs-4">Cache</a></li>
           </ul>
           <div id="settingsTabs-1">
+            <p id="installedVersionsNoteForStore">
+              This tab lists externally installed versions. This is a store version of Thrive
+              that includes a bundled (latest) game version. You can enable downloading these
+              external versions in the launcher options. Once downloaded those versions show
+              up here.
+            </p>
             <div id="browseFilesButton" class="BottomButton" style="height: 40px;">
               <p style="text-align: left; font-size: 0.8em;">
                 Browse Installed Files
@@ -227,6 +239,18 @@
               Launcher Version: ...
             </div>
             <hr />
+            <div id="storeVersionSettings">
+              <div>
+                <label for="enableExternalVersionsCheckbox">Show external versions (these
+                  require separate downloads)</label>
+                <input type="checkbox" id="enableExternalVersionsCheckbox">
+              </div>
+              <div>
+                <label for="autoStartStoreVersionCheckbox">Automatically start the game when
+                  the launcher opens</label>
+                <input type="checkbox" id="autoStartStoreVersionCheckbox">
+              </div>
+            </div>
             <div>
               <label for="enableWebContentCheckbox">Enable Web Content</label>
               <input type="checkbox" id="enableWebContentCheckbox">
@@ -236,8 +260,20 @@
               <input type="checkbox" id="hideLauncherOnPlayCheckbox">
             </div>
             <div>
+              <label for="autoCloseLauncherAfterPlayCheckbox">Close Launcher after playing (if
+                no error)</label>
+              <input type="checkbox" id="autoCloseLauncherAfterPlayCheckbox">
+            </div>
+            <div>
+              <label for="autoCloseLauncherAfterStartCheckbox">Close Launcher after starting
+                the game</label>
+              <input type="checkbox" id="autoCloseLauncherAfterStartCheckbox">
+            </div>
+            <div>
               <label for="hide32bitCheckbox">Hide 32-bit releases (on 64 bit OS)</label>
               <input type="checkbox" id="hide32bitCheckbox">
+            </div>
+            <div id="settingsWarningText" style="display: none; color: rgb(158, 21, 21)">
             </div>
             <hr />
             <div id="resetAllSettingsButton" class="BottomButton Dangerous"
@@ -281,28 +317,30 @@
                 Clear
               </p>
             </div>
-            <hr/>
-            <span id="currentDehydratedCacheFolder" class="Inline">
-              Devbuilds file cache: not checked yet...
-            </span>
-            <br>
-            <div id="selectDehydrateCacheLocation" class="BottomButton" style="height: 40px;">
-              <p style="text-align: left; font-size: 0.8em;">
-                Select Cache Location
-              </p>
-            </div>
-            <div id="resetDehydrateCacheLocation" class="BottomButton" style="font-size: 1.5em; vertical-align: middle;">
-              <div class="ResetCacheLocationTooltip">&#x21bb
-                <span class="ResetCacheLocationTooltipText">Reset Cache Location</span>
+            <div id="dehydratedCacheOptions">
+              <hr/>
+              <span id="currentDehydratedCacheFolder" class="Inline">
+                Devbuilds file cache: not checked yet...
+              </span>
+              <br>
+              <div id="selectDehydrateCacheLocation" class="BottomButton" style="height: 40px;">
+                <p style="text-align: left; font-size: 0.8em;">
+                  Select Cache Location
+                </p>
               </div>
-            </div>
-            <p id="dehydratedCacheSize">
-              Size: 0 MiB
-            </p>
-            <div id="clearDehydratedCache" class="BottomButton">
-              <p style="text-align: left;">
-                Clear
+              <div id="resetDehydrateCacheLocation" class="BottomButton" style="font-size: 1.5em; vertical-align: middle;">
+                <div class="ResetCacheLocationTooltip">&#x21bb
+                  <span class="ResetCacheLocationTooltipText">Reset Cache Location</span>
+                </div>
+              </div>
+              <p id="dehydratedCacheSize">
+                Size: 0 MiB
               </p>
+              <div id="clearDehydratedCache" class="BottomButton">
+                <p style="text-align: left;">
+                  Clear
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -506,6 +544,50 @@
             I understand the risk, play anyway
           </span>
         </span>
+      </div>
+    </div>
+
+    <!-- Store version thanks Popup -->
+    <div id="storeVersionThanksModal" class="modal" style="z-index: 2;">
+      <div id="storeVersionThanksModalDialog" class="modal-content" style="z-index: 2; margin-top: 15%; max-height: 80%;">
+        <span id="thanksModalClose" class="close">&times;</span>
+        <div>
+          <p>Thank you for supporting Thrive development by purchasing this copy of Thrive!</p>
+          <p>If you did not buy this copy, please get your own copy <span
+              id="storeVersionThanksSpecificContent"></span> or check out our <a
+              href="https://revolutionarygamesstudio.com/releases/">website</a>.</p>
+          <div style="margin-top: 10px; margin-bottom: 5px;">
+            <span>We know some people dislike launchers, so you have a few options to skip the
+              launcher in the future:</span>
+            <div>
+              <label for="thanksAutoStartGame">Automatically start the game</label>
+              <input type="checkbox" id="thanksAutoStartGame">
+            </div>
+            <div>
+              <label for="thanksAutoCloseLauncher">Automatically close the launcher after
+                playing (if no error)</label>
+              <input type="checkbox" id="thanksAutoCloseLauncher">
+            </div>
+            <div>
+              <label for="thanksCloseLauncherAfterStarting">Close the launcher after
+                starting the game</label>
+              <input type="checkbox" id="thanksCloseLauncherAfterStarting">
+            </div>
+            <div id="thanksWarningLauncherNotAvailable" style="display: none; margin-top:
+                3px; color: rgba(158, 21, 21, 1)">
+            </div>
+            <br/>
+            <div>
+              <label for="dontThankAgain">Don't show this message again</label>
+              <input type="checkbox" id="dontThankAgain">
+            </div>
+          </div>
+          <span id="closeThanksMessage" class="BottomButton" style="height: 32px;">
+            <div style="text-align: left; font-size: 1.5em;">
+              Close
+            </div>
+          </span>
+        </div>
       </div>
     </div>
 

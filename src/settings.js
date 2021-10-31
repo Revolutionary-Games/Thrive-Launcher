@@ -9,6 +9,8 @@ const path = require("path");
 const fs = remote.require("fs");
 const mkdirp = remote.require("mkdirp");
 
+const {showGenericError} = require("./modal");
+
 module.exports.dataFolder = path.join(remote.app.getPath("appData"), "Revolutionary-Games",
     "Launcher");
 
@@ -45,6 +47,11 @@ const defaultSettings = {
     manuallySelectedBuildHash: null,
     beginningKeptGameOutput: 100,
     lastKeptGameOutput: 900,
+    closeLauncherAfterGameExit: false,
+    closeLauncherOnGameStart: false,
+    storeVersionShowExternalVersions: false,
+    thanksDialogDismissed: false,
+    autoStartStoreVersion: false,
 };
 
 module.exports.settings = Object.assign({}, defaultSettings);
@@ -57,10 +64,21 @@ function updateSettingsDialog(){
 }
 
 // Throws on error
-module.exports.saveSettings = () => {
-
+function saveSettings(){
     fs.writeFileSync(settingsFile, JSON.stringify(module.exports.settings));
-};
+}
+
+// Helper for saving
+function onSettingsChanged(){
+    try{
+        saveSettings();
+    } catch(err){
+        showGenericError("Failed to save settings, error: " + err);
+    }
+}
+
+module.exports.saveSettings = saveSettings;
+module.exports.onSettingsChanged = onSettingsChanged;
 
 module.exports.loadSettings = () => {
     try{
@@ -93,3 +111,5 @@ module.exports.resetSettings = () => {
 
     console.log("Settings reset to defaults", module.exports.settings);
 };
+
+module.exports.settingsFile = settingsFile;

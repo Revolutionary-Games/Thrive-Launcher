@@ -1,6 +1,7 @@
 // Handles starting the child thrive process
 "use strict";
 
+const log = require("electron-log");
 const remote = require("@electron/remote");
 
 const win = remote.getCurrentWindow();
@@ -51,6 +52,20 @@ function onCanRun(installFolder, status, onClose, onEnded){
 
     console.log("launching thrive from folder '" + binFolder + "' with arguments: ",
         launchArgs);
+
+    if(settings.closeLauncherOnGameStart){
+        // Need to specially start the child process in a detached way to make it outlive us
+        const thrive = child_process.spawn(path.join(binFolder, exename),
+            launchArgs,
+            {cwd: binFolder, detached: true, stdio: ["ignore", "ignore", "ignore"]});
+
+        thrive.unref();
+
+        log.info("Closing launcher as Thrive process has been started and configured to do" +
+            " so");
+        win.close();
+        return;
+    }
 
     // Cwd is where relative to things are installed
     const thrive = child_process.spawn(path.join(binFolder, exename),

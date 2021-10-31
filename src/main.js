@@ -33,7 +33,8 @@ if(openDev){
 }
 
 const electron = require("electron");
-require("@electron/remote/main").initialize();
+const remoteMain = require("@electron/remote/main");
+remoteMain.initialize();
 
 const {autoUpdater} = require("electron-updater");
 
@@ -86,8 +87,10 @@ function startUpdateChecksIfNotStarted(){
         return;
     updateCheckStarted = true;
 
-    if(skipAutoUpdate)
+    if(skipAutoUpdate){
+        log.debug("auto update is disabled");
         return;
+    }
 
     log.debug("Starting updates check");
     autoUpdater.checkForUpdatesAndNotify();
@@ -118,6 +121,43 @@ function createWindow(){
         return;
     }
 
+    // Store files are not packed, so we need special handling, this needs to match the one
+    // in utils.js
+    let storeAppPath = app.getAppPath();
+
+    if(storeAppPath.includes("app.asar")){
+        // Packaged version
+        storeAppPath = path.dirname(app.getPath("exe"));
+    }
+
+    const steamVersionFile = path.join(storeAppPath, "steam_appid.txt");
+
+    const isSteamVersion = fs.existsSync(steamVersionFile);
+
+    const itchVersionFile = path.join(storeAppPath, "itch_readme.txt");
+
+    const isItchVersion = fs.existsSync(itchVersionFile);
+
+    const isStoreVersion = isSteamVersion || isItchVersion;
+
+    let store = "";
+
+    if(isStoreVersion){
+        // Disable auto update for store versions
+        skipAutoUpdate = true;
+        log.info("This is a special store version of Thrive Launcher");
+
+        if(isSteamVersion){
+            store = "steam";
+        } else if(isItchVersion){
+            store = "itch";
+        } else {
+            console.error("Logic error in store detection, no store specific variable set");
+            app.quit();
+            return;
+        }
+    }
+
     // Workaround for menu appearing (https://github.com/electron/electron/issues/16521)
     if(!openDev)
         electron.Menu.setApplicationMenu(null);
@@ -133,17 +173,16 @@ function createWindow(){
 
         webPreferences: {
             nodeIntegration: true,
-            enableRemoteModule: true,
             contextIsolation: false,
+            preload: path.join(app.getAppPath(), "src/preload.js"),
         },
 
         backgroundColor: "#404040",
 
         icon: iconFile,
-
-        // We extensively just use the node stuff from renderer
-        enableRemoteModule: true,
     });
+
+    remoteMain.enable(mainWindow.webContents);
 
     if(!openDev){
         // Might work now as the old api was removed?
@@ -166,6 +205,7 @@ function createWindow(){
         pathname: path.join(app.getAppPath(), "src", "index.html"),
         protocol: "file:",
         slashes: true,
+        search: `isStoreVersion=${isStoreVersion}&store=${store}`,
     }));
 
     // Open the DevTools.
@@ -210,7 +250,7 @@ function createWindow(){
     // Version info stuff
     // process.versions.node process.versions.chrome process.versions.electron
     log.info("Started Thrive Launcher version: " + pjson.version + " os: " + os.platform() +
-        " arch: " + os.arch());
+        " arch: " + os.arch() + " is store version: " + isStoreVersion);
 
     // Just to make sure this is fired
     setTimeout(startUpdateChecksIfNotStarted, 800);

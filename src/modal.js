@@ -1,7 +1,7 @@
 // Modal dialog class for use with the play and links buttons
 "use strict";
 
-const assert = require("assert");
+const {assert} = require("./utils");
 
 function documentHeight(){
 
@@ -32,7 +32,6 @@ class Modal{
             if(properties.autoClose !== undefined){
 
                 this.autoClose = properties.autoClose;
-
             }
 
             if(properties.closeButton !== undefined){
