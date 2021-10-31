@@ -37,7 +37,7 @@ log.info("Renderer.js script started");
 autoUpdateHandler();
 
 const parsedUrl = new URL(document.URL);
-storeInfo.isStoreVersion = parsedUrl.searchParams.get("isStoreVersion");
+storeInfo.isStoreVersion = parsedUrl.searchParams.get("isStoreVersion") === "true";
 storeInfo.store = parsedUrl.searchParams.get("store");
 
 log.debug("Renderer detected store params:", storeInfo.isStoreVersion, storeInfo.store);
