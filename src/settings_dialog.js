@@ -20,9 +20,10 @@ const {refreshVersionList} = require("./version_select_button");
 const pjson = require("../package.json");
 
 const {
-    settings, saveSettings, resetSettings, defaultInstallPath, tmpDLFolder,
+    settings, onSettingsChanged, resetSettings, defaultInstallPath, tmpDLFolder,
     getDehydrateCacheFolder, defaultDehydratedCacheFolder,
 } = require("./settings.js");
+const {storeInfo, getInaccessibleLauncherWarning} = require("./store_handler");
 
 const settingsModal = new Modal("settingsModal", "settingsModalDialog",
     {closeButton: "settingsClose"});
@@ -48,6 +49,8 @@ const clearTemporaryDownloads = document.getElementById("clearTemporaryDownloads
 const currentDehydratedCacheFolder = document.getElementById("currentDehydratedCacheFolder");
 const dehydratedCacheSize = document.getElementById("dehydratedCacheSize");
 const clearDehydratedCache = document.getElementById("clearDehydratedCache");
+
+const settingsWarningText = document.getElementById("settingsWarningText");
 
 function updateInstalledVersions(){
     listOfInstalledVersions.innerHTML = "<li>Searching for files...</li>";
@@ -256,15 +259,6 @@ clearTemporaryDownloads.addEventListener("click", function(){
 // This is bugged inside tabs
 // $("#enableWebContentCheckbox").checkboxradio();
 
-// Helper for saving
-function onSettingsChanged(){
-    try{
-        saveSettings();
-    } catch(err){
-        showGenericError("Failed to save settings, error: " + err);
-    }
-}
-
 const browseFilesButton = document.getElementById("browseFilesButton");
 
 browseFilesButton.addEventListener("click", function(){
@@ -356,6 +350,26 @@ resetInstallLocation.addEventListener("click", function(){
     }
 });
 
+function displayOptionsWarning(warning){
+    if(!warning){
+        settingsWarningText.style.display = "none";
+    } else {
+        settingsWarningText.innerText = warning;
+        settingsWarningText.style.display = "block";
+    }
+}
+
+function checkDangerousSettings(){
+
+    if(storeInfo.isStoreVersion && settings.autoStartStoreVersion &&
+        settings.closeLauncherOnGameStart){
+        displayOptionsWarning(getInaccessibleLauncherWarning());
+        return;
+    }
+
+    displayOptionsWarning(null);
+}
+
 // All settings reset option
 const resetAllSettingsButton = document.getElementById("resetAllSettingsButton");
 
@@ -388,6 +402,7 @@ autoStartStoreVersionCheckbox.addEventListener("change", function(event){
 
     settings.autoStartStoreVersion = event.target.checked;
     onSettingsChanged();
+    checkDangerousSettings();
 });
 
 const enableWebContentCheckbox = document.getElementById("enableWebContentCheckbox");
@@ -436,6 +451,7 @@ autoCloseLauncherAfterStartCheckbox.addEventListener("change", function(event){
     log.log("updating close launcher after start setting", event.target.checked);
     settings.closeLauncherOnGameStart = event.target.checked;
     onSettingsChanged();
+    checkDangerousSettings();
 });
 
 // Button to hide 32-bit releases
@@ -580,6 +596,8 @@ module.exports.onSettingsLoaded = () => {
 
         loadingSettings = false;
     }
+
+    checkDangerousSettings();
 };
 
 module.exports.onSettingsChanged = onSettingsChanged;

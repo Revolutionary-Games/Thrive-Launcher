@@ -5,7 +5,8 @@ const log = require("electron-log");
 const {hideElement} = require("./utils");
 const {Modal} = require("./modal");
 const {settings, settingsFile} = require("./settings");
-const {onSettingsChanged} = require("./settings_dialog");
+const {onSettingsChanged} = require("./settings");
+const config = require("./config");
 
 const info = {
     store: null,
@@ -38,12 +39,16 @@ thanksAutoCloseLauncher.addEventListener("change", () => updateLauncherUnavailab
 thanksCloseLauncherAfterStarting.addEventListener("change",
     () => updateLauncherUnavailableWarning());
 
+function isSteamVersion(){
+    return info.isStoreVersion && info.store === "steam";
+}
+
 function getStylizedName(){
     if(!info.isStoreVersion){
         return "Not Store Version";
     }
 
-    if(info.store === "steam"){
+    if(isSteamVersion()){
         return "Steam";
     } else if(info.store === "itch"){
         return "itch.io";
@@ -62,7 +67,7 @@ function applyHiddenElements(){
 
     hideElement("donateLink");
 
-    if(info.store === "steam"){
+    if(isSteamVersion()){
         hideElement("patreonLink");
         hideElement("thriveItchLink");
     }
@@ -101,15 +106,19 @@ function showThanksMessage(){
     updateLauncherUnavailableWarning();
 }
 
+function getInaccessibleLauncherWarning(){
+    return "You have selected options that make " +
+        "the launcher inaccessible in the future. To get access again you must delete " +
+        `the launcher configuration file at ${settingsFile} manually.`;
+}
+
 function updateLauncherUnavailableWarning(){
     if(thanksAutoStartGame.checked &&
         thanksAutoCloseLauncher.checked &&
         thanksCloseLauncherAfterStarting.checked){
         thanksWarningLauncherNotAvailable.style.display = "block";
 
-        thanksWarningLauncherNotAvailable.innerText = "You have selected options that make " +
-            "the launcher inaccessible in the future. To get access again you must delete " +
-            `the launcher configuration file at ${settingsFile} manually.`;
+        thanksWarningLauncherNotAvailable.innerText = getInaccessibleLauncherWarning();
     } else {
         thanksWarningLauncherNotAvailable.style.display = "none";
     }
@@ -127,6 +136,8 @@ function onThanksClosed(){
 }
 
 exports.storeInfo = info;
+exports.isSteamVersion = isSteamVersion;
 exports.getStylizedName = getStylizedName;
 exports.applyHiddenElements = applyHiddenElements;
 exports.showThanksMessage = showThanksMessage;
+exports.getInaccessibleLauncherWarning = getInaccessibleLauncherWarning;
