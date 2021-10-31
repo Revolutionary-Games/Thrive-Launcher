@@ -5,7 +5,8 @@ const log = require("electron-log");
 
 const {assert} = require("./utils");
 const {getCurrentlySelected, setCurrentlySelectedVersion} = require("./remembered_version");
-const {storeInfo, getStylizedName} = require("./store_handler");
+const {storeInfo, getStylizedName, isSteamVersion} = require("./store_handler");
+const {hideDevBuildsInSteam} = require("./config");
 
 const {
     getPlatformForCurrentPlatform,
@@ -161,6 +162,10 @@ function isValidVersion(selected){
     // noinspection EqualityComparisonWithCoercionJS
     if(selected.selectedVersion == devBuildIdentifier &&
         selected.selectedOS == devBuildIdentifier){
+
+        if(isSteamVersion && hideDevBuildsInSteam)
+            return false;
+
         return true;
     }
 

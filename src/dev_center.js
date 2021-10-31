@@ -4,7 +4,8 @@
 const url = require("url");
 const {getCurrentPlatform} = require("./version_info");
 
-const {devCenterURL} = require("./config");
+const {devCenterURL, hideDevBuildsInSteam} = require("./config");
+const {isSteamVersion} = require("./store_handler");
 const {settings, saveSettings} = require("./settings");
 const {Modal, showGenericError} = require("./modal");
 const {setExtraVersions, devBuildIdentifier} = require("./version_select_button");
@@ -135,6 +136,10 @@ function onNoDevCenterConnection(){
 
 // Checks if we currently have a devcenter connection and it is valid
 function checkConnectionStatus(){
+    if(isSteamVersion() && hideDevBuildsInSteam){
+        return;
+    }
+
     if(!settings.devCenterKey){
         onNoDevCenterConnection();
         return;

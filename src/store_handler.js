@@ -70,6 +70,15 @@ function applyHiddenElements(){
     if(isSteamVersion()){
         hideElement("patreonLink");
         hideElement("thriveItchLink");
+
+        if(config.hideMainWebsiteInSteam){
+            hideElement("mainSiteLink");
+        }
+
+        if(config.hideDevBuildsInSteam){
+            hideElement("devCenterStatus");
+            hideElement("dehydratedCacheOptions");
+        }
     }
 }
 

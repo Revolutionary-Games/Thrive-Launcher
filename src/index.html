@@ -135,7 +135,7 @@
 
         <span id="linksClose" class="close">&times;</span>
 
-        <div><a class="SiteLink" style="font-size: 1.4em;"
+        <div><a class="SiteLink" id="mainSiteLink" style="font-size: 1.4em;"
                 href="https://revolutionarygamesstudio.com/">Main website</a></div>
 
         <hr>
@@ -317,28 +317,30 @@
                 Clear
               </p>
             </div>
-            <hr/>
-            <span id="currentDehydratedCacheFolder" class="Inline">
-              Devbuilds file cache: not checked yet...
-            </span>
-            <br>
-            <div id="selectDehydrateCacheLocation" class="BottomButton" style="height: 40px;">
-              <p style="text-align: left; font-size: 0.8em;">
-                Select Cache Location
-              </p>
-            </div>
-            <div id="resetDehydrateCacheLocation" class="BottomButton" style="font-size: 1.5em; vertical-align: middle;">
-              <div class="ResetCacheLocationTooltip">&#x21bb
-                <span class="ResetCacheLocationTooltipText">Reset Cache Location</span>
+            <div id="dehydratedCacheOptions">
+              <hr/>
+              <span id="currentDehydratedCacheFolder" class="Inline">
+                Devbuilds file cache: not checked yet...
+              </span>
+              <br>
+              <div id="selectDehydrateCacheLocation" class="BottomButton" style="height: 40px;">
+                <p style="text-align: left; font-size: 0.8em;">
+                  Select Cache Location
+                </p>
               </div>
-            </div>
-            <p id="dehydratedCacheSize">
-              Size: 0 MiB
-            </p>
-            <div id="clearDehydratedCache" class="BottomButton">
-              <p style="text-align: left;">
-                Clear
+              <div id="resetDehydrateCacheLocation" class="BottomButton" style="font-size: 1.5em; vertical-align: middle;">
+                <div class="ResetCacheLocationTooltip">&#x21bb
+                  <span class="ResetCacheLocationTooltipText">Reset Cache Location</span>
+                </div>
+              </div>
+              <p id="dehydratedCacheSize">
+                Size: 0 MiB
               </p>
+              <div id="clearDehydratedCache" class="BottomButton">
+                <p style="text-align: left;">
+                  Clear
+                </p>
+              </div>
             </div>
           </div>
         </div>
