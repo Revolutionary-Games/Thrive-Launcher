@@ -3,6 +3,7 @@ node_modules
 /staging
 /installed
 /assets/icons
+/BundledThrive
 
 /dist
 *.tar.xz
