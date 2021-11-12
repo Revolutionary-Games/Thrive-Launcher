@@ -27,6 +27,8 @@ function onCanRun(installFolder, status, onClose, onEnded){
         return;
     }
 
+    log.info("Detected bin folder as:", binFolder);
+
     // Check that executable is there //
     const exename = getThriveExecutableName();
 

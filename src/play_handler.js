@@ -18,7 +18,7 @@ const {Modal} = require("./modal");
 const {onGameEnded} = require("./crash_reporting.js");
 const errorSuggestions = require("./error_suggestions");
 const {Progress} = require("./progress");
-const {unpackRelease} = require("./unpack");
+const {unpackRelease, thriveExecutableExistsInFolder} = require("./unpack");
 const {getSelectedVersion, storeVersionObject} = require("./version_select_button");
 const {downloadFile, verifyDLHash} = require("./download_helper");
 const versionInfo = require("./version_info");
@@ -68,7 +68,15 @@ function onThriveFolderReady(version, download){
     if(version.devbuild){
         installFolder = path.join(getDevBuildFolder(), "build");
     } else if(version.store){
-        installFolder = path.join(getApplicationFolder(), download.folderName);
+        // The game can be included in a sub-folder or directly in the main folder
+        // This is detected by the expected executable name
+        const appFolder = getApplicationFolder();
+
+        if(thriveExecutableExistsInFolder(appFolder)){
+            installFolder = appFolder;
+        } else {
+            installFolder = path.join(appFolder, download.folderName);
+        }
     } else {
         installFolder = path.join(settings.installPath, download.folderName);
     }
