@@ -196,6 +196,10 @@ function findBinInRelease(releaseFolder, fallBack = true){
             if(dirEntry.match(/Mono/i))
                 continue;
 
+            // Skip packaged asar and node_modules
+            if(dirEntry.match(/.asar/i) || dirEntry.match(/node_modules/i))
+                continue;
+
             const bin = findBinInRelease(file, false);
 
             if(bin)
