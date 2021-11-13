@@ -18,6 +18,9 @@ args.forEach((val, index) => {
         return;
     }
 
+    if(!val.match(/\S/))
+        return;
+
     if(val === "--open-dev"){
         openDev = true;
     } else if(val === "--skip-autoupdate"){
@@ -27,7 +30,8 @@ args.forEach((val, index) => {
     } else if(/--remote-debugging-port.*/i.test(val)){
         // Chrome handles this
     } else {
-        console.log("Invalid argument (" + index + "): " + val);
+        console.log("Invalid argument (" + index + "): " + val + " (given command line: " +
+            args + ")");
         process.exit();
     }
 });
