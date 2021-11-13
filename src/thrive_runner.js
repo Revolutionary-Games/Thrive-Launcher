@@ -14,6 +14,14 @@ const {settings} = require("./settings.js");
 const {findBinInRelease, getThriveExecutableName} = require("./unpack");
 const {checkIsDehydrated} = require("./rehydrate");
 
+let customLDPreload = null;
+
+function setLDPreload(value){
+    if(value)
+        log.info("LD_PRELOAD for Thrive launch set to:", value);
+    customLDPreload = value;
+}
+
 function onCanRun(installFolder, status, onClose, onEnded){
     status.textContent = "preparing to launch";
 
@@ -42,6 +50,14 @@ function onCanRun(installFolder, status, onClose, onEnded){
     status.textContent = "launching...";
 
     const launchArgs = [];
+    const launchEnv = Object.create(process.env);
+
+    if(customLDPreload){
+        log.info("Launching with custom LD_PRELOAD:", customLDPreload);
+        launchEnv.LD_PRELOAD = customLDPreload;
+    } else {
+        launchEnv.LD_PRELOAD = "";
+    }
 
     if(settings.launchOptionSingleProcess)
         launchArgs.push("--single-process");
@@ -72,7 +88,7 @@ function onCanRun(installFolder, status, onClose, onEnded){
     // Cwd is where relative to things are installed
     const thrive = child_process.spawn(path.join(binFolder, exename),
         launchArgs,
-        {cwd: binFolder});
+        {cwd: binFolder, env: launchEnv});
 
     if(settings.hideLauncherOnPlay){
         win.minimize();
@@ -207,3 +223,4 @@ function runThrive(installFolder, status, onClose, onEnded){
 }
 
 exports.runThrive = runThrive;
+exports.setLDPreload = setLDPreload;

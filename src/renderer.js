@@ -22,6 +22,7 @@ const {loadVersionData} = require("./version_info_retriever");
 const {playPressed} = require("./play_handler");
 const {catchErrors} = require("./config");
 const {storeInfo, applyHiddenElements, showThanksMessage} = require("./store_handler");
+const {setLDPreload} = require("./thrive_runner");
 
 const openpgp = require("openpgp");
 
@@ -42,6 +43,8 @@ storeInfo.store = parsedUrl.searchParams.get("store");
 
 log.debug("Renderer detected store params:", storeInfo.isStoreVersion, storeInfo.store);
 applyHiddenElements();
+
+setLDPreload(parsedUrl.searchParams.get("ldPreload"));
 
 //
 // Settings thing

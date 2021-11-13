@@ -6,14 +6,24 @@
 // Set this to true if you want to open the dev console
 let openDev = false;
 let skipAutoUpdate = false;
+let ldPreload = null;
+
+let loadLd = false;
 
 const args = process.argv.slice(2);
 args.forEach((val, index) => {
+
+    if(loadLd){
+        ldPreload = val;
+        return;
+    }
 
     if(val === "--open-dev"){
         openDev = true;
     } else if(val === "--skip-autoupdate"){
         skipAutoUpdate = true;
+    } else if(val === "--game-ld-preload"){
+        loadLd = true;
     } else if(/--remote-debugging-port.*/i.test(val)){
         // Chrome handles this
     } else {
@@ -205,7 +215,7 @@ function createWindow(){
         pathname: path.join(app.getAppPath(), "src", "index.html"),
         protocol: "file:",
         slashes: true,
-        search: `isStoreVersion=${isStoreVersion}&store=${store}`,
+        search: `isStoreVersion=${isStoreVersion}&store=${store}&ldPreload=${ldPreload}`,
     }));
 
     // Open the DevTools.
