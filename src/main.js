@@ -10,15 +10,21 @@ let ldPreload = null;
 
 let loadLd = false;
 
-const args = process.argv.slice(2);
+// Slice of the program name, we don't need to handle that
+const args = process.argv.slice(1);
 args.forEach((val, index) => {
 
     if(loadLd){
         ldPreload = val;
+        loadLd = false;
         return;
     }
 
     if(!val.match(/\S/))
+        return;
+
+    // When developing the launcher, the second argument can be a '.' so ignore that
+    if(index === 0 && val === ".")
         return;
 
     if(val === "--open-dev"){
