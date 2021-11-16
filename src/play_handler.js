@@ -12,7 +12,7 @@ const mkdirp = remote.require("mkdirp");
 const rimraf = remote.require("rimraf");
 const nodeURL = require("url");
 
-const {settings, tmpDLFolder, getDevBuildFolder} = require("./settings.js");
+const {settings, getDevBuildFolder} = require("./settings.js");
 const {showUnpackMessages, devBuildCacheName} = require("./config");
 const {Modal} = require("./modal");
 const {onGameEnded} = require("./crash_reporting.js");
@@ -223,7 +223,7 @@ function removeDLProgress(){
 function onDLFileReady(version, download, fileName){
     removeDLProgress();
 
-    const localTarget = path.join(tmpDLFolder, fileName);
+    const localTarget = path.join(settings.temporaryFolder, fileName);
 
     assert(fs.existsSync(localTarget));
 
@@ -255,7 +255,7 @@ function onDLFileReady(version, download, fileName){
 
 async function downloadTheGame(url, localTarget, status){
 
-    const mkdir = mkdirp(tmpDLFolder);
+    const mkdir = mkdirp(settings.temporaryFolder);
 
     mkdir.catch((err) => {
         console.error(err);
@@ -361,7 +361,7 @@ async function onDevBuildURLReceived(url, hash){
             removeDLProgress();
             onThriveFolderReady(version, download);
         } else {
-            const localTarget = path.join(tmpDLFolder, "devbuild.7z");
+            const localTarget = path.join(settings.temporaryFolder, "devbuild.7z");
 
             if(fs.existsSync(localTarget)){
                 fs.unlinkSync(localTarget);
@@ -491,7 +491,7 @@ function playNormalVersion(version, download){
         return;
     }
 
-    const localTarget = path.join(tmpDLFolder, fileName);
+    const localTarget = path.join(settings.temporaryFolder, fileName);
 
     if(fs.existsSync(localTarget)){
 

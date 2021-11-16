@@ -31,6 +31,10 @@ const settingsModal = new Modal("settingsModal", "settingsModalDialog",
 const movingFileModal = new Modal("movingFileModal", "movingFileModalDialog",
     {autoClose: false});
 
+const confirmClearModal = new Modal("clearTemporaryConfirmModal",
+    "clearTemporaryConfirmModalDialog",
+    {closeButton: ["clearTemporaryConfirmModalClose", "cancelTemporaryDelete"]});
+
 // Used to skip callbacks on loading settings
 let loadingSettings = false;
 
@@ -51,6 +55,9 @@ const dehydratedCacheSize = document.getElementById("dehydratedCacheSize");
 const clearDehydratedCache = document.getElementById("clearDehydratedCache");
 
 const settingsWarningText = document.getElementById("settingsWarningText");
+
+const clearTemporaryConfirm = document.getElementById("clearTemporaryConfirm");
+const clearTemporaryPath = document.getElementById("clearTemporaryPath");
 
 function updateInstalledVersions(){
     listOfInstalledVersions.innerHTML = "<li>Searching for files...</li>";
@@ -137,16 +144,16 @@ function updateInstalledVersions(){
 }
 
 function updateTempDownloads(){
-    currentTmpDLFolder.textContent = "Temporary downloads folder: " + tmpDLFolder;
+    currentTmpDLFolder.textContent = "Temporary downloads folder: " + settings.temporaryFolder;
 
     listOfTemporaryDownloads.innerHTML = "<li>Searching for files...</li>";
 
-    if(!fs.existsSync(tmpDLFolder)){
+    if(!fs.existsSync(settings.temporaryFolder)){
         listOfTemporaryDownloads.innerHTML = "Temporary folder doesn't exist";
         return;
     }
 
-    fs.readdir(tmpDLFolder, (err, files) => {
+    fs.readdir(settings.temporaryFolder, (err, files) => {
         if(err){
             listOfTemporaryDownloads.innerHTML = "Failed to read folder contents: " + err;
             return;
@@ -165,7 +172,7 @@ function updateTempDownloads(){
 }
 
 function deleteTempFiles(){
-    rimraf(tmpDLFolder, (error) => {
+    rimraf(settings.temporaryFolder, (error) => {
         if(error){
             showGenericError("Failed to delete temporary files, error: " + error);
         }
@@ -253,7 +260,54 @@ $("#settingsTabs").tabs();
 
 clearTemporaryDownloads.addEventListener("click", function(){
 
+    if(settings.temporaryFolder !== tmpDLFolder){
+        // Ask before deleting from temporary folder
+        clearTemporaryPath.innerText = settings.temporaryFolder;
+        confirmClearModal.show();
+    } else {
+        deleteTempFiles();
+    }
+});
+
+clearTemporaryConfirm.addEventListener("click", () => {
+    log.info("Temporary file delete confirmed");
+    confirmClearModal.hide();
     deleteTempFiles();
+});
+
+function changeTemporaryFilesLocation(newFolder){
+    // Ignore if setting wouldn't change
+    if(settings.temporaryFolder !== newFolder){
+        log.info("Temporary files location is now:", newFolder);
+        settings.temporaryFolder = newFolder;
+
+        updateTempDownloads();
+        onSettingsChanged();
+    }
+}
+
+// Button to select the temporary files location
+const selectTemporaryLocation = document.getElementById("selectTemporaryLocation");
+
+selectTemporaryLocation.addEventListener("click", function(){
+    dialog.showOpenDialog(win, {properties: ["openDirectory", "promptToCreate"]}).
+        then((result) => {
+            if(result.canceled)
+                return;
+
+            if(result.filePaths.length !== 1){
+                showGenericError("A single folder wasn't selected");
+            } else {
+                changeTemporaryFilesLocation(result.filePaths[0]);
+            }
+        });
+});
+
+// Button to reset the temporary files location
+const resetTemporaryLocation = document.getElementById("resetTemporaryLocation");
+
+resetTemporaryLocation.addEventListener("click", function(){
+    changeTemporaryFilesLocation(tmpDLFolder);
 });
 
 // This is bugged inside tabs
@@ -541,7 +595,7 @@ function changeDehydrateCacheLocation(directory){
     });
 }
 
-// Button to select the install location
+// Button to select the devbuilds cache location
 const selectDehydrateCacheLocation = document.getElementById("selectDehydrateCacheLocation");
 
 selectDehydrateCacheLocation.addEventListener("click", function(){

@@ -312,6 +312,21 @@
             </span>
             <ul id="listOfTemporaryDownloads">
             </ul>
+            <br>
+            <div style="font-size: 0.8em;">Note: moving temporary location won't delete
+              existing files to prevent accidentally deleting unrelated files</div>
+            <div id="selectTemporaryLocation" class="BottomButton" style="height: 40px;">
+              <p style="text-align: left; font-size: 0.8em;">
+                Select Temporary Files Location
+              </p>
+            </div>
+            <div id="resetTemporaryLocation" class="BottomButton" style="font-size: 1.5em;
+            vertical-align: middle;">
+              <div class="ResetTemporaryLocationTooltip">&#x21bb
+                <span class="ResetTemporaryLocationTooltipText">Reset Temporary Files
+                  Location</span>
+              </div>
+            </div>
             <div id="clearTemporaryDownloads" class="BottomButton">
               <p style="text-align: left;">
                 Clear
@@ -319,7 +334,7 @@
             </div>
             <div id="dehydratedCacheOptions">
               <hr/>
-              <span id="currentDehydratedCacheFolder" class="Inline">
+              <span id="currentDehydratedCacheFolder" class="Inline" style="font-size: 0.8em;">
                 Devbuilds file cache: not checked yet...
               </span>
               <br>
@@ -464,6 +479,25 @@
         <div id="crashReportingContent">
           Trying to load crash reporter
         </div>
+      </div>
+    </div>
+
+    <!-- Warning before clearing temp folder model -->
+    <div id="clearTemporaryConfirmModal" class="modal">
+      <div id="clearTemporaryConfirmModalDialog" class="modal-content" style="max-height: 80%;">
+        <span id="clearTemporaryConfirmModalClose" class="close">&times;</span>
+        <div>Are you sure you want to clear temporary files?</div>
+        <p>Everything in the folder:
+          <span id="clearTemporaryPath"></span> will be deleted as well as the folder itself.
+          This folder may contain files unrelated to Thrive Launcher!
+        </p>
+        <span id="cancelTemporaryDelete" class="BottomButton" style="padding: 2px;
+        font-size: 1.2em;">
+          Cancel</span>
+        <span id="clearTemporaryConfirm" class="Dangerous BottomButton" style="padding: 2px;
+        font-size: 1.2em;">
+            Delete
+        </span>
       </div>
     </div>
 

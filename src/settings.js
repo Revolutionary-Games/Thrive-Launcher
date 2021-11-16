@@ -42,6 +42,7 @@ const defaultSettings = {
     launchOptionNoGUIGPU: false,
     installPath: module.exports.defaultInstallPath,
     cacheFolderPath: module.exports.defaultDehydratedCacheFolder,
+    temporaryFolder: module.exports.tmpDLFolder,
     devCenterKey: null,
     selectedDevBuildType: null,
     manuallySelectedBuildHash: null,

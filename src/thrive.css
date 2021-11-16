@@ -758,6 +758,57 @@ input[type="text"].Report {
   opacity: 1;
 }
 
+/* Tooltip container TODO: reduce duplication with the above rules */
+.ResetTemporaryLocationTooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.ResetTemporaryLocationTooltip.Disabled {
+  pointer-events: none;
+}
+
+/* Tooltip text */
+.ResetTemporaryLocationTooltip .ResetTemporaryLocationTooltipText {
+  visibility: hidden;
+  width: 150px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 5px;
+  left: 450%;
+  margin-left: -60px;
+  font-size: 0.5em;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+/* Tooltip arrow */
+.ResetTemporaryLocationTooltip .ResetTemporaryLocationTooltipText::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%; /* To the left of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #555 transparent transparent;
+}
+
+#resetTemporaryLocation:hover .ResetTemporaryLocationTooltipText {
+  visibility: visible;
+  opacity: 1;
+}
+
 .progress-bar {
   --color: #000;
 

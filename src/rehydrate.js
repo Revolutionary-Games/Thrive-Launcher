@@ -9,7 +9,7 @@ const path = require("path");
 const mkdirp = remote.require("mkdirp");
 const rimraf = remote.require("rimraf");
 
-const {getDehydrateCacheFolder, tmpDLFolder} = require("./settings");
+const {getDehydrateCacheFolder, settings} = require("./settings");
 const {downloadFile} = require("./download_helper");
 const {getDownloadForDehydrated} = require("./dev_center");
 const {computeFileHashSHA3} = require("./download_helper");
@@ -60,7 +60,7 @@ async function downloadDehydratedObjects(missingHashes, status){
 
             const target = dehydratedTarget(item.sha3);
             const tmpTarget = dehydratedTarget(item.sha3) + ".tmp";
-            const tmpZip = path.join(tmpDLFolder, item.sha3 + ".gz");
+            const tmpZip = path.join(settings.temporaryFolder, item.sha3 + ".gz");
 
             await downloadFile({
                 remoteFile: item.download_url,
