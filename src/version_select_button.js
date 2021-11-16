@@ -163,7 +163,7 @@ function isValidVersion(selected){
     if(selected.selectedVersion == devBuildIdentifier &&
         selected.selectedOS == devBuildIdentifier){
 
-        if(isSteamVersion && hideDevBuildsInSteam)
+        if(isSteamVersion() && hideDevBuildsInSteam)
             return false;
 
         return true;
