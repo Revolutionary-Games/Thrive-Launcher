@@ -6,7 +6,7 @@
 // Set this to true if you want to open the dev console
 let openDev = false;
 let skipAutoUpdate = false;
-let ldPreload = null;
+let ldPreload = "";
 
 let loadLd = false;
 
