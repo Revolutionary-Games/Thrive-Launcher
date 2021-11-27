@@ -91,7 +91,7 @@ function onThriveFolderReady(version, download){
     runThrive(installFolder, status, () => {
         playModal.hide();
     }, (bin, signal, closeContainer) => {
-        onGameEnded(bin, signal, closeContainer, version.releaseNum);
+        onGameEnded(bin, signal, closeContainer, version.releaseNum, status);
     });
 }
 

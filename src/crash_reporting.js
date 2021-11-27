@@ -18,6 +18,7 @@ const moment = require("moment");
 const request = require("request");
 
 const {Modal, showGenericError} = require("./modal");
+const {startError} = require("./error_suggestions");
 
 const logFilenamesToCheck = ["ThriveLog.txt", "ThriveLogCEF.txt", "ThriveLogOGRE.txt"];
 
@@ -553,7 +554,11 @@ function showDumpsDialog(dumpFolder, exitCode, gameVersion){
 }
 
 // Called when Thrive exits
-function onGameEnded(binFolder, exitCode, buttonContainer, gameVersion){
+function onGameEnded(binFolder, exitCode, buttonContainer, gameVersion, adviceBox){
+    // Detect problems
+    // TODO: implement passing the last game output through here
+    startError(exitCode, "", adviceBox);
+
     // Look for .dmp files
     getCrashDumpsInFolder(binFolder).then((dumps) => {
 
