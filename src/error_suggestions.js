@@ -39,10 +39,13 @@ function startError(exitCode, lastOutput, element){
     if(exitCode == "3221225781"){
         // Missing DLL, most likely Visual C++ Redistributable
         appendSuggestion("3221225781 exit code can mean that you are missing \
-Visual C++ Redistributable 2019, or it is broken on your system, you can download an \
-installer for it from: <a \
-href='https://aka.ms/vs/17/release/vc_redist.x64.exe'>\
+a required DLL file. It may be Visual C++ Redistributable 2019, which you can download an \
+installer for from: <a href='https://aka.ms/vs/17/release/vc_redist.x64.exe'>\
 https://aka.ms/vs/17/release/vc_redist.x64.exe</a> in order to install / repair it. \
+You can also try running Thrive.exe manually as that may show an error dialog with the \
+missing DLL file name in it. \
+If you are not running <strong>Windows 10</strong>, that may be the issue. The only \
+supported version of Windows is Windows 10, the game may not work with older versions. \
 If these don't help please contact us for additional assistance.", element);
     }
 }
