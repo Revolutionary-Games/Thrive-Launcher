@@ -45,7 +45,16 @@ https://aka.ms/vs/17/release/vc_redist.x64.exe</a> in order to install / repair 
 You can also try running Thrive.exe manually as that may show an error dialog with the \
 missing DLL file name in it. \
 If you are not running <strong>Windows 10</strong>, that may be the issue. The only \
-supported version of Windows is Windows 10, the game may not work with older versions. \
+supported version of Windows for Thrive is Windows 10, older versions may have issues. \
+If you get an error about \"api-ms-win-core-file-l2-1-2.dll\" \
+missing, then you need to check that you have all Windows updates installed. Installing \
+<a href='https://www.microsoft.com/en-us/download/details.aspx?id=48234'>\
+Windows 10 Universal C Runtime</a> or <a \
+href='https://developer.microsoft.com/en-us/windows/downloads/windows-sdk/'>\
+Windows 10 SDK</a> may allow the game to run on older Windows versions. \
+It should also be available through \
+<a href='https://docs.microsoft.com/en-us/cpp/windows/universal-crt-deployment?view=\
+msvc-170#central-deployment'>Windows Update as a recommended update</a>. \
 If these don't help please contact us for additional assistance.", element);
     }
 }
