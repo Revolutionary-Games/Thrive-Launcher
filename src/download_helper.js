@@ -1,6 +1,8 @@
 // Functions for downloading stuff using node js APIs
 "use strict";
 
+const log = require("electron-log");
+
 const fs = require("@electron/remote").require("fs");
 const request = require("request");
 
@@ -91,7 +93,7 @@ function computeHashTimeoutHandler(progressTracker, reject, attemptNumber){
     const allowedNoProgress = attemptNumber * attemptNumber + 1;
 
     if(progressTracker.secondsWithoutProgress > allowedNoProgress){
-        console.error("Hashing hasn't progressed in the last " + allowedNoProgress +
+        log.error("Hashing hasn't progressed in the last " + allowedNoProgress +
             " seconds, aborting");
         reject(new Error("File hashing is stuck"));
         progressTracker.aborted = true;
@@ -130,7 +132,7 @@ async function computeHashInternal(file, progressCallback, attemptNumber){
             try{
                 hasher.update(chunk);
             } catch(error){
-                console.error("Error updating hasher");
+                log.error("Error updating hasher object:", error);
                 reject(error);
                 readable.close();
             }
@@ -164,7 +166,7 @@ async function computeFileHashSHA3(file, progressCallback){
             return await computeHashInternal(file, progressCallback, attempt);
         } catch(error){
             if(attempt < 10){
-                console.error("Failed to compute file hash, retrying, " + error);
+                log.error("Failed to compute file hash, retrying,", error);
             } else {
                 throw error;
             }
@@ -186,17 +188,16 @@ function verifyDLHash(version, download, localTarget){
         }).then((fileHash) => {
             if(download.hash !== fileHash){
 
-                console.error("Hashes don't match! " + download.hash + " != " + fileHash);
-                console.log("Deleting invalid file");
+                log.error(`Hashes don't match! ${download.hash} != ${fileHash}`);
+                log.debug("Deleting invalid file");
 
                 fs.unlink(localTarget, (err) => {
                     if(err){
-                        console.log("Unable to delete file at " + localTarget);
-                        console.error(err);
+                        log.error("Unable to delete file at", localTarget, "error:", err);
                         return;
                     }
 
-                    console.log("File at " + localTarget + " deleted.");
+                    log.debug("File at " + localTarget + " deleted.");
                 });
 
                 reject(new Error());
