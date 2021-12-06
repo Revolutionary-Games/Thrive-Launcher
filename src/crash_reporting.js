@@ -22,7 +22,7 @@ const {startError} = require("./error_suggestions");
 
 const logFilenamesToCheck = ["ThriveLog.txt", "ThriveLogCEF.txt", "ThriveLogOGRE.txt"];
 
-const {devCenterURL} = require("./config");
+const {devCenterURL, autoCloseMinimumGameDuration} = require("./config");
 const {settings} = require("./settings");
 
 const devCenterReportAPI = url.resolve(devCenterURL, "/api/v1/crash_report");
@@ -554,7 +554,7 @@ function showDumpsDialog(dumpFolder, exitCode, gameVersion){
 }
 
 // Called when Thrive exits
-function onGameEnded(binFolder, exitCode, buttonContainer, gameVersion, adviceBox){
+function onGameEnded(binFolder, exitCode, buttonContainer, gameVersion, adviceBox, elapsed){
     // Detect problems
     // TODO: implement passing the last game output through here
     startError(exitCode, "", adviceBox);
@@ -577,9 +577,14 @@ function onGameEnded(binFolder, exitCode, buttonContainer, gameVersion, adviceBo
 
             buttonContainer.append(button);
         } else if(settings.closeLauncherAfterGameExit){
-            log.info("Closing launcher after game exit (without error to report) as" +
-                " configured");
-            win.close();
+            if(elapsed < autoCloseMinimumGameDuration){
+                log.warn("Game ran so little time that there was likely a problem " +
+                    "not closing the launcher automatically");
+            } else {
+                log.info("Closing launcher after game exit (without error to report) as" +
+                    " configured");
+                win.close();
+            }
         }
 
     }).catch((err) => {

@@ -90,8 +90,9 @@ function onThriveFolderReady(version, download){
 
     runThrive(installFolder, status, () => {
         playModal.hide();
-    }, (bin, signal, closeContainer) => {
-        onGameEnded(bin, signal, closeContainer, version.releaseNum, status);
+    }, (bin, signal, closeContainer, elapsed) => {
+        // TODO: version.releaseNum is not usable for store releases reporting
+        onGameEnded(bin, signal, closeContainer, version.releaseNum, status, elapsed);
     });
 }
 
