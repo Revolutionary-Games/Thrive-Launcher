@@ -7,6 +7,7 @@
 let openDev = false;
 let skipAutoUpdate = false;
 let ldPreload = "";
+let ignoreAutoStart = false;
 
 let loadLd = false;
 
@@ -31,6 +32,8 @@ args.forEach((val, index) => {
         openDev = true;
     } else if(val === "--skip-autoupdate"){
         skipAutoUpdate = true;
+    } else if(val === "--no-autorun" || val === "--no-autorun"){
+        ignoreAutoStart = true;
     } else if(val === "--game-ld-preload"){
         loadLd = true;
     } else if(/--remote-debugging-port.*/i.test(val)){
@@ -225,7 +228,8 @@ function createWindow(){
         pathname: path.join(app.getAppPath(), "src", "index.html"),
         protocol: "file:",
         slashes: true,
-        search: `isStoreVersion=${isStoreVersion}&store=${store}&ldPreload=${ldPreload}`,
+        search: `isStoreVersion=${isStoreVersion}&store=${store}&ldPreload=${ldPreload}` +
+        `&ignoreAutoStart=${ignoreAutoStart}`,
     }));
 
     // Open the DevTools.

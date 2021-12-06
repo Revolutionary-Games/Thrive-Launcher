@@ -49,7 +49,9 @@ setLDPreload(parsedUrl.searchParams.get("ldPreload"));
 //
 // Settings thing
 //
-const {settings, loadSettings} = require("./settings.js");
+const {
+    settings, loadSettings, setIgnoreAutoStart, isAutoStartEnabled,
+} = require("./settings.js");
 
 const {reportLatestVersion, loadSelectedVersion} = require("./remembered_version");
 const {checkLauncherVersion} = require("./check_launcher_version");
@@ -62,6 +64,8 @@ checkConnectionStatus();
 
 // Start checking hardware
 checkIfCompatible();
+
+setIgnoreAutoStart(parsedUrl.searchParams.get("ignoreAutoStart") === "true");
 
 // Some other variables
 
@@ -136,7 +140,7 @@ function onVersionDataReceived(data, unsigned = false){
 
         sendVersionInfoToPlayButton(versionInfo);
 
-        if(storeInfo.isStoreVersion && settings.autoStartStoreVersion){
+        if(storeInfo.isStoreVersion && isAutoStartEnabled()){
             log.info("Auto starting store version");
 
             // Switch to the right version

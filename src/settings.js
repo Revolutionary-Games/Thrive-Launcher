@@ -3,6 +3,7 @@
 //
 "use strict";
 
+const log = require("electron-log");
 const remote = require("@electron/remote");
 
 const path = require("path");
@@ -56,6 +57,8 @@ const defaultSettings = {
 };
 
 module.exports.settings = Object.assign({}, defaultSettings);
+
+let ignoreAutoStart = false;
 
 const settingsFile = path.join(module.exports.dataFolder, "launcher_settings.json");
 
@@ -111,6 +114,21 @@ module.exports.resetSettings = () => {
     updateSettingsDialog();
 
     console.log("Settings reset to defaults", module.exports.settings);
+};
+
+module.exports.setIgnoreAutoStart = function(value){
+    if(value){
+        log.info("Auto start is disabled by a command line parameter");
+    }
+
+    ignoreAutoStart = value;
+};
+
+module.exports.isAutoStartEnabled = function(){
+    if(ignoreAutoStart)
+        return false;
+
+    return module.exports.settings.autoStartStoreVersion;
 };
 
 module.exports.settingsFile = settingsFile;
