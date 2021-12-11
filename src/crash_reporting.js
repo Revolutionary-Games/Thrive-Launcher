@@ -120,7 +120,6 @@ function onTrySubmit(settings){
 
     settings.uploading = true;
 
-    // Console.log("Starting reporting crash", settings);
     settings.submit.textContent = "Creating request...";
 
     // Get selected log file contents
