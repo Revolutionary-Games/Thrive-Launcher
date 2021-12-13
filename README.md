@@ -56,7 +56,10 @@ if the required modules have changed.
 In order for the icons to work you need to run `./CreateIcons.rb` to
 create all the icon files from the source images. The icon creation
 script requires you to
-have [ImageMagick](https://www.imagemagick.org/) installed.
+have [ImageMagick](https://www.imagemagick.org/) installed. And as it is written in Ruby
+and requires a few gems, you should check the Thrive setup instructions section on that
+[here](https://github.com/Revolutionary-Games/Thrive/blob/master/doc/setup_instructions.md#ruby).
+Otherwise, running the script most likely fails either due to missing Ruby or a missing gem.
 
 ### Running
 
