@@ -229,10 +229,14 @@ function prepareGameOutputWriteFunction(status){
 
     status.append(processOutput);
 
-    return (text) => {
+    return (text, color) => {
 
         const message = document.createElement("div");
         message.textContent = text;
+        if (color){
+            message.style.color = color
+        }
+        
 
         gameOutputStats.totalLines += 1;
         gameOutputStats.currentLines += 1;
