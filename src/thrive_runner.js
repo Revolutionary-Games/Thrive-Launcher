@@ -100,7 +100,7 @@ function onCanRun(installFolder, status, onClose, onEnded){
     });
 
     thrive.stderr.on("data", (data) => {
-        appendMessage("err: " + data);
+        appendMessage(data, "red");
     });
 
     const showLauncher = () => {
