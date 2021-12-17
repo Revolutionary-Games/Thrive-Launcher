@@ -236,7 +236,7 @@ function prepareGameOutputWriteFunction(status){
         if(color){
             message.style.color = color;
         }
-    
+
         gameOutputStats.totalLines += 1;
         gameOutputStats.currentLines += 1;
 
