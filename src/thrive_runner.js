@@ -99,7 +99,7 @@ function onCanRun(installFolder, status, onClose, onEnded){
             appendMessage(line);
     });
 
-    thrive.stderr.on("data", (data,) => {
+    thrive.stderr.on("data", (data) => {
         appendMessage(data, "red");
     });
 
@@ -233,11 +233,10 @@ function prepareGameOutputWriteFunction(status){
 
         const message = document.createElement("div");
         message.textContent = text;
-        if (color){
-            message.style.color = color
+        if(color){
+            message.style.color = color;
         }
-        
-
+    
         gameOutputStats.totalLines += 1;
         gameOutputStats.currentLines += 1;
 
