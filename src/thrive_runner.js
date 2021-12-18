@@ -100,7 +100,7 @@ function onCanRun(installFolder, status, onClose, onEnded){
     });
 
     thrive.stderr.on("data", (data) => {
-        appendMessage("err: " + data);
+        appendMessage(data, "red");
     });
 
     const showLauncher = () => {
@@ -229,10 +229,13 @@ function prepareGameOutputWriteFunction(status){
 
     status.append(processOutput);
 
-    return (text) => {
+    return (text, color) => {
 
         const message = document.createElement("div");
         message.textContent = text;
+        if(color){
+            message.style.color = color;
+        }
 
         gameOutputStats.totalLines += 1;
         gameOutputStats.currentLines += 1;
