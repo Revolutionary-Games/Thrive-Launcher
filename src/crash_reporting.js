@@ -15,17 +15,43 @@ const url = require("url");
 const {shell} = remote;
 
 const moment = require("moment");
-const request = require("request");
+const request = remote.require("request");
 
 const {Modal, showGenericError} = require("./modal");
 const {startError} = require("./error_suggestions");
 
-const logFilenamesToCheck = ["ThriveLog.txt", "ThriveLogCEF.txt", "ThriveLogOGRE.txt"];
+const logFilenamesToCheck = ["ThriveLog.txt", "log.txt"];
 
-const {devCenterURL, autoCloseMinimumGameDuration} = require("./config");
-const {settings} = require("./settings");
+const {
+    devCenterURL, autoCloseMinimumGameDuration, crashDumpRegex, maxCrashLogFileSize,
+} = require("./config");
+const {globalSettings} = require("./settings");
+const {getCurrentPlatform} = require("./version_info");
 
-const devCenterReportAPI = url.resolve(devCenterURL, "/api/v1/crash_report");
+const devCenterReportAPI = url.resolve(devCenterURL, "/api/v1/crashReport");
+
+function getPlatformThriveDataFolder(){
+    const platform = getCurrentPlatform();
+
+    if(platform.os === "win32"){
+        return path.join(remote.app.getPath("appData"), "Thrive");
+    } else if(platform.os === "linux"){
+        // We kind of have to assume the right path here... as "home" probably doesn't take
+        // XDG_HOME into account
+        return path.join(remote.app.getPath("home"), ".local", "share", "Thrive");
+    } else {
+        log.warn("Can't detect default Thrive data folder for platform:", platform.os);
+        return path.join(remote.app.getPath("appData"), "Thrive");
+    }
+}
+
+function getDefaultLogsFolder(){
+    return path.join(getPlatformThriveDataFolder(), "logs");
+}
+
+function getPlatformDefaultThriveCrashesFolder(){
+    return path.join(getPlatformThriveDataFolder(), "crashes");
+}
 
 function getCrashDumpsInFolder(folder){
     return new Promise((resolve, reject) => {
@@ -130,8 +156,16 @@ function onTrySubmit(settings){
 
         for(const log of settings.selectedLogs){
 
-            logs += "==== START OF " + log.name + " ===\n" + fs.readFileSync(log.path) +
+            const content = fs.readFileSync(log.path, {encoding: "utf-8"});
+
+            logs += "==== START OF " + log.name + " ===\n" +
+                content.substr(0, maxCrashLogFileSize) +
                 "=== END OF " + log.name + " ====";
+
+            if(content.length > maxCrashLogFileSize){
+                logs += " Previous file was truncated due to original length being:" +
+                    ` ${content.length} `;
+            }
         }
 
     } catch(err){
@@ -145,9 +179,15 @@ function onTrySubmit(settings){
         crash_time: "" + Math.floor(settings.selectedDump.mtimeMs / 1000),
         public: "" + settings.public,
         log_files: logs,
-        game_version: settings.gameVersion,
         dump: fs.createReadStream(settings.selectedDump.path),
     };
+
+    if(settings.store){
+        formData.store = settings.store;
+
+    } else {
+        formData.game_version = settings.gameVersion;
+    }
 
     if(settings.extraDescription)
         formData.extra_description = settings.extraDescription;
@@ -157,6 +197,8 @@ function onTrySubmit(settings){
 
     settings.submit.textContent = "Sending request...";
 
+    log.debug("sending crash report to:", devCenterReportAPI);
+
     request.post({url: devCenterReportAPI, formData: formData},
         function(err, httpResponse, body){
             let data = {};
@@ -164,35 +206,46 @@ function onTrySubmit(settings){
             try{
                 data = JSON.parse(body);
             } catch(ignore){
-                err = "JSON parsing failed";
+                if(!err)
+                    err = "JSON parsing failed";
             }
 
-            if(err || httpResponse.statusCode != 201){
-
-                log.error("error in creating report: err:", err, "status:",
-                    httpResponse.statusCode, "response:", httpResponse, "body:", body);
+            if(err || !httpResponse || httpResponse.statusCode != 201){
 
                 if(!err)
                     err = data.error;
 
-                settings.statusText.textContent =
-                    "Error sending request, please try again later. " +
-                    "status code: " + httpResponse.statusCode + " error: " +
-                    err;
+                if(!httpResponse){
+                    log.error("error in creating report: err:", err,
+                        "response:", httpResponse, "body:", body);
+
+                    settings.statusText.textContent =
+                        "Error sending request, please try again later. error: " +
+                        err;
+                } else {
+                    log.error("error in creating report: err:", err, "status:",
+                        httpResponse.statusCode, "response:", httpResponse, "body:", body);
+
+                    settings.statusText.textContent =
+                        "Error sending request, please try again later. " +
+                        "status code: " + httpResponse.statusCode + " error: " +
+                        err;
+                }
+
                 settings.submit.textContent = "Retry";
                 settings.uploading = false;
                 return;
             }
 
             log.info("successfully created report:", body);
-            onSuccess(url.resolve(devCenterURL, "/report/" + data.created_id),
-                url.resolve(devCenterURL, "/delete_report/" + data.delete_key));
+            onSuccess(url.resolve(devCenterURL, "/reports/" + data.created_id),
+                url.resolve(devCenterURL, "/deleteReport/" + data.delete_key));
         });
 
     settings.submit.textContent = "Waiting for server response...";
 
-    settings.statusText.textContent = "Please allow up to a minute for your report to " +
-        "be processed";
+    settings.statusText.textContent = "Please allow up to a few minutes for your report to " +
+        "be uploaded";
 }
 
 function onSuccess(reportURL, privateURL){
@@ -263,7 +316,13 @@ function updateShownLogFiles(settings){
         fileLink.href = "#";
         fileLink.style.paddingRight = "15px";
         fileLink.addEventListener("click", function(){
-            shell.openPath(log.path);
+            // TODO: this doesn't seem to work on Linux anymore...
+            shell.openPath(log.path).then((error) => {
+                if(!error)
+                    return;
+
+                log.error(`Failed to open file (${log.path}) for viewing due to:`, error);
+            });
         });
 
         span.append(fileLink);
@@ -291,12 +350,22 @@ function setLogFileStatus(settings, status){
     settings.logsWidget.append(li);
 }
 
-function findALlLogFiles(settings){
+function findAllLogFiles(settings){
     setLogFileStatus(settings, "Searching for log files");
 
-    findLogsInFolder(settings.dumpFolder).then((logs) => {
+    findLogsInFolder(getDefaultLogsFolder()).then((logs) => {
+        if(settings.detectedLogFile && fs.existsSync(settings.detectedLogFile)){
+            log.debug("Using detected log file from game output");
+            settings.selectedLogs = [
+                {
+                    name: path.basename(settings.detectedLogFile),
+                    path: settings.detectedLogFile,
+                },
+            ];
+        } else {
+            settings.selectedLogs = logs;
+        }
 
-        settings.selectedLogs = logs;
         updateShownLogFiles(settings);
 
     }).catch((err) => {
@@ -328,7 +397,7 @@ function onBeginReportingCrash(dump, settings){
 
     settings.logsWidget = document.createElement("ul");
 
-    findALlLogFiles(settings);
+    findAllLogFiles(settings);
 
     crashReportingContent.append(settings.logsWidget);
 
@@ -338,7 +407,7 @@ function onBeginReportingCrash(dump, settings){
 
     rescanButton.addEventListener("click", function(){
 
-        findALlLogFiles(settings);
+        findAllLogFiles(settings);
     });
 
     crashReportingContent.append(rescanButton);
@@ -451,16 +520,30 @@ function onBeginReportingCrash(dump, settings){
     crashReportingContent.append(settings.statusText);
 }
 
+function createDumpControls(dump, parent, settings){
+    const li = document.createElement("li");
+    const span = document.createElement("span");
+    span.append(document.createTextNode(moment(dump.mtimeMs).fromNow() + " (" +
+        formatTime(dump.mtimeMs) + ") "));
+
+    const a = document.createElement("a");
+    a.textContent = dump.name;
+    a.href = "#";
+    a.style.paddingLeft = "4px";
+    a.addEventListener("click", function(){
+
+        onBeginReportingCrash(dump, settings);
+    });
+
+    span.append(a);
+
+    li.append(span);
+    parent.append(li);
+}
+
 function onReporterOpened(settings){
 
     crashReportingContent.innerHTML = "";
-
-    crashReportingContent.
-        append(document.
-            createTextNode("If the game crashed on startup please, try the " +
-                "thrive launch options first before " +
-                "reporting a crash. They can be found in the launcher " +
-                "options menu (button left of 'play')."));
 
     crashReportingContent.append(document.createElement("br"));
 
@@ -470,30 +553,16 @@ function onReporterOpened(settings){
     const ul = document.createElement("ul");
 
     for(const dump of settings.dumps){
+        createDumpControls(dump, ul, settings);
+    }
 
-        const li = document.createElement("li");
-        const span = document.createElement("span");
-        span.append(document.createTextNode(moment(dump.mtimeMs).fromNow() + " (" +
-            formatTime(dump.mtimeMs) + ") "));
-
-        const a = document.createElement("a");
-        a.textContent = dump.name;
-        a.href = "#";
-        a.style.paddingLeft = "4px";
-        a.addEventListener("click", function(){
-
-            onBeginReportingCrash(dump, settings);
-        });
-
-        span.append(a);
-
-        li.append(span);
-        ul.append(li);
+    if(settings.extraDump){
+        createDumpControls(settings.extraDump, ul, settings);
     }
 
     crashReportingContent.append(ul);
 
-    if(settings.dumps.length < 1)
+    if(settings.dumps.length < 1 && !settings.extraDump)
         return;
 
     const button = document.createElement("span");
@@ -508,6 +577,11 @@ function onReporterOpened(settings){
 
             for(const dump of settings.dumps){
                 fs.unlinkSync(dump.path);
+            }
+
+            if(settings.extraDump){
+                fs.unlinkSync(settings.extraDump);
+                settings.extraDump = null;
             }
 
             resolve();
@@ -528,16 +602,24 @@ function onReporterOpened(settings){
     crashReportingContent.append(button);
 }
 
-function showDumpsDialog(dumpFolder, exitCode, gameVersion){
+function showDumpsDialog(dumpFolder, exitCode, gameVersion, store, keptOutput,
+    detectedLogFile, extraDump){
 
     crashReporterModal.show();
     crashReportingContent.innerHTML = "Finding dump files";
+
+    if(!exitCode)
+        exitCode = "unknown";
 
     const settings = {
         dumpFolder: dumpFolder,
         dumps: [],
         exitCode: exitCode,
         gameVersion: gameVersion,
+        store: store,
+        keptOutput: keptOutput,
+        detectedLogFile: detectedLogFile,
+        extraDump: extraDump,
     };
 
     // The dumps are searched for again here as otherwise the delete
@@ -553,15 +635,45 @@ function showDumpsDialog(dumpFolder, exitCode, gameVersion){
 }
 
 // Called when Thrive exits
-function onGameEnded(binFolder, exitCode, buttonContainer, gameVersion, adviceBox, elapsed){
+// gameVersion is not usable for store releases reporting, as it is a magic constant,
+// so use the store if that is not-false
+function onGameEnded(binFolder, exitCode, buttonContainer, gameVersion, store, adviceBox,
+    elapsed, keptOutput, detectedLogFile){
     // Detect problems
-    // TODO: implement passing the last game output through here
+
+    // Detect crash dumps logged by the game
+    let detectedDump = null;
+
+    if(keptOutput){
+        const match = keptOutput.match(crashDumpRegex);
+
+        if(match){
+            detectedDump = match[1];
+
+            if(!fs.existsSync(detectedDump)){
+                log.error("Game printed out non-existent crash dump file:", detectedDump);
+                detectedDump = null;
+            } else {
+                log.info("Detected crash dump created by the game:", detectedDump);
+            }
+        }
+    }
+
     startError(exitCode, "", adviceBox);
 
-    // Look for .dmp files
-    getCrashDumpsInFolder(binFolder).then((dumps) => {
+    let crashesFolder = getPlatformDefaultThriveCrashesFolder();
 
-        if(dumps.length > 0){
+    if(detectedLogFile){
+        log.debug("Log file location detected as:", detectedLogFile);
+        crashesFolder = path.join(detectedLogFile, "..", "..", "crashes");
+    } else {
+        log.warn("No log file location could be detected from game output");
+    }
+
+    // Look for .dmp files
+    getCrashDumpsInFolder(crashesFolder).then((dumps) => {
+
+        if(dumps.length > 0 || detectedDump){
 
             log.info("thrive has generated crash dump(s)");
 
@@ -571,11 +683,12 @@ function onGameEnded(binFolder, exitCode, buttonContainer, gameVersion, adviceBo
 
             button.addEventListener("click", function(){
 
-                showDumpsDialog(binFolder, exitCode, gameVersion);
+                showDumpsDialog(crashesFolder, exitCode, gameVersion, store, keptOutput,
+                    detectedLogFile, detectedDump);
             });
 
             buttonContainer.append(button);
-        } else if(settings.closeLauncherAfterGameExit){
+        } else if(globalSettings.closeLauncherAfterGameExit){
             if(elapsed < autoCloseMinimumGameDuration){
                 log.warn("Game ran so little time that there was likely a problem " +
                     "not closing the launcher automatically");
@@ -588,7 +701,7 @@ function onGameEnded(binFolder, exitCode, buttonContainer, gameVersion, adviceBo
 
     }).catch((err) => {
 
-        log.error("failed to read files for crash dump detection", err);
+        log.error("failed to read files for crash dump detection:", err);
     });
 }
 

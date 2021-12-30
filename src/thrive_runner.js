@@ -14,12 +14,12 @@ const {settings} = require("./settings.js");
 const {
     maxDelayBetweenExitAfterErrorSignal, closeDelayAfterAutoStart,
     minimizeDelayAfterGameStart, checkLauncherProcessIsRunningDelay,
+    thriveOutputLogLocation, waitLogsAfterGameClose,
 } = require("./config");
 const {findBinInRelease, getThriveExecutableName} = require("./unpack");
 const {checkIsDehydrated} = require("./rehydrate");
 
 let customLDPreload = null;
-let lastGameStartedTime = null;
 
 function setLDPreload(value){
     if(value)
@@ -38,9 +38,13 @@ function onCanRun(installFolder, status, onClose, onEnded){
     console.log("Launching thrive from folder '" + binFolder + "' with arguments: ",
         launchArgs);
 
-    const appendMessage = prepareGameOutputWriteFunction(status);
+    const runData = {
+        outputLog: null,
+        exitHandlerRan: false,
+        startTime: new Date(),
+    };
 
-    lastGameStartedTime = new Date();
+    const appendMessage = prepareGameOutputWriteFunction(status, runData);
 
     if(settings.closeLauncherOnGameStart){
         // Need to specially start the child process in a detached way to make it outlive us
@@ -66,7 +70,7 @@ function onCanRun(installFolder, status, onClose, onEnded){
                     log.warn("Normal exit handler hasn't ran, doing our basic run of it");
 
                     handleChildProcessEnd(status, thrive.exitCode, null, binFolder, onClose,
-                        onEnded, appendMessage);
+                        onEnded, appendMessage, runData);
                 }
 
                 appendMessage("Error: child process has already ended, not closing the" +
@@ -95,12 +99,19 @@ function onCanRun(installFolder, status, onClose, onEnded){
     appendMessage("Process Started");
 
     thrive.stdout.on("data", (data) => {
-        for(const line of data.toString().split(/\r?\n/g))
-            appendMessage(line);
+        for(const line of data.toString().split(/\r?\n/g)){
+            if(line === "")
+                continue;
+
+            appendMessage(line, null);
+        }
     });
 
     thrive.stderr.on("data", (data) => {
-        appendMessage(data, "red");
+        const text = data.toString();
+
+        if(text)
+            appendMessage(text, "red");
     });
 
     const showLauncher = () => {
@@ -110,8 +121,8 @@ function onCanRun(installFolder, status, onClose, onEnded){
         }
     };
 
-    const runData = registerDefaultProcessExitHandlers(thrive, showLauncher, status, binFolder,
-        onClose, onEnded, appendMessage);
+    registerDefaultProcessExitHandlers(thrive, showLauncher, status, binFolder,
+        onClose, onEnded, appendMessage, runData);
 
     window.setTimeout(() => {
         if(runData.exitHandlerRan){
@@ -141,7 +152,7 @@ function onCanRun(installFolder, status, onClose, onEnded){
             showLauncher();
 
             handleChildProcessEnd(status, thrive.exitCode, null, binFolder, onClose,
-                onEnded, appendMessage);
+                onEnded, appendMessage, runData);
 
             appendMessage("Error: child process has already ended but it was not detected" +
                 " normally");
@@ -201,7 +212,7 @@ function prepareLaunchArguments(){
     return {launchArgs, launchEnv};
 }
 
-function prepareGameOutputWriteFunction(status){
+function prepareGameOutputWriteFunction(status, runData){
     status.innerHTML = "";
     const processOutput = document.createElement("div");
     processOutput.classList.add("gameOutput");
@@ -248,6 +259,16 @@ function prepareGameOutputWriteFunction(status){
                 truncatedWarning.style.display = "block";
             } else {
                 beginningOutput.append(message);
+
+                // Only look for log location in the first lines
+
+                if(!runData.outputLog){
+                    const match = text.match(thriveOutputLogLocation);
+
+                    if(match){
+                        runData.outputLog = `${match[1]}/${match[2]}`;
+                    }
+                }
             }
         }
 
@@ -267,8 +288,7 @@ function prepareGameOutputWriteFunction(status){
 }
 
 function registerDefaultProcessExitHandlers(thrive, customExit, status, binFolder, onClose,
-    onEnded, appendMessage){
-    const runData = {exitHandlerRan: false};
+    onEnded, appendMessage, runData){
 
     thrive.on("exit", (code, signal) => {
         console.debug("game process exit handler called:", code, signal);
@@ -281,7 +301,7 @@ function registerDefaultProcessExitHandlers(thrive, customExit, status, binFolde
         customExit();
 
         handleChildProcessEnd(status, code, signal, binFolder, onClose, onEnded,
-            appendMessage);
+            appendMessage, runData);
     });
 
     thrive.on("error", (error) => {
@@ -298,7 +318,7 @@ function registerDefaultProcessExitHandlers(thrive, customExit, status, binFolde
 
             // TODO: should the error actually be passed through as is and not as a string?
             handleChildProcessEnd(status, "" + error, null, binFolder, onClose, onEnded,
-                appendMessage);
+                appendMessage, runData);
         }, maxDelayBetweenExitAfterErrorSignal);
     });
 
@@ -306,7 +326,7 @@ function registerDefaultProcessExitHandlers(thrive, customExit, status, binFolde
 }
 
 function handleChildProcessEnd(status, code, signal, binFolder, onClose, onEnded,
-    appendMessage){
+    appendMessage, runData){
     const closeContainer = document.createElement("div");
 
     closeContainer.style.textAlign = "center";
@@ -325,27 +345,31 @@ function handleChildProcessEnd(status, code, signal, binFolder, onClose, onEnded
 
     status.append(closeContainer);
 
-    if(lastGameStartedTime == null){
+    if(runData.startTime == null){
         log.error("Last start time is not set, using current time");
-        lastGameStartedTime = new Date();
+        runData.startTime = new Date();
     }
 
-    // Let crash reporter do things
-    onEnded(binFolder, signal != null ? signal : code, closeContainer,
-        new Date() - lastGameStartedTime);
+    // The remainder is performed later so that there is still time for game logs to come in
+    window.setTimeout(() => {
+        // Final log message is printed here to make sure it is visible
+        if(signal){
+            log.info(`child process exited due to signal ${signal}`);
+            appendMessage(`child process exited due to signal ${signal}`);
 
-    // Final log message is printed here to make sure it is visible
-    if(signal){
-        log.info(`child process exited due to signal ${signal}`);
-        appendMessage(`child process exited due to signal ${signal}`);
+        } else {
+            log.info(`child process exited with code ${code}`);
+            appendMessage(`child process exited with code ${code}`);
 
-    } else {
-        log.info(`child process exited with code ${code}`);
-        appendMessage(`child process exited with code ${code}`);
+            if(code === 0)
+                appendMessage("Thrive has exited normally (exit code 0).");
+        }
 
-        if(code === 0)
-            appendMessage("Thrive has exited normally (exit code 0).");
-    }
+        // Let crash reporter do things. This is after the exit print so that that makes
+        // it into the output that is used in crash reporting
+        onEnded(binFolder, signal != null ? signal : code, closeContainer,
+            new Date() - runData.startTime, runData.outputLog);
+    }, waitLogsAfterGameClose);
 }
 
 function runThrive(installFolder, status, onClose, onEnded){

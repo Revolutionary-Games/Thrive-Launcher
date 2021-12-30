@@ -44,4 +44,18 @@ module.exports = {
     // Time in milliseconds to check that the game process has properly launched, and hasn't
     // suddenly died
     checkLauncherProcessIsRunningDelay: 750,
+
+    // Time in milliseconds to wait once the game has exited for last log messages to arrive
+    // before doing post game actions. Doesn't seem to actually help if the game immediately
+    // crashed...
+    waitLogsAfterGameClose: 100,
+
+    // Regex used to detect current log file in game output
+    thriveOutputLogLocation: /logs are written to:\s+(\S+).+log.+'(\S+)'/im,
+
+    // Regex used to detect crash dumps in game output
+    crashDumpRegex: /Crash dump created at:\s+(\S+\.dmp)/im,
+
+    // Maximum size in bytes for a file to be included in crash report
+    maxCrashLogFileSize: 2000000,
 };

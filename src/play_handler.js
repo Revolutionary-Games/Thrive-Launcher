@@ -19,7 +19,10 @@ const {onGameEnded} = require("./crash_reporting.js");
 const errorSuggestions = require("./error_suggestions");
 const {Progress} = require("./progress");
 const {unpackRelease, thriveExecutableExistsInFolder} = require("./unpack");
-const {getSelectedVersion, storeVersionObject} = require("./version_select_button");
+const {
+    getSelectedVersion, storeVersionObject, devBuildIdentifier, storeBuildIdentifier,
+} = require("./version_select_button");
+const {storeInfo} = require("./store_handler");
 const {downloadFile, verifyDLHash} = require("./download_helper");
 const versionInfo = require("./version_info");
 const {findFirstSubFolder} = require("./file_utils");
@@ -27,7 +30,6 @@ const {
     getCurrentDevBuildType, getDevBuildPlatform, fetchDevBuildInfo,
     getDownloadForBuild, getCurrentDevBuildVersion,
 } = require("./dev_center");
-const {devBuildIdentifier, storeBuildIdentifier} = require("./version_select_button");
 const {runThrive} = require("./thrive_runner");
 
 const playBox = document.getElementById("playModalContent");
@@ -90,9 +92,18 @@ function onThriveFolderReady(version, download){
 
     runThrive(installFolder, status, () => {
         playModal.hide();
-    }, (bin, signal, closeContainer, elapsed) => {
-        // TODO: version.releaseNum is not usable for store releases reporting
-        onGameEnded(bin, signal, closeContainer, version.releaseNum, status, elapsed);
+    }, (bin, signal, closeContainer, elapsed, detectedLogFile) => {
+        let gameOutput = "";
+
+        status.childNodes.forEach((node) => {
+            if(!node.classList.contains("gameOutput"))
+                return;
+
+            gameOutput += node.innerText + "\n";
+        });
+
+        onGameEnded(bin, signal, closeContainer, version.releaseNum, storeInfo.store, status,
+            elapsed, gameOutput, detectedLogFile);
     });
 }
 
