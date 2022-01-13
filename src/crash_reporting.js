@@ -11,6 +11,7 @@ const win = remote.getCurrentWindow();
 const fs = remote.require("fs");
 const path = require("path");
 const url = require("url");
+const os = remote.require("os");
 
 const {shell} = remote;
 
@@ -175,10 +176,11 @@ function onTrySubmit(settings){
     }
 
     const formData = {
-        exit_code: "" + settings.exitCode,
-        crash_time: "" + Math.floor(settings.selectedDump.mtimeMs / 1000),
-        public: "" + settings.public,
-        log_files: logs,
+        exitCode: "" + settings.exitCode,
+        crashTime: "" + Math.floor(settings.selectedDump.mtimeMs / 1000),
+        public: settings.public ? "true" : "false",
+        logFiles: logs,
+        platform: os.platform(),
         dump: fs.createReadStream(settings.selectedDump.path),
     };
 
@@ -186,11 +188,11 @@ function onTrySubmit(settings){
         formData.store = settings.store;
 
     } else {
-        formData.game_version = settings.gameVersion;
+        formData.gameVersion = settings.gameVersion;
     }
 
     if(settings.extraDescription)
-        formData.extra_description = settings.extraDescription;
+        formData.extraDescription = settings.extraDescription;
 
     if(settings.email)
         formData.email = settings.email;
@@ -210,10 +212,15 @@ function onTrySubmit(settings){
                     err = "JSON parsing failed";
             }
 
-            if(err || !httpResponse || httpResponse.statusCode != 201){
+            if(err || !httpResponse || httpResponse.statusCode !== 201){
 
                 if(!err)
-                    err = data.error;
+                    err = data.error || data.body;
+
+                if((!err || err === "JSON parsing failed") && body){
+                    log.info("Replacing JSON parse error with body");
+                    err = body.toString().substr(0, 100);
+                }
 
                 if(!httpResponse){
                     log.error("error in creating report: err:", err,
@@ -238,8 +245,8 @@ function onTrySubmit(settings){
             }
 
             log.info("successfully created report:", body);
-            onSuccess(url.resolve(devCenterURL, "/reports/" + data.created_id),
-                url.resolve(devCenterURL, "/deleteReport/" + data.delete_key));
+            onSuccess(url.resolve(devCenterURL, "/reports/" + data.createdId),
+                url.resolve(devCenterURL, "/deleteReport/" + data.deleteKey));
         });
 
     settings.submit.textContent = "Waiting for server response...";
