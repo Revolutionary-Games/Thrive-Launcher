@@ -1,7 +1,7 @@
 Thrive Launcher
 ===============
 
-Copyright 2017-2021 Revolutionary Games
+Copyright 2017-2022 Revolutionary Games
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
