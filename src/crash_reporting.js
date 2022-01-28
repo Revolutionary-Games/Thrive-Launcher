@@ -559,12 +559,13 @@ function onReporterOpened(settings){
     // List dumps
     const ul = document.createElement("ul");
 
-    for(const dump of settings.dumps){
-        createDumpControls(dump, ul, settings);
-    }
-
+    // Extra dump is detected from the latest run so it is always shown first
     if(settings.extraDump){
         createDumpControls(settings.extraDump, ul, settings);
+    }
+
+    for(const dump of settings.dumps){
+        createDumpControls(dump, ul, settings);
     }
 
     crashReportingContent.append(ul);
@@ -587,7 +588,9 @@ function onReporterOpened(settings){
             }
 
             if(settings.extraDump){
-                fs.unlinkSync(settings.extraDump);
+                // Extra dump may be included in the dumps list so it may be already deleted
+                if(fs.existsSync(settings.extraDump))
+                    fs.unlinkSync(settings.extraDump);
                 settings.extraDump = null;
             }
 
@@ -617,6 +620,20 @@ function showDumpsDialog(dumpFolder, exitCode, gameVersion, store, keptOutput,
 
     if(!exitCode)
         exitCode = "unknown";
+
+    if(extraDump){
+        // Convert the extra dump path to a proper dump object
+        try{
+            const stats = fs.lstatSync(extraDump);
+            extraDump = {
+                name: "(detected from output) " + path.basename(extraDump),
+                path: extraDump, mtimeMs: stats.mtimeMs,
+            };
+        } catch(error){
+            log.warn("Could not add extra dump to list of dumps:", error);
+            extraDump = null;
+        }
+    }
 
     const settings = {
         dumpFolder: dumpFolder,
