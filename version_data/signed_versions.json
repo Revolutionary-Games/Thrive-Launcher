@@ -513,7 +513,7 @@ Hash: SHA256
         },
         {
             "id": 23,
-            "releaseNum": "0.5.7.0",
+            "releaseNum": "0.5.7",
 
             "platforms": [
                 {
@@ -545,18 +545,18 @@ Hash: SHA256
 }
 -----BEGIN PGP SIGNATURE-----
 
-iQJXBAEBCABBFiEELEiDYd8a73luvWURdf2+KhSzR70FAmH+VygjHHJldm9sdXRp
-b25hcnlnYW1lc3N0dWRpb0BnbWFpbC5jb20ACgkQdf2+KhSzR7111A//U9KuPg2J
-NC6CapSvLpKDgx0/3C7PQyqPln/y/WmZNC1B5j4BohpcpHungT4VkzDYyxd7tx/j
-9EK4L1ehtL6K/nROIXW1lcsjMR9zlm7IdXNowp362B6694k5++lNUeo4qErSKxUQ
-Hbh+8LCKtFzK0f4sBKsLjyLnnghxMxv/r/Lw+x1IFN09RB+mHI7oXzUqTY9NyI+u
-yB7F3h9hA2g+U2/2hTPUtgPVvUpdvNP+o+VjMau/4sNUvsoEPgKO+g3mF4c/a+tl
-gbYR7Nlmxo0K5mZxElJCooSP1bKDbCxbFPR769xixmlQZFcaaZ4ly4Yr1GD98bOt
-bvVV8rilinX58tsF/w4n8Xxhr7Wu1No4BmJm17N7lb/f3+ksejbAt4C7WQMRdWcN
-CYTucgZQc/oUgF4M6pa9sdW77qs1qaEE7nLGLKhcATOSfdKQlIp6PXqVkoTEZSZT
-Qs33hUbZ/DsLp33aViGKy31LtVdqUp0VKFb8EYGRMUS9n8+iPmP1Hpb7l3yA87C2
-HvR0RL51HfY//6iIqoAexmamhvowm8omxpPKKZ5HWlvGV6Iv9sHYA9bSFKlbtQxT
-NYVoayOFmgkwiOM5vJi2GsnmI51lViBglFauNHTtRYalDrNUshhx4JJdg+za5r6J
-yULg6rOj1nu1Fpwgsi9FRqZIXM8ygjqAFxk=
-=lF7H
+iQJXBAEBCABBFiEELEiDYd8a73luvWURdf2+KhSzR70FAmH+Wo8jHHJldm9sdXRp
+b25hcnlnYW1lc3N0dWRpb0BnbWFpbC5jb20ACgkQdf2+KhSzR706CRAAkVhKLuMZ
+WLpjQS57Phrb0IK+Uo7c7qFTthG5mwUPi9c3yMDKbTVV/35pOyaSikyp5EGZ8IcS
+nirONY5LGzwq1ANbvXBhTzsuU6bbOXs3BvgUh2Tief99LGZSWnKNnnGqgH1rGgg5
+FxXL9kGSKrXSBJjAL5hcWOwODlskjANfoDx9wk1I01OwEWS/Bymok0x2Sb6b4Wyq
+vFbk/1xkkN3fQwgEeCfGSPskuYHCTPuZkXQ8CBYibjlf7PufjarrCJWvcdXvRjEN
+yCzms0u9jvIzzD8CEpD5Um5qQQJzlw1RdLZpCIgsLjy+JDnfdVrmLQvJCfIVIHdN
+u1+PeG29G7uehFKX3Tjbgf67Z4sbZZo1Q2mllAKz68NcCCZH153cdg9OL30alPjD
+DPC1yCtJt4gHXFIbH5m3DCWzAlVzgzC4QW9jLUuVClK/+jHd+kNUaWT+6DiIpiwg
+k/BhirU1OLkllVGs0llUinT2f4hnSYNkFLUmvSPfrsgmfxP/9IjN9ktKCDxgH3Hl
+A6/mTHX+P8ohBaLVbFIAYGuaRRcGwCGwMvOCw1GAQJ7hrxijWZaMFstj7NtoXIDy
+H4UGD7ChYkGEtuMn6CIngEGv7dVwjQSvvdBJGBAY7HKbuTFQ99DWZ1FBt3YQMIVk
+O6Gjrc3eA+HWBnR/N1VauOIq7iwOteN+XI0=
+=kOaH
 -----END PGP SIGNATURE-----
