@@ -26,7 +26,7 @@ const logFilenamesToCheck = ["ThriveLog.txt", "log.txt"];
 const {
     devCenterURL, autoCloseMinimumGameDuration, crashDumpRegex, maxCrashLogFileSize,
 } = require("./config");
-const {globalSettings} = require("./settings");
+const globalSettings = require("./settings").settings;
 const {getCurrentPlatform} = require("./version_info");
 
 const devCenterReportAPI = url.resolve(devCenterURL, "/api/v1/crashReport");
