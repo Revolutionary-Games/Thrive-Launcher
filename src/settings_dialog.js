@@ -521,6 +521,17 @@ hide32bitCheckbox.addEventListener("change", function(event){
     onSettingsChanged();
 });
 
+// GLES2 renderer selection option
+const forceGLES2Mode = document.getElementById("forceGLES2Mode");
+
+forceGLES2Mode.addEventListener("change", function(event){
+    if(loadingSettings)
+        return;
+
+    settings.forceGLES2Mode = event.target.checked;
+    onSettingsChanged();
+});
+
 // --single-process flag option
 const enableSingleProcessLaunch = document.getElementById("enableSingleProcessLaunch");
 
@@ -640,6 +651,7 @@ module.exports.onSettingsLoaded = () => {
         enableSingleProcessLaunch.checked = settings.launchOptionSingleProcess;
         disableGUISandbox.checked = settings.launchOptionNoGUISandbox;
         disableGUIGPU.checked = settings.launchOptionNoGUIGPU;
+        forceGLES2Mode.checked = settings.forceGLES2Mode;
 
         log.log("Install path set to: " + settings.installPath);
 

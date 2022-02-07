@@ -54,6 +54,7 @@ const defaultSettings = {
     storeVersionShowExternalVersions: false,
     thanksDialogDismissed: false,
     autoStartStoreVersion: false,
+    forceGLES2Mode: false,
 };
 
 module.exports.settings = Object.assign({}, defaultSettings);

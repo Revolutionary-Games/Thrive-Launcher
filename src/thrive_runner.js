@@ -200,6 +200,11 @@ function prepareLaunchArguments(){
         launchEnv.LD_PRELOAD = "";
     }
 
+    // Godot version options
+    if(settings.forceGLES2Mode)
+        launchArgs.push("--video-driver", "GLES2");
+
+    // Legacy options
     if(settings.launchOptionSingleProcess)
         launchArgs.push("--single-process");
 
