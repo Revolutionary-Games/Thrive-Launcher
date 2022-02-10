@@ -201,6 +201,9 @@ function prepareLaunchArguments(){
     }
 
     // Godot version options
+    if(settings.disableThriveVideos)
+        launchArgs.push("--thrive-disable-videos");
+
     if(settings.forceGLES2Mode)
         launchArgs.push("--video-driver", "GLES2");
 

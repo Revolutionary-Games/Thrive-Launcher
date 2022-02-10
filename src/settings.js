@@ -55,6 +55,7 @@ const defaultSettings = {
     thanksDialogDismissed: false,
     autoStartStoreVersion: false,
     forceGLES2Mode: false,
+    disableThriveVideos: false,
 };
 
 module.exports.settings = Object.assign({}, defaultSettings);

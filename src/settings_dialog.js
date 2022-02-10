@@ -521,6 +521,17 @@ hide32bitCheckbox.addEventListener("change", function(event){
     onSettingsChanged();
 });
 
+// Video disable
+const disableThriveVideos = document.getElementById("disableThriveVideos");
+
+disableThriveVideos.addEventListener("change", function(event){
+    if(loadingSettings)
+        return;
+
+    settings.disableThriveVideos = event.target.checked;
+    onSettingsChanged();
+});
+
 // GLES2 renderer selection option
 const forceGLES2Mode = document.getElementById("forceGLES2Mode");
 
@@ -652,6 +663,7 @@ module.exports.onSettingsLoaded = () => {
         disableGUISandbox.checked = settings.launchOptionNoGUISandbox;
         disableGUIGPU.checked = settings.launchOptionNoGUIGPU;
         forceGLES2Mode.checked = settings.forceGLES2Mode;
+        disableThriveVideos.checked = settings.disableThriveVideos;
 
         log.log("Install path set to: " + settings.installPath);
 
