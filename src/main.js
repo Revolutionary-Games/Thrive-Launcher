@@ -187,7 +187,7 @@ function createWindow(){
 
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 950 + (openDev ? 700 : 0), height: 652,
+        width: 950 + (openDev ? 700 : 0), height: 625,
 
         // No default titlebar, we use a custom one (except when using devtools)
         frame: openDev,

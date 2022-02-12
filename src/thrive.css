@@ -432,6 +432,21 @@ img.TopLogo {
   /* animation-duration: 0.4s */
 }
 
+#playModalDialog {
+  /* Make the play popup's position and size fixed */
+  position: absolute;
+  margin-top: auto;
+  max-height: 500px;
+  width: 650px;
+  max-width: 650px;
+  margin: 0;
+  margin-top: 25px;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+}
+
 #playModalContent {
   min-height: 500px;
   max-height: 500px;
