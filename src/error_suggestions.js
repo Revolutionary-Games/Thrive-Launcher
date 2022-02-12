@@ -34,6 +34,8 @@ If these don't help try searching for 'YOUROSHERE install 32 bit library support
 }
 
 function startError(exitCode, lastOutput, element){
+    let printedSomething = false;
+
     // Do a bit of an inaccurate comparison here to ensure we can't miss this problem
     // noinspection EqualityComparisonWithCoercionJS
     if(exitCode == "3221225781"){
@@ -56,8 +58,18 @@ It should also be available through \
 <a href='https://docs.microsoft.com/en-us/cpp/windows/universal-crt-deployment?view=\
 msvc-170#central-deployment'>Windows Update as a recommended update</a>. \
 If these don't help please contact us for additional assistance.", element);
+
+        printedSomething = true;
     }
+
+    return printedSomething;
+}
+
+function addStartupFailAdvice(element){
+    appendSuggestion("If the game did not start correctly, please try the Thrive launch" +
+        " workarounds available under \"Thrive Options\" in the launcher settings", element);
 }
 
 module.exports.unpackError = unpackError;
 module.exports.startError = startError;
+module.exports.addStartupFailAdvice = addStartupFailAdvice;

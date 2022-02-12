@@ -19,7 +19,7 @@ const moment = require("moment");
 const request = remote.require("request");
 
 const {Modal, showGenericError} = require("./modal");
-const {startError} = require("./error_suggestions");
+const {startError, addStartupFailAdvice} = require("./error_suggestions");
 
 const logFilenamesToCheck = ["ThriveLog.txt", "log.txt"];
 
@@ -683,7 +683,12 @@ function onGameEnded(binFolder, exitCode, buttonContainer, gameVersion, store, a
         }
     }
 
-    startError(exitCode, "", adviceBox);
+    const alreadyOutputAdvice = startError(exitCode, "", adviceBox);
+
+    // If exited / maybe crashed within a few seconds of start, add some advice
+    if(!alreadyOutputAdvice && elapsed < 11 * 1000){
+        addStartupFailAdvice(adviceBox);
+    }
 
     let crashesFolder = getPlatformDefaultThriveCrashesFolder();
 
