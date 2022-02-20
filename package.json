@@ -105,11 +105,11 @@
         }
     },
     "devDependencies": {
-        "electron": "^15.1.2",
+        "electron": "^17.0.1",
         "electron-builder": "^22.13.1",
         "eslint": "^8.0.0",
         "eslint-plugin-html": "^6.2.0",
-        "stylelint": "^13.13.1"
+        "stylelint": "^14.5.1"
     },
     "dependencies": {
         "@electron/remote": "^2.0.1",
