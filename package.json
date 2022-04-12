@@ -99,7 +99,7 @@
             "icon": "assets/icons",
             "target": [
                 {
-                    "target": "dmg"
+                    "target": "default"
                 }
             ]
         }
