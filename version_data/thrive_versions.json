@@ -570,17 +570,17 @@
                 {
                     "os": 1,
                     "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.8.1/Thrive_0.5.8.1_windows_desktop_.32-bit.7z",
-                    "hash": "842a83adbf45219be613955b84964a66f28d9f27dabf9b5293de9b7c3e168dae"
+                    "hash": "f745bb6e481be2c8e5ec634037b105fb2c14787af9aba4c0c070212c14eddb3e"
                 },
                 {
                     "os": 2,
                     "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.8.1/Thrive_0.5.8.1_windows_desktop.7z",
-                    "hash": "cf3bf2614678de6fc22b001561c163d63c816a4f66c2d1b83c4debf0d1926680"
+                    "hash": "1a165327ae55f3c5d44dc050e9cd2c29932170600fd6d0850b764f56e9a7cbed"
                 },
                 {
                     "os": 3,
                     "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.8.1/Thrive_0.5.8.1_linux_x11.7z",
-                    "hash": "3724d8e3f90f0338b554f627ac2491d31a879af83176c0ee5e764f36a436f7d7"
+                    "hash": "dd3206db07cf96477e687bda6524dca979d486ca3786d5ae5abf361c368b692c"
                 },
                 {
                     "os": 4,
