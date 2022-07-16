@@ -7,3 +7,4 @@ node_modules
 
 /dist
 *.tar.xz
+*.DS_Store
