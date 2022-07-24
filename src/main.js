@@ -36,6 +36,8 @@ args.forEach((val, index) => {
         ignoreAutoStart = true;
     } else if(val === "--game-ld-preload"){
         loadLd = true;
+    } else if(val === "--no-sandbox"){
+        console.log("chromium sandbox disable flag is used");
     } else if(/--remote-debugging-port.*/i.test(val)){
         // Chrome handles this
     } else {
