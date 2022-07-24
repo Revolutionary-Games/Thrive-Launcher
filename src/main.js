@@ -200,6 +200,9 @@ function createWindow(){
             nodeIntegration: true,
             contextIsolation: false,
             preload: path.join(app.getAppPath(), "src/preload.js"),
+
+            // Sandbox must always be disabled as otherwise node integration is not available
+            sandbox: false,
         },
 
         backgroundColor: "#404040",
