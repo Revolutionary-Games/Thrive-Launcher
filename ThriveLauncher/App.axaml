@@ -99,35 +99,85 @@
             <Setter Property="Background" Value="{DynamicResource BlueElement}" />
         </Style>
 
-        <Style Selector="Border.Popup[IsVisible=true]">
+        <Style Selector=":is(Control).OpacityFade.Visible">
             <Style.Animations>
-                <Animation Duration="0:0:0.3" FillMode="None" Easing="CubicEaseIn">
+                <Animation Duration="0:0:0.2" FillMode="Forward">
                     <KeyFrame Cue="0%">
-                        <Setter Property="TranslateTransform.Y" Value="-500"/>
+                        <Setter Property="Opacity" Value="0.0"/>
+                        <Setter Property="IsVisible" Value="True"/>
                     </KeyFrame>
                     <KeyFrame Cue="100%">
-                        <Setter Property="TranslateTransform.Y" Value="0"/>
+                        <Setter Property="Opacity" Value="1.0"/>
+                        <Setter Property="IsVisible" Value="True"/>
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+        <Style Selector=":is(Control).OpacityFade.TimedHide">
+            <Style.Animations>
+                <Animation Duration="0:0:0.2" FillMode="Forward">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="Opacity" Value="1.0"/>
+                        <!--<Setter Property="IsVisible" Value="True"/>-->
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="Opacity" Value="0.0"/>
+                        <Setter Property="IsVisible" Value="False"/>
                     </KeyFrame>
                 </Animation>
             </Style.Animations>
         </Style>
 
-        <!-- looks like this is not needed:
-        <Style Selector="Rectangle.BackgroundDarkener">
-            <Setter Property="Transitions">
-                <Transitions>
-                    <DoubleTransition Property="Opacity" Duration="0:0:0.1"/>
-                </Transitions>
-            </Setter>
-        </Style>-->
-        <Style Selector="Rectangle.BackgroundDarkener[IsVisible=true]">
+        <Style Selector=":is(Control).TimedHide">
             <Style.Animations>
-                <Animation Duration="0:0:0.2" FillMode="None">
+                <Animation Duration="0:0:0.31" FillMode="Forward">
                     <KeyFrame Cue="0%">
-                        <Setter Property="Opacity" Value="0.0"/>
+                        <!--<Setter Property="IsVisible" Value="True"/>-->
                     </KeyFrame>
                     <KeyFrame Cue="100%">
-                        <Setter Property="Opacity" Value="1.0"/>
+                        <Setter Property="IsVisible" Value="False"/>
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+        <Style Selector=":is(Control).Visible">
+            <!--<Setter Property="IsVisible" Value="True"/>-->
+            <Style.Animations>
+                <Animation Duration="0:0:0.01" FillMode="Forward">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+
+        <Style Selector=":is(Control).Popup.Visible">
+            <Style.Animations>
+                <Animation Duration="0:0:0.3" FillMode="Forward" Easing="CubicEaseIn">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="TranslateTransform.Y" Value="-500"/>
+                        <Setter Property="IsVisible" Value="True"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="TranslateTransform.Y" Value="0"/>
+                        <Setter Property="IsVisible" Value="True"/>
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+        <Style Selector=":is(Control).Popup.TimedHide">
+            <Style.Animations>
+                <Animation Duration="0:0:0.3" FillMode="Forward" Easing="CubicEaseIn">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="TranslateTransform.Y" Value="0"/>
+                        <!--<Setter Property="IsVisible" Value="True"/>-->
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="TranslateTransform.Y" Value="500"/>
+                        <Setter Property="IsVisible" Value="False"/>
                     </KeyFrame>
                 </Animation>
             </Style.Animations>

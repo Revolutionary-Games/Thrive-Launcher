@@ -85,13 +85,13 @@
 
         </DockPanel>
 
-        <Panel IsVisible="{Binding ShowLinksPopup}">
-            <Rectangle Fill="{DynamicResource BackgroundDarkener}" Classes="BackgroundDarkener"
-                       IsVisible="{Binding $parent.IsVisible}"/>
+        <Panel IsVisible="False" Classes.Visible="{Binding ShowLinksPopup}" Classes.TimedHide="{Binding !ShowLinksPopup}">
+            <Rectangle Fill="{DynamicResource BackgroundDarkener}" Classes="OpacityFade"
+                       Classes.Visible="{Binding ShowLinksPopup}" Classes.TimedHide="{Binding !ShowLinksPopup}"/>
 
             <Border HorizontalAlignment="Center" VerticalAlignment="Center" Background="{DynamicResource SubMenuBackground}"
                     BorderBrush="Black" BorderThickness="1" CornerRadius="5" Classes="Popup"
-                    IsVisible="{Binding $parent.IsVisible}">
+                    Classes.Visible="{Binding ShowLinksPopup}" Classes.TimedHide="{Binding !ShowLinksPopup}">
                 <DockPanel LastChildFill="True" Margin="4" MinWidth="600">
                     <Grid DockPanel.Dock="Top" ColumnDefinitions="*, auto, *, auto" HorizontalAlignment="Stretch">
                         <TextBlock Grid.Column="1" Text="Revolutionary Games Links"
