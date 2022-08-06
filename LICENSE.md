@@ -26,7 +26,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 Used Libraries
 --------------
 
-Thrive Launcher makes use of electron framework and distributes its
-files under their respective licenses.
+Thrive Launcher makes use of Avalonia GUI framework and bundles it in
+releases.
 
-Thrive Launcher also includes third party tools bundled in: 7zip
+Thrive Launcher also includes third party tools bundled in:
+7zip, godotpcktool

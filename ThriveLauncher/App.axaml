@@ -1,0 +1,140 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:ThriveLauncher"
+             x:Class="ThriveLauncher.App">
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+
+    <Application.Resources>
+        <Color x:Key="DarkGrey">#303030</Color>
+        <Color x:Key="FeedBackgroundGradientStart">#dd333333</Color>
+        <Color x:Key="FeedBackgroundGradientEnd">#5a333333</Color>
+        <Color x:Key="BottomGradientEnd">#aa333333</Color>
+        <Color x:Key="LightGrey">#dedede</Color>
+        <Color x:Key="CloseGrey">#0a0a0a</Color>
+        <Color x:Key="BlueBorder">#55dbdb</Color>
+        <Color x:Key="BlueElement">#4dd5ff</Color>
+        <Color x:Key="BlueElement2">#52e5ff</Color>
+        <Color x:Key="BlueBackground">#4890a7</Color>
+        <Color x:Key="ActiveBlue">#1dffff</Color>
+        <Color x:Key="FriendlyRed">#d43a3a</Color>
+        <Color x:Key="Danger">#801515</Color>
+        <Color x:Key="DangerHover">#d46a6a</Color>
+        <Color x:Key="ModalBackground">#fefefe</Color>
+        <Color x:Key="ModalBorder">#888</Color>
+        <Color x:Key="TextLink">#6acdeb</Color>
+        <Color x:Key="TextLinkHover">#56a7bf</Color>
+        <Color x:Key="MenuBackground">#ff444444</Color>
+        <Color x:Key="MenuBackgroundEnd">#aa444444</Color>
+        <SolidColorBrush x:Key="BackgroundDarkener" Color="Black" Opacity="0.75"/>
+        <LinearGradientBrush x:Key="FeedBackground" StartPoint="0%,0%" EndPoint="100%,100%">
+            <GradientStop Offset="0" Color="{DynamicResource FeedBackgroundGradientStart}"/>
+            <GradientStop Offset="1" Color="{DynamicResource FeedBackgroundGradientEnd}"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="BottomBackground" StartPoint="0%,0%" EndPoint="100%,100%">
+            <GradientStop Offset="0" Color="{DynamicResource FeedBackgroundGradientStart}"/>
+            <GradientStop Offset="1" Color="{DynamicResource BottomGradientEnd}"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="SubMenuBackground" StartPoint="0%,0%" EndPoint="100%,100%">
+            <GradientStop Offset="0" Color="{DynamicResource MenuBackground}"/>
+            <GradientStop Offset="1" Color="{DynamicResource MenuBackgroundEnd}"/>
+        </LinearGradientBrush>
+    </Application.Resources>
+
+    <Application.Styles>
+        <FluentTheme Mode="Dark"/>
+
+        <Style Selector="Button.PlayButton">
+            <Setter Property="Background" Value="{DynamicResource BlueBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ActiveBlue}" />
+            <Setter Property="BorderThickness" Value="3" />
+        </Style>
+        <Style Selector="Button.PlayButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource BlueElement}" />
+        </Style>
+        <Style Selector="Button.PlayButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource ActiveBlue}" />
+        </Style>
+
+        <Style Selector="Button.TextLink">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{DynamicResource TextLink}" />
+        </Style>
+        <!-- TODO: the following two rules don't work (https://github.com/AvaloniaUI/Avalonia/blob/master/src/Avalonia.Themes.Default/Controls/Button.xaml -->
+        <Style Selector="Button.TextLink:pointerover">
+            <Setter Property="Foreground" Value="{DynamicResource TextLinkHover}" />
+        </Style>
+        <Style Selector="Button.TextLink:pressed">
+            <Setter Property="Foreground" Value="{DynamicResource ActiveBlue}" />
+        </Style>
+        <Style Selector="Button.TextLink:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="Button.TextLink:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+
+        <Style Selector="Button.Close">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{DynamicResource CloseGrey}" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="28" />
+        </Style>
+        <Style Selector="Button.Close:pointerover">
+            <!--<Setter Property="Background" Value="Transparent" />-->
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+        <Style Selector="Button.Close:pressed">
+            <!--<Setter Property="Background" Value="Transparent" />-->
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+
+        <Style Selector="ComboBox.VersionSelect">
+            <Setter Property="Background" Value="{DynamicResource BlueBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource LightGrey}" />
+        </Style>
+        <Style Selector="ComboBox.VersionSelect:pointerover /template/ Border">
+            <Setter Property="BorderBrush" Value="{DynamicResource ActiveBlue}" />
+            <Setter Property="Background" Value="{DynamicResource BlueElement}" />
+        </Style>
+
+        <Style Selector="Border.Popup[IsVisible=true]">
+            <Style.Animations>
+                <Animation Duration="0:0:0.3" FillMode="None" Easing="CubicEaseIn">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="TranslateTransform.Y" Value="-500"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="TranslateTransform.Y" Value="0"/>
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+
+        <!-- looks like this is not needed:
+        <Style Selector="Rectangle.BackgroundDarkener">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.1"/>
+                </Transitions>
+            </Setter>
+        </Style>-->
+        <Style Selector="Rectangle.BackgroundDarkener[IsVisible=true]">
+            <Style.Animations>
+                <Animation Duration="0:0:0.2" FillMode="None">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="Opacity" Value="0.0"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="Opacity" Value="1.0"/>
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+    </Application.Styles>
+    <!-- TODO: implement this: -->
+    <NativeMenu.Menu>
+        <NativeMenu />
+    </NativeMenu.Menu>
+</Application>

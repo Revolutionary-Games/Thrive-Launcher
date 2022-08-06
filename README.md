@@ -13,8 +13,8 @@ For more information, visit [Revolutionary Games' Website](http://revolutionaryg
 
 ### Required packages
 
-On linux these packages need to be installed for the launcher to run
-correctly: `libXScrnSaver`
+On Linux a new enough OS is needed to include new enough glibc
+version. Latest Ubuntu LTS is the oldest guaranteed distro to work.
 
 
 ### Required windows version
@@ -39,8 +39,8 @@ launcher you will need to follow these instructions to build it.
 In order to properly clone this repository you need to make sure you
 have [Git LFS](https://git-lfs.github.com/) installed.
 
-You first need npm before you can build Thrive Launcher. So
-check [here](https://docs.npmjs.com/getting-started/installing-node)
+You first need dotnet sdk before you can build Thrive Launcher. So
+check [here](https://dotnet.microsoft.com/en-us/download)
 how to install it.
 
 ### Downloading
@@ -48,12 +48,12 @@ how to install it.
 First clone this repository with `git clone
 https://github.com/Revolutionary-Games/Thrive-Launcher.git` now go to
 the created directory and run `npm install` this should install all
-required modules and electron. You may need to run this again after pulling updates
-if the required modules have changed.
+required packages. You may need to run this again after pulling updates
+if your IDE doesn't do so automatically.
 
 ### Icons
 
-In order for the icons to work you need to run `./CreateIcons.rb` to
+In order for the icons to work you need to run `./create_icons.rb` to
 create all the icon files from the source images. The icon creation
 script requires you to
 have [ImageMagick](https://www.imagemagick.org/) installed. And as it is written in Ruby
@@ -64,22 +64,19 @@ Otherwise, running the script most likely fails either due to missing Ruby or a 
 ### Running
 
 Now you should have everything set up. You can run Thrive launcher
-with `npm start` in the thrive-launcher directory. If you wish to enable devtools (inspector, console etc.), use `npm run start-dev` instead.
+with `dotnet run` in the Thrive-Launcher directory. Or use a C# IDE to
+open the project files to run.
 
 ### Issues
 
-If you have issues first make that electron is properly installed,
-then make sure that you ran `npm install`. Also make sure that you are
-in the correct directory, you should be in the base thrive launcher
-directory that contains the file `package.json`.
+If you have issues first make sure that dotnet SDK is properly
+installed and you have ran `dotnet restore` in the launcher's folder.
 
 
 Creating releases
 -----------------
 
-Packages are now made with electron builder. There are targets for
-making the releases included in package.json. They can be ran like
-this: `npm run dist` and `npm run dist:win`
+TODO: new packaging approach
 
 
 

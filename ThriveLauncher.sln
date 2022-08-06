@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThriveLauncher", "ThriveLauncher\ThriveLauncher.csproj", "{23BD058C-CDBF-4192-82D3-67B935A9CBE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LauncherBackend", "LauncherBackend\LauncherBackend.csproj", "{DBD60D49-A13A-4DA6-B18B-9C59455B010C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{8539DA80-2660-450A-8F34-C87CF309610D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23BD058C-CDBF-4192-82D3-67B935A9CBE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23BD058C-CDBF-4192-82D3-67B935A9CBE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23BD058C-CDBF-4192-82D3-67B935A9CBE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23BD058C-CDBF-4192-82D3-67B935A9CBE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBD60D49-A13A-4DA6-B18B-9C59455B010C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBD60D49-A13A-4DA6-B18B-9C59455B010C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBD60D49-A13A-4DA6-B18B-9C59455B010C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBD60D49-A13A-4DA6-B18B-9C59455B010C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8539DA80-2660-450A-8F34-C87CF309610D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8539DA80-2660-450A-8F34-C87CF309610D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8539DA80-2660-450A-8F34-C87CF309610D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8539DA80-2660-450A-8F34-C87CF309610D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

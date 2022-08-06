@@ -2,9 +2,13 @@ node_modules
 /release-builds
 /staging
 /installed
-/assets/icons
+/ThriveLauncher/Assets/Icons
 /BundledThrive
 
 /dist
 *.tar.xz
 *.DS_Store
+*.DotSettings.user
+
+bin
+obj
