@@ -3,7 +3,6 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Media;
-using Avalonia.Metadata;
 
 namespace ThriveLauncher.Controls;
 
@@ -11,9 +10,6 @@ public class PopupDialog : ContentControl
 {
     public static readonly StyledProperty<bool> ShowPopupProperty =
         AvaloniaProperty.Register<PopupDialog, bool>(nameof(Background));
-
-    public static readonly DirectProperty<PopupDialog, bool> HidePopupProperty =
-        AvaloniaProperty.RegisterDirect<PopupDialog, bool>(nameof(HidePopup), o => o.HidePopup);
 
     public static readonly StyledProperty<bool> ShowCloseXProperty =
         AvaloniaProperty.Register<PopupDialog, bool>(nameof(ShowCloseXProperty));
@@ -42,18 +38,8 @@ public class PopupDialog : ContentControl
     public bool ShowPopup
     {
         get { return GetValue(ShowPopupProperty); }
-        set
-        {
-            if (ShowPopup == value)
-                return;
-
-            SetValue(ShowPopupProperty, value);
-            RaisePropertyChanged(HidePopupProperty, !value, value);
-        }
+        set { SetValue(ShowPopupProperty, value); }
     }
-
-    [DependsOn(nameof(ShowPopup))]
-    public bool HidePopup => GetValue(HidePopupProperty);
 
     public bool ShowCloseX
     {

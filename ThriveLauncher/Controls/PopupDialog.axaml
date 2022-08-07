@@ -2,16 +2,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="using:ThriveLauncher.Controls">
     <Design.PreviewWith>
-        <controls:PopupDialog IsVisible="True" ShowPopup="True" Title="Example popup" ShowOKButton="True"
-                              MinWidth="300">
-            <TextBlock>Example popup content</TextBlock>
-        </controls:PopupDialog>
+        <StackPanel MinWidth="400" MinHeight="200">
+            <Rectangle Fill="White"></Rectangle>
+            <controls:PopupDialog ShowPopup="True" Title="Example popup" ShowOKButton="True"
+                                  MinWidth="300">
+                <TextBlock>Example popup content</TextBlock>
+            </controls:PopupDialog>
+        </StackPanel>
     </Design.PreviewWith>
 
     <Style Selector="controls|PopupDialog">
-        <!-- Set Defaults -->
-        <Setter Property="IsVisible" Value="False" />
-        <Setter Property="ShowPopup" Value="False" />
         <Setter Property="ShowTitle" Value="True" />
         <Setter Property="ShowCloseX" Value="True" />
         <Setter Property="Title" Value="Untitled" />
@@ -24,25 +24,21 @@
         <Setter Property="CornerRadius" Value="5" />
         <Setter Property="MinWidth" Value="600" />
         <Setter Property="TitleSeparatorColour" Value="{DynamicResource BlueElement}" />
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Top" />
 
         <Setter Property="Template">
             <ControlTemplate>
-                <Panel IsVisible="{TemplateBinding IsVisible}" Classes.Visible="{TemplateBinding ShowPopup}"
-                       Classes.TimedHide="{TemplateBinding HidePopup}">
-                    <Rectangle Fill="{TemplateBinding DarkenerBackground}" Classes="OpacityFade"
-                               Classes.Visible="{TemplateBinding ShowPopup}"
-                               Classes.TimedHide="{TemplateBinding HidePopup}" />
+                <!-- Sadly it seems like there's no good way to force this visible by default for preview purposes
+                so unfortunately previews will flicker -->
+                <Panel IsVisible="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="Container">
+                    <Rectangle Fill="{TemplateBinding DarkenerBackground}" Name="OpacityFade" />
 
-                    <Border HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                    <Border HorizontalAlignment="Center" VerticalAlignment="Center"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}" Classes="Popup"
-                            Classes.Visible="{TemplateBinding ShowPopup}"
-                            Classes.TimedHide="{TemplateBinding HidePopup}">
+                            CornerRadius="{TemplateBinding CornerRadius}" Name="Popup">
                         <DockPanel LastChildFill="True" Margin="4" MinWidth="{TemplateBinding MinWidth}">
                             <Grid DockPanel.Dock="Top" ColumnDefinitions="*, auto, *, auto"
                                   HorizontalAlignment="Stretch">
@@ -75,5 +71,85 @@
                 </Panel>
             </ControlTemplate>
         </Setter>
+    </Style>
+
+    <Style Selector="controls|PopupDialog[ShowPopup=true] /template/ Rectangle#OpacityFade">
+        <Style.Animations>
+            <Animation Duration="0:0:0.2" FillMode="Forward">
+                <KeyFrame Cue="0%">
+                    <Setter Property="Opacity" Value="0.0" />
+                    <Setter Property="IsVisible" Value="True" />
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="Opacity" Value="1.0" />
+                    <Setter Property="IsVisible" Value="True" />
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+    <Style Selector="controls|PopupDialog[ShowPopup=false] /template/ Rectangle#OpacityFade">
+        <Style.Animations>
+            <Animation Duration="0:0:0.2" FillMode="Forward">
+                <KeyFrame Cue="0%">
+                    <Setter Property="Opacity" Value="1.0" />
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="Opacity" Value="0.0" />
+                    <Setter Property="IsVisible" Value="False" />
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+
+    <Style Selector="controls|PopupDialog[ShowPopup=true] /template/ Panel#Container">
+        <Style.Animations>
+            <Animation Duration="0:0:0.01" FillMode="Forward">
+                <KeyFrame Cue="0%">
+                    <Setter Property="IsVisible" Value="True" />
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="IsVisible" Value="True" />
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+    <Style Selector="controls|PopupDialog[ShowPopup=false] /template/ Panel#Container">
+        <Style.Animations>
+            <Animation Duration="0:0:0.31" FillMode="Forward">
+                <KeyFrame Cue="0%">
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="IsVisible" Value="False" />
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+
+    <Style Selector="controls|PopupDialog[ShowPopup=true] /template/ Border#Popup">
+        <Style.Animations>
+            <Animation Duration="0:0:0.3" FillMode="Forward" Easing="CubicEaseIn">
+                <KeyFrame Cue="0%">
+                    <Setter Property="TranslateTransform.Y" Value="-500" />
+                    <Setter Property="IsVisible" Value="True" />
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="TranslateTransform.Y" Value="0" />
+                    <Setter Property="IsVisible" Value="True" />
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+    <Style Selector="controls|PopupDialog[ShowPopup=false] /template/ Border#Popup">
+        <Style.Animations>
+            <Animation Duration="0:0:0.3" FillMode="Forward" Easing="CubicEaseIn">
+                <KeyFrame Cue="0%">
+                    <Setter Property="TranslateTransform.Y" Value="0" />
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="TranslateTransform.Y" Value="500" />
+                    <Setter Property="IsVisible" Value="False" />
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
     </Style>
 </Styles>

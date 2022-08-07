@@ -86,7 +86,7 @@
         </DockPanel>
 
         <controls:PopupDialog Title="Revolutionary Games Links"
-            CloseCommand="{Binding CloseLinksClicked}" IsVisible="{Binding ShowLinksPopup}">
+            CloseCommand="{Binding CloseLinksClicked}" ShowPopup="{Binding ShowLinksPopup}">
             <Grid ColumnDefinitions="*, *" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
                 <Button Grid.Column="0" Grid.Row="0" Classes="TextLink" Content="Main website" FontSize="20"/>
                 <Button Grid.Column="0" Grid.Row="1" Classes="TextLink" Content="Development forums"/>
