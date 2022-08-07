@@ -44,15 +44,15 @@
                             CornerRadius="{TemplateBinding CornerRadius}" Name="Popup"
                             BoxShadow="{TemplateBinding BoxShadow}">
                         <DockPanel LastChildFill="True" Margin="4" MinWidth="{TemplateBinding MinWidth}">
-                            <Grid DockPanel.Dock="Top" ColumnDefinitions="*, auto, *, auto"
+                            <Grid DockPanel.Dock="Top" ColumnDefinitions="36, *, auto, *, 36"
                                   HorizontalAlignment="Stretch">
                                 <!-- TODO when title is not shown somehow make the X not take up vertical space -->
-                                <TextBlock Grid.Column="1" Text="{TemplateBinding Title}"
+                                <TextBlock Grid.Column="2" Text="{TemplateBinding Title}"
                                            IsVisible="{TemplateBinding ShowTitle}"
-                                           TextAlignment="Center" FontWeight="{TemplateBinding TitleFontWeight}"
+                                           TextAlignment="Right" FontWeight="{TemplateBinding TitleFontWeight}"
                                            FontSize="{TemplateBinding TitleFontSize}" />
-                                <Button Grid.Column="3" IsVisible="{TemplateBinding ShowCloseX}" Classes="Close"
-                                        Command="{TemplateBinding CloseCommand}">
+                                <Button Grid.Column="4" IsVisible="{TemplateBinding ShowCloseX}" Classes="Close"
+                                        Command="{TemplateBinding CloseCommand}" HorizontalAlignment="Right">
                                     <Image Height="16" />
                                 </Button>
                             </Grid>
