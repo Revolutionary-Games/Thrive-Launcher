@@ -29,7 +29,7 @@ namespace ThriveLauncher
                     DataContext = new MainWindowViewModel(),
                 };
             }
-            else if (ApplicationLifetime is ISingleViewApplicationLifetime singleView)
+            else if (ApplicationLifetime is ISingleViewApplicationLifetime)
             {
                 // TODO: implement
                 // ReSharper disable once CommentTypo

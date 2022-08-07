@@ -3,7 +3,7 @@
              xmlns:local="using:ThriveLauncher"
              x:Class="ThriveLauncher.App">
     <Application.DataTemplates>
-        <local:ViewLocator/>
+        <local:ViewLocator />
     </Application.DataTemplates>
 
     <Application.Resources>
@@ -27,23 +27,23 @@
         <Color x:Key="TextLinkHover">#56a7bf</Color>
         <Color x:Key="MenuBackground">#ff444444</Color>
         <Color x:Key="MenuBackgroundEnd">#aa444444</Color>
-        <SolidColorBrush x:Key="BackgroundDarkener" Color="Black" Opacity="0.75"/>
+        <SolidColorBrush x:Key="BackgroundDarkener" Color="Black" Opacity="0.75" />
         <LinearGradientBrush x:Key="FeedBackground" StartPoint="0%,0%" EndPoint="100%,100%">
-            <GradientStop Offset="0" Color="{DynamicResource FeedBackgroundGradientStart}"/>
-            <GradientStop Offset="1" Color="{DynamicResource FeedBackgroundGradientEnd}"/>
+            <GradientStop Offset="0" Color="{DynamicResource FeedBackgroundGradientStart}" />
+            <GradientStop Offset="1" Color="{DynamicResource FeedBackgroundGradientEnd}" />
         </LinearGradientBrush>
         <LinearGradientBrush x:Key="BottomBackground" StartPoint="0%,0%" EndPoint="100%,100%">
-            <GradientStop Offset="0" Color="{DynamicResource FeedBackgroundGradientStart}"/>
-            <GradientStop Offset="1" Color="{DynamicResource BottomGradientEnd}"/>
+            <GradientStop Offset="0" Color="{DynamicResource FeedBackgroundGradientStart}" />
+            <GradientStop Offset="1" Color="{DynamicResource BottomGradientEnd}" />
         </LinearGradientBrush>
         <LinearGradientBrush x:Key="SubMenuBackground" StartPoint="0%,0%" EndPoint="100%,100%">
-            <GradientStop Offset="0" Color="{DynamicResource MenuBackground}"/>
-            <GradientStop Offset="1" Color="{DynamicResource MenuBackgroundEnd}"/>
+            <GradientStop Offset="0" Color="{DynamicResource MenuBackground}" />
+            <GradientStop Offset="1" Color="{DynamicResource MenuBackgroundEnd}" />
         </LinearGradientBrush>
     </Application.Resources>
 
     <Application.Styles>
-        <FluentTheme Mode="Dark"/>
+        <FluentTheme Mode="Dark" />
         <StyleInclude Source="/Controls/PopupDialog.axaml" />
 
         <Style Selector="Button.PlayButton">
