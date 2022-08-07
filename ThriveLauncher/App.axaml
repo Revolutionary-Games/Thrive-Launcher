@@ -118,7 +118,6 @@
                 <Animation Duration="0:0:0.2" FillMode="Forward">
                     <KeyFrame Cue="0%">
                         <Setter Property="Opacity" Value="1.0"/>
-                        <!--<Setter Property="IsVisible" Value="True"/>-->
                     </KeyFrame>
                     <KeyFrame Cue="100%">
                         <Setter Property="Opacity" Value="0.0"/>
@@ -132,7 +131,6 @@
             <Style.Animations>
                 <Animation Duration="0:0:0.31" FillMode="Forward">
                     <KeyFrame Cue="0%">
-                        <!--<Setter Property="IsVisible" Value="True"/>-->
                     </KeyFrame>
                     <KeyFrame Cue="100%">
                         <Setter Property="IsVisible" Value="False"/>
@@ -141,7 +139,6 @@
             </Style.Animations>
         </Style>
         <Style Selector=":is(Control).Visible">
-            <!--<Setter Property="IsVisible" Value="True"/>-->
             <Style.Animations>
                 <Animation Duration="0:0:0.01" FillMode="Forward">
                     <KeyFrame Cue="0%">
@@ -173,7 +170,6 @@
                 <Animation Duration="0:0:0.3" FillMode="Forward" Easing="CubicEaseIn">
                     <KeyFrame Cue="0%">
                         <Setter Property="TranslateTransform.Y" Value="0"/>
-                        <!--<Setter Property="IsVisible" Value="True"/>-->
                     </KeyFrame>
                     <KeyFrame Cue="100%">
                         <Setter Property="TranslateTransform.Y" Value="500"/>
