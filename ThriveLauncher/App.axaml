@@ -1,6 +1,7 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:ThriveLauncher"
+             xmlns:services="clr-namespace:ThriveLauncher.Services"
              x:Class="ThriveLauncher.App">
     <Application.DataTemplates>
         <local:ViewLocator />
@@ -74,11 +75,12 @@
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="{DynamicResource TextLink}" />
         </Style>
-        <!-- TODO: the following two rules don't work (https://github.com/AvaloniaUI/Avalonia/blob/master/src/Avalonia.Themes.Default/Controls/Button.xaml -->
-        <Style Selector="Button.TextLink:pointerover">
+        <!-- Here's a really important part is that the children of the content presenter need to be accessed
+        without the /template/ part in the selector -->
+        <Style Selector="Button.TextLink:pointerover AccessText">
             <Setter Property="Foreground" Value="{DynamicResource TextLinkHover}" />
         </Style>
-        <Style Selector="Button.TextLink:pressed">
+        <Style Selector="Button.TextLink:pressed AccessText">
             <Setter Property="Foreground" Value="{DynamicResource ActiveBlue}" />
         </Style>
         <Style Selector="Button.TextLink:pointerover /template/ ContentPresenter#PART_ContentPresenter">
@@ -112,12 +114,6 @@
             <Setter Property="Foreground" Value="{DynamicResource ButtonForeground}" />
             <Setter Property="Background" Value="{DynamicResource MiddleGray}" />
             <Setter Property="FontSize" Value="16" />
-        </Style>
-        <Style Selector="Button.DialogButton:pointerover">
-            <Setter Property="Foreground" Value="{DynamicResource ButtonForegroundPointerOver}" />
-        </Style>
-        <Style Selector="Button.DialogButton:pressed">
-            <Setter Property="Foreground" Value="{DynamicResource ButtonForegroundPressed}" />
         </Style>
         <Style Selector="Button.DialogButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource DarkGrey}" />
