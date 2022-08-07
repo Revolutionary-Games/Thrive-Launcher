@@ -1,0 +1,79 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:ThriveLauncher.Controls">
+    <Design.PreviewWith>
+        <controls:PopupDialog IsVisible="True" ShowPopup="True" Title="Example popup" ShowOKButton="True"
+                              MinWidth="300">
+            <TextBlock>Example popup content</TextBlock>
+        </controls:PopupDialog>
+    </Design.PreviewWith>
+
+    <Style Selector="controls|PopupDialog">
+        <!-- Set Defaults -->
+        <Setter Property="IsVisible" Value="False" />
+        <Setter Property="ShowPopup" Value="False" />
+        <Setter Property="ShowTitle" Value="True" />
+        <Setter Property="ShowCloseX" Value="True" />
+        <Setter Property="Title" Value="Untitled" />
+        <Setter Property="ShowOKButton" Value="False" />
+        <Setter Property="DarkenerBackground" Value="{DynamicResource BackgroundDarkener}" />
+        <Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="Background" Value="{DynamicResource SubMenuBackground}" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="MinWidth" Value="600" />
+        <Setter Property="TitleSeparatorColour" Value="{DynamicResource BlueElement}" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel IsVisible="{TemplateBinding IsVisible}" Classes.Visible="{TemplateBinding ShowPopup}"
+                       Classes.TimedHide="{TemplateBinding HidePopup}">
+                    <Rectangle Fill="{TemplateBinding DarkenerBackground}" Classes="OpacityFade"
+                               Classes.Visible="{TemplateBinding ShowPopup}"
+                               Classes.TimedHide="{TemplateBinding HidePopup}" />
+
+                    <Border HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}" Classes="Popup"
+                            Classes.Visible="{TemplateBinding ShowPopup}"
+                            Classes.TimedHide="{TemplateBinding HidePopup}">
+                        <DockPanel LastChildFill="True" Margin="4" MinWidth="{TemplateBinding MinWidth}">
+                            <Grid DockPanel.Dock="Top" ColumnDefinitions="*, auto, *, auto"
+                                  HorizontalAlignment="Stretch">
+                                <!-- TODO when title is not shown somehow make the X not take up vertical space -->
+                                <TextBlock Grid.Column="1" Text="{TemplateBinding Title}"
+                                           IsVisible="{TemplateBinding ShowTitle}"
+                                           TextAlignment="Center" FontWeight="Bold" FontSize="18" />
+                                <Button Grid.Column="3" Classes="Close" Command="{TemplateBinding CloseCommand}"
+                                        IsVisible="{TemplateBinding ShowCloseX}">
+                                    <Image Source="/Assets/close.png" Height="16" />
+                                </Button>
+                            </Grid>
+                            <Border DockPanel.Dock="Top" Padding="0" BorderThickness="1"
+                                    BorderBrush="{TemplateBinding TitleSeparatorColour}"
+                                    IsVisible="{TemplateBinding ShowTitle}" />
+                            <Button DockPanel.Dock="Bottom" IsVisible="{TemplateBinding ShowOKButton}"
+                                    HorizontalAlignment="Center" Command="{TemplateBinding CloseCommand}">
+                                OK
+                            </Button>
+                            <ScrollViewer
+                                HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}">
+                                <ContentPresenter Margin="{TemplateBinding Padding}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            </ScrollViewer>
+                        </DockPanel>
+                    </Border>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

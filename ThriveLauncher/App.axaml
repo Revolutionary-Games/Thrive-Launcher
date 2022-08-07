@@ -44,6 +44,7 @@
 
     <Application.Styles>
         <FluentTheme Mode="Dark"/>
+        <StyleInclude Source="/Controls/PopupDialog.axaml" />
 
         <Style Selector="Button.PlayButton">
             <Setter Property="Background" Value="{DynamicResource BlueBackground}" />
