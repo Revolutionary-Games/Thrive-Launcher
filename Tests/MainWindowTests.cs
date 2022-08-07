@@ -12,15 +12,15 @@ public class MainWindowTests
 
         Assert.False(viewModel.ShowLinksPopup);
 
-        viewModel.LinksButtonClicked();
+        viewModel.ToggleLinksView();
 
         Assert.True(viewModel.ShowLinksPopup);
 
-        viewModel.LinksButtonClicked();
+        viewModel.ToggleLinksView();
 
         Assert.False(viewModel.ShowLinksPopup);
 
-        viewModel.LinksButtonClicked();
+        viewModel.ToggleLinksView();
 
         Assert.True(viewModel.ShowLinksPopup);
 

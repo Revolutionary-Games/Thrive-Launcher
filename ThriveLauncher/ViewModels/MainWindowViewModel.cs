@@ -1,4 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Reflection;
+using Avalonia.Logging;
 using LauncherBackend.Models;
 using ReactiveUI;
 
@@ -6,6 +9,7 @@ namespace ThriveLauncher.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        private const int TotalKeysInDevCenterActivationSequence = 4;
         private readonly bool isStoreVersion;
 
         private string noticeMessageText = string.Empty;
@@ -13,13 +17,20 @@ namespace ThriveLauncher.ViewModels
         private bool canDismissNotice = true;
 
         private bool showLinksPopup;
-        private bool showDevCenterStatusArea = true;
-        private DevCenterConnection? devCenterConnection;
+
+        private bool showSettingsPopup;
         private bool webFeedsEnabled;
 
+        private bool showDevCenterStatusArea = true;
+        private bool showDevCenterPopup;
+
+        private DevCenterConnection? devCenterConnection;
         private string devCenterUsername = string.Empty;
 
         private bool preventDevCenterFeatures;
+        private int nextDevCenterOpenOverrideKeyIndex;
+
+        private string? cachedLauncherVersion;
 
         public MainWindowViewModel()
         {
@@ -36,6 +47,8 @@ namespace ThriveLauncher.ViewModels
 
         public bool HasNoticeMessage =>
             !string.IsNullOrEmpty(NoticeMessageText) || !string.IsNullOrEmpty(NoticeMessageTitle);
+
+        public string LauncherVersion => cachedLauncherVersion ??= GetCurrentVersion();
 
         public bool CanDismissNotice
         {
@@ -89,6 +102,24 @@ namespace ThriveLauncher.ViewModels
             }
         }
 
+        public bool ShowSettingsPopup
+        {
+            get => showSettingsPopup;
+            private set
+            {
+                this.RaiseAndSetIfChanged(ref showSettingsPopup, value);
+            }
+        }
+
+        public bool ShowDevCenterPopup
+        {
+            get => showDevCenterPopup;
+            private set
+            {
+                this.RaiseAndSetIfChanged(ref showDevCenterPopup, value);
+            }
+        }
+
         public bool ShowDevCenterStatusArea
         {
             get => showDevCenterStatusArea;
@@ -124,13 +155,17 @@ namespace ThriveLauncher.ViewModels
 
         public ObservableCollection<string> Items { get; }
 
+        public void VersionSelected(string selectedVersion)
+        {
+        }
+
         public void CloseNotice()
         {
             NoticeMessageText = string.Empty;
             NoticeMessageTitle = string.Empty;
         }
 
-        public void LinksButtonClicked()
+        public void ToggleLinksView()
         {
             ShowLinksPopup = !ShowLinksPopup;
         }
@@ -140,12 +175,63 @@ namespace ThriveLauncher.ViewModels
             ShowLinksPopup = false;
         }
 
-        public void VersionSelected(string selectedVersion)
+        public void OpenSettings()
         {
+            ShowSettingsPopup = !ShowSettingsPopup;
+        }
+
+        public void CloseSettingsClicked()
+        {
+            ShowSettingsPopup = !ShowSettingsPopup;
         }
 
         public void OpenDevCenterConnectionMenu()
         {
+            ShowDevCenterPopup = true;
+        }
+
+        public void CloseDevCenterMenuClicked()
+        {
+            ShowDevCenterPopup = false;
+        }
+
+        public void DevCenterViewActivation(int keyIndex)
+        {
+            if (nextDevCenterOpenOverrideKeyIndex == keyIndex)
+            {
+                ++nextDevCenterOpenOverrideKeyIndex;
+
+                if (nextDevCenterOpenOverrideKeyIndex >= TotalKeysInDevCenterActivationSequence)
+                {
+                    OpenDevCenterConnectionMenu();
+                    nextDevCenterOpenOverrideKeyIndex = 0;
+                }
+            }
+            else
+            {
+                // User failed to type the sequence
+                nextDevCenterOpenOverrideKeyIndex = 0;
+            }
+        }
+
+        private string GetCurrentVersion()
+        {
+            try
+            {
+                var version = Assembly.GetExecutingAssembly().GetName().Version ??
+                    throw new Exception("Version for assembly doesn't exist");
+
+                if (version.Build == 0)
+                    return $"{version.Major}.{version.Minor}.{version.Revision}";
+
+                return $"{version.Major}.{version.Minor}.{version.Revision}-{version.Build}";
+            }
+            catch (Exception e)
+            {
+                Logger.Sink?.Log(LogEventLevel.Error, nameof(GetCurrentVersion), this,
+                    "Error getting assembly version: {E}", e);
+                return "Error";
+            }
         }
     }
 }

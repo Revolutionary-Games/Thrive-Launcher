@@ -6,6 +6,7 @@
         xmlns:controls="clr-namespace:ThriveLauncher.Controls"
         mc:Ignorable="d" d:DesignWidth="950" d:DesignHeight="600"
         Width="950" Height="600"
+        MinWidth="900" MinHeight="550"
         x:Class="ThriveLauncher.Views.MainWindow"
         Icon="/Assets/Icons/icon.ico"
         Title="Thrive Launcher"
@@ -14,6 +15,33 @@
     <Design.DataContext>
         <vm:MainWindowViewModel />
     </Design.DataContext>
+
+    <Window.KeyBindings>
+        <KeyBinding Gesture="Ctrl+D" Command="{Binding DevCenterViewActivation}">
+            <KeyBinding.CommandParameter>
+                <x:Int32>0</x:Int32>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+        <KeyBinding Gesture="Ctrl+E" Command="{Binding DevCenterViewActivation}">
+            <KeyBinding.CommandParameter>
+                <x:Int32>1</x:Int32>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+        <KeyBinding Gesture="Ctrl+V" Command="{Binding DevCenterViewActivation}">
+            <KeyBinding.CommandParameter>
+                <x:Int32>2</x:Int32>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+        <KeyBinding Gesture="Ctrl+C" Command="{Binding DevCenterViewActivation}">
+            <KeyBinding.CommandParameter>
+                <x:Int32>3</x:Int32>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+        <!-- TODO: implement this keybinding and make sure it doesn't mess things up if game is currently running -->
+        <!--<KeyBinding Gesture="Ctrl+S" Command="{Binding PlayClicked}" />-->
+        <KeyBinding Gesture="Ctrl+O" Command="{Binding OpenSettings}" />
+        <KeyBinding Gesture="Ctrl+L" Command="{Binding ToggleLinksView}" />
+    </Window.KeyBindings>
 
     <Grid Margin="0" ColumnDefinitions="*" RowDefinitions="*">
         <Viewbox Stretch="UniformToFill">
@@ -24,15 +52,15 @@
             <Border DockPanel.Dock="Bottom" Background="{DynamicResource BottomBackground}"
                     HorizontalAlignment="Stretch" Padding="15">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="3">
-                    <Button FontSize="18" VerticalAlignment="Stretch" Command="{Binding LinksButtonClicked}">
+                    <Button FontSize="18" VerticalAlignment="Stretch" Command="{Binding ToggleLinksView}">
                         <TextBlock VerticalAlignment="Center">
                             Links
                         </TextBlock>
                     </Button>
-                    <Button VerticalAlignment="Stretch" Command="{Binding LinksButtonClicked}">
+                    <Button VerticalAlignment="Stretch" Command="{Binding OpenSettings}">
                         <Image Source="/Assets/gear.png" Width="32" />
                     </Button>
-                    <Button FontSize="28" Classes="PlayButton" Command="{Binding LinksButtonClicked}">
+                    <Button FontSize="28" Classes="PlayButton" Command="{Binding ToggleLinksView}">
                         Play
                     </Button>
                     <ComboBox SelectedIndex="0" FontSize="20" VerticalAlignment="Stretch" Classes="VersionSelect"
@@ -108,6 +136,144 @@
                 <Button Grid.Column="1" Grid.Row="5" Classes="TextLink" Content="YouTube channel" />
                 <Button Grid.Column="1" Grid.Row="6" Classes="TextLink" Content="Twitter feed" />
                 <Button Grid.Column="1" Grid.Row="7" Classes="TextLink" Content="Facebook page" />
+            </Grid>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog ShowTitle="False" ShowCloseX="False" CloseCommand="{Binding CloseSettingsClicked}"
+                              ShowPopup="{Binding ShowSettingsPopup}" ShowOKButton="True">
+            <RelativePanel Width="750" Height="400">
+                <TabControl HorizontalAlignment="Stretch"
+                            RelativePanel.AlignLeftWithPanel="True"
+                            RelativePanel.AlignRightWithPanel="True"
+                            RelativePanel.AlignTopWithPanel="True"
+                            RelativePanel.AlignBottomWithPanel="True">
+                    <TabItem Header="Thrive Options" VerticalAlignment="Center">
+                        <StackPanel>
+                            <TextBlock FontSize="16">
+                                Launch Options
+                            </TextBlock>
+                            <CheckBox>
+                                <TextBlock TextWrapping="Wrap">Disable all game videos (if Thrive crashes after showing the loading logo and before the intro video plays, this may help get the game to work)</TextBlock>
+                            </CheckBox>
+                            <CheckBox>
+                                <TextBlock TextWrapping="Wrap">Force GLES2 rendering mode (may make Thrive start, but causes slight graphics problems)</TextBlock>
+                            </CheckBox>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Launcher Options" VerticalAlignment="Center">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="0 0 1 0">Launcher version:</TextBlock>
+                                <TextBlock Text="{Binding LauncherVersion}" />
+                            </StackPanel>
+                            <Border DockPanel.Dock="Top" Padding="0" BorderThickness="1"
+                                    BorderBrush="{DynamicResource BlueElement}" />
+                            <CheckBox>
+                                Enable Web Feeds
+                            </CheckBox>
+                            <CheckBox>
+                                Hide Launcher on Play
+                            </CheckBox>
+                            <CheckBox>
+                                Close Launcher After Playing (if no error)
+                            </CheckBox>
+                            <CheckBox>
+                                Close Launcher After Starting the Game
+                            </CheckBox>
+                            <CheckBox>
+                                Allow Seamless Launcher Mode
+                            </CheckBox>
+                            <!-- TODO store version specific settings -->
+
+                            <!-- TODO red warning button -->
+                            <Border DockPanel.Dock="Top" Padding="0" BorderThickness="1" Margin="0 0 0 3"
+                                    BorderBrush="{DynamicResource BlueElement}" />
+                            <Button Classes="DialogButton">Reset All Settings</Button>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Installed Versions" VerticalAlignment="Center">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="2">
+                                <Button Classes="DialogButton">Browse Installed Files</Button>
+                                <Button Classes="DialogButton">Select Install Location</Button>
+                                <Button Classes="DialogButton" ToolTip.Tip="Reset Install Location">
+                                    <Image Height="16" Source="{DynamicResource RevertIconWhite}" />
+                                </Button>
+                            </StackPanel>
+                            <Border DockPanel.Dock="Top" Margin="0 3" Padding="0" BorderThickness="1"
+                                    BorderBrush="{DynamicResource BlueElement}" />
+
+                            <WrapPanel Orientation="Horizontal" Margin="0 5">
+                                <TextBlock Margin="0 0 2 0">Directory:</TextBlock>
+                                <TextBlock Text="{Binding LauncherVersion}" />
+                            </WrapPanel>
+
+                            <!-- TODO: showing the installed versions with delete buttons -->
+                            <ScrollViewer>
+
+                            </ScrollViewer>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Cache" VerticalAlignment="Center">
+                        <StackPanel>
+                            <WrapPanel Orientation="Horizontal" Margin="0 0 0 5">
+                                <TextBlock Margin="0 0 2 0">Temporary downloads folder:</TextBlock>
+                                <TextBlock Text="{Binding LauncherVersion}" />
+                            </WrapPanel>
+
+                            <!-- TODO: showing temporary folder stats / existing things -->
+                            <ScrollViewer>
+
+                            </ScrollViewer>
+
+                            <TextBlock Margin="0 3" TextWrapping="Wrap" FontSize="12">
+                                Note: moving temporary location won't delete existing files to prevent accidentally deleting files unrelated to Thrive
+                            </TextBlock>
+
+                            <StackPanel Orientation="Horizontal" Spacing="2">
+                                <Button Classes="DialogButton">Select Temporary Files Location</Button>
+                                <Button Classes="DialogButton" ToolTip.Tip="Reset Temporary Files Location">
+                                    <Image Height="16" Source="{DynamicResource RevertIconWhite}" />
+                                </Button>
+                                <Button Classes="DialogButton">Clear</Button>
+                            </StackPanel>
+
+                            <Border DockPanel.Dock="Top" Margin="0 3" Padding="0" BorderThickness="1"
+                                    BorderBrush="{DynamicResource BlueElement}" />
+                            <WrapPanel Orientation="Horizontal" Margin="0 0 0 5">
+                                <TextBlock Margin="0 0 2 0">DevBuilds file cache:</TextBlock>
+                                <TextBlock Text="{Binding LauncherVersion}" />
+                            </WrapPanel>
+
+                            <StackPanel Orientation="Horizontal" Spacing="2">
+                                <Button Classes="DialogButton">Select Cache Location</Button>
+                                <Button Classes="DialogButton" ToolTip.Tip="Reset Cache Location">
+                                    <Image Height="16" Source="{DynamicResource RevertIconWhite}" />
+                                </Button>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0 10">
+                                <TextBlock Margin="0 0 2 0">Cache size:</TextBlock>
+                                <TextBlock Text="{Binding LauncherVersion}" />
+                            </StackPanel>
+                            <Button Classes="DialogButton">Clear</Button>
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+                <Button Classes="Close" Command="{Binding CloseSettingsClicked}" HorizontalAlignment="Right"
+                        Width="36" Height="24"
+                        Margin="0 4 0 0"
+                        RelativePanel.AlignRightWithPanel="True"
+                        RelativePanel.AlignTopWithPanel="True">
+                    <Image Height="16" />
+                </Button>
+            </RelativePanel>
+        </controls:PopupDialog>
+
+        <!-- TODO: show the ok button when it makes sense -->
+        <controls:PopupDialog Title="DevCenter Connection" CloseCommand="{Binding CloseDevCenterMenuClicked}"
+                              ShowPopup="{Binding ShowDevCenterPopup}" ShowOKButton="False">
+            <Grid ColumnDefinitions="*, *" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
             </Grid>
         </controls:PopupDialog>
 

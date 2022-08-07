@@ -53,6 +53,14 @@
                 <x:String>avares://ThriveLauncher/Assets/close_light.png</x:String>
             </x:Arguments>
         </services:BitmapExtensions>
+        <services:BitmapExtensions x:Key="RevertIconWhite">
+            <x:Arguments>
+                <x:String>avares://ThriveLauncher/Assets/revert.png</x:String>
+            </x:Arguments>
+        </services:BitmapExtensions>
+        <Color x:Key="CheckBoxCheckBackgroundFillChecked">#4dd5ff</Color>
+        <Color x:Key="CheckBoxCheckBackgroundFillCheckedPointerOver">#1dffff</Color>
+
     </Application.Resources>
 
     <Application.Styles>
@@ -129,6 +137,24 @@
         <Style Selector="ComboBox.VersionSelect:pointerover /template/ Border">
             <Setter Property="BorderBrush" Value="{DynamicResource ActiveBlue}" />
             <Setter Property="Background" Value="{DynamicResource BlueElement}" />
+        </Style>
+
+        <Style Selector="TabItem">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Padding" Value="0 0 0 0" />
+            <Setter Property="BorderThickness" Value="0 0 0 2" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Margin" Value="8 0 8 2" />
+        </Style>
+        <Style Selector="TabItem:selected">
+            <Setter Property="BorderBrush" Value="{DynamicResource BlueElement}" />
+        </Style>
+        <Style Selector="TabItem:active">
+            <Setter Property="BorderBrush" Value="{DynamicResource BlueElement2}" />
+        </Style>
+        <!-- Hack to hide the default selected colour -->
+        <Style Selector="TabItem:selected /template/ Border#PART_SelectedPipe">
+            <Setter Property="Height" Value="0" />
         </Style>
     </Application.Styles>
     <!-- TODO: implement this: -->
