@@ -55,7 +55,8 @@
                                     BorderBrush="{TemplateBinding TitleSeparatorColour}"
                                     IsVisible="{TemplateBinding ShowTitle}" />
                             <Button DockPanel.Dock="Bottom" IsVisible="{TemplateBinding ShowOKButton}"
-                                    HorizontalAlignment="Center" Command="{TemplateBinding CloseCommand}">
+                                    HorizontalAlignment="Center" Command="{TemplateBinding CloseCommand}"
+                                    Classes="DialogButton">
                                 OK
                             </Button>
                             <ScrollViewer

@@ -11,6 +11,7 @@
         <Color x:Key="FeedBackgroundGradientStart">#dd333333</Color>
         <Color x:Key="FeedBackgroundGradientEnd">#5a333333</Color>
         <Color x:Key="BottomGradientEnd">#aa333333</Color>
+        <Color x:Key="MiddleGray">#555656</Color>
         <Color x:Key="LightGrey">#dedede</Color>
         <Color x:Key="CloseGrey">#0a0a0a</Color>
         <Color x:Key="BlueBorder">#55dbdb</Color>
@@ -89,6 +90,24 @@
         <Style Selector="Button.Close:pressed">
             <!--<Setter Property="Background" Value="Transparent" />-->
             <Setter Property="Foreground" Value="Black" />
+        </Style>
+
+        <Style Selector="Button.DialogButton">
+            <Setter Property="Foreground" Value="{DynamicResource ButtonForeground}" />
+            <Setter Property="Background" Value="{DynamicResource MiddleGray}" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+        <Style Selector="Button.DialogButton:pointerover">
+            <Setter Property="Foreground" Value="{DynamicResource ButtonForegroundPointerOver}" />
+        </Style>
+        <Style Selector="Button.DialogButton:pressed">
+            <Setter Property="Foreground" Value="{DynamicResource ButtonForegroundPressed}" />
+        </Style>
+        <Style Selector="Button.DialogButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource DarkGrey}" />
+        </Style>
+        <Style Selector="Button.DialogButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource LightGrey}" />
         </Style>
 
         <Style Selector="ComboBox.VersionSelect">
