@@ -3,6 +3,7 @@
         xmlns:vm="using:ThriveLauncher.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:ThriveLauncher.Controls"
         mc:Ignorable="d" d:DesignWidth="950" d:DesignHeight="600"
         Width="950" Height="600"
         x:Class="ThriveLauncher.Views.MainWindow"
@@ -82,50 +83,31 @@
                 </Border>
             </Grid>
 
-
         </DockPanel>
 
-        <Panel IsVisible="False" Classes.Visible="{Binding ShowLinksPopup}" Classes.TimedHide="{Binding !ShowLinksPopup}">
-            <Rectangle Fill="{DynamicResource BackgroundDarkener}" Classes="OpacityFade"
-                       Classes.Visible="{Binding ShowLinksPopup}" Classes.TimedHide="{Binding !ShowLinksPopup}"/>
+        <controls:PopupDialog Title="Revolutionary Games Links"
+            CloseCommand="{Binding CloseLinksClicked}" IsVisible="{Binding ShowLinksPopup}">
+            <Grid ColumnDefinitions="*, *" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+                <Button Grid.Column="0" Grid.Row="0" Classes="TextLink" Content="Main website" FontSize="20"/>
+                <Button Grid.Column="0" Grid.Row="1" Classes="TextLink" Content="Development forums"/>
+                <Button Grid.Column="0" Grid.Row="2" Classes="TextLink" Content="Community forums"/>
+                <Button Grid.Column="0" Grid.Row="3" Classes="TextLink" Content="Developer Wiki"/>
+                <Button Grid.Column="0" Grid.Row="4" Classes="TextLink" Content="Patreon"/>
+                <Button Grid.Column="0" Grid.Row="5" Classes="TextLink" Content="Donate"/>
+                <Button Grid.Column="0" Grid.Row="6" Classes="TextLink" Content="ThriveDevCenter"/>
+                <Button Grid.Column="0" Grid.Row="7" Classes="TextLink" Content="Thrive on Steam"/>
+                <Button Grid.Column="0" Grid.Row="8" Classes="TextLink" Content="Thrive on itch.io"/>
 
-            <Border HorizontalAlignment="Center" VerticalAlignment="Center" Background="{DynamicResource SubMenuBackground}"
-                    BorderBrush="Black" BorderThickness="1" CornerRadius="5" Classes="Popup"
-                    Classes.Visible="{Binding ShowLinksPopup}" Classes.TimedHide="{Binding !ShowLinksPopup}">
-                <DockPanel LastChildFill="True" Margin="4" MinWidth="600">
-                    <Grid DockPanel.Dock="Top" ColumnDefinitions="*, auto, *, auto" HorizontalAlignment="Stretch">
-                        <TextBlock Grid.Column="1" Text="Revolutionary Games Links"
-                                   TextAlignment="Center" FontWeight="Bold" FontSize="18"/>
-                        <Button Grid.Column="3" Classes="Close" Command="{Binding CloseLinksClicked}">
-                            <Image Source="/Assets/close.png" Height="16"/>
-                        </Button>
-                    </Grid>
-                    <Border DockPanel.Dock="Top" Padding="0" BorderThickness="1" BorderBrush="{DynamicResource BlueElement}" />
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
-                        <Grid ColumnDefinitions="*, *" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
-                            <Button Grid.Column="0" Grid.Row="0" Classes="TextLink" Content="Main website" FontSize="20"/>
-                            <Button Grid.Column="0" Grid.Row="1" Classes="TextLink" Content="Development forums"/>
-                            <Button Grid.Column="0" Grid.Row="2" Classes="TextLink" Content="Community forums"/>
-                            <Button Grid.Column="0" Grid.Row="3" Classes="TextLink" Content="Developer Wiki"/>
-                            <Button Grid.Column="0" Grid.Row="4" Classes="TextLink" Content="Patreon"/>
-                            <Button Grid.Column="0" Grid.Row="5" Classes="TextLink" Content="Donate"/>
-                            <Button Grid.Column="0" Grid.Row="6" Classes="TextLink" Content="ThriveDevCenter"/>
-                            <Button Grid.Column="0" Grid.Row="7" Classes="TextLink" Content="Thrive on Steam"/>
-                            <Button Grid.Column="0" Grid.Row="8" Classes="TextLink" Content="Thrive on itch.io"/>
-
-                            <Button Grid.Column="1" Grid.Row="0" Classes="TextLink" Content="Thrive on Github" FontSize="20"/>
-                            <Button Grid.Column="1" Grid.Row="1" Classes="TextLink" Content="Launcher on Github"/>
-                            <Button Grid.Column="1" Grid.Row="2" Classes="TextLink" Content="Fan Wiki"/>
-                            <Button Grid.Column="1" Grid.Row="3" Classes="TextLink" Content="Discord server"/>
-                            <Button Grid.Column="1" Grid.Row="4" Classes="TextLink" Content="Subreddit"/>
-                            <Button Grid.Column="1" Grid.Row="5" Classes="TextLink" Content="YouTube channel"/>
-                            <Button Grid.Column="1" Grid.Row="6" Classes="TextLink" Content="Twitter feed"/>
-                            <Button Grid.Column="1" Grid.Row="7" Classes="TextLink" Content="Facebook page"/>
-                        </Grid>
-                    </ScrollViewer>
-                </DockPanel>
-            </Border>
-        </Panel>
+                <Button Grid.Column="1" Grid.Row="0" Classes="TextLink" Content="Thrive on Github" FontSize="20"/>
+                <Button Grid.Column="1" Grid.Row="1" Classes="TextLink" Content="Launcher on Github"/>
+                <Button Grid.Column="1" Grid.Row="2" Classes="TextLink" Content="Fan Wiki"/>
+                <Button Grid.Column="1" Grid.Row="3" Classes="TextLink" Content="Discord server"/>
+                <Button Grid.Column="1" Grid.Row="4" Classes="TextLink" Content="Subreddit"/>
+                <Button Grid.Column="1" Grid.Row="5" Classes="TextLink" Content="YouTube channel"/>
+                <Button Grid.Column="1" Grid.Row="6" Classes="TextLink" Content="Twitter feed"/>
+                <Button Grid.Column="1" Grid.Row="7" Classes="TextLink" Content="Facebook page"/>
+            </Grid>
+        </controls:PopupDialog>
 
         <Panel IsVisible="{Binding HasNoticeMessage}">
             <Rectangle Fill="{DynamicResource BackgroundDarkener}"/>
