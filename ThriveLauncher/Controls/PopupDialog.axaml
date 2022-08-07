@@ -26,6 +26,9 @@
         <Setter Property="TitleSeparatorColour" Value="{DynamicResource BlueElement}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="BoxShadow" Value="5 5 10 2 #18272c" />
+        <Setter Property="TitleFontWeight" Value="DemiBold" />
+        <Setter Property="TitleFontSize" Value="18" />
 
         <Setter Property="Template">
             <ControlTemplate>
@@ -38,14 +41,16 @@
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}" Name="Popup">
+                            CornerRadius="{TemplateBinding CornerRadius}" Name="Popup"
+                            BoxShadow="{TemplateBinding BoxShadow}">
                         <DockPanel LastChildFill="True" Margin="4" MinWidth="{TemplateBinding MinWidth}">
                             <Grid DockPanel.Dock="Top" ColumnDefinitions="*, auto, *, auto"
                                   HorizontalAlignment="Stretch">
                                 <!-- TODO when title is not shown somehow make the X not take up vertical space -->
                                 <TextBlock Grid.Column="1" Text="{TemplateBinding Title}"
                                            IsVisible="{TemplateBinding ShowTitle}"
-                                           TextAlignment="Center" FontWeight="Bold" FontSize="18" />
+                                           TextAlignment="Center" FontWeight="{TemplateBinding TitleFontWeight}"
+                                           FontSize="{TemplateBinding TitleFontSize}" />
                                 <Button Grid.Column="3" IsVisible="{TemplateBinding ShowCloseX}" Classes="Close"
                                         Command="{TemplateBinding CloseCommand}">
                                     <Image Height="16" />

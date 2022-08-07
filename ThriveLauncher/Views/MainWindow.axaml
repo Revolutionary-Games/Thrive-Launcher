@@ -111,8 +111,8 @@
             </Grid>
         </controls:PopupDialog>
 
-        <controls:PopupDialog Title="{Binding NoticeMessageTitle}" ShowOKButton="{Binding CanCloseNotice}"
-                              ShowCloseX="{Binding CanCloseNotice}" Background="White" Foreground="Black"
+        <controls:PopupDialog Title="{Binding NoticeMessageTitle}" ShowOKButton="{Binding CanDismissNotice}"
+                              ShowCloseX="{Binding CanDismissNotice}" Background="White" Foreground="Black"
                               CloseCommand="{Binding CloseNotice}" ShowPopup="{Binding HasNoticeMessage}">
             <TextBlock Text="{Binding NoticeMessageText}" TextWrapping="Wrap" />
         </controls:PopupDialog>

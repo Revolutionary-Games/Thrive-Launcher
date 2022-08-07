@@ -10,6 +10,8 @@ namespace ThriveLauncher.ViewModels
 
         private string noticeMessageText = string.Empty;
         private string noticeMessageTitle = string.Empty;
+        private bool canDismissNotice = true;
+
         private bool showLinksPopup;
         private bool showDevCenterStatusArea = true;
         private DevCenterConnection? devCenterConnection;
@@ -35,7 +37,14 @@ namespace ThriveLauncher.ViewModels
         public bool HasNoticeMessage =>
             !string.IsNullOrEmpty(NoticeMessageText) || !string.IsNullOrEmpty(NoticeMessageTitle);
 
-        public bool CanCloseNotice => true;
+        public bool CanDismissNotice
+        {
+            get => HasNoticeMessage && canDismissNotice;
+            private set
+            {
+                this.RaiseAndSetIfChanged(ref canDismissNotice, value);
+            }
+        }
 
         public bool HasDevCenterConnection => DevCenterConnection != null;
 
@@ -53,7 +62,7 @@ namespace ThriveLauncher.ViewModels
 
                 this.RaiseAndSetIfChanged(ref noticeMessageText, value);
                 this.RaisePropertyChanged(nameof(HasNoticeMessage));
-                this.RaisePropertyChanged(nameof(CanCloseNotice));
+                this.RaisePropertyChanged(nameof(CanDismissNotice));
             }
         }
 
@@ -67,7 +76,7 @@ namespace ThriveLauncher.ViewModels
 
                 this.RaiseAndSetIfChanged(ref noticeMessageTitle, value);
                 this.RaisePropertyChanged(nameof(HasNoticeMessage));
-                this.RaisePropertyChanged(nameof(CanCloseNotice));
+                this.RaisePropertyChanged(nameof(CanDismissNotice));
             }
         }
 

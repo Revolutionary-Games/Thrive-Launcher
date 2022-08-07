@@ -35,6 +35,15 @@ public class PopupDialog : ContentControl
     public static readonly StyledProperty<ScrollBarVisibility> HorizontalScrollBarVisibilityProperty =
         AvaloniaProperty.Register<PopupDialog, ScrollBarVisibility>(nameof(HorizontalScrollBarVisibility));
 
+    public static readonly StyledProperty<BoxShadows> BoxShadowProperty =
+        AvaloniaProperty.Register<PopupDialog, BoxShadows>(nameof(BoxShadow));
+
+    public static readonly StyledProperty<FontWeight> TitleFontWeightProperty =
+        AvaloniaProperty.Register<PopupDialog, FontWeight>(nameof(TitleFontWeight));
+
+    public static readonly StyledProperty<double> TitleFontSizeProperty =
+        AvaloniaProperty.Register<PopupDialog, double>(nameof(TitleFontSize));
+
     public bool ShowPopup
     {
         get { return GetValue(ShowPopupProperty); }
@@ -87,5 +96,23 @@ public class PopupDialog : ContentControl
     {
         get { return GetValue(HorizontalScrollBarVisibilityProperty); }
         set { SetValue(HorizontalScrollBarVisibilityProperty, value); }
+    }
+
+    public BoxShadows BoxShadow
+    {
+        get => GetValue(BoxShadowProperty);
+        set => SetValue(BoxShadowProperty, value);
+    }
+
+    public FontWeight TitleFontWeight
+    {
+        get => GetValue(TitleFontWeightProperty);
+        set => SetValue(TitleFontWeightProperty, value);
+    }
+
+    public double TitleFontSize
+    {
+        get => GetValue(TitleFontSizeProperty);
+        set => SetValue(TitleFontSizeProperty, value);
     }
 }
