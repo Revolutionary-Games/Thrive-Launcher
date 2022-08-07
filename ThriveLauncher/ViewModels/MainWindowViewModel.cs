@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using Avalonia.Metadata;
 using LauncherBackend.Models;
 using ReactiveUI;
 
@@ -33,18 +32,15 @@ namespace ThriveLauncher.ViewModels
             Items = new ObservableCollection<string>() { };
         }
 
-        [DependsOn(nameof(NoticeMessageText))]
-        [DependsOn(nameof(NoticeMessageTitle))]
         public bool HasNoticeMessage =>
             !string.IsNullOrEmpty(NoticeMessageText) || !string.IsNullOrEmpty(NoticeMessageTitle);
 
-        [DependsOn(nameof(DevCenterConnection))]
+        public bool CanCloseNotice => true;
+
         public bool HasDevCenterConnection => DevCenterConnection != null;
 
-        [DependsOn(nameof(DevCenterConnection))]
         public string DevCenterConnectedUser => DevCenterConnection?.Username ?? "error";
 
-        [DependsOn(nameof(DevCenterConnection))]
         public bool DevCenterConnectionIsDeveloper => DevCenterConnection?.IsDeveloper ?? false;
 
         public string NoticeMessageText
@@ -52,7 +48,12 @@ namespace ThriveLauncher.ViewModels
             get => noticeMessageText;
             private set
             {
+                if (noticeMessageText == value)
+                    return;
+
                 this.RaiseAndSetIfChanged(ref noticeMessageText, value);
+                this.RaisePropertyChanged(nameof(HasNoticeMessage));
+                this.RaisePropertyChanged(nameof(CanCloseNotice));
             }
         }
 
@@ -61,7 +62,12 @@ namespace ThriveLauncher.ViewModels
             get => noticeMessageTitle;
             private set
             {
+                if (noticeMessageTitle == value)
+                    return;
+
                 this.RaiseAndSetIfChanged(ref noticeMessageTitle, value);
+                this.RaisePropertyChanged(nameof(HasNoticeMessage));
+                this.RaisePropertyChanged(nameof(CanCloseNotice));
             }
         }
 
@@ -92,6 +98,9 @@ namespace ThriveLauncher.ViewModels
                     return;
 
                 this.RaiseAndSetIfChanged(ref devCenterConnection, value);
+                this.RaisePropertyChanged(nameof(HasDevCenterConnection));
+                this.RaisePropertyChanged(nameof(DevCenterConnectedUser));
+                this.RaisePropertyChanged(nameof(DevCenterConnectionIsDeveloper));
             }
         }
 

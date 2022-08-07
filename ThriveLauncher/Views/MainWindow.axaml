@@ -111,29 +111,11 @@
             </Grid>
         </controls:PopupDialog>
 
-        <Panel IsVisible="{Binding HasNoticeMessage}">
-            <Rectangle Fill="{DynamicResource BackgroundDarkener}" />
-
-            <Border HorizontalAlignment="Center" VerticalAlignment="Center" Background="White"
-                    BorderBrush="Black" BorderThickness="1" CornerRadius="5" Classes="Popup">
-                <DockPanel LastChildFill="True" Margin="4">
-                    <Grid DockPanel.Dock="Top" ColumnDefinitions="*, auto, *, auto" HorizontalAlignment="Stretch">
-                        <TextBlock Grid.Column="1" Text="{Binding NoticeMessageTitle}"
-                                   TextAlignment="Center" FontWeight="Bold" FontSize="18" />
-                        <Button Grid.Column="3" Classes="Close" Command="{Binding CloseNotice}">
-                            <Image Source="/Assets/close.png" Height="16" />
-                        </Button>
-                    </Grid>
-                    <Border DockPanel.Dock="Top" Padding="0" BorderBrush="Black" BorderThickness="1" />
-                    <Button DockPanel.Dock="Bottom" Command="{Binding CloseNotice}" HorizontalAlignment="Center">
-                        OK
-                    </Button>
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
-                        <TextBlock Foreground="Black" Text="{Binding NoticeMessageText}" TextWrapping="Wrap" />
-                    </ScrollViewer>
-                </DockPanel>
-            </Border>
-        </Panel>
+        <controls:PopupDialog Title="{Binding NoticeMessageTitle}" ShowOKButton="{Binding CanCloseNotice}"
+                              ShowCloseX="{Binding CanCloseNotice}" Background="White" Foreground="Black"
+                              CloseCommand="{Binding CloseNotice}" ShowPopup="{Binding HasNoticeMessage}">
+            <TextBlock Text="{Binding NoticeMessageText}" TextWrapping="Wrap" />
+        </controls:PopupDialog>
     </Grid>
 
 </Window>
