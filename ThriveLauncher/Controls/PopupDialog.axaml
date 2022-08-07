@@ -46,9 +46,9 @@
                                 <TextBlock Grid.Column="1" Text="{TemplateBinding Title}"
                                            IsVisible="{TemplateBinding ShowTitle}"
                                            TextAlignment="Center" FontWeight="Bold" FontSize="18" />
-                                <Button Grid.Column="3" Classes="Close" Command="{TemplateBinding CloseCommand}"
-                                        IsVisible="{TemplateBinding ShowCloseX}">
-                                    <Image Source="/Assets/close.png" Height="16" />
+                                <Button Grid.Column="3" IsVisible="{TemplateBinding ShowCloseX}" Classes="Close"
+                                        Command="{TemplateBinding CloseCommand}">
+                                    <Image Height="16" />
                                 </Button>
                             </Grid>
                             <Border DockPanel.Dock="Top" Padding="0" BorderThickness="1"

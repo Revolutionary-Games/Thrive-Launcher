@@ -10,6 +10,7 @@
         <Color x:Key="DarkGrey">#303030</Color>
         <Color x:Key="FeedBackgroundGradientStart">#dd333333</Color>
         <Color x:Key="FeedBackgroundGradientEnd">#5a333333</Color>
+        <Color x:Key="CloseHoverBackground">#5a999999</Color>
         <Color x:Key="BottomGradientEnd">#aa333333</Color>
         <Color x:Key="MiddleGray">#555656</Color>
         <Color x:Key="LightGrey">#dedede</Color>
@@ -41,6 +42,16 @@
             <GradientStop Offset="0" Color="{DynamicResource MenuBackground}" />
             <GradientStop Offset="1" Color="{DynamicResource MenuBackgroundEnd}" />
         </LinearGradientBrush>
+        <services:BitmapExtensions x:Key="CloseIconDark">
+            <x:Arguments>
+                <x:String>avares://ThriveLauncher/Assets/close.png</x:String>
+            </x:Arguments>
+        </services:BitmapExtensions>
+        <services:BitmapExtensions x:Key="CloseIconLight">
+            <x:Arguments>
+                <x:String>avares://ThriveLauncher/Assets/close_light.png</x:String>
+            </x:Arguments>
+        </services:BitmapExtensions>
     </Application.Resources>
 
     <Application.Styles>
@@ -83,13 +94,18 @@
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontSize" Value="28" />
         </Style>
-        <Style Selector="Button.Close:pointerover">
-            <!--<Setter Property="Background" Value="Transparent" />-->
-            <Setter Property="Foreground" Value="Black" />
+        <Style Selector="Button.Close:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource CloseHoverBackground}" />
         </Style>
-        <Style Selector="Button.Close:pressed">
-            <!--<Setter Property="Background" Value="Transparent" />-->
-            <Setter Property="Foreground" Value="Black" />
+        <Style Selector="Button.Close:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="Button.Close Image">
+            <Setter Property="Source" Value="{DynamicResource CloseIconDark}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="Button.Close:pointerover Image">
+            <Setter Property="Source" Value="{DynamicResource CloseIconLight}" />
         </Style>
 
         <Style Selector="Button.DialogButton">
