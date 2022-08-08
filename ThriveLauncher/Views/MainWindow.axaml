@@ -147,7 +147,7 @@
                             RelativePanel.AlignRightWithPanel="True"
                             RelativePanel.AlignTopWithPanel="True"
                             RelativePanel.AlignBottomWithPanel="True">
-                    <TabItem Header="Thrive Options" VerticalAlignment="Center">
+                    <TabItem Header="Thrive Options">
                         <StackPanel>
                             <TextBlock FontSize="16">
                                 Launch Options
@@ -160,7 +160,7 @@
                             </CheckBox>
                         </StackPanel>
                     </TabItem>
-                    <TabItem Header="Launcher Options" VerticalAlignment="Center">
+                    <TabItem Header="Launcher Options">
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Margin="0 0 1 0">Launcher version:</TextBlock>
@@ -191,7 +191,7 @@
                             <Button Classes="DialogButton">Reset All Settings</Button>
                         </StackPanel>
                     </TabItem>
-                    <TabItem Header="Installed Versions" VerticalAlignment="Center">
+                    <TabItem Header="Installed Versions">
                         <StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="2">
                                 <Button Classes="DialogButton">Browse Installed Files</Button>
@@ -214,7 +214,7 @@
                             </ScrollViewer>
                         </StackPanel>
                     </TabItem>
-                    <TabItem Header="Cache" VerticalAlignment="Center">
+                    <TabItem Header="Cache">
                         <StackPanel>
                             <WrapPanel Orientation="Horizontal" Margin="0 0 0 5">
                                 <TextBlock Margin="0 0 2 0">Temporary downloads folder:</TextBlock>
@@ -273,8 +273,83 @@
         <!-- TODO: show the ok button when it makes sense -->
         <controls:PopupDialog Title="DevCenter Connection" CloseCommand="{Binding CloseDevCenterMenuClicked}"
                               ShowPopup="{Binding ShowDevCenterPopup}" ShowOKButton="False">
-            <Grid ColumnDefinitions="*, *" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
-            </Grid>
+            <TabControl MinWidth="700" MinHeight="400" MaxHeight="400" MaxWidth="700"
+                        RelativePanel.AlignLeftWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True"
+                        RelativePanel.AlignTopWithPanel="True"
+                        RelativePanel.AlignBottomWithPanel="True">
+                <TabItem Header="Info">
+                    <StackPanel>
+                        <!-- Connected controls -->
+                        <StackPanel IsVisible="True">
+                            <WrapPanel Orientation="Horizontal" Margin="0 5">
+                                <TextBlock Margin="0 0 2 0">Connected as:</TextBlock>
+                                <TextBlock Text="{Binding LauncherVersion}" />
+                            </WrapPanel>
+
+                            <TextBlock IsVisible="{Binding DevCenterConnectionIsDeveloper}">
+                                You are a developer
+                            </TextBlock>
+
+                            <RadioButton GroupName="DevBuildTypeSelection">
+                                <TextBlock TextWrapping="Wrap">Build of the day (BOTD), recommended</TextBlock>
+                            </RadioButton>
+                            <RadioButton GroupName="DevBuildTypeSelection">
+                                <TextBlock TextWrapping="Wrap">
+                                    Latest (changes a lot randomly as this is literally a build from the latest code commit)
+                                </TextBlock>
+                            </RadioButton>
+                            <RadioButton GroupName="DevBuildTypeSelection">
+                                <TextBlock TextWrapping="Wrap">Manually selected in "Specific Build" tab</TextBlock>
+                            </RadioButton>
+
+                            <Button Classes="DialogButton" Margin="0 30">Logout</Button>
+
+                        </StackPanel>
+                        <!-- Not connected controls -->
+                        <StackPanel IsVisible="False">
+                            <TextBlock Margin="0 0 0 5" TextWrapping="Wrap">
+                                TODO: connection explanation text
+                            </TextBlock>
+                            <Button Classes="TextLink">Instructions on our Wiki</Button>
+
+                            <TextBox Watermark="Connection key" />
+
+                            <Button Classes="DialogButton">Connect</Button>
+                        </StackPanel>
+
+
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Specific Build" IsEnabled="True">
+                    <StackPanel>
+                        <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto">
+                            <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="0 0 2 0">
+                                Manually entered hash:
+                            </TextBlock>
+
+                            <TextBox Grid.Column="1" Grid.Row="1" Watermark="Build hash (commit)" />
+
+                            <Button Grid.Column="2" Grid.Row="1" Classes="DialogButton" HorizontalAlignment="Right"
+                                    ToolTip.Tip="Select the manually entered hash value to be used from the input box as the manually selected DevBuild to play when playing a DevBuild">
+                                Select
+                            </Button>
+                        </Grid>
+
+                        <Border DockPanel.Dock="Top" Margin="0 3" Padding="0" BorderThickness="1"
+                                BorderBrush="{DynamicResource BlueElement}" />
+
+                        <TextBlock Margin="0 10 0 0">Latest 100 builds:</TextBlock>
+
+                        <Button Classes="DialogButton">Refresh List</Button>
+
+                        <!-- TODO: retrieve and show the latest 100 builds -->
+                        <ScrollViewer>
+
+                        </ScrollViewer>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
         </controls:PopupDialog>
 
         <controls:PopupDialog Title="{Binding NoticeMessageTitle}" ShowOKButton="{Binding CanDismissNotice}"
