@@ -18,9 +18,16 @@
         <Color x:Key="CloseGrey">#0a0a0a</Color>
         <Color x:Key="BlueBorder">#55dbdb</Color>
         <Color x:Key="BlueElement">#4dd5ff</Color>
+        <Color x:Key="CheckBoxCheckBackgroundFillChecked">#4dd5ff</Color>
+        <Color x:Key="TextControlBorderBrushFocused">#4dd5ff</Color>
+        <Color x:Key="RadioButtonOuterEllipseCheckedFill">#4dd5ff</Color>
         <Color x:Key="BlueElement2">#52e5ff</Color>
+        <Color x:Key="RadioButtonOuterEllipseFillPressed">#52e5ff</Color>
         <Color x:Key="BlueBackground">#4890a7</Color>
         <Color x:Key="ActiveBlue">#1dffff</Color>
+        <Color x:Key="CheckBoxCheckBackgroundFillCheckedPointerOver">#1dffff</Color>
+        <Color x:Key="RadioButtonOuterEllipseFillPointerOver">#1dffff</Color>
+        <Color x:Key="RadioButtonOuterEllipseCheckedFillPointerOver">#1fffff</Color>
         <Color x:Key="FriendlyRed">#d43a3a</Color>
         <Color x:Key="Danger">#801515</Color>
         <Color x:Key="DangerHover">#d46a6a</Color>
@@ -58,9 +65,6 @@
                 <x:String>avares://ThriveLauncher/Assets/revert.png</x:String>
             </x:Arguments>
         </services:BitmapExtensions>
-        <Color x:Key="CheckBoxCheckBackgroundFillChecked">#4dd5ff</Color>
-        <Color x:Key="CheckBoxCheckBackgroundFillCheckedPointerOver">#1dffff</Color>
-
     </Application.Resources>
 
     <Application.Styles>
@@ -145,6 +149,7 @@
             <Setter Property="BorderThickness" Value="0 0 0 2" />
             <Setter Property="BorderBrush" Value="Transparent" />
             <Setter Property="Margin" Value="8 0 8 2" />
+            <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
         <Style Selector="TabItem:selected">
             <Setter Property="BorderBrush" Value="{DynamicResource BlueElement}" />
