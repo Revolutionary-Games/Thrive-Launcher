@@ -6,7 +6,7 @@ using System.Text;
 using LauncherBackend.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NLog;
+using NLog.Common;
 using NLog.Config;
 using NLog.Extensions.Logging;
 using NLog.Targets;
@@ -41,31 +41,11 @@ namespace ThriveLauncher
 
             programLogger.LogInformation("Launcher starting GUI");
 
-            try
-            {
-                BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+            // Very important to use our existing services to configure the Avalonia app here, otherwise everything
+            // will break
+            BuildAvaloniaAppWithServices(services).StartWithClassicDesktopLifetime(args);
 
-                programLogger.LogInformation("Launcher process exiting normally");
-            }
-            catch (Exception)
-            {
-            }
-
-            /*finally */
-            {
-                // Need to dispose the services to get last logs to save
-
-                var loggerProvider = services.GetRequiredService<ILoggerProvider>();
-
-                var nLogLoggerProvider = (NLogLoggerProvider)loggerProvider;
-                nLogLoggerProvider.LogFactory.Shutdown();
-
-                loggerProvider.Dispose();
-                nLogLoggerProvider.LogFactory.Dispose();
-
-                services.Dispose();
-                LogManager.Shutdown();
-            }
+            programLogger.LogInformation("Launcher process exiting normally");
         }
 
         // Avalonia configuration, don't remove; also used by visual designer.
@@ -89,7 +69,6 @@ namespace ThriveLauncher
                 .AddSingleton<ViewLocator>()
                 .AddLogging(config =>
                 {
-                    // TODO: log to file
                     config.ClearProviders();
                     config.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
                     config.AddNLog(GetNLogConfiguration(fileLogging));
@@ -102,16 +81,21 @@ namespace ThriveLauncher
 
         private static LoggingConfiguration GetNLogConfiguration(bool fileLogging = true)
         {
+            // For debugging logging
+            // InternalLogger.LogLevel = LogLevel.Trace;
+            // InternalLogger.LogToConsole = true;
+
             var configuration = new LoggingConfiguration();
 
-            configuration.AddRule(LogLevel.Info, LogLevel.Fatal, new ConsoleTarget());
+            // TODO: allow configuring the logging level
+            configuration.AddRule(LogLevel.Info, LogLevel.Fatal, new ConsoleTarget("console"));
 
             if (Debugger.IsAttached)
-                configuration.AddRule(LogLevel.Debug, LogLevel.Fatal, new DebuggerTarget());
+                configuration.AddRule(LogLevel.Debug, LogLevel.Fatal, new DebuggerTarget("debugger"));
 
             if (fileLogging)
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new FileTarget("file")
                 {
                     // TODO: detect the launcher folder we should put the logs folder in
                     FileName = "${basedir}/logs/thrive-launcher-log.txt",
@@ -131,8 +115,6 @@ namespace ThriveLauncher
 
                 configuration.AddRule(LogLevel.Debug, LogLevel.Fatal, fileTarget);
             }
-
-            configuration.LogFactory.AutoShutdown = true;
 
             return configuration;
         }
