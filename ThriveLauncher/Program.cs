@@ -53,7 +53,7 @@ namespace ThriveLauncher
         public static AppBuilder BuildAvaloniaApp()
             => BuildAvaloniaAppWithServices(BuildLauncherServices(false));
 
-        public static ServiceProvider BuildLauncherServices(bool logging)
+        public static ServiceProvider BuildLauncherServices(bool normalLogging)
         {
             var builder = new ServiceCollection()
                 .AddThriveLauncher()
@@ -61,15 +61,24 @@ namespace ThriveLauncher
                 .AddScoped<MainWindowViewModel>()
                 .AddSingleton<ViewLocator>();
 
-            if (logging)
+            if (normalLogging)
             {
                 builder = builder.AddLogging(config =>
                     {
                         config.ClearProviders();
                         config.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
-                        config.AddNLog(GetNLogConfiguration());
+                        config.AddNLog(GetNLogConfiguration(true));
                     })
                     .AddScoped<AvaloniaLogger>();
+            }
+            else
+            {
+                // Design time logging
+                builder = builder.AddLogging(config =>
+                {
+                    config.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Debug);
+                    config.AddNLog(GetNLogConfiguration(false));
+                });
             }
 
             var services = builder.BuildServiceProvider();
@@ -83,7 +92,7 @@ namespace ThriveLauncher
                 .LogToTrace()
                 .UseReactiveUI();
 
-        private static LoggingConfiguration GetNLogConfiguration()
+        private static LoggingConfiguration GetNLogConfiguration(bool fileLogging)
         {
             // For debugging logging
             // InternalLogger.LogLevel = LogLevel.Trace;
@@ -97,25 +106,28 @@ namespace ThriveLauncher
             if (Debugger.IsAttached)
                 configuration.AddRule(LogLevel.Debug, LogLevel.Fatal, new DebuggerTarget("debugger"));
 
-            var fileTarget = new FileTarget("file")
+            if (fileLogging)
             {
-                // TODO: detect the launcher folder we should put the logs folder in
-                FileName = "${basedir}/logs/thrive-launcher-log.txt",
-                ArchiveAboveSize = GlobalConstants.MEBIBYTE * 2,
-                ArchiveEvery = FileArchivePeriod.Month,
-                ArchiveFileName = "${basedir}/logs/thrive-launcher-log.{#}.txt",
-                ArchiveNumbering = ArchiveNumberingMode.DateAndSequence,
-                ArchiveDateFormat = "yyyy-MM-dd",
-                MaxArchiveFiles = 4,
-                Encoding = Encoding.UTF8,
-                KeepFileOpen = true,
-                ConcurrentWrites = true,
+                var fileTarget = new FileTarget("file")
+                {
+                    // TODO: detect the launcher folder we should put the logs folder in
+                    FileName = "${basedir}/logs/thrive-launcher-log.txt",
+                    ArchiveAboveSize = GlobalConstants.MEBIBYTE * 2,
+                    ArchiveEvery = FileArchivePeriod.Month,
+                    ArchiveFileName = "${basedir}/logs/thrive-launcher-log.{#}.txt",
+                    ArchiveNumbering = ArchiveNumberingMode.DateAndSequence,
+                    ArchiveDateFormat = "yyyy-MM-dd",
+                    MaxArchiveFiles = 4,
+                    Encoding = Encoding.UTF8,
+                    KeepFileOpen = true,
+                    ConcurrentWrites = true,
 
-                // TODO: should we use default instead?
-                LineEnding = LineEndingMode.LF,
-            };
+                    // TODO: should we use default instead?
+                    LineEnding = LineEndingMode.LF,
+                };
 
-            configuration.AddRule(LogLevel.Debug, LogLevel.Fatal, fileTarget);
+                configuration.AddRule(LogLevel.Debug, LogLevel.Fatal, fileTarget);
+            }
 
             return configuration;
         }

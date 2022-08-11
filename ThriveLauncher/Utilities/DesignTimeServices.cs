@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace ThriveLauncher.Utilities;
 
 /// <summary>
-///   Helpers for getting design time services for use
+///   Helpers for getting design time services for use in design time ViewModel constructors
 /// </summary>
 public static class DesignTimeServices
 {
