@@ -8,7 +8,13 @@ namespace ThriveLauncher.Utilities;
 /// </summary>
 public static class DesignTimeServices
 {
-    private static readonly Lazy<IServiceScope> Scope = new(() => Program.BuildLauncherServices(false).CreateScope());
+    private static IServiceProvider? rawServices;
+
+    private static readonly Lazy<IServiceScope> Scope = new(() =>
+    {
+        rawServices = Program.BuildLauncherServices(false);
+        return rawServices.CreateScope();
+    });
 
     public static IServiceProvider Services => Scope.Value.ServiceProvider;
 }
