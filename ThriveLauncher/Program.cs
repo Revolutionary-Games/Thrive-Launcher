@@ -28,23 +28,21 @@ namespace ThriveLauncher
             // if we want to fire up ourGUI
             var services = BuildLauncherServices(true);
 
-            Trace.Listeners.Clear();
-            Trace.Listeners.Add(services.GetRequiredService<AvaloniaLogger>());
+            var programLogger = services.GetRequiredService<ILogger<Program>>();
 
-            var programLogger = services.GetRequiredService<ILoggerFactory>().CreateLogger(nameof(Program));
+            try
+            {
+                InnerMain(args, services, programLogger);
+            }
+            catch (Exception e)
+            {
+                programLogger.LogCritical(e, "Unhandled exception in the launcher. PLEASE REPORT THIS TO US!");
 
-            programLogger.LogInformation("Thrive Launcher version {Version} starting",
-                services.GetRequiredService<VersionUtilities>().LauncherVersion);
+                // Just in case exiting with an exception doesn't save logs correctly, save them explicitly here
+                (services.GetService<ILoggerProvider>() as NLogLoggerProvider)?.LogFactory.Flush();
 
-            // TODO: detect transparent mode
-
-            programLogger.LogInformation("Launcher starting GUI");
-
-            // Very important to use our existing services to configure the Avalonia app here, otherwise everything
-            // will break
-            BuildAvaloniaAppWithServices(services).StartWithClassicDesktopLifetime(args);
-
-            programLogger.LogInformation("Launcher process exiting normally");
+                throw;
+            }
         }
 
         // Avalonia configuration, don't remove; also used by visual designer.
@@ -84,6 +82,31 @@ namespace ThriveLauncher
             var services = builder.BuildServiceProvider();
 
             return services;
+        }
+
+        /// <summary>
+        ///   Separate actual "logic" of the main method to make it easier to protect against unhandled exceptions
+        /// </summary>
+        /// <param name="args">The program args</param>
+        /// <param name="services">The already configured launcher services</param>
+        /// <param name="programLogger">Logger for the main method</param>
+        private static void InnerMain(string[] args, ServiceProvider services, ILogger programLogger)
+        {
+            Trace.Listeners.Clear();
+            Trace.Listeners.Add(services.GetRequiredService<AvaloniaLogger>());
+
+            programLogger.LogInformation("Thrive Launcher version {Version} starting",
+                services.GetRequiredService<VersionUtilities>().LauncherVersion);
+
+            // TODO: detect transparent mode
+
+            programLogger.LogInformation("Launcher starting GUI");
+
+            // Very important to use our existing services to configure the Avalonia app here, otherwise everything
+            // will break
+            BuildAvaloniaAppWithServices(services).StartWithClassicDesktopLifetime(args);
+
+            programLogger.LogInformation("Launcher process exiting normally");
         }
 
         private static AppBuilder BuildAvaloniaAppWithServices(IServiceProvider serviceProvider)
