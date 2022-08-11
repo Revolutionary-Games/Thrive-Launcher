@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Reflection;
-using Avalonia.Logging;
+﻿using System.Collections.ObjectModel;
 using LauncherBackend.Models;
+using LauncherBackend.Services;
 using ReactiveUI;
+using ThriveLauncher.Utilities;
 
 namespace ThriveLauncher.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
         private const int TotalKeysInDevCenterActivationSequence = 4;
+
+        private readonly ILauncherFeeds launcherFeeds;
+        private readonly IStoreVersionDetector storeInfo;
+        private readonly VersionUtilities versionUtilities;
+
         private readonly bool isStoreVersion;
 
         private string noticeMessageText = string.Empty;
@@ -30,12 +34,16 @@ namespace ThriveLauncher.ViewModels
         private bool preventDevCenterFeatures;
         private int nextDevCenterOpenOverrideKeyIndex;
 
-        private string? cachedLauncherVersion;
-
-        public MainWindowViewModel()
+        public MainWindowViewModel(ILauncherFeeds launcherFeeds, IStoreVersionDetector storeInfo,
+            VersionUtilities versionUtilities)
         {
-            isStoreVersion = StoreVersionInfo.Instance.IsStoreVersion;
-            preventDevCenterFeatures = StoreVersionInfo.Instance.ShouldPreventDefaultDevCenterVisibility;
+            this.launcherFeeds = launcherFeeds;
+            this.storeInfo = storeInfo;
+            this.versionUtilities = versionUtilities;
+
+            var detectedStore = storeInfo.Detect();
+            isStoreVersion = detectedStore.IsStoreVersion;
+            preventDevCenterFeatures = detectedStore.ShouldPreventDefaultDevCenterVisibility;
 
             // TODO: devcenter visibility when already configured or through a specific secret key sequence?
 
@@ -48,7 +56,7 @@ namespace ThriveLauncher.ViewModels
         public bool HasNoticeMessage =>
             !string.IsNullOrEmpty(NoticeMessageText) || !string.IsNullOrEmpty(NoticeMessageTitle);
 
-        public string LauncherVersion => cachedLauncherVersion ??= GetCurrentVersion();
+        public string LauncherVersion => versionUtilities.LauncherVersion;
 
         public bool CanDismissNotice
         {
@@ -211,26 +219,6 @@ namespace ThriveLauncher.ViewModels
             {
                 // User failed to type the sequence
                 nextDevCenterOpenOverrideKeyIndex = 0;
-            }
-        }
-
-        private string GetCurrentVersion()
-        {
-            try
-            {
-                var version = Assembly.GetExecutingAssembly().GetName().Version ??
-                    throw new Exception("Version for assembly doesn't exist");
-
-                if (version.Build == 0)
-                    return $"{version.Major}.{version.Minor}.{version.Revision}";
-
-                return $"{version.Major}.{version.Minor}.{version.Revision}-{version.Build}";
-            }
-            catch (Exception e)
-            {
-                Logger.Sink?.Log(LogEventLevel.Error, nameof(GetCurrentVersion), this,
-                    "Error getting assembly version: {E}", e);
-                return "Error";
             }
         }
     }

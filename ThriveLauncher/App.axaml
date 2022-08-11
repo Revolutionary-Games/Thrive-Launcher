@@ -1,11 +1,11 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="using:ThriveLauncher"
              xmlns:services="clr-namespace:ThriveLauncher.Services"
              x:Class="ThriveLauncher.App">
+    <!-- This is configured in the code behind
     <Application.DataTemplates>
         <local:ViewLocator />
-    </Application.DataTemplates>
+    </Application.DataTemplates>-->
 
     <Application.Resources>
         <Color x:Key="DarkGrey">#303030</Color>

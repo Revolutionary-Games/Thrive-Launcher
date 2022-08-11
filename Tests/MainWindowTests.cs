@@ -1,5 +1,9 @@
+using LauncherBackend.Models;
+using LauncherBackend.Services;
 using ThriveLauncher.ViewModels;
 using Xunit;
+using Moq;
+using ThriveLauncher.Utilities;
 
 namespace Tests;
 
@@ -8,7 +12,11 @@ public class MainWindowTests
     [Fact]
     public void Links_ShowAndCloseWorks()
     {
-        var viewModel = new MainWindowViewModel();
+        var feedsMock = new Mock<ILauncherFeeds>();
+        var storeMock = new Mock<IStoreVersionDetector>();
+        storeMock.Setup(store => store.Detect()).Returns(new StoreVersionInfo());
+
+        var viewModel = new MainWindowViewModel(feedsMock.Object, storeMock.Object, new VersionUtilities());
 
         Assert.False(viewModel.ShowLinksPopup);
 
@@ -27,5 +35,28 @@ public class MainWindowTests
         viewModel.CloseLinksClicked();
 
         Assert.False(viewModel.ShowLinksPopup);
+    }
+
+    [Fact]
+    public void DevCenter_HiddenForSteamVersion()
+    {
+        var feedsMock = new Mock<ILauncherFeeds>();
+        var storeMock = new Mock<IStoreVersionDetector>();
+        storeMock.Setup(store => store.Detect())
+            .Returns(new StoreVersionInfo(StoreVersionInfo.SteamInternalName, "Steam")).Verifiable();
+
+        var viewModel = new MainWindowViewModel(feedsMock.Object, storeMock.Object, new VersionUtilities());
+
+        Assert.False(viewModel.ShowDevCenterStatusArea);
+
+        storeMock.Verify();
+
+        storeMock = new Mock<IStoreVersionDetector>();
+        storeMock.Setup(store => store.Detect())
+            .Returns(new StoreVersionInfo());
+
+        viewModel = new MainWindowViewModel(feedsMock.Object, storeMock.Object, new VersionUtilities());
+
+        Assert.True(viewModel.ShowDevCenterStatusArea);
     }
 }

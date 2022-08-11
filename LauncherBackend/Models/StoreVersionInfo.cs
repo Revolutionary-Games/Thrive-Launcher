@@ -2,22 +2,22 @@ namespace LauncherBackend.Models;
 
 public class StoreVersionInfo
 {
+    public const string SteamInternalName = "steam";
+
     /// <summary>
     ///   Non-store version constructor
     /// </summary>
-    private StoreVersionInfo()
+    public StoreVersionInfo()
     {
         IsStoreVersion = false;
     }
 
-    private StoreVersionInfo(string name, string readableName)
+    public StoreVersionInfo(string name, string readableName)
     {
         IsStoreVersion = true;
         StoreName = name;
         StoreReadableName = readableName;
     }
-
-    public static StoreVersionInfo Instance { get; } = DetectStoreVersion();
 
     public bool IsStoreVersion { get; }
 
@@ -25,13 +25,7 @@ public class StoreVersionInfo
 
     public string StoreReadableName { get; } = string.Empty;
 
-    public bool IsSteam => IsStoreVersion && StoreName == "steam";
+    public bool IsSteam => IsStoreVersion && StoreName == SteamInternalName;
 
     public bool ShouldPreventDefaultDevCenterVisibility => IsSteam;
-
-    private static StoreVersionInfo DetectStoreVersion()
-    {
-        // TODO: store detection
-        return new StoreVersionInfo();
-    }
 }
