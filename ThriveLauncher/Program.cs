@@ -6,7 +6,6 @@ using System.Text;
 using LauncherBackend.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NLog.Common;
 using NLog.Config;
 using NLog.Extensions.Logging;
 using NLog.Targets;
@@ -27,7 +26,7 @@ namespace ThriveLauncher
         {
             // We build services before starting avalonia so that we can use launcher backend services before we decide
             // if we want to fire up ourGUI
-            var services = BuildLauncherServices();
+            var services = BuildLauncherServices(true);
 
             Trace.Listeners.Clear();
             Trace.Listeners.Add(services.GetRequiredService<AvaloniaLogger>());
@@ -54,32 +53,37 @@ namespace ThriveLauncher
         public static AppBuilder BuildAvaloniaApp()
             => BuildAvaloniaAppWithServices(BuildLauncherServices(false));
 
+        public static ServiceProvider BuildLauncherServices(bool logging)
+        {
+            var builder = new ServiceCollection()
+                .AddThriveLauncher()
+                .AddSingleton<VersionUtilities>()
+                .AddScoped<MainWindowViewModel>()
+                .AddSingleton<ViewLocator>();
+
+            if (logging)
+            {
+                builder = builder.AddLogging(config =>
+                    {
+                        config.ClearProviders();
+                        config.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+                        config.AddNLog(GetNLogConfiguration());
+                    })
+                    .AddScoped<AvaloniaLogger>();
+            }
+
+            var services = builder.BuildServiceProvider();
+
+            return services;
+        }
+
         private static AppBuilder BuildAvaloniaAppWithServices(IServiceProvider serviceProvider)
             => AppBuilder.Configure(() => new App(serviceProvider))
                 .UsePlatformDetect()
                 .LogToTrace()
                 .UseReactiveUI();
 
-        private static ServiceProvider BuildLauncherServices(bool fileLogging = true)
-        {
-            var services = new ServiceCollection()
-                .AddThriveLauncher()
-                .AddSingleton<VersionUtilities>()
-                .AddScoped<MainWindowViewModel>()
-                .AddSingleton<ViewLocator>()
-                .AddLogging(config =>
-                {
-                    config.ClearProviders();
-                    config.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
-                    config.AddNLog(GetNLogConfiguration(fileLogging));
-                })
-                .AddScoped<AvaloniaLogger>()
-                .BuildServiceProvider();
-
-            return services;
-        }
-
-        private static LoggingConfiguration GetNLogConfiguration(bool fileLogging = true)
+        private static LoggingConfiguration GetNLogConfiguration()
         {
             // For debugging logging
             // InternalLogger.LogLevel = LogLevel.Trace;
@@ -93,28 +97,25 @@ namespace ThriveLauncher
             if (Debugger.IsAttached)
                 configuration.AddRule(LogLevel.Debug, LogLevel.Fatal, new DebuggerTarget("debugger"));
 
-            if (fileLogging)
+            var fileTarget = new FileTarget("file")
             {
-                var fileTarget = new FileTarget("file")
-                {
-                    // TODO: detect the launcher folder we should put the logs folder in
-                    FileName = "${basedir}/logs/thrive-launcher-log.txt",
-                    ArchiveAboveSize = GlobalConstants.MEBIBYTE * 2,
-                    ArchiveEvery = FileArchivePeriod.Month,
-                    ArchiveFileName = "${basedir}/logs/thrive-launcher-log.{#}.txt",
-                    ArchiveNumbering = ArchiveNumberingMode.DateAndSequence,
-                    ArchiveDateFormat = "yyyy-MM-dd",
-                    MaxArchiveFiles = 4,
-                    Encoding = Encoding.UTF8,
-                    KeepFileOpen = true,
-                    ConcurrentWrites = true,
+                // TODO: detect the launcher folder we should put the logs folder in
+                FileName = "${basedir}/logs/thrive-launcher-log.txt",
+                ArchiveAboveSize = GlobalConstants.MEBIBYTE * 2,
+                ArchiveEvery = FileArchivePeriod.Month,
+                ArchiveFileName = "${basedir}/logs/thrive-launcher-log.{#}.txt",
+                ArchiveNumbering = ArchiveNumberingMode.DateAndSequence,
+                ArchiveDateFormat = "yyyy-MM-dd",
+                MaxArchiveFiles = 4,
+                Encoding = Encoding.UTF8,
+                KeepFileOpen = true,
+                ConcurrentWrites = true,
 
-                    // TODO: should we use default instead?
-                    LineEnding = LineEndingMode.LF,
-                };
+                // TODO: should we use default instead?
+                LineEnding = LineEndingMode.LF,
+            };
 
-                configuration.AddRule(LogLevel.Debug, LogLevel.Fatal, fileTarget);
-            }
+            configuration.AddRule(LogLevel.Debug, LogLevel.Fatal, fileTarget);
 
             return configuration;
         }

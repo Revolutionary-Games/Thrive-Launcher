@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using LauncherBackend.Models;
 using LauncherBackend.Services;
+using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 using ThriveLauncher.Utilities;
 
@@ -51,6 +52,15 @@ namespace ThriveLauncher.ViewModels
                 ShowDevCenterStatusArea = false;
 
             Items = new ObservableCollection<string>() { };
+        }
+
+        /// <summary>
+        ///   Constructor for live preview
+        /// </summary>
+        public MainWindowViewModel() : this(DesignTimeServices.Services.GetRequiredService<ILauncherFeeds>(),
+            DesignTimeServices.Services.GetRequiredService<IStoreVersionDetector>(),
+            DesignTimeServices.Services.GetRequiredService<VersionUtilities>())
+        {
         }
 
         public bool HasNoticeMessage =>
