@@ -1,0 +1,3 @@
+[submodule "RevolutionaryGamesCommon"]
+	path = RevolutionaryGamesCommon
+	url = https://github.com/Revolutionary-Games/RevolutionaryGamesCommon.git
