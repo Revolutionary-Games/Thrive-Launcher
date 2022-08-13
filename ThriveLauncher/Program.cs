@@ -32,6 +32,9 @@ namespace ThriveLauncher
 
             try
             {
+                Trace.Listeners.Clear();
+                Trace.Listeners.Add(services.GetRequiredService<AvaloniaLogger>());
+
                 InnerMain(args, services, programLogger);
             }
             catch (Exception e)
@@ -92,9 +95,6 @@ namespace ThriveLauncher
         /// <param name="programLogger">Logger for the main method</param>
         private static void InnerMain(string[] args, ServiceProvider services, ILogger programLogger)
         {
-            Trace.Listeners.Clear();
-            Trace.Listeners.Add(services.GetRequiredService<AvaloniaLogger>());
-
             programLogger.LogInformation("Thrive Launcher version {Version} starting",
                 services.GetRequiredService<VersionUtilities>().LauncherVersion);
 
