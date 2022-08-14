@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using SharedBase.Converters;
 
@@ -6,12 +7,12 @@ namespace LauncherBackend.Models;
 [JsonConverter(typeof(ActualEnumStringConverter))]
 public enum DevBuildType
 {
-    [JsonPropertyName("botd")]
+    [EnumMember(Value = "botd")]
     BuildOfTheDay,
 
-    [JsonPropertyName("latest")]
+    [EnumMember(Value = "latest")]
     Latest,
 
-    [JsonPropertyName("manual")]
+    [EnumMember(Value = "manual")]
     ManuallySelected,
 }

@@ -36,11 +36,13 @@ namespace ThriveLauncher.ViewModels
         private int nextDevCenterOpenOverrideKeyIndex;
 
         public MainWindowViewModel(ILauncherFeeds launcherFeeds, IStoreVersionDetector storeInfo,
-            VersionUtilities versionUtilities)
+            ILauncherSettingsManager settingsManager, VersionUtilities versionUtilities)
         {
             this.launcherFeeds = launcherFeeds;
             this.storeInfo = storeInfo;
             this.versionUtilities = versionUtilities;
+
+            ApplySettings(settingsManager.Settings);
 
             var detectedStore = storeInfo.Detect();
             isStoreVersion = detectedStore.IsStoreVersion;
@@ -59,6 +61,7 @@ namespace ThriveLauncher.ViewModels
         /// </summary>
         public MainWindowViewModel() : this(DesignTimeServices.Services.GetRequiredService<ILauncherFeeds>(),
             DesignTimeServices.Services.GetRequiredService<IStoreVersionDetector>(),
+            DesignTimeServices.Services.GetRequiredService<ILauncherSettingsManager>(),
             DesignTimeServices.Services.GetRequiredService<VersionUtilities>())
         {
         }
@@ -172,6 +175,11 @@ namespace ThriveLauncher.ViewModels
         }
 
         public ObservableCollection<string> Items { get; }
+
+        public void ApplySettings(LauncherSettings settings)
+        {
+            WebFeedsEnabled = settings.ShowWebContent;
+        }
 
         public void VersionSelected(string selectedVersion)
         {

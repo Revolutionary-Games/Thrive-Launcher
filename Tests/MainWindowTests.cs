@@ -16,7 +16,11 @@ public class MainWindowTests
         var storeMock = new Mock<IStoreVersionDetector>();
         storeMock.Setup(store => store.Detect()).Returns(new StoreVersionInfo());
 
-        var viewModel = new MainWindowViewModel(feedsMock.Object, storeMock.Object, new VersionUtilities());
+        var settingsMock = new Mock<ILauncherSettingsManager>();
+        settingsMock.SetupGet(settings => settings.Settings).Returns(new LauncherSettings());
+
+        var viewModel = new MainWindowViewModel(feedsMock.Object, storeMock.Object, settingsMock.Object,
+            new VersionUtilities());
 
         Assert.False(viewModel.ShowLinksPopup);
 
@@ -45,7 +49,11 @@ public class MainWindowTests
         storeMock.Setup(store => store.Detect())
             .Returns(new StoreVersionInfo(StoreVersionInfo.SteamInternalName, "Steam")).Verifiable();
 
-        var viewModel = new MainWindowViewModel(feedsMock.Object, storeMock.Object, new VersionUtilities());
+        var settingsMock = new Mock<ILauncherSettingsManager>();
+        settingsMock.SetupGet(settings => settings.Settings).Returns(new LauncherSettings());
+
+        var viewModel = new MainWindowViewModel(feedsMock.Object, storeMock.Object, settingsMock.Object,
+            new VersionUtilities());
 
         Assert.False(viewModel.ShowDevCenterStatusArea);
 
@@ -55,7 +63,8 @@ public class MainWindowTests
         storeMock.Setup(store => store.Detect())
             .Returns(new StoreVersionInfo());
 
-        viewModel = new MainWindowViewModel(feedsMock.Object, storeMock.Object, new VersionUtilities());
+        viewModel = new MainWindowViewModel(feedsMock.Object, storeMock.Object, settingsMock.Object,
+            new VersionUtilities());
 
         Assert.True(viewModel.ShowDevCenterStatusArea);
     }
