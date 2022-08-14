@@ -73,4 +73,16 @@
     <data name="SkipAction" xml:space="preserve">
         <value>Ohita</value>
     </data>
+    <data name="ImportFailedTitle" xml:space="preserve">
+        <value>Tuonti epäonnistui</value>
+    </data>
+    <data name="ImportSucceededTitle" xml:space="preserve">
+        <value>Tuonti onnistui</value>
+    </data>
+    <data name="ImportSucceededMessage" xml:space="preserve">
+        <value>Edelliset asetukset on tuotu onnistuneesti.</value>
+    </data>
+    <data name="ImportFailedMessage" xml:space="preserve">
+        <value>Edellisten asetusten tuonti epäonnistui. Varmista, että laukaisijalla on luku- ja kirjoitusoikeus asetuksiin liittyviin tiedostopolkuihin, sitten käynnistä laukaisija uudelleen uutta yritystä varten.</value>
+    </data>
 </root>

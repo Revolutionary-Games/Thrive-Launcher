@@ -54,11 +54,13 @@
     <value>1.3</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+      PublicKeyToken=b77a5c561934e089
     </value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+      PublicKeyToken=b77a5c561934e089
     </value>
   </resheader>
   <data name="SettingsImportOldTitle" xml:space="preserve">
@@ -72,5 +74,17 @@
   </data>
   <data name="PerformImport" xml:space="preserve">
     <value>Import</value>
+  </data>
+  <data name="ImportFailedTitle" xml:space="preserve">
+    <value>Import Failed</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>Failed to import settings. Please make sure the relevant file paths for settings are readable and writable by the launcher, then restart the launcher to try again.</value>
+  </data>
+  <data name="ImportSucceededTitle" xml:space="preserve">
+    <value>Import Succeeded</value>
+  </data>
+  <data name="ImportSucceededMessage" xml:space="preserve">
+    <value>Previous settings have been successfully imported.</value>
   </data>
 </root>

@@ -14,21 +14,21 @@ namespace ThriveLauncher.Properties {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    public class Resources_fi {
         
         private static System.Resources.ResourceManager resourceMan;
         
         private static System.Globalization.CultureInfo resourceCulture;
         
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal Resources_fi() {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("ThriveLauncher.Properties.Resources", typeof(Resources).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("ThriveLauncher.Properties.Resources_fi", typeof(Resources_fi).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,15 +57,39 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string PerformImport {
+            get {
+                return ResourceManager.GetString("PerformImport", resourceCulture);
+            }
+        }
+        
         public static string SkipAction {
             get {
                 return ResourceManager.GetString("SkipAction", resourceCulture);
             }
         }
         
-        public static string PerformImport {
+        public static string ImportFailedTitle {
             get {
-                return ResourceManager.GetString("PerformImport", resourceCulture);
+                return ResourceManager.GetString("ImportFailedTitle", resourceCulture);
+            }
+        }
+        
+        public static string ImportSucceededTitle {
+            get {
+                return ResourceManager.GetString("ImportSucceededTitle", resourceCulture);
+            }
+        }
+        
+        public static string ImportSucceededMessage {
+            get {
+                return ResourceManager.GetString("ImportSucceededMessage", resourceCulture);
+            }
+        }
+        
+        public static string ImportFailedMessage {
+            get {
+                return ResourceManager.GetString("ImportFailedMessage", resourceCulture);
             }
         }
     }

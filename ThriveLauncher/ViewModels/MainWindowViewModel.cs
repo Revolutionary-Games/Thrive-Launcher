@@ -4,6 +4,7 @@ using LauncherBackend.Models;
 using LauncherBackend.Services;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
+using ThriveLauncher.Properties;
 using ThriveLauncher.Utilities;
 
 namespace ThriveLauncher.ViewModels
@@ -199,6 +200,13 @@ namespace ThriveLauncher.ViewModels
             WebFeedsEnabled = settings.ShowWebContent;
         }
 
+        public void ShowNotice(string title, string text, bool canDismiss = true)
+        {
+            NoticeMessageTitle = title;
+            NoticeMessageText = text;
+            CanDismissNotice = canDismiss;
+        }
+
         public void VersionSelected(string selectedVersion)
         {
         }
@@ -271,8 +279,11 @@ namespace ThriveLauncher.ViewModels
 
             if (!result)
             {
-                NoticeMessageText = "Failed to import settings";
-                NoticeMessageTitle = "Import failed";
+                ShowNotice(Resources.ImportFailedTitle, Resources.ImportFailedMessage);
+            }
+            else
+            {
+                ShowNotice(Resources.ImportSucceededTitle, Resources.ImportSucceededMessage);
             }
         }
     }
