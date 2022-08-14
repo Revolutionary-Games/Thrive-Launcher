@@ -8,6 +8,8 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddThriveLauncher(this IServiceCollection serviceCollection)
     {
         return serviceCollection.AddSingleton<ILauncherFeeds, LauncherFeeds>()
-            .AddSingleton<IStoreVersionDetector, StoreVersionDetector>();
+            .AddSingleton<IStoreVersionDetector, StoreVersionDetector>()
+            .AddSingleton<ILauncherSettingsManager, LauncherSettingsManager>()
+            .AddSingleton<ILauncherPaths, LauncherPaths>();
     }
 }
