@@ -1,6 +1,7 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:ThriveLauncher.Controls">
+        xmlns:controls="using:ThriveLauncher.Controls"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime">
     <Design.PreviewWith>
         <StackPanel MinWidth="400" MinHeight="200">
             <Rectangle Fill="White"></Rectangle>
@@ -23,6 +24,7 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="5" />
         <Setter Property="MinWidth" Value="600" />
+        <Setter Property="MaxWidth" Value="{x:Static system:Double.PositiveInfinity}" />
         <Setter Property="TitleSeparatorColour" Value="{DynamicResource BlueElement}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Top" />
@@ -43,7 +45,8 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}" Name="Popup"
                             BoxShadow="{TemplateBinding BoxShadow}">
-                        <DockPanel LastChildFill="True" Margin="4" MinWidth="{TemplateBinding MinWidth}">
+                        <DockPanel LastChildFill="True" Margin="4" MinWidth="{TemplateBinding MinWidth}"
+                                   MaxWidth="{TemplateBinding MaxWidth}">
                             <Grid DockPanel.Dock="Top" ColumnDefinitions="36, *, auto, *, 36"
                                   HorizontalAlignment="Stretch">
                                 <!-- TODO when title is not shown somehow make the X not take up vertical space -->
