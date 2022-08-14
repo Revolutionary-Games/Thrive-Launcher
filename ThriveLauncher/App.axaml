@@ -31,6 +31,7 @@
         <Color x:Key="FriendlyRed">#d43a3a</Color>
         <Color x:Key="Danger">#801515</Color>
         <Color x:Key="DangerHover">#d46a6a</Color>
+        <Color x:Key="DangerActive">#651212</Color>
         <Color x:Key="ModalBackground">#fefefe</Color>
         <Color x:Key="ModalBorder">#888</Color>
         <Color x:Key="TextLink">#6acdeb</Color>
@@ -132,6 +133,17 @@
         </Style>
         <Style Selector="Button.DialogButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource LightGrey}" />
+        </Style>
+
+        <Style Selector="Button.Danger">
+            <Setter Property="Foreground" Value="{DynamicResource ButtonForeground}" />
+            <Setter Property="Background" Value="{DynamicResource Danger}" />
+        </Style>
+        <Style Selector="Button.Danger:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource DangerHover}" />
+        </Style>
+        <Style Selector="Button.Danger:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource DangerActive}" />
         </Style>
 
         <Style Selector="ComboBox.VersionSelect">

@@ -68,6 +68,37 @@ public class LauncherSettingsManager : ILauncherSettingsManager
         return true;
     }
 
+    public Task<bool> ImportOldSettings()
+    {
+        var old = v1Settings;
+
+        if (old == null)
+            throw new InvalidOperationException("Old settings have not been detected");
+
+        var target = Settings;
+
+        // This list doesn't need to be maintained as the old launcher won't gain new settings
+        target.ShowWebContent = old.ShowWebContent;
+        target.HideLauncherOnPlay = old.HideLauncherOnPlay;
+        target.Hide32Bit = old.Hide32Bit;
+        target.CloseLauncherAfterGameExit = old.CloseLauncherAfterGameExit;
+        target.CloseLauncherOnGameStart = old.CloseLauncherOnGameStart;
+        target.StoreVersionShowExternalVersions = old.StoreVersionShowExternalVersions;
+        target.AutoStartStoreVersion = old.AutoStartStoreVersion;
+        target.BeginningKeptGameOutput = old.BeginningKeptGameOutput;
+        target.LastKeptGameOutput = old.LastKeptGameOutput;
+        target.ThriveInstallationPath = old.ThriveInstallationPath;
+        target.DehydratedCacheFolder = old.DehydratedCacheFolder;
+        target.TemporaryDownloadsFolder = old.TemporaryDownloadsFolder;
+        target.DevCenterKey = old.DevCenterKey;
+        target.SelectedDevBuildType = old.SelectedDevBuildType;
+        target.ManuallySelectedBuildHash = old.ManuallySelectedBuildHash;
+        target.ForceGles2Mode = old.ForceGles2Mode;
+        target.DisableThriveVideos = old.DisableThriveVideos;
+
+        return Save();
+    }
+
     private LauncherSettings? AttemptToLoadSettings()
     {
         settingsLoaded = true;
@@ -94,6 +125,10 @@ public class LauncherSettingsManager : ILauncherSettingsManager
         }
 
         logger.LogInformation("No existing settings file found, using defaults");
+
+        // Skip detecting old settings if their path would be the same
+        if (Path.GetFullPath(launcherPaths.PathToSettingsV1) == Path.GetFullPath(launcherPaths.PathToSettings))
+            return null;
 
         // Try to detect old launcher settings to allow settings migration
         if (!File.Exists(launcherPaths.PathToSettingsV1))
@@ -137,4 +172,6 @@ public interface ILauncherSettingsManager
     /// </summary>
     /// <returns>Task returning true on success</returns>
     public Task<bool> Save();
+
+    Task<bool> ImportOldSettings();
 }

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:ThriveLauncher.Controls"
+        xmlns:p="clr-namespace:ThriveLauncher.Properties"
         mc:Ignorable="d" d:DesignWidth="950" d:DesignHeight="600"
         Width="950" Height="600"
         MinWidth="900" MinHeight="550"
@@ -324,7 +325,8 @@
                 <TabItem Header="Specific Build" IsEnabled="True">
                     <StackPanel>
                         <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto">
-                            <WrapPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="0 0 2 0">
+                            <WrapPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
+                                       Margin="0 0 2 0">
                                 <TextBlock Margin="0 0 2 0">Manually entered hash:</TextBlock>
                                 <TextBlock Text="{Binding LauncherVersion}" />
                             </WrapPanel>
@@ -349,6 +351,24 @@
                     </StackPanel>
                 </TabItem>
             </TabControl>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog Title="{x:Static p:Resources.SettingsImportOldTitle}"
+                              CloseCommand="{Binding SkipSettingsUpgrade}"
+                              ShowPopup="{Binding ShowSettingsUpgrade}" ShowOKButton="False">
+            <DockPanel LastChildFill="True" MaxWidth="600">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="2"
+                            Margin="0 15 0 0">
+                    <Button Classes="DialogButton" Command="{Binding PerformSettingsUpgrade}"
+                            Content="{x:Static p:Resources.PerformImport}" />
+
+                    <Button Classes="DialogButton Danger" Command="{Binding SkipSettingsUpgrade}"
+                            Content="{x:Static p:Resources.SkipAction}" />
+                </StackPanel>
+
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
+                           Text="{x:Static p:Resources.SettingsImportOldExplanation}" />
+            </DockPanel>
         </controls:PopupDialog>
 
         <controls:PopupDialog Title="{Binding NoticeMessageTitle}" ShowOKButton="{Binding CanDismissNotice}"

@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using LauncherBackend.Models;
 using LauncherBackend.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +14,7 @@ namespace ThriveLauncher.ViewModels
 
         private readonly ILauncherFeeds launcherFeeds;
         private readonly IStoreVersionDetector storeInfo;
+        private readonly ILauncherSettingsManager settingsManager;
         private readonly VersionUtilities versionUtilities;
 
         private readonly bool isStoreVersion;
@@ -23,9 +25,13 @@ namespace ThriveLauncher.ViewModels
 
         private bool showLinksPopup;
 
+        private bool showSettingsUpgrade;
+
+        // Settings sub view
         private bool showSettingsPopup;
         private bool webFeedsEnabled;
 
+        // Devcenter features
         private bool showDevCenterStatusArea = true;
         private bool showDevCenterPopup;
 
@@ -40,9 +46,12 @@ namespace ThriveLauncher.ViewModels
         {
             this.launcherFeeds = launcherFeeds;
             this.storeInfo = storeInfo;
+            this.settingsManager = settingsManager;
             this.versionUtilities = versionUtilities;
 
             ApplySettings(settingsManager.Settings);
+
+            showSettingsUpgrade = settingsManager.V1Settings != null;
 
             var detectedStore = storeInfo.Detect();
             isStoreVersion = detectedStore.IsStoreVersion;
@@ -114,12 +123,12 @@ namespace ThriveLauncher.ViewModels
             }
         }
 
-        public bool ShowLinksPopup
+        public bool ShowSettingsUpgrade
         {
-            get => showLinksPopup;
+            get => showSettingsUpgrade;
             private set
             {
-                this.RaiseAndSetIfChanged(ref showLinksPopup, value);
+                this.RaiseAndSetIfChanged(ref showSettingsUpgrade, value);
             }
         }
 
@@ -147,6 +156,15 @@ namespace ThriveLauncher.ViewModels
             private set
             {
                 this.RaiseAndSetIfChanged(ref showDevCenterStatusArea, value);
+            }
+        }
+
+        public bool ShowLinksPopup
+        {
+            get => showLinksPopup;
+            private set
+            {
+                this.RaiseAndSetIfChanged(ref showLinksPopup, value);
             }
         }
 
@@ -237,6 +255,24 @@ namespace ThriveLauncher.ViewModels
             {
                 // User failed to type the sequence
                 nextDevCenterOpenOverrideKeyIndex = 0;
+            }
+        }
+
+        public void SkipSettingsUpgrade()
+        {
+            ShowSettingsUpgrade = false;
+        }
+
+        public async Task PerformSettingsUpgrade()
+        {
+            var result = await settingsManager.ImportOldSettings();
+
+            ShowSettingsUpgrade = false;
+
+            if (!result)
+            {
+                NoticeMessageText = "Failed to import settings";
+                NoticeMessageTitle = "Import failed";
             }
         }
     }
