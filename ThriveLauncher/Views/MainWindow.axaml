@@ -54,16 +54,14 @@
                     HorizontalAlignment="Stretch" Padding="15">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="3">
                     <Button FontSize="18" VerticalAlignment="Stretch" Command="{Binding ToggleLinksView}">
-                        <TextBlock VerticalAlignment="Center">
-                            Links
-                        </TextBlock>
+                        <TextBlock VerticalAlignment="Center" Text="{x:Static p:Resources.LinksButton}" />
                     </Button>
                     <Button VerticalAlignment="Stretch" Command="{Binding OpenSettings}">
                         <Image Source="/Assets/gear.png" Width="32" />
                     </Button>
-                    <Button FontSize="28" Classes="PlayButton" Command="{Binding ToggleLinksView}">
-                        Play
-                    </Button>
+                    <Button FontSize="28" Classes="PlayButton" Command="{Binding ToggleLinksView}"
+                            Content="{x:Static p:Resources.PlayButton}" />
+
                     <ComboBox SelectedIndex="0" FontSize="20" VerticalAlignment="Stretch" Classes="VersionSelect"
                               SelectionChanged="SelectedVersionChanged">
                         <ComboBoxItem>DevBuild Linux x64</ComboBoxItem>
@@ -72,16 +70,15 @@
                     <StackPanel Orientation="Horizontal" IsVisible="{Binding ShowDevCenterStatusArea}"
                                 Margin="2 0 0 0 ">
                         <Button Classes="TextLink" Command="{Binding OpenDevCenterConnectionMenu}"
-                                IsVisible="{Binding !HasDevCenterConnection}">
-                            Connect to DevCenter
-                        </Button>
+                                IsVisible="{Binding !HasDevCenterConnection}"
+                                Content="{x:Static p:Resources.ConnectToDevCenterPrompt}" />
                         <StackPanel Orientation="Horizontal" IsVisible="{Binding HasDevCenterConnection}">
-                            <TextBlock IsVisible="{Binding DevCenterConnectionIsDeveloper}" VerticalAlignment="Center">
-                                Howdy,
-                            </TextBlock>
-                            <TextBlock IsVisible="{Binding !DevCenterConnectionIsDeveloper}" VerticalAlignment="Center">
-                                Thanks for the support,
-                            </TextBlock>
+                            <TextBlock IsVisible="{Binding DevCenterConnectionIsDeveloper}" VerticalAlignment="Center"
+                                       Text="{x:Static p:Resources.ConnectedDeveloperGreeting}" />
+
+                            <TextBlock IsVisible="{Binding !DevCenterConnectionIsDeveloper}" VerticalAlignment="Center"
+                                       Text="{x:Static p:Resources.ConnectedSupporterGreeting}" />
+
                             <Button Classes="TextLink" Command="{Binding OpenDevCenterConnectionMenu}"
                                     Content="{Binding DevCenterConnectedUser}">
                             </Button>
@@ -95,9 +92,10 @@
                         CornerRadius="2" Margin="6,4,0,6">
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled" Padding="3">
                         <StackPanel MinWidth="350">
-                            <TextBlock FontSize="24">DEVELOPMENT FORUMS</TextBlock>
+                            <TextBlock FontSize="24" Text="{x:Static p:Resources.DevelopmentFeedTitle}" />
                             <Border BorderBrush="{DynamicResource BlueElement}" BorderThickness="1" Margin="0 0 0 3" />
-                            <TextBlock IsVisible="{Binding !WebFeedsEnabled}">Web content disabled</TextBlock>
+                            <TextBlock IsVisible="{Binding !WebFeedsEnabled}"
+                                       Text="{x:Static p:Resources.WebContentIsDisabled}" />
                         </StackPanel>
                     </ScrollViewer>
                 </Border>
@@ -106,9 +104,10 @@
                         CornerRadius="2" Margin="0,4,6,6">
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled" Padding="3">
                         <StackPanel>
-                            <TextBlock FontSize="24">NEWS</TextBlock>
+                            <TextBlock FontSize="24" Text="{x:Static p:Resources.NewsFeedTitle}" />
                             <Border BorderBrush="{DynamicResource BlueElement}" BorderThickness="1" Margin="0 0 0 3" />
-                            <TextBlock IsVisible="{Binding !WebFeedsEnabled}">Web content disabled</TextBlock>
+                            <TextBlock IsVisible="{Binding !WebFeedsEnabled}"
+                                       Text="{x:Static p:Resources.WebContentIsDisabled}" />
                         </StackPanel>
                     </ScrollViewer>
                 </Border>
@@ -116,27 +115,44 @@
 
         </DockPanel>
 
-        <controls:PopupDialog Title="Revolutionary Games Links"
+        <controls:PopupDialog Title="{x:Static p:Resources.LinksPopupTitle}"
                               CloseCommand="{Binding CloseLinksClicked}" ShowPopup="{Binding ShowLinksPopup}">
             <Grid ColumnDefinitions="*, *" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
-                <Button Grid.Column="0" Grid.Row="0" Classes="TextLink" Content="Main website" FontSize="20" />
-                <Button Grid.Column="0" Grid.Row="1" Classes="TextLink" Content="Development forums" />
-                <Button Grid.Column="0" Grid.Row="2" Classes="TextLink" Content="Community forums" />
-                <Button Grid.Column="0" Grid.Row="3" Classes="TextLink" Content="Developer Wiki" />
-                <Button Grid.Column="0" Grid.Row="4" Classes="TextLink" Content="Patreon" />
-                <Button Grid.Column="0" Grid.Row="5" Classes="TextLink" Content="Donate" />
-                <Button Grid.Column="0" Grid.Row="6" Classes="TextLink" Content="ThriveDevCenter" />
-                <Button Grid.Column="0" Grid.Row="7" Classes="TextLink" Content="Thrive on Steam" />
-                <Button Grid.Column="0" Grid.Row="8" Classes="TextLink" Content="Thrive on itch.io" />
+                <Button Grid.Column="0" Grid.Row="0" Classes="TextLink"
+                        Content="{x:Static p:Resources.ExternalLinkMainWebsite}" FontSize="20" />
+                <Button Grid.Column="0" Grid.Row="1" Classes="TextLink"
+                        Content="{x:Static p:Resources.ExternalLinkDevelopmentForums}" />
+                <Button Grid.Column="0" Grid.Row="2" Classes="TextLink"
+                        Content="{x:Static p:Resources.ExternalLinkCommunityForums}" />
+                <Button Grid.Column="0" Grid.Row="3" Classes="TextLink"
+                        Content="{x:Static p:Resources.ExternalLinkDeveloperWiki}" />
+                <Button Grid.Column="0" Grid.Row="4" Classes="TextLink"
+                        Content="{x:Static p:Resources.ExternalLinkPatreon}" />
+                <Button Grid.Column="0" Grid.Row="5" Classes="TextLink"
+                        Content="{x:Static p:Resources.ExternalLinkDonate}" />
+                <Button Grid.Column="0" Grid.Row="6" Classes="TextLink"
+                        Content="{x:Static p:Resources.ExternalLinkThriveDevCenter}" />
+                <Button Grid.Column="0" Grid.Row="7" Classes="TextLink"
+                        Content="{x:Static p:Resources.ExternalLinkThriveSteam}" />
+                <Button Grid.Column="0" Grid.Row="8" Classes="TextLink"
+                        Content="{x:Static p:Resources.ExternalLinkThriveItch}" />
 
-                <Button Grid.Column="1" Grid.Row="0" Classes="TextLink" Content="Thrive on Github" FontSize="20" />
-                <Button Grid.Column="1" Grid.Row="1" Classes="TextLink" Content="Launcher on Github" />
-                <Button Grid.Column="1" Grid.Row="2" Classes="TextLink" Content="Fan Wiki" />
-                <Button Grid.Column="1" Grid.Row="3" Classes="TextLink" Content="Discord server" />
-                <Button Grid.Column="1" Grid.Row="4" Classes="TextLink" Content="Subreddit" />
-                <Button Grid.Column="1" Grid.Row="5" Classes="TextLink" Content="YouTube channel" />
-                <Button Grid.Column="1" Grid.Row="6" Classes="TextLink" Content="Twitter feed" />
-                <Button Grid.Column="1" Grid.Row="7" Classes="TextLink" Content="Facebook page" />
+                <Button Grid.Column="1" Grid.Row="0" Classes="TextLink"
+                        Content="{x:Static p:Resources.ExternalLinkThriveGithub}" FontSize="20" />
+                <Button Grid.Column="1" Grid.Row="1" Classes="TextLink"
+                        Content="{x:Static p:Resources.ExternalLinkLauncherGithub}" />
+                <Button Grid.Column="1" Grid.Row="2" Classes="TextLink"
+                        Content="{x:Static p:Resources.ExternalLinkFanWiki}" />
+                <Button Grid.Column="1" Grid.Row="3" Classes="TextLink"
+                        Content="{x:Static p:Resources.ExternalLinkDiscordServer}" />
+                <Button Grid.Column="1" Grid.Row="4" Classes="TextLink"
+                        Content="{x:Static p:Resources.ExternalLinkSubreddit}" />
+                <Button Grid.Column="1" Grid.Row="5" Classes="TextLink"
+                        Content="{x:Static p:Resources.ExternalLinkYouTubeChannel}" />
+                <Button Grid.Column="1" Grid.Row="6" Classes="TextLink"
+                        Content="{x:Static p:Resources.ExternalLinkTwitterFeed}" />
+                <Button Grid.Column="1" Grid.Row="7" Classes="TextLink"
+                        Content="{x:Static p:Resources.ExternalLinkFacebookPage}" />
             </Grid>
         </controls:PopupDialog>
 
@@ -148,56 +164,56 @@
                             RelativePanel.AlignRightWithPanel="True"
                             RelativePanel.AlignTopWithPanel="True"
                             RelativePanel.AlignBottomWithPanel="True">
-                    <TabItem Header="Thrive Options">
+                    <TabItem Header="{x:Static p:Resources.ThriveOptions}">
                         <StackPanel>
-                            <TextBlock FontSize="16">
-                                Launch Options
-                            </TextBlock>
+                            <TextBlock FontSize="16" Text="{x:Static p:Resources.LaunchOptionsTitle}" />
                             <CheckBox>
-                                <TextBlock TextWrapping="Wrap">Disable all game videos (if Thrive crashes after showing the loading logo and before the intro video plays, this may help get the game to work)</TextBlock>
+                                <TextBlock TextWrapping="Wrap" Text="{x:Static p:Resources.LaunchOptionDisableVideos}" />
                             </CheckBox>
                             <CheckBox>
-                                <TextBlock TextWrapping="Wrap">Force GLES2 rendering mode (may make Thrive start, but causes slight graphics problems)</TextBlock>
+                                <TextBlock TextWrapping="Wrap" Text="{x:Static p:Resources.LaunchOptionForceGLES2}" />
                             </CheckBox>
                         </StackPanel>
                     </TabItem>
-                    <TabItem Header="Launcher Options">
+                    <TabItem Header="{x:Static p:Resources.LauncherOptions}">
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="0 0 1 0">Launcher version:</TextBlock>
+                                <TextBlock Margin="0 0 1 0" Text="{x:Static p:Resources.LauncherVersionDisplay}" />
                                 <TextBlock Text="{Binding LauncherVersion}" />
                             </StackPanel>
                             <Border DockPanel.Dock="Top" Padding="0" BorderThickness="1"
                                     BorderBrush="{DynamicResource BlueElement}" />
-                            <CheckBox>
-                                Enable Web Feeds
-                            </CheckBox>
-                            <CheckBox>
-                                Hide Launcher on Play
-                            </CheckBox>
-                            <CheckBox>
-                                Close Launcher After Playing (if no error)
-                            </CheckBox>
-                            <CheckBox>
-                                Close Launcher After Starting the Game
-                            </CheckBox>
-                            <CheckBox>
-                                Allow Seamless Launcher Mode
-                            </CheckBox>
+                            <CheckBox Content="{x:Static p:Resources.LauncherOptionWebFeeds}" />
+
+                            <CheckBox Content="{x:Static p:Resources.LauncherOptionHideOnPlay}" />
+
+                            <CheckBox Content="{x:Static p:Resources.LauncherOptionCloseAfterPlaying}" />
+
+                            <CheckBox Content="{x:Static p:Resources.LauncherOptionCloseAfterStart}" />
+
+                            <CheckBox Content="{x:Static p:Resources.LauncherOptionAllowSeamlessMode}" />
+
                             <!-- TODO store version specific settings -->
+
+                            <StackPanel Orientation="Horizontal" Margin="0 5">
+                                <TextBlock Margin="0 0 2 0" Text="{x:Static p:Resources.LauncherSelectedLanguage}"
+                                           VerticalAlignment="Center" />
+                                <ComboBox x:Name="LanguageComboBox" SelectionChanged="LanguageSelectionChanged" />
+                            </StackPanel>
 
                             <!-- TODO red warning button -->
                             <Border DockPanel.Dock="Top" Padding="0" BorderThickness="1" Margin="0 0 0 3"
                                     BorderBrush="{DynamicResource BlueElement}" />
-                            <Button Classes="DialogButton">Reset All Settings</Button>
+                            <Button Classes="DialogButton" Content="{x:Static p:Resources.ResetAllSettings}" />
                         </StackPanel>
                     </TabItem>
-                    <TabItem Header="Installed Versions">
+                    <TabItem Header="{x:Static p:Resources.InstalledVersions}">
                         <StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="2">
-                                <Button Classes="DialogButton">Browse Installed Files</Button>
-                                <Button Classes="DialogButton">Select Install Location</Button>
-                                <Button Classes="DialogButton" ToolTip.Tip="Reset Install Location">
+                                <Button Classes="DialogButton" Content="{x:Static p:Resources.BrowseInstalledFiles}" />
+                                <Button Classes="DialogButton" Content="{x:Static p:Resources.SelectInstallLocation}" />
+                                <Button Classes="DialogButton"
+                                        ToolTip.Tip="{x:Static p:Resources.ResetInstallLocationToolTip}">
                                     <Image Height="16" Source="{DynamicResource RevertIconWhite}" />
                                 </Button>
                             </StackPanel>
@@ -205,7 +221,7 @@
                                     BorderBrush="{DynamicResource BlueElement}" />
 
                             <WrapPanel Orientation="Horizontal" Margin="0 5">
-                                <TextBlock Margin="0 0 2 0">Directory:</TextBlock>
+                                <TextBlock Margin="0 0 2 0" Text="{x:Static p:Resources.FolderPathDisplay}" />
                                 <TextBlock Text="{Binding LauncherVersion}" />
                             </WrapPanel>
 
@@ -215,7 +231,7 @@
                             </ScrollViewer>
                         </StackPanel>
                     </TabItem>
-                    <TabItem Header="Cache">
+                    <TabItem Header="{x:Static p:Resources.CacheConfigurationTab}">
                         <StackPanel>
                             <WrapPanel Orientation="Horizontal" Margin="0 0 0 5">
                                 <TextBlock Margin="0 0 2 0">Temporary downloads folder:</TextBlock>

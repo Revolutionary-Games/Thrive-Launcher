@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Threading.Tasks;
 using LauncherBackend.Models;
 using LauncherBackend.Services;
@@ -18,7 +20,11 @@ namespace ThriveLauncher.ViewModels
         private readonly ILauncherSettingsManager settingsManager;
         private readonly VersionUtilities versionUtilities;
 
+        private readonly Dictionary<string, CultureInfo> availableLanguages;
+
         private readonly bool isStoreVersion;
+
+        private string selectedLanguage = string.Empty;
 
         private string noticeMessageText = string.Empty;
         private string noticeMessageTitle = string.Empty;
@@ -50,7 +56,10 @@ namespace ThriveLauncher.ViewModels
             this.settingsManager = settingsManager;
             this.versionUtilities = versionUtilities;
 
+            availableLanguages = Languages.GetAvailableLanguages();
+
             ApplySettings(settingsManager.Settings);
+            UpdateCurrentlySelectedCulture();
 
             showSettingsUpgrade = settingsManager.V1Settings != null;
 
@@ -63,7 +72,7 @@ namespace ThriveLauncher.ViewModels
             if (preventDevCenterFeatures)
                 ShowDevCenterStatusArea = false;
 
-            Items = new ObservableCollection<string>() { };
+            items = new ObservableCollection<string>() { };
         }
 
         /// <summary>
@@ -80,6 +89,21 @@ namespace ThriveLauncher.ViewModels
             !string.IsNullOrEmpty(NoticeMessageText) || !string.IsNullOrEmpty(NoticeMessageTitle);
 
         public string LauncherVersion => versionUtilities.LauncherVersion;
+
+        // TODO: make the language be saved
+        public string SelectedLanguage
+        {
+            get => selectedLanguage;
+            set
+            {
+                if (selectedLanguage == value)
+                    return;
+
+                this.RaiseAndSetIfChanged(ref selectedLanguage, value);
+                Languages.SetLanguage(availableLanguages[selectedLanguage]);
+                UpdateCurrentlySelectedCulture();
+            }
+        }
 
         public bool CanDismissNotice
         {
@@ -193,11 +217,21 @@ namespace ThriveLauncher.ViewModels
             }
         }
 
-        public ObservableCollection<string> Items { get; }
+        public ObservableCollection<string> items { get; }
 
         public void ApplySettings(LauncherSettings settings)
         {
             WebFeedsEnabled = settings.ShowWebContent;
+        }
+
+        public IEnumerable<string> GetAvailableLanguages()
+        {
+            return availableLanguages.Keys;
+        }
+
+        public void LanguageChanged(string language)
+        {
+            SelectedLanguage = language;
         }
 
         public void ShowNotice(string title, string text, bool canDismiss = true)
@@ -285,6 +319,11 @@ namespace ThriveLauncher.ViewModels
             {
                 ShowNotice(Resources.ImportSucceededTitle, Resources.ImportSucceededMessage);
             }
+        }
+
+        private void UpdateCurrentlySelectedCulture()
+        {
+            SelectedLanguage = Languages.GetCurrentlyUsedCulture(availableLanguages).NativeName;
         }
     }
 }
