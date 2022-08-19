@@ -306,5 +306,11 @@
   <data name="FetchLatestBuildsButton" xml:space="preserve">
       <value>Fetch Latest Builds</value>
   </data>
-
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>Saving Settings Failed</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>Saving settings to the settings file has failed. Please make sure the launcher has write access and try again.
+Launcher logs will have more info.</value>
+  </data>
 </root>

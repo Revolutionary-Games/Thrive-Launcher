@@ -32,6 +32,9 @@ public class LauncherSettings
     [JsonPropertyName("lastKeptGameOutput")]
     public int LastKeptGameOutput { get; set; } = 900;
 
+    [JsonPropertyName("launcherLanguage")]
+    public string? SelectedLauncherLanguage { get; set; }
+
     // Path options (null if default is used)
     [JsonPropertyName("installPath")]
     public string? ThriveInstallationPath { get; set; }

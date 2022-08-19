@@ -301,4 +301,11 @@
     <data name="YouAreDeveloperInfo" xml:space="preserve">
         <value>Olet kehittäjä</value>
     </data>
+    <data name="SettingsSaveFailedTitle" xml:space="preserve">
+        <value>Asetusten tallennus epäonnistui</value>
+    </data>
+    <data name="SettingsSaveFailedMessage" xml:space="preserve">
+        <value>Asetusten tallennus asetustiedostoon on epäonnistunut. Ole hyvä ja vahvista, että laukaisijalla on kirjoitusoikeus ja kokeile uudestaan.
+Laukaisijan lokeissa on lisätietoa.</value>
+    </data>
 </root>

@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
+using Avalonia.Threading;
 using LauncherBackend.Models;
 using LauncherBackend.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -162,7 +163,13 @@ namespace ThriveLauncher.ViewModels
             get => showSettingsPopup;
             private set
             {
+                if (showSettingsPopup == value)
+                    return;
+
                 this.RaiseAndSetIfChanged(ref showSettingsPopup, value);
+
+                if (!showSettingsPopup)
+                    TriggerSaveSettings();
             }
         }
 
@@ -324,6 +331,21 @@ namespace ThriveLauncher.ViewModels
         private void UpdateCurrentlySelectedCulture()
         {
             SelectedLanguage = Languages.GetCurrentlyUsedCulture(availableLanguages).NativeName;
+        }
+
+        private void TriggerSaveSettings()
+        {
+            Dispatcher.UIThread.Post(PerformSave);
+        }
+
+        private async void PerformSave()
+        {
+            // TODO: only save if there are settings changes
+
+            if (!await settingsManager.Save())
+            {
+                ShowNotice(Resources.SettingsSaveFailedTitle, Resources.SettingsSaveFailedMessage);
+            }
         }
     }
 }

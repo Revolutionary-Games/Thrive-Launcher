@@ -530,5 +530,17 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("FetchLatestBuildsButton", resourceCulture);
             }
         }
+        
+        public static string SettingsSaveFailedTitle {
+            get {
+                return ResourceManager.GetString("SettingsSaveFailedTitle", resourceCulture);
+            }
+        }
+        
+        public static string SettingsSaveFailedMessage {
+            get {
+                return ResourceManager.GetString("SettingsSaveFailedMessage", resourceCulture);
+            }
+        }
     }
 }
