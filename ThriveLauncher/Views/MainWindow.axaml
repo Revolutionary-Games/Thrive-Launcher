@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:ThriveLauncher.Controls"
         xmlns:p="clr-namespace:ThriveLauncher.Properties"
+        xmlns:services="clr-namespace:ThriveLauncher.Services"
         mc:Ignorable="d" d:DesignWidth="950" d:DesignHeight="600"
         Width="950" Height="600"
         MinWidth="900" MinHeight="550"
@@ -175,7 +176,7 @@
                             </CheckBox>
                         </StackPanel>
                     </TabItem>
-                    <TabItem Header="{x:Static p:Resources.LauncherOptions}">
+                    <TabItem Header="{services:Localize LauncherOptions}">
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Margin="0 0 1 0" Text="{x:Static p:Resources.LauncherVersionDisplay}" />

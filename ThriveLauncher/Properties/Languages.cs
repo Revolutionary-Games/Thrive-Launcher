@@ -13,6 +13,14 @@ public static class Languages
     private static readonly CultureInfo StartUpLanguage = CultureInfo.CurrentCulture;
     private static readonly CultureInfo DefaultLanguage = new("en-GB");
 
+    public delegate void OnCurrentLanguageChanged();
+
+    /// <summary>
+    ///   Triggered when the program language is changed through the proper method
+    ///   (<see cref="SetLanguage(System.Globalization.CultureInfo)"/>)
+    /// </summary>
+    public static event OnCurrentLanguageChanged? OnLanguageChanged;
+
     /// <summary>
     ///   Gets available languages in a dictionary
     /// </summary>
@@ -55,6 +63,10 @@ public static class Languages
         CultureInfo.CurrentCulture = cultureInfo;
         CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
         CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+        Resources.Culture = cultureInfo;
+
+        OnLanguageChanged?.Invoke();
     }
 
     public static void SetLanguage(string nativeName)
