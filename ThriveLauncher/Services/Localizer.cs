@@ -2,7 +2,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using ThriveLauncher.Properties;
 
-namespace ThriveLauncher.Services;
+namespace ThriveLauncher.Services.Localization;
 
 public class Localizer : INotifyPropertyChanged
 {

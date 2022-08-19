@@ -4,8 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:ThriveLauncher.Controls"
-        xmlns:p="clr-namespace:ThriveLauncher.Properties"
-        xmlns:services="clr-namespace:ThriveLauncher.Services"
+        xmlns:i18n="clr-namespace:ThriveLauncher.Services.Localization"
         mc:Ignorable="d" d:DesignWidth="950" d:DesignHeight="600"
         Width="950" Height="600"
         MinWidth="900" MinHeight="550"
@@ -55,13 +54,13 @@
                     HorizontalAlignment="Stretch" Padding="15">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="3">
                     <Button FontSize="18" VerticalAlignment="Stretch" Command="{Binding ToggleLinksView}">
-                        <TextBlock VerticalAlignment="Center" Text="{x:Static p:Resources.LinksButton}" />
+                        <TextBlock VerticalAlignment="Center" Text="{i18n:Localize LinksButton}" />
                     </Button>
                     <Button VerticalAlignment="Stretch" Command="{Binding OpenSettings}">
                         <Image Source="/Assets/gear.png" Width="32" />
                     </Button>
                     <Button FontSize="28" Classes="PlayButton" Command="{Binding ToggleLinksView}"
-                            Content="{x:Static p:Resources.PlayButton}" />
+                            Content="{i18n:Localize PlayButton}" />
 
                     <ComboBox SelectedIndex="0" FontSize="20" VerticalAlignment="Stretch" Classes="VersionSelect"
                               SelectionChanged="SelectedVersionChanged">
@@ -72,13 +71,13 @@
                                 Margin="2 0 0 0 ">
                         <Button Classes="TextLink" Command="{Binding OpenDevCenterConnectionMenu}"
                                 IsVisible="{Binding !HasDevCenterConnection}"
-                                Content="{x:Static p:Resources.ConnectToDevCenterPrompt}" />
+                                Content="{i18n:Localize ConnectToDevCenterPrompt}" />
                         <StackPanel Orientation="Horizontal" IsVisible="{Binding HasDevCenterConnection}">
                             <TextBlock IsVisible="{Binding DevCenterConnectionIsDeveloper}" VerticalAlignment="Center"
-                                       Text="{x:Static p:Resources.ConnectedDeveloperGreeting}" />
+                                       Text="{i18n:Localize ConnectedDeveloperGreeting}" />
 
                             <TextBlock IsVisible="{Binding !DevCenterConnectionIsDeveloper}" VerticalAlignment="Center"
-                                       Text="{x:Static p:Resources.ConnectedSupporterGreeting}" />
+                                       Text="{i18n:Localize ConnectedSupporterGreeting}" />
 
                             <Button Classes="TextLink" Command="{Binding OpenDevCenterConnectionMenu}"
                                     Content="{Binding DevCenterConnectedUser}">
@@ -93,10 +92,10 @@
                         CornerRadius="2" Margin="6,4,0,6">
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled" Padding="3">
                         <StackPanel MinWidth="350">
-                            <TextBlock FontSize="24" Text="{x:Static p:Resources.DevelopmentFeedTitle}" />
+                            <TextBlock FontSize="24" Text="{i18n:Localize DevelopmentFeedTitle}" />
                             <Border BorderBrush="{DynamicResource BlueElement}" BorderThickness="1" Margin="0 0 0 3" />
                             <TextBlock IsVisible="{Binding !WebFeedsEnabled}"
-                                       Text="{x:Static p:Resources.WebContentIsDisabled}" />
+                                       Text="{i18n:Localize WebContentIsDisabled}" />
                         </StackPanel>
                     </ScrollViewer>
                 </Border>
@@ -105,10 +104,10 @@
                         CornerRadius="2" Margin="0,4,6,6">
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled" Padding="3">
                         <StackPanel>
-                            <TextBlock FontSize="24" Text="{x:Static p:Resources.NewsFeedTitle}" />
+                            <TextBlock FontSize="24" Text="{i18n:Localize NewsFeedTitle}" />
                             <Border BorderBrush="{DynamicResource BlueElement}" BorderThickness="1" Margin="0 0 0 3" />
                             <TextBlock IsVisible="{Binding !WebFeedsEnabled}"
-                                       Text="{x:Static p:Resources.WebContentIsDisabled}" />
+                                       Text="{i18n:Localize WebContentIsDisabled}" />
                         </StackPanel>
                     </ScrollViewer>
                 </Border>
@@ -116,44 +115,44 @@
 
         </DockPanel>
 
-        <controls:PopupDialog Title="{x:Static p:Resources.LinksPopupTitle}"
+        <controls:PopupDialog Title="{i18n:Localize LinksPopupTitle}"
                               CloseCommand="{Binding CloseLinksClicked}" ShowPopup="{Binding ShowLinksPopup}">
             <Grid ColumnDefinitions="*, *" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
                 <Button Grid.Column="0" Grid.Row="0" Classes="TextLink"
-                        Content="{x:Static p:Resources.ExternalLinkMainWebsite}" FontSize="20" />
+                        Content="{i18n:Localize ExternalLinkMainWebsite}" FontSize="20" />
                 <Button Grid.Column="0" Grid.Row="1" Classes="TextLink"
-                        Content="{x:Static p:Resources.ExternalLinkDevelopmentForums}" />
+                        Content="{i18n:Localize ExternalLinkDevelopmentForums}" />
                 <Button Grid.Column="0" Grid.Row="2" Classes="TextLink"
-                        Content="{x:Static p:Resources.ExternalLinkCommunityForums}" />
+                        Content="{i18n:Localize ExternalLinkCommunityForums}" />
                 <Button Grid.Column="0" Grid.Row="3" Classes="TextLink"
-                        Content="{x:Static p:Resources.ExternalLinkDeveloperWiki}" />
+                        Content="{i18n:Localize ExternalLinkDeveloperWiki}" />
                 <Button Grid.Column="0" Grid.Row="4" Classes="TextLink"
-                        Content="{x:Static p:Resources.ExternalLinkPatreon}" />
+                        Content="{i18n:Localize ExternalLinkPatreon}" />
                 <Button Grid.Column="0" Grid.Row="5" Classes="TextLink"
-                        Content="{x:Static p:Resources.ExternalLinkDonate}" />
+                        Content="{i18n:Localize ExternalLinkDonate}" />
                 <Button Grid.Column="0" Grid.Row="6" Classes="TextLink"
-                        Content="{x:Static p:Resources.ExternalLinkThriveDevCenter}" />
+                        Content="{i18n:Localize ExternalLinkThriveDevCenter}" />
                 <Button Grid.Column="0" Grid.Row="7" Classes="TextLink"
-                        Content="{x:Static p:Resources.ExternalLinkThriveSteam}" />
+                        Content="{i18n:Localize ExternalLinkThriveSteam}" />
                 <Button Grid.Column="0" Grid.Row="8" Classes="TextLink"
-                        Content="{x:Static p:Resources.ExternalLinkThriveItch}" />
+                        Content="{i18n:Localize ExternalLinkThriveItch}" />
 
                 <Button Grid.Column="1" Grid.Row="0" Classes="TextLink"
-                        Content="{x:Static p:Resources.ExternalLinkThriveGithub}" FontSize="20" />
+                        Content="{i18n:Localize ExternalLinkThriveGithub}" FontSize="20" />
                 <Button Grid.Column="1" Grid.Row="1" Classes="TextLink"
-                        Content="{x:Static p:Resources.ExternalLinkLauncherGithub}" />
+                        Content="{i18n:Localize ExternalLinkLauncherGithub}" />
                 <Button Grid.Column="1" Grid.Row="2" Classes="TextLink"
-                        Content="{x:Static p:Resources.ExternalLinkFanWiki}" />
+                        Content="{i18n:Localize ExternalLinkFanWiki}" />
                 <Button Grid.Column="1" Grid.Row="3" Classes="TextLink"
-                        Content="{x:Static p:Resources.ExternalLinkDiscordServer}" />
+                        Content="{i18n:Localize ExternalLinkDiscordServer}" />
                 <Button Grid.Column="1" Grid.Row="4" Classes="TextLink"
-                        Content="{x:Static p:Resources.ExternalLinkSubreddit}" />
+                        Content="{i18n:Localize ExternalLinkSubreddit}" />
                 <Button Grid.Column="1" Grid.Row="5" Classes="TextLink"
-                        Content="{x:Static p:Resources.ExternalLinkYouTubeChannel}" />
+                        Content="{i18n:Localize ExternalLinkYouTubeChannel}" />
                 <Button Grid.Column="1" Grid.Row="6" Classes="TextLink"
-                        Content="{x:Static p:Resources.ExternalLinkTwitterFeed}" />
+                        Content="{i18n:Localize ExternalLinkTwitterFeed}" />
                 <Button Grid.Column="1" Grid.Row="7" Classes="TextLink"
-                        Content="{x:Static p:Resources.ExternalLinkFacebookPage}" />
+                        Content="{i18n:Localize ExternalLinkFacebookPage}" />
             </Grid>
         </controls:PopupDialog>
 
@@ -165,39 +164,39 @@
                             RelativePanel.AlignRightWithPanel="True"
                             RelativePanel.AlignTopWithPanel="True"
                             RelativePanel.AlignBottomWithPanel="True">
-                    <TabItem Header="{x:Static p:Resources.ThriveOptions}">
+                    <TabItem Header="{i18n:Localize ThriveOptions}">
                         <StackPanel>
-                            <TextBlock FontSize="16" Text="{x:Static p:Resources.LaunchOptionsTitle}" />
+                            <TextBlock FontSize="16" Text="{i18n:Localize LaunchOptionsTitle}" />
                             <CheckBox>
-                                <TextBlock TextWrapping="Wrap" Text="{x:Static p:Resources.LaunchOptionDisableVideos}" />
+                                <TextBlock TextWrapping="Wrap" Text="{i18n:Localize LaunchOptionDisableVideos}" />
                             </CheckBox>
                             <CheckBox>
-                                <TextBlock TextWrapping="Wrap" Text="{x:Static p:Resources.LaunchOptionForceGLES2}" />
+                                <TextBlock TextWrapping="Wrap" Text="{i18n:Localize LaunchOptionForceGLES2}" />
                             </CheckBox>
                         </StackPanel>
                     </TabItem>
-                    <TabItem Header="{services:Localize LauncherOptions}">
+                    <TabItem Header="{i18n:Localize LauncherOptions}">
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="0 0 1 0" Text="{x:Static p:Resources.LauncherVersionDisplay}" />
+                                <TextBlock Margin="0 0 1 0" Text="{i18n:Localize LauncherVersionDisplay}" />
                                 <TextBlock Text="{Binding LauncherVersion}" />
                             </StackPanel>
                             <Border DockPanel.Dock="Top" Padding="0" BorderThickness="1"
                                     BorderBrush="{DynamicResource BlueElement}" />
-                            <CheckBox Content="{x:Static p:Resources.LauncherOptionWebFeeds}" />
+                            <CheckBox Content="{i18n:Localize LauncherOptionWebFeeds}" />
 
-                            <CheckBox Content="{x:Static p:Resources.LauncherOptionHideOnPlay}" />
+                            <CheckBox Content="{i18n:Localize LauncherOptionHideOnPlay}" />
 
-                            <CheckBox Content="{x:Static p:Resources.LauncherOptionCloseAfterPlaying}" />
+                            <CheckBox Content="{i18n:Localize LauncherOptionCloseAfterPlaying}" />
 
-                            <CheckBox Content="{x:Static p:Resources.LauncherOptionCloseAfterStart}" />
+                            <CheckBox Content="{i18n:Localize LauncherOptionCloseAfterStart}" />
 
-                            <CheckBox Content="{x:Static p:Resources.LauncherOptionAllowSeamlessMode}" />
+                            <CheckBox Content="{i18n:Localize LauncherOptionAllowSeamlessMode}" />
 
                             <!-- TODO store version specific settings -->
 
                             <StackPanel Orientation="Horizontal" Margin="0 5">
-                                <TextBlock Margin="0 0 2 0" Text="{x:Static p:Resources.LauncherSelectedLanguage}"
+                                <TextBlock Margin="0 0 2 0" Text="{i18n:Localize LauncherSelectedLanguage}"
                                            VerticalAlignment="Center" />
                                 <ComboBox x:Name="LanguageComboBox" SelectionChanged="LanguageSelectionChanged" />
                             </StackPanel>
@@ -205,16 +204,16 @@
                             <!-- TODO red warning button -->
                             <Border DockPanel.Dock="Top" Padding="0" BorderThickness="1" Margin="0 0 0 3"
                                     BorderBrush="{DynamicResource BlueElement}" />
-                            <Button Classes="DialogButton" Content="{x:Static p:Resources.ResetAllSettings}" />
+                            <Button Classes="DialogButton" Content="{i18n:Localize ResetAllSettings}" />
                         </StackPanel>
                     </TabItem>
-                    <TabItem Header="{x:Static p:Resources.InstalledVersions}">
+                    <TabItem Header="{i18n:Localize InstalledVersions}">
                         <StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="2">
-                                <Button Classes="DialogButton" Content="{x:Static p:Resources.BrowseInstalledFiles}" />
-                                <Button Classes="DialogButton" Content="{x:Static p:Resources.SelectInstallLocation}" />
+                                <Button Classes="DialogButton" Content="{i18n:Localize BrowseInstalledFiles}" />
+                                <Button Classes="DialogButton" Content="{i18n:Localize SelectInstallLocation}" />
                                 <Button Classes="DialogButton"
-                                        ToolTip.Tip="{x:Static p:Resources.ResetInstallLocationToolTip}">
+                                        ToolTip.Tip="{i18n:Localize ResetInstallLocationToolTip}">
                                     <Image Height="16" Source="{DynamicResource RevertIconWhite}" />
                                 </Button>
                             </StackPanel>
@@ -222,7 +221,7 @@
                                     BorderBrush="{DynamicResource BlueElement}" />
 
                             <WrapPanel Orientation="Horizontal" Margin="0 5">
-                                <TextBlock Margin="0 0 2 0" Text="{x:Static p:Resources.FolderPathDisplay}" />
+                                <TextBlock Margin="0 0 2 0" Text="{i18n:Localize FolderPathDisplay}" />
                                 <TextBlock Text="{Binding LauncherVersion}" />
                             </WrapPanel>
 
@@ -232,7 +231,7 @@
                             </ScrollViewer>
                         </StackPanel>
                     </TabItem>
-                    <TabItem Header="{x:Static p:Resources.CacheConfigurationTab}">
+                    <TabItem Header="{i18n:Localize CacheConfigurationTab}">
                         <StackPanel>
                             <WrapPanel Orientation="Horizontal" Margin="0 0 0 5">
                                 <TextBlock Margin="0 0 2 0">Temporary downloads folder:</TextBlock>
@@ -370,21 +369,21 @@
             </TabControl>
         </controls:PopupDialog>
 
-        <controls:PopupDialog Title="{x:Static p:Resources.SettingsImportOldTitle}"
+        <controls:PopupDialog Title="{i18n:Localize SettingsImportOldTitle}"
                               CloseCommand="{Binding SkipSettingsUpgrade}"
                               ShowPopup="{Binding ShowSettingsUpgrade}" ShowOKButton="False">
             <DockPanel LastChildFill="True" MaxWidth="600">
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="2"
                             Margin="0 15 0 0">
                     <Button Classes="DialogButton" Command="{Binding PerformSettingsUpgrade}"
-                            Content="{x:Static p:Resources.PerformImport}" />
+                            Content="{i18n:Localize PerformImport}" />
 
                     <Button Classes="DialogButton Danger" Command="{Binding SkipSettingsUpgrade}"
-                            Content="{x:Static p:Resources.SkipAction}" />
+                            Content="{i18n:Localize SkipAction}" />
                 </StackPanel>
 
                 <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
-                           Text="{x:Static p:Resources.SettingsImportOldExplanation}" />
+                           Text="{i18n:Localize SettingsImportOldExplanation}" />
             </DockPanel>
         </controls:PopupDialog>
 
