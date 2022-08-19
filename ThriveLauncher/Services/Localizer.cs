@@ -35,7 +35,7 @@ public class Localizer : INotifyPropertyChanged
             if (result == null)
             {
                 Trace.WriteLine($"Missing resource (translation) text with key: {key}");
-                return "RESOURCE NOT FOUND";
+                return "TEXT NOT FOUND";
             }
 
             return result;

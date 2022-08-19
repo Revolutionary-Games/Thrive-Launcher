@@ -1,7 +1,8 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="using:ThriveLauncher.Controls"
-        xmlns:system="clr-namespace:System;assembly=System.Runtime">
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        xmlns:i18n="clr-namespace:ThriveLauncher.Services.Localization">
     <Design.PreviewWith>
         <StackPanel MinWidth="400" MinHeight="200">
             <Rectangle Fill="White"></Rectangle>
@@ -64,9 +65,8 @@
                                     IsVisible="{TemplateBinding ShowTitle}" />
                             <Button DockPanel.Dock="Bottom" IsVisible="{TemplateBinding ShowOKButton}"
                                     HorizontalAlignment="Center" Command="{TemplateBinding CloseCommand}"
-                                    Classes="DialogButton">
-                                OK
-                            </Button>
+                                    Classes="DialogButton" Content="{i18n:Localize DialogOk}"/>
+
                             <ScrollViewer
                                 HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}">
                                 <ContentPresenter Margin="{TemplateBinding Padding}"

@@ -202,4 +202,103 @@
     <data name="WebContentIsDisabled" xml:space="preserve">
         <value>Verkkosisältö on pois käytöstä</value>
     </data>
+    <data name="CacheSizeDisplay" xml:space="preserve">
+        <value>Välimuistin koko:</value>
+    </data>
+    <data name="ClearFolder" xml:space="preserve">
+        <value>Tyhjennä</value>
+    </data>
+    <data name="ConnectButton" xml:space="preserve">
+        <value>Yhdistä</value>
+    </data>
+    <data name="ConnectedAsUserDisplay" xml:space="preserve">
+        <value>Yhdistetty käyttäjänä:</value>
+    </data>
+    <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+        <value>Päivän koontiversio (BOTD), suositeltu</value>
+    </data>
+    <data name="BuildTypeSelectionLatest" xml:space="preserve">
+        <value>Viimeisin (vaihtelee satunnaisesti paljon, sillä tämä on kirjaimellisesti koontiversio arkiston viimeisimmästä kommitista)</value>
+    </data>
+    <data name="BuildTypeSelectionManual" xml:space="preserve">
+        <value>Manuaalisesti valittu "Tietty koontiversio"-välilehdellä</value>
+    </data>
+    <data name="ConnectionInfoTab" xml:space="preserve">
+        <value>Info</value>
+    </data>
+    <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+        <value>Ohjeet Wikissämme</value>
+    </data>
+    <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+        <value>Yhdistämisen avain</value>
+    </data>
+    <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+        <value>DevBuildine tiedostovälimuisti:</value>
+    </data>
+    <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+        <value>DevCenter yhteys</value>
+    </data>
+    <data name="DialogOk" xml:space="preserve">
+        <value>OK</value>
+    </data>
+    <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+        <value>Syötä koontiversion tarkistussumma (kommit)</value>
+    </data>
+    <data name="FetchLatestBuildsButton" xml:space="preserve">
+        <value>Hae viimeisimmät koontiversiot</value>
+    </data>
+    <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+        <value>Salli saumaton laukaisijan toimintatila</value>
+    </data>
+    <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+        <value>Sulje laukaisija pelin pelaamisen jälkeen (jos ei tapahtunut virheitä)</value>
+    </data>
+    <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+        <value>Sulje laukaisija pelin käynnistyksen jälkeen</value>
+    </data>
+    <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+        <value>Piilota laukaisija pelin käynnistyttyä</value>
+    </data>
+    <data name="LaunchOptionDisableVideos" xml:space="preserve">
+        <value>Poista käytöstä kaikki pelin videot (jos Thrive kaatuu näytettyään latauksen aikana näkyvän logon ja ennen intro videon näyttämistä, tämä asetus voi auttaa peliä toimimaan)</value>
+    </data>
+    <data name="LaunchOptionForceGLES2" xml:space="preserve">
+        <value>Pakota GLES2 renderöintimoodi (voi saada Thriven käynnistymään, mutta aiheuttaa pieniä visuaalisia ongelmia)</value>
+    </data>
+    <data name="LogoutButton" xml:space="preserve">
+        <value>Kirjaudu ulos</value>
+    </data>
+    <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+        <value>Valitse manuaalisesti syötetty tarkistussumma käytettäväksi tekstinsyöttölaatikosta DevBuildin tyyppinä kun pelataan DevBuildia</value>
+    </data>
+    <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+        <value>Manuaalisesti syötetty tarkistussumma:</value>
+    </data>
+    <data name="ResetCacheLocation" xml:space="preserve">
+        <value>Palautu välimuistin sijainti oletukseksi</value>
+    </data>
+    <data name="ResetTemporaryLocation" xml:space="preserve">
+        <value>Palauta väliaikaistiedostojen sijainti oletukseksi</value>
+    </data>
+    <data name="SelectButton" xml:space="preserve">
+        <value>Valitse</value>
+    </data>
+    <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+        <value>Valitse välimuistin sijainti</value>
+    </data>
+    <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+        <value>Valitse väliaikaistiedostojen sijainti</value>
+    </data>
+    <data name="SpecificBuildTab" xml:space="preserve">
+        <value>Tietty koontiversio</value>
+    </data>
+    <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+        <value>Ladattujen väliaikaistiedostojen kansio:</value>
+    </data>
+    <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+        <value>Huomio: väliaikaistiedostojen kansion sijainnin vaihto ei poista olemassaolevia tiedostoja, jotta Thriveen liittymättömiä tiedostoja ei poisteta vahingossa</value>
+    </data>
+    <data name="YouAreDeveloperInfo" xml:space="preserve">
+        <value>Olet kehittäjä</value>
+    </data>
 </root>

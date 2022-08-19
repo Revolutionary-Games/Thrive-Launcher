@@ -234,7 +234,7 @@
                     <TabItem Header="{i18n:Localize CacheConfigurationTab}">
                         <StackPanel>
                             <WrapPanel Orientation="Horizontal" Margin="0 0 0 5">
-                                <TextBlock Margin="0 0 2 0">Temporary downloads folder:</TextBlock>
+                                <TextBlock Margin="0 0 2 0" Text="{i18n:Localize TemporaryDownloadsPathDisplay}" />
                                 <TextBlock Text="{Binding LauncherVersion}" />
                             </WrapPanel>
 
@@ -243,37 +243,36 @@
 
                             </ScrollViewer>
 
-                            <TextBlock Margin="0 3" TextWrapping="Wrap" FontSize="12">
-                                Note: moving temporary location won't delete existing files to prevent accidentally deleting files unrelated to Thrive
-                            </TextBlock>
+                            <TextBlock Margin="0 3" TextWrapping="Wrap" FontSize="12"
+                                       Text="{i18n:Localize TemporaryFolderNoFilesMoveNotice}" />
 
                             <StackPanel Orientation="Horizontal" Spacing="2">
-                                <Button Classes="DialogButton">Select Temporary Files Location</Button>
-                                <Button Classes="DialogButton" ToolTip.Tip="Reset Temporary Files Location">
+                                <Button Classes="DialogButton" Content="{i18n:Localize SelectTemporaryFilesLocation}" />
+                                <Button Classes="DialogButton" ToolTip.Tip="{i18n:Localize ResetTemporaryLocation}">
                                     <Image Height="16" Source="{DynamicResource RevertIconWhite}" />
                                 </Button>
-                                <Button Classes="DialogButton">Clear</Button>
+                                <Button Classes="DialogButton" Content="{i18n:Localize ClearFolder}" />
                             </StackPanel>
 
                             <Border DockPanel.Dock="Top" Margin="0 3" Padding="0" BorderThickness="1"
                                     BorderBrush="{DynamicResource BlueElement}" />
                             <WrapPanel Orientation="Horizontal" Margin="0 0 0 5">
-                                <TextBlock Margin="0 0 2 0">DevBuilds file cache:</TextBlock>
+                                <TextBlock Margin="0 0 2 0" Text="{i18n:Localize DevBuildsCachePathDisplay}" />
                                 <TextBlock Text="{Binding LauncherVersion}" />
                             </WrapPanel>
 
                             <StackPanel Orientation="Horizontal" Spacing="2">
-                                <Button Classes="DialogButton">Select Cache Location</Button>
-                                <Button Classes="DialogButton" ToolTip.Tip="Reset Cache Location">
+                                <Button Classes="DialogButton" Content="{i18n:Localize SelectDevBuildCacheLocation}" />
+                                <Button Classes="DialogButton" ToolTip.Tip="{i18n:Localize ResetCacheLocation}">
                                     <Image Height="16" Source="{DynamicResource RevertIconWhite}" />
                                 </Button>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0 10">
-                                <TextBlock Margin="0 0 2 0">Cache size:</TextBlock>
+                                <TextBlock Margin="0 0 2 0" Text="{i18n:Localize CacheSizeDisplay}" />
                                 <TextBlock Text="{Binding LauncherVersion}" />
                             </StackPanel>
-                            <Button Classes="DialogButton">Clear</Button>
+                            <Button Classes="DialogButton" Content="{i18n:Localize ClearFolder}" />
                         </StackPanel>
                     </TabItem>
                 </TabControl>
@@ -288,77 +287,74 @@
         </controls:PopupDialog>
 
         <!-- TODO: show the ok button when it makes sense -->
-        <controls:PopupDialog Title="DevCenter Connection" CloseCommand="{Binding CloseDevCenterMenuClicked}"
+        <controls:PopupDialog Title="{i18n:Localize DevCenterConnectionDialogTitle}"
+                              CloseCommand="{Binding CloseDevCenterMenuClicked}"
                               ShowPopup="{Binding ShowDevCenterPopup}" ShowOKButton="False">
             <TabControl MinWidth="700" MinHeight="400" MaxHeight="400" MaxWidth="700"
                         RelativePanel.AlignLeftWithPanel="True"
                         RelativePanel.AlignRightWithPanel="True"
                         RelativePanel.AlignTopWithPanel="True"
                         RelativePanel.AlignBottomWithPanel="True">
-                <TabItem Header="Info">
+                <TabItem Header="{i18n:Localize ConnectionInfoTab}">
                     <StackPanel>
                         <!-- Connected controls -->
                         <StackPanel IsVisible="True">
                             <WrapPanel Orientation="Horizontal" Margin="0 5">
-                                <TextBlock Margin="0 0 2 0">Connected as:</TextBlock>
+                                <TextBlock Margin="0 0 2 0" Text="{i18n:Localize ConnectedAsUserDisplay}" />
                                 <TextBlock Text="{Binding LauncherVersion}" />
                             </WrapPanel>
 
-                            <TextBlock IsVisible="{Binding DevCenterConnectionIsDeveloper}">
-                                You are a developer
-                            </TextBlock>
+                            <TextBlock IsVisible="{Binding DevCenterConnectionIsDeveloper}"
+                                       Text="{i18n:Localize YouAreDeveloperInfo}" />
 
                             <RadioButton GroupName="DevBuildTypeSelection">
-                                <TextBlock TextWrapping="Wrap">Build of the day (BOTD), recommended</TextBlock>
+                                <TextBlock TextWrapping="Wrap" Text="{i18n:Localize BuildTypeSelectionBOTD}" />
                             </RadioButton>
                             <RadioButton GroupName="DevBuildTypeSelection">
-                                <TextBlock TextWrapping="Wrap">
-                                    Latest (changes a lot randomly as this is literally a build from the latest code commit)
+                                <TextBlock TextWrapping="Wrap" Text="{i18n:Localize BuildTypeSelectionLatest}">
+
                                 </TextBlock>
                             </RadioButton>
                             <RadioButton GroupName="DevBuildTypeSelection">
-                                <TextBlock TextWrapping="Wrap">Manually selected in "Specific Build" tab</TextBlock>
+                                <TextBlock TextWrapping="Wrap" Text="{i18n:Localize BuildTypeSelectionManual}" />
                             </RadioButton>
 
-                            <Button Classes="DialogButton" Margin="0 30">Logout</Button>
+                            <Button Classes="DialogButton" Margin="0 30" Content="{i18n:Localize LogoutButton}" />
 
                         </StackPanel>
                         <!-- Not connected controls -->
                         <StackPanel IsVisible="False">
-                            <TextBlock Margin="0 0 0 5" TextWrapping="Wrap">
-                                TODO: connection explanation text
-                            </TextBlock>
-                            <Button Classes="TextLink">Instructions on our Wiki</Button>
+                            <TextBlock Margin="0 0 0 5" TextWrapping="Wrap"
+                                       Text="{i18n:Localize DevCenterConnectionExplanation}" />
+                            <Button Classes="TextLink" Content="{i18n:Localize ConnectionInstructionsWikiPrompt}" />
 
-                            <TextBox Watermark="Connection key" />
+                            <TextBox Watermark="{i18n:Localize ConnectionKeyPlaceholder}" />
 
-                            <Button Classes="DialogButton">Connect</Button>
+                            <Button Classes="DialogButton" Content="{i18n:Localize ConnectButton}" />
                         </StackPanel>
-
 
                     </StackPanel>
                 </TabItem>
-                <TabItem Header="Specific Build" IsEnabled="True">
+                <TabItem Header="{i18n:Localize SpecificBuildTab}" IsEnabled="True">
                     <StackPanel>
                         <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto">
                             <WrapPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
                                        Margin="0 0 2 0">
-                                <TextBlock Margin="0 0 2 0">Manually entered hash:</TextBlock>
+                                <TextBlock Margin="0 0 2 0" Text="{i18n:Localize ManuallyEnteredHashDisplay}" />
                                 <TextBlock Text="{Binding LauncherVersion}" />
                             </WrapPanel>
 
-                            <TextBox Grid.Column="1" Grid.Row="1" Watermark="Enter build hash (commit)" />
+                            <TextBox Grid.Column="1" Grid.Row="1" Watermark="{i18n:Localize EnterBuildHashPlaceholder}" />
 
                             <Button Grid.Column="2" Grid.Row="1" Classes="DialogButton" HorizontalAlignment="Right"
-                                    ToolTip.Tip="Select the manually entered hash value to be used from the input box as the selected DevBuild to play when playing a DevBuild">
-                                Select
-                            </Button>
+                                    Content="{i18n:Localize SelectButton}"
+                                    ToolTip.Tip="{i18n:Localize ManualHashSelectButtonToolTip}" />
                         </Grid>
 
                         <Border DockPanel.Dock="Top" Margin="0 3" Padding="0" BorderThickness="1"
                                 BorderBrush="{DynamicResource BlueElement}" />
 
-                        <Button Classes="DialogButton" Margin="0 10">Fetch Latest Builds</Button>
+                        <Button Classes="DialogButton" Margin="0 10" Content="{i18n:Localize FetchLatestBuildsButton}" />
 
                         <!-- TODO: retrieve and show the latest 100 builds (when button is pressed) -->
                         <ScrollViewer>

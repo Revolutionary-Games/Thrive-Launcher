@@ -362,5 +362,173 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("FolderPathDisplay", resourceCulture);
             }
         }
+        
+        public static string TemporaryDownloadsPathDisplay {
+            get {
+                return ResourceManager.GetString("TemporaryDownloadsPathDisplay", resourceCulture);
+            }
+        }
+        
+        public static string TemporaryFolderNoFilesMoveNotice {
+            get {
+                return ResourceManager.GetString("TemporaryFolderNoFilesMoveNotice", resourceCulture);
+            }
+        }
+        
+        public static string SelectTemporaryFilesLocation {
+            get {
+                return ResourceManager.GetString("SelectTemporaryFilesLocation", resourceCulture);
+            }
+        }
+        
+        public static string ResetTemporaryLocation {
+            get {
+                return ResourceManager.GetString("ResetTemporaryLocation", resourceCulture);
+            }
+        }
+        
+        public static string ClearFolder {
+            get {
+                return ResourceManager.GetString("ClearFolder", resourceCulture);
+            }
+        }
+        
+        public static string DevBuildsCachePathDisplay {
+            get {
+                return ResourceManager.GetString("DevBuildsCachePathDisplay", resourceCulture);
+            }
+        }
+        
+        public static string SelectDevBuildCacheLocation {
+            get {
+                return ResourceManager.GetString("SelectDevBuildCacheLocation", resourceCulture);
+            }
+        }
+        
+        public static string ResetCacheLocation {
+            get {
+                return ResourceManager.GetString("ResetCacheLocation", resourceCulture);
+            }
+        }
+        
+        public static string CacheSizeDisplay {
+            get {
+                return ResourceManager.GetString("CacheSizeDisplay", resourceCulture);
+            }
+        }
+        
+        public static string DevCenterConnectionDialogTitle {
+            get {
+                return ResourceManager.GetString("DevCenterConnectionDialogTitle", resourceCulture);
+            }
+        }
+        
+        public static string DialogOk {
+            get {
+                return ResourceManager.GetString("DialogOk", resourceCulture);
+            }
+        }
+        
+        public static string ConnectionInfoTab {
+            get {
+                return ResourceManager.GetString("ConnectionInfoTab", resourceCulture);
+            }
+        }
+        
+        public static string ConnectedAsUserDisplay {
+            get {
+                return ResourceManager.GetString("ConnectedAsUserDisplay", resourceCulture);
+            }
+        }
+        
+        public static string YouAreDeveloperInfo {
+            get {
+                return ResourceManager.GetString("YouAreDeveloperInfo", resourceCulture);
+            }
+        }
+        
+        public static string BuildTypeSelectionBOTD {
+            get {
+                return ResourceManager.GetString("BuildTypeSelectionBOTD", resourceCulture);
+            }
+        }
+        
+        public static string BuildTypeSelectionLatest {
+            get {
+                return ResourceManager.GetString("BuildTypeSelectionLatest", resourceCulture);
+            }
+        }
+        
+        public static string BuildTypeSelectionManual {
+            get {
+                return ResourceManager.GetString("BuildTypeSelectionManual", resourceCulture);
+            }
+        }
+        
+        public static string LogoutButton {
+            get {
+                return ResourceManager.GetString("LogoutButton", resourceCulture);
+            }
+        }
+        
+        public static string DevCenterConnectionExplanation {
+            get {
+                return ResourceManager.GetString("DevCenterConnectionExplanation", resourceCulture);
+            }
+        }
+        
+        public static string ConnectionInstructionsWikiPrompt {
+            get {
+                return ResourceManager.GetString("ConnectionInstructionsWikiPrompt", resourceCulture);
+            }
+        }
+        
+        public static string ConnectionKeyPlaceholder {
+            get {
+                return ResourceManager.GetString("ConnectionKeyPlaceholder", resourceCulture);
+            }
+        }
+        
+        public static string ConnectButton {
+            get {
+                return ResourceManager.GetString("ConnectButton", resourceCulture);
+            }
+        }
+        
+        public static string SpecificBuildTab {
+            get {
+                return ResourceManager.GetString("SpecificBuildTab", resourceCulture);
+            }
+        }
+        
+        public static string ManuallyEnteredHashDisplay {
+            get {
+                return ResourceManager.GetString("ManuallyEnteredHashDisplay", resourceCulture);
+            }
+        }
+        
+        public static string EnterBuildHashPlaceholder {
+            get {
+                return ResourceManager.GetString("EnterBuildHashPlaceholder", resourceCulture);
+            }
+        }
+        
+        public static string SelectButton {
+            get {
+                return ResourceManager.GetString("SelectButton", resourceCulture);
+            }
+        }
+        
+        public static string ManualHashSelectButtonToolTip {
+            get {
+                return ResourceManager.GetString("ManualHashSelectButtonToolTip", resourceCulture);
+            }
+        }
+        
+        public static string FetchLatestBuildsButton {
+            get {
+                return ResourceManager.GetString("FetchLatestBuildsButton", resourceCulture);
+            }
+        }
     }
 }

@@ -222,5 +222,89 @@
   <data name="FolderPathDisplay" xml:space="preserve">
       <value>Directory:</value>
   </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+      <value>Temporary downloads folder:</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+      <value>Note: moving temporary location won't delete existing files to prevent accidentally deleting files unrelated to Thrive</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+      <value>Select Temporary Files Location</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+      <value>Reset Temporary Files Location</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+      <value>Clear</value>
+  </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+      <value>DevBuilds file cache:</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+      <value>Select Cache Location</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+      <value>Reset Cache Location</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+      <value>Cache size:</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+      <value>DevCenter Connection</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+      <value>OK</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+      <value>Info</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+      <value>Connected as:</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+      <value>You are a developer</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+      <value>Build of the day (BOTD), recommended</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+      <value>Latest (changes a lot randomly as this is literally a build from the latest code commit)</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+      <value>Manually selected in "Specific Build" tab</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+      <value>Logout</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+      <value>TODO: connection explanation text</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+      <value>Instructions on our Wiki</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+      <value>Connection key</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+      <value>Connect</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+      <value>Specific Build</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+      <value>Manually entered hash:</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+      <value>Enter build hash (commit)</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+      <value>Select</value>
+  </data>
+  <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+      <value>Select the manually entered hash value to be used from the input box as the selected DevBuild to play when playing a DevBuild</value>
+  </data>
+  <data name="FetchLatestBuildsButton" xml:space="preserve">
+      <value>Fetch Latest Builds</value>
+  </data>
 
 </root>
