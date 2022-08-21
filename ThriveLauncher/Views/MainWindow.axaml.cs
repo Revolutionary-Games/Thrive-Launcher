@@ -34,7 +34,7 @@ namespace ThriveLauncher.Views
 
             LanguageComboBox.Items = languageItems;
 
-            dataContext.WhenAnyValue(d => d.SelectedLanguage).Subscribe(OnLanguageChanged);
+            dataContext.WhenAnyValue(d => d.SelectedLauncherLanguage).Subscribe(OnLanguageChanged);
         }
 
         private void SelectedVersionChanged(object? sender, SelectionChangedEventArgs e)
@@ -62,7 +62,7 @@ namespace ThriveLauncher.Views
 
             var selected = (ComboBoxItem)e.AddedItems[0]!;
 
-            ((MainWindowViewModel)DataContext!).SelectedLanguage = (string)selected.Content;
+            ((MainWindowViewModel)DataContext!).SelectedLauncherLanguage = (string)selected.Content;
         }
 
         private void OnLanguageChanged(string selectedLanguage)

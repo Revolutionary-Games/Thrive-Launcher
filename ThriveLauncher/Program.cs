@@ -2,7 +2,9 @@
 using Avalonia.ReactiveUI;
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Text;
+using LauncherBackend.Services;
 using LauncherBackend.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -10,6 +12,7 @@ using NLog.Config;
 using NLog.Extensions.Logging;
 using NLog.Targets;
 using SharedBase.Utilities;
+using ThriveLauncher.Properties;
 using ThriveLauncher.Utilities;
 using ThriveLauncher.ViewModels;
 using LogLevel = NLog.LogLevel;
@@ -98,7 +101,39 @@ namespace ThriveLauncher
             programLogger.LogInformation("Thrive Launcher version {Version} starting",
                 services.GetRequiredService<VersionUtilities>().LauncherVersion);
 
-            // TODO: detect transparent mode
+            var settings = services.GetRequiredService<ILauncherSettingsManager>().Settings;
+
+            if (!string.IsNullOrEmpty(settings.SelectedLauncherLanguage))
+            {
+                programLogger.LogInformation("Applying configured language: {SelectedLauncherLanguage}",
+                    settings.SelectedLauncherLanguage);
+
+                try
+                {
+                    Languages.SetLanguage(settings.SelectedLauncherLanguage);
+                }
+                catch (Exception e)
+                {
+                    programLogger.LogError(e, "Failed to apply configured language, using default");
+                }
+            }
+
+            programLogger.LogInformation("Launcher language is: {CurrentCulture}", CultureInfo.CurrentCulture);
+
+            var isStore = services.GetRequiredService<IStoreVersionDetector>().Detect().IsStoreVersion;
+
+            if (isStore)
+            {
+                programLogger.LogInformation("This is the store version of the launcher");
+
+                if (settings.AutoStartStoreVersion)
+                {
+                    programLogger.LogInformation(
+                        "Using transparent launcher mode, will attempt to launch before initializing GUI");
+
+                    // TODO: handle transparent mode
+                }
+            }
 
             programLogger.LogInformation("Launcher starting GUI");
 

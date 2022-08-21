@@ -195,6 +195,9 @@
   <data name="LauncherOptionWebFeeds" xml:space="preserve">
       <value>Enable Web Feeds</value>
   </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+      <value>Hide 32-bit versions if equivalent 64-bit version exists</value>
+  </data>
   <data name="LauncherOptionHideOnPlay" xml:space="preserve">
       <value>Hide Launcher on Play</value>
   </data>

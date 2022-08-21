@@ -308,4 +308,7 @@
         <value>Asetusten tallennus asetustiedostoon on epäonnistunut. Ole hyvä ja vahvista, että laukaisijalla on kirjoitusoikeus ja kokeile uudestaan.
 Laukaisijan lokeissa on lisätietoa.</value>
     </data>
+    <data name="LauncherOptionHide32Bit" xml:space="preserve">
+        <value>Piilota 32-bittiset versiot, jos vastaava 64-bittinen versio on olemassa</value>
+    </data>
 </root>

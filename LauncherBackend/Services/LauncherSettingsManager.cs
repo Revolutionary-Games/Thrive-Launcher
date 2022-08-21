@@ -9,7 +9,7 @@ public class LauncherSettingsManager : ILauncherSettingsManager
 {
     private readonly ILogger<LauncherSettingsManager> logger;
     private readonly ILauncherPaths launcherPaths;
-    private readonly Lazy<LauncherSettings> settings;
+    private Lazy<LauncherSettings> settings;
 
     private LauncherSettings? v1Settings;
 
@@ -66,6 +66,11 @@ public class LauncherSettingsManager : ILauncherSettingsManager
         }
 
         return true;
+    }
+
+    public void Reset()
+    {
+        settings = new Lazy<LauncherSettings>(new LauncherSettings());
     }
 
     public Task<bool> ImportOldSettings()
@@ -172,6 +177,11 @@ public interface ILauncherSettingsManager
     /// </summary>
     /// <returns>Task returning true on success</returns>
     public Task<bool> Save();
+
+    /// <summary>
+    ///   Resets all settings to default values
+    /// </summary>
+    void Reset();
 
     Task<bool> ImportOldSettings();
 }

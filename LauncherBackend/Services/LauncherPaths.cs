@@ -198,6 +198,7 @@ public interface ILauncherPaths
 
     public string PathToDefaultThriveInstallFolder { get; }
     public string PathToDefaultDehydrateCacheFolder { get; }
+    public string PathToTemporaryFolder { get; }
 
     // Launcher 1.x version folder paths
 

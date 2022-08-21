@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LauncherBackend\LauncherBackend.csproj" />
+    <ProjectReference Include="..\RevolutionaryGamesCommon\TestUtilities\TestUtilities.csproj" />
     <ProjectReference Include="..\ThriveLauncher\ThriveLauncher.csproj" />
   </ItemGroup>
 

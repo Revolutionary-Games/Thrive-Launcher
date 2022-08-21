@@ -94,7 +94,7 @@
                         <StackPanel MinWidth="350">
                             <TextBlock FontSize="24" Text="{i18n:Localize DevelopmentFeedTitle}" />
                             <Border BorderBrush="{DynamicResource BlueElement}" BorderThickness="1" Margin="0 0 0 3" />
-                            <TextBlock IsVisible="{Binding !WebFeedsEnabled}"
+                            <TextBlock IsVisible="{Binding !ShowWebContent}"
                                        Text="{i18n:Localize WebContentIsDisabled}" />
                         </StackPanel>
                     </ScrollViewer>
@@ -106,7 +106,7 @@
                         <StackPanel>
                             <TextBlock FontSize="24" Text="{i18n:Localize NewsFeedTitle}" />
                             <Border BorderBrush="{DynamicResource BlueElement}" BorderThickness="1" Margin="0 0 0 3" />
-                            <TextBlock IsVisible="{Binding !WebFeedsEnabled}"
+                            <TextBlock IsVisible="{Binding !ShowWebContent}"
                                        Text="{i18n:Localize WebContentIsDisabled}" />
                         </StackPanel>
                     </ScrollViewer>
@@ -127,14 +127,18 @@
                 <Button Grid.Column="0" Grid.Row="3" Classes="TextLink"
                         Content="{i18n:Localize ExternalLinkDeveloperWiki}" />
                 <Button Grid.Column="0" Grid.Row="4" Classes="TextLink"
-                        Content="{i18n:Localize ExternalLinkPatreon}" />
-                <Button Grid.Column="0" Grid.Row="5" Classes="TextLink"
-                        Content="{i18n:Localize ExternalLinkDonate}" />
-                <Button Grid.Column="0" Grid.Row="6" Classes="TextLink"
-                        Content="{i18n:Localize ExternalLinkThriveDevCenter}" />
-                <Button Grid.Column="0" Grid.Row="7" Classes="TextLink"
                         Content="{i18n:Localize ExternalLinkThriveSteam}" />
+                <Button Grid.Column="0" Grid.Row="5" Classes="TextLink"
+                        IsVisible="{Binding ShowLinksNotInSteamVersion}"
+                        Content="{i18n:Localize ExternalLinkPatreon}" />
+                <Button Grid.Column="0" Grid.Row="6" Classes="TextLink"
+                        IsVisible="{Binding ShowLinksNotInSteamVersion}"
+                        Content="{i18n:Localize ExternalLinkDonate}" />
+                <Button Grid.Column="0" Grid.Row="7" Classes="TextLink"
+                        IsVisible="{Binding ShowLinksNotInSteamVersion}"
+                        Content="{i18n:Localize ExternalLinkThriveDevCenter}" />
                 <Button Grid.Column="0" Grid.Row="8" Classes="TextLink"
+                        IsVisible="{Binding ShowLinksNotInSteamVersion}"
                         Content="{i18n:Localize ExternalLinkThriveItch}" />
 
                 <Button Grid.Column="1" Grid.Row="0" Classes="TextLink"
@@ -167,10 +171,10 @@
                     <TabItem Header="{i18n:Localize ThriveOptions}">
                         <StackPanel>
                             <TextBlock FontSize="16" Text="{i18n:Localize LaunchOptionsTitle}" />
-                            <CheckBox>
+                            <CheckBox IsChecked="{Binding DisableThriveVideos}">
                                 <TextBlock TextWrapping="Wrap" Text="{i18n:Localize LaunchOptionDisableVideos}" />
                             </CheckBox>
-                            <CheckBox>
+                            <CheckBox IsChecked="{Binding ForceGles2Mode}">
                                 <TextBlock TextWrapping="Wrap" Text="{i18n:Localize LaunchOptionForceGLES2}" />
                             </CheckBox>
                         </StackPanel>
@@ -183,17 +187,24 @@
                             </StackPanel>
                             <Border DockPanel.Dock="Top" Padding="0" BorderThickness="1"
                                     BorderBrush="{DynamicResource BlueElement}" />
-                            <CheckBox Content="{i18n:Localize LauncherOptionWebFeeds}" />
+                            <CheckBox IsChecked="{Binding ShowWebContent}"
+                                      Content="{i18n:Localize LauncherOptionWebFeeds}" />
 
-                            <CheckBox Content="{i18n:Localize LauncherOptionHideOnPlay}" />
+                            <CheckBox IsChecked="{Binding Hide32BitVersions}"
+                                      Content="{i18n:Localize LauncherOptionHide32Bit}" />
 
-                            <CheckBox Content="{i18n:Localize LauncherOptionCloseAfterPlaying}" />
+                            <CheckBox IsChecked="{Binding HideLauncherOnPlay}"
+                                      Content="{i18n:Localize LauncherOptionHideOnPlay}" />
 
-                            <CheckBox Content="{i18n:Localize LauncherOptionCloseAfterStart}" />
+                            <CheckBox IsChecked="{Binding CloseLauncherAfterGameExit}"
+                                      Content="{i18n:Localize LauncherOptionCloseAfterPlaying}" />
 
-                            <CheckBox Content="{i18n:Localize LauncherOptionAllowSeamlessMode}" />
+                            <CheckBox IsChecked="{Binding CloseLauncherOnGameStart}"
+                                      Content="{i18n:Localize LauncherOptionCloseAfterStart}" />
 
-                            <!-- TODO store version specific settings -->
+                            <!-- TODO only show if store version -->
+                            <CheckBox IsChecked="{Binding AutoStartStoreVersion}"
+                                      Content="{i18n:Localize LauncherOptionAllowSeamlessMode}" />
 
                             <StackPanel Orientation="Horizontal" Margin="0 5">
                                 <TextBlock Margin="0 0 2 0" Text="{i18n:Localize LauncherSelectedLanguage}"
@@ -201,10 +212,10 @@
                                 <ComboBox x:Name="LanguageComboBox" SelectionChanged="LanguageSelectionChanged" />
                             </StackPanel>
 
-                            <!-- TODO red warning button -->
                             <Border DockPanel.Dock="Top" Padding="0" BorderThickness="1" Margin="0 0 0 3"
                                     BorderBrush="{DynamicResource BlueElement}" />
-                            <Button Classes="DialogButton" Content="{i18n:Localize ResetAllSettings}" />
+                            <Button Classes="DialogButton Danger" Content="{i18n:Localize ResetAllSettings}"
+                                    Command="{Binding ResetAllSettings}" />
                         </StackPanel>
                     </TabItem>
                     <TabItem Header="{i18n:Localize InstalledVersions}">

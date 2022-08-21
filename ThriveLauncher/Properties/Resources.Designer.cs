@@ -309,6 +309,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string LauncherOptionHide32Bit {
+            get {
+                return ResourceManager.GetString("LauncherOptionHide32Bit", resourceCulture);
+            }
+        }
+        
         public static string LauncherOptionHideOnPlay {
             get {
                 return ResourceManager.GetString("LauncherOptionHideOnPlay", resourceCulture);
