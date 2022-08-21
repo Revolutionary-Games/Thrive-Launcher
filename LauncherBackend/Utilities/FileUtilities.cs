@@ -9,6 +9,9 @@ public static class FileUtilities
     /// <returns>The size in bytes</returns>
     public static long CalculateFolderSize(string path)
     {
+        if (!Directory.Exists(path))
+            return 0;
+
         long size = 0;
 
         foreach (var file in Directory.EnumerateFiles(path))
