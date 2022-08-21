@@ -157,6 +157,9 @@ public partial class MainWindowViewModel
             this.RaisePropertyChanging();
             Settings.DehydratedCacheFolder = value;
             this.RaisePropertyChanged();
+
+            dehydrateCacheSizeTask = null;
+            this.RaisePropertyChanged(nameof(DehydrateCacheSize));
         }
     }
 
@@ -271,6 +274,10 @@ public partial class MainWindowViewModel
         this.RaisePropertyChanged(nameof(ManuallySelectedBuildHash));
         this.RaisePropertyChanged(nameof(ForceGles2Mode));
         this.RaisePropertyChanged(nameof(DisableThriveVideos));
+
+        // Reset some extra stuff
+        dehydrateCacheSizeTask = null;
+        this.RaisePropertyChanged(nameof(DehydrateCacheSize));
     }
 
     private void ApplySettings()

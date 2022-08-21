@@ -1,13 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Threading;
 using LauncherBackend.Models;
 using LauncherBackend.Services;
+using LauncherBackend.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ReactiveUI;
+using SharedBase.Utilities;
 using ThriveLauncher.Properties;
 using ThriveLauncher.Utilities;
 
@@ -37,6 +41,8 @@ public partial class MainWindowViewModel : ViewModelBase
 
     // Settings sub view
     private bool showSettingsPopup;
+
+    private Task<string>? dehydrateCacheSizeTask;
 
     // Devcenter features
     private bool showDevCenterStatusArea = true;
@@ -177,7 +183,16 @@ public partial class MainWindowViewModel : ViewModelBase
         get => showDevCenterPopup;
         private set
         {
+            if (showDevCenterPopup == value)
+                return;
+
             this.RaiseAndSetIfChanged(ref showDevCenterPopup, value);
+
+            if (!showDevCenterPopup)
+            {
+                // TODO: save settings if devbuild type or latest build was changed
+                // TriggerSaveSettings();
+            }
         }
     }
 
@@ -198,6 +213,8 @@ public partial class MainWindowViewModel : ViewModelBase
             this.RaiseAndSetIfChanged(ref showLinksPopup, value);
         }
     }
+
+    public Task<string> DehydrateCacheSize => dehydrateCacheSizeTask ??= ComputeDehydrateCacheSizeDisplayString();
 
     public DevCenterConnection? DevCenterConnection
     {
@@ -325,5 +342,16 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             logger.LogInformation("Settings have been saved");
         }
+    }
+
+    private async Task<string> ComputeDehydrateCacheSizeDisplayString()
+    {
+        var calculateTask = new Task<long>(() => FileUtilities.CalculateFolderSize(DehydratedCacheFolder));
+        calculateTask.Start();
+
+        await calculateTask.WaitAsync(CancellationToken.None);
+        var size = calculateTask.Result;
+
+        return string.Format(Resources.SizeInMiB, Math.Round((float)size / GlobalConstants.MEBIBYTE, 1));
     }
 }

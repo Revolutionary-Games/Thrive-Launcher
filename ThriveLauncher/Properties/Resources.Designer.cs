@@ -548,5 +548,11 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("SettingsSaveFailedMessage", resourceCulture);
             }
         }
+        
+        public static string SizeInMiB {
+            get {
+                return ResourceManager.GetString("SizeInMiB", resourceCulture);
+            }
+        }
     }
 }

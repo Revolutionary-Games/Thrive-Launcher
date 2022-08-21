@@ -316,4 +316,7 @@
     <value>Saving settings to the settings file has failed. Please make sure the launcher has write access and try again.
 Launcher logs will have more info.</value>
   </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0} MiB</value>
+  </data>
 </root>
