@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace LauncherBackend.Utilities;
 
 public static class FileUtilities
@@ -25,5 +27,24 @@ public static class FileUtilities
         }
 
         return size;
+    }
+
+    /// <summary>
+    ///   Opens a folder in the current platform's default viewer (explorer.exe, a Linux file browser etc.)
+    /// </summary>
+    /// <param name="folder">The folder to open</param>
+    public static void OpenFolderInPlatformSpecificViewer(string folder)
+    {
+        folder = folder.Replace('/', Path.DirectorySeparatorChar);
+
+        if (!folder.EndsWith(Path.DirectorySeparatorChar))
+            folder += Path.DirectorySeparatorChar;
+
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = folder,
+            UseShellExecute = true,
+            Verb = "open",
+        });
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Threading;
@@ -323,6 +324,53 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             ShowNotice(Resources.ImportSucceededTitle, Resources.ImportSucceededMessage);
         }
+    }
+
+    public void OpenFileBrowserToInstalled()
+    {
+        var folder = ThriveInstallationPath;
+
+        if (!Directory.Exists(folder))
+        {
+            ShowNotice(Resources.FolderNotFound, Resources.ThriveInstallFolderNotFound);
+            return;
+        }
+
+        FileUtilities.OpenFolderInPlatformSpecificViewer(folder);
+    }
+
+    public void ResetInstallLocation()
+    {
+        SetInstallPathTo(launcherPaths.PathToDefaultThriveInstallFolder);
+    }
+
+    public void SetInstallPathTo(string folder)
+    {
+        folder = folder.Replace('\\', '/');
+
+        if (Settings.ThriveInstallationPath == folder)
+            return;
+
+        this.RaisePropertyChanging(nameof(ThriveInstallationPath));
+
+        var previousPath = ThriveInstallationPath;
+
+        // If it is the default path, then we want to actually clear the option to null
+        if (launcherPaths.PathToDefaultThriveInstallFolder == folder)
+        {
+            logger.LogInformation("Resetting install path to default value");
+            Settings.ThriveInstallationPath = null;
+        }
+        else
+        {
+            logger.LogInformation("Setting install path to {Folder}", folder);
+            Settings.ThriveInstallationPath = folder;
+        }
+
+        // TODO: detect existing folders in the moved location and offer moving them
+        throw new NotImplementedException();
+
+        this.RaisePropertyChanged(nameof(ThriveInstallationPath));
     }
 
     private void TriggerSaveSettings()

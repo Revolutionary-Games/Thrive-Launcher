@@ -222,7 +222,7 @@
                         <StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="2">
                                 <!-- TODO: implement these buttons -->
-                                <Button Classes="DialogButton" Content="{i18n:Localize BrowseInstalledFiles}" />
+                                <Button Classes="DialogButton" Content="{i18n:Localize BrowseInstalledFiles}" Command="{Binding OpenFileBrowserToInstalled}"/>
                                 <Button Classes="DialogButton" Content="{i18n:Localize SelectInstallLocation}" />
                                 <Button Classes="DialogButton"
                                         ToolTip.Tip="{i18n:Localize ResetInstallLocationToolTip}">

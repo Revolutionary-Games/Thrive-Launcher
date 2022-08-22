@@ -554,5 +554,17 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("SizeInMiB", resourceCulture);
             }
         }
+        
+        public static string FolderNotFound {
+            get {
+                return ResourceManager.GetString("FolderNotFound", resourceCulture);
+            }
+        }
+        
+        public static string ThriveInstallFolderNotFound {
+            get {
+                return ResourceManager.GetString("ThriveInstallFolderNotFound", resourceCulture);
+            }
+        }
     }
 }

@@ -319,4 +319,10 @@ Launcher logs will have more info.</value>
   <data name="SizeInMiB" xml:space="preserve">
     <value>{0} MiB</value>
   </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>Folder Not Found</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>The Thrive version installation folder does not exist.</value>
+  </data>
 </root>
