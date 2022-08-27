@@ -27,6 +27,8 @@ namespace ThriveLauncher
         [STAThread]
         public static void Main(string[] args)
         {
+            // TODO: handle normal flags like "-v" and "-h" here
+
             // We build services before starting avalonia so that we can use launcher backend services before we decide
             // if we want to fire up ourGUI
             var services = BuildLauncherServices(true);
@@ -128,6 +130,8 @@ namespace ThriveLauncher
 
                 if (settings.AutoStartStoreVersion)
                 {
+                    // TODO: skip with a special flag
+
                     programLogger.LogInformation(
                         "Using transparent launcher mode, will attempt to launch before initializing GUI");
 

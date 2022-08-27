@@ -7,13 +7,14 @@ namespace LauncherBackend.Services;
 /// </summary>
 public class LauncherPaths : ILauncherPaths
 {
-    public const string SettingsFileName = "launcher_settings.json";
-    public const string RememberedVersionFileName = "selected_version_v2.json";
     public const string InstalledDevBuildFolderName = "devbuild";
 
     public const string LauncherConfigFolderName = "Thrive-Launcher";
     public const string LauncherTemporaryFolderName = "Revolutionary-Games-Launcher";
     public const string ThriveUserDataFolderName = "Thrive";
+
+    public static readonly string SettingsFileName = $"launcher_settings{LauncherConstants.ModeSuffix}.json";
+    public static readonly string RememberedVersionFileName = $"selected_version_v2{LauncherConstants.ModeSuffix}.json";
 
     private readonly ILogger<LauncherPaths> logger;
 

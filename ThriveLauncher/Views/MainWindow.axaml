@@ -224,7 +224,7 @@
                                 <!-- TODO: implement these buttons -->
                                 <Button Classes="DialogButton" Content="{i18n:Localize BrowseInstalledFiles}" Command="{Binding OpenFileBrowserToInstalled}"/>
                                 <Button Classes="DialogButton" Content="{i18n:Localize SelectInstallLocation}" />
-                                <Button Classes="DialogButton"
+                                <Button Classes="DialogButton" Command="{Binding ResetInstallLocation}"
                                         ToolTip.Tip="{i18n:Localize ResetInstallLocationToolTip}">
                                     <Image Height="16" Source="{DynamicResource RevertIconWhite}" />
                                 </Button>
