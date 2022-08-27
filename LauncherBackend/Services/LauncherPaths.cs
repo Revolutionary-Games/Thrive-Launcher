@@ -16,6 +16,8 @@ public class LauncherPaths : ILauncherPaths
     public static readonly string SettingsFileName = $"launcher_settings{LauncherConstants.ModeSuffix}.json";
     public static readonly string RememberedVersionFileName = $"selected_version_v2{LauncherConstants.ModeSuffix}.json";
 
+    public static readonly string LauncherV1SettingsFileName = "launcher_settings.json";
+
     private readonly ILogger<LauncherPaths> logger;
 
     private string? configFolder;
@@ -50,7 +52,7 @@ public class LauncherPaths : ILauncherPaths
 
     // Launcher 1.x version folder paths
 
-    public string PathToSettingsV1 => Path.Combine(PathToLauncherV1Config, SettingsFileName);
+    public string PathToSettingsV1 => Path.Combine(PathToLauncherV1Config, LauncherV1SettingsFileName);
 
     public string PathToLauncherV1Config => electronConfigFolder ??= GetElectronCompatibleAppDataFolder();
 

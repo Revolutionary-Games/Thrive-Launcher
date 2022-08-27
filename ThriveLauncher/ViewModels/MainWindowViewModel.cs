@@ -108,7 +108,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public bool HasNoticeMessage =>
         !string.IsNullOrEmpty(NoticeMessageText) || !string.IsNullOrEmpty(NoticeMessageTitle);
 
-    public string LauncherVersion => versionUtilities.LauncherVersion;
+    public string LauncherVersion => versionUtilities.LauncherVersion + LauncherConstants.ModeSuffix;
 
     public bool CanDismissNotice
     {
