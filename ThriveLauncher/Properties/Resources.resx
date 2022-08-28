@@ -340,4 +340,7 @@ Launcher logs will have more info.</value>
   <data name="FontLicensesTitle" xml:space="preserve">
     <value>Licenses for fonts used in the launcher:</value>
   </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>Feed cannot be displayed. {0}</value>
+  </data>
 </root>

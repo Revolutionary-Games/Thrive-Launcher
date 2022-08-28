@@ -10,6 +10,7 @@ public static class ServiceCollectionExtensions
         return serviceCollection.AddSingleton<ILauncherFeeds, LauncherFeeds>()
             .AddSingleton<IStoreVersionDetector, StoreVersionDetector>()
             .AddSingleton<ILauncherSettingsManager, LauncherSettingsManager>()
+            .AddScoped<IHtmlSummaryParser, HtmlSummaryParser>()
             .AddSingleton<ILauncherPaths, LauncherPaths>();
     }
 }

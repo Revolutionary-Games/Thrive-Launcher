@@ -64,7 +64,9 @@ namespace ThriveLauncher
             var builder = new ServiceCollection()
                 .AddThriveLauncher()
                 .AddSingleton<VersionUtilities>()
+                .AddSingleton<INetworkDataRetriever, NetworkDataRetriever>()
                 .AddScoped<MainWindowViewModel>()
+                .AddScoped<LicensesWindowViewModel>()
                 .AddSingleton<ViewLocator>();
 
             if (normalLogging)

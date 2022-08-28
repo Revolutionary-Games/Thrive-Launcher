@@ -38,6 +38,13 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private bool showSettingsUpgrade;
 
+    // Feeds
+    private Task<List<ParsedLauncherFeedItem>> devForumFeedItems = null!;
+    private string? devForumFetchError;
+
+    private Task<List<ParsedLauncherFeedItem>> mainSiteFeedItems = null!;
+    private string? mainSiteFetchError;
+
     // Settings sub view
     private bool showSettingsPopup;
 
@@ -82,9 +89,12 @@ public partial class MainWindowViewModel : ViewModelBase
             // TODO: start checking if devcenter connection is fine
         }
 
+        CreateFeedRetrieveTasks();
+
         if (Settings.ShowWebContent)
         {
-            // TODO: start fetching web content here or should we use another approach?
+            devForumFeedItems.Start();
+            mainSiteFeedItems.Start();
         }
 
         items = new ObservableCollection<string>() { };
@@ -101,6 +111,7 @@ public partial class MainWindowViewModel : ViewModelBase
         DesignTimeServices.Services.GetRequiredService<ILauncherPaths>())
     {
         languagePlaceHolderIfNotSelected = string.Empty;
+        CreateFeedRetrieveTasks();
     }
 
     public bool HasNoticeMessage =>
@@ -152,6 +163,28 @@ public partial class MainWindowViewModel : ViewModelBase
             this.RaisePropertyChanged(nameof(CanDismissNotice));
         }
     }
+
+    public string? DevForumFetchError
+    {
+        get => devForumFetchError;
+        private set
+        {
+            this.RaiseAndSetIfChanged(ref devForumFetchError, value);
+        }
+    }
+
+    public Task<List<ParsedLauncherFeedItem>> DevForumFeedItems => devForumFeedItems;
+
+    public string? MainSiteFetchError
+    {
+        get => mainSiteFetchError;
+        private set
+        {
+            this.RaiseAndSetIfChanged(ref mainSiteFetchError, value);
+        }
+    }
+
+    public Task<List<ParsedLauncherFeedItem>> MainSiteFeedItems => mainSiteFeedItems;
 
     public bool ShowSettingsUpgrade
     {
@@ -380,5 +413,49 @@ public partial class MainWindowViewModel : ViewModelBase
         var size = calculateTask.Result;
 
         return string.Format(Resources.SizeInMiB, Math.Round((float)size / GlobalConstants.MEBIBYTE, 1));
+    }
+
+    private void CreateFeedRetrieveTasks()
+    {
+        devForumFeedItems = new Task<List<ParsedLauncherFeedItem>>(() =>
+            FetchFeed("DevForum", LauncherConstants.DevForumFeedURL, false).Result);
+
+        mainSiteFeedItems = new Task<List<ParsedLauncherFeedItem>>(() =>
+            FetchFeed("MainSite", LauncherConstants.MainSiteFeedURL, true).Result);
+
+        // We don't start the tasks here to ensure that no network requests are done if web content is turned off
+        // in settings
+    }
+
+    private async Task<List<ParsedLauncherFeedItem>> FetchFeed(string name, Uri uri, bool mainSite)
+    {
+        logger.LogDebug("Fetching feed {Name}", name);
+
+        var (failure, data) = await launcherFeeds.FetchFeed(name, uri);
+
+        if (failure != null)
+        {
+            SetFetchError(mainSite, failure);
+            return new List<ParsedLauncherFeedItem>();
+        }
+
+        return data!;
+    }
+
+    private void SetFetchError(bool mainSite, string error)
+    {
+        Dispatcher.UIThread.Post(() =>
+        {
+            var fullText = string.Format(Resources.FeedFetchError, error);
+
+            if (mainSite)
+            {
+                MainSiteFetchError = fullText;
+            }
+            else
+            {
+                DevForumFetchError = fullText;
+            }
+        });
     }
 }

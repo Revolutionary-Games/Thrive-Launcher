@@ -596,5 +596,11 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("FontLicensesTitle", resourceCulture);
             }
         }
+        
+        public static string FeedFetchError {
+            get {
+                return ResourceManager.GetString("FeedFetchError", resourceCulture);
+            }
+        }
     }
 }

@@ -1,9 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Layout;
+using Avalonia.Media;
+using Avalonia.Threading;
+using LauncherBackend.Models;
+using LauncherBackend.Utilities;
 using ReactiveUI;
 using ThriveLauncher.Utilities;
 using ThriveLauncher.ViewModels;
@@ -37,6 +44,8 @@ namespace ThriveLauncher.Views
             LanguageComboBox.Items = languageItems;
 
             dataContext.WhenAnyValue(d => d.SelectedLauncherLanguage).Subscribe(OnLanguageChanged);
+
+            Dispatcher.UIThread.Post(UpdateFeedItemsWhenRetrieved);
         }
 
         private void SelectedVersionChanged(object? sender, SelectionChangedEventArgs e)
@@ -84,6 +93,52 @@ namespace ThriveLauncher.Views
                 DataContext = this.CreateInstance<LicensesWindowViewModel>(),
             };
             window.Show(this);
+        }
+
+        private async void UpdateFeedItemsWhenRetrieved()
+        {
+            var dataContext = (MainWindowViewModel)DataContext!;
+
+            var devForum = await dataContext.DevForumFeedItems;
+            var mainSite = await dataContext.MainSiteFeedItems;
+
+            PopulateFeed(this.FindControl<StackPanel>("DevelopmentFeedItems"), devForum);
+            PopulateFeed(this.FindControl<StackPanel>("MainSiteFeedItems"), mainSite);
+        }
+
+        private void PopulateFeed(IPanel targetContainer, List<ParsedLauncherFeedItem> items)
+        {
+            foreach (var child in targetContainer.Children.ToList())
+            {
+                targetContainer.Children.Remove(child);
+            }
+
+            var linkClasses = new Classes("TextLink");
+
+            foreach (var feedItem in items)
+            {
+                var itemContainer = new StackPanel
+                {
+                    Orientation = Orientation.Vertical,
+                };
+
+                var title = new Button
+                {
+                    Classes = linkClasses,
+                    Content = new TextBlock
+                    {
+                        Text = feedItem.Title,
+                        FontSize = 18,
+                        TextWrapping = TextWrapping.Wrap,
+                    },
+                };
+
+                title.Click += (_, _) => URLUtilities.OpenURLInBrowser(feedItem.Link);
+
+                itemContainer.Children.Add(title);
+
+                targetContainer.Children.Add(itemContainer);
+            }
         }
     }
 }

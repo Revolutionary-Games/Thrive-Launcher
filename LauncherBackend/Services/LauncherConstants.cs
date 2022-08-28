@@ -20,6 +20,8 @@ public static class LauncherConstants
     /// </summary>
     public const long MaxCrashLogFileSize = 2000000;
 
+    public const int FeedExcerptLength = 450;
+
     // URLs to our resources
     public const string MainSiteURL = "https://revolutionarygamesstudio.com";
     public const string DevelopmentForumsURL = "https://forum.revolutionarygamesstudio.com/";
@@ -59,6 +61,9 @@ public static class LauncherConstants
         _ => "https://dev.revolutionarygamesstudio.com/",
     });
 
+    public static readonly Uri DevForumFeedURL = new("https://thrivefeeds.b-cdn.net/posts.rss");
+    public static readonly Uri MainSiteFeedURL = new("https://thrivefeeds.b-cdn.net/feed.rss");
+
     /// <summary>
     ///   Regex used to detect current log file in game output
     /// </summary>
@@ -69,6 +74,9 @@ public static class LauncherConstants
     ///   Regex used to detect crash dumps in game output
     /// </summary>
     public static readonly Regex CrashDumpRegex = new(@"Crash dump created at:\s+(\S+\.dmp)",
+        RegexOptions.Multiline | RegexOptions.IgnoreCase);
+
+    public static readonly Regex YoutubeURLRegex = new(@"^http.*youtube.com\/.*embed\/(\w+)\?.*",
         RegexOptions.Multiline | RegexOptions.IgnoreCase);
 
     // TODO: may of the following TimeSpans won't matter in the launcher 2.0 version
