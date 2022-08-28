@@ -352,4 +352,7 @@ Launcher logs will have more info.</value>
   <data name="TruncatedClickSuffix" xml:space="preserve">
     <value>to read the full post.</value>
   </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>Failed to create logs folder ({0}): {1}</value>
+  </data>
 </root>

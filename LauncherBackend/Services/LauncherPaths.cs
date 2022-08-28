@@ -45,6 +45,8 @@ public class LauncherPaths : ILauncherPaths
 
     public string PathToTemporaryFolder => tempPath ??= GetTemporaryPath();
 
+    public string PathToLogFolder => Path.Combine(PathToLauncherInstallBaseFolder, "logs");
+
     public string ExpectedDefaultThriveUserFolder => thriveUserFolder ??= GetPlatformExpectedThriveUserFolder();
 
     public string ThriveDefaultLogsFolder => Path.Combine(ExpectedDefaultThriveUserFolder, "logs");
@@ -100,7 +102,7 @@ public class LauncherPaths : ILauncherPaths
                 LauncherConfigFolderName);
         }
 
-        logger.LogInformation("Default Thrive version install folder is: {Path}", path);
+        logger.LogInformation("Default Launcher storage and Thrive version install folder is: {Path}", path);
         return path;
     }
 
@@ -202,6 +204,7 @@ public interface ILauncherPaths
     public string PathToDefaultThriveInstallFolder { get; }
     public string PathToDefaultDehydrateCacheFolder { get; }
     public string PathToTemporaryFolder { get; }
+    public string PathToLogFolder { get; }
 
     // Launcher 1.x version folder paths
 

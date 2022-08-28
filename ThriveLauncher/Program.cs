@@ -3,6 +3,7 @@ using Avalonia.ReactiveUI;
 using System;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Text;
 using LauncherBackend.Services;
 using LauncherBackend.Utilities;
@@ -172,13 +173,30 @@ namespace ThriveLauncher
 
             if (fileLogging)
             {
+                var paths = new LauncherPaths(new ConsoleLogger<LauncherPaths>());
+
+                var basePath = "${basedir}/logs";
+
+                try
+                {
+                    Directory.CreateDirectory(paths.PathToLogFolder);
+                    basePath = paths.PathToLogFolder;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(Resources.LogFolderCreateFailed, paths.PathToLogFolder, e);
+                }
+
+                if (basePath.EndsWith("/"))
+                    basePath = basePath.Substring(0, basePath.Length - 1);
+
                 var fileTarget = new FileTarget("file")
                 {
                     // TODO: detect the launcher folder we should put the logs folder in
-                    FileName = "${basedir}/logs/thrive-launcher-log.txt",
+                    FileName = $"{basePath}/thrive-launcher-log.txt",
                     ArchiveAboveSize = GlobalConstants.MEBIBYTE * 2,
                     ArchiveEvery = FileArchivePeriod.Month,
-                    ArchiveFileName = "${basedir}/logs/thrive-launcher-log.{#}.txt",
+                    ArchiveFileName = $"{basePath}/thrive-launcher-log.{{#}}.txt",
                     ArchiveNumbering = ArchiveNumberingMode.DateAndSequence,
                     ArchiveDateFormat = "yyyy-MM-dd",
                     MaxArchiveFiles = 4,

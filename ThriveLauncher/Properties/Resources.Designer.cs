@@ -620,5 +620,11 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("TruncatedClickSuffix", resourceCulture);
             }
         }
+        
+        public static string LogFolderCreateFailed {
+            get {
+                return ResourceManager.GetString("LogFolderCreateFailed", resourceCulture);
+            }
+        }
     }
 }
