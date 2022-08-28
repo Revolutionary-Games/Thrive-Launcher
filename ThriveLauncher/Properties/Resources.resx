@@ -344,7 +344,7 @@ Launcher logs will have more info.</value>
     <value>Feed cannot be displayed. {0}</value>
   </data>
   <data name="FeedItemPostedByAndTime" xml:space="preserve">
-    <value>posted by {0} {1}</value>
+    <value>posted by {0} at {1}</value>
   </data>
   <data name="ClickHereLink" xml:space="preserve">
     <value>Click here</value>

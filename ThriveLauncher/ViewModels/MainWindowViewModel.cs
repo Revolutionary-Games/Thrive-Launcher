@@ -97,7 +97,7 @@ public partial class MainWindowViewModel : ViewModelBase
             mainSiteFeedItems.Start();
         }
 
-        items = new ObservableCollection<string>() { };
+        Items = new ObservableCollection<string>() { };
     }
 
     /// <summary>
@@ -254,7 +254,7 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    public ObservableCollection<string> items { get; }
+    public ObservableCollection<string> Items { get; }
 
     public IEnumerable<string> GetAvailableLanguages()
     {

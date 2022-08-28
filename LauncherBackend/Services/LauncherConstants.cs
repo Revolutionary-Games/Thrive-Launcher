@@ -121,6 +121,6 @@ public static class LauncherConstants
     {
         Production,
         Staging,
-        LocalTesting
+        LocalTesting,
     }
 }
