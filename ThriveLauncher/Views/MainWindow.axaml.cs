@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using ReactiveUI;
+using ThriveLauncher.Utilities;
 using ThriveLauncher.ViewModels;
 
 namespace ThriveLauncher.Views
@@ -70,6 +72,18 @@ namespace ThriveLauncher.Views
             var selected = languageItems.First(i => (string)i.Content == selectedLanguage);
 
             LanguageComboBox.SelectedItem = selected;
+        }
+
+        private void OpenLicensesWindow(object? sender, RoutedEventArgs routedEventArgs)
+        {
+            _ = sender;
+            _ = routedEventArgs;
+
+            var window = new LicensesWindow
+            {
+                DataContext = this.CreateInstance<LicensesWindowViewModel>(),
+            };
+            window.Show(this);
         }
     }
 }

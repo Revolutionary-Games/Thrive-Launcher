@@ -38,6 +38,10 @@
     <ProjectReference Include="..\RevolutionaryGamesCommon\SharedBase\SharedBase.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\LICENSE.md" LogicalName="LICENSE.md" />
+    <EmbeddedResource Include="Assets\Roboto\LICENSE.txt" LogicalName="Roboto/LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

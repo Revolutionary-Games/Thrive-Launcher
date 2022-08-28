@@ -20,6 +20,25 @@ public static class LauncherConstants
     /// </summary>
     public const long MaxCrashLogFileSize = 2000000;
 
+    // URLs to our resources
+    public const string MainSiteURL = "https://revolutionarygamesstudio.com";
+    public const string DevelopmentForumsURL = "https://forum.revolutionarygamesstudio.com/";
+    public const string CommunityForumsURL = "https://community.revolutionarygamesstudio.com/";
+    public const string ThriveRepoURL = "https://github.com/Revolutionary-Games/Thrive";
+    public const string ThrivePatreonURL = "https://www.patreon.com/thrivegame";
+    public const string DonateURL = "https://revolutionarygamesstudio.com/donate/";
+    public const string ThriveSteamURL = "https://store.steampowered.com/app/1779200";
+    public const string ThriveItchURL = "https://revolutionarygames.itch.io/thrive";
+    public const string LauncherRepoURL = "https://github.com/Revolutionary-Games/Thrive-Launcher";
+    public const string DeveloperWikiURL = "https://wiki.revolutionarygamesstudio.com/";
+    public const string ThriveDevCenterBrowserURL = "https://dev.revolutionarygamesstudio.com/";
+    public const string FanWikiURL = "https://thrive.wikia.com/wiki/Thrive_Wiki";
+    public const string DiscordServerURL = "https://discord.gg/FZxDQ4H";
+    public const string SubredditURL = "https://www.reddit.com/r/thrive";
+    public const string YoutubeChannelURL = "https://www.youtube.com/c/RevolutionaryGames";
+    public const string FacebookPageURL = "https://www.facebook.com/Thrive-182887991751358/";
+    public const string TwitterProfileURL = "https://twitter.com/thrive_game";
+
     public static readonly string ModeSuffix = Mode switch
     {
         // ReSharper disable HeuristicUnreachableCode

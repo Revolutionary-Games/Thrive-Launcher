@@ -325,4 +325,19 @@ Launcher logs will have more info.</value>
   <data name="ThriveInstallFolderNotFound" xml:space="preserve">
     <value>The Thrive version installation folder does not exist.</value>
   </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>Launcher Source Code</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>View Launcher Licenses</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Thrive Launcher</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Thrive Launcher Licenses</value>
+  </data>
+  <data name="FontLicensesTitle" xml:space="preserve">
+    <value>Licenses for fonts used in the launcher:</value>
+  </data>
 </root>

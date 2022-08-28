@@ -566,5 +566,35 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("ThriveInstallFolderNotFound", resourceCulture);
             }
         }
+        
+        public static string LauncherSourceCodeButton {
+            get {
+                return ResourceManager.GetString("LauncherSourceCodeButton", resourceCulture);
+            }
+        }
+        
+        public static string ViewLicensesButton {
+            get {
+                return ResourceManager.GetString("ViewLicensesButton", resourceCulture);
+            }
+        }
+        
+        public static string MainWindowTitle {
+            get {
+                return ResourceManager.GetString("MainWindowTitle", resourceCulture);
+            }
+        }
+        
+        public static string LicensesWindowTitle {
+            get {
+                return ResourceManager.GetString("LicensesWindowTitle", resourceCulture);
+            }
+        }
+        
+        public static string FontLicensesTitle {
+            get {
+                return ResourceManager.GetString("FontLicensesTitle", resourceCulture);
+            }
+        }
     }
 }

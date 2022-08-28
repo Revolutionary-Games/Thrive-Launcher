@@ -36,8 +36,6 @@ public partial class MainWindowViewModel : ViewModelBase
     private string noticeMessageTitle = string.Empty;
     private bool canDismissNotice = true;
 
-    private bool showLinksPopup;
-
     private bool showSettingsUpgrade;
 
     // Settings sub view
@@ -206,15 +204,6 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    public bool ShowLinksPopup
-    {
-        get => showLinksPopup;
-        private set
-        {
-            this.RaiseAndSetIfChanged(ref showLinksPopup, value);
-        }
-    }
-
     public Task<string> DehydrateCacheSize => dehydrateCacheSizeTask ??= ComputeDehydrateCacheSizeDisplayString();
 
     public DevCenterConnection? DevCenterConnection
@@ -254,16 +243,6 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         NoticeMessageText = string.Empty;
         NoticeMessageTitle = string.Empty;
-    }
-
-    public void ToggleLinksView()
-    {
-        ShowLinksPopup = !ShowLinksPopup;
-    }
-
-    public void CloseLinksClicked()
-    {
-        ShowLinksPopup = false;
     }
 
     public void OpenSettings()

@@ -10,7 +10,7 @@
         MinWidth="900" MinHeight="550"
         x:Class="ThriveLauncher.Views.MainWindow"
         Icon="/Assets/Icons/icon.ico"
-        Title="Thrive Launcher"
+        Title="{i18n:Localize MainWindowTitle}"
         FontFamily="/Assets/Roboto/Roboto-Regular.ttf">
 
     <Design.DataContext>
@@ -119,44 +119,63 @@
                               CloseCommand="{Binding CloseLinksClicked}" ShowPopup="{Binding ShowLinksPopup}">
             <Grid ColumnDefinitions="*, *" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
                 <Button Grid.Column="0" Grid.Row="0" Classes="TextLink"
-                        Content="{i18n:Localize ExternalLinkMainWebsite}" FontSize="20" />
+                        Content="{i18n:Localize ExternalLinkMainWebsite}" FontSize="20"
+                        Command="{Binding OpenMainSiteLink}" />
                 <Button Grid.Column="0" Grid.Row="1" Classes="TextLink"
-                        Content="{i18n:Localize ExternalLinkDevelopmentForums}" />
+                        Content="{i18n:Localize ExternalLinkDevelopmentForums}"
+                        Command="{Binding OpenDevelopmentForumsLink}" />
                 <Button Grid.Column="0" Grid.Row="2" Classes="TextLink"
-                        Content="{i18n:Localize ExternalLinkCommunityForums}" />
+                        Content="{i18n:Localize ExternalLinkCommunityForums}"
+                        Command="{Binding OpenCommunityForumsLink}" />
                 <Button Grid.Column="0" Grid.Row="3" Classes="TextLink"
-                        Content="{i18n:Localize ExternalLinkDeveloperWiki}" />
+                        Content="{i18n:Localize ExternalLinkDeveloperWiki}"
+                        Command="{Binding OpenDeveloperWikiLink}" />
                 <Button Grid.Column="0" Grid.Row="4" Classes="TextLink"
-                        Content="{i18n:Localize ExternalLinkThriveSteam}" />
+                        Content="{i18n:Localize ExternalLinkThriveSteam}"
+                        Command="{Binding OpenThriveSteamLink}" />
                 <Button Grid.Column="0" Grid.Row="5" Classes="TextLink"
                         IsVisible="{Binding ShowLinksNotInSteamVersion}"
-                        Content="{i18n:Localize ExternalLinkPatreon}" />
+                        Content="{i18n:Localize ExternalLinkPatreon}"
+                        Command="{Binding OpenThrivePatreonLink}" />
                 <Button Grid.Column="0" Grid.Row="6" Classes="TextLink"
                         IsVisible="{Binding ShowLinksNotInSteamVersion}"
-                        Content="{i18n:Localize ExternalLinkDonate}" />
+                        Content="{i18n:Localize ExternalLinkDonate}"
+                        Command="{Binding OpenDonateLink}" />
                 <Button Grid.Column="0" Grid.Row="7" Classes="TextLink"
                         IsVisible="{Binding ShowLinksNotInSteamVersion}"
-                        Content="{i18n:Localize ExternalLinkThriveDevCenter}" />
+                        Content="{i18n:Localize ExternalLinkThriveDevCenter}"
+                        Command="{Binding OpenThriveDevCenterBrowserLink}" />
                 <Button Grid.Column="0" Grid.Row="8" Classes="TextLink"
                         IsVisible="{Binding ShowLinksNotInSteamVersion}"
-                        Content="{i18n:Localize ExternalLinkThriveItch}" />
+                        Content="{i18n:Localize ExternalLinkThriveItch}"
+                        Command="{Binding OpenThriveItchLink}" />
 
                 <Button Grid.Column="1" Grid.Row="0" Classes="TextLink"
-                        Content="{i18n:Localize ExternalLinkThriveGithub}" FontSize="20" />
+                        Content="{i18n:Localize ExternalLinkThriveGithub}" FontSize="20"
+                        Command="{Binding OpenThriveRepoLink}" />
                 <Button Grid.Column="1" Grid.Row="1" Classes="TextLink"
-                        Content="{i18n:Localize ExternalLinkLauncherGithub}" />
+                        Content="{i18n:Localize ExternalLinkLauncherGithub}"
+                        Command="{Binding OpenLauncherRepoLink}" />
                 <Button Grid.Column="1" Grid.Row="2" Classes="TextLink"
-                        Content="{i18n:Localize ExternalLinkFanWiki}" />
+                        Content="{i18n:Localize ExternalLinkFanWiki}"
+                        Command="{Binding OpenFanWikiLink}" />
                 <Button Grid.Column="1" Grid.Row="3" Classes="TextLink"
-                        Content="{i18n:Localize ExternalLinkDiscordServer}" />
+                        Content="{i18n:Localize ExternalLinkDiscordServer}"
+                        Command="{Binding OpenDiscordServerLink}" />
                 <Button Grid.Column="1" Grid.Row="4" Classes="TextLink"
-                        Content="{i18n:Localize ExternalLinkSubreddit}" />
+                        Content="{i18n:Localize ExternalLinkSubreddit}"
+                        Command="{Binding OpenSubredditLink}" />
                 <Button Grid.Column="1" Grid.Row="5" Classes="TextLink"
-                        Content="{i18n:Localize ExternalLinkYouTubeChannel}" />
+                        Content="{i18n:Localize ExternalLinkYouTubeChannel}"
+                        Command="{Binding OpenYoutubeChannelLink}" />
                 <Button Grid.Column="1" Grid.Row="6" Classes="TextLink"
-                        Content="{i18n:Localize ExternalLinkTwitterFeed}" />
+                        Content="{i18n:Localize ExternalLinkTwitterFeed}"
+                        Command="{Binding OpenTwitterProfileLink}" />
                 <Button Grid.Column="1" Grid.Row="7" Classes="TextLink"
-                        Content="{i18n:Localize ExternalLinkFacebookPage}" />
+                        Content="{i18n:Localize ExternalLinkFacebookPage}"
+                        Command="{Binding OpenFacebookPageLink}" />
+                <Button Grid.Column="1" Grid.Row="8" Classes="TextLink" Content="{i18n:Localize ViewLicensesButton}"
+                        Click="OpenLicensesWindow" />
             </Grid>
         </controls:PopupDialog>
 
@@ -212,17 +231,24 @@
                                 <ComboBox x:Name="LanguageComboBox" SelectionChanged="LanguageSelectionChanged" />
                             </StackPanel>
 
-                            <Border DockPanel.Dock="Top" Padding="0" BorderThickness="1" Margin="0 0 0 3"
+                            <Border Padding="0" BorderThickness="1" Margin="0 0 0 3"
                                     BorderBrush="{DynamicResource BlueElement}" />
-                            <Button Classes="DialogButton Danger" Content="{i18n:Localize ResetAllSettings}"
-                                    Command="{Binding ResetAllSettings}" />
+
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <Button Classes="DialogButton Danger" Content="{i18n:Localize ResetAllSettings}"
+                                        Command="{Binding ResetAllSettings}" />
+
+                                <Button Classes="TextLink" Content="{i18n:Localize ViewLicensesButton}"
+                                        Click="OpenLicensesWindow" />
+                            </StackPanel>
                         </StackPanel>
                     </TabItem>
                     <TabItem Header="{i18n:Localize InstalledVersions}">
                         <StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="2">
                                 <!-- TODO: implement these buttons -->
-                                <Button Classes="DialogButton" Content="{i18n:Localize BrowseInstalledFiles}" Command="{Binding OpenFileBrowserToInstalled}"/>
+                                <Button Classes="DialogButton" Content="{i18n:Localize BrowseInstalledFiles}"
+                                        Command="{Binding OpenFileBrowserToInstalled}" />
                                 <Button Classes="DialogButton" Content="{i18n:Localize SelectInstallLocation}" />
                                 <Button Classes="DialogButton" Command="{Binding ResetInstallLocation}"
                                         ToolTip.Tip="{i18n:Localize ResetInstallLocationToolTip}">
