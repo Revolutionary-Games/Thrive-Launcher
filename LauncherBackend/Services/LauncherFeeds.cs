@@ -47,7 +47,10 @@ namespace LauncherBackend.Services
             {
                 var firstParse = FeedParser.Services.FeedParser.ParseContent(feed, rawData, out _);
 
-                secondParse = firstParse.Select(summaryParser.ParseItem).ToList();
+                lock (summaryParser)
+                {
+                    secondParse = firstParse.Select(summaryParser.ParseItem).ToList();
+                }
             }
             catch (Exception e)
             {
