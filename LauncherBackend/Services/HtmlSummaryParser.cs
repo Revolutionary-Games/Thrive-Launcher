@@ -122,7 +122,7 @@ public class HtmlSummaryParser : IHtmlSummaryParser
 
                         FinishCurrentItem();
 
-                        var workedOnItem = new Models.ParsedContent.Link(aElement.Target);
+                        var workedOnItem = new Models.ParsedContent.Link(aElement.Target ?? string.Empty);
                         currentItem = workedOnItem;
 
                         if (!string.IsNullOrEmpty(aElement.Text))
