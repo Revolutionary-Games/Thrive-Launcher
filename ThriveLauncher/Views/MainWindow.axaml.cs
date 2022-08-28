@@ -102,6 +102,7 @@ namespace ThriveLauncher.Views
             var devForum = await dataContext.DevForumFeedItems;
             var mainSite = await dataContext.MainSiteFeedItems;
 
+            // TODO: for some reason the items get mixed up
             PopulateFeed(this.FindControl<StackPanel>("DevelopmentFeedItems"), devForum);
             PopulateFeed(this.FindControl<StackPanel>("MainSiteFeedItems"), mainSite);
         }
@@ -115,6 +116,10 @@ namespace ThriveLauncher.Views
 
             var linkClasses = new Classes("TextLink");
 
+            var lightGrey = new SolidColorBrush((Color?)Application.Current?.Resources["LightGrey"] ??
+                throw new Exception("missing brush"));
+
+            // TODO: these items need to be recreated if language changes (or bindings need to be used)
             foreach (var feedItem in items)
             {
                 var itemContainer = new StackPanel
@@ -136,6 +141,49 @@ namespace ThriveLauncher.Views
                 title.Click += (_, _) => URLUtilities.OpenURLInBrowser(feedItem.Link);
 
                 itemContainer.Children.Add(title);
+
+                var authorAndTime = new TextBlock
+                {
+                    TextWrapping = TextWrapping.Wrap,
+
+                    // TODO: a library for x hours ago
+                    Text = string.Format(Properties.Resources.FeedItemPostedByAndTime, feedItem.Author,
+                        feedItem.PublishedAt),
+                    Margin = new Thickness(20, 0, 0, 8),
+                    FontSize = 12,
+                    Foreground = lightGrey,
+                };
+
+                itemContainer.Children.Add(authorAndTime);
+
+                // Main content
+                // TODO: this is text and link only for now
+
+                if (feedItem.Truncated)
+                {
+                    var truncatedContainer = new WrapPanel
+                    {
+                        Orientation = Orientation.Horizontal,
+                    };
+
+                    var truncatedLink = new Button
+                    {
+                        Classes = linkClasses,
+                        Content = Properties.Resources.ClickHereLink,
+                    };
+
+                    truncatedLink.Click += (_, _) => URLUtilities.OpenURLInBrowser(feedItem.Link);
+
+                    truncatedContainer.Children.Add(truncatedLink);
+                    truncatedContainer.Children.Add(new TextBlock
+                    {
+                        Text = Properties.Resources.TruncatedClickSuffix,
+                        TextWrapping = TextWrapping.Wrap,
+                        VerticalAlignment = VerticalAlignment.Center,
+                    });
+
+                    itemContainer.Children.Add(truncatedContainer);
+                }
 
                 targetContainer.Children.Add(itemContainer);
             }

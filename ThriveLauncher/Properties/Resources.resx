@@ -343,4 +343,13 @@ Launcher logs will have more info.</value>
   <data name="FeedFetchError" xml:space="preserve">
     <value>Feed cannot be displayed. {0}</value>
   </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>posted by {0} {1}</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Click here</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>to read the full post.</value>
+  </data>
 </root>

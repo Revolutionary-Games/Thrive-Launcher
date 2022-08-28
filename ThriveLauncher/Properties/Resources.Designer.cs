@@ -602,5 +602,23 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("FeedFetchError", resourceCulture);
             }
         }
+        
+        public static string FeedItemPostedByAndTime {
+            get {
+                return ResourceManager.GetString("FeedItemPostedByAndTime", resourceCulture);
+            }
+        }
+        
+        public static string ClickHereLink {
+            get {
+                return ResourceManager.GetString("ClickHereLink", resourceCulture);
+            }
+        }
+        
+        public static string TruncatedClickSuffix {
+            get {
+                return ResourceManager.GetString("TruncatedClickSuffix", resourceCulture);
+            }
+        }
     }
 }
