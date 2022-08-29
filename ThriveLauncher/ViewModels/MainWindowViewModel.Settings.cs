@@ -28,7 +28,8 @@ public partial class MainWindowViewModel
 
             if (ShowWebContent)
             {
-                // TODO: start fetching web content here or should we use another approach? (if not fetched already)
+                // Start fetching web content if not fetched already
+                StartFeedFetch();
             }
         }
     }

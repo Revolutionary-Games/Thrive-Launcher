@@ -93,8 +93,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         if (Settings.ShowWebContent)
         {
-            devForumFeedItems.Start();
-            mainSiteFeedItems.Start();
+            StartFeedFetch();
         }
 
         Items = new ObservableCollection<string>() { };
@@ -430,6 +429,15 @@ public partial class MainWindowViewModel : ViewModelBase
 
         // We don't start the tasks here to ensure that no network requests are done if web content is turned off
         // in settings
+    }
+
+    private void StartFeedFetch()
+    {
+        if (devForumFeedItems.Status == TaskStatus.Created)
+            devForumFeedItems.Start();
+
+        if (mainSiteFeedItems.Status == TaskStatus.Created)
+            mainSiteFeedItems.Start();
     }
 
     private async Task<List<ParsedLauncherFeedItem>> FetchFeed(string name, Uri uri, bool mainSite)
