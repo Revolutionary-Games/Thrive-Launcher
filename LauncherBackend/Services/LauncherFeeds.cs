@@ -21,6 +21,19 @@ public class LauncherFeeds : ILauncherFeeds
         this.summaryParser = summaryParser;
     }
 
+    /// <summary>
+    ///   Replaces the username + full name combo in discourse message authors with just the username
+    /// </summary>
+    public static string GetPosterUsernameToDisplay(ParsedFeedItem item)
+    {
+        if (item.Author.StartsWith('@'))
+        {
+            return item.Author.Split(' ').First();
+        }
+
+        return item.Author;
+    }
+
     public async Task<(string? Error, List<ParsedLauncherFeedItem>? Items)> FetchFeed(string name, Uri url)
     {
         string rawData;

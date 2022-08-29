@@ -1,3 +1,5 @@
+namespace ThriveLauncher.Views;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +11,13 @@ using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Threading;
 using LauncherBackend.Models;
+using LauncherBackend.Models.ParsedContent;
+using LauncherBackend.Services;
 using LauncherBackend.Utilities;
 using ReactiveUI;
-using ThriveLauncher.Utilities;
-using ThriveLauncher.ViewModels;
-
-namespace ThriveLauncher.Views;
+using SharedBase.Utilities;
+using Utilities;
+using ViewModels;
 
 public partial class MainWindow : Window
 {
@@ -106,7 +109,6 @@ public partial class MainWindow : Window
 
         Dispatcher.UIThread.Post(() =>
         {
-            // TODO: for some reason the items get mixed up
             PopulateFeed(this.FindControl<StackPanel>("DevelopmentFeedItems"), devForum);
             PopulateFeed(this.FindControl<StackPanel>("MainSiteFeedItems"), mainSite);
         });
@@ -152,8 +154,9 @@ public partial class MainWindow : Window
                 TextWrapping = TextWrapping.Wrap,
 
                 // TODO: a library for x hours ago
-                Text = string.Format(Properties.Resources.FeedItemPostedByAndTime, feedItem.Author,
-                    feedItem.PublishedAt.ToLocalTime().ToLongTimeString()),
+                Text = string.Format(Properties.Resources.FeedItemPostedByAndTime,
+                    LauncherFeeds.GetPosterUsernameToDisplay(feedItem),
+                    RecentTimeString.FormatRecentTimeInLocalTime(feedItem.PublishedAt, false)),
                 Margin = new Thickness(20, 0, 0, 8),
                 FontSize = 12,
                 Foreground = lightGrey,
@@ -161,8 +164,51 @@ public partial class MainWindow : Window
 
             itemContainer.Children.Add(authorAndTime);
 
+            var summaryContainer = new WrapPanel()
+            {
+                Orientation = Orientation.Horizontal,
+            };
+
+            itemContainer.Children.Add(summaryContainer);
+
+            Control? lastContentItem = null;
+
             // Main content
             // TODO: this is text and link only for now
+            foreach (var parsedFeedContent in feedItem.ParsedSummary)
+            {
+                if (parsedFeedContent is Text text)
+                {
+                    lastContentItem = new TextBlock
+                    {
+                        Text = text.Content,
+                        Margin = lastContentItem is TextBlock ? new Thickness(0, 0, 0, 5) : new Thickness(0),
+                        TextWrapping = TextWrapping.Wrap,
+                        VerticalAlignment = VerticalAlignment.Center,
+                    };
+
+                    summaryContainer.Children.Add(lastContentItem);
+                }
+                else if (parsedFeedContent is Link link)
+                {
+                    var linkButton = new Button()
+                    {
+                        Classes = linkClasses,
+                        Content = new TextBlock
+                        {
+                            Text = link.Text,
+                            TextWrapping = TextWrapping.Wrap,
+                        },
+                    };
+
+                    linkButton.Click += (_, _) => URLUtilities.OpenURLInBrowser(link.Target);
+
+                    lastContentItem = linkButton;
+                    summaryContainer.Children.Add(lastContentItem);
+                }
+            }
+
+            var bottomMargin = new Thickness(0, 0, 0, 15);
 
             if (feedItem.Truncated)
             {
@@ -175,6 +221,7 @@ public partial class MainWindow : Window
                 {
                     Classes = linkClasses,
                     Content = Properties.Resources.ClickHereLink,
+                    Margin = bottomMargin,
                 };
 
                 truncatedLink.Click += (_, _) => URLUtilities.OpenURLInBrowser(feedItem.Link);
@@ -185,10 +232,17 @@ public partial class MainWindow : Window
                     Text = Properties.Resources.TruncatedClickSuffix,
                     TextWrapping = TextWrapping.Wrap,
                     VerticalAlignment = VerticalAlignment.Center,
-                    Margin = new Thickness(0, 0, 0, 15),
+                    Margin = bottomMargin,
                 });
 
                 itemContainer.Children.Add(truncatedContainer);
+            }
+            else
+            {
+                if (lastContentItem != null)
+                {
+                    lastContentItem.Margin = bottomMargin;
+                }
             }
 
             targetContainer.Children.Add(itemContainer);
