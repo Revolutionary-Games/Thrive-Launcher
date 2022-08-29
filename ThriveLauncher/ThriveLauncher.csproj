@@ -43,7 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\LICENSE.md" LogicalName="LICENSE.md" />
-    <EmbeddedResource Include="Assets\Roboto\LICENSE.txt" LogicalName="Roboto/LICENSE.txt" />
+    <EmbeddedResource Include="Assets\Fonts\Roboto\LICENSE.txt" LogicalName="Roboto/LICENSE.txt" />
+    <EmbeddedResource Include="Assets\Fonts\Lato\OFL.txt" LogicalName="OFL.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">

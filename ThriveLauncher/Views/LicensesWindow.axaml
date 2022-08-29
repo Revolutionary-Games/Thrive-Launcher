@@ -4,13 +4,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i18n="clr-namespace:ThriveLauncher.Services.Localization"
         xmlns:viewModels="clr-namespace:ThriveLauncher.ViewModels"
-        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="800"
-        Width="600" Height="800"
+        mc:Ignorable="d" d:DesignWidth="650" d:DesignHeight="800"
+        Width="650" Height="800"
         MinWidth="600" MinHeight="400"
         x:Class="ThriveLauncher.Views.LicensesWindow"
         Icon="/Assets/Icons/icon.ico"
         Title="{i18n:Localize LicensesWindowTitle}"
-        FontFamily="/Assets/Roboto/Roboto-Regular.ttf">
+        FontFamily="{StaticResource Lato}">
 
     <Design.DataContext>
         <viewModels:LicensesWindowViewModel />
@@ -26,13 +26,19 @@
         <ScrollViewer DockPanel.Dock="Top">
             <StackPanel>
                 <TextBlock Text="{Binding LauncherLicenseText^, FallbackValue='...'}"
-                           TextWrapping="Wrap" FontFamily="/Assets/Roboto/RobotoMono-Regular.ttf" />
+                           TextWrapping="Wrap" FontFamily="{StaticResource RobotoMono}" />
 
-                <TextBlock Text="{i18n:Localize FontLicensesTitle}"
-                           Margin="0 10 0 0" />
+                <TextBlock Text="{i18n:Localize RobotoLicenseTitle}" FontWeight="Bold" TextWrapping="Wrap"
+                           Margin="0 30 0 0" />
 
                 <TextBlock Text="{Binding RobotoFontLicenseText^, FallbackValue='...'}"
-                           TextWrapping="Wrap" FontFamily="/Assets/Roboto/RobotoMono-Regular.ttf" />
+                           TextWrapping="Wrap" FontFamily="{StaticResource RobotoMono}" />
+
+                <TextBlock Text="{i18n:Localize LatoLicenseTitle}" FontWeight="Bold" TextWrapping="Wrap"
+                           Margin="0 20 0 0" />
+
+                <TextBlock Text="{Binding OFLLicenseText^, FallbackValue='...'}"
+                           TextWrapping="Wrap" FontFamily="{StaticResource RobotoMono}" />
             </StackPanel>
         </ScrollViewer>
     </DockPanel>

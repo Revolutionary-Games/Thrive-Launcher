@@ -33,9 +33,10 @@ Thrive Launcher also includes third party tools bundled in:
 7zip, godotpcktool
 
 
-### Library Licenses
+Library Licenses
+----------------
 
-#### Avalonia
+### Avalonia
 
 The MIT License (MIT)
 
@@ -60,7 +61,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-#### NLog
+
+### NLog
 
 Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 

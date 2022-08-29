@@ -19,6 +19,8 @@ public class LicensesWindowViewModel : ViewModelBase
     public Task<string> RobotoFontLicenseText =>
         ResourceUtilities.ReadManifestResourceAsync("Roboto/LICENSE.txt", assembly);
 
+    public Task<string> OFLLicenseText => ResourceUtilities.ReadManifestResourceAsync("OFL.txt", assembly);
+
     public void OpenLauncherSourceCode()
     {
         URLUtilities.OpenURLInBrowser(LauncherConstants.LauncherRepoURL);

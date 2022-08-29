@@ -8,6 +8,8 @@
     </Application.DataTemplates>-->
 
     <Application.Resources>
+        <FontFamily x:Key="Lato">avares://ThriveLauncher/Assets/Fonts/Lato#Lato</FontFamily>
+        <FontFamily x:Key="RobotoMono">avares://ThriveLauncher/Assets/Fonts/Roboto#Roboto Mono</FontFamily>
         <Color x:Key="DarkGrey">#303030</Color>
         <Color x:Key="FeedBackgroundGradientStart">#dd333333</Color>
         <Color x:Key="FeedBackgroundGradientEnd">#5a333333</Color>

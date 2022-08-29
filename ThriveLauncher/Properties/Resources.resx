@@ -337,8 +337,11 @@ Launcher logs will have more info.</value>
   <data name="LicensesWindowTitle" xml:space="preserve">
     <value>Thrive Launcher Licenses</value>
   </data>
-  <data name="FontLicensesTitle" xml:space="preserve">
-    <value>Licenses for fonts used in the launcher:</value>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>Roboto font is used in the launcher, Roboto license:</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf (Copyright (c) 2010-2011 by tyPoland Lukasz Dziedzic with Reserved Font Name "Lato"), OFL license:</value>
   </data>
   <data name="FeedFetchError" xml:space="preserve">
     <value>Feed cannot be displayed. {0}</value>

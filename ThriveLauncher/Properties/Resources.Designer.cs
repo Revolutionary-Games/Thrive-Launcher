@@ -591,9 +591,15 @@ namespace ThriveLauncher.Properties {
             }
         }
         
-        public static string FontLicensesTitle {
+        public static string RobotoLicenseTitle {
             get {
-                return ResourceManager.GetString("FontLicensesTitle", resourceCulture);
+                return ResourceManager.GetString("RobotoLicenseTitle", resourceCulture);
+            }
+        }
+        
+        public static string LatoLicenseTitle {
+            get {
+                return ResourceManager.GetString("LatoLicenseTitle", resourceCulture);
             }
         }
         

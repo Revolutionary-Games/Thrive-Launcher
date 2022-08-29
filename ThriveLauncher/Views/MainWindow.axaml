@@ -11,7 +11,7 @@
         x:Class="ThriveLauncher.Views.MainWindow"
         Icon="/Assets/Icons/icon.ico"
         Title="{i18n:Localize MainWindowTitle}"
-        FontFamily="/Assets/Roboto/Roboto-Regular.ttf">
+        FontFamily="{StaticResource Lato}">
 
     <Design.DataContext>
         <vm:MainWindowViewModel />
