@@ -204,8 +204,8 @@ internal class Program
                 KeepFileOpen = true,
                 ConcurrentWrites = true,
 
-                // TODO: should we use default instead?
-                LineEnding = LineEndingMode.LF,
+                // Use default because people will use notepad on Windows to open the logs and copy a mess
+                LineEnding = LineEndingMode.Default,
             };
 
             configuration.AddRule(LogLevel.Debug, LogLevel.Fatal, fileTarget);
