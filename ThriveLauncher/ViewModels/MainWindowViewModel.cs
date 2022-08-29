@@ -338,6 +338,11 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
+    public void OpenLogsFolder()
+    {
+        FileUtilities.OpenFolderInPlatformSpecificViewer(launcherPaths.PathToLogFolder);
+    }
+
     public void OpenFileBrowserToInstalled()
     {
         var folder = ThriveInstallationPath;

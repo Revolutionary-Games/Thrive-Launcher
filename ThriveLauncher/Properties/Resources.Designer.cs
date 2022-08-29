@@ -626,5 +626,11 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("LogFolderCreateFailed", resourceCulture);
             }
         }
+        
+        public static string OpenLogsFolderButton {
+            get {
+                return ResourceManager.GetString("OpenLogsFolderButton", resourceCulture);
+            }
+        }
     }
 }

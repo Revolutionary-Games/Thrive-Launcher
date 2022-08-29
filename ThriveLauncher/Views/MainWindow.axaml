@@ -255,6 +255,9 @@
 
                                 <Button Classes="TextLink" Content="{i18n:Localize ViewLicensesButton}"
                                         Click="OpenLicensesWindow" />
+
+                                <Button Classes="TextLink" Content="{i18n:Localize OpenLogsFolderButton}"
+                                        Command="{Binding OpenLogsFolder}" />
                             </StackPanel>
                         </StackPanel>
                     </TabItem>
