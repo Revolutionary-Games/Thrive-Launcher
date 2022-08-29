@@ -41,9 +41,11 @@ public partial class MainWindowViewModel : ViewModelBase
     // Feeds
     private Task<List<ParsedLauncherFeedItem>> devForumFeedItems = null!;
     private string? devForumFetchError;
+    private bool loadingDevForumFeed;
 
     private Task<List<ParsedLauncherFeedItem>> mainSiteFeedItems = null!;
     private string? mainSiteFetchError;
+    private bool loadingMainSiteFeed;
 
     // Settings sub view
     private bool showSettingsPopup;
@@ -174,12 +176,30 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public Task<List<ParsedLauncherFeedItem>> DevForumFeedItems => devForumFeedItems;
 
+    public bool LoadingDevForumFeed
+    {
+        get => loadingDevForumFeed;
+        private set
+        {
+            this.RaiseAndSetIfChanged(ref loadingDevForumFeed, value);
+        }
+    }
+
     public string? MainSiteFetchError
     {
         get => mainSiteFetchError;
         private set
         {
             this.RaiseAndSetIfChanged(ref mainSiteFetchError, value);
+        }
+    }
+
+    public bool LoadingMainSiteFeed
+    {
+        get => loadingMainSiteFeed;
+        private set
+        {
+            this.RaiseAndSetIfChanged(ref loadingMainSiteFeed, value);
         }
     }
 
@@ -442,9 +462,13 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private async Task<List<ParsedLauncherFeedItem>> FetchFeed(string name, Uri uri, bool mainSite)
     {
+        NotifyFeedLoadingState(mainSite, true);
+
         logger.LogDebug("Fetching feed {Name}", name);
 
         var (failure, data) = await launcherFeeds.FetchFeed(name, uri);
+
+        NotifyFeedLoadingState(mainSite, false);
 
         if (failure != null)
         {
@@ -453,6 +477,18 @@ public partial class MainWindowViewModel : ViewModelBase
         }
 
         return data!;
+    }
+
+    private void NotifyFeedLoadingState(bool mainSite, bool loading)
+    {
+        if (mainSite)
+        {
+            Dispatcher.UIThread.Post(() => LoadingMainSiteFeed = loading);
+        }
+        else
+        {
+            Dispatcher.UIThread.Post(() => LoadingDevForumFeed = loading);
+        }
     }
 
     private void SetFetchError(bool mainSite, string error)

@@ -98,9 +98,9 @@
                                 IsVisible="{Binding DevForumFetchError, Converter={x:Static ObjectConverters.IsNotNull}}"
                                 Text="{Binding DevForumFetchError}" TextWrapping="Wrap" />
 
-                            <!-- TODO: add some kind of loading indicator -->
+                            <ProgressBar IsIndeterminate="True" Margin="0 10" IsVisible="{Binding LoadingDevForumFeed}"/>
 
-                            <StackPanel Name="DevelopmentFeedItems" />
+                            <StackPanel Name="DevelopmentFeedItems" IsVisible="{Binding ShowWebContent}" />
 
                         </StackPanel>
                     </ScrollViewer>
@@ -119,9 +119,9 @@
                                 IsVisible="{Binding MainSiteFetchError, Converter={x:Static ObjectConverters.IsNotNull}}"
                                 Text="{Binding MainSiteFetchError}" TextWrapping="Wrap" />
 
-                            <!-- TODO: add some kind of loading indicator -->
+                            <ProgressBar IsIndeterminate="True" Margin="0 10" IsVisible="{Binding LoadingMainSiteFeed}"/>
 
-                            <StackPanel Name="MainSiteFeedItems" />
+                            <StackPanel Name="MainSiteFeedItems" IsVisible="{Binding ShowWebContent}" />
 
                         </StackPanel>
                     </ScrollViewer>
