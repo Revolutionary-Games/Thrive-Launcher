@@ -38,10 +38,6 @@
                 <x:Int32>3</x:Int32>
             </KeyBinding.CommandParameter>
         </KeyBinding>
-        <!-- TODO: implement this keybinding and make sure it doesn't mess things up if game is currently running -->
-        <!--<KeyBinding Gesture="Ctrl+S" Command="{Binding PlayClicked}" />-->
-        <KeyBinding Gesture="Ctrl+O" Command="{Binding OpenSettings}" />
-        <KeyBinding Gesture="Ctrl+L" Command="{Binding ToggleLinksView}" />
     </Window.KeyBindings>
 
     <Grid Margin="0" ColumnDefinitions="*" RowDefinitions="*">
@@ -53,14 +49,15 @@
             <Border DockPanel.Dock="Bottom" Background="{DynamicResource BottomBackground}"
                     HorizontalAlignment="Stretch" Padding="15">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="3">
-                    <Button FontSize="18" VerticalAlignment="Stretch" Command="{Binding ToggleLinksView}">
+                    <Button FontSize="18" VerticalAlignment="Stretch" Command="{Binding ToggleLinksView}"
+                            HotKey="Ctrl+L">
                         <TextBlock VerticalAlignment="Center" Text="{i18n:Localize LinksButton}" />
                     </Button>
-                    <Button VerticalAlignment="Stretch" Command="{Binding OpenSettings}">
+                    <Button VerticalAlignment="Stretch" Command="{Binding OpenSettings}" HotKey="Ctrl+O">
                         <Image Source="/Assets/gear.png" Width="32" />
                     </Button>
                     <Button FontSize="28" Classes="PlayButton" Command="{Binding ToggleLinksView}"
-                            Content="{i18n:Localize PlayButton}" />
+                            Content="{i18n:Localize PlayButton}" HotKey="Ctrl+S" />
 
                     <ComboBox SelectedIndex="0" FontSize="20" VerticalAlignment="Stretch" Classes="VersionSelect"
                               SelectionChanged="SelectedVersionChanged">
