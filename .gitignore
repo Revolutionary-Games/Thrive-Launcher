@@ -12,3 +12,6 @@ node_modules
 
 bin
 obj
+
+/.jetbrains-cache
+/inspect_results.xml
