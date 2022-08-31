@@ -164,7 +164,7 @@ public partial class MainWindow : Window
 
             itemContainer.Children.Add(authorAndTime);
 
-            var summaryContainer = new WrapPanel()
+            var summaryContainer = new WrapPanel
             {
                 Orientation = Orientation.Horizontal,
             };
@@ -191,7 +191,7 @@ public partial class MainWindow : Window
                 }
                 else if (parsedFeedContent is Link link)
                 {
-                    var linkButton = new Button()
+                    var linkButton = new Button
                     {
                         Classes = linkClasses,
                         Content = new TextBlock

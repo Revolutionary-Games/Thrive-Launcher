@@ -1,6 +1,6 @@
-﻿using ReactiveUI;
+﻿namespace ThriveLauncher.ViewModels;
 
-namespace ThriveLauncher.ViewModels;
+using ReactiveUI;
 
 public class ViewModelBase : ReactiveObject
 {

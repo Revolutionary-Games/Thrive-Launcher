@@ -39,13 +39,16 @@ jobs:
           command: dotnet restore
       - run:
           name: Build with warnings
-          command: ruby check_formatting.rb -c compile
+          command: dotnet run --project Scripts -- check compile
+      - run:
+          name: File based checks
+          command: dotnet run --project Scripts -- check files
       - run:
           name: Jetbrains inspectcode
-          command: ruby check_formatting.rb -c inspectcode
+          command: dotnet run --project Scripts -- check inspectcode
       - run:
           name: Jetbrains format
-          command: ruby check_formatting.rb -c cleanupcode
+          command: dotnet run --project Scripts -- check cleanupcode
       - run:
           when: always
           name: Check cleanup changes

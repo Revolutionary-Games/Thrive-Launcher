@@ -1,10 +1,10 @@
+namespace ThriveLauncher;
+
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using Microsoft.Extensions.DependencyInjection;
-using ThriveLauncher.ViewModels;
-
-namespace ThriveLauncher;
+using ViewModels;
 
 public class ViewLocator : IDataTemplate
 {

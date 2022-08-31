@@ -23,9 +23,6 @@ public class App : Application
         // To provide access to any controls to get to the services
         Resources[typeof(IServiceProvider)] = serviceCollection;
 
-        // https://github.com/AvaloniaUI/Avalonia/issues/8640
-        // Animation.RegisterAnimator<TransformAnimator>(prop => typeof(ITransform).IsAssignableFrom(prop.PropertyType));
-
         DataTemplates.Add(serviceCollection.GetRequiredService<ViewLocator>());
 
         AvaloniaXamlLoader.Load(this);

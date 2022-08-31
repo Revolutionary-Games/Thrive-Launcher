@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Avalonia.Threading;
 using LauncherBackend.Models;
 using LauncherBackend.Services;
-using LauncherBackend.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ReactiveUI;
@@ -98,7 +97,7 @@ public partial class MainWindowViewModel : ViewModelBase
             StartFeedFetch();
         }
 
-        Items = new ObservableCollection<string>() { };
+        Items = new ObservableCollection<string> { };
     }
 
     /// <summary>
@@ -359,7 +358,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public void OpenLogsFolder()
     {
-        FileUtilities.OpenFolderInPlatformSpecificViewer(launcherPaths.PathToLogFolder);
+        LauncherBackend.Utilities.FileUtilities.OpenFolderInPlatformSpecificViewer(launcherPaths.PathToLogFolder);
     }
 
     public void OpenFileBrowserToInstalled()
@@ -372,7 +371,7 @@ public partial class MainWindowViewModel : ViewModelBase
             return;
         }
 
-        FileUtilities.OpenFolderInPlatformSpecificViewer(folder);
+        LauncherBackend.Utilities.FileUtilities.OpenFolderInPlatformSpecificViewer(folder);
     }
 
     public void ResetInstallLocation()
@@ -430,7 +429,8 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private async Task<string> ComputeDehydrateCacheSizeDisplayString()
     {
-        var calculateTask = new Task<long>(() => FileUtilities.CalculateFolderSize(DehydratedCacheFolder));
+        var calculateTask = new Task<long>(() =>
+            LauncherBackend.Utilities.FileUtilities.CalculateFolderSize(DehydratedCacheFolder));
         calculateTask.Start();
 
         await calculateTask.WaitAsync(CancellationToken.None);

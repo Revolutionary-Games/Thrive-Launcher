@@ -1,8 +1,8 @@
+namespace ThriveLauncher.Utilities;
+
 using System;
 using System.Reflection;
 using Microsoft.Extensions.Logging;
-
-namespace ThriveLauncher.Utilities;
 
 public class VersionUtilities
 {
