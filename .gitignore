@@ -4,6 +4,7 @@ node_modules
 /installed
 /ThriveLauncher/Assets/Icons
 /BundledThrive
+/Temp
 
 /dist
 *.tar.xz

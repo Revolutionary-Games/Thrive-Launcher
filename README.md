@@ -46,20 +46,17 @@ how to install it.
 ### Downloading
 
 First clone this repository with `git clone
-https://github.com/Revolutionary-Games/Thrive-Launcher.git` now go to
-the created directory and run `npm install` this should install all
+https://github.com/Revolutionary-Games/Thrive-Launcher.git --recursive` now go to
+the created directory and run `dotnet restore` this should install all
 required packages. You may need to run this again after pulling updates
 if your IDE doesn't do so automatically.
 
 ### Icons
 
-In order for the icons to work you need to run `./create_icons.rb` to
+In order for the icons to work you need to run `dotnet run --project Scripts -- icons` to
 create all the icon files from the source images. The icon creation
 script requires you to
-have [ImageMagick](https://www.imagemagick.org/) installed. And as it is written in Ruby
-and requires a few gems, you should check the Thrive setup instructions section on that
-[here](https://github.com/Revolutionary-Games/Thrive/blob/master/doc/setup_instructions.md#ruby).
-Otherwise, running the script most likely fails either due to missing Ruby or a missing gem.
+have [ImageMagick](https://www.imagemagick.org/) installed.
 
 ### Running
 
@@ -78,7 +75,9 @@ Creating releases
 
 TODO: new packaging approach
 
-
+```sh
+dotnet run --project Scripts -- package
+```
 
 
 

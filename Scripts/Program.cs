@@ -23,17 +23,23 @@ public class Program
         public override string RemoteBranch { get; set; } = "master";
     }
 
+    [Verb("icons", HelpText = "Generate icons needed by the launcher from source files")]
+    public class IconsOptions : ScriptOptionsBase
+    {
+    }
+
     [STAThread]
     public static int Main(string[] args)
     {
         RunFolderChecker.EnsureRightRunningFolder("ThriveLauncher.sln");
 
         var result = CommandLineHelpers.CreateParser()
-            .ParseArguments<CheckOptions, TestOptions, ChangesOptions>(args)
+            .ParseArguments<CheckOptions, TestOptions, ChangesOptions, IconsOptions>(args)
             .MapResult(
                 (CheckOptions opts) => RunChecks(opts),
                 (TestOptions opts) => RunTests(opts),
                 (ChangesOptions opts) => RunChangesFinding(opts),
+                (IconsOptions opts) => RunIcons(opts),
                 CommandLineHelpers.PrintCommandLineErrors);
 
         ConsoleHelpers.CleanConsoleStateForExit();
@@ -67,8 +73,23 @@ public class Program
 
     private static int RunChangesFinding(ChangesOptions opts)
     {
+        CommandLineHelpers.HandleDefaultOptions(opts);
+
         ColourConsole.WriteDebugLine("Running changes finding tool");
 
         return OnlyChangedFileDetector.BuildListOfChangedFiles(opts).Result ? 0 : 1;
+    }
+
+    private static int RunIcons(IconsOptions opts)
+    {
+        CommandLineHelpers.HandleDefaultOptions(opts);
+
+        ColourConsole.WriteDebugLine("Running icons tool");
+
+        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+
+        var checker = new IconProcessor(opts);
+
+        return checker.Run(tokenSource.Token).Result ? 0 : 1;
     }
 }
