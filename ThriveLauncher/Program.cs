@@ -1,10 +1,12 @@
-﻿using Avalonia;
-using Avalonia.ReactiveUI;
+﻿namespace ThriveLauncher;
+
 using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using Avalonia;
+using Avalonia.ReactiveUI;
 using LauncherBackend.Services;
 using LauncherBackend.Utilities;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,13 +14,10 @@ using Microsoft.Extensions.Logging;
 using NLog.Config;
 using NLog.Extensions.Logging;
 using NLog.Targets;
+using Properties;
 using SharedBase.Utilities;
-using ThriveLauncher.Properties;
-using ThriveLauncher.Utilities;
-using ThriveLauncher.ViewModels;
-using LogLevel = NLog.LogLevel;
-
-namespace ThriveLauncher;
+using Utilities;
+using ViewModels;
 
 internal class Program
 {
@@ -58,7 +57,9 @@ internal class Program
     // Can't be made private without breaking the designer
     // ReSharper disable once MemberCanBePrivate.Global
     public static AppBuilder BuildAvaloniaApp()
-        => BuildAvaloniaAppWithServices(BuildLauncherServices(false));
+    {
+        return BuildAvaloniaAppWithServices(BuildLauncherServices(false));
+    }
 
     public static ServiceProvider BuildLauncherServices(bool normalLogging)
     {
@@ -75,7 +76,7 @@ internal class Program
             builder = builder.AddLogging(config =>
                 {
                     config.ClearProviders();
-                    config.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+                    config.SetMinimumLevel(LogLevel.Trace);
                     config.AddNLog(GetNLogConfiguration(true));
                 })
                 .AddScoped<AvaloniaLogger>();
@@ -85,7 +86,7 @@ internal class Program
             // Design time logging
             builder = builder.AddLogging(config =>
             {
-                config.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Debug);
+                config.SetMinimumLevel(LogLevel.Debug);
                 config.AddNLog(GetNLogConfiguration(false));
             });
         }
@@ -152,10 +153,12 @@ internal class Program
     }
 
     private static AppBuilder BuildAvaloniaAppWithServices(IServiceProvider serviceProvider)
-        => AppBuilder.Configure(() => new App(serviceProvider))
+    {
+        return AppBuilder.Configure(() => new App(serviceProvider))
             .UsePlatformDetect()
             .LogToTrace()
             .UseReactiveUI();
+    }
 
     private static LoggingConfiguration GetNLogConfiguration(bool fileLogging)
     {
@@ -166,10 +169,10 @@ internal class Program
         var configuration = new LoggingConfiguration();
 
         // TODO: allow configuring the logging level
-        configuration.AddRule(LogLevel.Info, LogLevel.Fatal, new ConsoleTarget("console"));
+        configuration.AddRule(NLog.LogLevel.Info, NLog.LogLevel.Fatal, new ConsoleTarget("console"));
 
         if (Debugger.IsAttached)
-            configuration.AddRule(LogLevel.Debug, LogLevel.Fatal, new DebuggerTarget("debugger"));
+            configuration.AddRule(NLog.LogLevel.Debug, NLog.LogLevel.Fatal, new DebuggerTarget("debugger"));
 
         if (fileLogging)
         {
@@ -208,7 +211,7 @@ internal class Program
                 LineEnding = LineEndingMode.Default,
             };
 
-            configuration.AddRule(LogLevel.Debug, LogLevel.Fatal, fileTarget);
+            configuration.AddRule(NLog.LogLevel.Debug, NLog.LogLevel.Fatal, fileTarget);
         }
 
         return configuration;

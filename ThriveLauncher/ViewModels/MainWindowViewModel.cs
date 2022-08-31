@@ -1,4 +1,6 @@
-﻿using System;
+﻿namespace ThriveLauncher.ViewModels;
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -10,12 +12,11 @@ using LauncherBackend.Models;
 using LauncherBackend.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Properties;
 using ReactiveUI;
 using SharedBase.Utilities;
-using ThriveLauncher.Properties;
-using ThriveLauncher.Utilities;
-
-namespace ThriveLauncher.ViewModels;
+using Utilities;
+using FileUtilities = LauncherBackend.Utilities.FileUtilities;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
@@ -97,7 +98,7 @@ public partial class MainWindowViewModel : ViewModelBase
             StartFeedFetch();
         }
 
-        Items = new ObservableCollection<string> { };
+        Items = new ObservableCollection<string>();
     }
 
     /// <summary>
@@ -122,10 +123,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public bool CanDismissNotice
     {
         get => HasNoticeMessage && canDismissNotice;
-        private set
-        {
-            this.RaiseAndSetIfChanged(ref canDismissNotice, value);
-        }
+        private set => this.RaiseAndSetIfChanged(ref canDismissNotice, value);
     }
 
     public bool HasDevCenterConnection => DevCenterConnection != null;
@@ -167,10 +165,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public string? DevForumFetchError
     {
         get => devForumFetchError;
-        private set
-        {
-            this.RaiseAndSetIfChanged(ref devForumFetchError, value);
-        }
+        private set => this.RaiseAndSetIfChanged(ref devForumFetchError, value);
     }
 
     public Task<List<ParsedLauncherFeedItem>> DevForumFeedItems => devForumFeedItems;
@@ -178,28 +173,19 @@ public partial class MainWindowViewModel : ViewModelBase
     public bool LoadingDevForumFeed
     {
         get => loadingDevForumFeed;
-        private set
-        {
-            this.RaiseAndSetIfChanged(ref loadingDevForumFeed, value);
-        }
+        private set => this.RaiseAndSetIfChanged(ref loadingDevForumFeed, value);
     }
 
     public string? MainSiteFetchError
     {
         get => mainSiteFetchError;
-        private set
-        {
-            this.RaiseAndSetIfChanged(ref mainSiteFetchError, value);
-        }
+        private set => this.RaiseAndSetIfChanged(ref mainSiteFetchError, value);
     }
 
     public bool LoadingMainSiteFeed
     {
         get => loadingMainSiteFeed;
-        private set
-        {
-            this.RaiseAndSetIfChanged(ref loadingMainSiteFeed, value);
-        }
+        private set => this.RaiseAndSetIfChanged(ref loadingMainSiteFeed, value);
     }
 
     public Task<List<ParsedLauncherFeedItem>> MainSiteFeedItems => mainSiteFeedItems;
@@ -207,10 +193,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public bool ShowSettingsUpgrade
     {
         get => showSettingsUpgrade;
-        private set
-        {
-            this.RaiseAndSetIfChanged(ref showSettingsUpgrade, value);
-        }
+        private set => this.RaiseAndSetIfChanged(ref showSettingsUpgrade, value);
     }
 
     public bool ShowSettingsPopup
@@ -249,10 +232,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public bool ShowDevCenterStatusArea
     {
         get => showDevCenterStatusArea;
-        private set
-        {
-            this.RaiseAndSetIfChanged(ref showDevCenterStatusArea, value);
-        }
+        private set => this.RaiseAndSetIfChanged(ref showDevCenterStatusArea, value);
     }
 
     public Task<string> DehydrateCacheSize => dehydrateCacheSizeTask ??= ComputeDehydrateCacheSizeDisplayString();
@@ -358,7 +338,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public void OpenLogsFolder()
     {
-        LauncherBackend.Utilities.FileUtilities.OpenFolderInPlatformSpecificViewer(launcherPaths.PathToLogFolder);
+        FileUtilities.OpenFolderInPlatformSpecificViewer(launcherPaths.PathToLogFolder);
     }
 
     public void OpenFileBrowserToInstalled()
@@ -371,7 +351,7 @@ public partial class MainWindowViewModel : ViewModelBase
             return;
         }
 
-        LauncherBackend.Utilities.FileUtilities.OpenFolderInPlatformSpecificViewer(folder);
+        FileUtilities.OpenFolderInPlatformSpecificViewer(folder);
     }
 
     public void ResetInstallLocation()
@@ -430,7 +410,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private async Task<string> ComputeDehydrateCacheSizeDisplayString()
     {
         var calculateTask = new Task<long>(() =>
-            LauncherBackend.Utilities.FileUtilities.CalculateFolderSize(DehydratedCacheFolder));
+            FileUtilities.CalculateFolderSize(DehydratedCacheFolder));
         calculateTask.Start();
 
         await calculateTask.WaitAsync(CancellationToken.None);

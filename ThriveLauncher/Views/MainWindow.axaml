@@ -77,8 +77,7 @@
                                        Text="{i18n:Localize ConnectedSupporterGreeting}" />
 
                             <Button Classes="TextLink" Command="{Binding OpenDevCenterConnectionMenu}"
-                                    Content="{Binding DevCenterConnectedUser}">
-                            </Button>
+                                    Content="{Binding DevCenterConnectedUser}" />
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
@@ -98,7 +97,7 @@
                                 IsVisible="{Binding DevForumFetchError, Converter={x:Static ObjectConverters.IsNotNull}}"
                                 Text="{Binding DevForumFetchError}" TextWrapping="Wrap" />
 
-                            <ProgressBar IsIndeterminate="True" Margin="0 10" IsVisible="{Binding LoadingDevForumFeed}"/>
+                            <ProgressBar IsIndeterminate="True" Margin="0 10" IsVisible="{Binding LoadingDevForumFeed}" />
 
                             <StackPanel Name="DevelopmentFeedItems" IsVisible="{Binding ShowWebContent}" />
 
@@ -119,7 +118,7 @@
                                 IsVisible="{Binding MainSiteFetchError, Converter={x:Static ObjectConverters.IsNotNull}}"
                                 Text="{Binding MainSiteFetchError}" TextWrapping="Wrap" />
 
-                            <ProgressBar IsIndeterminate="True" Margin="0 10" IsVisible="{Binding LoadingMainSiteFeed}"/>
+                            <ProgressBar IsIndeterminate="True" Margin="0 10" IsVisible="{Binding LoadingMainSiteFeed}" />
 
                             <StackPanel Name="MainSiteFeedItems" IsVisible="{Binding ShowWebContent}" />
 
@@ -282,9 +281,7 @@
                             </WrapPanel>
 
                             <!-- TODO: showing the installed versions with delete buttons -->
-                            <ScrollViewer>
-
-                            </ScrollViewer>
+                            <ScrollViewer />
                         </StackPanel>
                     </TabItem>
                     <TabItem Header="{i18n:Localize CacheConfigurationTab}">
@@ -295,9 +292,7 @@
                             </WrapPanel>
 
                             <!-- TODO: showing temporary folder stats / existing things -->
-                            <ScrollViewer>
-
-                            </ScrollViewer>
+                            <ScrollViewer />
 
                             <TextBlock Margin="0 3" TextWrapping="Wrap" FontSize="12"
                                        Text="{i18n:Localize TemporaryFolderNoFilesMoveNotice}" />
@@ -373,9 +368,7 @@
                                 <TextBlock TextWrapping="Wrap" Text="{i18n:Localize BuildTypeSelectionBOTD}" />
                             </RadioButton>
                             <RadioButton GroupName="DevBuildTypeSelection">
-                                <TextBlock TextWrapping="Wrap" Text="{i18n:Localize BuildTypeSelectionLatest}">
-
-                                </TextBlock>
+                                <TextBlock TextWrapping="Wrap" Text="{i18n:Localize BuildTypeSelectionLatest}" />
                             </RadioButton>
                             <RadioButton GroupName="DevBuildTypeSelection">
                                 <TextBlock TextWrapping="Wrap" Text="{i18n:Localize BuildTypeSelectionManual}" />
@@ -423,9 +416,7 @@
                         <Button Classes="DialogButton" Margin="0 10" Content="{i18n:Localize FetchLatestBuildsButton}" />
 
                         <!-- TODO: retrieve and show the latest 100 builds (when button is pressed) -->
-                        <ScrollViewer>
-
-                        </ScrollViewer>
+                        <ScrollViewer />
                     </StackPanel>
                 </TabItem>
             </TabControl>

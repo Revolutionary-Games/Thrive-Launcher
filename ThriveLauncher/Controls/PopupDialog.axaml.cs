@@ -1,10 +1,10 @@
+namespace ThriveLauncher.Controls;
+
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Media;
-
-namespace ThriveLauncher.Controls;
 
 public class PopupDialog : ContentControl
 {
@@ -46,56 +46,56 @@ public class PopupDialog : ContentControl
 
     public bool ShowPopup
     {
-        get { return GetValue(ShowPopupProperty); }
-        set { SetValue(ShowPopupProperty, value); }
+        get => GetValue(ShowPopupProperty);
+        set => SetValue(ShowPopupProperty, value);
     }
 
     public bool ShowCloseX
     {
-        get { return GetValue(ShowCloseXProperty); }
-        set { SetValue(ShowCloseXProperty, value); }
+        get => GetValue(ShowCloseXProperty);
+        set => SetValue(ShowCloseXProperty, value);
     }
 
     public bool ShowTitle
     {
-        get { return GetValue(ShowTitleProperty); }
-        set { SetValue(ShowTitleProperty, value); }
+        get => GetValue(ShowTitleProperty);
+        set => SetValue(ShowTitleProperty, value);
     }
 
     public bool ShowOKButton
     {
-        get { return GetValue(ShowOKButtonProperty); }
-        set { SetValue(ShowOKButtonProperty, value); }
+        get => GetValue(ShowOKButtonProperty);
+        set => SetValue(ShowOKButtonProperty, value);
     }
 
     public string Title
     {
-        get { return GetValue(TitleProperty); }
-        set { SetValue(TitleProperty, value); }
+        get => GetValue(TitleProperty);
+        set => SetValue(TitleProperty, value);
     }
 
     public ICommand CloseCommand
     {
-        get { return GetValue(CloseCommandProperty); }
-        set { SetValue(CloseCommandProperty, value); }
+        get => GetValue(CloseCommandProperty);
+        set => SetValue(CloseCommandProperty, value);
     }
 
     public IBrush DarkenerBackground
     {
-        get { return GetValue(DarkenerBackgroundProperty); }
-        set { SetValue(DarkenerBackgroundProperty, value); }
+        get => GetValue(DarkenerBackgroundProperty);
+        set => SetValue(DarkenerBackgroundProperty, value);
     }
 
     public IBrush TitleSeparatorColour
     {
-        get { return GetValue(TitleSeparatorColourProperty); }
-        set { SetValue(TitleSeparatorColourProperty, value); }
+        get => GetValue(TitleSeparatorColourProperty);
+        set => SetValue(TitleSeparatorColourProperty, value);
     }
 
     public ScrollBarVisibility HorizontalScrollBarVisibility
     {
-        get { return GetValue(HorizontalScrollBarVisibilityProperty); }
-        set { SetValue(HorizontalScrollBarVisibilityProperty, value); }
+        get => GetValue(HorizontalScrollBarVisibilityProperty);
+        set => SetValue(HorizontalScrollBarVisibilityProperty, value);
     }
 
     public BoxShadows BoxShadow
