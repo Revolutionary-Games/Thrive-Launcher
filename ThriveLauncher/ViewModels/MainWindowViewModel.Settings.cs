@@ -1,9 +1,9 @@
+namespace ThriveLauncher.ViewModels;
+
 using LauncherBackend.Models;
 using Microsoft.Extensions.Logging;
+using Properties;
 using ReactiveUI;
-using ThriveLauncher.Properties;
-
-namespace ThriveLauncher.ViewModels;
 
 /// <summary>
 ///   The <see cref="LauncherSettings"/> proxy parts for the view model

@@ -1,8 +1,8 @@
+namespace ThriveLauncher.Utilities;
+
 using System;
 using Avalonia.Controls;
 using Microsoft.Extensions.DependencyInjection;
-
-namespace ThriveLauncher.Utilities;
 
 public static class ResourceHostExtensions
 {

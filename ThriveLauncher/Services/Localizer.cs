@@ -1,8 +1,8 @@
+namespace ThriveLauncher.Services.Localization;
+
 using System.ComponentModel;
 using System.Diagnostics;
-using ThriveLauncher.Properties;
-
-namespace ThriveLauncher.Services.Localization;
+using Properties;
 
 public class Localizer : INotifyPropertyChanged
 {

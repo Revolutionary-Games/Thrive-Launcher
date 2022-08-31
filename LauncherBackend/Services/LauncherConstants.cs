@@ -1,6 +1,6 @@
-using System.Text.RegularExpressions;
-
 namespace LauncherBackend.Services;
+
+using System.Text.RegularExpressions;
 
 /// <summary>
 ///   Holds launcher global configuration constants
@@ -11,7 +11,7 @@ public static class LauncherConstants
     ///   The mode the launcher is in. ONLY COMMIT WHEN IN PRODUCTION MODE. This can be changed temporarily for local
     ///   testing.
     /// </summary>
-    public const LauncherMode Mode = LauncherMode.Production;
+    public const LauncherMode Mode = LauncherMode.LocalTesting;
 
     public const string DevBuildCacheFileName = "devbuild_cache.json";
 

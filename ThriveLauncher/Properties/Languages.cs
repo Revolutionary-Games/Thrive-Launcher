@@ -1,9 +1,9 @@
+namespace ThriveLauncher.Properties;
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-
-namespace ThriveLauncher.Properties;
 
 /// <summary>
 ///   Helper for loading valid languages. Note adding new languages needs manual edits here

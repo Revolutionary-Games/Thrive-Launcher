@@ -22,7 +22,7 @@
 
     <DockPanel LastChildFill="True">
         <Button DockPanel.Dock="Bottom" Classes="TextLink" Content="{i18n:Localize LauncherSourceCodeButton}"
-                HorizontalAlignment="Center" Command="{Binding OpenLauncherSourceCode}"/>
+                HorizontalAlignment="Center" Command="{Binding OpenLauncherSourceCode}" />
         <ScrollViewer DockPanel.Dock="Top">
             <StackPanel>
                 <TextBlock Text="{Binding LauncherLicenseText^, FallbackValue='...'}"

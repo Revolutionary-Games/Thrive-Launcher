@@ -1,6 +1,6 @@
-using System.Net;
-
 namespace LauncherBackend.Services;
+
+using System.Net;
 
 public interface INetworkDataRetriever
 {

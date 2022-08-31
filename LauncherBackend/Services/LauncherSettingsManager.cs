@@ -1,9 +1,9 @@
+namespace LauncherBackend.Services;
+
 using System.Text;
 using System.Text.Json;
-using LauncherBackend.Models;
 using Microsoft.Extensions.Logging;
-
-namespace LauncherBackend.Services;
+using Models;
 
 public class LauncherSettingsManager : ILauncherSettingsManager
 {

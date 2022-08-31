@@ -1,3 +1,5 @@
+namespace LauncherBackend.Services;
+
 using System.Text;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
@@ -5,11 +7,10 @@ using AngleSharp.Html.Parser;
 using AngleSharp.Svg.Dom;
 using FeedParser.Models;
 using FeedParser.Utilities;
-using LauncherBackend.Models;
 using Microsoft.Extensions.Logging;
+using Models;
+using Models.ParsedContent;
 using SharedBase.Utilities;
-
-namespace LauncherBackend.Services;
 
 public class HtmlSummaryParser : IHtmlSummaryParser
 {
@@ -180,7 +181,7 @@ public class HtmlSummaryParser : IHtmlSummaryParser
                         {
                             FinishCurrentItem();
 
-                            currentItem = new Models.ParsedContent.Link(match.Groups[1].Value);
+                            currentItem = new Link(match.Groups[1].Value);
                         }
                         else
                         {
@@ -271,7 +272,7 @@ public class HtmlSummaryParser : IHtmlSummaryParser
 
         FinishCurrentItem();
 
-        var workedOnItem = new Models.ParsedContent.Link(aElement.Href);
+        var workedOnItem = new Link(aElement.Href);
         currentItem = workedOnItem;
 
         if (!string.IsNullOrEmpty(aElement.Text))
@@ -332,14 +333,14 @@ public class HtmlSummaryParser : IHtmlSummaryParser
         if (stringBuilder.Length < 1)
             return;
 
-        if (currentItem is Models.ParsedContent.Text currentText)
+        if (currentItem is Text currentText)
         {
             currentText.Content += stringBuilder.ToString();
         }
         else
         {
             FinishCurrentItem();
-            currentItem = new Models.ParsedContent.Text(stringBuilder.ToString());
+            currentItem = new Text(stringBuilder.ToString());
         }
 
         stringBuilder.Clear();

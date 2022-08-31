@@ -1,7 +1,7 @@
-using LauncherBackend.Services;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace LauncherBackend.Utilities;
+
+using Microsoft.Extensions.DependencyInjection;
+using Services;
 
 public static class ServiceCollectionExtensions
 {

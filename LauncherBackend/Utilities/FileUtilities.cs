@@ -1,6 +1,6 @@
-using System.Diagnostics;
-
 namespace LauncherBackend.Utilities;
+
+using System.Diagnostics;
 
 public static class FileUtilities
 {

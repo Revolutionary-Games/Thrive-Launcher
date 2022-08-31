@@ -1,6 +1,6 @@
-using FeedParser.Models;
-
 namespace LauncherBackend.Models;
+
+using FeedParser.Models;
 
 public class ParsedLauncherFeedItem : ParsedFeedItem
 {

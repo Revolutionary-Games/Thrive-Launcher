@@ -1,6 +1,6 @@
-using Avalonia.Controls;
-
 namespace ThriveLauncher.Views;
+
+using Avalonia.Controls;
 
 public partial class LicensesWindow : Window
 {

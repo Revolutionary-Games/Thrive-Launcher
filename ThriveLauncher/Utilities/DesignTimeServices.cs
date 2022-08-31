@@ -1,7 +1,7 @@
+namespace ThriveLauncher.Utilities;
+
 using System;
 using Microsoft.Extensions.DependencyInjection;
-
-namespace ThriveLauncher.Utilities;
 
 /// <summary>
 ///   Helpers for getting design time services for use in design time ViewModel constructors

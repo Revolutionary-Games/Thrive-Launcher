@@ -1,7 +1,7 @@
-using LauncherBackend.Models;
-using Microsoft.Extensions.Logging;
-
 namespace LauncherBackend.Services;
+
+using Microsoft.Extensions.Logging;
+using Models;
 
 public class StoreVersionDetector : IStoreVersionDetector
 {

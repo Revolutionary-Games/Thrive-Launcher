@@ -1,9 +1,9 @@
+namespace ThriveLauncher.Services.Localization;
+
 using System;
 using Avalonia.Data;
 using Avalonia.Markup.Xaml;
 using Avalonia.Markup.Xaml.MarkupExtensions;
-
-namespace ThriveLauncher.Services.Localization;
 
 /// <summary>
 ///   Support for localizable strings in XAML that react to locale change.

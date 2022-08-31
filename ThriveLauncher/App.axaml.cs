@@ -1,13 +1,13 @@
+namespace ThriveLauncher;
+
 using System;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
-using ThriveLauncher.Utilities;
-using ThriveLauncher.ViewModels;
-using ThriveLauncher.Views;
-
-namespace ThriveLauncher;
+using Utilities;
+using ViewModels;
+using Views;
 
 public class App : Application
 {

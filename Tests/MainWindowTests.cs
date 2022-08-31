@@ -1,13 +1,13 @@
+namespace Tests;
+
 using LauncherBackend.Models;
 using LauncherBackend.Services;
-using ThriveLauncher.ViewModels;
-using Xunit;
 using Moq;
 using TestUtilities.Utilities;
 using ThriveLauncher.Utilities;
+using ThriveLauncher.ViewModels;
+using Xunit;
 using Xunit.Abstractions;
-
-namespace Tests;
 
 public class MainWindowTests
 {

@@ -1,8 +1,8 @@
+namespace ThriveLauncher.Services;
+
 using System;
 using Avalonia.Media.Imaging;
 using Avalonia.Shared.PlatformSupport;
-
-namespace ThriveLauncher.Services;
 
 public class BitmapExtensions : Bitmap
 {

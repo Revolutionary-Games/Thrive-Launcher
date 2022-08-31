@@ -1,7 +1,7 @@
+namespace LauncherBackend.Utilities;
+
 using System.Reflection;
 using System.Text;
-
-namespace LauncherBackend.Utilities;
 
 public static class ResourceUtilities
 {

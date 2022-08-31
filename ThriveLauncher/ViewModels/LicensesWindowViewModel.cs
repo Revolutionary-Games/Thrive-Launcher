@@ -1,9 +1,9 @@
+namespace ThriveLauncher.ViewModels;
+
 using System.Reflection;
 using System.Threading.Tasks;
 using LauncherBackend.Services;
 using LauncherBackend.Utilities;
-
-namespace ThriveLauncher.ViewModels;
 
 public class LicensesWindowViewModel : ViewModelBase
 {

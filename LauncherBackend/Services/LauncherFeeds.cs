@@ -1,11 +1,12 @@
+namespace LauncherBackend.Services;
+
 using System.Net;
 using FeedParser.Models;
+using FeedParser.Services;
 using FeedParser.Shared.Models;
-using LauncherBackend.Models;
 using Microsoft.Extensions.Logging;
+using Models;
 using SharedBase.Utilities;
-
-namespace LauncherBackend.Services;
 
 public class LauncherFeeds : ILauncherFeeds
 {
@@ -58,7 +59,7 @@ public class LauncherFeeds : ILauncherFeeds
         List<ParsedLauncherFeedItem> secondParse;
         try
         {
-            var firstParse = FeedParser.Services.FeedParser.ParseContent(feed, rawData, out _);
+            var firstParse = feed.ParseContent(rawData, out _);
 
             lock (summaryParser)
             {

@@ -1,6 +1,6 @@
-using Microsoft.Extensions.Logging;
-
 namespace LauncherBackend.Services;
+
+using Microsoft.Extensions.Logging;
 
 /// <summary>
 ///   Methods for getting launcher paths for the current platform

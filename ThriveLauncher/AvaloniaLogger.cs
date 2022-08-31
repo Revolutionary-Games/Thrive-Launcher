@@ -1,7 +1,7 @@
+namespace ThriveLauncher;
+
 using System.Diagnostics;
 using Microsoft.Extensions.Logging;
-
-namespace ThriveLauncher;
 
 /// <summary>
 ///   Adapter to get the Avalonia trace based logging to go to our logging service

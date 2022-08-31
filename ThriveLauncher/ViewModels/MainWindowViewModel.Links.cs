@@ -1,8 +1,8 @@
+namespace ThriveLauncher.ViewModels;
+
 using LauncherBackend.Services;
 using LauncherBackend.Utilities;
 using ReactiveUI;
-
-namespace ThriveLauncher.ViewModels;
 
 /// <summary>
 ///   The link buttons features
@@ -14,10 +14,7 @@ public partial class MainWindowViewModel
     public bool ShowLinksPopup
     {
         get => showLinksPopup;
-        private set
-        {
-            this.RaiseAndSetIfChanged(ref showLinksPopup, value);
-        }
+        private set => this.RaiseAndSetIfChanged(ref showLinksPopup, value);
     }
 
     public void ToggleLinksView()

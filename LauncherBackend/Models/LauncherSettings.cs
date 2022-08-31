@@ -1,6 +1,6 @@
-using System.Text.Json.Serialization;
-
 namespace LauncherBackend.Models;
+
+using System.Text.Json.Serialization;
 
 public class LauncherSettings
 {

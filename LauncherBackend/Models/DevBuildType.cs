@@ -1,8 +1,8 @@
+namespace LauncherBackend.Models;
+
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using SharedBase.Converters;
-
-namespace LauncherBackend.Models;
 
 [JsonConverter(typeof(ActualEnumStringConverter))]
 public enum DevBuildType
