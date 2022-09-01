@@ -1,7 +1,6 @@
 namespace Scripts;
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -19,11 +18,9 @@ public class IconProcessor
 
     private const string WINDOWS_MAGICK_EXECUTABLE = "magick.exe";
 
-    private readonly Program.IconsOptions options;
-
     public IconProcessor(Program.IconsOptions options)
     {
-        this.options = options;
+        _ = options;
     }
 
     public async Task<bool> Run(CancellationToken cancellationToken)
@@ -47,7 +44,8 @@ public class IconProcessor
             return false;
         }
 
-        await CreateSingleImage(magick, 256, ".png", cancellationToken, false);
+        if (!await CreateSingleImage(magick, 256, ".png", cancellationToken, false))
+            return false;
 
         await CreateSingleImage(magick, 256, ".png", cancellationToken);
         await CreateSingleImage(magick, 128, ".png", cancellationToken);
@@ -56,10 +54,12 @@ public class IconProcessor
         await CreateSingleImage(magick, 16, ".png", cancellationToken);
 
         // This depends on the temp folder png icons
-        await CreateMacIcon(magick, cancellationToken);
+        if (!await CreateMacIcon(magick, cancellationToken))
+            return false;
 
         // Windows
-        await CreateMultiSize(magick, ".ico", cancellationToken);
+        if (!await CreateMultiSize(magick, ".ico", cancellationToken))
+            return false;
 
         ColourConsole.WriteSuccessLine("All icons generated successfully");
         return true;
