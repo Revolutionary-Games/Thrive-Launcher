@@ -4,17 +4,21 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Avalonia;
 using Avalonia.ReactiveUI;
+using CommandLine;
 using LauncherBackend.Services;
 using LauncherBackend.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Models;
 using NLog.Config;
 using NLog.Extensions.Logging;
 using NLog.Targets;
 using Properties;
+using ScriptsBase.Utilities;
 using SharedBase.Utilities;
 using Utilities;
 using ViewModels;
@@ -27,11 +31,18 @@ internal class Program
     [STAThread]
     public static void Main(string[] args)
     {
-        // TODO: handle normal flags like "-v" and "-h" here
+        var options = new Options();
+
+        var parsed = CommandLineHelpers.CreateParser()
+            .ParseArguments<Options>(args)
+            .WithNotParsed(CommandLineHelpers.ErrorOnUnparsed);
+
+        if (parsed.Value != null)
+            options = parsed.Value;
 
         // We build services before starting avalonia so that we can use launcher backend services before we decide
         // if we want to fire up ourGUI
-        var services = BuildLauncherServices(true);
+        var services = BuildLauncherServices(true, options);
 
         var programLogger = services.GetRequiredService<ILogger<Program>>();
 
@@ -58,26 +69,29 @@ internal class Program
     // ReSharper disable once MemberCanBePrivate.Global
     public static AppBuilder BuildAvaloniaApp()
     {
-        return BuildAvaloniaAppWithServices(BuildLauncherServices(false));
+        return BuildAvaloniaAppWithServices(BuildLauncherServices(false, new Options()));
     }
 
-    public static ServiceProvider BuildLauncherServices(bool normalLogging)
+    public static ServiceProvider BuildLauncherServices(bool normalLogging, Options options)
     {
         var builder = new ServiceCollection()
             .AddThriveLauncher()
             .AddSingleton<VersionUtilities>()
             .AddSingleton<INetworkDataRetriever, NetworkDataRetriever>()
+            .AddSingleton(options)
             .AddScoped<MainWindowViewModel>()
             .AddScoped<LicensesWindowViewModel>()
             .AddSingleton<ViewLocator>();
 
         if (normalLogging)
         {
+            bool verbose = options.Verbose == true;
+
             builder = builder.AddLogging(config =>
                 {
                     config.ClearProviders();
-                    config.SetMinimumLevel(LogLevel.Trace);
-                    config.AddNLog(GetNLogConfiguration(true));
+                    config.SetMinimumLevel(verbose ? LogLevel.Trace : LogLevel.Debug);
+                    config.AddNLog(GetNLogConfiguration(true, verbose));
                 })
                 .AddScoped<AvaloniaLogger>();
         }
@@ -87,7 +101,7 @@ internal class Program
             builder = builder.AddLogging(config =>
             {
                 config.SetMinimumLevel(LogLevel.Debug);
-                config.AddNLog(GetNLogConfiguration(false));
+                config.AddNLog(GetNLogConfiguration(false, false));
             });
         }
 
@@ -107,20 +121,43 @@ internal class Program
         programLogger.LogInformation("Thrive Launcher version {Version} starting",
             services.GetRequiredService<VersionUtilities>().LauncherVersion);
 
-        var settings = services.GetRequiredService<ILauncherSettingsManager>().Settings;
+        var options = services.GetRequiredService<Options>();
 
-        if (!string.IsNullOrEmpty(settings.SelectedLauncherLanguage))
+        if (options.Verbose == true)
+            programLogger.LogDebug("Verbose logging is enabled");
+
+        programLogger.LogDebug("Loading settings");
+        var settings = services.GetRequiredService<ILauncherSettingsManager>().Settings;
+        programLogger.LogDebug("Settings loaded");
+
+        if (!string.IsNullOrEmpty(settings.SelectedLauncherLanguage) || !string.IsNullOrEmpty(options.Language))
         {
-            programLogger.LogInformation("Applying configured language: {SelectedLauncherLanguage}",
-                settings.SelectedLauncherLanguage);
+            var language = settings.SelectedLauncherLanguage;
+
+            // Command line language overrides launcher configured language
+            if (string.IsNullOrEmpty(language) || !string.IsNullOrEmpty(options.Language))
+            {
+                try
+                {
+                    language = new CultureInfo(options.Language!).NativeName;
+                }
+                catch (Exception e)
+                {
+                    programLogger.LogError(e, "Command line specified language is incorrect (format example: en-GB)");
+                }
+            }
+
+            programLogger.LogInformation("Applying configured language: {Language}", language);
 
             try
             {
-                Languages.SetLanguage(settings.SelectedLauncherLanguage);
+                Languages.SetLanguage(language!);
             }
             catch (Exception e)
             {
                 programLogger.LogError(e, "Failed to apply configured language, using default");
+                programLogger.LogInformation("Available languages: {Languages}",
+                    Languages.GetLanguagesEnumerable().Select(l => l.Name));
             }
         }
 
@@ -160,7 +197,7 @@ internal class Program
             .UseReactiveUI();
     }
 
-    private static LoggingConfiguration GetNLogConfiguration(bool fileLogging)
+    private static LoggingConfiguration GetNLogConfiguration(bool fileLogging, bool verbose)
     {
         // For debugging logging
         // InternalLogger.LogLevel = LogLevel.Trace;
@@ -169,10 +206,12 @@ internal class Program
         var configuration = new LoggingConfiguration();
 
         // TODO: allow configuring the logging level
-        configuration.AddRule(NLog.LogLevel.Info, NLog.LogLevel.Fatal, new ConsoleTarget("console"));
+        configuration.AddRule(verbose ? NLog.LogLevel.Debug : NLog.LogLevel.Info, NLog.LogLevel.Fatal,
+            new ConsoleTarget("console"));
 
         if (Debugger.IsAttached)
-            configuration.AddRule(NLog.LogLevel.Debug, NLog.LogLevel.Fatal, new DebuggerTarget("debugger"));
+            configuration.AddRule(verbose ? NLog.LogLevel.Trace : NLog.LogLevel.Debug, NLog.LogLevel.Fatal,
+                new DebuggerTarget("debugger"));
 
         if (fileLogging)
         {
