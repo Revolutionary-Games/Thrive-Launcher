@@ -81,9 +81,9 @@ function checkLauncherVersion(versionInfo){
 
             dlNow.addEventListener("click", () => {
 
-                console.log("Clicked download now");
-                require("electron").shell.openExternal(urlTarget);
+                console.log("Clicked download now, trying to press the releases link");
                 dlNow.textContent = "Opening link...";
+                link.click();
             });
 
             return;
