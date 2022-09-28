@@ -5,7 +5,6 @@
 // use `npm run start-dev` if you want the dev tools
 // Set this to true if you want to open the dev console
 let openDev = false;
-let skipAutoUpdate = false;
 let ldPreload = "";
 let ignoreAutoStart = false;
 
@@ -31,7 +30,6 @@ args.forEach((val, index) => {
     if(val === "--open-dev"){
         openDev = true;
     } else if(val === "--skip-autoupdate"){
-        skipAutoUpdate = true;
     } else if(val === "--no-autorun" || val === "--no-autorun"){
         ignoreAutoStart = true;
     } else if(val === "--game-ld-preload"){
@@ -60,11 +58,6 @@ if(openDev){
 const electron = require("electron");
 const remoteMain = require("@electron/remote/main");
 remoteMain.initialize();
-
-const {autoUpdater} = require("electron-updater");
-
-// Logging for the updater
-autoUpdater.logger = log;
 
 // Module to control application life.
 const app = electron.app;
@@ -104,23 +97,6 @@ const useOpenPackage = true;
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow = null;
-
-let updateCheckStarted = false;
-
-function startUpdateChecksIfNotStarted(){
-    if(updateCheckStarted)
-        return;
-    updateCheckStarted = true;
-
-    if(skipAutoUpdate){
-        log.debug("auto update is disabled");
-        return;
-    }
-
-    log.debug("Starting updates check");
-    autoUpdater.checkForUpdatesAndNotify();
-    log.debug("Updates check is probably running");
-}
 
 
 // Setup code from the electron quickstart
@@ -168,8 +144,6 @@ function createWindow(){
     let store = "";
 
     if(isStoreVersion){
-        // Disable auto update for store versions
-        skipAutoUpdate = true;
         log.info("This is a special store version of Thrive Launcher");
 
         if(isSteamVersion){
@@ -219,12 +193,9 @@ function createWindow(){
 
     mainWindow.once("ready-to-show", () => {
         mainWindow.show();
-
-        startUpdateChecksIfNotStarted();
     });
 
     mainWindow.once("show", () => {
-        setTimeout(startUpdateChecksIfNotStarted, 200);
     });
 
     // And load the index.html of the app.
@@ -234,7 +205,7 @@ function createWindow(){
         protocol: "file:",
         slashes: true,
         search: `isStoreVersion=${isStoreVersion}&store=${store}&ldPreload=${ldPreload}` +
-        `&ignoreAutoStart=${ignoreAutoStart}`,
+            `&ignoreAutoStart=${ignoreAutoStart}`,
     }));
 
     // Open the DevTools.
@@ -280,9 +251,6 @@ function createWindow(){
     // process.versions.node process.versions.chrome process.versions.electron
     log.info("Started Thrive Launcher version: " + pjson.version + " os: " + os.platform() +
         " arch: " + os.arch() + " is store version: " + isStoreVersion);
-
-    // Just to make sure this is fired
-    setTimeout(startUpdateChecksIfNotStarted, 800);
 }
 
 // This method will be called when Electron has finished
@@ -406,18 +374,7 @@ function unGZipMain(file, target, respondTo){
 }
 
 ipcMain.on("restartAndUpdate", () => {
-    log.info("Quitting and installing update");
-    autoUpdater.quitAndInstall();
-});
-
-autoUpdater.on("update-available", () => {
-    log.info("Sending update available message");
-    mainWindow.webContents.send("updateAvailable");
-});
-
-autoUpdater.on("update-downloaded", () => {
-    log.info("sending update downloaded message");
-    mainWindow.webContents.send("updateDownloaded");
+    log.info("Auto update is no longer possible");
 });
 
 ipcMain.on("requestGunzip", (event, arg) => {
