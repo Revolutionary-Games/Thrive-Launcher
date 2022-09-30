@@ -1,6 +1,7 @@
 namespace ThriveLauncher.Utilities;
 
 using System;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -27,6 +28,18 @@ public class NetworkDataRetriever : INetworkDataRetriever
         var response = await client.GetAsync(uri);
 
         var content = await response.Content.ReadAsStringAsync();
+
+        return (response.StatusCode, content);
+    }
+
+    public async Task<(HttpStatusCode Status, Stream Content)> FetchNetworkResourceRaw(Uri uri)
+    {
+        using var client = CreateHttpClient();
+
+        logger.LogDebug("Fetching: {Uri}", uri);
+        var response = await client.GetAsync(uri);
+
+        var content = await response.Content.ReadAsStreamAsync();
 
         return (response.StatusCode, content);
     }

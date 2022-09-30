@@ -361,4 +361,10 @@ Launcher logs will have more info.</value>
   <data name="OpenLogsFolderButton" xml:space="preserve">
     <value>View Logs</value>
   </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>All Certificates Expired</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>All of the signing verifying certificates that this launcher is shipped with have expired. This means that this version of the launcher is extremely outdated. Please download and install a newer version.</value>
+  </data>
 </root>

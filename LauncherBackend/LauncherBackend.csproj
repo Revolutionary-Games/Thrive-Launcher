@@ -12,6 +12,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Certs\production_1.cert" LogicalName="production_1.cert" />
+    <EmbeddedResource Include="Certs\production_2.cert" LogicalName="production_2.cert" />
+    <EmbeddedResource Include="Certs\staging_1.cert" LogicalName="staging_1.cert" />
+    <EmbeddedResource Include="Certs\staging_2.cert" LogicalName="staging_2.cert" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RevolutionaryGamesCommon\DevCenterCommunication\DevCenterCommunication.csproj" />
     <ProjectReference Include="..\RevolutionaryGamesCommon\FeedParser\FeedParser.csproj" />
     <ProjectReference Include="..\RevolutionaryGamesCommon\SharedBase\SharedBase.csproj" />
   </ItemGroup>

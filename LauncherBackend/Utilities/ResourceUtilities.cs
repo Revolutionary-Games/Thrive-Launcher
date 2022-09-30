@@ -7,6 +7,13 @@ public static class ResourceUtilities
 {
     public static async Task<string> ReadManifestResourceAsync(string name, Assembly? assembly = null)
     {
+        var buffer = await ReadManifestResourceRawAsync(name, assembly);
+
+        return Encoding.UTF8.GetString(buffer, 0, buffer.Length);
+    }
+
+    public static async Task<byte[]> ReadManifestResourceRawAsync(string name, Assembly? assembly = null)
+    {
         assembly ??= Assembly.GetExecutingAssembly();
 
         await using var reader = assembly.GetManifestResourceStream(name);
@@ -17,12 +24,15 @@ public static class ResourceUtilities
         var length = reader.Length;
 
         if (length < 1)
-            return string.Empty;
+            return Array.Empty<byte>();
 
         var buffer = new byte[length];
 
         var read = await reader.ReadAsync(buffer, 0, (int)length);
 
-        return Encoding.UTF8.GetString(buffer, 0, read);
+        if (read != length)
+            throw new IOException("Read number of bytes from manifest resource doesn't match its size");
+
+        return buffer;
     }
 }

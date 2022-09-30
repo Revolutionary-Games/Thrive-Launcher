@@ -61,8 +61,23 @@ public static class LauncherConstants
         _ => "https://dev.revolutionarygamesstudio.com/",
     });
 
+    public static readonly List<string> SigningManifestResourceNames = new(Mode switch
+    {
+        // ReSharper disable HeuristicUnreachableCode
+        LauncherMode.Staging => new List<string> { "staging_1.cert", "staging_2.cert" },
+
+        // TODO: put this back:
+        // LauncherMode.LocalTesting => throw new NotSupportedException(),
+        LauncherMode.LocalTesting => new List<string> { "staging_1.cert", "staging_2.cert" },
+
+        // ReSharper restore HeuristicUnreachableCode
+        _ => new List<string> { "production_1.cert", "production_2.cert" },
+    });
+
     public static readonly Uri DevForumFeedURL = new("https://thrivefeeds.b-cdn.net/posts.rss");
     public static readonly Uri MainSiteFeedURL = new("https://thrivefeeds.b-cdn.net/feed.rss");
+
+    public static readonly Uri LauncherInfoFileURL = new(DevCenterURL, "api/v1/LauncherInfo");
 
     /// <summary>
     ///   Regex used to detect current log file in game output

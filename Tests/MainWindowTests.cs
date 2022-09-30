@@ -29,8 +29,10 @@ public class MainWindowTests
         var settingsMock = new Mock<ILauncherSettingsManager>();
         settingsMock.SetupGet(settings => settings.Settings).Returns(new LauncherSettings());
 
+        var infoRetrieveMock = new Mock<IThriveAndLauncherInfoRetriever>();
+
         var viewModel = new MainWindowViewModel(logger, feedsMock.Object, storeMock.Object, settingsMock.Object,
-            new VersionUtilities(), pathsMock.Object);
+            new VersionUtilities(), pathsMock.Object, infoRetrieveMock.Object);
 
         Assert.False(viewModel.ShowLinksPopup);
 
@@ -64,8 +66,10 @@ public class MainWindowTests
         var settingsMock = new Mock<ILauncherSettingsManager>();
         settingsMock.SetupGet(settings => settings.Settings).Returns(new LauncherSettings());
 
+        var infoRetrieveMock = new Mock<IThriveAndLauncherInfoRetriever>();
+
         var viewModel = new MainWindowViewModel(logger, feedsMock.Object, storeMock.Object, settingsMock.Object,
-            new VersionUtilities(), pathsMock.Object);
+            new VersionUtilities(), pathsMock.Object, infoRetrieveMock.Object);
 
         Assert.False(viewModel.ShowDevCenterStatusArea);
 
@@ -76,7 +80,7 @@ public class MainWindowTests
             .Returns(new StoreVersionInfo());
 
         viewModel = new MainWindowViewModel(logger, feedsMock.Object, storeMock.Object, settingsMock.Object,
-            new VersionUtilities(), pathsMock.Object);
+            new VersionUtilities(), pathsMock.Object, infoRetrieveMock.Object);
 
         Assert.True(viewModel.ShowDevCenterStatusArea);
     }

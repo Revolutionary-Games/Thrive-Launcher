@@ -638,5 +638,17 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("OpenLogsFolderButton", resourceCulture);
             }
         }
+        
+        public static string AllSigningKeysExpiredTitle {
+            get {
+                return ResourceManager.GetString("AllSigningKeysExpiredTitle", resourceCulture);
+            }
+        }
+        
+        public static string AllSigningKeysExpired {
+            get {
+                return ResourceManager.GetString("AllSigningKeysExpired", resourceCulture);
+            }
+        }
     }
 }

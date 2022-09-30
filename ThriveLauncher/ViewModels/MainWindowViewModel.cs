@@ -8,6 +8,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Threading;
+using DevCenterCommunication.Models;
 using LauncherBackend.Models;
 using LauncherBackend.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly ILauncherSettingsManager settingsManager;
     private readonly VersionUtilities versionUtilities;
     private readonly ILauncherPaths launcherPaths;
+    private readonly IThriveAndLauncherInfoRetriever launcherInfoRetriever;
 
     private readonly Dictionary<string, CultureInfo> availableLanguages;
     private readonly StoreVersionInfo detectedStore;
@@ -37,6 +39,9 @@ public partial class MainWindowViewModel : ViewModelBase
     private bool canDismissNotice = true;
 
     private bool showSettingsUpgrade;
+
+    // Thrive versions info
+    private Task<LauncherThriveInformation?> launcherInformationTask = null!;
 
     // Feeds
     private Task<List<ParsedLauncherFeedItem>> devForumFeedItems = null!;
@@ -61,8 +66,8 @@ public partial class MainWindowViewModel : ViewModelBase
     private int nextDevCenterOpenOverrideKeyIndex;
 
     public MainWindowViewModel(ILogger<MainWindowViewModel> logger, ILauncherFeeds launcherFeeds,
-        IStoreVersionDetector storeInfo,
-        ILauncherSettingsManager settingsManager, VersionUtilities versionUtilities, ILauncherPaths launcherPaths)
+        IStoreVersionDetector storeInfo, ILauncherSettingsManager settingsManager, VersionUtilities versionUtilities,
+        ILauncherPaths launcherPaths, IThriveAndLauncherInfoRetriever launcherInfoRetriever)
     {
         this.logger = logger;
         this.launcherFeeds = launcherFeeds;
@@ -70,6 +75,7 @@ public partial class MainWindowViewModel : ViewModelBase
         this.settingsManager = settingsManager;
         this.versionUtilities = versionUtilities;
         this.launcherPaths = launcherPaths;
+        this.launcherInfoRetriever = launcherInfoRetriever;
 
         availableLanguages = Languages.GetAvailableLanguages();
 
@@ -98,6 +104,13 @@ public partial class MainWindowViewModel : ViewModelBase
             StartFeedFetch();
         }
 
+        CreateLauncherInfoRetrieveTask();
+
+        if (!detectedStore.IsStoreVersion || settingsManager.Settings.StoreVersionShowExternalVersions)
+        {
+            StartLauncherInfoFetch();
+        }
+
         Items = new ObservableCollection<string>();
     }
 
@@ -109,7 +122,8 @@ public partial class MainWindowViewModel : ViewModelBase
         DesignTimeServices.Services.GetRequiredService<IStoreVersionDetector>(),
         DesignTimeServices.Services.GetRequiredService<ILauncherSettingsManager>(),
         DesignTimeServices.Services.GetRequiredService<VersionUtilities>(),
-        DesignTimeServices.Services.GetRequiredService<ILauncherPaths>())
+        DesignTimeServices.Services.GetRequiredService<ILauncherPaths>(),
+        DesignTimeServices.Services.GetRequiredService<IThriveAndLauncherInfoRetriever>())
     {
         languagePlaceHolderIfNotSelected = string.Empty;
         CreateFeedRetrieveTasks();
@@ -440,6 +454,17 @@ public partial class MainWindowViewModel : ViewModelBase
             mainSiteFeedItems.Start();
     }
 
+    private void CreateLauncherInfoRetrieveTask()
+    {
+        launcherInformationTask = new Task<LauncherThriveInformation?>(() => FetchLauncherInfo().Result);
+    }
+
+    private void StartLauncherInfoFetch()
+    {
+        if (launcherInformationTask.Status == TaskStatus.Created)
+            launcherInformationTask.Start();
+    }
+
     private async Task<List<ParsedLauncherFeedItem>> FetchFeed(string name, Uri uri, bool mainSite)
     {
         NotifyFeedLoadingState(mainSite, true);
@@ -486,5 +511,29 @@ public partial class MainWindowViewModel : ViewModelBase
                 DevForumFetchError = fullText;
             }
         });
+    }
+
+    private async Task<LauncherThriveInformation?> FetchLauncherInfo()
+    {
+        logger.LogInformation("Fetching Thrive launcher info");
+
+        try
+        {
+            return await launcherInfoRetriever.DownloadInfo();
+        }
+        catch (AllKeysExpiredException e)
+        {
+            logger.LogError(e, "All our checking keys have expired. PLEASE UPDATE THE LAUNCHER!");
+
+            // For the launcher we assume that people can always update (and for example people never want to use an
+            // older version like some will want to do with Thrive itself)
+            Dispatcher.UIThread.Post(() =>
+            {
+                ShowNotice(Resources.AllSigningKeysExpiredTitle, Resources.AllSigningKeysExpired, false);
+            });
+            return null;
+        }
+
+
     }
 }

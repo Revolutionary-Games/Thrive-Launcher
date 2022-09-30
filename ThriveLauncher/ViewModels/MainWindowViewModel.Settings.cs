@@ -101,6 +101,9 @@ public partial class MainWindowViewModel
             this.RaisePropertyChanging();
             Settings.StoreVersionShowExternalVersions = value;
             this.RaisePropertyChanged();
+
+            if (StoreVersionShowExternalVersions)
+                StartLauncherInfoFetch();
         }
     }
 

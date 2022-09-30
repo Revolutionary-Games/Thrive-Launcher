@@ -38,6 +38,9 @@ public class LauncherPaths : ILauncherPaths
     public string PathToLauncherConfig => configFolder ??= GetPlatformConfigFolder();
     public string PathToLauncherInstallBaseFolder => fileInstallFolder ??= GetPlatformInstallFolder();
 
+    public string PathToCachedDownloadedLauncherInfo =>
+        Path.Combine(PathToLauncherInstallBaseFolder, "cached_version_info.bin");
+
     public string PathToDefaultThriveInstallFolder => Path.Combine(PathToLauncherInstallBaseFolder, "installed");
 
     public string PathToDefaultDehydrateCacheFolder =>
@@ -202,7 +205,10 @@ public interface ILauncherPaths
     public string PathToLauncherConfig { get; }
 
     public string PathToDefaultThriveInstallFolder { get; }
+    public string PathToCachedDownloadedLauncherInfo { get; }
+
     public string PathToDefaultDehydrateCacheFolder { get; }
+
     public string PathToTemporaryFolder { get; }
     public string PathToLogFolder { get; }
 
