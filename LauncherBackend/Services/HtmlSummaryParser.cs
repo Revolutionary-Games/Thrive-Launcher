@@ -231,13 +231,14 @@ public class HtmlSummaryParser : IHtmlSummaryParser
                             TagNames.Strong || name ==
                             TagNames.U || name ==
                             TagNames.Tt || name ==
+                            TagNames.Pre || name ==
                             TagNames.NoBr)
                         {
                             // TODO: implement text styling
                             continue;
                         }
 
-                        if (name == "aside")
+                        if (name is "aside" or "article")
                         {
                             if (!string.IsNullOrEmpty(AsideStart))
                             {
@@ -247,6 +248,13 @@ public class HtmlSummaryParser : IHtmlSummaryParser
                                 stringBuilder.Append(AsideStart);
                             }
 
+                            continue;
+                        }
+
+                        if (name == TagNames.Header)
+                        {
+                            // TODO: better handling for this
+                            AddLastTextIfDoesNotEndWithAlready("# ");
                             continue;
                         }
 
