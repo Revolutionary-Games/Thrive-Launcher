@@ -1,6 +1,7 @@
 namespace LauncherBackend.Models;
 
 using System.Text.Json.Serialization;
+using SharedBase.Models;
 
 public class LauncherSettings
 {
@@ -61,4 +62,21 @@ public class LauncherSettings
 
     [JsonPropertyName("disableThriveVideos")]
     public bool DisableThriveVideos { get; set; }
+
+    public bool ShouldShowVersionWithPlatform(PackagePlatform versionPlatform)
+    {
+        switch (versionPlatform)
+        {
+            case PackagePlatform.Linux:
+                return OperatingSystem.IsLinux();
+            case PackagePlatform.Windows:
+                return OperatingSystem.IsWindows() && Environment.Is64BitOperatingSystem;
+            case PackagePlatform.Windows32:
+                return OperatingSystem.IsWindows() && (!Environment.Is64BitOperatingSystem || !Hide32Bit);
+            case PackagePlatform.Mac:
+                return OperatingSystem.IsMacOS();
+            default:
+                throw new ArgumentOutOfRangeException(nameof(versionPlatform), versionPlatform, null);
+        }
+    }
 }

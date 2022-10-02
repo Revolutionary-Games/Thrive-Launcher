@@ -22,7 +22,11 @@ using ViewModels;
 public partial class MainWindow : Window
 {
     private readonly List<ComboBoxItem> languageItems = new();
+    private readonly List<(IPlayableVersion Version, ComboBoxItem Item)> versionItems = new();
+
     private bool dataContextReceived;
+
+    private bool usChangingSelectedVersion;
 
     public MainWindow()
     {
@@ -47,26 +51,68 @@ public partial class MainWindow : Window
 
         dataContext.WhenAnyValue(d => d.SelectedLauncherLanguage).Subscribe(OnLanguageChanged);
 
+        dataContext.WhenAnyValue(d => d.SelectedVersionToPlay).Subscribe(OnSelectedVersionChanged);
+        dataContext.WhenAnyValue(d => d.PlayVersionSelectorItems).Subscribe(OnAvailableVersionsChanged);
+
         // Intentionally left hanging around in the background
 #pragma warning disable CS4014
         UpdateFeedItemsWhenRetrieved();
 #pragma warning restore CS4014
     }
 
-    private void SelectedVersionChanged(object? sender, SelectionChangedEventArgs e)
+    private void SelectedVersionComboBoxItemChanged(object? sender, SelectionChangedEventArgs e)
     {
+        if (usChangingSelectedVersion)
+            return;
+
         _ = sender;
 
         // Ignore while initializing
         if (DataContext == null)
             return;
 
-        if (e.AddedItems.Count != 1 || e.AddedItems[0] == null)
-            throw new ArgumentException("Expected one item to be selected");
+        string? selected = null;
 
-        var selected = (ComboBoxItem)e.AddedItems[0]!;
+        if (e.AddedItems.Count > 0 && e.AddedItems[0] != null)
+        {
+            selected = (string)((ComboBoxItem)e.AddedItems[0]!).Content;
+        }
 
-        ((MainWindowViewModel)DataContext).VersionSelected((string)selected.Content);
+        ((MainWindowViewModel)DataContext).VersionSelected(selected);
+    }
+
+    private void OnSelectedVersionChanged(string? selectedVersion)
+    {
+        if (selectedVersion == null)
+        {
+            VersionComboBox.SelectedItem = null;
+            return;
+        }
+
+        var selected = versionItems.First(i => (string)i.Item.Content == selectedVersion);
+
+        usChangingSelectedVersion = true;
+        VersionComboBox.SelectedItem = selected.Item;
+        usChangingSelectedVersion = false;
+    }
+
+    private void OnAvailableVersionsChanged(IEnumerable<(string VersionName, IPlayableVersion VersionObject)>? versions)
+    {
+        versionItems.Clear();
+
+        if (versions != null)
+        {
+            foreach (var version in ((MainWindowViewModel)DataContext!).SortVersions(versions))
+            {
+                versionItems.Add((version.VersionObject, new ComboBoxItem
+                {
+                    // This has the more accurate user readable name
+                    Content = version.VersionObject.VersionName,
+                }));
+            }
+        }
+
+        VersionComboBox.Items = versionItems.Select(i => i.Item);
     }
 
     private void LanguageSelectionChanged(object? sender, SelectionChangedEventArgs e)

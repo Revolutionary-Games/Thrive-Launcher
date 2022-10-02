@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Threading;
@@ -41,7 +42,10 @@ public partial class MainWindowViewModel : ViewModelBase
     private bool showSettingsUpgrade;
 
     // Thrive versions info
-    private Task<LauncherThriveInformation?> launcherInformationTask = null!;
+    private Task launcherInformationTask = null!;
+    private LauncherThriveInformation? thriveVersionInformation;
+
+    private string? selectedVersionToPlay;
 
     // Feeds
     private Task<List<ParsedLauncherFeedItem>> devForumFeedItems = null!;
@@ -67,7 +71,8 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel(ILogger<MainWindowViewModel> logger, ILauncherFeeds launcherFeeds,
         IStoreVersionDetector storeInfo, ILauncherSettingsManager settingsManager, VersionUtilities versionUtilities,
-        ILauncherPaths launcherPaths, IThriveAndLauncherInfoRetriever launcherInfoRetriever)
+        ILauncherPaths launcherPaths, IThriveAndLauncherInfoRetriever launcherInfoRetriever,
+        bool allowTaskStarts = true)
     {
         this.logger = logger;
         this.launcherFeeds = launcherFeeds;
@@ -99,14 +104,15 @@ public partial class MainWindowViewModel : ViewModelBase
 
         CreateFeedRetrieveTasks();
 
-        if (Settings.ShowWebContent)
+        if (Settings.ShowWebContent && allowTaskStarts)
         {
             StartFeedFetch();
         }
 
         CreateLauncherInfoRetrieveTask();
 
-        if (!detectedStore.IsStoreVersion || settingsManager.Settings.StoreVersionShowExternalVersions)
+        if ((!detectedStore.IsStoreVersion || settingsManager.Settings.StoreVersionShowExternalVersions) &&
+            allowTaskStarts)
         {
             StartLauncherInfoFetch();
         }
@@ -123,10 +129,9 @@ public partial class MainWindowViewModel : ViewModelBase
         DesignTimeServices.Services.GetRequiredService<ILauncherSettingsManager>(),
         DesignTimeServices.Services.GetRequiredService<VersionUtilities>(),
         DesignTimeServices.Services.GetRequiredService<ILauncherPaths>(),
-        DesignTimeServices.Services.GetRequiredService<IThriveAndLauncherInfoRetriever>())
+        DesignTimeServices.Services.GetRequiredService<IThriveAndLauncherInfoRetriever>(), false)
     {
         languagePlaceHolderIfNotSelected = string.Empty;
-        CreateFeedRetrieveTasks();
     }
 
     public bool HasNoticeMessage =>
@@ -174,6 +179,63 @@ public partial class MainWindowViewModel : ViewModelBase
             this.RaisePropertyChanged(nameof(HasNoticeMessage));
             this.RaisePropertyChanged(nameof(CanDismissNotice));
         }
+    }
+
+    public LauncherThriveInformation? ThriveVersionInformation
+    {
+        get => thriveVersionInformation;
+        private set
+        {
+            if (value == thriveVersionInformation)
+                return;
+
+            this.RaiseAndSetIfChanged(ref thriveVersionInformation, value);
+            this.RaisePropertyChanged(nameof(PlayVersionSelectorItems));
+
+            if (value != null)
+                OnVersionInfoLoaded();
+        }
+    }
+
+    public IEnumerable<(string VersionName, IPlayableVersion VersionObject)>? PlayVersionSelectorItems
+    {
+        get
+        {
+            if (detectedStore.IsStoreVersion)
+            {
+                yield return (string.Format(Resources.StoreVersionName, detectedStore.StoreName),
+                    new StoreVersion(detectedStore.StoreName));
+            }
+
+            if (devCenterConnection != null)
+                yield return ("DevBuild", new DevBuildVersion(PlayableDevCenterBuildType.DevBuild));
+
+            // This is null in store versions where we haven't got external versions enabled, or if the version loading
+            // failed entirely (but in that case the player should be prevented from interacting with the play button)
+            if (ThriveVersionInformation != null)
+            {
+                foreach (var version in ThriveVersionInformation.Versions)
+                {
+                    foreach (var versionPlatform in version.Platforms)
+                    {
+                        if (!settingsManager.Settings.ShouldShowVersionWithPlatform(versionPlatform.Key))
+                            continue;
+
+                        yield return (version.ReleaseNumber,
+                            new PlayableVersion(
+                                string.Format(Resources.VersionWithPlatform, version.ReleaseNumber,
+                                    versionPlatform.Key.ToString()), version,
+                                ThriveVersionInformation.IsLatest(version)));
+                    }
+                }
+            }
+        }
+    }
+
+    public string? SelectedVersionToPlay
+    {
+        get => selectedVersionToPlay;
+        set => this.RaiseAndSetIfChanged(ref selectedVersionToPlay, value);
     }
 
     public string? DevForumFetchError
@@ -263,6 +325,7 @@ public partial class MainWindowViewModel : ViewModelBase
             this.RaisePropertyChanged(nameof(HasDevCenterConnection));
             this.RaisePropertyChanged(nameof(DevCenterConnectedUser));
             this.RaisePropertyChanged(nameof(DevCenterConnectionIsDeveloper));
+            this.RaisePropertyChanged(nameof(PlayVersionSelectorItems));
         }
     }
 
@@ -280,8 +343,69 @@ public partial class MainWindowViewModel : ViewModelBase
         CanDismissNotice = canDismiss;
     }
 
-    public void VersionSelected(string selectedVersion)
+    public void VersionSelected(string? userReadableVersion)
     {
+        if (string.IsNullOrEmpty(userReadableVersion))
+        {
+            SelectedVersionToPlay = null;
+            return;
+        }
+
+        // Convert the user readable version to a normal version
+        var version = PlayVersionSelectorItems?.FirstOrDefault(t => t.VersionObject.VersionName == userReadableVersion);
+
+        if (version == null)
+            throw new ArgumentException("Tried to set an invalid version to play");
+
+        logger.LogInformation("Version to play is now: {SelectedVersion}", userReadableVersion);
+
+        SelectedVersionToPlay = userReadableVersion;
+
+        settingsManager.RememberedVersion = version.Value.VersionName;
+    }
+
+    /// <summary>
+    ///   Sorts versions to be in the order they should be shown to the user
+    /// </summary>
+    /// <param name="versions">The versions to sort</param>
+    /// <returns>Versions in sorted order</returns>
+    public IOrderedEnumerable<(string VersionName, IPlayableVersion VersionObject)> SortVersions(
+        IEnumerable<(string VersionName, IPlayableVersion VersionObject)> versions)
+    {
+        // Store version first
+        var sorted = versions.OrderBy(t => t.VersionObject is StoreVersion);
+
+        // Then devbuilds (sorted by type)
+        sorted = sorted.ThenBy(t =>
+        {
+            if (t.VersionObject is DevBuildVersion buildVersion)
+            {
+                return (int)buildVersion.BuildType;
+            }
+
+            return int.MaxValue;
+        });
+
+        var fallbackVersion = new Version(0, 0, 0, 0);
+        var highestVersion = new Version(int.MaxValue, 0, 0, 0);
+
+        sorted = sorted.ThenBy(t =>
+        {
+            if (t.VersionObject is StoreVersion or DevBuildVersion)
+                return highestVersion;
+
+            try
+            {
+                return new Version(t.VersionName.Split("-", 2)[0]);
+            }
+            catch (Exception e)
+            {
+                logger.LogWarning(e, "Cannot parse version number for sorting: {VersionName}", t.VersionName);
+                return fallbackVersion;
+            }
+        });
+
+        return sorted;
     }
 
     public void CloseNotice()
@@ -456,13 +580,51 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private void CreateLauncherInfoRetrieveTask()
     {
-        launcherInformationTask = new Task<LauncherThriveInformation?>(() => FetchLauncherInfo().Result);
+        launcherInformationTask = new Task(() =>
+        {
+            var launcherInfo = FetchLauncherInfo().Result;
+
+            if (launcherInfo != null)
+            {
+                Dispatcher.UIThread.Post(() =>
+                {
+                    // TODO: wait for devcenter connection task if currently running
+
+                    // We now have the version info to work with
+                    ThriveVersionInformation = launcherInfo;
+                });
+            }
+        });
     }
 
     private void StartLauncherInfoFetch()
     {
         if (launcherInformationTask.Status == TaskStatus.Created)
             launcherInformationTask.Start();
+    }
+
+    private void OnVersionInfoLoaded()
+    {
+        var remembered = settingsManager.RememberedVersion;
+
+        var availableThings = PlayVersionSelectorItems!.ToList();
+
+        if (remembered != null)
+        {
+            // Set the selected item to a remembered one
+            var foundRememberedVersion = availableThings.Where(t => t.VersionName == remembered)
+                .Select(t => t.VersionObject).FirstOrDefault();
+            if (foundRememberedVersion != null)
+            {
+                SelectedVersionToPlay = foundRememberedVersion.VersionName;
+                logger.LogInformation("Remembered version set to selector");
+                return;
+            }
+        }
+
+        // Otherwise just select the latest version
+        SelectedVersionToPlay = availableThings.Where(t => t.VersionObject is PlayableVersion)
+            .First(t => ((PlayableVersion)t.VersionObject).IsLatest).VersionObject.VersionName;
     }
 
     private async Task<List<ParsedLauncherFeedItem>> FetchFeed(string name, Uri uri, bool mainSite)
@@ -533,7 +695,5 @@ public partial class MainWindowViewModel : ViewModelBase
             });
             return null;
         }
-
-
     }
 }

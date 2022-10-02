@@ -9,6 +9,10 @@ public class LauncherSettingsManager : ILauncherSettingsManager
 {
     private readonly ILogger<LauncherSettingsManager> logger;
     private readonly ILauncherPaths launcherPaths;
+
+    private readonly Lazy<string?> rememberedVersion;
+    private string? overriddenRememberedVersion;
+
     private Lazy<LauncherSettings> settings;
 
     private LauncherSettings? v1Settings;
@@ -21,6 +25,7 @@ public class LauncherSettingsManager : ILauncherSettingsManager
         this.launcherPaths = launcherPaths;
 
         settings = new Lazy<LauncherSettings>(() => AttemptToLoadSettings() ?? new LauncherSettings());
+        rememberedVersion = new Lazy<string?>(LoadRememberedVersion);
     }
 
     public LauncherSettings Settings => settings.Value;
@@ -33,6 +38,22 @@ public class LauncherSettingsManager : ILauncherSettingsManager
                 _ = settings.Value;
 
             return v1Settings;
+        }
+    }
+
+    public string? RememberedVersion
+    {
+        get => overriddenRememberedVersion ?? rememberedVersion.Value;
+        set
+        {
+            if (overriddenRememberedVersion == value)
+                return;
+
+            overriddenRememberedVersion = value;
+
+            // This shouldn't be too slow so to avoid complicating the code structure here, this is saved in sync
+            // manner
+            SaveRememberedVersion(overriddenRememberedVersion).Wait();
         }
     }
 
@@ -161,6 +182,47 @@ public class LauncherSettingsManager : ILauncherSettingsManager
 
         return null;
     }
+
+    private async Task SaveRememberedVersion(string? version)
+    {
+        if (version == null)
+        {
+            if (File.Exists(launcherPaths.PathToRememberedVersion))
+                File.Delete(launcherPaths.PathToRememberedVersion);
+
+            return;
+        }
+
+        try
+        {
+            await File.WriteAllTextAsync(launcherPaths.PathToRememberedVersion, version, Encoding.UTF8);
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Failed to save remembered version");
+        }
+    }
+
+    private string? LoadRememberedVersion()
+    {
+        if (!File.Exists(launcherPaths.PathToRememberedVersion))
+            return null;
+
+        try
+        {
+            var text = File.ReadAllText(launcherPaths.PathToRememberedVersion, Encoding.UTF8);
+
+            if (string.IsNullOrWhiteSpace(text))
+                return null;
+
+            return text;
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Failed to load remembered version");
+            return null;
+        }
+    }
 }
 
 public interface ILauncherSettingsManager
@@ -171,6 +233,11 @@ public interface ILauncherSettingsManager
     ///   Old settings from launcher 1.x versions, used for migrating settings first time launcher 2.x is used.
     /// </summary>
     public LauncherSettings? V1Settings { get; }
+
+    /// <summary>
+    ///   The version last selected by the user to play
+    /// </summary>
+    public string? RememberedVersion { get; set; }
 
     /// <summary>
     ///   Saves changed settings. Must be called after <see cref="Settings"/> is modified

@@ -650,5 +650,23 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("AllSigningKeysExpired", resourceCulture);
             }
         }
+        
+        public static string StoreVersionName {
+            get {
+                return ResourceManager.GetString("StoreVersionName", resourceCulture);
+            }
+        }
+        
+        public static string VersionWithPlatform {
+            get {
+                return ResourceManager.GetString("VersionWithPlatform", resourceCulture);
+            }
+        }
+        
+        public static string LoadingDotDotDot {
+            get {
+                return ResourceManager.GetString("LoadingDotDotDot", resourceCulture);
+            }
+        }
     }
 }
