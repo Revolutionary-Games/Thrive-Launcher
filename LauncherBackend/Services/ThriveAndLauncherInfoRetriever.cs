@@ -34,36 +34,37 @@ public class ThriveAndLauncherInfoRetriever : IThriveAndLauncherInfoRetriever
         var url = LauncherConstants.LauncherInfoFileURL;
 
         Stream rawData;
+        HttpStatusCode status;
         try
         {
-            (var status, rawData) =
+            (status, rawData) =
                 await networkDataRetriever.FetchNetworkResourceRaw(url);
-
-            if (status != HttpStatusCode.OK)
-            {
-                logger.LogError("Failed to retrieve launcher info file from {Url}, received status code: {Status}", url,
-                    status);
-
-                string content;
-
-                try
-                {
-                    using var textReader = new StreamReader(rawData, Encoding.UTF8);
-                    content = await textReader.ReadToEndAsync();
-                }
-                catch (Exception e)
-                {
-                    logger.LogError(e, "Couldn't read error response content as UTF8");
-                    throw new Exception("Error: got response code {status} with non-UTF8 content");
-                }
-
-                throw new Exception($"Error: got response code {status} with content: {content.Truncate(100)}");
-            }
         }
         catch (Exception e)
         {
             logger.LogError(e, "Failed to retrieve launcher info file from {Url} due to exception", url);
-            throw new Exception($"Error: downloading launcher info file with Thrive versions: {e}", null);
+            throw new Exception($"Error: downloading launcher info file with Thrive versions: {e.Message}", null);
+        }
+
+        if (status != HttpStatusCode.OK)
+        {
+            logger.LogError("Failed to retrieve launcher info file from {Url}, received status code: {Status}", url,
+                status);
+
+            string content;
+
+            try
+            {
+                using var textReader = new StreamReader(rawData, Encoding.UTF8);
+                content = await textReader.ReadToEndAsync();
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e, "Couldn't read error response content as UTF8");
+                throw new Exception($"Error: got response code {status} with non-UTF8 content");
+            }
+
+            throw new Exception($"Error: got response code {status} with content: {content.Truncate(100)}");
         }
 
         var dataHandler = new SignedDataHandler();
@@ -87,18 +88,44 @@ public class ThriveAndLauncherInfoRetriever : IThriveAndLauncherInfoRetriever
 
     public bool HasCachedFile()
     {
-        return File.Exists(launcherPaths.PathToRememberedVersion);
+        return File.Exists(launcherPaths.PathToCachedDownloadedLauncherInfo);
     }
 
-    public Task<LauncherThriveInformation?> LoadFromCache()
+    public async Task<LauncherThriveInformation?> LoadFromCache()
     {
-        throw new NotImplementedException();
+        if (!HasCachedFile())
+        {
+            logger.LogError("Can't load cached launcher info as the file doesn't exist");
+            return null;
+        }
+
+        var dataHandler = new SignedDataHandler();
+
+        try
+        {
+            var (data, signature) =
+                await dataHandler.ReadDataWithSignature(
+                    File.OpenRead(launcherPaths.PathToCachedDownloadedLauncherInfo));
+
+            await CheckLauncherDataSignature(dataHandler, data, signature);
+
+            var result = await DecodeLauncherInfo(data);
+
+            logger.LogDebug("Loaded cached info file {Path}", launcherPaths.PathToCachedDownloadedLauncherInfo);
+            return result;
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Failed to load cached launcher info file");
+            return null;
+        }
     }
 
     private async Task CheckLauncherDataSignature(SignedDataHandler dataHandler, byte[] data, byte[] signature)
     {
-        // TODO: uncomment
-        if (IgnoreSigningRequirement /*|| LauncherConstants.Mode == LauncherConstants.LauncherMode.LocalTesting*/)
+        // ReSharper disable HeuristicUnreachableCode
+#pragma warning disable CS0162
+        if (IgnoreSigningRequirement || LauncherConstants.Mode == LauncherConstants.LauncherMode.LocalTesting)
         {
             logger.LogWarning("Ignoring signing requirements, this is not very safe!");
             return;
@@ -126,6 +153,9 @@ public class ThriveAndLauncherInfoRetriever : IThriveAndLauncherInfoRetriever
             throw new Exception("Invalid data signature. Has the data been corrupted?");
 
         logger.LogInformation("Downloaded launcher version info signed with {SignedWith}", signedWith);
+
+        // ReSharper restore HeuristicUnreachableCode
+#pragma warning restore CS0162
     }
 
     private async Task<LauncherThriveInformation> DecodeLauncherInfo(byte[] data)

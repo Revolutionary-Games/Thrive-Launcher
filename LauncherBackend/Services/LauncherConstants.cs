@@ -65,10 +65,7 @@ public static class LauncherConstants
     {
         // ReSharper disable HeuristicUnreachableCode
         LauncherMode.Staging => new List<string> { "staging_1.cert", "staging_2.cert" },
-
-        // TODO: put this back:
-        // LauncherMode.LocalTesting => throw new NotSupportedException(),
-        LauncherMode.LocalTesting => new List<string> { "staging_1.cert", "staging_2.cert" },
+        LauncherMode.LocalTesting => new List<string>(),
 
         // ReSharper restore HeuristicUnreachableCode
         _ => new List<string> { "production_1.cert", "production_2.cert" },
