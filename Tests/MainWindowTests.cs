@@ -32,7 +32,7 @@ public class MainWindowTests
         var infoRetrieveMock = new Mock<IThriveAndLauncherInfoRetriever>();
 
         var viewModel = new MainWindowViewModel(logger, feedsMock.Object, storeMock.Object, settingsMock.Object,
-            new VersionUtilities(), pathsMock.Object, infoRetrieveMock.Object);
+            new VersionUtilities(), pathsMock.Object, infoRetrieveMock.Object, false);
 
         Assert.False(viewModel.ShowLinksPopup);
 
@@ -69,7 +69,7 @@ public class MainWindowTests
         var infoRetrieveMock = new Mock<IThriveAndLauncherInfoRetriever>();
 
         var viewModel = new MainWindowViewModel(logger, feedsMock.Object, storeMock.Object, settingsMock.Object,
-            new VersionUtilities(), pathsMock.Object, infoRetrieveMock.Object);
+            new VersionUtilities(), pathsMock.Object, infoRetrieveMock.Object, false);
 
         Assert.False(viewModel.ShowDevCenterStatusArea);
 
@@ -80,7 +80,7 @@ public class MainWindowTests
             .Returns(new StoreVersionInfo());
 
         viewModel = new MainWindowViewModel(logger, feedsMock.Object, storeMock.Object, settingsMock.Object,
-            new VersionUtilities(), pathsMock.Object, infoRetrieveMock.Object);
+            new VersionUtilities(), pathsMock.Object, infoRetrieveMock.Object, false);
 
         Assert.True(viewModel.ShowDevCenterStatusArea);
     }
