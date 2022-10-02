@@ -60,6 +60,8 @@ internal class Program
             // Just in case exiting with an exception doesn't save logs correctly, save them explicitly here
             (services.GetService<ILoggerProvider>() as NLogLoggerProvider)?.LogFactory.Flush();
 
+            // TODO: we should show a popup window or something showing the error
+
             throw;
         }
     }
