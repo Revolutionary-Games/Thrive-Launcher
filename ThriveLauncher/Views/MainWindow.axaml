@@ -57,7 +57,6 @@
                         <Image Source="/Assets/gear.png" Width="32" />
                     </Button>
                     <Button FontSize="28" Classes="PlayButton" Command="{Binding ToggleLinksView}"
-                            IsVisible="{Binding SelectedVersionToPlay,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                             IsEnabled="{Binding SelectedVersionToPlay,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                             Content="{i18n:Localize PlayButton}" HotKey="Ctrl+S" />
 
@@ -65,7 +64,8 @@
                               IsVisible="{Binding ThriveVersionInformation,Converter={x:Static ObjectConverters.IsNotNull}}"
                               x:Name="VersionComboBox" SelectionChanged="SelectedVersionComboBoxItemChanged">
                     </ComboBox>
-                    <TextBlock Text="{i18n:Localize LoadingDotDotDot}" IsVisible="{Binding ThriveVersionInformation,Converter={x:Static ObjectConverters.IsNull}}"/>
+                    <TextBlock Text="{i18n:Localize LoadingDotDotDot}"
+                               IsVisible="{Binding ThriveVersionInformation,Converter={x:Static ObjectConverters.IsNull}}" />
                     <StackPanel Orientation="Horizontal" IsVisible="{Binding ShowDevCenterStatusArea}"
                                 Margin="2 0 0 0 ">
                         <Button Classes="TextLink" Command="{Binding OpenDevCenterConnectionMenu}"
@@ -439,6 +439,27 @@
 
                 <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
                            Text="{i18n:Localize SettingsImportOldExplanation}" />
+            </DockPanel>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog Title="{i18n:Localize VersionInfoLoadFailureTitle}"
+                              ShowPopup="{Binding LauncherInfoLoadError,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                              ShowOKButton="False" ShowCloseX="false">
+            <DockPanel LastChildFill="True" MaxWidth="600">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="2"
+                            Margin="0 15 0 0">
+                    <Button Classes="DialogButton" Command="{Binding SetRetryVersionInfoDownload}"
+                            Content="{i18n:Localize Retry}" />
+
+                    <Button Classes="DialogButton" Command="{Binding SetLoadCachedVersionInfo}"
+                            IsVisible="{Binding CanLoadCachedVersions}"
+                            Content="{i18n:Localize UseCached}" />
+                </StackPanel>
+
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
+                           Text="{i18n:Localize VersionInfoLoadFailureExplanation}" />
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="5"
+                           Text="{Binding LauncherInfoLoadError}" />
             </DockPanel>
         </controls:PopupDialog>
 

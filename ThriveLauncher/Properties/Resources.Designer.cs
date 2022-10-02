@@ -668,5 +668,35 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("LoadingDotDotDot", resourceCulture);
             }
         }
+        
+        public static string VersionInfoLoadFailureTitle {
+            get {
+                return ResourceManager.GetString("VersionInfoLoadFailureTitle", resourceCulture);
+            }
+        }
+        
+        public static string VersionInfoLoadFailureExplanation {
+            get {
+                return ResourceManager.GetString("VersionInfoLoadFailureExplanation", resourceCulture);
+            }
+        }
+        
+        public static string Retry {
+            get {
+                return ResourceManager.GetString("Retry", resourceCulture);
+            }
+        }
+        
+        public static string UseCached {
+            get {
+                return ResourceManager.GetString("UseCached", resourceCulture);
+            }
+        }
+        
+        public static string UnknownError {
+            get {
+                return ResourceManager.GetString("UnknownError", resourceCulture);
+            }
+        }
     }
 }

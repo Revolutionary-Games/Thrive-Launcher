@@ -47,6 +47,9 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private string? selectedVersionToPlay;
 
+    private bool canLoadCachedVersions;
+    private string launcherInfoLoadError = string.Empty;
+
     // Feeds
     private Task<List<ParsedLauncherFeedItem>> devForumFeedItems = null!;
     private string? devForumFetchError;
@@ -153,6 +156,10 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public bool ShowLinksNotInSteamVersion => !detectedStore.IsSteam;
 
+    public bool RetryVersionInfoDownload { get; set; }
+
+    public bool LoadCachedVersionInfo { get; set; }
+
     public string NoticeMessageText
     {
         get => noticeMessageText;
@@ -178,6 +185,24 @@ public partial class MainWindowViewModel : ViewModelBase
             this.RaiseAndSetIfChanged(ref noticeMessageTitle, value);
             this.RaisePropertyChanged(nameof(HasNoticeMessage));
             this.RaisePropertyChanged(nameof(CanDismissNotice));
+        }
+    }
+
+    public bool CanLoadCachedVersions
+    {
+        get => canLoadCachedVersions;
+        private set
+        {
+            this.RaiseAndSetIfChanged(ref canLoadCachedVersions, value);
+        }
+    }
+
+    public string LauncherInfoLoadError
+    {
+        get => launcherInfoLoadError;
+        private set
+        {
+            this.RaiseAndSetIfChanged(ref launcherInfoLoadError, value);
         }
     }
 
@@ -372,6 +397,21 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             settingsManager.RememberedVersion = version.Value.VersionName;
         }
+    }
+
+    public void SetRetryVersionInfoDownload()
+    {
+        // Clearing this makes the dialog disappear so the user at least gets some feedback that something is happening
+        LauncherInfoLoadError = string.Empty;
+
+        RetryVersionInfoDownload = true;
+    }
+
+    public void SetLoadCachedVersionInfo()
+    {
+        LauncherInfoLoadError = string.Empty;
+
+        LoadCachedVersionInfo = true;
     }
 
     /// <summary>
@@ -596,12 +636,19 @@ public partial class MainWindowViewModel : ViewModelBase
 
             if (launcherInfo != null)
             {
+                logger.LogInformation(
+                    "Version information loaded. Thrive versions: {Versions}, latest launcher: {LatestVersion}",
+                    launcherInfo.Versions.Count, launcherInfo.LauncherVersion.LatestVersion);
+
                 Dispatcher.UIThread.Post(() =>
                 {
                     // TODO: wait for devcenter connection task if currently running
 
                     // We now have the version info to work with
                     ThriveVersionInformation = launcherInfo;
+
+                    // TODO: detect current launcher version being outdated and trigger auto-update
+                    // TODO: add option to disable auto-update
                 });
             }
         });
@@ -627,7 +674,7 @@ public partial class MainWindowViewModel : ViewModelBase
             if (foundRememberedVersion != null)
             {
                 SelectedVersionToPlay = foundRememberedVersion.VersionName;
-                logger.LogInformation("Remembered version set to selector");
+                logger.LogInformation("Remembered version ({Remembered}) set to selector", remembered);
                 return;
             }
         }
@@ -687,23 +734,57 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private async Task<LauncherThriveInformation?> FetchLauncherInfo()
     {
-        logger.LogInformation("Fetching Thrive launcher info");
-
-        try
+        while (true)
         {
-            return await launcherInfoRetriever.DownloadInfo();
-        }
-        catch (AllKeysExpiredException e)
-        {
-            logger.LogError(e, "All our checking keys have expired. PLEASE UPDATE THE LAUNCHER!");
-
-            // For the launcher we assume that people can always update (and for example people never want to use an
-            // older version like some will want to do with Thrive itself)
-            Dispatcher.UIThread.Post(() =>
+            try
             {
-                ShowNotice(Resources.AllSigningKeysExpiredTitle, Resources.AllSigningKeysExpired, false);
-            });
-            return null;
+                if (LoadCachedVersionInfo)
+                {
+                    LoadCachedVersionInfo = false;
+                    var result = await launcherInfoRetriever.LoadFromCache();
+
+                    if (result == null)
+                        throw new Exception("Loading cached file failed");
+
+                    return result;
+                }
+
+                logger.LogInformation("Fetching Thrive launcher info");
+                RetryVersionInfoDownload = false;
+                return await launcherInfoRetriever.DownloadInfo();
+            }
+            catch (AllKeysExpiredException e)
+            {
+                logger.LogError(e, "All our checking keys have expired. PLEASE UPDATE THE LAUNCHER!");
+
+                // For the launcher we assume that people can always update (and for example people never want to use an
+                // older version like some will want to do with Thrive itself)
+                Dispatcher.UIThread.Post(() =>
+                {
+                    ShowNotice(Resources.AllSigningKeysExpiredTitle, Resources.AllSigningKeysExpired, false);
+                });
+                return null;
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e, "Failed to retrieve launcher Thrive version info");
+
+                Dispatcher.UIThread.Post(() =>
+                {
+                    CanLoadCachedVersions = launcherInfoRetriever.HasCachedFile();
+                    LauncherInfoLoadError = string.IsNullOrEmpty(e.Message) ? Resources.UnknownError : e.Message;
+                });
+
+                // Not the best design here, but this seems good enough here, this situation shouldn't really be hit
+                // by most users ever. As a slight benefit the one second delay here kind of rate limits the user
+                // from spamming the remote server too much if it is down.
+                while (!LoadCachedVersionInfo && !RetryVersionInfoDownload)
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(1));
+                }
+
+                logger.LogInformation("Retrying or using cached data next");
+            }
         }
     }
 }

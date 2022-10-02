@@ -376,4 +376,19 @@ Launcher logs will have more info.</value>
   <data name="LoadingDotDotDot" xml:space="preserve">
     <value>Loading...</value>
   </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>Error Getting Available Thrive Versions</value>
+  </data>
+  <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
+    <value>Thrive Launcher loads the available Thrive versions from the internet in order to know what is available. Loading this information has failed (see the error below). You can retry downloading this information, or if the launcher was previously able to download this information you can load a cached copy. If the cached copy is very old it may not show all available Thrive versions.</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Retry</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>Use Cached Version Info</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Unknown error</value>
+  </data>
 </root>
