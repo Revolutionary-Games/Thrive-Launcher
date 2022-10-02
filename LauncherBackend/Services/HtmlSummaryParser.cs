@@ -150,6 +150,12 @@ public class HtmlSummaryParser : IHtmlSummaryParser
                         stringBuilder.Append("- ");
                         break;
                     }
+                    case IHtmlHrElement:
+                    {
+                        AddLastTextIfDoesNotEndWithAlready("\n");
+                        stringBuilder.Append("---\n");
+                        break;
+                    }
                     case IHtmlParagraphElement or IHtmlHeadingElement or IHtmlBreakRowElement:
                     {
                         if (PendingText)
