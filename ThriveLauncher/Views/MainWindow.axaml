@@ -237,8 +237,8 @@
                             <CheckBox IsChecked="{Binding CloseLauncherOnGameStart}"
                                       Content="{i18n:Localize LauncherOptionCloseAfterStart}" />
 
-                            <!-- TODO only show if store version -->
                             <CheckBox IsChecked="{Binding AutoStartStoreVersion}"
+                                      IsVisible="{Binding IsStoreVersion}"
                                       Content="{i18n:Localize LauncherOptionAllowSeamlessMode}" />
 
                             <StackPanel Orientation="Horizontal" Margin="0 5">

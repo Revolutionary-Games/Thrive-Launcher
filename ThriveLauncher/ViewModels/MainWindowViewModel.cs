@@ -181,6 +181,8 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public bool LoadCachedVersionInfo { get; set; }
 
+    public bool IsStoreVersion => storeInfo.Detect().IsStoreVersion;
+
     public string NoticeMessageText
     {
         get => noticeMessageText;
