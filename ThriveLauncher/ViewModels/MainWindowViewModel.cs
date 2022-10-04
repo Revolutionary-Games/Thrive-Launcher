@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Properties;
 using ReactiveUI;
+using ScriptsBase.Utilities;
 using SharedBase.Utilities;
 using Utilities;
 using FileUtilities = LauncherBackend.Utilities.FileUtilities;
@@ -63,6 +64,19 @@ public partial class MainWindowViewModel : ViewModelBase
     private bool showSettingsPopup;
 
     private Task<string>? dehydrateCacheSizeTask;
+
+    // Settings related file moving
+    private bool hasPendingFileMoveOffer;
+    private string fileMoveOfferTitle = string.Empty;
+    private string fileMoveOfferContent = string.Empty;
+    private string fileMoveOfferError = string.Empty;
+    private float? fileMoveProgress;
+    private bool canAnswerFileMovePrompt;
+
+    // Internal move variables, not exposed to the GUI
+    private List<string>? fileMoveOfferFiles;
+    private string? fileMoveOfferTarget;
+    private Action? fileMoveFinishCallback;
 
     // Devcenter features
     private bool showDevCenterStatusArea = true;
@@ -345,6 +359,61 @@ public partial class MainWindowViewModel : ViewModelBase
         private set => this.RaiseAndSetIfChanged(ref showDevCenterStatusArea, value);
     }
 
+    public bool HasPendingFileMoveOffer
+    {
+        get => hasPendingFileMoveOffer;
+        private set
+        {
+            this.RaiseAndSetIfChanged(ref hasPendingFileMoveOffer, value);
+        }
+    }
+
+    public bool CanAnswerFileMovePrompt
+    {
+        get => canAnswerFileMovePrompt;
+        private set
+        {
+            this.RaiseAndSetIfChanged(ref canAnswerFileMovePrompt, value);
+        }
+    }
+
+    public string FileMoveOfferTitle
+    {
+        get => fileMoveOfferTitle;
+        private set
+        {
+            this.RaiseAndSetIfChanged(ref fileMoveOfferTitle, value);
+        }
+    }
+
+    public string FileMoveOfferContent
+    {
+        get => fileMoveOfferContent;
+        private set
+        {
+            this.RaiseAndSetIfChanged(ref fileMoveOfferContent, value);
+        }
+    }
+
+    public string FileMoveOfferError
+    {
+        get => fileMoveOfferError;
+        private set
+        {
+            this.RaiseAndSetIfChanged(ref fileMoveOfferError, value);
+        }
+    }
+
+    public float? FileMoveProgress
+    {
+        get => fileMoveProgress;
+        private set
+        {
+            this.RaiseAndSetIfChanged(ref fileMoveProgress, value);
+        }
+    }
+
+    // TODO: start only when opening settings
     public Task<string> DehydrateCacheSize => dehydrateCacheSizeTask ??= ComputeDehydrateCacheSizeDisplayString();
 
     public DevCenterConnection? DevCenterConnection
@@ -560,9 +629,19 @@ public partial class MainWindowViewModel : ViewModelBase
         if (Settings.ThriveInstallationPath == folder)
             return;
 
-        this.RaisePropertyChanging(nameof(ThriveInstallationPath));
+        logger.LogInformation("Setting Thrive install path to {Folder}", folder);
 
-        var previousPath = ThriveInstallationPath;
+        var rawFiles = DetectInstalledThriveFolders();
+
+        // Also offer moving the cached versions to not leave this file behind
+        var cachedFile = Path.GetFullPath(launcherPaths.PathToCachedDownloadedLauncherInfo);
+
+        if (File.Exists(cachedFile))
+            rawFiles = rawFiles.Append(cachedFile);
+
+        var installedVersions = rawFiles.ToList();
+
+        this.RaisePropertyChanging(nameof(ThriveInstallationPath));
 
         // If it is the default path, then we want to actually clear the option to null
         if (launcherPaths.PathToDefaultThriveInstallFolder == folder)
@@ -576,10 +655,172 @@ public partial class MainWindowViewModel : ViewModelBase
             Settings.ThriveInstallationPath = folder;
         }
 
-        // TODO: detect existing folders in the moved location and offer moving them
-        throw new NotImplementedException();
+        void OnFinished()
+        {
+            Dispatcher.UIThread.Post(() => this.RaisePropertyChanged(nameof(ThriveInstallationPath)));
 
-        this.RaisePropertyChanged(nameof(ThriveInstallationPath));
+            // TODO: re-run the task for listing existing Thrive versions
+        }
+
+        // Offer to move over the already installed versions
+        if (installedVersions.Count > 0)
+        {
+            OfferFileMove(installedVersions, ThriveInstallationPath, Resources.MoveVersionsTitle,
+                Resources.MoveVersionsExplanation, OnFinished);
+        }
+        else
+        {
+            OnFinished();
+        }
+    }
+
+    public void PerformFileMove()
+    {
+        CanAnswerFileMovePrompt = false;
+
+        var task = new Task(() =>
+        {
+            if (fileMoveOfferFiles == null || string.IsNullOrEmpty(fileMoveOfferTarget))
+            {
+                logger.LogError("Files to move has not been set correctly");
+
+                Dispatcher.UIThread.Post(() =>
+                    ShowNotice(Resources.InternalErrorTitle, Resources.InternalErrorExplanation));
+                return;
+            }
+
+            logger.LogDebug("Performing file move after offer accepted");
+
+            var total = fileMoveOfferFiles.Count;
+            var processed = 0;
+
+            foreach (var file in fileMoveOfferFiles)
+            {
+                ++processed;
+
+                try
+                {
+                    PerformFileMove(file, fileMoveOfferTarget);
+                }
+                catch (Exception e)
+                {
+                    logger.LogError(e, "Failed to move files");
+
+                    Dispatcher.UIThread.Post(() =>
+                    {
+                        FileMoveOfferError = e.Message;
+                        fileMoveFinishCallback?.Invoke();
+                        fileMoveFinishCallback = null;
+                    });
+
+                    return;
+                }
+
+                var progress = (float)processed / total;
+                Dispatcher.UIThread.Post(() => FileMoveProgress = progress);
+
+                // TODO: remove
+                Task.Delay(TimeSpan.FromSeconds(15)).Wait();
+            }
+
+            Dispatcher.UIThread.Post(() =>
+            {
+                HasPendingFileMoveOffer = false;
+                fileMoveFinishCallback?.Invoke();
+                fileMoveFinishCallback = null;
+            });
+        });
+
+        task.Start();
+    }
+
+    public void CancelFileMove()
+    {
+        CanAnswerFileMovePrompt = false;
+        HasPendingFileMoveOffer = false;
+
+        fileMoveFinishCallback?.Invoke();
+        fileMoveFinishCallback = null;
+    }
+
+    private void OfferFileMove(List<string> filesToMove, string newFolder, string popupTitle, string popupText,
+        Action onFinished)
+    {
+        if (HasPendingFileMoveOffer)
+            throw new InvalidOperationException("File move offer already pending");
+
+        HasPendingFileMoveOffer = true;
+        CanAnswerFileMovePrompt = true;
+        FileMoveOfferError = string.Empty;
+        FileMoveProgress = null;
+
+        fileMoveOfferFiles = filesToMove;
+        fileMoveOfferTarget = newFolder;
+
+        FileMoveOfferTitle = popupTitle;
+        FileMoveOfferContent = popupText;
+
+        fileMoveFinishCallback = onFinished;
+    }
+
+    private void PerformFileMove(string file, string targetFolder, bool overwrite = false)
+    {
+        Directory.CreateDirectory(targetFolder);
+
+        var target = Path.Join(targetFolder, Path.GetFileName(file));
+
+        logger.LogInformation("Moving {File} -> {Target}", file, target);
+
+        bool isFolder = Directory.Exists(file);
+
+        if (isFolder)
+        {
+            logger.LogDebug("Moved file is a folder");
+        }
+        else
+        {
+            logger.LogDebug("Moved file is a file");
+        }
+
+        bool tryCopyAndMove = false;
+
+        try
+        {
+            if (isFolder)
+            {
+                if (overwrite && Directory.Exists(target))
+                {
+                    logger.LogInformation("Deleting existing folder to move over it: {Target}", target);
+                    Directory.Delete(target);
+                }
+
+                Directory.Move(file, target);
+            }
+            else
+            {
+                File.Move(file, target, overwrite);
+            }
+        }
+        catch (Exception e)
+        {
+            logger.LogInformation(e, "Can't move using move, trying copy and delete instead");
+            tryCopyAndMove = true;
+        }
+
+        if (tryCopyAndMove)
+        {
+            if (isFolder)
+            {
+                Directory.CreateDirectory(target);
+                CopyHelpers.CopyFoldersRecursivelyWithSymlinks(file, target, overwrite);
+                Directory.Delete(file);
+            }
+            else
+            {
+                File.Copy(file, target, overwrite);
+                File.Delete(file);
+            }
+        }
     }
 
     private void TriggerSaveSettings()

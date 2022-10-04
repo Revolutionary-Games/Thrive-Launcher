@@ -391,4 +391,31 @@ Launcher logs will have more info.</value>
   <data name="UnknownError" xml:space="preserve">
     <value>Unknown error</value>
   </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>No Compatible Thrive Versions Found</value>
+  </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>The launcher could not find any compatible Thrive versions for the current platform. If you are using a weird operating system, this is expected. Otherwise, please report this as an issue.</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0} (Latest)</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>Move Existing Versions?</value>
+  </data>
+  <data name="MoveVersionsExplanation" xml:space="preserve">
+    <value>Installed Thrive versions have been detected at the previous path. These can be automatically moved to the new location. If not moved the files will be left behind and the launcher won't know about them until the previous path is selected as the install location again. Would you like to automatically move this files to the new location?</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>Internal Error</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>An internal error has occurred in the launcher. Please report this issue and provide the launcher log files along with your report how you ran into this problem.</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Move</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
 </root>

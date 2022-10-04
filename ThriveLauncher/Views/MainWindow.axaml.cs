@@ -146,6 +146,24 @@ public partial class MainWindow : Window
         window.Show(this);
     }
 
+    private async void SelectNewThriveInstallLocation(object? sender, RoutedEventArgs routedEventArgs)
+    {
+        _ = sender;
+        _ = routedEventArgs;
+
+        var dialog = new OpenFolderDialog
+        {
+            Directory = ((MainWindowViewModel)DataContext!).ThriveInstallationPath,
+        };
+
+        var result = await dialog.ShowAsync(this);
+
+        if (string.IsNullOrWhiteSpace(result))
+            return;
+
+        ((MainWindowViewModel)DataContext!).SetInstallPathTo(result);
+    }
+
     private async Task UpdateFeedItemsWhenRetrieved()
     {
         var dataContext = (MainWindowViewModel)DataContext!;

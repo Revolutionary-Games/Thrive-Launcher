@@ -698,5 +698,59 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("UnknownError", resourceCulture);
             }
         }
+        
+        public static string NoCompatibleVersionsFoundTitle {
+            get {
+                return ResourceManager.GetString("NoCompatibleVersionsFoundTitle", resourceCulture);
+            }
+        }
+        
+        public static string NoCompatibleVersionsFound {
+            get {
+                return ResourceManager.GetString("NoCompatibleVersionsFound", resourceCulture);
+            }
+        }
+        
+        public static string LatestVersionTag {
+            get {
+                return ResourceManager.GetString("LatestVersionTag", resourceCulture);
+            }
+        }
+        
+        public static string MoveVersionsTitle {
+            get {
+                return ResourceManager.GetString("MoveVersionsTitle", resourceCulture);
+            }
+        }
+        
+        public static string MoveVersionsExplanation {
+            get {
+                return ResourceManager.GetString("MoveVersionsExplanation", resourceCulture);
+            }
+        }
+        
+        public static string InternalErrorTitle {
+            get {
+                return ResourceManager.GetString("InternalErrorTitle", resourceCulture);
+            }
+        }
+        
+        public static string InternalErrorExplanation {
+            get {
+                return ResourceManager.GetString("InternalErrorExplanation", resourceCulture);
+            }
+        }
+        
+        public static string Move {
+            get {
+                return ResourceManager.GetString("Move", resourceCulture);
+            }
+        }
+        
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
     }
 }

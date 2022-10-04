@@ -265,10 +265,10 @@
                     <TabItem Header="{i18n:Localize InstalledVersions}">
                         <StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="2">
-                                <!-- TODO: implement these buttons -->
                                 <Button Classes="DialogButton" Content="{i18n:Localize BrowseInstalledFiles}"
                                         Command="{Binding OpenFileBrowserToInstalled}" />
-                                <Button Classes="DialogButton" Content="{i18n:Localize SelectInstallLocation}" />
+                                <Button Classes="DialogButton" Content="{i18n:Localize SelectInstallLocation}"
+                                        Click="SelectNewThriveInstallLocation" />
                                 <Button Classes="DialogButton" Command="{Binding ResetInstallLocation}"
                                         ToolTip.Tip="{i18n:Localize ResetInstallLocationToolTip}">
                                     <Image Height="16" Source="{DynamicResource RevertIconWhite}" />
@@ -439,6 +439,31 @@
 
                 <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
                            Text="{i18n:Localize SettingsImportOldExplanation}" />
+            </DockPanel>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog Title="{Binding FileMoveOfferTitle}"
+                              ShowPopup="{Binding HasPendingFileMoveOffer}"
+                              CloseCommand="{Binding CancelFileMove}"
+                              ShowOKButton="False" ShowCloseX="{Binding CanAnswerFileMovePrompt}">
+            <DockPanel LastChildFill="True" MaxWidth="600">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="2"
+                            Margin="0 15 0 0">
+                    <Button Classes="DialogButton" Command="{Binding PerformFileMove}"
+                            Content="{i18n:Localize Move}" />
+
+                    <Button Classes="DialogButton Danger" Command="{Binding CancelFileMove}"
+                            IsVisible="{Binding CanLoadCachedVersions}"
+                            Content="{i18n:Localize Cancel}" />
+                </StackPanel>
+
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
+                           Text="{Binding FileMoveOfferContent}" />
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="5"
+                           Text="{Binding FileMoveOfferError}" />
+
+                <ProgressBar DockPanel.Dock="Top" Minimum="0" Maximum="1" Value="{Binding FileMoveProgress}"
+                             IsVisible="{Binding FileMoveProgress,Converter={x:Static ObjectConverters.IsNotNull}}" />
             </DockPanel>
         </controls:PopupDialog>
 
