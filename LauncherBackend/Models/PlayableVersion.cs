@@ -15,6 +15,9 @@ public class PlayableVersion : IPlayableVersion
         IsLatest = isLatest;
         this.launcherVersion = launcherVersion;
         FolderName = folderName;
+
+        if (string.IsNullOrWhiteSpace(FolderName))
+            throw new ArgumentException("Empty folder name");
     }
 
     public bool IsLatest { get; }

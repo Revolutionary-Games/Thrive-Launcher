@@ -747,9 +747,9 @@ namespace ThriveLauncher.Properties {
             }
         }
         
-        public static string Cancel {
+        public static string Skip {
             get {
-                return ResourceManager.GetString("Cancel", resourceCulture);
+                return ResourceManager.GetString("Skip", resourceCulture);
             }
         }
     }

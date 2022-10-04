@@ -415,7 +415,7 @@ Launcher logs will have more info.</value>
   <data name="Move" xml:space="preserve">
     <value>Move</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+  <data name="Skip" xml:space="preserve">
+    <value>Skip</value>
   </data>
 </root>

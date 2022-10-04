@@ -450,11 +450,12 @@
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="2"
                             Margin="0 15 0 0">
                     <Button Classes="DialogButton" Command="{Binding PerformFileMove}"
+                            IsEnabled="{Binding CanAnswerFileMovePrompt}"
                             Content="{i18n:Localize Move}" />
 
                     <Button Classes="DialogButton Danger" Command="{Binding CancelFileMove}"
-                            IsVisible="{Binding CanLoadCachedVersions}"
-                            Content="{i18n:Localize Cancel}" />
+                            IsEnabled="{Binding CanAnswerFileMovePrompt}"
+                            Content="{i18n:Localize Skip}" />
                 </StackPanel>
 
                 <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"

@@ -653,6 +653,8 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             Dispatcher.UIThread.Post(() => this.RaisePropertyChanged(nameof(ThriveInstallationPath)));
 
+            TriggerSaveSettings();
+
             // TODO: re-run the task for listing existing Thrive versions
         }
 
@@ -692,6 +694,10 @@ public partial class MainWindowViewModel : ViewModelBase
             {
                 ++processed;
 
+                // Skip if doesn't exist (to allow multiple tries to succeed if one attempt failed
+                if (!File.Exists(file) && !Directory.Exists(file))
+                    continue;
+
                 try
                 {
                     PerformFileMove(file, fileMoveOfferTarget);
@@ -703,8 +709,7 @@ public partial class MainWindowViewModel : ViewModelBase
                     Dispatcher.UIThread.Post(() =>
                     {
                         FileMoveOfferError = e.Message;
-                        fileMoveFinishCallback?.Invoke();
-                        fileMoveFinishCallback = null;
+                        CanAnswerFileMovePrompt = true;
                     });
 
                     return;
@@ -712,9 +717,6 @@ public partial class MainWindowViewModel : ViewModelBase
 
                 var progress = (float)processed / total;
                 Dispatcher.UIThread.Post(() => FileMoveProgress = progress);
-
-                // TODO: remove
-                Task.Delay(TimeSpan.FromSeconds(15)).Wait();
             }
 
             Dispatcher.UIThread.Post(() =>
