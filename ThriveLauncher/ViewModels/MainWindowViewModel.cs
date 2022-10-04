@@ -32,6 +32,8 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly VersionUtilities versionUtilities;
     private readonly ILauncherPaths launcherPaths;
     private readonly IThriveAndLauncherInfoRetriever launcherInfoRetriever;
+    private readonly IThriveInstaller thriveInstaller;
+    private readonly IDevCenterClient devCenterClient;
 
     private readonly Dictionary<string, CultureInfo> availableLanguages;
     private readonly StoreVersionInfo detectedStore;
@@ -82,13 +84,12 @@ public partial class MainWindowViewModel : ViewModelBase
     private bool showDevCenterStatusArea = true;
     private bool showDevCenterPopup;
 
-    private DevCenterConnection? devCenterConnection;
-
     private int nextDevCenterOpenOverrideKeyIndex;
 
     public MainWindowViewModel(ILogger<MainWindowViewModel> logger, ILauncherFeeds launcherFeeds,
         IStoreVersionDetector storeInfo, ILauncherSettingsManager settingsManager, VersionUtilities versionUtilities,
         ILauncherPaths launcherPaths, IThriveAndLauncherInfoRetriever launcherInfoRetriever,
+        IThriveInstaller thriveInstaller, IDevCenterClient devCenterClient,
         bool allowTaskStarts = true)
     {
         this.logger = logger;
@@ -98,6 +99,8 @@ public partial class MainWindowViewModel : ViewModelBase
         this.versionUtilities = versionUtilities;
         this.launcherPaths = launcherPaths;
         this.launcherInfoRetriever = launcherInfoRetriever;
+        this.thriveInstaller = thriveInstaller;
+        this.devCenterClient = devCenterClient;
 
         availableLanguages = Languages.GetAvailableLanguages();
 
@@ -146,7 +149,9 @@ public partial class MainWindowViewModel : ViewModelBase
         DesignTimeServices.Services.GetRequiredService<ILauncherSettingsManager>(),
         DesignTimeServices.Services.GetRequiredService<VersionUtilities>(),
         DesignTimeServices.Services.GetRequiredService<ILauncherPaths>(),
-        DesignTimeServices.Services.GetRequiredService<IThriveAndLauncherInfoRetriever>(), false)
+        DesignTimeServices.Services.GetRequiredService<IThriveAndLauncherInfoRetriever>(),
+        DesignTimeServices.Services.GetRequiredService<IThriveInstaller>(),
+        DesignTimeServices.Services.GetRequiredService<IDevCenterClient>(), false)
     {
         languagePlaceHolderIfNotSelected = string.Empty;
     }
@@ -236,49 +241,8 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    public IEnumerable<(string VersionName, IPlayableVersion VersionObject)> AvailableThriveVersions
-    {
-        get
-        {
-            if (detectedStore.IsStoreVersion)
-            {
-                yield return (string.Format(Resources.StoreVersionName, detectedStore.StoreName),
-                    new StoreVersion(detectedStore.StoreName));
-            }
-
-            if (devCenterConnection != null)
-                yield return ("DevBuild", new DevBuildVersion(PlayableDevCenterBuildType.DevBuild));
-
-            // This is null in store versions where we haven't got external versions enabled, or if the version loading
-            // failed entirely (but in that case the player should be prevented from interacting with the play button)
-            if (ThriveVersionInformation != null)
-            {
-                foreach (var version in ThriveVersionInformation.Versions)
-                {
-                    var allPlatformsForVersion = version.Platforms.Keys.ToList();
-
-                    foreach (var versionPlatform in version.Platforms)
-                    {
-                        if (!settingsManager.Settings.ShouldShowVersionWithPlatform(versionPlatform.Key,
-                                allPlatformsForVersion))
-                            continue;
-
-                        bool latest = ThriveVersionInformation.IsLatest(version);
-
-                        var name = string.Format(Resources.VersionWithPlatform, version.ReleaseNumber,
-                            versionPlatform.Key.ToString());
-
-                        // Latest version has a custom suffix to identify it easier
-                        if (latest)
-                            name = string.Format(Resources.LatestVersionTag, name);
-
-                        yield return (version.ReleaseNumber,
-                            new PlayableVersion(name, version, latest, versionPlatform.Value.LocalFileName));
-                    }
-                }
-            }
-        }
-    }
+    public IEnumerable<(string VersionName, IPlayableVersion VersionObject)> AvailableThriveVersions =>
+        thriveInstaller.GetAvailableThriveVersions();
 
     public string? SelectedVersionToPlay
     {
@@ -416,21 +380,7 @@ public partial class MainWindowViewModel : ViewModelBase
     // TODO: start only when opening settings
     public Task<string> DehydrateCacheSize => dehydrateCacheSizeTask ??= ComputeDehydrateCacheSizeDisplayString();
 
-    public DevCenterConnection? DevCenterConnection
-    {
-        get => devCenterConnection;
-        private set
-        {
-            if (devCenterConnection == value)
-                return;
-
-            this.RaiseAndSetIfChanged(ref devCenterConnection, value);
-            this.RaisePropertyChanged(nameof(HasDevCenterConnection));
-            this.RaisePropertyChanged(nameof(DevCenterConnectedUser));
-            this.RaisePropertyChanged(nameof(DevCenterConnectionIsDeveloper));
-            this.RaisePropertyChanged(nameof(AvailableThriveVersions));
-        }
-    }
+    public DevCenterConnection? DevCenterConnection => devCenterClient.DevCenterConnection;
 
     public ObservableCollection<string> Items { get; }
 
@@ -631,7 +581,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         logger.LogInformation("Setting Thrive install path to {Folder}", folder);
 
-        var rawFiles = DetectInstalledThriveFolders();
+        var rawFiles = thriveInstaller.DetectInstalledThriveFolders();
 
         var installedVersions = rawFiles.ToList();
 
@@ -1049,21 +999,12 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    private IEnumerable<string> DetectInstalledThriveFolders()
+    private void OnDevCenterConnectionStatusChanged()
     {
-        var installFolder = ThriveInstallationPath;
-
-        logger.LogDebug("Checking installed versions in {InstallFolder}", installFolder);
-
-        foreach (var (_, versionObject) in AvailableThriveVersions)
-        {
-            if (versionObject is StoreVersion)
-                continue;
-
-            var fullPath = Path.GetFullPath(Path.Join(installFolder, versionObject.FolderName));
-
-            if (Directory.Exists(fullPath))
-                yield return fullPath;
-        }
+        this.RaisePropertyChanged(nameof(DevCenterConnection));
+        this.RaisePropertyChanged(nameof(HasDevCenterConnection));
+        this.RaisePropertyChanged(nameof(DevCenterConnectedUser));
+        this.RaisePropertyChanged(nameof(DevCenterConnectionIsDeveloper));
+        this.RaisePropertyChanged(nameof(AvailableThriveVersions));
     }
 }

@@ -29,11 +29,16 @@ public class MainWindowViewModelFactory
 
     public Mock<IThriveAndLauncherInfoRetriever> InfoRetrieveMock { get; set; } = new();
 
+    public Mock<IThriveInstaller> InstallerMock { get; set; } = new();
+
+    public Mock<IDevCenterClient> DevCenterMock { get; set; } = new();
+
     public ILogger<MainWindowViewModel> Logger { get; }
 
     public MainWindowViewModel Create()
     {
         return new MainWindowViewModel(Logger, FeedsMock.Object, StoreMock.Object, SettingsMock.Object,
-            new VersionUtilities(), PathsMock.Object, InfoRetrieveMock.Object, false);
+            new VersionUtilities(), PathsMock.Object, InfoRetrieveMock.Object, InstallerMock.Object,
+            DevCenterMock.Object, false);
     }
 }

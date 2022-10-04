@@ -19,6 +19,7 @@ using NLog.Extensions.Logging;
 using NLog.Targets;
 using Properties;
 using ScriptsBase.Utilities;
+using Services;
 using SharedBase.Utilities;
 using Utilities;
 using ViewModels;
@@ -83,7 +84,8 @@ internal class Program
             .AddSingleton(options)
             .AddScoped<MainWindowViewModel>()
             .AddScoped<LicensesWindowViewModel>()
-            .AddSingleton<ViewLocator>();
+            .AddSingleton<ViewLocator>()
+            .AddSingleton<ILauncherTranslations, LauncherTranslationProxy>();
 
         if (normalLogging)
         {

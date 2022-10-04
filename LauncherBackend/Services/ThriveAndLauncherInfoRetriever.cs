@@ -29,6 +29,8 @@ public class ThriveAndLauncherInfoRetriever : IThriveAndLauncherInfoRetriever
 
     public bool IgnoreSigningRequirement { get; set; }
 
+    public LauncherThriveInformation? CurrentlyLoadedInfo { get; private set; }
+
     public async Task<LauncherThriveInformation> DownloadInfo()
     {
         var url = LauncherConstants.LauncherInfoFileURL;
@@ -83,6 +85,7 @@ public class ThriveAndLauncherInfoRetriever : IThriveAndLauncherInfoRetriever
             logger.LogError(e, "Failed to write downloaded launcher info to a cache file");
         }
 
+        CurrentlyLoadedInfo = result;
         return result;
     }
 
@@ -112,6 +115,7 @@ public class ThriveAndLauncherInfoRetriever : IThriveAndLauncherInfoRetriever
             var result = await DecodeLauncherInfo(data);
 
             logger.LogDebug("Loaded cached info file {Path}", launcherPaths.PathToCachedDownloadedLauncherInfo);
+            CurrentlyLoadedInfo = result;
             return result;
         }
         catch (Exception e)
@@ -195,6 +199,8 @@ public class ThriveAndLauncherInfoRetriever : IThriveAndLauncherInfoRetriever
 public interface IThriveAndLauncherInfoRetriever
 {
     public bool IgnoreSigningRequirement { get; set; }
+
+    public LauncherThriveInformation? CurrentlyLoadedInfo { get; }
 
     public Task<LauncherThriveInformation> DownloadInfo();
 
