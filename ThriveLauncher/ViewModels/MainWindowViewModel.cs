@@ -122,6 +122,8 @@ public partial class MainWindowViewModel : ViewModelBase
             // TODO: start checking if devcenter connection is fine
         }
 
+        CreateSettingsTabTasks();
+
         CreateFeedRetrieveTasks();
 
         if (Settings.ShowWebContent && allowTaskStarts)
@@ -295,7 +297,13 @@ public partial class MainWindowViewModel : ViewModelBase
             this.RaiseAndSetIfChanged(ref showSettingsPopup, value);
 
             if (!showSettingsPopup)
+            {
                 TriggerSaveSettings();
+            }
+            else
+            {
+                StartSettingsTasksIfNotStarted();
+            }
         }
     }
 
@@ -377,8 +385,7 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    // TODO: start only when opening settings
-    public Task<string> DehydrateCacheSize => dehydrateCacheSizeTask ??= ComputeDehydrateCacheSizeDisplayString();
+    public Task<string> DehydrateCacheSize => dehydrateCacheSizeTask ?? throw new Exception("Constructor not ran");
 
     public DevCenterConnection? DevCenterConnection => devCenterClient.DevCenterConnection;
 
@@ -769,6 +776,12 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
+    private void StartSettingsTasksIfNotStarted()
+    {
+        if (DehydrateCacheSize.Status == TaskStatus.Created)
+            DehydrateCacheSize.Start();
+    }
+
     private void TriggerSaveSettings()
     {
         Dispatcher.UIThread.Post(PerformSave);
@@ -786,6 +799,21 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             logger.LogInformation("Settings have been saved");
         }
+    }
+
+    private void CreateSettingsTabTasks()
+    {
+        dehydrateCacheSizeTask ??= new Task<string>(() => ComputeDehydrateCacheSizeDisplayString().Result);
+    }
+
+    private void RefreshDehydratedCacheSize()
+    {
+        dehydrateCacheSizeTask = null;
+        CreateSettingsTabTasks();
+
+        StartSettingsTasksIfNotStarted();
+
+        this.RaisePropertyChanged(nameof(DehydrateCacheSize));
     }
 
     private async Task<string> ComputeDehydrateCacheSizeDisplayString()

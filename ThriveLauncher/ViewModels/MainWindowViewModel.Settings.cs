@@ -162,8 +162,7 @@ public partial class MainWindowViewModel
             Settings.DehydratedCacheFolder = value;
             this.RaisePropertyChanged();
 
-            dehydrateCacheSizeTask = null;
-            this.RaisePropertyChanged(nameof(DehydrateCacheSize));
+            RefreshDehydratedCacheSize();
         }
     }
 
