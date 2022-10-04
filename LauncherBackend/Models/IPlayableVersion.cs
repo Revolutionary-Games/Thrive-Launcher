@@ -4,6 +4,8 @@ public interface IPlayableVersion
 {
     public string VersionName { get; }
 
+    public string FolderName { get; }
+
     public bool IsStoreVersion { get; }
     public bool IsDevBuild { get; }
 
@@ -23,6 +25,8 @@ public class StoreVersion : IPlayableVersion
     }
 
     public string VersionName => storeName;
+
+    public string FolderName => "./";
 
     public bool IsStoreVersion => true;
 
@@ -53,6 +57,15 @@ public class DevBuildVersion : IPlayableVersion
     public bool IsStoreVersion => false;
 
     public bool IsDevBuild => true;
+
+    public string FolderName => type switch
+    {
+        PlayableDevCenterBuildType.DevBuild => "devbuild",
+        PlayableDevCenterBuildType.PublicBuildA => "devbuild_test_a",
+        PlayableDevCenterBuildType.PublicBuildB => "devbuild_test_b",
+        PlayableDevCenterBuildType.PublicBuildC => "devbuild_test_c",
+        _ => throw new ArgumentOutOfRangeException(),
+    };
 
     public bool IsPublicBuildA => type == PlayableDevCenterBuildType.PublicBuildA;
     public bool IsPublicBuildB => type == PlayableDevCenterBuildType.PublicBuildB;

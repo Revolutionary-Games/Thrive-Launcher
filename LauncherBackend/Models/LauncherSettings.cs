@@ -63,7 +63,8 @@ public class LauncherSettings
     [JsonPropertyName("disableThriveVideos")]
     public bool DisableThriveVideos { get; set; }
 
-    public bool ShouldShowVersionWithPlatform(PackagePlatform versionPlatform)
+    public bool ShouldShowVersionWithPlatform(PackagePlatform versionPlatform,
+        IEnumerable<PackagePlatform> allPlatformsForSameVersion)
     {
         switch (versionPlatform)
         {
@@ -72,7 +73,18 @@ public class LauncherSettings
             case PackagePlatform.Windows:
                 return OperatingSystem.IsWindows() && Environment.Is64BitOperatingSystem;
             case PackagePlatform.Windows32:
-                return OperatingSystem.IsWindows() && (!Environment.Is64BitOperatingSystem || !Hide32Bit);
+            {
+                if (!OperatingSystem.IsWindows())
+                    return false;
+
+                // Show 32-bit when we are on 32-bit platform (or we want to explicitly show)
+                if (!Environment.Is64BitOperatingSystem || !Hide32Bit)
+                    return true;
+
+                // Otherwise only show the 32-bit version on a 64-bit platform if there is no 64-bit version
+                return allPlatformsForSameVersion.All(p => p != PackagePlatform.Windows);
+            }
+
             case PackagePlatform.Mac:
                 return OperatingSystem.IsMacOS();
             default:

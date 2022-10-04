@@ -215,14 +215,14 @@ public partial class MainWindowViewModel : ViewModelBase
                 return;
 
             this.RaiseAndSetIfChanged(ref thriveVersionInformation, value);
-            this.RaisePropertyChanged(nameof(PlayVersionSelectorItems));
+            this.RaisePropertyChanged(nameof(AvailableThriveVersions));
 
             if (value != null)
                 OnVersionInfoLoaded();
         }
     }
 
-    public IEnumerable<(string VersionName, IPlayableVersion VersionObject)>? PlayVersionSelectorItems
+    public IEnumerable<(string VersionName, IPlayableVersion VersionObject)> AvailableThriveVersions
     {
         get
         {
@@ -241,16 +241,25 @@ public partial class MainWindowViewModel : ViewModelBase
             {
                 foreach (var version in ThriveVersionInformation.Versions)
                 {
+                    var allPlatformsForVersion = version.Platforms.Keys.ToList();
+
                     foreach (var versionPlatform in version.Platforms)
                     {
-                        if (!settingsManager.Settings.ShouldShowVersionWithPlatform(versionPlatform.Key))
+                        if (!settingsManager.Settings.ShouldShowVersionWithPlatform(versionPlatform.Key,
+                                allPlatformsForVersion))
                             continue;
 
+                        bool latest = ThriveVersionInformation.IsLatest(version);
+
+                        var name = string.Format(Resources.VersionWithPlatform, version.ReleaseNumber,
+                            versionPlatform.Key.ToString());
+
+                        // Latest version has a custom suffix to identify it easier
+                        if (latest)
+                            name = string.Format(Resources.LatestVersionTag, name);
+
                         yield return (version.ReleaseNumber,
-                            new PlayableVersion(
-                                string.Format(Resources.VersionWithPlatform, version.ReleaseNumber,
-                                    versionPlatform.Key.ToString()), version,
-                                ThriveVersionInformation.IsLatest(version)));
+                            new PlayableVersion(name, version, latest, versionPlatform.Value.LocalFileName));
                     }
                 }
             }
@@ -350,7 +359,7 @@ public partial class MainWindowViewModel : ViewModelBase
             this.RaisePropertyChanged(nameof(HasDevCenterConnection));
             this.RaisePropertyChanged(nameof(DevCenterConnectedUser));
             this.RaisePropertyChanged(nameof(DevCenterConnectionIsDeveloper));
-            this.RaisePropertyChanged(nameof(PlayVersionSelectorItems));
+            this.RaisePropertyChanged(nameof(AvailableThriveVersions));
         }
     }
 
@@ -377,10 +386,7 @@ public partial class MainWindowViewModel : ViewModelBase
         }
 
         // Convert the user readable version to a normal version
-        var version = PlayVersionSelectorItems?.FirstOrDefault(t => t.VersionObject.VersionName == userReadableVersion);
-
-        if (version == null)
-            throw new ArgumentException("Tried to set an invalid version to play");
+        var version = AvailableThriveVersions.First(t => t.VersionObject.VersionName == userReadableVersion);
 
         logger.LogInformation("Version to play is now: {SelectedVersion}", userReadableVersion);
 
@@ -388,14 +394,14 @@ public partial class MainWindowViewModel : ViewModelBase
 
         // When selecting the latest version, we want to clear the remembered version so the user always gets the
         // latest version to play
-        if (version.Value.VersionObject is PlayableVersion { IsLatest: true })
+        if (version.VersionObject is PlayableVersion { IsLatest: true })
         {
             logger.LogInformation("Select version to play is latest, clearing remembered version");
             settingsManager.RememberedVersion = null;
         }
         else
         {
-            settingsManager.RememberedVersion = version.Value.VersionName;
+            settingsManager.RememberedVersion = version.VersionName;
         }
     }
 
@@ -664,7 +670,14 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         var remembered = settingsManager.RememberedVersion;
 
-        var availableThings = PlayVersionSelectorItems!.ToList();
+        var availableThings = AvailableThriveVersions.ToList();
+
+        if (availableThings.Count < 1)
+        {
+            logger.LogWarning("Could not detect any Thrive versions compatible with current platform");
+            ShowNotice(Resources.NoCompatibleVersionsFoundTitle, Resources.NoCompatibleVersionsFound);
+            return;
+        }
 
         if (remembered != null)
         {
@@ -677,6 +690,17 @@ public partial class MainWindowViewModel : ViewModelBase
                 logger.LogInformation("Remembered version ({Remembered}) set to selector", remembered);
                 return;
             }
+        }
+
+        // If there is a store version, pick that
+        var storeVersion = availableThings.Where(t => t.VersionObject is StoreVersion).Select(t => t.VersionObject)
+            .FirstOrDefault();
+
+        if (storeVersion != null)
+        {
+            logger.LogInformation("Auto selecting store version");
+            SelectedVersionToPlay = storeVersion.VersionName;
+            return;
         }
 
         // Otherwise just select the latest version
@@ -785,6 +809,24 @@ public partial class MainWindowViewModel : ViewModelBase
 
                 logger.LogInformation("Retrying or using cached data next");
             }
+        }
+    }
+
+    private IEnumerable<string> DetectInstalledThriveFolders()
+    {
+        var installFolder = ThriveInstallationPath;
+
+        logger.LogDebug("Checking installed versions in {InstallFolder}", installFolder);
+
+        foreach (var (_, versionObject) in AvailableThriveVersions)
+        {
+            if (versionObject is StoreVersion)
+                continue;
+
+            var fullPath = Path.GetFullPath(Path.Join(installFolder, versionObject.FolderName));
+
+            if (Directory.Exists(fullPath))
+                yield return fullPath;
         }
     }
 }

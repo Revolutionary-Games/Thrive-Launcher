@@ -52,7 +52,7 @@ public partial class MainWindow : Window
         dataContext.WhenAnyValue(d => d.SelectedLauncherLanguage).Subscribe(OnLanguageChanged);
 
         dataContext.WhenAnyValue(d => d.SelectedVersionToPlay).Subscribe(OnSelectedVersionChanged);
-        dataContext.WhenAnyValue(d => d.PlayVersionSelectorItems).Subscribe(OnAvailableVersionsChanged);
+        dataContext.WhenAnyValue(d => d.AvailableThriveVersions).Subscribe(OnAvailableVersionsChanged);
 
         // Intentionally left hanging around in the background
 #pragma warning disable CS4014
