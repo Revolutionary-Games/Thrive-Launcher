@@ -1,8 +1,8 @@
 namespace LauncherBackend.Services;
 
-using DevCenterCommunication.Models;
 using Microsoft.Extensions.Logging;
 using Models;
+using Utilities;
 
 /// <summary>
 ///   Manages downloading and installing Thrive versions
@@ -100,7 +100,16 @@ public class ThriveInstaller : IThriveInstaller
         {
             var full = Path.GetFullPath(directory);
 
-            yield return new FolderInInstallFolder(full, thriveFolders.Contains(full));
+            bool isThriveRelated = thriveFolders.Contains(full);
+
+            var folderInfo = new FolderInInstallFolder(full, isThriveRelated);
+
+            if (isThriveRelated)
+            {
+                folderInfo.Size = FileUtilities.CalculateFolderSize(full);
+            }
+
+            yield return folderInfo;
         }
     }
 }

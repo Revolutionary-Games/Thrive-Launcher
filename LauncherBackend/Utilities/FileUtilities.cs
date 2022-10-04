@@ -2,6 +2,7 @@ namespace LauncherBackend.Utilities;
 
 using System.Diagnostics;
 
+// TODO: move these to the base scripts
 public static class FileUtilities
 {
     /// <summary>

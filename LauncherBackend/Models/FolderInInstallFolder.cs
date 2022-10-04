@@ -13,5 +13,12 @@ public class FolderInInstallFolder
 
     public string Path { get; }
 
+    public string FolderName => System.IO.Path.GetFileName(Path);
+
     public bool IsThriveFolder { get; }
+
+    /// <summary>
+    ///   Size in bytes. Only set for Thrive related folders
+    /// </summary>
+    public long Size { get; set; }
 }

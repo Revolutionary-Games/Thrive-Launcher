@@ -67,6 +67,8 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private Task<string>? dehydrateCacheSizeTask;
 
+    private IEnumerable<FolderInInstallFolder>? installedFolders;
+
     // Settings related file moving
     private bool hasPendingFileMoveOffer;
     private string fileMoveOfferTitle = string.Empty;
@@ -248,6 +250,12 @@ public partial class MainWindowViewModel : ViewModelBase
     public IEnumerable<(string VersionName, IPlayableVersion VersionObject)> AvailableThriveVersions =>
         thriveInstaller.GetAvailableThriveVersions();
 
+    public IEnumerable<FolderInInstallFolder>? InstalledFolders
+    {
+        get => installedFolders;
+        set => this.RaiseAndSetIfChanged(ref installedFolders, value);
+    }
+
     public string? SelectedVersionToPlay
     {
         get => selectedVersionToPlay;
@@ -304,7 +312,7 @@ public partial class MainWindowViewModel : ViewModelBase
             }
             else
             {
-                StartSettingsTasksIfNotStarted();
+                StartSettingsViewTasks();
             }
         }
     }
@@ -698,6 +706,40 @@ public partial class MainWindowViewModel : ViewModelBase
         fileMoveFinishCallback = null;
     }
 
+    public bool DeleteVersion(string versionFolderName)
+    {
+        var target = Path.Join(ThriveInstallationPath, versionFolderName);
+
+        if (!Directory.Exists(target))
+        {
+            logger.LogError("Can't delete non-existent folder: {Target}", target);
+
+            ShowNotice(Resources.DeleteErrorTitle, Resources.DeleteErrorDoesNotExist);
+            return false;
+        }
+
+        logger.LogInformation("Deleting version: {Target}", target);
+
+        try
+        {
+            Directory.Delete(target, true);
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Failed to delete {Target}", target);
+            ShowNotice(Resources.DeleteErrorTitle, string.Format(Resources.DeleteErrorExplanation, target, e.Message));
+            return false;
+        }
+
+        // Refresh the version list if it might be visible
+        if (ShowSettingsPopup)
+        {
+            StartSettingsViewTasks();
+        }
+
+        return true;
+    }
+
     private void OfferFileMove(List<string> filesToMove, string newFolder, string popupTitle, string popupText,
         Action onFinished)
     {
@@ -778,10 +820,17 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    private void StartSettingsTasksIfNotStarted()
+    private void StartSettingsViewTasks()
     {
         if (DehydrateCacheSize.Status == TaskStatus.Created)
             DehydrateCacheSize.Start();
+
+        Task.Run(() =>
+        {
+            var installed = thriveInstaller.ListFoldersInThriveInstallFolder().ToList();
+
+            Dispatcher.UIThread.Post(() => InstalledFolders = installed);
+        });
     }
 
     private void TriggerSaveSettings()
@@ -813,7 +862,7 @@ public partial class MainWindowViewModel : ViewModelBase
         dehydrateCacheSizeTask = null;
         CreateSettingsTabTasks();
 
-        StartSettingsTasksIfNotStarted();
+        StartSettingsViewTasks();
 
         this.RaisePropertyChanged(nameof(DehydrateCacheSize));
     }

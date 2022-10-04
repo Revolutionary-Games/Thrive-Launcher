@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Data;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
@@ -15,6 +16,7 @@ using LauncherBackend.Models.ParsedContent;
 using LauncherBackend.Services;
 using LauncherBackend.Utilities;
 using ReactiveUI;
+using Services.Localization;
 using SharedBase.Utilities;
 using Utilities;
 using ViewModels;
@@ -35,6 +37,9 @@ public partial class MainWindow : Window
         DataContextProperty.Changed.Subscribe(OnDataContextReceiver);
     }
 
+    private MainWindowViewModel DerivedDataContext =>
+        (MainWindowViewModel?)DataContext ?? throw new Exception("DataContext not initialized");
+
     private void OnDataContextReceiver(AvaloniaPropertyChangedEventArgs e)
     {
         if (dataContextReceived || e.NewValue == null)
@@ -43,7 +48,7 @@ public partial class MainWindow : Window
         // Prevents recursive calls
         dataContextReceived = true;
 
-        var dataContext = (MainWindowViewModel)e.NewValue;
+        var dataContext = DerivedDataContext;
 
         languageItems.AddRange(dataContext.GetAvailableLanguages().Select(l => new ComboBoxItem { Content = l }));
 
@@ -53,6 +58,8 @@ public partial class MainWindow : Window
 
         dataContext.WhenAnyValue(d => d.SelectedVersionToPlay).Subscribe(OnSelectedVersionChanged);
         dataContext.WhenAnyValue(d => d.AvailableThriveVersions).Subscribe(OnAvailableVersionsChanged);
+
+        dataContext.WhenAnyValue(d => d.InstalledFolders).Subscribe(OnInstalledVersionListChanged);
 
         // Intentionally left hanging around in the background
 #pragma warning disable CS4014
@@ -78,7 +85,7 @@ public partial class MainWindow : Window
             selected = (string)((ComboBoxItem)e.AddedItems[0]!).Content;
         }
 
-        ((MainWindowViewModel)DataContext).VersionSelected(selected);
+        DerivedDataContext.VersionSelected(selected);
     }
 
     private void OnSelectedVersionChanged(string? selectedVersion)
@@ -102,7 +109,7 @@ public partial class MainWindow : Window
 
         if (versions != null)
         {
-            foreach (var version in ((MainWindowViewModel)DataContext!).SortVersions(versions))
+            foreach (var version in DerivedDataContext.SortVersions(versions))
             {
                 versionItems.Add((version.VersionObject, new ComboBoxItem
                 {
@@ -124,7 +131,7 @@ public partial class MainWindow : Window
 
         var selected = (ComboBoxItem)e.AddedItems[0]!;
 
-        ((MainWindowViewModel)DataContext!).SelectedLauncherLanguage = (string)selected.Content;
+        DerivedDataContext.SelectedLauncherLanguage = (string)selected.Content;
     }
 
     private void OnLanguageChanged(string selectedLanguage)
@@ -153,7 +160,7 @@ public partial class MainWindow : Window
 
         var dialog = new OpenFolderDialog
         {
-            Directory = ((MainWindowViewModel)DataContext!).ThriveInstallationPath,
+            Directory = DerivedDataContext.ThriveInstallationPath,
         };
 
         var result = await dialog.ShowAsync(this);
@@ -161,15 +168,13 @@ public partial class MainWindow : Window
         if (string.IsNullOrWhiteSpace(result))
             return;
 
-        ((MainWindowViewModel)DataContext!).SetInstallPathTo(result);
+        DerivedDataContext.SetInstallPathTo(result);
     }
 
     private async Task UpdateFeedItemsWhenRetrieved()
     {
-        var dataContext = (MainWindowViewModel)DataContext!;
-
-        var devForum = await dataContext.DevForumFeedItems;
-        var mainSite = await dataContext.MainSiteFeedItems;
+        var devForum = await DerivedDataContext.DevForumFeedItems;
+        var mainSite = await DerivedDataContext.MainSiteFeedItems;
 
         Dispatcher.UIThread.Post(() =>
         {
@@ -311,5 +316,81 @@ public partial class MainWindow : Window
 
             targetContainer.Children.Add(itemContainer);
         }
+    }
+
+    private void OnInstalledVersionListChanged(IEnumerable<FolderInInstallFolder>? installed)
+    {
+        InstalledFoldersList.Children.Clear();
+
+        if (installed == null)
+            return;
+
+        // See LocalizeExtension
+        var deleteBinding = new Binding($"[{nameof(Properties.Resources.Delete)}]")
+        {
+            Mode = BindingMode.OneWay,
+            Source = Localizer.Instance,
+        };
+
+        var unknownBinding = new Binding($"[{nameof(Properties.Resources.UnknownFolder)}]")
+        {
+            Mode = BindingMode.OneWay,
+            Source = Localizer.Instance,
+        };
+
+        foreach (var installFolder in installed)
+        {
+            var container = new WrapPanel();
+
+            if (!installFolder.IsThriveFolder)
+            {
+                container.Children.Add(new TextBlock
+                {
+                    TextWrapping = TextWrapping.Wrap,
+                    Text = installFolder.FolderName,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    [!TextBlock.TextProperty] = unknownBinding,
+                    Margin = new Thickness(0, 0, 3, 0),
+                });
+            }
+
+            container.Children.Add(new TextBlock
+            {
+                TextWrapping = TextWrapping.Wrap,
+                Text = installFolder.FolderName,
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(0, 0, !installFolder.IsThriveFolder ? 3 : 0, 0),
+            });
+
+            if (installFolder.IsThriveFolder)
+            {
+                container.Children.Add(new TextBlock
+                {
+                    TextWrapping = TextWrapping.Wrap,
+
+                    // TODO: make this react to language change somehow
+                    Text = string.Format(Properties.Resources.InstalledFolderSize,
+                        string.Format(Properties.Resources.SizeInMiB,
+                            Math.Round((float)installFolder.Size / GlobalConstants.MEBIBYTE, 2))),
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Margin = new Thickness(0, 0, 3, 0),
+                });
+
+                var deleteButton = new Button
+                {
+                    Classes = new Classes("Danger"),
+                    [!ContentProperty] = deleteBinding,
+                };
+
+                deleteButton.Click += (_, _) => DerivedDataContext.DeleteVersion(installFolder.FolderName);
+
+                container.Children.Add(deleteButton);
+            }
+
+            InstalledFoldersList.Children.Add(container);
+        }
+
+        // Add some blank space at the bottom
+        InstalledFoldersList.Children.Add(new TextBlock { Text = " " });
     }
 }

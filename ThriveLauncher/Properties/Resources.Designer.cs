@@ -555,6 +555,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string InstalledFolderSize {
+            get {
+                return ResourceManager.GetString("InstalledFolderSize", resourceCulture);
+            }
+        }
+        
         public static string FolderNotFound {
             get {
                 return ResourceManager.GetString("FolderNotFound", resourceCulture);
@@ -750,6 +756,36 @@ namespace ThriveLauncher.Properties {
         public static string Skip {
             get {
                 return ResourceManager.GetString("Skip", resourceCulture);
+            }
+        }
+        
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        public static string DeleteErrorTitle {
+            get {
+                return ResourceManager.GetString("DeleteErrorTitle", resourceCulture);
+            }
+        }
+        
+        public static string DeleteErrorExplanation {
+            get {
+                return ResourceManager.GetString("DeleteErrorExplanation", resourceCulture);
+            }
+        }
+        
+        public static string DeleteErrorDoesNotExist {
+            get {
+                return ResourceManager.GetString("DeleteErrorDoesNotExist", resourceCulture);
+            }
+        }
+        
+        public static string UnknownFolder {
+            get {
+                return ResourceManager.GetString("UnknownFolder", resourceCulture);
             }
         }
     }

@@ -319,6 +319,9 @@ Launcher logs will have more info.</value>
   <data name="SizeInMiB" xml:space="preserve">
     <value>{0} MiB</value>
   </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>(size: {0})</value>
+  </data>
   <data name="FolderNotFound" xml:space="preserve">
     <value>Folder Not Found</value>
   </data>
@@ -417,5 +420,20 @@ Launcher logs will have more info.</value>
   </data>
   <data name="Skip" xml:space="preserve">
     <value>Skip</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>Failed to Delete</value>
+  </data>
+  <data name="DeleteErrorExplanation" xml:space="preserve">
+    <value>Failed to delete data at the following path: "{0}" due to: {1}</value>
+  </data>
+  <data name="DeleteErrorDoesNotExist" xml:space="preserve">
+    <value>Failed to delete because the target path doesn't exist</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>Unknown folder:</value>
   </data>
 </root>

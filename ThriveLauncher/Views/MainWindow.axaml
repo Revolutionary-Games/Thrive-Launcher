@@ -282,8 +282,9 @@
                                 <TextBlock Text="{Binding ThriveInstallationPath}" />
                             </WrapPanel>
 
-                            <!-- TODO: showing the installed versions with delete buttons -->
-                            <ScrollViewer />
+                            <ScrollViewer MaxHeight="400">
+                                <StackPanel Spacing="5" Name="InstalledFoldersList" />
+                            </ScrollViewer>
                         </StackPanel>
                     </TabItem>
                     <TabItem Header="{i18n:Localize CacheConfigurationTab}">
