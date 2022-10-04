@@ -263,8 +263,8 @@
                         </StackPanel>
                     </TabItem>
                     <TabItem Header="{i18n:Localize InstalledVersions}">
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal" Spacing="2">
+                        <DockPanel LastChildFill="True">
+                            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="2">
                                 <Button Classes="DialogButton" Content="{i18n:Localize BrowseInstalledFiles}"
                                         Command="{Binding OpenFileBrowserToInstalled}" />
                                 <Button Classes="DialogButton" Content="{i18n:Localize SelectInstallLocation}"
@@ -277,15 +277,15 @@
                             <Border DockPanel.Dock="Top" Margin="0 3" Padding="0" BorderThickness="1"
                                     BorderBrush="{DynamicResource BlueElement}" />
 
-                            <WrapPanel Orientation="Horizontal" Margin="0 5">
+                            <WrapPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0 5">
                                 <TextBlock Margin="0 0 2 0" Text="{i18n:Localize FolderPathDisplay}" />
                                 <TextBlock Text="{Binding ThriveInstallationPath}" />
                             </WrapPanel>
 
-                            <ScrollViewer MaxHeight="400">
+                            <ScrollViewer>
                                 <StackPanel Spacing="5" Name="InstalledFoldersList" />
                             </ScrollViewer>
-                        </StackPanel>
+                        </DockPanel>
                     </TabItem>
                     <TabItem Header="{i18n:Localize CacheConfigurationTab}">
                         <StackPanel>
