@@ -633,12 +633,6 @@ public partial class MainWindowViewModel : ViewModelBase
 
         var rawFiles = DetectInstalledThriveFolders();
 
-        // Also offer moving the cached versions to not leave this file behind
-        var cachedFile = Path.GetFullPath(launcherPaths.PathToCachedDownloadedLauncherInfo);
-
-        if (File.Exists(cachedFile))
-            rawFiles = rawFiles.Append(cachedFile);
-
         var installedVersions = rawFiles.ToList();
 
         this.RaisePropertyChanging(nameof(ThriveInstallationPath));
