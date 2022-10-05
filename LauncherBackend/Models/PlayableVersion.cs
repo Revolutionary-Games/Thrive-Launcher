@@ -9,7 +9,8 @@ public class PlayableVersion : IPlayableVersion
 {
     private readonly ThriveVersionLauncherInfo launcherVersion;
 
-    public PlayableVersion(string formattedVersionWithArch, ThriveVersionLauncherInfo launcherVersion, bool isLatest, string folderName)
+    public PlayableVersion(string formattedVersionWithArch, ThriveVersionLauncherInfo launcherVersion, bool isLatest,
+        string folderName)
     {
         VersionName = formattedVersionWithArch;
         IsLatest = isLatest;
