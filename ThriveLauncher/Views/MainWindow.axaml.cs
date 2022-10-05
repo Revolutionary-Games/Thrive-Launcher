@@ -16,6 +16,7 @@ using LauncherBackend.Models;
 using LauncherBackend.Models.ParsedContent;
 using LauncherBackend.Services;
 using LauncherBackend.Utilities;
+using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 using Services.Localization;
 using SharedBase.Utilities;
@@ -28,6 +29,7 @@ public partial class MainWindow : Window
     private readonly List<(IPlayableVersion Version, ComboBoxItem Item)> versionItems = new();
 
     private bool dataContextReceived;
+    private IThriveInstaller? installer;
 
     private bool usChangingSelectedVersion;
 
@@ -40,6 +42,11 @@ public partial class MainWindow : Window
 
     private MainWindowViewModel DerivedDataContext =>
         (MainWindowViewModel?)DataContext ?? throw new Exception("DataContext not initialized");
+
+    /// <summary>
+    ///   Don't worry we don't mess with the logic of this, just use some sorting helpers from here
+    /// </summary>
+    private IThriveInstaller ThriveInstaller => installer ?? throw new Exception("DataContext not initialized");
 
     private void OnDataContextReceiver(AvaloniaPropertyChangedEventArgs e)
     {
@@ -54,6 +61,8 @@ public partial class MainWindow : Window
         languageItems.AddRange(dataContext.GetAvailableLanguages().Select(l => new ComboBoxItem { Content = l }));
 
         LanguageComboBox.Items = languageItems;
+
+        installer = this.GetServiceProvider().GetRequiredService<IThriveInstaller>();
 
         dataContext.WhenAnyValue(d => d.SelectedLauncherLanguage).Subscribe(OnLanguageChanged);
 
@@ -111,7 +120,7 @@ public partial class MainWindow : Window
 
         if (versions != null)
         {
-            foreach (var version in DerivedDataContext.SortVersions(versions))
+            foreach (var version in ThriveInstaller.SortVersions(versions))
             {
                 versionItems.Add((version.VersionObject, new ComboBoxItem
                 {

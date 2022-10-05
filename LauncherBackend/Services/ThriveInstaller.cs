@@ -73,6 +73,45 @@ public class ThriveInstaller : IThriveInstaller
         }
     }
 
+    public IOrderedEnumerable<(string VersionName, IPlayableVersion VersionObject)> SortVersions(
+        IEnumerable<(string VersionName, IPlayableVersion VersionObject)> versions)
+    {
+        // Store version first
+        var sorted = versions.OrderBy(t => t.VersionObject is StoreVersion);
+
+        // Then devbuilds (sorted by type)
+        sorted = sorted.ThenBy(t =>
+        {
+            if (t.VersionObject is DevBuildVersion buildVersion)
+            {
+                return (int)buildVersion.BuildType;
+            }
+
+            return int.MaxValue;
+        });
+
+        var fallbackVersion = new Version(0, 0, 0, 0);
+        var highestVersion = new Version(int.MaxValue, 0, 0, 0);
+
+        sorted = sorted.ThenBy(t =>
+        {
+            if (t.VersionObject is StoreVersion or DevBuildVersion)
+                return highestVersion;
+
+            try
+            {
+                return new Version(t.VersionName.Split("-", 2)[0]);
+            }
+            catch (Exception e)
+            {
+                logger.LogWarning(e, "Cannot parse version number for sorting: {VersionName}", t.VersionName);
+                return fallbackVersion;
+            }
+        });
+
+        return sorted;
+    }
+
     public IEnumerable<string> DetectInstalledThriveFolders()
     {
         return ListFoldersInThriveInstallFolder().Where(f => f.IsThriveFolder).Select(f => f.Path);
@@ -162,6 +201,14 @@ public class ThriveInstaller : IThriveInstaller
 public interface IThriveInstaller
 {
     public IEnumerable<(string VersionName, IPlayableVersion VersionObject)> GetAvailableThriveVersions();
+
+    /// <summary>
+    ///   Sorts versions to be in the order they should be shown to the user
+    /// </summary>
+    /// <param name="versions">The versions to sort</param>
+    /// <returns>Versions in sorted order</returns>
+    public IOrderedEnumerable<(string VersionName, IPlayableVersion VersionObject)> SortVersions(
+        IEnumerable<(string VersionName, IPlayableVersion VersionObject)> versions);
 
     public IEnumerable<string> DetectInstalledThriveFolders();
 
