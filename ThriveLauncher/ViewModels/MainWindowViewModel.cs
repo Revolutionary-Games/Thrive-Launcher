@@ -74,7 +74,6 @@ public partial class MainWindowViewModel : ViewModelBase
 
         availableLanguages = Languages.GetAvailableLanguages();
 
-        ApplySettings();
         languagePlaceHolderIfNotSelected = Languages.GetCurrentlyUsedCulture(availableLanguages).NativeName;
 
         showSettingsUpgrade = settingsManager.V1Settings != null;

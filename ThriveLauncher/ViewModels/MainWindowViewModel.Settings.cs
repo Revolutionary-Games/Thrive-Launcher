@@ -250,41 +250,5 @@ public partial class MainWindowViewModel
         }
     }
 
-    public void ResetAllSettings()
-    {
-        logger.LogInformation("Resetting all settings");
 
-        settingsManager.Reset();
-
-        // TODO: reset language to the default for current user (currently seems to reset only to the currently
-        // applied language)
-
-        // Notify all settings changed
-        this.RaisePropertyChanged(nameof(DisableThriveVideos));
-        this.RaisePropertyChanged(nameof(ShowWebContent));
-        this.RaisePropertyChanged(nameof(HideLauncherOnPlay));
-        this.RaisePropertyChanged(nameof(Hide32BitVersions));
-        this.RaisePropertyChanged(nameof(CloseLauncherAfterGameExit));
-        this.RaisePropertyChanged(nameof(CloseLauncherOnGameStart));
-        this.RaisePropertyChanged(nameof(StoreVersionShowExternalVersions));
-        this.RaisePropertyChanged(nameof(AutoStartStoreVersion));
-        this.RaisePropertyChanged(nameof(SelectedLauncherLanguage));
-        this.RaisePropertyChanged(nameof(ThriveInstallationPath));
-        this.RaisePropertyChanged(nameof(DehydratedCacheFolder));
-        this.RaisePropertyChanged(nameof(TemporaryDownloadsFolder));
-        this.RaisePropertyChanged(nameof(DevCenterKey));
-        this.RaisePropertyChanged(nameof(SelectedDevBuildType));
-        this.RaisePropertyChanged(nameof(ManuallySelectedBuildHash));
-        this.RaisePropertyChanged(nameof(ForceGles2Mode));
-        this.RaisePropertyChanged(nameof(DisableThriveVideos));
-
-        // Reset some extra stuff
-        dehydrateCacheSizeTask = null;
-        this.RaisePropertyChanged(nameof(DehydrateCacheSize));
-    }
-
-    private void ApplySettings()
-    {
-        // Our proxy properties read directly from the settings so we don't need to apply anything
-    }
 }
