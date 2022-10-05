@@ -228,14 +228,26 @@
   <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
       <value>Temporary downloads folder:</value>
   </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+      <value>Contents:</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+      <value>Folder is empty</value>
+  </data>
   <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
-      <value>Note: moving temporary location won't delete existing files to prevent accidentally deleting files unrelated to Thrive</value>
+      <value>Note: moving temporary location won't move or delete existing files to prevent accidentally touching files unrelated to Thrive</value>
   </data>
   <data name="SelectTemporaryFilesLocation" xml:space="preserve">
       <value>Select Temporary Files Location</value>
   </data>
   <data name="ResetTemporaryLocation" xml:space="preserve">
       <value>Reset Temporary Files Location</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+      <value>Delete ALL files in the temporary folder. May delete even non-Thrive related files if those exist!</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+      <value>Delete all files in the DevBuild dehydrated cache folder. If the location is non-default there may exist non-Thrive files in the folder which will also be deleted.</value>
   </data>
   <data name="ClearFolder" xml:space="preserve">
       <value>Clear</value>
@@ -407,7 +419,13 @@ Launcher logs will have more info.</value>
     <value>Move Existing Versions?</value>
   </data>
   <data name="MoveVersionsExplanation" xml:space="preserve">
-    <value>Installed Thrive versions have been detected at the previous path. These can be automatically moved to the new location. If not moved the files will be left behind and the launcher won't know about them until the previous path is selected as the install location again. Would you like to automatically move this files to the new location?</value>
+    <value>Installed Thrive versions have been detected at the previous path. These can be automatically moved to the new location. If not moved the files will be left behind and the launcher won't know about them until the previous path is selected as the install location again. Would you like to automatically move these files to the new location?</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>Move Existing Files?</value>
+  </data>
+  <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
+    <value>Existing items in the cache have been detected. These can be automatically moved to the new location. If not moved the files will be left behind and the launcher won't know about them until the previous path is selected as the location again. Would you like to automatically move {0} file(s) to the new location? Note that if non-Thrive related files exist in the cache folder they will be moved as well.</value>
   </data>
   <data name="InternalErrorTitle" xml:space="preserve">
     <value>Internal Error</value>
@@ -424,6 +442,9 @@ Launcher logs will have more info.</value>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="DeleteErrorTitle" xml:space="preserve">
     <value>Failed to Delete</value>
   </data>
@@ -435,5 +456,23 @@ Launcher logs will have more info.</value>
   </data>
   <data name="UnknownFolder" xml:space="preserve">
     <value>Unknown folder:</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>Delete Temporary Files?</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
+    <value>You are about to delete all the files contained in the temporary folder at "{0}". Even non-Thrive files will be deleted if any happen to exist in that folder. The folder itself will also be deleted. Delete the temporary folder?</value>
+  </data>
+  <data name="ClearTemporaryFilesCount" xml:space="preserve">
+    <value>You are about to delete {0} files / folders</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>Delete DevBuild Cache?</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>You are about to delete all the files contained in the dehydrated cache folder at "{0}". Even non-Thrive files will be deleted if any happen to exist in that folder. Delete the folder contents?</value>
+  </data>
+  <data name="ClearDehydratedFilesCount" xml:space="preserve">
+    <value>You are about to delete {0} files</value>
   </data>
 </root>

@@ -288,50 +288,57 @@
                         </DockPanel>
                     </TabItem>
                     <TabItem Header="{i18n:Localize CacheConfigurationTab}">
-                        <StackPanel>
-                            <WrapPanel Orientation="Horizontal" Margin="0 0 0 5">
+                        <Grid RowDefinitions="Auto,Auto,*,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+                            <WrapPanel Grid.Row="0" Orientation="Horizontal" Margin="0 0 0 5">
                                 <TextBlock Margin="0 0 2 0" Text="{i18n:Localize TemporaryDownloadsPathDisplay}" />
                                 <TextBlock Text="{Binding TemporaryDownloadsFolder}" />
                             </WrapPanel>
 
-                            <!-- TODO: showing temporary folder stats / existing things -->
-                            <ScrollViewer />
+                            <TextBlock Grid.Row="1" Text="{i18n:Localize FolderContentsLabel}" />
 
-                            <TextBlock Margin="0 3" TextWrapping="Wrap" FontSize="12"
+                            <ScrollViewer Grid.Row="2">
+                                <StackPanel Spacing="5" Name="TemporaryFilesList" Margin="15 0 0 0" />
+                            </ScrollViewer>
+
+                            <TextBlock Grid.Row="3" Margin="0 5" TextWrapping="Wrap" FontSize="12"
                                        Text="{i18n:Localize TemporaryFolderNoFilesMoveNotice}" />
 
-                            <StackPanel Orientation="Horizontal" Spacing="2">
-                                <!-- TODO: implement these buttons -->
-                                <Button Classes="DialogButton" Content="{i18n:Localize SelectTemporaryFilesLocation}" />
-                                <Button Classes="DialogButton" ToolTip.Tip="{i18n:Localize ResetTemporaryLocation}">
+                            <StackPanel Grid.Row="4" Orientation="Horizontal" Spacing="2">
+                                <Button Classes="DialogButton" Content="{i18n:Localize SelectTemporaryFilesLocation}"
+                                        Click="SelectNewTemporaryLocation" />
+                                <Button Classes="DialogButton" Command="{Binding ResetTemporaryLocation}"
+                                        ToolTip.Tip="{i18n:Localize ResetTemporaryLocation}">
                                     <Image Height="16" Source="{DynamicResource RevertIconWhite}" />
                                 </Button>
-                                <Button Classes="DialogButton" Content="{i18n:Localize ClearFolder}" />
+                                <Button Classes="DialogButton" Command="{Binding PromptClearTemporaryLocation}"
+                                        Content="{i18n:Localize ClearFolder}"
+                                        ToolTip.Tip="{i18n:Localize ClearTemporaryLocation}" />
                             </StackPanel>
 
-                            <Border DockPanel.Dock="Top" Margin="0 3" Padding="0" BorderThickness="1"
+                            <Border Grid.Row="5" Margin="0 3" Padding="0" BorderThickness="1"
                                     BorderBrush="{DynamicResource BlueElement}" />
-                            <WrapPanel Orientation="Horizontal" Margin="0 0 0 5">
+                            <WrapPanel Grid.Row="6" Orientation="Horizontal" Margin="0 0 0 5">
                                 <TextBlock Margin="0 0 2 0" Text="{i18n:Localize DevBuildsCachePathDisplay}" />
                                 <TextBlock Text="{Binding DehydratedCacheFolder}" />
                             </WrapPanel>
 
-                            <StackPanel Orientation="Horizontal" Spacing="2">
-                                <!-- TODO: implement these buttons -->
-                                <Button Classes="DialogButton" Content="{i18n:Localize SelectDevBuildCacheLocation}" />
-                                <Button Classes="DialogButton" ToolTip.Tip="{i18n:Localize ResetCacheLocation}">
+                            <StackPanel Grid.Row="7" Orientation="Horizontal" Spacing="2">
+                                <Button Classes="DialogButton" Content="{i18n:Localize SelectDevBuildCacheLocation}"
+                                        Click="SelectDevBuildCacheLocation" />
+                                <Button Classes="DialogButton" Command="{Binding ResetDehydratedCacheLocation}"
+                                        ToolTip.Tip="{i18n:Localize ResetCacheLocation}">
                                     <Image Height="16" Source="{DynamicResource RevertIconWhite}" />
                                 </Button>
                             </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Margin="0 10">
+                            <StackPanel Grid.Row="8" Orientation="Horizontal" Margin="0 10">
                                 <TextBlock Margin="0 0 2 0" Text="{i18n:Localize CacheSizeDisplay}" />
-                                <!-- TODO: figure out how to postpone this until the settings are visible -->
                                 <TextBlock Text="{Binding DehydrateCacheSize^, FallbackValue='...'}" />
                             </StackPanel>
-                            <!-- TODO: implement this button -->
-                            <Button Classes="DialogButton" Content="{i18n:Localize ClearFolder}" />
-                        </StackPanel>
+                            <Button Grid.Row="9" Classes="DialogButton" Content="{i18n:Localize ClearFolder}"
+                                    ToolTip.Tip="{i18n:Localize ClearDehydratedLocation}"
+                                    Command="{Binding PromptClearDehydratedCacheLocation}" />
+                        </Grid>
                     </TabItem>
                 </TabControl>
                 <Button Classes="Close" Command="{Binding CloseSettingsClicked}" HorizontalAlignment="Right"
@@ -443,6 +450,48 @@
             </DockPanel>
         </controls:PopupDialog>
 
+        <controls:PopupDialog Title="{i18n:Localize ClearTemporaryFilesPromptTitle}"
+                              ShowPopup="{Binding ShowClearTemporaryPrompt}"
+                              CloseCommand="{Binding CancelClearTemporaryFiles}"
+                              ShowOKButton="False" ShowCloseX="True">
+            <DockPanel LastChildFill="True" MaxWidth="600">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="2"
+                            Margin="0 15 0 0">
+                    <Button Classes="DialogButton Danger" Command="{Binding AcceptClearTemporaryFiles}"
+                            Content="{i18n:Localize Delete}" />
+
+                    <Button Classes="DialogButton" Command="{Binding CancelClearTemporaryFiles}"
+                            Content="{i18n:Localize Cancel}" />
+                </StackPanel>
+
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
+                           Text="{Binding ClearTemporaryPromptContent}" />
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="5"
+                           Text="{Binding ClearTemporaryPromptCountContent}" />
+            </DockPanel>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog Title="{i18n:Localize ClearDehydratedFilesPromptTitle}"
+                              ShowPopup="{Binding ShowClearDehydratedPrompt}"
+                              CloseCommand="{Binding CancelClearDehydratedCache}"
+                              ShowOKButton="False" ShowCloseX="True">
+            <DockPanel LastChildFill="True" MaxWidth="600">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="2"
+                            Margin="0 15 0 0">
+                    <Button Classes="DialogButton Danger" Command="{Binding AcceptClearDehydratedCache}"
+                            Content="{i18n:Localize Delete}" />
+
+                    <Button Classes="DialogButton" Command="{Binding CancelClearDehydratedCache}"
+                            Content="{i18n:Localize Cancel}" />
+                </StackPanel>
+
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
+                           Text="{Binding ClearDehydratedPromptContent}" />
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="0 5"
+                           Text="{Binding ClearDehydratedPromptCountContent}" />
+            </DockPanel>
+        </controls:PopupDialog>
+
         <controls:PopupDialog Title="{Binding FileMoveOfferTitle}"
                               ShowPopup="{Binding HasPendingFileMoveOffer}"
                               CloseCommand="{Binding CancelFileMove}"
@@ -461,7 +510,7 @@
 
                 <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
                            Text="{Binding FileMoveOfferContent}" />
-                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="5"
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="0 5"
                            Text="{Binding FileMoveOfferError}" />
 
                 <ProgressBar DockPanel.Dock="Top" Minimum="0" Maximum="1"

@@ -2,6 +2,7 @@ namespace ThriveLauncher.Views;
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Avalonia;
@@ -60,6 +61,7 @@ public partial class MainWindow : Window
         dataContext.WhenAnyValue(d => d.AvailableThriveVersions).Subscribe(OnAvailableVersionsChanged);
 
         dataContext.WhenAnyValue(d => d.InstalledFolders).Subscribe(OnInstalledVersionListChanged);
+        dataContext.WhenAnyValue(d => d.TemporaryFolderFiles).Subscribe(OnTemporaryFolderFilesChanged);
 
         // Intentionally left hanging around in the background
 #pragma warning disable CS4014
@@ -169,6 +171,42 @@ public partial class MainWindow : Window
             return;
 
         DerivedDataContext.SetInstallPathTo(result);
+    }
+
+    private async void SelectNewTemporaryLocation(object? sender, RoutedEventArgs routedEventArgs)
+    {
+        _ = sender;
+        _ = routedEventArgs;
+
+        var dialog = new OpenFolderDialog
+        {
+            Directory = DerivedDataContext.TemporaryDownloadsFolder,
+        };
+
+        var result = await dialog.ShowAsync(this);
+
+        if (string.IsNullOrWhiteSpace(result))
+            return;
+
+        DerivedDataContext.SetTemporaryLocationTo(result);
+    }
+
+    private async void SelectDevBuildCacheLocation(object? sender, RoutedEventArgs routedEventArgs)
+    {
+        _ = sender;
+        _ = routedEventArgs;
+
+        var dialog = new OpenFolderDialog
+        {
+            Directory = DerivedDataContext.DehydratedCacheFolder,
+        };
+
+        var result = await dialog.ShowAsync(this);
+
+        if (string.IsNullOrWhiteSpace(result))
+            return;
+
+        DerivedDataContext.SetDehydrateCachePathTo(result);
     }
 
     private async Task UpdateFeedItemsWhenRetrieved()
@@ -392,5 +430,41 @@ public partial class MainWindow : Window
 
         // Add some blank space at the bottom
         InstalledFoldersList.Children.Add(new TextBlock { Text = " " });
+    }
+
+    private void OnTemporaryFolderFilesChanged(IEnumerable<string>? files)
+    {
+        bool empty = true;
+
+        TemporaryFilesList.Children.Clear();
+
+        if (files != null)
+        {
+            foreach (var file in files)
+            {
+                empty = false;
+
+                TemporaryFilesList.Children.Add(new TextBlock
+                {
+                    TextWrapping = TextWrapping.Wrap,
+                    Text = Path.GetFileName(file),
+                    VerticalAlignment = VerticalAlignment.Center,
+                });
+            }
+        }
+
+        if (empty)
+        {
+            TemporaryFilesList.Children.Add(new TextBlock
+            {
+                TextWrapping = TextWrapping.Wrap,
+                [!TextBlock.TextProperty] = new Binding($"[{nameof(Properties.Resources.FolderIsEmpty)}]")
+                {
+                    Mode = BindingMode.OneWay,
+                    Source = Localizer.Instance,
+                },
+                VerticalAlignment = VerticalAlignment.Center,
+            });
+        }
     }
 }

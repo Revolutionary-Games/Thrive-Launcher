@@ -83,6 +83,12 @@ public class ThriveInstaller : IThriveInstaller
         var installFolder = settingsManager.Settings.ThriveInstallationPath ??
             launcherPaths.PathToDefaultThriveInstallFolder;
 
+        if (!Directory.Exists(installFolder))
+        {
+            logger.LogInformation("Install folder doesn't exist at: {InstallFolder}", installFolder);
+            yield break;
+        }
+
         logger.LogDebug("Checking installed versions in {InstallFolder}", installFolder);
 
         var thriveFolders = new HashSet<string>();
@@ -112,6 +118,45 @@ public class ThriveInstaller : IThriveInstaller
             yield return folderInfo;
         }
     }
+
+    public IEnumerable<string> ListFilesInTemporaryFolder()
+    {
+        var temporaryFolder = settingsManager.Settings.TemporaryDownloadsFolder ??
+            launcherPaths.PathToTemporaryFolder;
+
+        if (!Directory.Exists(temporaryFolder))
+        {
+            logger.LogInformation("Temporary folder doesn't exist at: {TemporaryFolder}", temporaryFolder);
+            yield break;
+        }
+
+        logger.LogDebug("Listing all files in {TemporaryFolder}", temporaryFolder);
+
+        foreach (var entry in Directory.EnumerateFileSystemEntries(temporaryFolder))
+        {
+            yield return Path.GetFullPath(entry);
+        }
+    }
+
+    public IEnumerable<string> ListFilesInDehydrateCache()
+    {
+        var dehydratedFolder = settingsManager.Settings.DehydratedCacheFolder ??
+            launcherPaths.PathToDefaultDehydrateCacheFolder;
+
+        if (!Directory.Exists(dehydratedFolder))
+        {
+            logger.LogInformation("Dehydrated folder doesn't exist at: {DehydratedFolder}", dehydratedFolder);
+            yield break;
+        }
+
+        logger.LogDebug("Listing all files in {DehydratedFolder}", dehydratedFolder);
+
+        // TODO: if we ever have subfolders in the dehydrate cache, this needs to be updated
+        foreach (var entry in Directory.EnumerateFiles(dehydratedFolder))
+        {
+            yield return Path.GetFullPath(entry);
+        }
+    }
 }
 
 public interface IThriveInstaller
@@ -121,4 +166,16 @@ public interface IThriveInstaller
     public IEnumerable<string> DetectInstalledThriveFolders();
 
     public IEnumerable<FolderInInstallFolder> ListFoldersInThriveInstallFolder();
+
+    /// <summary>
+    ///   Lists all files in the temporary folder, even non-Thrive related
+    /// </summary>
+    /// <returns>Enumerable of the files</returns>
+    public IEnumerable<string> ListFilesInTemporaryFolder();
+
+    /// <summary>
+    ///   Lists all files in the dehydrate cache folder, even non-Thrive related (if such files are put there)
+    /// </summary>
+    /// <returns>Enumerable of the files</returns>
+    public IEnumerable<string> ListFilesInDehydrateCache();
 }

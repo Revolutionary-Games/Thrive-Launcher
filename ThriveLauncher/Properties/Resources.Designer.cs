@@ -375,6 +375,18 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string FolderContentsLabel {
+            get {
+                return ResourceManager.GetString("FolderContentsLabel", resourceCulture);
+            }
+        }
+        
+        public static string FolderIsEmpty {
+            get {
+                return ResourceManager.GetString("FolderIsEmpty", resourceCulture);
+            }
+        }
+        
         public static string TemporaryFolderNoFilesMoveNotice {
             get {
                 return ResourceManager.GetString("TemporaryFolderNoFilesMoveNotice", resourceCulture);
@@ -390,6 +402,18 @@ namespace ThriveLauncher.Properties {
         public static string ResetTemporaryLocation {
             get {
                 return ResourceManager.GetString("ResetTemporaryLocation", resourceCulture);
+            }
+        }
+        
+        public static string ClearTemporaryLocation {
+            get {
+                return ResourceManager.GetString("ClearTemporaryLocation", resourceCulture);
+            }
+        }
+        
+        public static string ClearDehydratedLocation {
+            get {
+                return ResourceManager.GetString("ClearDehydratedLocation", resourceCulture);
             }
         }
         
@@ -735,6 +759,18 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string MoveFilesTitle {
+            get {
+                return ResourceManager.GetString("MoveFilesTitle", resourceCulture);
+            }
+        }
+        
+        public static string MoveDehydratedCacheExplanation {
+            get {
+                return ResourceManager.GetString("MoveDehydratedCacheExplanation", resourceCulture);
+            }
+        }
+        
         public static string InternalErrorTitle {
             get {
                 return ResourceManager.GetString("InternalErrorTitle", resourceCulture);
@@ -765,6 +801,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
         public static string DeleteErrorTitle {
             get {
                 return ResourceManager.GetString("DeleteErrorTitle", resourceCulture);
@@ -786,6 +828,42 @@ namespace ThriveLauncher.Properties {
         public static string UnknownFolder {
             get {
                 return ResourceManager.GetString("UnknownFolder", resourceCulture);
+            }
+        }
+        
+        public static string ClearTemporaryFilesPromptTitle {
+            get {
+                return ResourceManager.GetString("ClearTemporaryFilesPromptTitle", resourceCulture);
+            }
+        }
+        
+        public static string ClearTemporaryFilesPromptExplanation {
+            get {
+                return ResourceManager.GetString("ClearTemporaryFilesPromptExplanation", resourceCulture);
+            }
+        }
+        
+        public static string ClearTemporaryFilesCount {
+            get {
+                return ResourceManager.GetString("ClearTemporaryFilesCount", resourceCulture);
+            }
+        }
+        
+        public static string ClearDehydratedFilesPromptTitle {
+            get {
+                return ResourceManager.GetString("ClearDehydratedFilesPromptTitle", resourceCulture);
+            }
+        }
+        
+        public static string ClearDehydratedFilesPromptExplanation {
+            get {
+                return ResourceManager.GetString("ClearDehydratedFilesPromptExplanation", resourceCulture);
+            }
+        }
+        
+        public static string ClearDehydratedFilesCount {
+            get {
+                return ResourceManager.GetString("ClearDehydratedFilesCount", resourceCulture);
             }
         }
     }

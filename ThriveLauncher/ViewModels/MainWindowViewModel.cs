@@ -68,6 +68,15 @@ public partial class MainWindowViewModel : ViewModelBase
     private Task<string>? dehydrateCacheSizeTask;
 
     private IEnumerable<FolderInInstallFolder>? installedFolders;
+    private IEnumerable<string>? temporaryFolderFiles;
+
+    private bool showClearTemporaryPrompt;
+    private string clearTemporaryPromptContent = string.Empty;
+    private string clearTemporaryPromptCountContent = string.Empty;
+
+    private bool showClearDehydratedPrompt;
+    private string clearDehydratedPromptContent = string.Empty;
+    private string clearDehydratedPromptCountContent = string.Empty;
 
     // Settings related file moving
     private bool hasPendingFileMoveOffer;
@@ -253,7 +262,49 @@ public partial class MainWindowViewModel : ViewModelBase
     public IEnumerable<FolderInInstallFolder>? InstalledFolders
     {
         get => installedFolders;
-        set => this.RaiseAndSetIfChanged(ref installedFolders, value);
+        private set => this.RaiseAndSetIfChanged(ref installedFolders, value);
+    }
+
+    public IEnumerable<string>? TemporaryFolderFiles
+    {
+        get => temporaryFolderFiles;
+        private set => this.RaiseAndSetIfChanged(ref temporaryFolderFiles, value);
+    }
+
+    public bool ShowClearTemporaryPrompt
+    {
+        get => showClearTemporaryPrompt;
+        set => this.RaiseAndSetIfChanged(ref showClearTemporaryPrompt, value);
+    }
+
+    public string ClearTemporaryPromptContent
+    {
+        get => clearTemporaryPromptContent;
+        private set => this.RaiseAndSetIfChanged(ref clearTemporaryPromptContent, value);
+    }
+
+    public string ClearTemporaryPromptCountContent
+    {
+        get => clearTemporaryPromptCountContent;
+        private set => this.RaiseAndSetIfChanged(ref clearTemporaryPromptCountContent, value);
+    }
+
+    public bool ShowClearDehydratedPrompt
+    {
+        get => showClearDehydratedPrompt;
+        set => this.RaiseAndSetIfChanged(ref showClearDehydratedPrompt, value);
+    }
+
+    public string ClearDehydratedPromptContent
+    {
+        get => clearDehydratedPromptContent;
+        private set => this.RaiseAndSetIfChanged(ref clearDehydratedPromptContent, value);
+    }
+
+    public string ClearDehydratedPromptCountContent
+    {
+        get => clearDehydratedPromptCountContent;
+        private set => this.RaiseAndSetIfChanged(ref clearDehydratedPromptCountContent, value);
     }
 
     public string? SelectedVersionToPlay
@@ -638,6 +689,221 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
+    public void ResetTemporaryLocation()
+    {
+        SetTemporaryLocationTo(launcherPaths.PathToTemporaryFolder);
+    }
+
+    public void SetTemporaryLocationTo(string folder)
+    {
+        folder = folder.Replace('\\', '/');
+
+        if (Settings.TemporaryDownloadsFolder == folder)
+            return;
+
+        logger.LogInformation("Setting temporary downloads folder to {Folder}", folder);
+
+        this.RaisePropertyChanging(nameof(TemporaryDownloadsFolder));
+
+        // If it is the default path, then we want to actually clear the option to null
+        if (launcherPaths.PathToTemporaryFolder == folder)
+        {
+            logger.LogInformation("Resetting temporary path to default value");
+            Settings.TemporaryDownloadsFolder = null;
+        }
+        else
+        {
+            logger.LogInformation("Setting temporary path to {Folder}", folder);
+            Settings.TemporaryDownloadsFolder = folder;
+        }
+
+        this.RaisePropertyChanged(nameof(TemporaryDownloadsFolder));
+
+        // Refresh the list of temporary files
+        StartSettingsViewTasks();
+    }
+
+    public void PromptClearTemporaryLocation()
+    {
+        Task.Run(() =>
+        {
+            var count = thriveInstaller.ListFilesInTemporaryFolder().Count();
+
+            Dispatcher.UIThread.Post(() =>
+            {
+                // Just directly, delete if there's nothing to prompt about
+                if (count < 1)
+                {
+                    AcceptClearTemporaryFiles();
+                    return;
+                }
+
+                ShowClearTemporaryPrompt = true;
+                ClearTemporaryPromptContent = string.Format(Resources.ClearTemporaryFilesPromptExplanation,
+                    TemporaryDownloadsFolder);
+                ClearTemporaryPromptCountContent = string.Format(Resources.ClearTemporaryFilesCount, count);
+            });
+        });
+    }
+
+    public void AcceptClearTemporaryFiles()
+    {
+        if (!Directory.Exists(TemporaryDownloadsFolder))
+        {
+            logger.LogInformation("Temporary folder doesn't exist so there's nothing to do");
+            return;
+        }
+
+        logger.LogInformation("Confirmed deletion of temporary folder at {TemporaryDownloadsFolder}",
+            TemporaryDownloadsFolder);
+
+        try
+        {
+            Directory.Delete(TemporaryDownloadsFolder, true);
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Failed to recursively delete {TemporaryDownloadsFolder}", TemporaryDownloadsFolder);
+            ShowNotice(Resources.DeleteErrorTitle,
+                string.Format(Resources.DeleteErrorExplanation, TemporaryDownloadsFolder, e.Message));
+            return;
+        }
+
+        // Refresh temporary files list
+        StartSettingsViewTasks();
+
+        ShowClearTemporaryPrompt = false;
+    }
+
+    public void CancelClearTemporaryFiles()
+    {
+        ShowClearTemporaryPrompt = false;
+    }
+
+    public void ResetDehydratedCacheLocation()
+    {
+        SetDehydrateCachePathTo(launcherPaths.PathToDefaultDehydrateCacheFolder);
+    }
+
+    public void SetDehydrateCachePathTo(string folder)
+    {
+        folder = folder.Replace('\\', '/');
+
+        if (Settings.DehydratedCacheFolder == folder)
+            return;
+
+        logger.LogInformation("Setting dehydrated cache path to {Folder}", folder);
+
+        var rawFiles = thriveInstaller.ListFilesInDehydrateCache();
+
+        var movableFiles = rawFiles.ToList();
+
+        this.RaisePropertyChanging(nameof(DehydratedCacheFolder));
+
+        // If it is the default path, then we want to actually clear the option to null
+        if (launcherPaths.PathToDefaultDehydrateCacheFolder == folder)
+        {
+            logger.LogInformation("Resetting dehydrate cache path to default value");
+            Settings.DehydratedCacheFolder = null;
+        }
+        else
+        {
+            logger.LogInformation("Setting dehydrate cache path to {Folder}", folder);
+            Settings.DehydratedCacheFolder = folder;
+        }
+
+        void OnFinished()
+        {
+            Dispatcher.UIThread.Post(() => this.RaisePropertyChanged(nameof(DehydratedCacheFolder)));
+
+            TriggerSaveSettings();
+
+            RefreshDehydratedCacheSize();
+        }
+
+        // Offer to move the already existing files
+        if (movableFiles.Count > 0)
+        {
+            OfferFileMove(movableFiles, DehydratedCacheFolder, Resources.MoveFilesTitle,
+                string.Format(Resources.MoveDehydratedCacheExplanation, movableFiles.Count), OnFinished);
+        }
+        else
+        {
+            OnFinished();
+        }
+    }
+
+    public void PromptClearDehydratedCacheLocation()
+    {
+        // If the cache location is the default, clear without warning
+        if (DehydratedCacheFolder == launcherPaths.PathToDefaultDehydrateCacheFolder)
+        {
+            logger.LogInformation("Auto-accepting dehydrated clear as the folder is the default one");
+            AcceptClearDehydratedCache();
+            return;
+        }
+
+        Task.Run(() =>
+        {
+            var count = thriveInstaller.ListFilesInDehydrateCache().Count();
+
+            Dispatcher.UIThread.Post(() =>
+            {
+                // Just directly, delete if there's nothing to prompt about
+                if (count < 1)
+                {
+                    AcceptClearDehydratedCache();
+                    return;
+                }
+
+                ShowClearDehydratedPrompt = true;
+                ClearDehydratedPromptContent = string.Format(Resources.ClearDehydratedFilesPromptExplanation,
+                    TemporaryDownloadsFolder);
+                ClearDehydratedPromptCountContent = string.Format(Resources.ClearDehydratedFilesCount, count);
+            });
+        });
+    }
+
+    public void AcceptClearDehydratedCache()
+    {
+        logger.LogInformation("Confirmed clear of dehydrated cache at {DehydratedCacheFolder}",
+            DehydratedCacheFolder);
+
+        // TODO: if this takes too long on the main thread, move this to a background task (optionally with
+        // a progress bar)
+        foreach (var file in thriveInstaller.ListFilesInDehydrateCache())
+        {
+            logger.LogInformation("Deleting {File}", file);
+
+            try
+            {
+                if (Directory.Exists(file))
+                {
+                    Directory.Delete(file, true);
+                }
+                else
+                {
+                    File.Delete(file);
+                }
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e, "Failed to delete {File}", file);
+                ShowNotice(Resources.DeleteErrorTitle,
+                    string.Format(Resources.DeleteErrorExplanation, file, e.Message));
+                break;
+            }
+        }
+
+        ShowClearDehydratedPrompt = false;
+        RefreshDehydratedCacheSize();
+    }
+
+    public void CancelClearDehydratedCache()
+    {
+        ShowClearDehydratedPrompt = false;
+    }
+
     public void PerformFileMove()
     {
         CanAnswerFileMovePrompt = false;
@@ -831,6 +1097,13 @@ public partial class MainWindowViewModel : ViewModelBase
             var installed = thriveInstaller.ListFoldersInThriveInstallFolder().ToList();
 
             Dispatcher.UIThread.Post(() => InstalledFolders = installed);
+        });
+
+        Task.Run(() =>
+        {
+            var files = thriveInstaller.ListFilesInTemporaryFolder().ToList();
+
+            Dispatcher.UIThread.Post(() => TemporaryFolderFiles = files);
         });
     }
 
