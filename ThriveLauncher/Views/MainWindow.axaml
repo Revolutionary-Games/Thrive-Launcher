@@ -464,7 +464,8 @@
                 <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="5"
                            Text="{Binding FileMoveOfferError}" />
 
-                <ProgressBar DockPanel.Dock="Top" Minimum="0" Maximum="1" Value="{Binding FileMoveProgress}"
+                <ProgressBar DockPanel.Dock="Top" Minimum="0" Maximum="1"
+                             Value="{Binding FileMoveProgress,Mode=OneWay}"
                              IsVisible="{Binding FileMoveProgress,Converter={x:Static ObjectConverters.IsNotNull}}" />
             </DockPanel>
         </controls:PopupDialog>

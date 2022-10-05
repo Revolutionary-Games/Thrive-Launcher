@@ -622,7 +622,8 @@ public partial class MainWindowViewModel : ViewModelBase
 
             TriggerSaveSettings();
 
-            // TODO: re-run the task for listing existing Thrive versions
+            // Refresh the list of installed versions
+            StartSettingsViewTasks();
         }
 
         // Offer to move over the already installed versions
@@ -667,7 +668,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
                 try
                 {
-                    PerformFileMove(file, fileMoveOfferTarget);
+                    MoveFile(file, fileMoveOfferTarget);
                 }
                 catch (Exception e)
                 {
@@ -760,7 +761,7 @@ public partial class MainWindowViewModel : ViewModelBase
         fileMoveFinishCallback = onFinished;
     }
 
-    private void PerformFileMove(string file, string targetFolder, bool overwrite = false)
+    private void MoveFile(string file, string targetFolder, bool overwrite = false)
     {
         Directory.CreateDirectory(targetFolder);
 
