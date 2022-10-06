@@ -1,7 +1,6 @@
 namespace ThriveLauncher.ViewModels;
 
 using LauncherBackend.Models;
-using Microsoft.Extensions.Logging;
 using Properties;
 using ReactiveUI;
 
