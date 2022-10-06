@@ -48,4 +48,19 @@ public static class FileUtilities
             Verb = "open",
         });
     }
+
+    /// <summary>
+    ///   Finds the first subfolder in folder
+    /// </summary>
+    /// <param name="folder">The folder to look in. Needs to exist</param>
+    /// <returns>The path to the first subfolder or null</returns>
+    public static string? FindFirstSubFolder(string folder)
+    {
+        foreach (var subFolder in Directory.EnumerateDirectories(folder))
+        {
+            return subFolder;
+        }
+
+        return null;
+    }
 }

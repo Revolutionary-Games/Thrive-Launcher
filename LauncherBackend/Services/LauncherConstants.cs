@@ -1,6 +1,7 @@
 namespace LauncherBackend.Services;
 
 using System.Text.RegularExpressions;
+using SharedBase.Utilities;
 
 /// <summary>
 ///   Holds launcher global configuration constants
@@ -18,7 +19,7 @@ public static class LauncherConstants
     /// <summary>
     ///   Maximum size in bytes for a file to be included in crash report
     /// </summary>
-    public const long MaxCrashLogFileSize = 2000000;
+    public const long MaxCrashLogFileSize = 2 * GlobalConstants.MEBIBYTE;
 
     public const int FeedExcerptLength = 450;
 

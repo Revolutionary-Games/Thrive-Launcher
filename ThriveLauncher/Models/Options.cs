@@ -1,13 +1,15 @@
 namespace ThriveLauncher.Models;
 
+using System.Collections.Generic;
 using CommandLine;
 
 public class Options
 {
-    public Options(bool? verbose, string? language)
+    public Options(bool? verbose, string? language, IList<string> thriveExtraFlags)
     {
         Verbose = verbose;
         Language = language;
+        ThriveExtraFlags = thriveExtraFlags;
     }
 
     /// <summary>
@@ -15,6 +17,7 @@ public class Options
     /// </summary>
     public Options()
     {
+        ThriveExtraFlags = new List<string>();
     }
 
 #if DEBUG
@@ -32,4 +35,11 @@ public class Options
     // TODO: forwarding linux preload environment variables
 
     // TODO: seamless launcher mode settings
+
+    // TODO: option to disable auto starting Thrive
+
+    // TODO: handle this
+    [Value(0, MetaName = "THRIVE_OPTIONS", HelpText = "Extra flags to pass to Thrive processes when starting them",
+        Required = false)]
+    public IList<string> ThriveExtraFlags { get; }
 }
