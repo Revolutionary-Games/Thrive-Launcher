@@ -598,9 +598,6 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             logger.LogInformation("We are not the latest launcher version, {Current} < {Latest}", current, latest);
 
-            LauncherOutdatedVersionMessage = string.Format(Resources.OutdatedLauncherVersionComparison,
-                LauncherVersion, launcherInfo.LauncherVersion.LatestVersion);
-
             LauncherIsLatestVersion = false;
 
             bool autoUpdateStarted = false;
@@ -615,6 +612,9 @@ public partial class MainWindowViewModel : ViewModelBase
             {
                 // Can't trigger auto-update so show outdated heads up
                 logger.LogInformation("Auto update not started, showing user we are outdated");
+
+                LauncherOutdatedVersionMessage = string.Format(Resources.OutdatedLauncherVersionComparison,
+                    LauncherVersion, launcherInfo.LauncherVersion.LatestVersion);
             }
         }
     }
