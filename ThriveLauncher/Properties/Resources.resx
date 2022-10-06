@@ -210,6 +210,9 @@
   <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
       <value>Allow Seamless Launcher Mode</value>
   </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+      <value>Automatically update the launcher</value>
+  </data>
   <data name="ResetAllSettings" xml:space="preserve">
       <value>Reset All Settings</value>
   </data>
@@ -474,5 +477,26 @@ Launcher logs will have more info.</value>
   </data>
   <data name="ClearDehydratedFilesCount" xml:space="preserve">
     <value>You are about to delete {0} files</value>
+  </data>
+  <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
+    <value>The exit code can mean that you are missing a required DLL file. It may be Visual C++ Redistributable 2019, which you can download an installer for from: https://aka.ms/vs/17/release/vc_redist.x64.exe in order to install / repair it. You can also try running Thrive.exe manually as that may show an error dialog with the missing DLL file name in it. You should check that you have all Windows updates installed. If these don't help please contact us for additional assistance.</value>
+  </data>
+  <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
+    <value>If the game did not start correctly, please try the Thrive launch workarounds available under "Thrive Options" in the launcher settings</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>This version is up to date</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>You are using Thrive Launcher version {0} but the latest version is {1}</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>Visit Downloads Page</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>Launcher Version is Outdated</value>
+  </data>
+  <data name="OutdatedLauncherExplanation" xml:space="preserve">
+    <value>This version of the launcher is outdated and should be updated. As you are seeing this message auto-update has not started so you will need to manually download the update and install it. You can try to use the current version of the launcher by skipping updating, but you may run into unexpected issues as only the latest launcher version is guaranteed to work with the remote systems the launcher interacts with.</value>
   </data>
 </root>

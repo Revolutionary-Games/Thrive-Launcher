@@ -216,10 +216,12 @@
                     </TabItem>
                     <TabItem Header="{i18n:Localize LauncherOptions}">
                         <StackPanel>
-                            <StackPanel Orientation="Horizontal">
+                            <WrapPanel Orientation="Horizontal">
                                 <TextBlock Margin="0 0 1 0" Text="{i18n:Localize LauncherVersionDisplay}" />
                                 <TextBlock Text="{Binding LauncherVersion}" />
-                            </StackPanel>
+                                <TextBlock Text="{i18n:Localize LauncherIsLatestVersion}" Margin="15 0"
+                                           IsVisible="{Binding LauncherIsLatestVersion}" />
+                            </WrapPanel>
                             <Border DockPanel.Dock="Top" Padding="0" BorderThickness="1"
                                     BorderBrush="{DynamicResource BlueElement}" />
                             <CheckBox IsChecked="{Binding ShowWebContent}"
@@ -240,6 +242,12 @@
                             <CheckBox IsChecked="{Binding AutoStartStoreVersion}"
                                       IsVisible="{Binding IsStoreVersion}"
                                       Content="{i18n:Localize LauncherOptionAllowSeamlessMode}" />
+
+                            <!-- TODO: option to show external versions in store versions -->
+
+                            <CheckBox IsChecked="{Binding AllowAutoUpdate}"
+                                      IsVisible="{Binding !IsStoreVersion}"
+                                      Content="{i18n:Localize LauncherOptionAutoUpdate}" />
 
                             <StackPanel Orientation="Horizontal" Margin="0 5">
                                 <TextBlock Margin="0 0 2 0" Text="{i18n:Localize LauncherSelectedLanguage}"
@@ -521,7 +529,7 @@
 
         <controls:PopupDialog Title="{i18n:Localize VersionInfoLoadFailureTitle}"
                               ShowPopup="{Binding LauncherInfoLoadError,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                              ShowOKButton="False" ShowCloseX="false">
+                              ShowOKButton="False" ShowCloseX="False">
             <DockPanel LastChildFill="True" MaxWidth="600">
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="2"
                             Margin="0 15 0 0">
@@ -537,6 +545,27 @@
                            Text="{i18n:Localize VersionInfoLoadFailureExplanation}" />
                 <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="5"
                            Text="{Binding LauncherInfoLoadError}" />
+            </DockPanel>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog Title="{i18n:Localize OutdatedLauncherTitle}"
+                              ShowPopup="{Binding LauncherOutdatedVersionMessage,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                              CloseCommand="{Binding DismissOutdatedMessage}"
+                              ShowOKButton="False" ShowCloseX="True">
+            <DockPanel LastChildFill="True" MaxWidth="600">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="2"
+                            Margin="0 15 0 0">
+                    <Button Classes="DialogButton" Command="{Binding VisitDownloadsPage}"
+                            Content="{i18n:Localize LauncherDownloadsPageButton}" />
+
+                    <Button Classes="DialogButton Danger" Command="{Binding DismissOutdatedMessage}"
+                            Content="{i18n:Localize SkipAction}" />
+                </StackPanel>
+
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="0 1 0 5"
+                           Text="{Binding LauncherOutdatedVersionMessage}" />
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
+                           Text="{i18n:Localize OutdatedLauncherExplanation}" />
             </DockPanel>
         </controls:PopupDialog>
 

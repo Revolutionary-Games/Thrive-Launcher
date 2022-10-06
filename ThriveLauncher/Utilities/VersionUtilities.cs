@@ -11,29 +11,39 @@ public class VersionUtilities
         try
         {
             LauncherVersion = GetCurrentVersion();
+            AssemblyVersion = GetAssemblyVersion();
         }
         catch (Exception e)
         {
             logger.LogError(e, "Error getting assembly version");
             LauncherVersion = "Error";
+            AssemblyVersion = new Version(0, 0, 0);
         }
     }
 
     public VersionUtilities()
     {
         LauncherVersion = GetCurrentVersion();
+        AssemblyVersion = GetAssemblyVersion();
     }
 
     public string LauncherVersion { get; }
 
+    public Version AssemblyVersion { get; }
+
     private string GetCurrentVersion()
     {
-        var version = Assembly.GetExecutingAssembly().GetName().Version ??
-            throw new Exception("Version for assembly doesn't exist");
+        var version = GetAssemblyVersion();
 
         if (version.Build == 0)
             return $"{version.Major}.{version.Minor}.{version.Revision}";
 
         return $"{version.Major}.{version.Minor}.{version.Revision}-{version.Build}";
+    }
+
+    private Version GetAssemblyVersion()
+    {
+        return Assembly.GetExecutingAssembly().GetName().Version ??
+            throw new Exception("Version for assembly doesn't exist");
     }
 }

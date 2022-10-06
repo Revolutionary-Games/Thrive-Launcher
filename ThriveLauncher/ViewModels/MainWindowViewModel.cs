@@ -47,6 +47,11 @@ public partial class MainWindowViewModel : ViewModelBase
     private bool canLoadCachedVersions;
     private string launcherInfoLoadError = string.Empty;
 
+    private bool versionInfoIsFresh = true;
+
+    private bool launcherIsLatestVersion;
+    private string launcherOutdatedVersionMessage = string.Empty;
+
     // Feeds
     private Task<List<ParsedLauncherFeedItem>> devForumFeedItems = null!;
     private string? devForumFetchError;
@@ -215,6 +220,18 @@ public partial class MainWindowViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref selectedVersionToPlay, value);
     }
 
+    public bool LauncherIsLatestVersion
+    {
+        get => launcherIsLatestVersion;
+        private set => this.RaiseAndSetIfChanged(ref launcherIsLatestVersion, value);
+    }
+
+    public string LauncherOutdatedVersionMessage
+    {
+        get => launcherOutdatedVersionMessage;
+        private set => this.RaiseAndSetIfChanged(ref launcherOutdatedVersionMessage, value);
+    }
+
     public string? DevForumFetchError
     {
         get => devForumFetchError;
@@ -313,6 +330,11 @@ public partial class MainWindowViewModel : ViewModelBase
         NoticeMessageTitle = string.Empty;
     }
 
+    public void DismissOutdatedMessage()
+    {
+        LauncherOutdatedVersionMessage = string.Empty;
+    }
+
     public void SkipSettingsUpgrade()
     {
         ShowSettingsUpgrade = false;
@@ -374,8 +396,7 @@ public partial class MainWindowViewModel : ViewModelBase
                     // We now have the version info to work with
                     ThriveVersionInformation = launcherInfo;
 
-                    // TODO: detect current launcher version being outdated and trigger auto-update
-                    // TODO: add option to disable auto-update
+                    CheckLauncherVersion(launcherInfo);
                 });
             }
         });
@@ -486,6 +507,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 if (LoadCachedVersionInfo)
                 {
                     LoadCachedVersionInfo = false;
+                    versionInfoIsFresh = false;
                     var result = await launcherInfoRetriever.LoadFromCache();
 
                     if (result == null)
@@ -496,6 +518,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
                 logger.LogInformation("Fetching Thrive launcher info");
                 RetryVersionInfoDownload = false;
+                versionInfoIsFresh = true;
                 return await launcherInfoRetriever.DownloadInfo();
             }
             catch (AllKeysExpiredException e)
@@ -529,6 +552,108 @@ public partial class MainWindowViewModel : ViewModelBase
                 }
 
                 logger.LogInformation("Retrying or using cached data next");
+            }
+        }
+    }
+
+    private void CheckLauncherVersion(LauncherThriveInformation launcherInfo)
+    {
+        // Store versions are not updated through the launcher
+        if (detectedStore.IsStoreVersion)
+        {
+            logger.LogDebug("We are a store version, not checking launcher updates");
+            return;
+        }
+
+        // TODO: flatpak version also needs to skip this
+
+        // TODO: remove, just for testing
+        launcherInfo.LauncherVersion = new LauncherVersionInfo("2.0.1");
+
+        var current = versionUtilities.AssemblyVersion;
+
+        // TODO: show if the current launcher is up to date in the options menu (as long as we didn't load cached info)
+
+        if (!Version.TryParse(launcherInfo.LauncherVersion.LatestVersion, out var latest))
+        {
+            logger.LogError("Cannot check if we are the latest launcher version due to error");
+            return;
+        }
+
+        if (versionInfoIsFresh)
+        {
+            LauncherIsLatestVersion = true;
+        }
+
+        if (current.Equals(latest))
+        {
+            logger.LogInformation("We are using the latest launcher version: {Latest}", latest);
+        }
+        else if (current > latest)
+        {
+            logger.LogInformation("We are using a newer launcher than is available {Current} > {Latest}", current,
+                latest);
+        }
+        else if (current < latest)
+        {
+            logger.LogInformation("We are not the latest launcher version, {Current} < {Latest}", current, latest);
+
+            LauncherOutdatedVersionMessage = string.Format(Resources.OutdatedLauncherVersionComparison, versionUtilities.LauncherVersion, latest);
+
+            LauncherIsLatestVersion = false;
+
+            /*
+
+            const link = document.createElement("a");
+            link.textContent = "Visit releases page";
+
+            const urlTarget = dlVersion.releaseDLURL ||
+                "https://github.com/Revolutionary-Games/Thrive-Launcher/releases";
+            link.href = urlTarget;
+
+            message.append(document.createElement("br"));
+            message.append(link);
+
+            const textParent = $("#newReleaseAvailableText");
+
+            textParent.empty();
+            textParent.append($(message));
+
+            // Buttons //
+            const container = document.createElement("div");
+
+            container.classList.add("UpdateButtonContainer");
+
+            const dlNow = document.createElement("div");
+            dlNow.classList.add("BottomButton");
+            dlNow.style.fontSize = "3.4em";
+
+            dlNow.textContent = "Download Updated Launcher";
+
+            container.append(dlNow);
+            textParent.append($(container));
+
+
+            dlNow.addEventListener("click", () => {
+
+                console.log("Clicked download now");
+                require("electron").shell.openExternal(urlTarget);
+                dlNow.textContent = "Opening link...";
+            });
+             */
+
+            bool autoUpdateStarted = false;
+
+            if (AllowAutoUpdate)
+            {
+                // TODO: trigger auto-update
+                logger.LogInformation("Trying to trigger auto-update");
+            }
+
+            if (!autoUpdateStarted)
+            {
+                // Can't trigger auto-update so show outdated heads up
+                logger.LogInformation("Auto update not started, showing user we are outdated");
             }
         }
     }

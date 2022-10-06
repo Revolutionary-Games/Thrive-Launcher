@@ -112,4 +112,9 @@ public partial class MainWindowViewModel
     {
         URLUtilities.OpenURLInBrowser(LauncherConstants.TwitterProfileURL);
     }
+
+    public void VisitDownloadsPage()
+    {
+        URLUtilities.OpenURLInBrowser(LauncherConstants.LauncherDownloadsPageURL);
+    }
 }

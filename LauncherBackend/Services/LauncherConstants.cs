@@ -40,6 +40,7 @@ public static class LauncherConstants
     public const string YoutubeChannelURL = "https://www.youtube.com/c/RevolutionaryGames";
     public const string FacebookPageURL = "https://www.facebook.com/Thrive-182887991751358/";
     public const string TwitterProfileURL = "https://twitter.com/thrive_game";
+    public const string LauncherDownloadsPageURL = "https://github.com/Revolutionary-Games/Thrive-Launcher/releases";
 
     public static readonly string ModeSuffix = Mode switch
     {

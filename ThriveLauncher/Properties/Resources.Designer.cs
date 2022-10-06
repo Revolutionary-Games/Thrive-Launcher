@@ -339,6 +339,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string LauncherOptionAutoUpdate {
+            get {
+                return ResourceManager.GetString("LauncherOptionAutoUpdate", resourceCulture);
+            }
+        }
+        
         public static string ResetAllSettings {
             get {
                 return ResourceManager.GetString("ResetAllSettings", resourceCulture);
@@ -864,6 +870,48 @@ namespace ThriveLauncher.Properties {
         public static string ClearDehydratedFilesCount {
             get {
                 return ResourceManager.GetString("ClearDehydratedFilesCount", resourceCulture);
+            }
+        }
+        
+        public static string ErrorSuggestionForMissingDll {
+            get {
+                return ResourceManager.GetString("ErrorSuggestionForMissingDll", resourceCulture);
+            }
+        }
+        
+        public static string ErrorSuggestionForStartupFailure {
+            get {
+                return ResourceManager.GetString("ErrorSuggestionForStartupFailure", resourceCulture);
+            }
+        }
+        
+        public static string LauncherIsLatestVersion {
+            get {
+                return ResourceManager.GetString("LauncherIsLatestVersion", resourceCulture);
+            }
+        }
+        
+        public static string OutdatedLauncherVersionComparison {
+            get {
+                return ResourceManager.GetString("OutdatedLauncherVersionComparison", resourceCulture);
+            }
+        }
+        
+        public static string LauncherDownloadsPageButton {
+            get {
+                return ResourceManager.GetString("LauncherDownloadsPageButton", resourceCulture);
+            }
+        }
+        
+        public static string OutdatedLauncherTitle {
+            get {
+                return ResourceManager.GetString("OutdatedLauncherTitle", resourceCulture);
+            }
+        }
+        
+        public static string OutdatedLauncherExplanation {
+            get {
+                return ResourceManager.GetString("OutdatedLauncherExplanation", resourceCulture);
             }
         }
     }

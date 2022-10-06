@@ -46,6 +46,9 @@ public class LauncherSettings
     [JsonPropertyName("temporaryFolder")]
     public string? TemporaryDownloadsFolder { get; set; }
 
+    [JsonPropertyName("allowAutoUpdate")]
+    public bool AllowAutoUpdate { get; set; } = true;
+
     // DevCenter options
     [JsonPropertyName("devCenterKey")]
     public string? DevCenterKey { get; set; }

@@ -180,6 +180,20 @@ public partial class MainWindowViewModel
         }
     }
 
+    public bool AllowAutoUpdate
+    {
+        get => Settings.AllowAutoUpdate;
+        set
+        {
+            if (Settings.AllowAutoUpdate == value)
+                return;
+
+            this.RaisePropertyChanging();
+            Settings.AllowAutoUpdate = value;
+            this.RaisePropertyChanged();
+        }
+    }
+
     public string? DevCenterKey
     {
         get => Settings.DevCenterKey;
