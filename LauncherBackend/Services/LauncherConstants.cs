@@ -78,6 +78,8 @@ public static class LauncherConstants
 
     public static readonly Uri LauncherInfoFileURL = new(DevCenterURL, "api/v1/LauncherInfo");
 
+    public static readonly Uri DevCenterUserTokenURL = new(DevCenterURL, "me");
+
     /// <summary>
     ///   Regex used to detect current log file in game output
     /// </summary>

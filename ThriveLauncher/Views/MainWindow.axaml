@@ -371,8 +371,7 @@
                 <TabItem Header="{i18n:Localize ConnectionInfoTab}">
                     <StackPanel>
                         <!-- Connected controls -->
-                        <!-- TODO: fetch the actual devcenter connection data -->
-                        <StackPanel IsVisible="True">
+                        <StackPanel IsVisible="{Binding HasDevCenterConnection}">
                             <WrapPanel Orientation="Horizontal" Margin="0 5">
                                 <TextBlock Margin="0 0 2 0" Text="{i18n:Localize ConnectedAsUserDisplay}" />
                                 <TextBlock Text="{Binding DevCenterConnectedUser}" />
@@ -380,6 +379,9 @@
 
                             <TextBlock IsVisible="{Binding DevCenterConnectionIsDeveloper}"
                                        Text="{i18n:Localize YouAreDeveloperInfo}" />
+
+                            <TextBlock IsVisible="{Binding !DevCenterConnectionIsDeveloper}"
+                                       Text="{i18n:Localize YouAreASupporter}" />
 
                             <!-- TODO: hook these up to settings -->
                             <RadioButton GroupName="DevBuildTypeSelection">
@@ -397,7 +399,7 @@
 
                         </StackPanel>
                         <!-- Not connected controls -->
-                        <StackPanel IsVisible="False">
+                        <StackPanel IsVisible="{Binding !HasDevCenterConnection}">
                             <TextBlock Margin="0 0 0 5" TextWrapping="Wrap"
                                        Text="{i18n:Localize DevCenterConnectionExplanation}" />
                             <Button Classes="TextLink" Content="{i18n:Localize ConnectionInstructionsWikiPrompt}" />
@@ -405,14 +407,22 @@
                             <TextBox Watermark="{i18n:Localize ConnectionKeyPlaceholder}" />
 
                             <!-- TODO: implement this button -->
+                            <!--<TextBlock Text="{i18n:Localize LoadingDotDotDot}"
+                                       IsVisible="{Binding CheckingConnectionCode}" />-->
                             <Button Classes="DialogButton" Content="{i18n:Localize ConnectButton}" />
+
+                            <TextBlock Text="{i18n:Localize LoadingDotDotDot}"
+                                       IsVisible="{Binding CheckingDevCenterConnection}" />
+
+                            <!-- TODO: implement showing the link that's about to be made -->
+                            <Button Classes="DialogButton" Content="{i18n:Localize ConfirmButton}" IsVisible="False" />
                         </StackPanel>
 
                     </StackPanel>
                 </TabItem>
-                <!-- TODO: disable if not connected to the devcenter -->
-                <TabItem Header="{i18n:Localize SpecificBuildTab}" IsEnabled="True">
-                    <StackPanel>
+                <TabItem Header="{i18n:Localize SpecificBuildTab}" IsEnabled="{Binding HasDevCenterConnection}">
+                    <!-- Just in case this tab is selected after disconnect, don't show the content controls -->
+                    <StackPanel IsVisible="{Binding HasDevCenterConnection}">
                         <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto">
                             <WrapPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
                                        Margin="0 0 2 0">
@@ -524,6 +534,48 @@
                 <ProgressBar DockPanel.Dock="Top" Minimum="0" Maximum="1"
                              Value="{Binding FileMoveProgress,Mode=OneWay}"
                              IsVisible="{Binding FileMoveProgress,Converter={x:Static ObjectConverters.IsNotNull}}" />
+            </DockPanel>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog Title="{i18n:Localize DevCenterConnectFailureTitle}"
+                              ShowPopup="{Binding HasDevCenterError}"
+                              CloseCommand="{Binding DismissDevCenterError}"
+                              ShowOKButton="False" ShowCloseX="{Binding !CheckingDevCenterConnection}">
+            <DockPanel LastChildFill="True" MaxWidth="600">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="2"
+                            Margin="0 15 0 0">
+                    <Button Classes="DialogButton" Command="{Binding RetryDevCenterConnectionCheck}"
+                            IsVisible="{Binding CanRetryDevCenterConnection}"
+                            IsEnabled="{Binding !CheckingDevCenterConnection}"
+                            Content="{i18n:Localize Retry}" />
+
+                    <Button Classes="DialogButton Danger" Command="{Binding DismissDevCenterError}"
+                            IsVisible="{Binding CanRetryDevCenterConnection}"
+                            IsEnabled="{Binding !CheckingDevCenterConnection}"
+                            Content="{i18n:Localize SkipAction}" />
+
+                    <Button Classes="DialogButton Danger" Command="{Binding DismissDevCenterError}"
+                            IsVisible="{Binding !CanRetryDevCenterConnection}"
+                            IsEnabled="{Binding !CheckingDevCenterConnection}"
+                            Content="{i18n:Localize DisconnectDevCenter}" />
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Top" IsVisible="{Binding UnknownDevCenterError}">
+                    <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
+                               Text="{i18n:Localize DevCenterConnectFailureUnknown}" />
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Top" IsVisible="{Binding !UnknownDevCenterError}">
+                    <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
+                               IsVisible="{Binding CanRetryDevCenterConnection}"
+                               Text="{i18n:Localize DevCenterConnectFailureConnection}" />
+                    <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
+                               IsVisible="{Binding !CanRetryDevCenterConnection}"
+                               Text="{i18n:Localize DevCenterConnectFailureForbidden}" />
+                </StackPanel>
+
+                <Button DockPanel.Dock="Top" Classes="TextLink" Command="{Binding VisitDevCenterTokenManagement}"
+                        Content="{i18n:Localize CheckDevCenterTokensLink}" />
             </DockPanel>
         </controls:PopupDialog>
 

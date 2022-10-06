@@ -483,6 +483,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string YouAreASupporter {
+            get {
+                return ResourceManager.GetString("YouAreASupporter", resourceCulture);
+            }
+        }
+        
         public static string BuildTypeSelectionBOTD {
             get {
                 return ResourceManager.GetString("BuildTypeSelectionBOTD", resourceCulture);
@@ -528,6 +534,12 @@ namespace ThriveLauncher.Properties {
         public static string ConnectButton {
             get {
                 return ResourceManager.GetString("ConnectButton", resourceCulture);
+            }
+        }
+        
+        public static string ConfirmButton {
+            get {
+                return ResourceManager.GetString("ConfirmButton", resourceCulture);
             }
         }
         
@@ -912,6 +924,42 @@ namespace ThriveLauncher.Properties {
         public static string OutdatedLauncherExplanation {
             get {
                 return ResourceManager.GetString("OutdatedLauncherExplanation", resourceCulture);
+            }
+        }
+        
+        public static string DevCenterConnectFailureTitle {
+            get {
+                return ResourceManager.GetString("DevCenterConnectFailureTitle", resourceCulture);
+            }
+        }
+        
+        public static string DevCenterConnectFailureForbidden {
+            get {
+                return ResourceManager.GetString("DevCenterConnectFailureForbidden", resourceCulture);
+            }
+        }
+        
+        public static string DevCenterConnectFailureConnection {
+            get {
+                return ResourceManager.GetString("DevCenterConnectFailureConnection", resourceCulture);
+            }
+        }
+        
+        public static string DevCenterConnectFailureUnknown {
+            get {
+                return ResourceManager.GetString("DevCenterConnectFailureUnknown", resourceCulture);
+            }
+        }
+        
+        public static string DisconnectDevCenter {
+            get {
+                return ResourceManager.GetString("DisconnectDevCenter", resourceCulture);
+            }
+        }
+        
+        public static string CheckDevCenterTokensLink {
+            get {
+                return ResourceManager.GetString("CheckDevCenterTokensLink", resourceCulture);
             }
         }
     }

@@ -117,4 +117,9 @@ public partial class MainWindowViewModel
     {
         URLUtilities.OpenURLInBrowser(LauncherConstants.LauncherDownloadsPageURL);
     }
+
+    public void VisitDevCenterTokenManagement()
+    {
+        URLUtilities.OpenURLInBrowser(LauncherConstants.DevCenterUserTokenURL.ToString());
+    }
 }

@@ -282,6 +282,9 @@
   <data name="YouAreDeveloperInfo" xml:space="preserve">
       <value>You are a developer</value>
   </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+      <value>Thank you for your support!</value>
+  </data>
   <data name="BuildTypeSelectionBOTD" xml:space="preserve">
       <value>Build of the day (BOTD), recommended</value>
   </data>
@@ -305,6 +308,9 @@
   </data>
   <data name="ConnectButton" xml:space="preserve">
       <value>Connect</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+      <value>Confirm</value>
   </data>
   <data name="SpecificBuildTab" xml:space="preserve">
       <value>Specific Build</value>
@@ -498,5 +504,23 @@ Launcher logs will have more info.</value>
   </data>
   <data name="OutdatedLauncherExplanation" xml:space="preserve">
     <value>This version of the launcher is outdated and should be updated. As you are seeing this message auto-update has not started so you will need to manually download the update and install it. You can try to use the current version of the launcher by skipping updating, but you may run into unexpected issues as only the latest launcher version is guaranteed to work with the remote systems the launcher interacts with.</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>DevCenter Connection Failed</value>
+  </data>
+  <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
+    <value>Connecting to the DevCenter has failed. The DevCenter responded with a forbid response. This means that our connection key is no longer good. This may be caused by the connection being disconnected through the web UI or your account may be suspended. See the link below to check your account's connection statuses.</value>
+  </data>
+  <data name="DevCenterConnectFailureConnection" xml:space="preserve">
+    <value>Connecting to the DevCenter has failed. Please try again as the DevCenter may have just been temporarily unavailable. You should also check your internet connection. You can use the link below to visit the DevCenter to see if your browser can connect. Please try again later and if the problem persists for more than a few minutes, please report it.</value>
+  </data>
+  <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
+    <value>Connecting to the DevCenter has failed. The DevCenter responded with an unknown error or we ran into an error handling the response. Please try again later and if the problem persists, please report it. You can check with the link below to see if everything looks fine on the DevCenter's side.</value>
+  </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>Disconnect</value>
+  </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>Check tokens on DevCenter</value>
   </data>
 </root>

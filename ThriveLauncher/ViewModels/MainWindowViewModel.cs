@@ -88,12 +88,12 @@ public partial class MainWindowViewModel : ViewModelBase
         if (detectedStore.ShouldPreventDefaultDevCenterVisibility)
             ShowDevCenterStatusArea = false;
 
-        if (!string.IsNullOrEmpty(Settings.DevCenterKey))
+        if (!string.IsNullOrEmpty(Settings.DevCenterKey) && allowTaskStarts)
         {
             // DevCenter visibility when already configured
             ShowDevCenterStatusArea = true;
 
-            // TODO: start checking if devcenter connection is fine
+            CheckDevCenterConnection();
         }
 
         CreateSettingsTabTasks();
@@ -389,10 +389,15 @@ public partial class MainWindowViewModel : ViewModelBase
                     "Version information loaded. Thrive versions: {Versions}, latest launcher: {LatestVersion}",
                     launcherInfo.Versions.Count, launcherInfo.LauncherVersion.LatestVersion);
 
+                // Wait for devcenter connection task if currently running
+                while (CheckingDevCenterConnection)
+                {
+                    Task.Delay(TimeSpan.FromMilliseconds(300)).Wait();
+                    logger.LogDebug("Waiting for DevCenter status check request to complete...");
+                }
+
                 Dispatcher.UIThread.Post(() =>
                 {
-                    // TODO: wait for devcenter connection task if currently running
-
                     // We now have the version info to work with
                     ThriveVersionInformation = launcherInfo;
 
