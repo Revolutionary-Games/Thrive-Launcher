@@ -567,12 +567,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         // TODO: flatpak version also needs to skip this
 
-        // TODO: remove, just for testing
-        launcherInfo.LauncherVersion = new LauncherVersionInfo("2.0.1");
-
         var current = versionUtilities.AssemblyVersion;
-
-        // TODO: show if the current launcher is up to date in the options menu (as long as we didn't load cached info)
 
         if (!Version.TryParse(launcherInfo.LauncherVersion.LatestVersion, out var latest))
         {
@@ -580,10 +575,15 @@ public partial class MainWindowViewModel : ViewModelBase
             return;
         }
 
-        if (versionInfoIsFresh)
+        if (latest.Revision == -1)
         {
-            LauncherIsLatestVersion = true;
+            // Covert to the same format as assembly version for better comparisons
+            latest = new Version(latest.Major, latest.Minor, latest.Build, 0);
         }
+
+        // Only show the text that the launcher is up to date if we can really guarantee it by having loaded fresh data
+        if (versionInfoIsFresh)
+            LauncherIsLatestVersion = true;
 
         if (current.Equals(latest))
         {
@@ -598,49 +598,10 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             logger.LogInformation("We are not the latest launcher version, {Current} < {Latest}", current, latest);
 
-            LauncherOutdatedVersionMessage = string.Format(Resources.OutdatedLauncherVersionComparison, versionUtilities.LauncherVersion, latest);
+            LauncherOutdatedVersionMessage = string.Format(Resources.OutdatedLauncherVersionComparison,
+                LauncherVersion, launcherInfo.LauncherVersion.LatestVersion);
 
             LauncherIsLatestVersion = false;
-
-            /*
-
-            const link = document.createElement("a");
-            link.textContent = "Visit releases page";
-
-            const urlTarget = dlVersion.releaseDLURL ||
-                "https://github.com/Revolutionary-Games/Thrive-Launcher/releases";
-            link.href = urlTarget;
-
-            message.append(document.createElement("br"));
-            message.append(link);
-
-            const textParent = $("#newReleaseAvailableText");
-
-            textParent.empty();
-            textParent.append($(message));
-
-            // Buttons //
-            const container = document.createElement("div");
-
-            container.classList.add("UpdateButtonContainer");
-
-            const dlNow = document.createElement("div");
-            dlNow.classList.add("BottomButton");
-            dlNow.style.fontSize = "3.4em";
-
-            dlNow.textContent = "Download Updated Launcher";
-
-            container.append(dlNow);
-            textParent.append($(container));
-
-
-            dlNow.addEventListener("click", () => {
-
-                console.log("Clicked download now");
-                require("electron").shell.openExternal(urlTarget);
-                dlNow.textContent = "Opening link...";
-            });
-             */
 
             bool autoUpdateStarted = false;
 
