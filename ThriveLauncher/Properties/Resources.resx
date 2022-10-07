@@ -523,4 +523,7 @@ Launcher logs will have more info.</value>
   <data name="CheckDevCenterTokensLink" xml:space="preserve">
     <value>Check tokens on DevCenter</value>
   </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>Retry Existing Connection</value>
+  </data>
 </root>

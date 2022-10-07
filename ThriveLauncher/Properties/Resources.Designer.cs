@@ -962,5 +962,11 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("CheckDevCenterTokensLink", resourceCulture);
             }
         }
+        
+        public static string RetryExistingConnection {
+            get {
+                return ResourceManager.GetString("RetryExistingConnection", resourceCulture);
+            }
+        }
     }
 }

@@ -404,12 +404,16 @@
                                        Text="{i18n:Localize DevCenterConnectionExplanation}" />
                             <Button Classes="TextLink" Content="{i18n:Localize ConnectionInstructionsWikiPrompt}" />
 
+                            <Button Classes="DialogButton" Command="{Binding RetryDevCenterConnectionCheck}"
+                                    IsVisible="{Binding CanRetryDevCenterConnection}"
+                                    Content="{i18n:Localize RetryExistingConnection}" Margin="0 15"/>
+
                             <TextBox Watermark="{i18n:Localize ConnectionKeyPlaceholder}" />
 
                             <!-- TODO: implement this button -->
                             <!--<TextBlock Text="{i18n:Localize LoadingDotDotDot}"
                                        IsVisible="{Binding CheckingConnectionCode}" />-->
-                            <Button Classes="DialogButton" Content="{i18n:Localize ConnectButton}" />
+                            <Button Classes="DialogButton" Content="{i18n:Localize ConnectButton}" Margin="0 5 0 10"/>
 
                             <TextBlock Text="{i18n:Localize LoadingDotDotDot}"
                                        IsVisible="{Binding CheckingDevCenterConnection}" />

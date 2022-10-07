@@ -109,6 +109,9 @@ public partial class MainWindowViewModel
 
     public void RetryDevCenterConnectionCheck()
     {
+        // In case this is open, hide it
+        ShowDevCenterPopup = false;
+
         HasDevCenterError = false;
 
         // Give a bit of a delay here to play at least part of the popup dismiss animation
