@@ -525,6 +525,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string ConnectionInstructionsGetLinkCode {
+            get {
+                return ResourceManager.GetString("ConnectionInstructionsGetLinkCode", resourceCulture);
+            }
+        }
+        
         public static string ConnectionKeyPlaceholder {
             get {
                 return ResourceManager.GetString("ConnectionKeyPlaceholder", resourceCulture);
@@ -534,6 +540,12 @@ namespace ThriveLauncher.Properties {
         public static string ConnectButton {
             get {
                 return ResourceManager.GetString("ConnectButton", resourceCulture);
+            }
+        }
+        
+        public static string LoginButton {
+            get {
+                return ResourceManager.GetString("LoginButton", resourceCulture);
             }
         }
         
@@ -966,6 +978,42 @@ namespace ThriveLauncher.Properties {
         public static string RetryExistingConnection {
             get {
                 return ResourceManager.GetString("RetryExistingConnection", resourceCulture);
+            }
+        }
+        
+        public static string EnterDevCenterConnectionCode {
+            get {
+                return ResourceManager.GetString("EnterDevCenterConnectionCode", resourceCulture);
+            }
+        }
+        
+        public static string DevCenterConnectAttemptError {
+            get {
+                return ResourceManager.GetString("DevCenterConnectAttemptError", resourceCulture);
+            }
+        }
+        
+        public static string ConfirmValidLink {
+            get {
+                return ResourceManager.GetString("ConfirmValidLink", resourceCulture);
+            }
+        }
+        
+        public static string NewLinkUsername {
+            get {
+                return ResourceManager.GetString("NewLinkUsername", resourceCulture);
+            }
+        }
+        
+        public static string NewLinkEmail {
+            get {
+                return ResourceManager.GetString("NewLinkEmail", resourceCulture);
+            }
+        }
+        
+        public static string LinkFormingFailedError {
+            get {
+                return ResourceManager.GetString("LinkFormingFailedError", resourceCulture);
             }
         }
     }

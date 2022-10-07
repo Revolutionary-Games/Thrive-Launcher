@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Avalonia.Threading;
 using LauncherBackend.Models;
 using Microsoft.Extensions.Logging;
+using Properties;
 using ReactiveUI;
 
 /// <summary>
@@ -18,6 +19,7 @@ public partial class MainWindowViewModel
 
     private int nextDevCenterOpenOverrideKeyIndex;
 
+    // Initial startup / later checking we have devcenter connection variables
     private bool checkingDevCenterConnection;
     private bool devCenterKeyClearQueued;
 
@@ -25,6 +27,19 @@ public partial class MainWindowViewModel
     private bool unknownDevCenterError;
     private bool canRetryDevCenterConnection;
 
+    // Setting up a connection view variables
+    private bool checkingConnectionCode;
+    private string devCenterConnectAttemptError = string.Empty;
+
+    private string? devCenterConnectCode;
+
+    private bool canFormDevCenterConnection;
+    private string toBeFormedLinkUserName = string.Empty;
+    private string toBeFormedLinkEmail = string.Empty;
+
+    private bool formingDevCenterConnection;
+
+    // Connection and other properties
     public bool HasDevCenterConnection => DevCenterConnection != null;
 
     public string DevCenterConnectedUser => DevCenterConnection?.Username ?? "error";
@@ -43,10 +58,22 @@ public partial class MainWindowViewModel
 
             if (!showDevCenterPopup)
             {
-                // TODO: save settings only if devbuild type or latest build was changed
-                // For now we save if we are logged in
+                // For now we save if we are logged in as we have multiple variables that need to be saved.
+                // Maybe in the future a better design could be used to only save when necessary
                 if (HasDevCenterConnection)
+                {
                     TriggerSaveSettings();
+
+                    // TODO: update selected build hash and type in settings
+                }
+            }
+            else
+            {
+                // Reset connection setting up variables in case the user closed the popup while in the middle of that
+                CheckingConnectionCode = false;
+                DevCenterConnectAttemptError = string.Empty;
+                DevCenterConnectCode = null;
+                CanFormDevCenterConnection = false;
             }
         }
     }
@@ -79,6 +106,48 @@ public partial class MainWindowViewModel
     {
         get => canRetryDevCenterConnection;
         private set => this.RaiseAndSetIfChanged(ref canRetryDevCenterConnection, value);
+    }
+
+    public bool CheckingConnectionCode
+    {
+        get => checkingConnectionCode;
+        private set => this.RaiseAndSetIfChanged(ref checkingConnectionCode, value);
+    }
+
+    public string DevCenterConnectAttemptError
+    {
+        get => devCenterConnectAttemptError;
+        private set => this.RaiseAndSetIfChanged(ref devCenterConnectAttemptError, value);
+    }
+
+    public string? DevCenterConnectCode
+    {
+        get => devCenterConnectCode;
+        set => this.RaiseAndSetIfChanged(ref devCenterConnectCode, value);
+    }
+
+    public bool CanFormDevCenterConnection
+    {
+        get => canFormDevCenterConnection;
+        private set => this.RaiseAndSetIfChanged(ref canFormDevCenterConnection, value);
+    }
+
+    public string ToBeFormedLinkUserName
+    {
+        get => toBeFormedLinkUserName;
+        private set => this.RaiseAndSetIfChanged(ref toBeFormedLinkUserName, value);
+    }
+
+    public string ToBeFormedLinkEmail
+    {
+        get => toBeFormedLinkEmail;
+        private set => this.RaiseAndSetIfChanged(ref toBeFormedLinkEmail, value);
+    }
+
+    public bool FormingDevCenterConnection
+    {
+        get => formingDevCenterConnection;
+        private set => this.RaiseAndSetIfChanged(ref formingDevCenterConnection, value);
     }
 
     public DevCenterConnection? DevCenterConnection => devCenterClient.DevCenterConnection;
@@ -134,6 +203,52 @@ public partial class MainWindowViewModel
             logger.LogInformation("Resetting our DevCenter key due to queued dismiss");
             devCenterClient.ClearTokenInSettings();
         }
+    }
+
+    public void CheckConnectionCode()
+    {
+        if (string.IsNullOrWhiteSpace(DevCenterConnectCode))
+        {
+            DevCenterConnectAttemptError = Resources.EnterDevCenterConnectionCode;
+            return;
+        }
+
+        if (CheckingConnectionCode)
+        {
+            logger.LogWarning("Already checking DevCenter code, ignoring another attempt");
+            return;
+        }
+
+        CheckingConnectionCode = true;
+        DevCenterConnectAttemptError = string.Empty;
+
+        PerformDevCenterLinkCodeCheck(DevCenterConnectCode);
+    }
+
+    public void ConfirmConnectionForming()
+    {
+        if (string.IsNullOrWhiteSpace(DevCenterConnectCode))
+        {
+            DevCenterConnectAttemptError = Resources.EnterDevCenterConnectionCode;
+            CanFormDevCenterConnection = false;
+            return;
+        }
+
+        if (FormingDevCenterConnection)
+        {
+            logger.LogWarning("Already checking DevCenter code, ignoring another attempt");
+            return;
+        }
+
+        FormingDevCenterConnection = true;
+        DevCenterConnectAttemptError = string.Empty;
+
+        PerformDevCenterLinking(DevCenterConnectCode);
+    }
+
+    private void CancelConnectionForming()
+    {
+        CanFormDevCenterConnection = false;
     }
 
     /// <summary>
@@ -208,6 +323,54 @@ public partial class MainWindowViewModel
             }
 
             OnDevCenterConnectionStatusChanged();
+        });
+    }
+
+    private async void PerformDevCenterLinkCodeCheck(string code)
+    {
+        var (result, error) = await devCenterClient.CheckLinkCode(code);
+
+        Dispatcher.UIThread.Post(() =>
+        {
+            CheckingDevCenterConnection = false;
+
+            if (result == null)
+            {
+                error ??= "Unknown error";
+                CanFormDevCenterConnection = false;
+                DevCenterConnectAttemptError = string.Format(Resources.DevCenterConnectAttemptError, error);
+            }
+            else
+            {
+                logger.LogInformation("We can form a connection to the DevCenter next");
+                CanFormDevCenterConnection = true;
+
+                ToBeFormedLinkUserName = result.Username;
+                ToBeFormedLinkEmail = result.Email;
+            }
+        });
+    }
+
+    private async void PerformDevCenterLinking(string code)
+    {
+        var result = await devCenterClient.FormConnection(code);
+
+        Dispatcher.UIThread.Post(() =>
+        {
+            FormingDevCenterConnection = false;
+            CanFormDevCenterConnection = false;
+
+            if (result != DevCenterResult.Success)
+            {
+                logger.LogInformation("Failed to link to the DevCenter");
+                DevCenterConnectAttemptError = string.Format(Resources.DevCenterConnectAttemptError,
+                    Resources.LinkFormingFailedError);
+            }
+            else
+            {
+                logger.LogInformation("A new connection has been formed, refreshing our DevCenter status");
+                CheckDevCenterConnection();
+            }
         });
     }
 }

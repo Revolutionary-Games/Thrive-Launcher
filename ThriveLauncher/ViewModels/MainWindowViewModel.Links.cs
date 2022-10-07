@@ -122,4 +122,9 @@ public partial class MainWindowViewModel
     {
         URLUtilities.OpenURLInBrowser(LauncherConstants.DevCenterUserTokenURL.ToString());
     }
+
+    public void VisitLinkingInstructions()
+    {
+        URLUtilities.OpenURLInBrowser(LauncherConstants.LauncherLinkingInstructionsURL);
+    }
 }

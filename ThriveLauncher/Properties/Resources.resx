@@ -103,7 +103,7 @@
       <value>Howdy,</value>
   </data>
   <data name="ConnectedSupporterGreeting" xml:space="preserve">
-      <value>Thanks for the support,</value>
+      <value>Thank you,</value>
   </data>
   <data name="DevelopmentFeedTitle" xml:space="preserve">
       <value>DEVELOPMENT FORUMS</value>
@@ -298,16 +298,22 @@
       <value>Logout</value>
   </data>
   <data name="DevCenterConnectionExplanation" xml:space="preserve">
-      <value>TODO: connection explanation text</value>
+      <value>Here you can link the launcher to the ThriveDevCenter to access DevBuilds and other features</value>
   </data>
   <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
       <value>Instructions on our Wiki</value>
   </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+      <value>Get a link code</value>
+  </data>
   <data name="ConnectionKeyPlaceholder" xml:space="preserve">
-      <value>Connection key</value>
+      <value>Link code</value>
   </data>
   <data name="ConnectButton" xml:space="preserve">
       <value>Connect</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+      <value>Login</value>
   </data>
   <data name="ConfirmButton" xml:space="preserve">
       <value>Confirm</value>
@@ -525,5 +531,23 @@ Launcher logs will have more info.</value>
   </data>
   <data name="RetryExistingConnection" xml:space="preserve">
     <value>Retry Existing Connection</value>
+  </data>
+  <data name="EnterDevCenterConnectionCode" xml:space="preserve">
+    <value>Please enter a DevCenter connection code first in the input box</value>
+  </data>
+  <data name="DevCenterConnectAttemptError" xml:space="preserve">
+    <value>Error checking linking code for the DevCenter. Please verify you typed in the code correctly and that it has not expired. Extra information: {0}</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>Code is valid. Please confirm linking to the following account:</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>Username:</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>Failed to form the link, please check the code again</value>
   </data>
 </root>
