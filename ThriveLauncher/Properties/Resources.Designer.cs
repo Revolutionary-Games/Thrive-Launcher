@@ -1016,5 +1016,11 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("LinkFormingFailedError", resourceCulture);
             }
         }
+        
+        public static string LoginToSeeThisContent {
+            get {
+                return ResourceManager.GetString("LoginToSeeThisContent", resourceCulture);
+            }
+        }
     }
 }
