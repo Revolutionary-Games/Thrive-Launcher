@@ -397,7 +397,6 @@ public partial class MainWindow : Window
                 container.Children.Add(new TextBlock
                 {
                     TextWrapping = TextWrapping.Wrap,
-                    Text = installFolder.FolderName,
                     VerticalAlignment = VerticalAlignment.Center,
                     [!TextBlock.TextProperty] = unknownBinding,
                     Margin = new Thickness(0, 0, 3, 0),
