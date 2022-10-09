@@ -1,9 +1,13 @@
 namespace ThriveLauncher.ViewModels;
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Avalonia.Threading;
+using DevCenterCommunication.Models;
 using LauncherBackend.Models;
+using LauncherBackend.Services;
+using LauncherBackend.Utilities;
 using Microsoft.Extensions.Logging;
 using Properties;
 using ReactiveUI;
@@ -41,6 +45,9 @@ public partial class MainWindowViewModel
 
     // Logged in view variables
     private string manuallyEnteredHashInput = string.Empty;
+
+    private bool refreshingLatestDevBuilds;
+    private List<DevBuildLauncherDTO> latestAvailableDevBuilds = new();
 
     private bool loggingOutDevCenterConnection;
 
@@ -172,6 +179,18 @@ public partial class MainWindowViewModel
     {
         get => manuallyEnteredHashInput;
         set => this.RaiseAndSetIfChanged(ref manuallyEnteredHashInput, value);
+    }
+
+    public bool RefreshingLatestDevBuilds
+    {
+        get => refreshingLatestDevBuilds;
+        private set => this.RaiseAndSetIfChanged(ref refreshingLatestDevBuilds, value);
+    }
+
+    public List<DevBuildLauncherDTO> LatestAvailableDevBuilds
+    {
+        get => latestAvailableDevBuilds;
+        private set => this.RaiseAndSetIfChanged(ref latestAvailableDevBuilds, value);
     }
 
     public DevCenterConnection? DevCenterConnection => devCenterClient.DevCenterConnection;
@@ -327,6 +346,31 @@ public partial class MainWindowViewModel
         ManuallyEnteredHashInput = string.Empty;
     }
 
+    public void SelectManualBuild(string buildHash)
+    {
+        ManuallySelectedBuildHash = buildHash;
+        SelectedDevBuildTypeIsManuallySelected = true;
+        ManuallyEnteredHashInput = string.Empty;
+    }
+
+    public void RefreshLatestDevBuildsList()
+    {
+        if (RefreshingLatestDevBuilds)
+        {
+            logger.LogWarning("Already refreshing latest DevBuilds list, ignoring another attempt");
+            return;
+        }
+
+        RefreshingLatestDevBuilds = true;
+
+        PerformDevBuildListRefresh();
+    }
+
+    public void VisitBuildPage(long buildId)
+    {
+        URLUtilities.OpenURLInBrowser(LauncherConstants.DevCenterBuildInfoPagePrefix.ToString() + buildId);
+    }
+
     /// <summary>
     ///   "secret" key sequence to activate the DevCenter dialog
     /// </summary>
@@ -462,6 +506,27 @@ public partial class MainWindowViewModel
             logger.LogInformation("We have logged out (or at least attempted), refreshing our DevCenter status");
             CheckDevCenterConnection();
             ShowDevCenterPopup = false;
+        });
+    }
+
+    private async void PerformDevBuildListRefresh()
+    {
+        // TODO: offset support
+        var result = await devCenterClient.FetchLatestBuilds(0);
+
+        Dispatcher.UIThread.Post(() =>
+        {
+            RefreshingLatestDevBuilds = false;
+
+            if (result is not { Count: >= 1 })
+            {
+                logger.LogInformation("Didn't get latest builds");
+                LatestAvailableDevBuilds = new List<DevBuildLauncherDTO>();
+            }
+            else
+            {
+                LatestAvailableDevBuilds = result;
+            }
         });
     }
 }

@@ -81,6 +81,8 @@ public static class LauncherConstants
 
     public static readonly Uri DevCenterUserTokenURL = new(DevCenterURL, "me");
 
+    public static readonly Uri DevCenterBuildInfoPagePrefix = new(DevCenterURL, "builds/");
+
     /// <summary>
     ///   Regex used to detect current log file in game output
     /// </summary>

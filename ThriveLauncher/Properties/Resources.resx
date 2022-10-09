@@ -553,4 +553,13 @@ Launcher logs will have more info.</value>
   <data name="LoginToSeeThisContent" xml:space="preserve">
     <value>Login to the DevCenter to see this content</value>
   </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>unsafe</value>
+  </data>
+  <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
+    <value>BOTD</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>desc:</value>
+  </data>
 </root>

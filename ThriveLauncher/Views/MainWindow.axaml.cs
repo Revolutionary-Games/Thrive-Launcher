@@ -12,6 +12,7 @@ using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Threading;
+using DevCenterCommunication.Models;
 using LauncherBackend.Models;
 using LauncherBackend.Models.ParsedContent;
 using LauncherBackend.Services;
@@ -71,6 +72,8 @@ public partial class MainWindow : Window
 
         dataContext.WhenAnyValue(d => d.InstalledFolders).Subscribe(OnInstalledVersionListChanged);
         dataContext.WhenAnyValue(d => d.TemporaryFolderFiles).Subscribe(OnTemporaryFolderFilesChanged);
+
+        dataContext.WhenAnyValue(d => d.LatestAvailableDevBuilds).Subscribe(OnAvailableDevBuildsChanged);
 
         // Intentionally left hanging around in the background
 #pragma warning disable CS4014
@@ -474,6 +477,112 @@ public partial class MainWindow : Window
                 },
                 VerticalAlignment = VerticalAlignment.Center,
             });
+        }
+    }
+
+    private void OnAvailableDevBuildsChanged(List<DevBuildLauncherDTO> builds)
+    {
+        LatestBuildsList.Children.Clear();
+
+        if (builds.Count < 1)
+            return;
+
+        var botdBinding = new Binding($"[{nameof(Properties.Resources.BuildOfTheDayAbbreviation)}]")
+        {
+            Mode = BindingMode.OneWay,
+            Source = Localizer.Instance,
+        };
+
+        var unsafeBinding = new Binding($"[{nameof(Properties.Resources.UnsafeBuild)}]")
+        {
+            Mode = BindingMode.OneWay,
+            Source = Localizer.Instance,
+        };
+
+        var descriptionLabelBinding = new Binding($"[{nameof(Properties.Resources.BuildDescriptionLabelShort)}]")
+        {
+            Mode = BindingMode.OneWay,
+            Source = Localizer.Instance,
+        };
+
+        var selectBinding = new Binding($"[{nameof(Properties.Resources.SelectButton)}]")
+        {
+            Mode = BindingMode.OneWay,
+            Source = Localizer.Instance,
+        };
+
+        foreach (var build in builds)
+        {
+            var container = new WrapPanel();
+
+            var visitButton = new Button
+            {
+                Classes = new Classes("TextLink"),
+                Content = build.BuildHash,
+            };
+
+            visitButton.Click += (_, _) => DerivedDataContext.VisitBuildPage(build.Id);
+
+            container.Children.Add(visitButton);
+
+            container.Children.Add(new TextBlock
+            {
+                TextWrapping = TextWrapping.Wrap,
+                VerticalAlignment = VerticalAlignment.Center,
+                Text = $"({build.Id}, {build.Branch})",
+                Margin = new Thickness(0, 0, 5, 0),
+            });
+
+            if (build.Anonymous && !build.Verified)
+            {
+                container.Children.Add(new TextBlock
+                {
+                    TextWrapping = TextWrapping.Wrap,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    [!TextBlock.TextProperty] = unsafeBinding,
+                    Margin = new Thickness(0, 0, 5, 0),
+                });
+            }
+
+            if (build.BuildOfTheDay)
+            {
+                container.Children.Add(new TextBlock
+                {
+                    TextWrapping = TextWrapping.Wrap,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    [!TextBlock.TextProperty] = botdBinding,
+                    Margin = new Thickness(0, 0, 5, 0),
+                });
+            }
+
+            if (!string.IsNullOrWhiteSpace(build.Description))
+            {
+                container.Children.Add(new TextBlock
+                {
+                    TextWrapping = TextWrapping.Wrap,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    [!TextBlock.TextProperty] = descriptionLabelBinding,
+                    Margin = new Thickness(0, 0, 2, 0),
+                });
+                container.Children.Add(new TextBlock
+                {
+                    TextWrapping = TextWrapping.Wrap,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Text = build.Description.Truncate(100),
+                    Margin = new Thickness(0, 0, 5, 0),
+                });
+            }
+
+            var deleteButton = new Button
+            {
+                [!ContentProperty] = selectBinding,
+            };
+
+            deleteButton.Click += (_, _) => DerivedDataContext.SelectManualBuild(build.BuildHash);
+
+            container.Children.Add(deleteButton);
+
+            LatestBuildsList.Children.Add(container);
         }
     }
 }

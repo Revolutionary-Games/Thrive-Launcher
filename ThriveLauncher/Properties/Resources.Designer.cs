@@ -1022,5 +1022,23 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("LoginToSeeThisContent", resourceCulture);
             }
         }
+        
+        public static string UnsafeBuild {
+            get {
+                return ResourceManager.GetString("UnsafeBuild", resourceCulture);
+            }
+        }
+        
+        public static string BuildOfTheDayAbbreviation {
+            get {
+                return ResourceManager.GetString("BuildOfTheDayAbbreviation", resourceCulture);
+            }
+        }
+        
+        public static string BuildDescriptionLabelShort {
+            get {
+                return ResourceManager.GetString("BuildDescriptionLabelShort", resourceCulture);
+            }
+        }
     }
 }
