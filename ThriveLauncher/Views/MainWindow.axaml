@@ -50,15 +50,15 @@
                     HorizontalAlignment="Stretch" Padding="15">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="3">
                     <Button FontSize="18" VerticalAlignment="Stretch" Command="{Binding ToggleLinksView}"
-                            HotKey="Ctrl+L">
+                            HotKey="Alt+L">
                         <TextBlock VerticalAlignment="Center" Text="{i18n:Localize LinksButton}" />
                     </Button>
-                    <Button VerticalAlignment="Stretch" Command="{Binding OpenSettings}" HotKey="Ctrl+O">
+                    <Button VerticalAlignment="Stretch" Command="{Binding OpenSettings}" HotKey="Alt+O">
                         <Image Source="/Assets/gear.png" Width="32" />
                     </Button>
                     <Button FontSize="28" Classes="PlayButton" Command="{Binding ToggleLinksView}"
                             IsEnabled="{Binding SelectedVersionToPlay,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                            Content="{i18n:Localize PlayButton}" HotKey="Ctrl+S" />
+                            Content="{i18n:Localize PlayButton}" HotKey="Alt+S" />
 
                     <ComboBox SelectedIndex="0" FontSize="20" VerticalAlignment="Stretch" Classes="VersionSelect"
                               IsVisible="{Binding ThriveVersionInformation,Converter={x:Static ObjectConverters.IsNotNull}}"
