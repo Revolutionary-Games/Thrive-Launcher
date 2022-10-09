@@ -40,6 +40,7 @@ public partial class MainWindowViewModel
     private bool formingDevCenterConnection;
 
     // Logged in view variables
+    private string manuallyEnteredHashInput = string.Empty;
 
     private bool loggingOutDevCenterConnection;
 
@@ -167,6 +168,12 @@ public partial class MainWindowViewModel
         private set => this.RaiseAndSetIfChanged(ref loggingOutDevCenterConnection, value);
     }
 
+    public string ManuallyEnteredHashInput
+    {
+        get => manuallyEnteredHashInput;
+        set => this.RaiseAndSetIfChanged(ref manuallyEnteredHashInput, value);
+    }
+
     public DevCenterConnection? DevCenterConnection => devCenterClient.DevCenterConnection;
 
     public void OpenDevCenterConnectionMenu()
@@ -279,6 +286,45 @@ public partial class MainWindowViewModel
         LoggingOutDevCenterConnection = true;
 
         PerformDevCenterLogout();
+    }
+
+    public void SelectBuildOfTheDay()
+    {
+        SelectedDevBuildTypeIsBuildOfTheDay = true;
+    }
+
+    public void SelectLatestBuild()
+    {
+        SelectedDevBuildTypeIsLatest = true;
+    }
+
+    public void SelectManuallySelectedBuild()
+    {
+        SelectedDevBuildTypeIsManuallySelected = true;
+    }
+
+    public void EnterManuallyEnteredHash()
+    {
+        if (!string.IsNullOrWhiteSpace(ManuallyEnteredHashInput))
+        {
+            // Trim here to allow the user some copy-pasting error
+            var hash = ManuallyEnteredHashInput.Trim();
+
+            ManuallySelectedBuildHash = hash;
+
+            // Automatically select this to avoid user error where the user doesn't remember to select this
+            SelectedDevBuildTypeIsManuallySelected = true;
+        }
+        else
+        {
+            // Invalid input, clear the hash
+            ManuallySelectedBuildHash = null;
+
+            SelectedDevBuildTypeIsBuildOfTheDay = true;
+        }
+
+        // Clear the entry
+        ManuallyEnteredHashInput = string.Empty;
     }
 
     /// <summary>

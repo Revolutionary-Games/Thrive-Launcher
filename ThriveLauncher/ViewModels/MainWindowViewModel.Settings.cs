@@ -218,6 +218,10 @@ public partial class MainWindowViewModel
             this.RaisePropertyChanging();
             Settings.SelectedDevBuildType = value;
             this.RaisePropertyChanged();
+
+            this.RaisePropertyChanged(nameof(SelectedDevBuildTypeIsBuildOfTheDay));
+            this.RaisePropertyChanged(nameof(SelectedDevBuildTypeIsLatest));
+            this.RaisePropertyChanged(nameof(SelectedDevBuildTypeIsManuallySelected));
         }
     }
 
@@ -263,5 +267,44 @@ public partial class MainWindowViewModel
         }
     }
 
+    // Derived setting values
 
+    public bool SelectedDevBuildTypeIsBuildOfTheDay
+    {
+        get => SelectedDevBuildType == DevBuildType.BuildOfTheDay;
+        set
+        {
+            if (value == false)
+            {
+                // We can't really unset this here, so we do nothing...
+                return;
+            }
+
+            SelectedDevBuildType = DevBuildType.BuildOfTheDay;
+        }
+    }
+
+    public bool SelectedDevBuildTypeIsLatest
+    {
+        get => SelectedDevBuildType == DevBuildType.Latest;
+        set
+        {
+            if (value == false)
+                return;
+
+            SelectedDevBuildType = DevBuildType.Latest;
+        }
+    }
+
+    public bool SelectedDevBuildTypeIsManuallySelected
+    {
+        get => SelectedDevBuildType == DevBuildType.ManuallySelected;
+        set
+        {
+            if (value == false)
+                return;
+
+            SelectedDevBuildType = DevBuildType.ManuallySelected;
+        }
+    }
 }

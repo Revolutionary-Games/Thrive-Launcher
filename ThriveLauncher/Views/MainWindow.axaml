@@ -382,18 +382,23 @@
                             <TextBlock IsVisible="{Binding !DevCenterConnectionIsDeveloper}"
                                        Text="{i18n:Localize YouAreASupporter}" />
 
-                            <!-- TODO: hook these up to settings -->
-                            <RadioButton GroupName="DevBuildTypeSelection">
+                            <RadioButton GroupName="DevBuildTypeSelection"
+                                         IsChecked="{Binding SelectedDevBuildTypeIsBuildOfTheDay}"
+                                         Command="{Binding SelectBuildOfTheDay}">
                                 <TextBlock TextWrapping="Wrap" Text="{i18n:Localize BuildTypeSelectionBOTD}" />
                             </RadioButton>
-                            <RadioButton GroupName="DevBuildTypeSelection">
+                            <RadioButton GroupName="DevBuildTypeSelection"
+                                         IsChecked="{Binding SelectedDevBuildTypeIsLatest}"
+                                         Command="{Binding SelectLatestBuild}">
                                 <TextBlock TextWrapping="Wrap" Text="{i18n:Localize BuildTypeSelectionLatest}" />
                             </RadioButton>
-                            <RadioButton GroupName="DevBuildTypeSelection">
+                            <RadioButton GroupName="DevBuildTypeSelection"
+                                         IsChecked="{Binding SelectedDevBuildTypeIsManuallySelected}"
+                                         Command="{Binding SelectManuallySelectedBuild}">
                                 <TextBlock TextWrapping="Wrap" Text="{i18n:Localize BuildTypeSelectionManual}" />
                             </RadioButton>
 
-                            <Button Classes="DialogButton Danger" Margin="0 30" Content="{i18n:Localize LogoutButton}"
+                            <Button Classes="DialogButton Danger" Margin="0 90" Content="{i18n:Localize LogoutButton}"
                                     Command="{Binding LogoutFromDevCenter}" />
                         </StackPanel>
                         <!-- Not connected controls -->
@@ -472,12 +477,18 @@
                                 </WrapPanel>
 
                                 <TextBox Grid.Column="1" Grid.Row="1"
-                                         Watermark="{i18n:Localize EnterBuildHashPlaceholder}" />
+                                         Text="{Binding ManuallyEnteredHashInput}"
+                                         Watermark="{i18n:Localize EnterBuildHashPlaceholder}">
+                                    <Control.KeyBindings>
+                                        <KeyBinding Gesture="Enter" Command="{Binding EnterManuallyEnteredHash}" />
+                                    </Control.KeyBindings>
+                                </TextBox>
 
                                 <!-- TODO: implement this button -->
                                 <Button Grid.Column="2" Grid.Row="1" Classes="DialogButton" HorizontalAlignment="Right"
                                         Content="{i18n:Localize SelectButton}"
-                                        ToolTip.Tip="{i18n:Localize ManualHashSelectButtonToolTip}" />
+                                        ToolTip.Tip="{i18n:Localize ManualHashSelectButtonToolTip}"
+                                        Command="{Binding EnterManuallyEnteredHash}"/>
                             </Grid>
 
                             <Border DockPanel.Dock="Top" Margin="0 3" Padding="0" BorderThickness="1"
