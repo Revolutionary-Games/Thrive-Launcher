@@ -393,9 +393,8 @@
                                 <TextBlock TextWrapping="Wrap" Text="{i18n:Localize BuildTypeSelectionManual}" />
                             </RadioButton>
 
-                            <!-- TODO: implement this button -->
-                            <Button Classes="DialogButton Danger" Margin="0 30" Content="{i18n:Localize LogoutButton}" />
-
+                            <Button Classes="DialogButton Danger" Margin="0 30" Content="{i18n:Localize LogoutButton}"
+                                    Command="{Binding LogoutFromDevCenter}" />
                         </StackPanel>
                         <!-- Not connected controls -->
                         <StackPanel IsVisible="{Binding !HasDevCenterConnection}">

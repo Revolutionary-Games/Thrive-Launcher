@@ -39,6 +39,10 @@ public partial class MainWindowViewModel
 
     private bool formingDevCenterConnection;
 
+    // Logged in view variables
+
+    private bool loggingOutDevCenterConnection;
+
     // Connection and other properties
     public bool HasDevCenterConnection => DevCenterConnection != null;
 
@@ -157,6 +161,12 @@ public partial class MainWindowViewModel
         private set => this.RaiseAndSetIfChanged(ref formingDevCenterConnection, value);
     }
 
+    public bool LoggingOutDevCenterConnection
+    {
+        get => loggingOutDevCenterConnection;
+        private set => this.RaiseAndSetIfChanged(ref loggingOutDevCenterConnection, value);
+    }
+
     public DevCenterConnection? DevCenterConnection => devCenterClient.DevCenterConnection;
 
     public void OpenDevCenterConnectionMenu()
@@ -253,9 +263,22 @@ public partial class MainWindowViewModel
         PerformDevCenterLinking(DevCenterConnectCode);
     }
 
-    private void CancelConnectionForming()
+    public void CancelConnectionForming()
     {
         CanFormDevCenterConnection = false;
+    }
+
+    public void LogoutFromDevCenter()
+    {
+        if (LoggingOutDevCenterConnection)
+        {
+            logger.LogWarning("Already logging out the DevCenter connection, ignoring another attempt");
+            return;
+        }
+
+        LoggingOutDevCenterConnection = true;
+
+        PerformDevCenterLogout();
     }
 
     /// <summary>
@@ -379,6 +402,20 @@ public partial class MainWindowViewModel
                 logger.LogInformation("A new connection has been formed, refreshing our DevCenter status");
                 CheckDevCenterConnection();
             }
+        });
+    }
+
+    private async void PerformDevCenterLogout()
+    {
+        await devCenterClient.Logout();
+
+        Dispatcher.UIThread.Post(() =>
+        {
+            LoggingOutDevCenterConnection = false;
+
+            logger.LogInformation("We have logged out (or at least attempted), refreshing our DevCenter status");
+            CheckDevCenterConnection();
+            ShowDevCenterPopup = false;
         });
     }
 }

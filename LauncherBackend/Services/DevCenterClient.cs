@@ -376,7 +376,7 @@ public class DevCenterClient : IDevCenterClient
 
         try
         {
-            var response = await httpClient.DeleteAsync(LauncherTestTokenAPI);
+            var response = await httpClient.DeleteAsync(LauncherCheckAPI);
 
             response.EnsureSuccessStatusCode();
 
