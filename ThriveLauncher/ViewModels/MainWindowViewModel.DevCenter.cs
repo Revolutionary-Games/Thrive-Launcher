@@ -44,7 +44,7 @@ public partial class MainWindowViewModel
 
     public string DevCenterConnectedUser => DevCenterConnection?.Username ?? "error";
 
-    public string DevCenterConnectedUserAndEmail => $"{DevCenterConnectedUser} ({DevCenterConnection?.Email})";
+    public string DevCenterConnectedUserAndEmail => $"{DevCenterConnection?.Email} ({DevCenterConnectedUser})";
 
     public bool DevCenterConnectionIsDeveloper => DevCenterConnection?.IsDeveloper ?? false;
 
