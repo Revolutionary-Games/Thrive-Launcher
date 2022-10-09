@@ -56,6 +56,7 @@
                     <Button VerticalAlignment="Stretch" Command="{Binding OpenSettings}" HotKey="Alt+O">
                         <Image Source="/Assets/gear.png" Width="32" />
                     </Button>
+                    <!-- TODO: implement -->
                     <Button FontSize="28" Classes="PlayButton" Command="{Binding ToggleLinksView}"
                             IsEnabled="{Binding SelectedVersionToPlay,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                             Content="{i18n:Localize PlayButton}" HotKey="Alt+S" />

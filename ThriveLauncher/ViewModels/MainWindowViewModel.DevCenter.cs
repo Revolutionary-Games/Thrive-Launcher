@@ -77,8 +77,6 @@ public partial class MainWindowViewModel
                 if (HasDevCenterConnection)
                 {
                     TriggerSaveSettings();
-
-                    // TODO: update selected build hash and type in settings
                 }
             }
             else
