@@ -44,6 +44,8 @@ public partial class MainWindowViewModel
 
     public string DevCenterConnectedUser => DevCenterConnection?.Username ?? "error";
 
+    public string DevCenterConnectedUserAndEmail => $"{DevCenterConnectedUser} ({DevCenterConnection?.Email})";
+
     public bool DevCenterConnectionIsDeveloper => DevCenterConnection?.IsDeveloper ?? false;
 
     public bool ShowDevCenterPopup
@@ -123,7 +125,12 @@ public partial class MainWindowViewModel
     public string? DevCenterConnectCode
     {
         get => devCenterConnectCode;
-        set => this.RaiseAndSetIfChanged(ref devCenterConnectCode, value);
+        set
+        {
+            // A bit of usability in case the user accidentally adds blanks at the start or end
+            value = value?.Trim();
+            this.RaiseAndSetIfChanged(ref devCenterConnectCode, value);
+        }
     }
 
     public bool CanFormDevCenterConnection
@@ -279,6 +286,7 @@ public partial class MainWindowViewModel
         this.RaisePropertyChanged(nameof(DevCenterConnection));
         this.RaisePropertyChanged(nameof(HasDevCenterConnection));
         this.RaisePropertyChanged(nameof(DevCenterConnectedUser));
+        this.RaisePropertyChanged(nameof(DevCenterConnectedUserAndEmail));
         this.RaisePropertyChanged(nameof(DevCenterConnectionIsDeveloper));
         this.RaisePropertyChanged(nameof(AvailableThriveVersions));
 
@@ -332,7 +340,7 @@ public partial class MainWindowViewModel
 
         Dispatcher.UIThread.Post(() =>
         {
-            CheckingDevCenterConnection = false;
+            CheckingConnectionCode = false;
 
             if (result == null)
             {

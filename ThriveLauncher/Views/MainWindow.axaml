@@ -359,10 +359,9 @@
             </RelativePanel>
         </controls:PopupDialog>
 
-        <!-- TODO: show the ok button when it makes sense -->
         <controls:PopupDialog Title="{i18n:Localize DevCenterConnectionDialogTitle}"
                               CloseCommand="{Binding CloseDevCenterMenuClicked}"
-                              ShowPopup="{Binding ShowDevCenterPopup}" ShowOKButton="False">
+                              ShowPopup="{Binding ShowDevCenterPopup}" ShowOKButton="{Binding HasDevCenterConnection}">
             <TabControl MinWidth="700" MinHeight="400" MaxHeight="400" MaxWidth="700"
                         RelativePanel.AlignLeftWithPanel="True"
                         RelativePanel.AlignRightWithPanel="True"
@@ -374,7 +373,7 @@
                         <StackPanel IsVisible="{Binding HasDevCenterConnection}">
                             <WrapPanel Orientation="Horizontal" Margin="0 5">
                                 <TextBlock Margin="0 0 2 0" Text="{i18n:Localize ConnectedAsUserDisplay}" />
-                                <TextBlock Text="{Binding DevCenterConnectedUser}" />
+                                <TextBlock Text="{Binding DevCenterConnectedUserAndEmail}" />
                             </WrapPanel>
 
                             <TextBlock IsVisible="{Binding DevCenterConnectionIsDeveloper}"
@@ -447,7 +446,7 @@
                                 <TextBlock Text="{i18n:Localize LoadingDotDotDot}" Margin="0 3"
                                            IsVisible="{Binding FormingDevCenterConnection}" />
 
-                                <StackPanel Orientation="Horizontal" Margin="0 5">
+                                <StackPanel Orientation="Horizontal" Margin="0 5" Spacing="3">
                                     <Button Classes="DialogButton" Content="{i18n:Localize ConfirmButton}"
                                             IsEnabled="{Binding !FormingDevCenterConnection}"
                                             Command="{Binding ConfirmConnectionForming}" />
@@ -492,7 +491,7 @@
                             <ScrollViewer />
                         </StackPanel>
                         <StackPanel IsVisible="{Binding !HasDevCenterConnection}">
-                            <TextBlock Text="{i18n:Localize LoginToSeeThisContent}"/>
+                            <TextBlock Text="{i18n:Localize LoginToSeeThisContent}" />
                         </StackPanel>
                     </StackPanel>
                 </TabItem>

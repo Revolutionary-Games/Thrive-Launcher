@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using DevCenterCommunication.Models;
 using Microsoft.Extensions.Logging;
 using Models;
@@ -332,6 +333,22 @@ public class DevCenterClient : IDevCenterClient
             if (!response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
+
+                try
+                {
+                    var parsed = (JsonObject?)JsonNode.Parse(content);
+
+                    if (parsed != null && parsed.TryGetPropertyValue("message", out var messageNode) &&
+                        messageNode != null)
+                    {
+                        content = messageNode.GetValue<string>();
+                    }
+                }
+                catch (Exception e)
+                {
+                    logger.LogInformation(e, "Server response not in expected JSON form, showing error with raw data");
+                }
+
                 return (null, $"Server responded: {content}");
             }
 
