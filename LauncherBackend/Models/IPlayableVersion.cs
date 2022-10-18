@@ -1,5 +1,7 @@
 namespace LauncherBackend.Models;
 
+using DevCenterCommunication.Models;
+
 public interface IPlayableVersion
 {
     public string VersionName { get; }
@@ -74,4 +76,10 @@ public class DevBuildVersion : IPlayableVersion
     public bool IsPublicBuild => IsPublicBuildA || IsPublicBuildB || IsPublicBuildC;
 
     public PlayableDevCenterBuildType BuildType => type;
+
+    /// <summary>
+    ///   The exact build to play, only set just before this version is played as this needs to be retrieved from a
+    ///   remote server each time.
+    /// </summary>
+    public DevBuildLauncherDTO? ExactBuild { get; set; }
 }

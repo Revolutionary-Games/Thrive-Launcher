@@ -1,5 +1,6 @@
 namespace LauncherBackend.Services;
 
+using System.Collections.ObjectModel;
 using Microsoft.Extensions.Logging;
 using Models;
 using Utilities;
@@ -29,6 +30,9 @@ public class ThriveInstaller : IThriveInstaller
         this.devCenterClient = devCenterClient;
         this.launcherPaths = launcherPaths;
     }
+
+    public ObservableCollection<ThrivePlayMessage> InstallerMessages { get; } = new();
+    public ObservableCollection<FilePrepareProgress> InProgressOperations { get; } = new();
 
     public IEnumerable<(string VersionName, IPlayableVersion VersionObject)> GetAvailableThriveVersions()
     {
@@ -196,6 +200,18 @@ public class ThriveInstaller : IThriveInstaller
             yield return Path.GetFullPath(entry);
         }
     }
+
+    public async Task<bool> EnsureVersionIsDownloaded(IPlayableVersion playableVersion,
+        CancellationToken cancellationToken)
+    {
+        InstallerMessages.Clear();
+        InProgressOperations.Clear();
+
+        // TODO: implement
+        InstallerMessages.Add(new ThrivePlayMessage(ThrivePlayMessage.Type.DownloadingFailed, "unimplemented"));
+
+        return false;
+    }
 }
 
 public interface IThriveInstaller
@@ -225,4 +241,22 @@ public interface IThriveInstaller
     /// </summary>
     /// <returns>Enumerable of the files</returns>
     public IEnumerable<string> ListFilesInDehydrateCache();
+
+    /// <summary>
+    ///   Makes sure the version is installed, if not starts the whole process of downloading it.
+    /// </summary>
+    /// <param name="playableVersion">The version to check</param>
+    /// <param name="cancellationToken">Cancellation</param>
+    /// <returns>Task resulting in true when everything is fine</returns>
+    public Task<bool> EnsureVersionIsDownloaded(IPlayableVersion playableVersion, CancellationToken cancellationToken);
+
+    /// <summary>
+    ///   Messages from the current install process
+    /// </summary>
+    public ObservableCollection<ThrivePlayMessage> InstallerMessages { get; }
+
+    /// <summary>
+    ///   Progress reporting for the current installation process
+    /// </summary>
+    public ObservableCollection<FilePrepareProgress> InProgressOperations { get; }
 }

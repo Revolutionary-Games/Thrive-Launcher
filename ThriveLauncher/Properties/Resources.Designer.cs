@@ -1058,5 +1058,65 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("NoVersionSelected", resourceCulture);
             }
         }
+        
+        public static string PlayingTitle {
+            get {
+                return ResourceManager.GetString("PlayingTitle", resourceCulture);
+            }
+        }
+        
+        public static string GettingDevBuildInfoMessage {
+            get {
+                return ResourceManager.GetString("GettingDevBuildInfoMessage", resourceCulture);
+            }
+        }
+        
+        public static string ErrorGettingDevBuild {
+            get {
+                return ResourceManager.GetString("ErrorGettingDevBuild", resourceCulture);
+            }
+        }
+        
+        public static string ThriveRunCanceled {
+            get {
+                return ResourceManager.GetString("ThriveRunCanceled", resourceCulture);
+            }
+        }
+        
+        public static string ThriveRunError {
+            get {
+                return ResourceManager.GetString("ThriveRunError", resourceCulture);
+            }
+        }
+        
+        public static string CloseButton {
+            get {
+                return ResourceManager.GetString("CloseButton", resourceCulture);
+            }
+        }
+        
+        public static string NoBuildToPlayFound {
+            get {
+                return ResourceManager.GetString("NoBuildToPlayFound", resourceCulture);
+            }
+        }
+        
+        public static string DownloadingItem {
+            get {
+                return ResourceManager.GetString("DownloadingItem", resourceCulture);
+            }
+        }
+        
+        public static string DownloadError {
+            get {
+                return ResourceManager.GetString("DownloadError", resourceCulture);
+            }
+        }
+        
+        public static string VersionInstallationOrCheckFailed {
+            get {
+                return ResourceManager.GetString("VersionInstallationOrCheckFailed", resourceCulture);
+            }
+        }
     }
 }

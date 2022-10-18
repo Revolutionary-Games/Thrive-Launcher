@@ -2,6 +2,7 @@ namespace ThriveLauncher.Views;
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -74,6 +75,10 @@ public partial class MainWindow : Window
         dataContext.WhenAnyValue(d => d.TemporaryFolderFiles).Subscribe(OnTemporaryFolderFilesChanged);
 
         dataContext.WhenAnyValue(d => d.LatestAvailableDevBuilds).Subscribe(OnAvailableDevBuildsChanged);
+
+        dataContext.PlayMessages.CollectionChanged += (_, _) => OnPlayMessagesChanged(dataContext.PlayMessages);
+        dataContext.InProgressPlayOperations.CollectionChanged +=
+            (_, _) => OnPlayPopupProgressChanged(dataContext.InProgressPlayOperations);
 
         // Intentionally left hanging around in the background
 #pragma warning disable CS4014
@@ -583,5 +588,35 @@ public partial class MainWindow : Window
 
             LatestBuildsList.Children.Add(container);
         }
+    }
+
+    private void OnPlayMessagesChanged(ObservableCollection<string> playMessages)
+    {
+        PlayPrepareMessageContainer.Children.Clear();
+
+        if (playMessages.Count < 1)
+            return;
+
+        foreach (var message in playMessages)
+        {
+            PlayPrepareMessageContainer.Children.Add(new TextBlock
+            {
+                TextWrapping = TextWrapping.Wrap,
+                Text = message,
+                Margin = new Thickness(0, 0, 0, 0),
+            });
+        }
+    }
+
+    private void OnPlayPopupProgressChanged(ObservableCollection<FilePrepareProgress> progress)
+    {
+        if (progress.Count < 1)
+        {
+            PlayPrepareProgressContainer.Children.Clear();
+            return;
+        }
+
+        // TODO: only do the minimal needed changes to preserve bar states
+        throw new NotImplementedException();
     }
 }

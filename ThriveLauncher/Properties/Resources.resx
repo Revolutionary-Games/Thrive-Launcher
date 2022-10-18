@@ -571,4 +571,34 @@ Launcher logs will have more info.</value>
   <data name="NoVersionSelected" xml:space="preserve">
     <value>Please select a Thrive version from the dropdown next to the play button and try again</value>
   </data>
+  <data name="PlayingTitle" xml:space="preserve">
+    <value>Playing {0}</value>
+  </data>
+  <data name="GettingDevBuildInfoMessage" xml:space="preserve">
+    <value>Retrieving info about selected DevBuild of type {0} to play...</value>
+  </data>
+  <data name="ErrorGettingDevBuild" xml:space="preserve">
+    <value>Error: failed to find DevBuild of specified type for current platform. Please select another build, for example the recommended BOTD, and try again. Cause of failure: {0}</value>
+  </data>
+  <data name="ThriveRunCanceled" xml:space="preserve">
+    <value>Running Thrive was canceled</value>
+  </data>
+  <data name="ThriveRunError" xml:space="preserve">
+    <value>Thrive failed to run due to the following error: {0}</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="NoBuildToPlayFound" xml:space="preserve">
+    <value>No DevBuild matching the required type and current platform found</value>
+  </data>
+  <data name="DownloadingItem" xml:space="preserve">
+    <value>Downloading {0}</value>
+  </data>
+  <data name="DownloadError" xml:space="preserve">
+    <value>Download failed because of {0}</value>
+  </data>
+  <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
+    <value>Version installation or checking installer version failed, see below for details.</value>
+  </data>
 </root>
