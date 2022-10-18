@@ -217,7 +217,14 @@ public partial class MainWindowViewModel : ViewModelBase
     public string? SelectedVersionToPlay
     {
         get => selectedVersionToPlay;
-        set => this.RaiseAndSetIfChanged(ref selectedVersionToPlay, value);
+        set
+        {
+            if (selectedVersionToPlay == value)
+                return;
+
+            this.RaiseAndSetIfChanged(ref selectedVersionToPlay, value);
+            this.RaisePropertyChanged(nameof(CanPressPlayButton));
+        }
     }
 
     public bool LauncherIsLatestVersion

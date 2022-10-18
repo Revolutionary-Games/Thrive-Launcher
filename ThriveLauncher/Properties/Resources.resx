@@ -562,4 +562,13 @@ Launcher logs will have more info.</value>
   <data name="BuildDescriptionLabelShort" xml:space="preserve">
     <value>desc:</value>
   </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>Cannot Play Thrive</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thrive has already been started, please close it and then try again</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>Please select a Thrive version from the dropdown next to the play button and try again</value>
+  </data>
 </root>

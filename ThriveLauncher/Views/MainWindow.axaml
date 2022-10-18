@@ -56,9 +56,8 @@
                     <Button VerticalAlignment="Stretch" Command="{Binding OpenSettings}" HotKey="Alt+O">
                         <Image Source="/Assets/gear.png" Width="32" />
                     </Button>
-                    <!-- TODO: implement -->
-                    <Button FontSize="28" Classes="PlayButton" Command="{Binding ToggleLinksView}"
-                            IsEnabled="{Binding SelectedVersionToPlay,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                    <Button FontSize="28" Classes="PlayButton" Command="{Binding TryToPlayThrive}"
+                            IsEnabled="{Binding CanPressPlayButton}"
                             Content="{i18n:Localize PlayButton}" HotKey="Alt+S" />
 
                     <ComboBox SelectedIndex="0" FontSize="20" VerticalAlignment="Stretch" Classes="VersionSelect"

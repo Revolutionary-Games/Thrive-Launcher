@@ -1040,5 +1040,23 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("BuildDescriptionLabelShort", resourceCulture);
             }
         }
+        
+        public static string CannotPlayThriveTitle {
+            get {
+                return ResourceManager.GetString("CannotPlayThriveTitle", resourceCulture);
+            }
+        }
+        
+        public static string ThriveCurrentlyRunning {
+            get {
+                return ResourceManager.GetString("ThriveCurrentlyRunning", resourceCulture);
+            }
+        }
+        
+        public static string NoVersionSelected {
+            get {
+                return ResourceManager.GetString("NoVersionSelected", resourceCulture);
+            }
+        }
     }
 }
