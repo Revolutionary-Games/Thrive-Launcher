@@ -11,7 +11,12 @@ public class LauncherSettingsManager : ILauncherSettingsManager
     private readonly ILauncherPaths launcherPaths;
 
     private readonly Lazy<string?> rememberedVersion;
-    private string? overriddenRememberedVersion;
+
+    /// <summary>
+    ///   Runtime overridden version of the lazy readonly field <see cref="rememberedVersion"/>. This uses a separate
+    ///   class to hold a single string to differentiate between no overridden value and the value being null.
+    /// </summary>
+    private OverriddenVersion? overriddenRememberedVersion;
 
     private Lazy<LauncherSettings> settings;
 
@@ -43,17 +48,21 @@ public class LauncherSettingsManager : ILauncherSettingsManager
 
     public string? RememberedVersion
     {
-        get => overriddenRememberedVersion ?? rememberedVersion.Value;
+        get => overriddenRememberedVersion?.OverriddenValue ?? rememberedVersion.Value;
         set
         {
-            if (overriddenRememberedVersion == value)
+            if (overriddenRememberedVersion != null && overriddenRememberedVersion.OverriddenValue == value)
                 return;
 
-            overriddenRememberedVersion = value;
+            overriddenRememberedVersion ??= new OverriddenVersion();
 
-            // This shouldn't be too slow so to avoid complicating the code structure here, this is saved in sync
-            // manner
-            SaveRememberedVersion(overriddenRememberedVersion).Wait();
+            overriddenRememberedVersion.OverriddenValue = value;
+
+            // This is not awaited here to keep this code structure simple and adding a Wait call caused this to
+            // deadlock
+#pragma warning disable CS4014
+            SaveRememberedVersion(overriddenRememberedVersion.OverriddenValue);
+#pragma warning restore CS4014
         }
     }
 
@@ -195,6 +204,8 @@ public class LauncherSettingsManager : ILauncherSettingsManager
 
         try
         {
+            Directory.CreateDirectory(Path.GetDirectoryName(launcherPaths.PathToRememberedVersion) ??
+                throw new Exception("Remembered version path has no folder"));
             await File.WriteAllTextAsync(launcherPaths.PathToRememberedVersion, version, Encoding.UTF8);
         }
         catch (Exception e)
@@ -222,6 +233,11 @@ public class LauncherSettingsManager : ILauncherSettingsManager
             logger.LogError(e, "Failed to load remembered version");
             return null;
         }
+    }
+
+    private class OverriddenVersion
+    {
+        public string? OverriddenValue;
     }
 }
 
