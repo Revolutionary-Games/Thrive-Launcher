@@ -25,7 +25,7 @@ public class NetworkDataRetriever : INetworkDataRetriever
         using var client = CreateHttpClient();
 
         logger.LogDebug("Fetching: {Uri}", uri);
-        var response = await client.GetAsync(uri);
+        var response = await client.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead);
 
         var content = await response.Content.ReadAsStringAsync();
 
@@ -37,7 +37,7 @@ public class NetworkDataRetriever : INetworkDataRetriever
         using var client = CreateHttpClient();
 
         logger.LogDebug("Fetching: {Uri}", uri);
-        var response = await client.GetAsync(uri);
+        var response = await client.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead);
 
         var content = await response.Content.ReadAsStreamAsync();
 
