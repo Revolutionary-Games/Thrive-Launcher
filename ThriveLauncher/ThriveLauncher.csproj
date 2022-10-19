@@ -49,6 +49,53 @@
     <EmbeddedResource Include="Assets\Fonts\Roboto\LICENSE.txt" LogicalName="Roboto/LICENSE.txt" />
     <EmbeddedResource Include="Assets\Fonts\Lato\OFL.txt" LogicalName="OFL.txt" />
   </ItemGroup>
+  <Target Name="CopyTool7zLicense" AfterTargets="Build">
+    <Message Text="Running copy 7-zip license" Importance="High" />
+    <Copy SkipUnchangedFiles="true"
+        SourceFiles="$(ProjectDir)..\tools\7zip\License.txt"
+        DestinationFolder="$(TargetDir)tools\7zip" />
+  </Target>  
+  <Target Name="CopyTool7zWindows" AfterTargets="Build" Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+    <Message Text="Running 7-zip copy task for Windows" Importance="High" />
+    <Copy SkipUnchangedFiles="true"
+        SourceFiles="$(ProjectDir)..\tools\7zip\7za.dll;$(ProjectDir)tools\7zip\7za.exe;$(ProjectDir)tools\7zip\7zxa.dll"
+        DestinationFolder="$(TargetDir)tools\7zip" />
+    <Message Text="Copied 7-zip files" Importance="High" />
+  </Target>
+  <Target Name="CopyTool7zLinux" AfterTargets="Build" Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+    <Message Text="Running 7-zip copy task for Linux" Importance="High" />
+    <Copy SkipUnchangedFiles="true"
+          SourceFiles="$(ProjectDir)..\tools\7zip\7za"
+          DestinationFolder="$(TargetDir)tools\7zip" />
+    <Message Text="Copied 7-zip files" Importance="High" />
+  </Target>
+  <Target Name="CopyTool7zMac" AfterTargets="Build" Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+    <Message Text="Running 7-zip copy task for Mac" Importance="High" />
+    <Copy SkipUnchangedFiles="true"
+          SourceFiles="$(ProjectDir)..\tools\7zip\7za_mac"
+          DestinationFolder="$(TargetDir)tools\7zip" />
+    <Message Text="Copied 7-zip files" Importance="High" />
+  </Target>
+  <Target Name="CopyToolPckLicense" AfterTargets="Build">
+    <Message Text="Running copy godotpcktool license" Importance="High" />
+    <Copy SkipUnchangedFiles="true"
+          SourceFiles="$(ProjectDir)..\tools\pck\LICENSE;$(ProjectDir)..\tools\pck\LibraryLicenses.txt"
+          DestinationFolder="$(TargetDir)tools\pck" />
+  </Target>
+  <Target Name="CopyToolPckWindows" AfterTargets="Build" Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+    <Message Text="Running godotpcktool copy task for Windows" Importance="High" />
+    <Copy SkipUnchangedFiles="true"
+          SourceFiles="$(ProjectDir)..\tools\pck\godotpcktool.exe"
+          DestinationFolder="$(TargetDir)tools\pck" />
+    <Message Text="Copied godotpcktool files" Importance="High" />
+  </Target>
+  <Target Name="CopyToolPckLinux" AfterTargets="Build" Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+    <Message Text="Running godotpcktool copy task for Linux" Importance="High" />
+    <Copy SkipUnchangedFiles="true"
+          SourceFiles="$(ProjectDir)..\tools\pck\godotpcktool"
+          DestinationFolder="$(TargetDir)tools\pck" />
+    <Message Text="Copied godotpcktool files" Importance="High" />
+  </Target>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
