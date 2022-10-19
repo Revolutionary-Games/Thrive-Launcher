@@ -1,4 +1,4 @@
-namespace ThriveLauncher.Utilities;
+namespace ThriveLauncher.Services;
 
 using System;
 using System.IO;
@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using LauncherBackend.Services;
 using Microsoft.Extensions.Logging;
+using Utilities;
 
 public class NetworkDataRetriever : INetworkDataRetriever
 {
