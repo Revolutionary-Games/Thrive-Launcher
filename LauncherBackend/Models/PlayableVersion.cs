@@ -7,15 +7,13 @@ using DevCenterCommunication.Models;
 /// </summary>
 public class PlayableVersion : IPlayableVersion
 {
-    private readonly ThriveVersionLauncherInfo launcherVersion;
-
-    public PlayableVersion(string formattedVersionWithArch, ThriveVersionLauncherInfo launcherVersion, bool isLatest,
+    public PlayableVersion(string formattedVersionWithArch, DownloadableInfo versionDownload, bool isLatest,
         string folderName)
     {
         VersionName = formattedVersionWithArch;
         IsLatest = isLatest;
-        this.launcherVersion = launcherVersion;
         FolderName = folderName;
+        Download = versionDownload;
 
         if (string.IsNullOrWhiteSpace(FolderName))
             throw new ArgumentException("Empty folder name");
@@ -32,4 +30,6 @@ public class PlayableVersion : IPlayableVersion
     public bool IsPublicBuildA => false;
     public bool IsPublicBuildB => false;
     public bool IsPublicBuildC => false;
+
+    public DownloadableInfo Download { get; }
 }

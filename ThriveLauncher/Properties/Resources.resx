@@ -601,4 +601,7 @@ Launcher logs will have more info.</value>
   <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
     <value>Version installation or checking installer version failed, see below for details.</value>
   </data>
+  <data name="ThriveFolderPrepareFailed" xml:space="preserve">
+    <value>Preparing Thrive folder failed with error: {0}</value>
+  </data>
 </root>

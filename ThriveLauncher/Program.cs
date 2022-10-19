@@ -85,7 +85,8 @@ internal class Program
             .AddScoped<MainWindowViewModel>()
             .AddScoped<LicensesWindowViewModel>()
             .AddSingleton<ViewLocator>()
-            .AddSingleton<ILauncherTranslations, LauncherTranslationProxy>();
+            .AddSingleton<ILauncherTranslations, LauncherTranslationProxy>()
+            .AddScoped<IExternalTools, ExternalTools>();
 
         if (normalLogging)
         {

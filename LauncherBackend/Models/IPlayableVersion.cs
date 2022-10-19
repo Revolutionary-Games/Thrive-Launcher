@@ -15,6 +15,8 @@ public interface IPlayableVersion
     public bool IsPublicBuildA { get; }
     public bool IsPublicBuildB { get; }
     public bool IsPublicBuildC { get; }
+
+    public DownloadableInfo Download { get; }
 }
 
 public class StoreVersion : IPlayableVersion
@@ -36,15 +38,23 @@ public class StoreVersion : IPlayableVersion
     public bool IsPublicBuildA => false;
     public bool IsPublicBuildB => false;
     public bool IsPublicBuildC => false;
+
+    public DownloadableInfo Download =>
+        throw new InvalidOperationException("Store versions can't be separately downloaded");
 }
 
 public class DevBuildVersion : IPlayableVersion
 {
     private readonly PlayableDevCenterBuildType type;
+    private readonly Lazy<Task<DownloadableInfo>> retrieveDownload;
 
-    public DevBuildVersion(PlayableDevCenterBuildType type)
+    public DevBuildVersion(PlayableDevCenterBuildType type,
+        Func<DevBuildLauncherDTO, Task<DownloadableInfo>> retrieveDownload)
     {
         this.type = type;
+        this.retrieveDownload = new Lazy<Task<DownloadableInfo>>(() =>
+            retrieveDownload(ExactBuild ??
+                throw new InvalidOperationException($"{nameof(ExactBuild)} not set for DevBuild")));
     }
 
     public string VersionName => type switch
@@ -72,6 +82,13 @@ public class DevBuildVersion : IPlayableVersion
     public bool IsPublicBuildA => type == PlayableDevCenterBuildType.PublicBuildA;
     public bool IsPublicBuildB => type == PlayableDevCenterBuildType.PublicBuildB;
     public bool IsPublicBuildC => type == PlayableDevCenterBuildType.PublicBuildC;
+
+    public DownloadableInfo Download => DownloadAsync.Result;
+
+    /// <summary>
+    ///   Gets the async download operation, recommended over using the blocking <see cref="Download"/> property
+    /// </summary>
+    public Task<DownloadableInfo> DownloadAsync => retrieveDownload.Value;
 
     public bool IsPublicBuild => IsPublicBuildA || IsPublicBuildB || IsPublicBuildC;
 

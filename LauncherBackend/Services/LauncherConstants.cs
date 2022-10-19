@@ -1,6 +1,7 @@
 namespace LauncherBackend.Services;
 
 using System.Text.RegularExpressions;
+using DevCenterCommunication.Utilities;
 using SharedBase.Utilities;
 
 /// <summary>
@@ -14,7 +15,17 @@ public static class LauncherConstants
     /// </summary>
     public const LauncherMode Mode = LauncherMode.LocalTesting;
 
+    /// <summary>
+    ///   File name to determine which exact version is extracted as a DevBuild
+    /// </summary>
     public const string DevBuildCacheFileName = "devbuild_cache.json";
+
+    public const string DehydratedCacheFileName = DehydrateCache.CacheFileName;
+
+    public const string DevBuildFileName = "devbuild.7z";
+
+    public const string ToolsFolderName = "tools";
+    public const string TemporaryExtractedFolderName = "temporary_extracted";
 
     /// <summary>
     ///   Maximum size in bytes for a file to be included in crash report

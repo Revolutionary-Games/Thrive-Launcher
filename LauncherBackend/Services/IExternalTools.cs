@@ -5,8 +5,8 @@ namespace LauncherBackend.Services;
 /// </summary>
 public interface IExternalTools
 {
-    public Task<bool> Run7Zip(string sourceArchive, string targetFolder, CancellationToken cancellationToken);
+    public Task Run7Zip(string sourceArchive, string targetFolder, CancellationToken cancellationToken);
 
-    public Task<bool> RunGodotPckTool(string pckFile, IEnumerable<(string FilePath, string NameInPck)> filesToAdd,
+    public Task RunGodotPckTool(string pckFile, IEnumerable<(string FilePath, string NameInPck)> filesToAdd,
         CancellationToken cancellationToken);
 }

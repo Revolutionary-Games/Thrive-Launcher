@@ -57,7 +57,7 @@ public class FilePrepareProgress : IObservable<FilePrepareProgress>
         }
     }
 
-    public FilePrepareStep CurrentStep { get; }
+    public FilePrepareStep CurrentStep { get; private set; }
 
     public string? DownloadUrlToShow
     {
@@ -87,6 +87,14 @@ public class FilePrepareProgress : IObservable<FilePrepareProgress>
 
     public bool ProgressIsIndeterminate => CurrentProgress == null || FinishedProgress == null;
 
+    public void MoveToExtractStep()
+    {
+        if (CurrentStep != FilePrepareStep.Downloading && CurrentStep != FilePrepareStep.Verifying)
+            throw new ArgumentException("Can only move to extract step from download or verify steps");
+
+        PerformStepMove(FilePrepareStep.Extracting);
+    }
+
     public IDisposable Subscribe(IObserver<FilePrepareProgress> observer)
     {
         if (!observers.Contains(observer))
@@ -101,6 +109,21 @@ public class FilePrepareProgress : IObservable<FilePrepareProgress>
         {
             observer.OnNext(this);
         }
+    }
+
+    private void PerformStepMove(FilePrepareStep newStep)
+    {
+        CurrentStep = newStep;
+        downloadSource = null;
+        downloadUrlToShow = null;
+
+        // To help other code we set 1 to be the full progress for the next step (this is not meant to be used when
+        // moving to the download step). But current progress is null so the end result is that the progress is
+        // indeterminate initially.
+        finishedProgress = 1;
+        currentProgress = null;
+
+        Notify();
     }
 
     private class Subscription : IDisposable

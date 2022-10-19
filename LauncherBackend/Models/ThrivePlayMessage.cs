@@ -11,8 +11,20 @@ public class ThrivePlayMessage
     /// </summary>
     public enum Type
     {
+        /// <summary>
+        ///   Download is happening, is given one parameter with the download URL
+        /// </summary>
         Downloading,
+
+        /// <summary>
+        ///   Download failed, is given one parameter with the error
+        /// </summary>
         DownloadingFailed,
+
+        /// <summary>
+        ///   Extraction failed, is given one parameter with the error
+        /// </summary>
+        ExtractionFailed,
     }
 
     public ThrivePlayMessage(Type type, params object?[] arguments)

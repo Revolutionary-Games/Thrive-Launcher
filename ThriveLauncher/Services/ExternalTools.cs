@@ -8,9 +8,19 @@ using System.Threading;
 using System.Threading.Tasks;
 using LauncherBackend.Services;
 using Microsoft.Extensions.Logging;
+using SharedBase.Utilities;
 
 public class ExternalTools : IExternalTools
 {
+    private const string Unix7ZipExecutableName = "7za";
+
+    // TODO: add system tool checking if we want to support that (probably should be an option to turn on)
+    private static readonly IReadOnlyList<string> Windows7ZipSystemPaths = new[]
+    {
+        "C:\\Program Files\\7-Zip\\7z.exe",
+        "C:\\Program Files (x86)\\7-Zip\\7z.exe",
+    };
+
     private readonly ILogger<ExternalTools> logger;
     private readonly Lazy<string> basePathForTools;
 
@@ -22,12 +32,29 @@ public class ExternalTools : IExternalTools
 
     private string BasePathForTools => basePathForTools.Value;
 
-    public Task<bool> Run7Zip(string sourceArchive, string targetFolder, CancellationToken cancellationToken)
+    public async Task Run7Zip(string sourceArchive, string targetFolder, CancellationToken cancellationToken)
     {
-        throw new System.NotImplementedException();
+        var startInfo = Setup7ZipRunning();
+        startInfo.ArgumentList.Add("x");
+        startInfo.ArgumentList.Add(sourceArchive);
+
+        // Overwrite all
+        startInfo.ArgumentList.Add("-aoa");
+
+        startInfo.ArgumentList.Add($"-O{targetFolder}");
+
+        logger.LogDebug("Starting unpacking of {SourceArchive}", sourceArchive);
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken);
+
+        logger.LogDebug("Unpacker exited with code: {ExitCode}", result.ExitCode);
+        if (result.ExitCode != 0)
+        {
+            throw new Exception(
+                $"Unpacking failed to run, exit code: {result.ExitCode}, output: {result.FullOutput.Truncate(300)}");
+        }
     }
 
-    public Task<bool> RunGodotPckTool(string pckFile, IEnumerable<(string FilePath, string NameInPck)> filesToAdd,
+    public Task RunGodotPckTool(string pckFile, IEnumerable<(string FilePath, string NameInPck)> filesToAdd,
         CancellationToken cancellationToken)
     {
         throw new System.NotImplementedException();
@@ -39,7 +66,7 @@ public class ExternalTools : IExternalTools
 
         if (OperatingSystem.IsLinux())
         {
-            executableName = "7za";
+            executableName = Unix7ZipExecutableName;
         }
         else if (OperatingSystem.IsWindows())
         {
@@ -55,6 +82,9 @@ public class ExternalTools : IExternalTools
         }
 
         var executable = Path.Join(BasePathForTools, "7zip", executableName);
+
+        if (!File.Exists(executable))
+            throw new Exception("7-zip is missing. It should have been included with the launcher");
 
         return new ProcessStartInfo(executable);
     }
@@ -78,6 +108,9 @@ public class ExternalTools : IExternalTools
         }
 
         var executable = Path.Join(BasePathForTools, "pck", executableName);
+
+        if (!File.Exists(executable))
+            throw new Exception("godotpcktool is missing. It should have been included with the launcher");
 
         return new ProcessStartInfo(executable);
     }

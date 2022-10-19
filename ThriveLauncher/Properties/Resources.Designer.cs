@@ -1118,5 +1118,11 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("VersionInstallationOrCheckFailed", resourceCulture);
             }
         }
+        
+        public static string ThriveFolderPrepareFailed {
+            get {
+                return ResourceManager.GetString("ThriveFolderPrepareFailed", resourceCulture);
+            }
+        }
     }
 }

@@ -182,9 +182,17 @@ public partial class MainWindowViewModel
         }
 
         logger.LogInformation("Checking that Thrive version is good to play or starting download for it");
-        if (!await thriveInstaller.EnsureVersionIsDownloaded(version, playActionCancellation))
+        try
         {
-            ReportRunFailure(Resources.VersionInstallationOrCheckFailed);
+            if (!await thriveInstaller.EnsureVersionIsDownloaded(version, playActionCancellation))
+            {
+                ReportRunFailure(Resources.VersionInstallationOrCheckFailed);
+                return;
+            }
+        }
+        catch (Exception e)
+        {
+            ReportRunFailure(string.Format(Resources.ThriveFolderPrepareFailed, e));
             return;
         }
 
