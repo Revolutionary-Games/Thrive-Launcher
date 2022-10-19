@@ -18,7 +18,8 @@ public class DevCenterClient : IDevCenterClient
     private readonly HttpClient httpClient;
     private readonly HttpClient publicHttpClient;
 
-    public DevCenterClient(ILogger<DevCenterClient> logger, ILauncherSettingsManager settingsManager)
+    public DevCenterClient(ILogger<DevCenterClient> logger, ILauncherSettingsManager settingsManager,
+        INetworkDataRetriever networkDataRetriever)
     {
         this.logger = logger;
         this.settingsManager = settingsManager;
@@ -26,11 +27,15 @@ public class DevCenterClient : IDevCenterClient
         httpClient = new HttpClient();
         httpClient.BaseAddress = LauncherConstants.DevCenterURL;
         httpClient.Timeout = TimeSpan.FromMinutes(1);
+        httpClient.DefaultRequestHeaders.UserAgent.Clear();
+        httpClient.DefaultRequestHeaders.UserAgent.Add(networkDataRetriever.UserAgent);
         SetAuthorization();
 
         publicHttpClient = new HttpClient();
-        httpClient.BaseAddress = LauncherConstants.DevCenterURL;
-        httpClient.Timeout = TimeSpan.FromMinutes(1);
+        publicHttpClient.BaseAddress = LauncherConstants.DevCenterURL;
+        publicHttpClient.Timeout = TimeSpan.FromMinutes(1);
+        publicHttpClient.DefaultRequestHeaders.UserAgent.Clear();
+        publicHttpClient.DefaultRequestHeaders.UserAgent.Add(networkDataRetriever.UserAgent);
     }
 
     public DevCenterConnection? DevCenterConnection { get; private set; }

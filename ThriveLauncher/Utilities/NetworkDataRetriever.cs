@@ -20,6 +20,8 @@ public class NetworkDataRetriever : INetworkDataRetriever
         this.versionUtilities = versionUtilities;
     }
 
+    public ProductInfoHeaderValue UserAgent => new("Thrive-Launcher", versionUtilities.LauncherVersion);
+
     public async Task<(HttpStatusCode Status, string Content)> FetchNetworkResource(Uri uri)
     {
         using var client = CreateHttpClient();
@@ -48,8 +50,7 @@ public class NetworkDataRetriever : INetworkDataRetriever
     {
         var client = new HttpClient();
         client.DefaultRequestHeaders.UserAgent.Clear();
-        client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Thrive-Launcher",
-            versionUtilities.LauncherVersion));
+        client.DefaultRequestHeaders.UserAgent.Add(UserAgent);
         client.Timeout = TimeSpan.FromMinutes(1);
 
         return client;
