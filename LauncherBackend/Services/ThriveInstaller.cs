@@ -625,6 +625,15 @@ public class ThriveInstaller : IThriveInstaller
 
             hash = SharedBase.Utilities.FileUtilities.HashToHex(hasher.Hash ??
                 throw new Exception("Hasher didn't calculate hash"));
+
+            logger.LogDebug("Downloaded {DownloadedBytes} bytes with hash of: {Hash}", downloadedBytes, hash);
+
+            if (length != null && downloadedBytes != length)
+            {
+                logger.LogWarning(
+                    "Downloaded bytes doesn't match the Content-Length header {Length} != {DownloadedBytes}", length,
+                    downloadedBytes);
+            }
         }
         catch (Exception e)
         {
