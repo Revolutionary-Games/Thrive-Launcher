@@ -1124,5 +1124,41 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("ThriveFolderPrepareFailed", resourceCulture);
             }
         }
+        
+        public static string DownloadProgressDisplay {
+            get {
+                return ResourceManager.GetString("DownloadProgressDisplay", resourceCulture);
+            }
+        }
+        
+        public static string UnknownNumber {
+            get {
+                return ResourceManager.GetString("UnknownNumber", resourceCulture);
+            }
+        }
+        
+        public static string DownloadingStateItemProgress {
+            get {
+                return ResourceManager.GetString("DownloadingStateItemProgress", resourceCulture);
+            }
+        }
+        
+        public static string VerifyingStateItemProgress {
+            get {
+                return ResourceManager.GetString("VerifyingStateItemProgress", resourceCulture);
+            }
+        }
+        
+        public static string ExtractingStateItemProgress {
+            get {
+                return ResourceManager.GetString("ExtractingStateItemProgress", resourceCulture);
+            }
+        }
+        
+        public static string ProcessingStateItemProgress {
+            get {
+                return ResourceManager.GetString("ProcessingStateItemProgress", resourceCulture);
+            }
+        }
     }
 }

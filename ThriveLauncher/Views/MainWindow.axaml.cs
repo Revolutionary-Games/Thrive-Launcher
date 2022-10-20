@@ -19,6 +19,7 @@ using LauncherBackend.Models.ParsedContent;
 using LauncherBackend.Services;
 using LauncherBackend.Utilities;
 using Microsoft.Extensions.DependencyInjection;
+using Models;
 using ReactiveUI;
 using Services.Localization;
 using SharedBase.Utilities;
@@ -29,6 +30,8 @@ public partial class MainWindow : Window
 {
     private readonly List<ComboBoxItem> languageItems = new();
     private readonly List<(IPlayableVersion Version, ComboBoxItem Item)> versionItems = new();
+
+    private readonly Dictionary<FilePrepareProgress, ProgressDisplayer> activeProgressDisplayers = new();
 
     private bool dataContextReceived;
     private IThriveInstaller? installer;
@@ -592,6 +595,14 @@ public partial class MainWindow : Window
 
     private void OnPlayMessagesChanged(ObservableCollection<string> playMessages)
     {
+        var data = playMessages.ToList();
+
+        // This is dispatched as the update notification can come in any thread
+        Dispatcher.UIThread.Post(() => HandlePlayMessagesChanged(data));
+    }
+
+    private void HandlePlayMessagesChanged(List<string> playMessages)
+    {
         PlayPrepareMessageContainer.Children.Clear();
 
         if (playMessages.Count < 1)
@@ -610,13 +621,56 @@ public partial class MainWindow : Window
 
     private void OnPlayPopupProgressChanged(ObservableCollection<FilePrepareProgress> progress)
     {
+        var data = progress.ToList();
+
+        // This is dispatched as the update notification can come in any thread
+        Dispatcher.UIThread.Post(() => HandlePlayProgressChanges(data));
+    }
+
+    private void HandlePlayProgressChanges(List<FilePrepareProgress> progress)
+    {
         if (progress.Count < 1)
         {
             PlayPrepareProgressContainer.Children.Clear();
+
+            foreach (var displayer in activeProgressDisplayers)
+            {
+                displayer.Value.Dispose();
+            }
+
+            activeProgressDisplayers.Clear();
+
             return;
         }
 
-        // TODO: only do the minimal needed changes to preserve bar states
-        throw new NotImplementedException();
+        foreach (var displayer in activeProgressDisplayers)
+        {
+            displayer.Value.Marked = false;
+        }
+
+        // We try to preserve as much state as possible here to keep progress bars working fine
+        foreach (var progressItem in progress)
+        {
+            if (!activeProgressDisplayers.TryGetValue(progressItem, out var displayer))
+            {
+                // No display yet for this progress item
+                displayer = new ProgressDisplayer(PlayPrepareProgressContainer, progressItem);
+                activeProgressDisplayers[progressItem] = displayer;
+            }
+            else
+            {
+                displayer.Marked = true;
+
+                // We don't update here as when we first see a progress item we start listening for its updates
+                // separately
+            }
+        }
+
+        // Delete displayers for progress items no longer present
+        foreach (var toDelete in activeProgressDisplayers.Where(t => !t.Value.Marked).ToList())
+        {
+            toDelete.Value.Dispose();
+            activeProgressDisplayers.Remove(toDelete.Key);
+        }
     }
 }

@@ -604,4 +604,22 @@ Launcher logs will have more info.</value>
   <data name="ThriveFolderPrepareFailed" xml:space="preserve">
     <value>Preparing Thrive folder failed with error: {0}</value>
   </data>
+  <data name="DownloadProgressDisplay" xml:space="preserve">
+    <value>Downloaded {0} of {1} MiB</value>
+  </data>
+  <data name="UnknownNumber" xml:space="preserve">
+    <value>unknown</value>
+  </data>
+  <data name="DownloadingStateItemProgress" xml:space="preserve">
+    <value>Downloading {0} from {1}</value>
+  </data>
+  <data name="VerifyingStateItemProgress" xml:space="preserve">
+    <value>Verifying integrity of {0}</value>
+  </data>
+  <data name="ExtractingStateItemProgress" xml:space="preserve">
+    <value>Extracting {0}. This may take many minutes for large files so please be patient.</value>
+  </data>
+  <data name="ProcessingStateItemProgress" xml:space="preserve">
+    <value>Processing {0}</value>
+  </data>
 </root>
