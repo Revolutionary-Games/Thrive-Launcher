@@ -4,8 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using LauncherBackend.Models;
 using LauncherBackend.Services;
 using Microsoft.Extensions.Logging;
 using SharedBase.Utilities;
@@ -54,10 +57,39 @@ public class ExternalTools : IExternalTools
         }
     }
 
-    public Task RunGodotPckTool(string pckFile, IEnumerable<(string FilePath, string NameInPck)> filesToAdd,
+    public async Task RunGodotPckTool(string pckFile, IEnumerable<PckOperation> filesToAdd,
         CancellationToken cancellationToken)
     {
-        throw new System.NotImplementedException();
+        var fileData = JsonSerializer.Serialize(filesToAdd);
+
+        var startInfo = SetupPckToolRunning();
+        startInfo.ArgumentList.Add(pckFile);
+        startInfo.ArgumentList.Add("--action");
+        startInfo.ArgumentList.Add("add");
+
+        // Read from stdin
+        startInfo.ArgumentList.Add("-");
+
+        logger.LogDebug("Starting godotpcktool add operation with data: {FileData}", fileData);
+        var output = new StringBuilder();
+
+        void OnOutput(string line)
+        {
+            output.Append(line);
+            output.Append("\n");
+        }
+
+        // TODO: check that this works as this now adds a trailing newline to the input
+        var result =
+            await ProcessRunHelpers.RunProcessWithStdInAndOutputStreamingAsync(startInfo, cancellationToken,
+                new[] { fileData }, OnOutput, OnOutput);
+
+        logger.LogDebug("godotpcktool exited with code: {ExitCode}", result.ExitCode);
+        if (result.ExitCode != 0)
+        {
+            throw new Exception(
+                $"Godotpcktool .pck modification failed to run, exit code: {result.ExitCode}, output: {output.ToString().Truncate(300)}");
+        }
     }
 
     private ProcessStartInfo Setup7ZipRunning()
@@ -104,7 +136,7 @@ public class ExternalTools : IExternalTools
         else
         {
             // TODO: mac support
-            throw new NotSupportedException("7-zip not configured to work on current platform");
+            throw new NotSupportedException("Godotpcktool not configured to work on current platform");
         }
 
         var executable = Path.Join(BasePathForTools, "pck", executableName);
