@@ -12,18 +12,20 @@ public class StoreVersionInfo
         IsStoreVersion = false;
     }
 
-    public StoreVersionInfo(string name, string readableName)
+    public StoreVersionInfo(string name, string readableName, string storePageUrl)
     {
         IsStoreVersion = true;
         StoreName = name;
         StoreReadableName = readableName;
+        StorePageUrl = storePageUrl;
     }
 
     public bool IsStoreVersion { get; }
 
     public string StoreName { get; } = string.Empty;
-
     public string StoreReadableName { get; } = string.Empty;
+
+    public string StorePageUrl { get; } = string.Empty;
 
     public bool IsSteam => IsStoreVersion && StoreName == SteamInternalName;
 

@@ -21,9 +21,16 @@ public class StoreVersionDetector : IStoreVersionDetector
 
     private StoreVersionInfo DetectStoreVersion()
     {
-        // TODO: store detection
-        logger.LogInformation("TODO: implement store version detection");
+        // TODO: check that this approach works
+#if LAUNCHER_STEAM
+        logger.LogInformation("This is a Steam version of the launcher");
+        return new StoreVersionInfo(StoreVersionInfo.SteamInternalName, "Steam", LauncherConstants.ThriveSteamURL);
+#elif LAUNCHER_ITCH
+        logger.LogInformation("This is an itch.io version of the launcher");
+        return new StoreVersionInfo("itch", "Itch.io", LauncherConstants.ThriveItchURL);
+#endif
 
+        logger.LogInformation("Not a store version of the launcher");
         return new StoreVersionInfo();
     }
 }

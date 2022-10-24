@@ -9,6 +9,7 @@ using System.Text;
 using Avalonia;
 using Avalonia.ReactiveUI;
 using CommandLine;
+using LauncherBackend.Models;
 using LauncherBackend.Services;
 using LauncherBackend.Utilities;
 using Microsoft.Extensions.DependencyInjection;
@@ -81,6 +82,7 @@ internal class Program
             .AddThriveLauncher()
             .AddSingleton<VersionUtilities>()
             .AddSingleton<INetworkDataRetriever, NetworkDataRetriever>()
+            .AddSingleton<ILauncherOptions>(options)
             .AddSingleton(options)
             .AddScoped<MainWindowViewModel>()
             .AddScoped<LicensesWindowViewModel>()
@@ -127,6 +129,7 @@ internal class Program
             services.GetRequiredService<VersionUtilities>().LauncherVersion);
 
         var options = services.GetRequiredService<Options>();
+        var runner = services.GetRequiredService<IThriveRunner>();
 
         if (options.Verbose == true)
             programLogger.LogDebug("Verbose logging is enabled");
@@ -174,14 +177,25 @@ internal class Program
         {
             programLogger.LogInformation("This is the store version of the launcher");
 
-            if (settings.AutoStartStoreVersion)
+            if (settings.EnableStoreVersionSeamlessMode)
             {
-                // TODO: skip with a special flag
+                if (!options.AllowSeamlessMode || options.DisableSeamlessMode)
+                {
+                    programLogger.LogInformation("Seamless launcher mode is disabled by command line options");
+                }
+                else
+                {
+                    programLogger.LogInformation(
+                        "Using seamless launcher mode, will attempt to launch before initializing GUI");
 
+                    // TODO: handle transparent mode
+                    throw new NotImplementedException();
+                }
+            }
+            else
+            {
                 programLogger.LogInformation(
-                    "Using transparent launcher mode, will attempt to launch before initializing GUI");
-
-                // TODO: handle transparent mode
+                    "Seamless launcher mode is disabled due to the launcher options being turned off by the user");
             }
         }
 
@@ -190,6 +204,17 @@ internal class Program
         // Very important to use our existing services to configure the Avalonia app here, otherwise everything
         // will break
         BuildAvaloniaAppWithServices(services).StartWithClassicDesktopLifetime(args);
+
+        if (runner.ThriveRunning)
+        {
+            programLogger.LogInformation(
+                "Thrive is currently running, waiting for Thrive to quit before exiting the launcher process");
+
+            // TODO: wait for Thrive to exit if currently running (and register a quit listener here to cancel the wait)
+            throw new NotImplementedException();
+
+            // TODO: if we got an error can we restart avalonia here to show it?
+        }
 
         programLogger.LogInformation("Launcher process exiting normally");
     }
