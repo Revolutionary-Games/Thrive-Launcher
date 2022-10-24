@@ -81,37 +81,6 @@ public partial class MainWindowViewModel
         }
     }
 
-    public bool ThriveOutputIsTruncated
-    {
-        get => thriveOutputIsTruncated;
-        private set => this.RaiseAndSetIfChanged(ref thriveOutputIsTruncated, value);
-    }
-
-    public List<ThriveOutputMessage> ThriveOutputFirstPart
-    {
-        get => thriveOutputFirstPart;
-        private set => this.RaiseAndSetIfChanged(ref thriveOutputFirstPart, value);
-    }
-
-    public ObservableCollection<ThriveOutputMessage> ThriveOutputLastPart => thriveRunner.ThriveOutputTrailing;
-
-    /// <summary>
-    ///   The whole output that we buffer, used for copying to the clipboard
-    /// </summary>
-    public List<string> WholeBufferedOutput
-    {
-        get
-        {
-            var data = ThriveOutputFirstPart
-                .Concat(ThriveOutputLastPart).Select(o => o.IsError ? $"ERROR: {o.Message}" : o.Message).ToList();
-
-            if (ThriveOutputIsTruncated)
-                data.Add("This log is TRUNCATED, please see the Thrive log file for full output!");
-
-            return data;
-        }
-    }
-
     public bool CanCancelPlaying
     {
         get => canCancelPlaying;
@@ -145,6 +114,37 @@ public partial class MainWindowViewModel
     public ObservableCollection<string> PlayMessages { get; } = new();
 
     public ObservableCollection<FilePrepareProgress> InProgressPlayOperations { get; } = new();
+
+    public List<ThriveOutputMessage> ThriveOutputFirstPart
+    {
+        get => thriveOutputFirstPart;
+        private set => this.RaiseAndSetIfChanged(ref thriveOutputFirstPart, value);
+    }
+
+    public bool ThriveOutputIsTruncated
+    {
+        get => thriveOutputIsTruncated;
+        private set => this.RaiseAndSetIfChanged(ref thriveOutputIsTruncated, value);
+    }
+
+    public ObservableCollection<ThriveOutputMessage> ThriveOutputLastPart => thriveRunner.ThriveOutputTrailing;
+
+    /// <summary>
+    ///   The whole output that we buffer, used for copying to the clipboard
+    /// </summary>
+    public List<string> WholeBufferedOutput
+    {
+        get
+        {
+            var data = ThriveOutputFirstPart
+                .Concat(ThriveOutputLastPart).Select(o => o.IsError ? $"ERROR: {o.Message}" : o.Message).ToList();
+
+            if (ThriveOutputIsTruncated)
+                data.Add("This log is TRUNCATED, please see the Thrive log file for full output!");
+
+            return data;
+        }
+    }
 
     public void TryToPlayThrive()
     {

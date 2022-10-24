@@ -3,6 +3,7 @@ namespace ThriveLauncher.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,10 +29,18 @@ using ViewModels;
 
 public partial class MainWindow : Window
 {
+    /// <summary>
+    ///   Priority to use for the game log output view update tasks. For now this is set lower as this seems like a
+    ///   good enough idea as there'll be a ton of log message update tasks.
+    /// </summary>
+    private const DispatcherPriority LogViewUpdatePriority = DispatcherPriority.Background;
+
     private readonly List<ComboBoxItem> languageItems = new();
     private readonly List<(IPlayableVersion Version, ComboBoxItem Item)> versionItems = new();
 
     private readonly Dictionary<FilePrepareProgress, ProgressDisplayer> activeProgressDisplayers = new();
+
+    private string? lastAddedFirstGameOutputMessage;
 
     private bool dataContextReceived;
     private IThriveInstaller? installer;
@@ -82,6 +91,9 @@ public partial class MainWindow : Window
         dataContext.PlayMessages.CollectionChanged += (_, _) => OnPlayMessagesChanged(dataContext.PlayMessages);
         dataContext.InProgressPlayOperations.CollectionChanged +=
             (_, _) => OnPlayPopupProgressChanged(dataContext.InProgressPlayOperations);
+
+        dataContext.WhenAnyValue(d => d.ThriveOutputFirstPart).Subscribe(OnFirstPartOfOutputChanged);
+        dataContext.ThriveOutputLastPart.CollectionChanged += OnLastPartOfOutputChanged;
 
         // Intentionally left hanging around in the background
 #pragma warning disable CS4014
@@ -671,6 +683,115 @@ public partial class MainWindow : Window
         {
             toDelete.Value.Dispose();
             activeProgressDisplayers.Remove(toDelete.Key);
+        }
+    }
+
+    private void OnFirstPartOfOutputChanged(List<ThriveOutputMessage> thriveOutputMessages)
+    {
+        Dispatcher.UIThread.Post(() => HandleFirstPartOfOutputChanged(thriveOutputMessages), LogViewUpdatePriority);
+    }
+
+    private void HandleFirstPartOfOutputChanged(List<ThriveOutputMessage> thriveOutputMessages)
+    {
+        if (thriveOutputMessages.Count < 1)
+        {
+            FirstGameOutputContainer.Children.Clear();
+
+            return;
+        }
+
+        IBrush? errorBrush = null;
+
+        // Things can only be appended to the end, so ignore stuff until we find the point we previously handled
+        bool found = lastAddedFirstGameOutputMessage == null;
+        string? lastSeen = null;
+
+        foreach (var message in thriveOutputMessages)
+        {
+            if (found)
+            {
+                if (message.IsError && errorBrush == null)
+                {
+                    errorBrush = (IBrush?)Resources["GameErrorOutputColour"] ??
+                        throw new Exception("Unable to get error brush");
+                }
+
+                FirstGameOutputContainer.Children.Add(new TextBlock
+                {
+                    TextWrapping = TextWrapping.Wrap,
+                    Text = message.Message,
+                    Margin = new Thickness(0, 0, 0, 0),
+                    Foreground = message.IsError ? errorBrush : null,
+                });
+
+                lastSeen = message.Message;
+                continue;
+            }
+
+            if (ReferenceEquals(lastAddedFirstGameOutputMessage, message.Message))
+            {
+                found = true;
+            }
+        }
+
+        if (!found)
+            throw new Exception("Could not find spot to insert more game output messages");
+
+        if (lastSeen != null)
+            lastAddedFirstGameOutputMessage = lastSeen;
+
+        // TODO: somehow skip scrolling if user is holding the scrollbar or scrolled to a position that isn't the end
+        GameOutputScrollContainer.ScrollToEnd();
+    }
+
+    private void OnLastPartOfOutputChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        Dispatcher.UIThread.Post(() => HandleLastPartOfOutputChanged(e), LogViewUpdatePriority);
+    }
+
+    private void HandleLastPartOfOutputChanged(NotifyCollectionChangedEventArgs e)
+    {
+        IBrush? errorBrush = null;
+
+        switch (e.Action)
+        {
+            case NotifyCollectionChangedAction.Add:
+
+                var children = LastGameOutputContainer.Children;
+                int index = e.NewStartingIndex;
+
+                foreach (var newItem in e.NewItems ?? throw new Exception("New items expected"))
+                {
+                    if (newItem == null)
+                        continue;
+
+                    var message = (ThriveOutputMessage)newItem;
+
+                    if (message.IsError && errorBrush == null)
+                    {
+                        errorBrush = (IBrush?)Resources["GameErrorOutputColour"] ??
+                            throw new Exception("Unable to get error brush");
+                    }
+
+                    children.Insert(index++, new TextBlock
+                    {
+                        TextWrapping = TextWrapping.Wrap,
+                        Text = message.Message,
+                        Margin = new Thickness(0, 0, 0, 0),
+                        Foreground = message.IsError ? errorBrush : null,
+                    });
+                }
+
+                // TODO: see the TODO in HandleFirstPartOfOutputChanged
+                GameOutputScrollContainer.ScrollToEnd();
+
+                break;
+            case NotifyCollectionChangedAction.Remove:
+                LastGameOutputContainer.Children.RemoveRange(e.OldStartingIndex, e.OldItems?.Count ?? 1);
+                break;
+            case NotifyCollectionChangedAction.Reset:
+                LastGameOutputContainer.Children.Clear();
+                break;
         }
     }
 }

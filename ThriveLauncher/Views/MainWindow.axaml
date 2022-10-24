@@ -701,12 +701,13 @@
 
                 <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Name="PlayPrepareProgressContainer" />
 
-                <ScrollViewer Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6">
+                <ScrollViewer Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" Name="GameOutputScrollContainer">
                     <StackPanel>
-                        <StackPanel Name="GameOutputContainer">
-                            <TextBlock>Game output goes here</TextBlock>
-                        </StackPanel>
-                        <TextBlock Text="{i18n:Localize TruncatedGameOutputWarning}" TextWrapping="Wrap" IsVisible="{Binding ThriveOutputIsTruncated}" />
+                        <StackPanel Name="FirstGameOutputContainer" />
+                        <TextBlock Text="{i18n:Localize TruncatedGameOutputWarning}" TextWrapping="Wrap"
+                                   IsVisible="{Binding ThriveOutputIsTruncated}"
+                                   Foreground="{DynamicResource GameErrorOutput}" />
+                        <StackPanel Name="LastGameOutputContainer" />
                     </StackPanel>
 
                 </ScrollViewer>

@@ -31,6 +31,7 @@
         <Color x:Key="RadioButtonOuterEllipseFillPointerOver">#1dffff</Color>
         <Color x:Key="RadioButtonOuterEllipseCheckedFillPointerOver">#1fffff</Color>
         <Color x:Key="FriendlyRed">#d43a3a</Color>
+        <Color x:Key="GameErrorOutputColour">#d43a3a</Color>
         <Color x:Key="Danger">#801515</Color>
         <Color x:Key="DangerHover">#d46a6a</Color>
         <Color x:Key="DangerActive">#651212</Color>
@@ -43,6 +44,7 @@
         <Color x:Key="MainWindowBackgroundColour">#404040</Color>
         <SolidColorBrush x:Key="MainWindowBackground" Color="{DynamicResource MainWindowBackgroundColour}" />
         <SolidColorBrush x:Key="BackgroundDarkener" Color="Black" Opacity="0.75" />
+        <SolidColorBrush x:Key="GameErrorOutput" Color="{StaticResource GameErrorOutputColour}" />
         <LinearGradientBrush x:Key="FeedBackground" StartPoint="0%,0%" EndPoint="100%,100%">
             <GradientStop Offset="0" Color="{DynamicResource FeedBackgroundGradientStart}" />
             <GradientStop Offset="1" Color="{DynamicResource FeedBackgroundGradientEnd}" />
