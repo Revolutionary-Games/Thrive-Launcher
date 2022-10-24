@@ -1,6 +1,7 @@
 namespace LauncherBackend.Models;
 
 using System.Text.Json.Serialization;
+using Services;
 using SharedBase.Models;
 
 public class LauncherSettings
@@ -24,14 +25,14 @@ public class LauncherSettings
     [JsonPropertyName("storeVersionShowExternalVersions")]
     public bool StoreVersionShowExternalVersions { get; set; }
 
-    [JsonPropertyName("autoStartStoreVersion")]
-    public bool AutoStartStoreVersion { get; set; }
+    [JsonPropertyName("useStoreSeamlessMode")]
+    public bool EnableStoreVersionSeamlessMode { get; set; } = true;
 
     [JsonPropertyName("beginningKeptGameOutput")]
-    public int BeginningKeptGameOutput { get; set; } = 100;
+    public int BeginningKeptGameOutput { get; set; } = LauncherConstants.DefaultFirstLinesToKeepOfThriveOutput;
 
     [JsonPropertyName("lastKeptGameOutput")]
-    public int LastKeptGameOutput { get; set; } = 900;
+    public int LastKeptGameOutput { get; set; } = LauncherConstants.DefaultLastLinesToKeepOfThriveOutput;
 
     [JsonPropertyName("launcherLanguage")]
     public string? SelectedLauncherLanguage { get; set; }

@@ -14,6 +14,7 @@ public static class ServiceCollectionExtensions
             .AddSingleton<ILauncherPaths, LauncherPaths>()
             .AddSingleton<IThriveAndLauncherInfoRetriever, ThriveAndLauncherInfoRetriever>()
             .AddSingleton<IThriveInstaller, ThriveInstaller>()
-            .AddSingleton<IDevCenterClient, DevCenterClient>();
+            .AddSingleton<IDevCenterClient, DevCenterClient>()
+            .AddSingleton<IThriveRunner, ThriveRunner>();
     }
 }

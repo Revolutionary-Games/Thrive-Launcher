@@ -34,6 +34,9 @@ public static class LauncherConstants
 
     public const int FeedExcerptLength = 450;
 
+    public const int DefaultFirstLinesToKeepOfThriveOutput = 100;
+    public const int DefaultLastLinesToKeepOfThriveOutput = 900;
+
     // URLs to our resources
     public const string MainSiteURL = "https://revolutionarygamesstudio.com";
     public const string DevelopmentForumsURL = "https://forum.revolutionarygamesstudio.com/";
@@ -54,6 +57,9 @@ public static class LauncherConstants
     public const string TwitterProfileURL = "https://twitter.com/thrive_game";
     public const string LauncherDownloadsPageURL = "https://github.com/Revolutionary-Games/Thrive-Launcher/releases";
     public const string LauncherLinkingInstructionsURL = "https://wiki.revolutionarygamesstudio.com/wiki/Linking_the_Launcher";
+
+    public const string StartOfUnhandledExceptionLogging = "------------ Begin of Unhandled Exception";
+    public const string EndOfUnhandledExceptionLogging = "------------  End of Unhandled Exception";
 
     public static readonly string ModeSuffix = Mode switch
     {
@@ -109,40 +115,22 @@ public static class LauncherConstants
     public static readonly Regex YoutubeURLRegex = new(@"^http.*youtube.com\/.*embed\/(\w+)\?.*",
         RegexOptions.Multiline | RegexOptions.IgnoreCase);
 
-    // TODO: may of the following TimeSpans won't matter in the launcher 2.0 version
-
-    /// <summary>
-    ///   Time to wait before handling an error signal to allow time for exit signal, which is much more useful for
-    ///   subprocess handling.
-    /// </summary>
-    public static readonly TimeSpan MaxDelayBetweenExitAfterErrorSignal = TimeSpan.FromMilliseconds(150);
-
     /// <summary>
     ///   Time to wait before closing the launcher after auto launch to detect if the game immediately crashed.
     /// </summary>
     public static readonly TimeSpan CloseDelayAfterAutoStart = TimeSpan.FromMilliseconds(350);
 
     /// <summary>
-    ///   Time that the game must have run to auto close without error
+    ///   How long Thrive must have ran to not show the game start failure advice
     /// </summary>
-    public static readonly TimeSpan AutoCloseMinimumGameDuration = TimeSpan.FromMilliseconds(1200);
+    public static readonly TimeSpan RequiredRuntimeBeforeGameStartAdviceDisappears = TimeSpan.FromSeconds(9);
 
     /// <summary>
     ///   Time before hiding the launcher when starting the game
     /// </summary>
     public static readonly TimeSpan MinimizeDelayAfterGameStart = TimeSpan.FromMilliseconds(200);
 
-    /// <summary>
-    ///   Time to check that the game process has properly launched, and hasn't suddenly died
-    /// </summary>
-    public static readonly TimeSpan CheckLauncherProcessIsRunningDelay = TimeSpan.FromMilliseconds(750);
-
-    // Time in milliseconds to wait once the game has exited for last log messages to arrive
-    // before doing post game actions. Doesn't seem to actually help if the game immediately
-    // crashed...
-    public static readonly TimeSpan WaitLogsAfterGameClose = TimeSpan.FromMilliseconds(100);
-
-    // TODO: implement a script to fetch test version data and a variable to configure loading it
+    public static readonly TimeSpan RestoreDelayAfterGameEnd = TimeSpan.FromMilliseconds(500);
 
     /// <summary>
     ///   Configures the launcher URL connection modes

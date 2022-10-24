@@ -208,7 +208,7 @@
       <value>Close Launcher After Starting the Game</value>
   </data>
   <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
-      <value>Allow Seamless Launcher Mode</value>
+      <value>Allow Seamless Launcher Mode (launcher doesn't show itself before starting Thrive)</value>
   </data>
   <data name="LauncherOptionAutoUpdate" xml:space="preserve">
       <value>Automatically update the launcher</value>
@@ -583,6 +583,9 @@ Launcher logs will have more info.</value>
   <data name="ThriveRunCanceled" xml:space="preserve">
     <value>Running Thrive was canceled</value>
   </data>
+  <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
+    <value>Playing an unsafe build was canceled</value>
+  </data>
   <data name="ThriveRunError" xml:space="preserve">
     <value>Thrive failed to run due to the following error: {0}</value>
   </data>
@@ -597,6 +600,15 @@ Launcher logs will have more info.</value>
   </data>
   <data name="DownloadError" xml:space="preserve">
     <value>Download failed because of {0}</value>
+  </data>
+  <data name="ExtractError" xml:space="preserve">
+    <value>Failed to extract an archive due to error: {0}</value>
+  </data>
+  <data name="MissingThriveFolderError" xml:space="preserve">
+    <value>Thrive folder should exist at {0} but doesn't</value>
+  </data>
+  <data name="MissingThriveExecutableError" xml:space="preserve">
+    <value>Unable to find Thrive executable in folder at {0}, please either verify the game files or delete the version to re-download it.</value>
   </data>
   <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
     <value>Version installation or checking installer version failed, see below for details.</value>
@@ -621,5 +633,23 @@ Launcher logs will have more info.</value>
   </data>
   <data name="ProcessingStateItemProgress" xml:space="preserve">
     <value>Processing {0}</value>
+  </data>
+  <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
+    <value>Error: child process has already ended, launcher window will not be closed</value>
+  </data>
+  <data name="TruncatedGameOutputWarning" xml:space="preserve">
+    <value>Output is too long, it was truncated! See the Thrive log file for full output.</value>
+  </data>
+  <data name="ThriveIsStarting" xml:space="preserve">
+    <value>Thrive is starting. Game log output:</value>
+  </data>
+  <data name="ReportCrashButton" xml:space="preserve">
+    <value>Report Crash</value>
+  </data>
+  <data name="ExtraThriveStartFlags" xml:space="preserve">
+    <value>Thrive is being started with extra flags passed as command line arguments to the launcher, these may make Thrive behave in an unexpected way: {0}</value>
+  </data>
+  <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
+    <value>This tab lists externally installed versions. This is a store version of Thrive that includes a bundled (latest) game version. You can enable showing available external versions on the version selector dropdown in the launcher options. Once downloaded those versions show up here.</value>
   </data>
 </root>

@@ -591,7 +591,7 @@ public partial class MainWindowViewModel
         this.RaisePropertyChanged(nameof(CloseLauncherAfterGameExit));
         this.RaisePropertyChanged(nameof(CloseLauncherOnGameStart));
         this.RaisePropertyChanged(nameof(StoreVersionShowExternalVersions));
-        this.RaisePropertyChanged(nameof(AutoStartStoreVersion));
+        this.RaisePropertyChanged(nameof(EnableStoreVersionSeamlessMode));
         this.RaisePropertyChanged(nameof(SelectedLauncherLanguage));
         this.RaisePropertyChanged(nameof(ThriveInstallationPath));
         this.RaisePropertyChanged(nameof(DehydratedCacheFolder));

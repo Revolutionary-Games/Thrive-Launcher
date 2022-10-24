@@ -106,16 +106,16 @@ public partial class MainWindowViewModel
         }
     }
 
-    public bool AutoStartStoreVersion
+    public bool EnableStoreVersionSeamlessMode
     {
-        get => Settings.AutoStartStoreVersion;
+        get => Settings.EnableStoreVersionSeamlessMode;
         set
         {
-            if (Settings.AutoStartStoreVersion == value)
+            if (Settings.EnableStoreVersionSeamlessMode == value)
                 return;
 
             this.RaisePropertyChanging();
-            Settings.AutoStartStoreVersion = value;
+            Settings.EnableStoreVersionSeamlessMode = value;
             this.RaisePropertyChanged();
         }
     }

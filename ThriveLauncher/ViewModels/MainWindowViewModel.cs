@@ -28,6 +28,8 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly IThriveAndLauncherInfoRetriever launcherInfoRetriever;
     private readonly IThriveInstaller thriveInstaller;
     private readonly IDevCenterClient devCenterClient;
+    private readonly IThriveRunner thriveRunner;
+    private readonly ILauncherOptions launcherOptions;
 
     private readonly Dictionary<string, CultureInfo> availableLanguages;
     private readonly StoreVersionInfo detectedStore;
@@ -64,8 +66,8 @@ public partial class MainWindowViewModel : ViewModelBase
     public MainWindowViewModel(ILogger<MainWindowViewModel> logger, ILauncherFeeds launcherFeeds,
         IStoreVersionDetector storeInfo, ILauncherSettingsManager settingsManager, VersionUtilities versionUtilities,
         ILauncherPaths launcherPaths, IThriveAndLauncherInfoRetriever launcherInfoRetriever,
-        IThriveInstaller thriveInstaller, IDevCenterClient devCenterClient,
-        bool allowTaskStarts = true)
+        IThriveInstaller thriveInstaller, IDevCenterClient devCenterClient, IThriveRunner thriveRunner,
+        ILauncherOptions launcherOptions, bool allowTaskStarts = true)
     {
         this.logger = logger;
         this.launcherFeeds = launcherFeeds;
@@ -76,6 +78,8 @@ public partial class MainWindowViewModel : ViewModelBase
         this.launcherInfoRetriever = launcherInfoRetriever;
         this.thriveInstaller = thriveInstaller;
         this.devCenterClient = devCenterClient;
+        this.thriveRunner = thriveRunner;
+        this.launcherOptions = launcherOptions;
 
         availableLanguages = Languages.GetAvailableLanguages();
 
@@ -125,7 +129,9 @@ public partial class MainWindowViewModel : ViewModelBase
         DesignTimeServices.Services.GetRequiredService<ILauncherPaths>(),
         DesignTimeServices.Services.GetRequiredService<IThriveAndLauncherInfoRetriever>(),
         DesignTimeServices.Services.GetRequiredService<IThriveInstaller>(),
-        DesignTimeServices.Services.GetRequiredService<IDevCenterClient>(), false)
+        DesignTimeServices.Services.GetRequiredService<IDevCenterClient>(),
+        DesignTimeServices.Services.GetRequiredService<IThriveRunner>(),
+        DesignTimeServices.Services.GetRequiredService<ILauncherOptions>(), false)
     {
         languagePlaceHolderIfNotSelected = string.Empty;
     }
@@ -574,6 +580,9 @@ public partial class MainWindowViewModel : ViewModelBase
         if (detectedStore.IsStoreVersion)
         {
             logger.LogDebug("We are a store version, not checking launcher updates");
+
+            // TODO: though for manual itch downloads, those don't get updated, but we likely can't check that in
+            // any easy way
             return;
         }
 
@@ -614,7 +623,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
             bool autoUpdateStarted = false;
 
-            if (AllowAutoUpdate)
+            if (AllowAutoUpdate && !launcherOptions.SkipAutoUpdate)
             {
                 // TODO: trigger auto-update
                 logger.LogInformation("Trying to trigger auto-update");

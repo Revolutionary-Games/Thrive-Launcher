@@ -1083,6 +1083,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string PlayingUnsafeBuildWasCanceled {
+            get {
+                return ResourceManager.GetString("PlayingUnsafeBuildWasCanceled", resourceCulture);
+            }
+        }
+        
         public static string ThriveRunError {
             get {
                 return ResourceManager.GetString("ThriveRunError", resourceCulture);
@@ -1110,6 +1116,24 @@ namespace ThriveLauncher.Properties {
         public static string DownloadError {
             get {
                 return ResourceManager.GetString("DownloadError", resourceCulture);
+            }
+        }
+        
+        public static string ExtractError {
+            get {
+                return ResourceManager.GetString("ExtractError", resourceCulture);
+            }
+        }
+        
+        public static string MissingThriveFolderError {
+            get {
+                return ResourceManager.GetString("MissingThriveFolderError", resourceCulture);
+            }
+        }
+        
+        public static string MissingThriveExecutableError {
+            get {
+                return ResourceManager.GetString("MissingThriveExecutableError", resourceCulture);
             }
         }
         
@@ -1158,6 +1182,42 @@ namespace ThriveLauncher.Properties {
         public static string ProcessingStateItemProgress {
             get {
                 return ResourceManager.GetString("ProcessingStateItemProgress", resourceCulture);
+            }
+        }
+        
+        public static string ThriveLaunchFailurePreventedAutoClose {
+            get {
+                return ResourceManager.GetString("ThriveLaunchFailurePreventedAutoClose", resourceCulture);
+            }
+        }
+        
+        public static string TruncatedGameOutputWarning {
+            get {
+                return ResourceManager.GetString("TruncatedGameOutputWarning", resourceCulture);
+            }
+        }
+        
+        public static string ThriveIsStarting {
+            get {
+                return ResourceManager.GetString("ThriveIsStarting", resourceCulture);
+            }
+        }
+        
+        public static string ReportCrashButton {
+            get {
+                return ResourceManager.GetString("ReportCrashButton", resourceCulture);
+            }
+        }
+        
+        public static string ExtraThriveStartFlags {
+            get {
+                return ResourceManager.GetString("ExtraThriveStartFlags", resourceCulture);
+            }
+        }
+        
+        public static string StoreVersionExternalVersionsNote {
+            get {
+                return ResourceManager.GetString("StoreVersionExternalVersionsNote", resourceCulture);
             }
         }
     }

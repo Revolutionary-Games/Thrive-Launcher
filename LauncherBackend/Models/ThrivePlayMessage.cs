@@ -25,6 +25,26 @@ public class ThrivePlayMessage
         ///   Extraction failed, is given one parameter with the error
         /// </summary>
         ExtractionFailed,
+
+        /// <summary>
+        ///   Running failed due to missing folder, is given one parameter with the problematic folder
+        /// </summary>
+        MissingThriveFolder,
+
+        /// <summary>
+        ///   Running failed due to missing Thrive executable, is given one parameter with the problematic folder
+        /// </summary>
+        MissingThriveExecutable,
+
+        /// <summary>
+        ///   Thrive is starting, no parameters
+        /// </summary>
+        StartingThrive,
+
+        /// <summary>
+        ///   Thrive is configured with extra flags, is given one parameter with the extra flags
+        /// </summary>
+        ExtraStartFlags,
     }
 
     public ThrivePlayMessage(Type type, params object?[] arguments)

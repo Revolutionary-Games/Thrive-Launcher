@@ -11,7 +11,8 @@
         x:Class="ThriveLauncher.Views.MainWindow"
         Icon="/Assets/Icons/icon.ico"
         Title="{i18n:Localize MainWindowTitle}"
-        FontFamily="{StaticResource Lato}">
+        FontFamily="{StaticResource Lato}"
+        Background="{DynamicResource MainWindowBackground}">
 
     <Design.DataContext>
         <vm:MainWindowViewModel />
@@ -154,7 +155,7 @@
                         Content="{i18n:Localize ExternalLinkPatreon}"
                         Command="{Binding OpenThrivePatreonLink}" />
                 <Button Grid.Column="0" Grid.Row="6" Classes="TextLink"
-                        IsVisible="{Binding ShowLinksNotInSteamVersion}"
+                        IsVisible="{Binding !IsStoreVersion}"
                         Content="{i18n:Localize ExternalLinkDonate}"
                         Command="{Binding OpenDonateLink}" />
                 <Button Grid.Column="0" Grid.Row="7" Classes="TextLink"
@@ -239,7 +240,7 @@
                             <CheckBox IsChecked="{Binding CloseLauncherOnGameStart}"
                                       Content="{i18n:Localize LauncherOptionCloseAfterStart}" />
 
-                            <CheckBox IsChecked="{Binding AutoStartStoreVersion}"
+                            <CheckBox IsChecked="{Binding EnableStoreVersionSeamlessMode}"
                                       IsVisible="{Binding IsStoreVersion}"
                                       Content="{i18n:Localize LauncherOptionAllowSeamlessMode}" />
 
@@ -272,6 +273,8 @@
                     </TabItem>
                     <TabItem Header="{i18n:Localize InstalledVersions}">
                         <DockPanel LastChildFill="True">
+                            <TextBlock DockPanel.Dock="Top" IsVisible="{Binding IsStoreVersion}"
+                                       Text="{i18n:Localize StoreVersionExternalVersionsNote}" TextWrapping="Wrap" />
                             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="2">
                                 <Button Classes="DialogButton" Content="{i18n:Localize BrowseInstalledFiles}"
                                         Command="{Binding OpenFileBrowserToInstalled}" />
@@ -323,6 +326,7 @@
                                         ToolTip.Tip="{i18n:Localize ClearTemporaryLocation}" />
                             </StackPanel>
 
+                            <!-- TODO: launcher 1.0 hid these options in the Steam store mode, should we still hide these? -->
                             <Border Grid.Row="5" Margin="0 3" Padding="0" BorderThickness="1"
                                     BorderBrush="{DynamicResource BlueElement}" />
                             <WrapPanel Grid.Row="6" Orientation="Horizontal" Margin="0 0 0 5">
@@ -691,24 +695,43 @@
                   RowDefinitions="Auto,Auto,Auto,*,Auto,Auto">
                 <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Text="{Binding PlayPopupTopMessage}"
                            IsVisible="{Binding PlayPopupTopMessage,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                           TextWrapping="Wrap"/>
+                           TextWrapping="Wrap" />
 
                 <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Name="PlayPrepareMessageContainer" />
 
                 <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Name="PlayPrepareProgressContainer" />
 
                 <ScrollViewer Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6">
-                    <StackPanel Name="GameOutputContainer">
-                        <TextBlock>Game output goes here</TextBlock>
+                    <StackPanel>
+                        <StackPanel Name="GameOutputContainer">
+                            <TextBlock>Game output goes here</TextBlock>
+                        </StackPanel>
+                        <TextBlock Text="{i18n:Localize TruncatedGameOutputWarning}" TextWrapping="Wrap" IsVisible="{Binding ThriveOutputIsTruncated}" />
                     </StackPanel>
+
                 </ScrollViewer>
 
                 <Button Grid.Row="4" Grid.Column="1" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
                         IsVisible="{Binding ShowCloseButtonOnPlayPopup}"
                         Content="{i18n:Localize CloseButton}" />
+
+                <!-- TODO: implement -->
+                <Button Grid.Row="4" Grid.Column="2" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
+                        IsVisible="False"
+                        Content="{i18n:Localize ReportCrashButton}" />
+
+                <!-- TODO: copy icon and implement copying to clipboard -->
+                <!--<Button Grid.Row="4" Grid.Column="3" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
+                        IsVisible="False"
+                        Content="{i18n:Localize ReportCrashButton}" />-->
+                <!-- TODO: whatever this button was supposed to be...-->
+                <Button Grid.Row="4" Grid.Column="4" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
+                        IsVisible="False"
+                        Content="{i18n:Localize ReportCrashButton}" />
+
                 <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="6" Text="{Binding PlayPopupBottomMessage}"
                            IsVisible="{Binding PlayPopupBottomMessage,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                           TextWrapping="Wrap"/>
+                           TextWrapping="Wrap" />
             </Grid>
         </controls:PopupDialog>
 

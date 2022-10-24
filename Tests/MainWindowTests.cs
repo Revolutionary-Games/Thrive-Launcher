@@ -50,7 +50,9 @@ public class MainWindowTests
     {
         var viewCreator = new MainWindowViewModelFactory(logger);
         viewCreator.StoreMock.Setup(store => store.Detect())
-            .Returns(new StoreVersionInfo(StoreVersionInfo.SteamInternalName, "Steam")).Verifiable();
+            .Returns(
+                new StoreVersionInfo(StoreVersionInfo.SteamInternalName, "Steam", LauncherConstants.ThriveSteamURL))
+            .Verifiable();
 
         var viewModel = viewCreator.Create();
 

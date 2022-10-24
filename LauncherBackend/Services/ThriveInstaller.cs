@@ -52,7 +52,7 @@ public class ThriveInstaller : IThriveInstaller
     public ObservableCollection<ThrivePlayMessage> InstallerMessages { get; } = new();
     public ObservableCollection<FilePrepareProgress> InProgressOperations { get; } = new();
 
-    private string BaseInstallFolder => !string.IsNullOrEmpty(settingsManager.Settings.ThriveInstallationPath) ?
+    public string BaseInstallFolder => !string.IsNullOrEmpty(settingsManager.Settings.ThriveInstallationPath) ?
         settingsManager.Settings.ThriveInstallationPath :
         launcherPaths.PathToDefaultThriveInstallFolder;
 
@@ -272,6 +272,8 @@ public class ThriveInstaller : IThriveInstaller
         }
         else
         {
+            Directory.CreateDirectory(BaseInstallFolder);
+
             // We need to download and extract the Thrive version
             InstallerMessages.Add(new ThrivePlayMessage(ThrivePlayMessage.Type.Downloading,
                 playableVersion.FolderName));
@@ -479,6 +481,8 @@ public class ThriveInstaller : IThriveInstaller
 
         logger.LogInformation("Beginning extraction of {TempFile} to {FinalFolder}", tempFile, finalFolder);
 
+        Directory.CreateDirectory(BaseInstallFolder);
+
         var temporaryFolder = Path.Join(BaseInstallFolder, LauncherConstants.TemporaryExtractedFolderName);
 
         logger.LogDebug("Temporary extract folder is: {TemporaryFolder}", temporaryFolder);
@@ -562,8 +566,11 @@ public class ThriveInstaller : IThriveInstaller
         FilePrepareProgress operationProgress, string hashToVerify, HashAlgorithm hasher,
         CancellationToken cancellationToken)
     {
-        // TODO: allow retrying partial downloads with a byte offset
+        // TODO: allow retrying partial downloads with a byte offset, when retrying we should make sure the
+        // downloadUrl matches what it was before (because for example all DevBuilds use the same filename so
+        // interrupted DevBuild download when a different build was selected could cause issues)
 
+        Directory.CreateDirectory(BaseTempFolder);
         var finalFile = Path.Join(BaseTempFolder, temporaryFileName);
 
         if (File.Exists(finalFile))
@@ -583,6 +590,22 @@ public class ThriveInstaller : IThriveInstaller
                 cancellationToken);
 
             response.EnsureSuccessStatusCode();
+
+            // Check that we don't accidentally try to unzip a html response
+            if (response.Headers.TryGetValues("Content-Type", out var contentTypeValues))
+            {
+                var contentType = contentTypeValues.FirstOrDefault();
+
+                if (contentType != null)
+                {
+                    if (contentType.Contains("text") || contentType.Contains("html"))
+                    {
+                        throw new Exception(
+                            $"Expected non-text (and non-html) response from server, got type: {contentType}");
+                    }
+                }
+            }
+
             var length = response.Content.Headers.ContentLength;
 
             long downloadedBytes = 0;
@@ -769,4 +792,6 @@ public interface IThriveInstaller
     ///   Progress reporting for the current installation process
     /// </summary>
     public ObservableCollection<FilePrepareProgress> InProgressOperations { get; }
+
+    public string BaseInstallFolder { get; }
 }

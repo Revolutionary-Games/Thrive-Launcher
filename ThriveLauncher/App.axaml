@@ -40,6 +40,8 @@
         <Color x:Key="TextLinkHover">#56a7bf</Color>
         <Color x:Key="MenuBackground">#ff444444</Color>
         <Color x:Key="MenuBackgroundEnd">#aa444444</Color>
+        <Color x:Key="MainWindowBackgroundColour">#404040</Color>
+        <SolidColorBrush x:Key="MainWindowBackground" Color="{DynamicResource MainWindowBackgroundColour}" />
         <SolidColorBrush x:Key="BackgroundDarkener" Color="Black" Opacity="0.75" />
         <LinearGradientBrush x:Key="FeedBackground" StartPoint="0%,0%" EndPoint="100%,100%">
             <GradientStop Offset="0" Color="{DynamicResource FeedBackgroundGradientStart}" />

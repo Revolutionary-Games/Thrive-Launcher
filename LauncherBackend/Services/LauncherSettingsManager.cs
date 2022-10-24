@@ -119,7 +119,6 @@ public class LauncherSettingsManager : ILauncherSettingsManager
         target.CloseLauncherAfterGameExit = old.CloseLauncherAfterGameExit;
         target.CloseLauncherOnGameStart = old.CloseLauncherOnGameStart;
         target.StoreVersionShowExternalVersions = old.StoreVersionShowExternalVersions;
-        target.AutoStartStoreVersion = old.AutoStartStoreVersion;
         target.BeginningKeptGameOutput = old.BeginningKeptGameOutput;
         target.LastKeptGameOutput = old.LastKeptGameOutput;
         target.ThriveInstallationPath = old.ThriveInstallationPath;
