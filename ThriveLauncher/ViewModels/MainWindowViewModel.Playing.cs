@@ -72,11 +72,7 @@ public partial class MainWindowViewModel
 
             if (!value)
             {
-                logger.LogDebug($"{nameof(ThriveIsRunning)} is set to false");
-                ShowCloseButtonOnPlayPopup = true;
-
-                // We don't want to block here waiting for this
-                _ = CheckLauncherUnHide();
+                OnPlayingEnded();
             }
         }
     }
@@ -115,11 +111,7 @@ public partial class MainWindowViewModel
 
     public ObservableCollection<FilePrepareProgress> InProgressPlayOperations { get; } = new();
 
-    public List<ThriveOutputMessage> ThriveOutputFirstPart
-    {
-        get => thriveOutputFirstPart;
-        private set => this.RaiseAndSetIfChanged(ref thriveOutputFirstPart, value);
-    }
+    public ObservableCollection<ThriveOutputMessage> ThriveOutputFirstPart { get; } = new();
 
     public bool ThriveOutputIsTruncated
     {
@@ -170,6 +162,8 @@ public partial class MainWindowViewModel
 
         logger.LogInformation("Starting playing Thrive {VersionName}", version.VersionName);
         PlayingThrivePopupTitle = string.Format(Resources.PlayingTitle, version.VersionName);
+        PlayPopupTopMessage = string.Empty;
+        PlayPopupBottomMessage = string.Empty;
         CurrentlyPlaying = true;
         ShowCloseButtonOnPlayPopup = false;
 
@@ -360,6 +354,36 @@ public partial class MainWindowViewModel
         });
     }
 
+    private void OnPlayingEnded()
+    {
+        logger.LogDebug("Thrive is no longer running, reported to view model");
+
+        Dispatcher.UIThread.Post(() =>
+        {
+            ShowCloseButtonOnPlayPopup = true;
+            CanCancelPlaying = true;
+
+            // We don't want to block here waiting for this
+            _ = CheckLauncherUnHide();
+
+            // Update bottom advice tip if there's something to show
+            if (thriveRunner.ActiveErrorSuggestion != null)
+            {
+                switch (thriveRunner.ActiveErrorSuggestion.Value)
+                {
+                    case ErrorSuggestionType.MissingDll:
+                        PlayPopupBottomMessage = Resources.ErrorSuggestionForMissingDll;
+                        break;
+                    case ErrorSuggestionType.ExitedQuickly:
+                        PlayPopupBottomMessage = Resources.ErrorSuggestionForStartupFailure;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        });
+    }
+
     private void RegisterInstallerMessageForwarders()
     {
         thriveInstaller.InstallerMessages.CollectionChanged += (_, _) =>
@@ -392,7 +416,7 @@ public partial class MainWindowViewModel
             switch (args.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    InProgressPlayOperations.AddOrInsertRange((IEnumerable<FilePrepareProgress>)args.NewItems!,
+                    InProgressPlayOperations.AddOrInsertRange(args.NewItems!.Cast<FilePrepareProgress>(),
                         args.NewStartingIndex);
 
                     break;
@@ -459,19 +483,22 @@ public partial class MainWindowViewModel
                 return;
             }
 
-            switch (args.Action)
+            // We don't want to create duplicate lists of this as this may be a bit big so instead we lock to
+            // make sure the read and write to the object happen sensibly
+            lock (ThriveOutputFirstPart)
             {
-                case NotifyCollectionChangedAction.Add:
-                    ThriveOutputFirstPart.AddOrInsertRange((IEnumerable<ThriveOutputMessage>)args.NewItems!,
-                        args.NewStartingIndex);
+                switch (args.Action)
+                {
+                    case NotifyCollectionChangedAction.Add:
+                        ThriveOutputFirstPart.AddOrInsertRange(args.NewItems!.Cast<ThriveOutputMessage>(),
+                            args.NewStartingIndex);
 
-                    break;
-                case NotifyCollectionChangedAction.Reset:
-                    ThriveOutputFirstPart.Clear();
-                    break;
+                        break;
+                    case NotifyCollectionChangedAction.Reset:
+                        ThriveOutputFirstPart.Clear();
+                        break;
+                }
             }
-
-            this.RaisePropertyChanged(nameof(ThriveOutputFirstPart));
         };
 
         // The second part of messages is exposed as the original object as whoever handles that should take
@@ -542,6 +569,9 @@ public partial class MainWindowViewModel
 
     private async Task CheckLauncherUnHide()
     {
+        if (!settingsManager.Settings.HideLauncherOnPlay)
+            return;
+
         // We have no relevant cancellation token here
         // ReSharper disable once MethodSupportsCancellation
         await Task.Delay(LauncherConstants.RestoreDelayAfterGameEnd);

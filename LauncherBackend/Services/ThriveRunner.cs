@@ -57,6 +57,7 @@ public class ThriveRunner : IThriveRunner
 
     public string? LDPreload { get; set; }
     public IList<string>? ExtraThriveStartFlags { get; set; }
+    public ErrorSuggestionType? ActiveErrorSuggestion { get; private set; }
 
     public void StartThrive(IPlayableVersion version, CancellationToken cancellationToken)
     {
@@ -69,6 +70,7 @@ public class ThriveRunner : IThriveRunner
         DetectedFullLogFileLocation = null;
         readingUnhandledException = false;
         unhandledException = null;
+        ActiveErrorSuggestion = null;
 
         // Update our copy of the settings variables
         firstLinesToKeep = settingsManager.Settings.BeginningKeptGameOutput;
@@ -182,7 +184,6 @@ public class ThriveRunner : IThriveRunner
         catch (Exception e)
         {
             logger.LogError(e, "Thrive failed to run");
-            OnErrorOutput($"Running Thrive has failed with exception: {e}");
 
             OnThriveExited(workingDirectory, null, e, version, runTime.Elapsed);
             return;
@@ -239,8 +240,6 @@ public class ThriveRunner : IThriveRunner
     private void OnThriveExited(string thriveFolder, int? exitCode, Exception? runFailException,
         IPlayableVersion version, TimeSpan elapsed)
     {
-        runningObservable.Value = false;
-
         if (exitCode != null)
         {
             OnNormalOutput($"Child process exited with code {exitCode}");
@@ -250,8 +249,13 @@ public class ThriveRunner : IThriveRunner
         {
             logger.LogInformation("Thrive only ran for: {Elapsed}, showing startup fail advice", elapsed);
 
-            // TODO:
-            throw new NotImplementedException();
+            ActiveErrorSuggestion = ErrorSuggestionType.ExitedQuickly;
+        }
+
+        // TODO: this constant might be totally wrong now
+        if (exitCode == -1073741515)
+        {
+            ActiveErrorSuggestion = ErrorSuggestionType.MissingDll;
         }
 
         // TODO: variable to detect unhandled exceptions being printed
@@ -259,28 +263,33 @@ public class ThriveRunner : IThriveRunner
         {
             logger.LogDebug("Thrive exited successfully");
             OnNormalOutput("Thrive has exited normally (exit code 0).");
-            return;
         }
-
-        logger.LogWarning("Thrive didn't run successfully (crashed or another problem occurred)");
-        OnNormalOutput("Thrive exited abnormally with an error");
-
-        if (runFailException != null)
+        else
         {
-            OnNormalOutput($"Child process run failed with exception: {runFailException.Message}");
-            logger.LogInformation(runFailException, "Thrive failed to run due to an exception");
+            logger.LogWarning("Thrive didn't run successfully (crashed or another problem occurred)");
+            OnNormalOutput("Thrive exited abnormally with an error");
+
+            if (runFailException != null)
+            {
+                OnErrorOutput($"Running Thrive has failed with exception: {runFailException.Message}");
+                logger.LogInformation(runFailException, "Thrive failed to run due to an exception");
+            }
+            else if (unhandledException != null)
+            {
+                // TODO: implement reporting unhandled exceptions as crashes
+                return;
+            }
+            else
+            {
+                // Detect crash dumps
+                // HasReportableCrash = true;
+
+                throw new NotImplementedException();
+            }
         }
 
-        if (unhandledException != null)
-        {
-            // TODO: implement reporting unhandled exceptions as crashes
-            return;
-        }
-
-        // Detect crash dumps
-        // HasReportableCrash = true;
-
-        throw new NotImplementedException();
+        // This is set at the end to allow the handler to inspect the error conditions
+        runningObservable.Value = false;
     }
 
     private void AddLogLine(string line, bool error)
@@ -442,4 +451,6 @@ public interface IThriveRunner
     ///   Extra flags to pass to Thrive when starting
     /// </summary>
     public IList<string>? ExtraThriveStartFlags { get; set; }
+
+    public ErrorSuggestionType? ActiveErrorSuggestion { get; }
 }

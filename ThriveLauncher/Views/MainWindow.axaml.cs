@@ -92,7 +92,8 @@ public partial class MainWindow : Window
         dataContext.InProgressPlayOperations.CollectionChanged +=
             (_, _) => OnPlayPopupProgressChanged(dataContext.InProgressPlayOperations);
 
-        dataContext.WhenAnyValue(d => d.ThriveOutputFirstPart).Subscribe(OnFirstPartOfOutputChanged);
+        dataContext.ThriveOutputFirstPart.CollectionChanged +=
+            (_, _) => OnFirstPartOfOutputChanged(dataContext.ThriveOutputFirstPart);
         dataContext.ThriveOutputLastPart.CollectionChanged += OnLastPartOfOutputChanged;
 
         // Intentionally left hanging around in the background
@@ -686,51 +687,54 @@ public partial class MainWindow : Window
         }
     }
 
-    private void OnFirstPartOfOutputChanged(List<ThriveOutputMessage> thriveOutputMessages)
+    private void OnFirstPartOfOutputChanged(ObservableCollection<ThriveOutputMessage> thriveOutputMessages)
     {
         Dispatcher.UIThread.Post(() => HandleFirstPartOfOutputChanged(thriveOutputMessages), LogViewUpdatePriority);
     }
 
-    private void HandleFirstPartOfOutputChanged(List<ThriveOutputMessage> thriveOutputMessages)
+    private void HandleFirstPartOfOutputChanged(ObservableCollection<ThriveOutputMessage> thriveOutputMessages)
     {
-        if (thriveOutputMessages.Count < 1)
-        {
-            FirstGameOutputContainer.Children.Clear();
-
-            return;
-        }
-
-        IBrush? errorBrush = null;
-
-        // Things can only be appended to the end, so ignore stuff until we find the point we previously handled
         bool found = lastAddedFirstGameOutputMessage == null;
         string? lastSeen = null;
 
-        foreach (var message in thriveOutputMessages)
+        lock (thriveOutputMessages)
         {
-            if (found)
+            if (thriveOutputMessages.Count < 1)
             {
-                if (message.IsError && errorBrush == null)
-                {
-                    errorBrush = (IBrush?)Resources["GameErrorOutputColour"] ??
-                        throw new Exception("Unable to get error brush");
-                }
-
-                FirstGameOutputContainer.Children.Add(new TextBlock
-                {
-                    TextWrapping = TextWrapping.Wrap,
-                    Text = message.Message,
-                    Margin = new Thickness(0, 0, 0, 0),
-                    Foreground = message.IsError ? errorBrush : null,
-                });
-
-                lastSeen = message.Message;
-                continue;
+                FirstGameOutputContainer.Children.Clear();
+                lastAddedFirstGameOutputMessage = null;
+                return;
             }
 
-            if (ReferenceEquals(lastAddedFirstGameOutputMessage, message.Message))
+            IBrush? errorBrush = null;
+
+            // Things can only be appended to the end, so ignore stuff until we find the point we previously handled
+            foreach (var message in thriveOutputMessages)
             {
-                found = true;
+                if (found)
+                {
+                    if (message.IsError && errorBrush == null)
+                    {
+                        errorBrush = (IBrush?)Application.Current?.Resources["GameErrorOutput"] ??
+                            throw new Exception("Unable to get error brush");
+                    }
+
+                    FirstGameOutputContainer.Children.Add(new TextBlock
+                    {
+                        TextWrapping = TextWrapping.Wrap,
+                        Text = message.Message,
+                        Margin = new Thickness(0, 0, 0, 0),
+                        Foreground = message.IsError ? errorBrush : null,
+                    });
+
+                    lastSeen = message.Message;
+                    continue;
+                }
+
+                if (ReferenceEquals(lastAddedFirstGameOutputMessage, message.Message))
+                {
+                    found = true;
+                }
             }
         }
 
@@ -769,7 +773,7 @@ public partial class MainWindow : Window
 
                     if (message.IsError && errorBrush == null)
                     {
-                        errorBrush = (IBrush?)Resources["GameErrorOutputColour"] ??
+                        errorBrush = (IBrush?)Application.Current?.Resources["GameErrorOutput"] ??
                             throw new Exception("Unable to get error brush");
                     }
 
