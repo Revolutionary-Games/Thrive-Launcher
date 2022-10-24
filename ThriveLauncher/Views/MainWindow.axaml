@@ -691,7 +691,7 @@
         <controls:PopupDialog Title="{Binding PlayingThrivePopupTitle}" ShowOKButton="False"
                               ShowCloseX="{Binding CanCancelPlaying}" Background="White" Foreground="Black"
                               CloseCommand="{Binding ClosePlayingPopup}" ShowPopup="{Binding CurrentlyPlaying}">
-            <Grid MinHeight="400" MinWidth="600" ColumnDefinitions="*,Auto,Auto,Auto,Auto,*"
+            <Grid MinHeight="400" MinWidth="600" MaxWidth="600" ColumnDefinitions="*,Auto,Auto,Auto,Auto,*"
                   RowDefinitions="Auto,Auto,Auto,*,Auto,Auto">
                 <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Text="{Binding PlayPopupTopMessage}"
                            IsVisible="{Binding PlayPopupTopMessage,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"

@@ -116,7 +116,8 @@ public class ThriveRunner : IThriveRunner
         var thriveExecutable =
             thriveInstaller.FindThriveExecutableFolderInVersion(thriveFolder, thriveInstaller.GetCurrentPlatform());
 
-        if (thriveExecutable == null)
+        // If we didn't find the executable or accidentally found a folder, give an error and don't try to run that
+        if (thriveExecutable == null || Directory.Exists(thriveExecutable))
         {
             PlayMessages.Add(new ThrivePlayMessage(ThrivePlayMessage.Type.MissingThriveExecutable, thriveFolder));
             runningObservable.Value = false;
