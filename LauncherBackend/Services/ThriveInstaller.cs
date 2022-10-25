@@ -123,7 +123,9 @@ public class ThriveInstaller : IThriveInstaller
         var fallbackVersion = new Version(0, 0, 0, 0);
         var highestVersion = new Version(int.MaxValue, 0, 0, 0);
 
-        sorted = sorted.ThenBy(t =>
+        // Descending order puts the latest build at the top of the list (when the dropdown opens towards down) to
+        // make it nicer to see
+        sorted = sorted.ThenByDescending(t =>
         {
             if (t.VersionObject is StoreVersion or DevBuildVersion)
                 return highestVersion;
