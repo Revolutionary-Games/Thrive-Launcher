@@ -857,4 +857,34 @@ public partial class MainWindow : Window
 
         LastGameOutputContainer.Children.RemoveRange(0, removeCount);
     }
+
+    private void OnThriveRunningChanged(bool running)
+    {
+        if (!running)
+        {
+            // We need to rebuild the late part of the game output here as there's no other way to properly detect
+            // this
+            Dispatcher.UIThread.Post(() =>
+            {
+                var listContent = DerivedDataContext.ThriveOutputLastPart.ToList();
+
+                HandleLastPartOfOutputChanged(
+                    new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+                HandleLastPartOfOutputChanged(
+                    new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, listContent, 0));
+            }, DispatcherPriority.Background);
+
+            ScrollOutputToEndWithDelay();
+        }
+    }
+
+    /// <summary>
+    ///   Scrolls the game output to the end after a delay to ensure that *really* the last message is visible
+    /// </summary>
+    private async void ScrollOutputToEndWithDelay()
+    {
+        await Task.Delay(TimeSpan.FromSeconds(1));
+
+        Dispatcher.UIThread.Post(() => { GameOutputScrollContainer.ScrollToEnd(); });
+    }
 }
