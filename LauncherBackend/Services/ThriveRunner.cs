@@ -137,7 +137,7 @@ public class ThriveRunner : IThriveRunner
         logger.LogDebug("Thrive executable is: {ThriveExecutable}", thriveExecutable);
 
         // We don't wait this here to allow UI to work while waiting for Thrive to exit
-        _ = RunThriveExecutable(thriveExecutable, version, cancellationToken);
+        _ = RunThriveExecutable(thriveExecutable, version, playCancellation);
     }
 
     public bool QuitThrive()
