@@ -12,9 +12,19 @@ public class ThriveOutputMessage
     }
 
     public string Message { get; }
-    
+
     /// <summary>
     ///   True when this was in the error output (and was not sanitized from Steam output)
     /// </summary>
     public bool IsError { get; }
+
+    public override string ToString()
+    {
+        if (IsError)
+        {
+            return $"ERROR: {Message}";
+        }
+
+        return Message;
+    }
 }
