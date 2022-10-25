@@ -719,13 +719,17 @@ public partial class MainWindow : Window
                             throw new Exception("Unable to get error brush");
                     }
 
-                    FirstGameOutputContainer.Children.Add(new TextBlock
+                    var textBlock = new TextBlock
                     {
                         TextWrapping = TextWrapping.Wrap,
                         Text = message.Message,
                         Margin = new Thickness(0, 0, 0, 0),
-                        Foreground = message.IsError ? errorBrush : null,
-                    });
+                    };
+
+                    if (message.IsError)
+                        textBlock.Foreground = errorBrush;
+
+                    FirstGameOutputContainer.Children.Add(textBlock);
 
                     lastSeen = message.Message;
                     continue;
@@ -777,13 +781,17 @@ public partial class MainWindow : Window
                             throw new Exception("Unable to get error brush");
                     }
 
-                    children.Insert(index++, new TextBlock
+                    var textBlock = new TextBlock
                     {
                         TextWrapping = TextWrapping.Wrap,
                         Text = message.Message,
                         Margin = new Thickness(0, 0, 0, 0),
-                        Foreground = message.IsError ? errorBrush : null,
-                    });
+                    };
+
+                    if (message.IsError)
+                        textBlock.Foreground = errorBrush;
+
+                    children.Insert(index++, textBlock);
                 }
 
                 // TODO: see the TODO in HandleFirstPartOfOutputChanged
