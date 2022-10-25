@@ -1220,5 +1220,11 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("StoreVersionExternalVersionsNote", resourceCulture);
             }
         }
+        
+        public static string DevBuildTypeSelectionHeading {
+            get {
+                return ResourceManager.GetString("DevBuildTypeSelectionHeading", resourceCulture);
+            }
+        }
     }
 }

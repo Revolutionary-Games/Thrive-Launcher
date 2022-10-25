@@ -652,4 +652,7 @@ Launcher logs will have more info.</value>
   <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
     <value>This tab lists externally installed versions. This is a store version of Thrive that includes a bundled (latest) game version. You can enable showing available external versions on the version selector dropdown in the launcher options. Once downloaded those versions show up here.</value>
   </data>
+  <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
+    <value>DevBuild type to play (when playing a DevBuild version is selected)</value>
+  </data>
 </root>

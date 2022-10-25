@@ -386,6 +386,9 @@
                             <TextBlock IsVisible="{Binding !DevCenterConnectionIsDeveloper}"
                                        Text="{i18n:Localize YouAreASupporter}" />
 
+                            <TextBlock Text="{i18n:Localize DevBuildTypeSelectionHeading}" Margin="0 15 0 2"
+                                       TextWrapping="Wrap" />
+
                             <RadioButton GroupName="DevBuildTypeSelection"
                                          IsChecked="{Binding SelectedDevBuildTypeIsBuildOfTheDay}"
                                          Command="{Binding SelectBuildOfTheDay}">
