@@ -12,7 +12,6 @@ public class ThriveRunner : IThriveRunner
 {
     private readonly ILogger<ThriveRunner> logger;
     private readonly ILauncherSettingsManager settingsManager;
-    private readonly ILauncherPaths launcherPaths;
     private readonly IThriveInstaller thriveInstaller;
     private readonly IStoreVersionDetector storeVersionDetector;
 
@@ -31,11 +30,10 @@ public class ThriveRunner : IThriveRunner
     private StoreVersionInfo? currentStoreVersionInfo;
 
     public ThriveRunner(ILogger<ThriveRunner> logger, ILauncherSettingsManager settingsManager,
-        ILauncherPaths launcherPaths, IThriveInstaller thriveInstaller, IStoreVersionDetector storeVersionDetector)
+        IThriveInstaller thriveInstaller, IStoreVersionDetector storeVersionDetector)
     {
         this.logger = logger;
         this.settingsManager = settingsManager;
-        this.launcherPaths = launcherPaths;
         this.thriveInstaller = thriveInstaller;
         this.storeVersionDetector = storeVersionDetector;
     }
