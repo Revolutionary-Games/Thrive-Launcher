@@ -116,6 +116,10 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             StartLauncherInfoFetch();
         }
+
+        // In case the launcher was restarted without the process ending we need to restore some state from the backend
+        if (allowTaskStarts)
+            DetectPlayingStatusFromBackend();
     }
 
     /// <summary>
@@ -277,6 +281,15 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         get => showSettingsUpgrade;
         private set => this.RaiseAndSetIfChanged(ref showSettingsUpgrade, value);
+    }
+
+    /// <summary>
+    ///   Call to shutdown all event handling listeners that this view model may be using
+    /// </summary>
+    public void ShutdownListeners()
+    {
+        UnRegisterThriveRunnerListeners();
+        UnRegisterInstallerMessageForwarders();
     }
 
     public IEnumerable<string> GetAvailableLanguages()

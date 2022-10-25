@@ -63,6 +63,24 @@ public partial class MainWindow : Window
     /// </summary>
     private IThriveInstaller ThriveInstaller => installer ?? throw new Exception("DataContext not initialized");
 
+    protected override void OnClosed(EventArgs e)
+    {
+        if (dataContextReceived)
+        {
+            var dataContext = DerivedDataContext;
+
+            dataContext.ShutdownListeners();
+
+            // Unregister all callbacks in case some of them try to trigger after the close
+            dataContext.PlayMessages.CollectionChanged -= OnPlayMessagesChanged;
+            dataContext.InProgressPlayOperations.CollectionChanged -= OnPlayPopupProgressChanged;
+            dataContext.ThriveOutputFirstPart.CollectionChanged -= OnFirstPartOfOutputChanged;
+            dataContext.ThriveOutputLastPart.CollectionChanged -= OnLastPartOfOutputChanged;
+        }
+
+        base.OnClosed(e);
+    }
+
     private void OnDataContextReceiver(AvaloniaPropertyChangedEventArgs e)
     {
         if (dataContextReceived || e.NewValue == null)
@@ -89,17 +107,17 @@ public partial class MainWindow : Window
 
         dataContext.WhenAnyValue(d => d.LatestAvailableDevBuilds).Subscribe(OnAvailableDevBuildsChanged);
 
-        dataContext.PlayMessages.CollectionChanged += (_, _) => OnPlayMessagesChanged(dataContext.PlayMessages);
-        dataContext.InProgressPlayOperations.CollectionChanged +=
-            (_, _) => OnPlayPopupProgressChanged(dataContext.InProgressPlayOperations);
+        dataContext.WhenAnyValue(d => d.ThriveIsRunning).Subscribe(OnThriveRunningChanged);
+
+        dataContext.PlayMessages.CollectionChanged += OnPlayMessagesChanged;
+
+        dataContext.InProgressPlayOperations.CollectionChanged += OnPlayPopupProgressChanged;
 
         dataContext.ThriveOutputFirstPart.CollectionChanged += OnFirstPartOfOutputChanged;
         dataContext.ThriveOutputLastPart.CollectionChanged += OnLastPartOfOutputChanged;
 
         // Intentionally left hanging around in the background
-#pragma warning disable CS4014
-        UpdateFeedItemsWhenRetrieved();
-#pragma warning restore CS4014
+        _ = UpdateFeedItemsWhenRetrieved();
     }
 
     private void SelectedVersionComboBoxItemChanged(object? sender, SelectionChangedEventArgs e)
@@ -606,12 +624,11 @@ public partial class MainWindow : Window
         }
     }
 
-    private void OnPlayMessagesChanged(ObservableCollection<string> playMessages)
+    private void OnPlayMessagesChanged(object? o, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
     {
-        var data = playMessages.ToList();
-
-        // This is dispatched as the update notification can come in any thread
-        Dispatcher.UIThread.Post(() => HandlePlayMessagesChanged(data));
+        // TODO: check that there isn't possibility of the ToList call here crashing due to list changes happening
+        // at the same time
+        Dispatcher.UIThread.Post(() => HandlePlayMessagesChanged(DerivedDataContext.PlayMessages.ToList()));
     }
 
     private void HandlePlayMessagesChanged(List<string> playMessages)
@@ -632,12 +649,10 @@ public partial class MainWindow : Window
         }
     }
 
-    private void OnPlayPopupProgressChanged(ObservableCollection<FilePrepareProgress> progress)
+    private void OnPlayPopupProgressChanged(object? o,
+        NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
     {
-        var data = progress.ToList();
-
-        // This is dispatched as the update notification can come in any thread
-        Dispatcher.UIThread.Post(() => HandlePlayProgressChanges(data));
+        Dispatcher.UIThread.Post(() => HandlePlayProgressChanges(DerivedDataContext.InProgressPlayOperations.ToList()));
     }
 
     private void HandlePlayProgressChanges(List<FilePrepareProgress> progress)

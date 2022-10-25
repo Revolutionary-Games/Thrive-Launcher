@@ -30,6 +30,21 @@ public class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
+        CreateMainWindow();
+
+        base.OnFrameworkInitializationCompleted();
+    }
+
+    /// <summary>
+    ///   Called when the launcher backend wants the GUI to be restarted
+    /// </summary>
+    public void ReSetupMainWindow()
+    {
+        CreateMainWindow();
+    }
+
+    private void CreateMainWindow()
+    {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             desktop.MainWindow = new MainWindow
@@ -46,7 +61,5 @@ public class App : Application
 
             // singleView.MainView = new MainView();
         }
-
-        base.OnFrameworkInitializationCompleted();
     }
 }

@@ -22,6 +22,8 @@ using SharedBase.Utilities;
 /// </summary>
 public partial class MainWindowViewModel
 {
+    private readonly List<IDisposable> runnerObservers = new();
+
     private bool currentlyPlaying;
     private bool canCancelPlaying;
     private bool showCloseButtonOnPlayPopup;
@@ -176,11 +178,7 @@ public partial class MainWindowViewModel
         playActionCancellationSource = new CancellationTokenSource();
         playActionCancellation = playActionCancellationSource.Token;
 
-        if (!registeredInstallerCallbacks)
-        {
-            RegisterInstallerMessageForwarders();
-            registeredInstallerCallbacks = true;
-        }
+        RegisterInstallerMessageForwarders();
 
         StartPlayingThrive(version);
     }
@@ -188,13 +186,19 @@ public partial class MainWindowViewModel
     public void ClosePlayingPopup()
     {
         if (playActionCancellationSource == null)
-            throw new InvalidOperationException("Playing has not been started");
-
-        if (!playActionCancellationSource.IsCancellationRequested)
         {
-            playActionCancellationSource.Cancel();
-            logger.LogInformation("User requested cancel of current playing of Thrive");
+            logger.LogWarning("Playing has not been started by this view model, we can't cancel it properly");
         }
+        else
+        {
+            if (!playActionCancellationSource.IsCancellationRequested)
+            {
+                playActionCancellationSource.Cancel();
+                logger.LogInformation("User requested cancel of current playing of Thrive");
+            }
+        }
+
+        thriveRunner.QuitThrive();
 
         logger.LogInformation("Closing play popup due to cancellation");
         CurrentlyPlaying = false;
@@ -314,11 +318,7 @@ public partial class MainWindowViewModel
             // Disallow canceling while Thrive is running
             CanCancelPlaying = false;
 
-            if (!registeredRunnerCallbacks)
-            {
-                RegisterThriveRunnerListeners();
-                registeredRunnerCallbacks = true;
-            }
+            RegisterThriveRunnerListeners();
 
             thriveRunner.LDPreload = launcherOptions.GameLDPreload;
 
@@ -386,123 +386,172 @@ public partial class MainWindowViewModel
 
     private void RegisterInstallerMessageForwarders()
     {
-        thriveInstaller.InstallerMessages.CollectionChanged += (_, _) =>
+        if (registeredInstallerCallbacks)
+            return;
+
+        registeredInstallerCallbacks = true;
+
+        thriveInstaller.InstallerMessages.CollectionChanged += OnInstallerMessagesChanged;
+        thriveInstaller.InProgressOperations.CollectionChanged += OnInProgressOperationsChanged;
+    }
+
+    private void UnRegisterInstallerMessageForwarders()
+    {
+        if (!registeredInstallerCallbacks)
+            return;
+
+        registeredInstallerCallbacks = false;
+
+        thriveInstaller.InstallerMessages.CollectionChanged -= OnInstallerMessagesChanged;
+        thriveInstaller.InProgressOperations.CollectionChanged -= OnInProgressOperationsChanged;
+    }
+
+    private void OnInstallerMessagesChanged(object? sender,
+        NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
+    {
+        if (!CurrentlyPlaying)
         {
-            if (!CurrentlyPlaying)
-            {
-                logger.LogWarning("Ignoring installer message as not currently playing");
-                return;
-            }
+            logger.LogWarning("Ignoring installer message as not currently playing");
+            return;
+        }
 
-            logger.LogDebug("Redoing play messages due to changes to installer messages");
+        logger.LogDebug("Redoing play messages due to changes to installer messages");
 
-            // As this is just a list of strings we save the complicated code for the below collection and just redo
-            // this each time
-            PlayMessages.Clear();
-            PlayMessages.AddRange(thriveInstaller.InstallerMessages.Select(FormatPlayMessage));
-        };
+        // As this is just a list of strings we save the complicated code for the below collection and just redo
+        // this each time
+        PlayMessages.Clear();
+        PlayMessages.AddRange(thriveInstaller.InstallerMessages.Select(FormatPlayMessage));
+    }
 
-        thriveInstaller.InProgressOperations.CollectionChanged += (_, args) =>
+    private void OnInProgressOperationsChanged(object? sender, NotifyCollectionChangedEventArgs args)
+    {
+        if (!CurrentlyPlaying)
         {
-            if (!CurrentlyPlaying)
-            {
-                logger.LogWarning("Ignoring installer progress message as not currently playing");
-                return;
-            }
+            logger.LogWarning("Ignoring installer progress message as not currently playing");
+            return;
+        }
 
-            logger.LogDebug("Installer in progress operation change type: {Action}, new: {NewItems}", args.Action,
-                args.NewItems);
+        logger.LogDebug("Installer in progress operation change type: {Action}, new: {NewItems}", args.Action,
+            args.NewItems);
 
-            switch (args.Action)
-            {
-                case NotifyCollectionChangedAction.Add:
-                    InProgressPlayOperations.AddOrInsertRange(args.NewItems!.Cast<FilePrepareProgress>(),
-                        args.NewStartingIndex);
+        switch (args.Action)
+        {
+            case NotifyCollectionChangedAction.Add:
+                InProgressPlayOperations.AddOrInsertRange(args.NewItems!.Cast<FilePrepareProgress>(),
+                    args.NewStartingIndex);
 
-                    break;
-                case NotifyCollectionChangedAction.Remove:
-                    for (int i = 0; i < args.OldItems!.Count; ++i)
-                    {
-                        InProgressPlayOperations.RemoveAt(args.OldStartingIndex);
-                    }
+                break;
+            case NotifyCollectionChangedAction.Remove:
+                for (int i = 0; i < args.OldItems!.Count; ++i)
+                {
+                    InProgressPlayOperations.RemoveAt(args.OldStartingIndex);
+                }
 
-                    break;
-                case NotifyCollectionChangedAction.Replace:
-                    for (int i = 0; i < args.OldItems!.Count; ++i)
-                    {
-                        InProgressPlayOperations.RemoveAt(args.OldStartingIndex);
-                    }
+                break;
+            case NotifyCollectionChangedAction.Replace:
+                for (int i = 0; i < args.OldItems!.Count; ++i)
+                {
+                    InProgressPlayOperations.RemoveAt(args.OldStartingIndex);
+                }
 
-                    goto case NotifyCollectionChangedAction.Add;
+                goto case NotifyCollectionChangedAction.Add;
 
-                // For now move is not implemented
-                // case NotifyCollectionChangedAction.Move:
-                //     break;
-                case NotifyCollectionChangedAction.Reset:
-                    InProgressPlayOperations.Clear();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        };
+            // For now move is not implemented
+            // case NotifyCollectionChangedAction.Move:
+            //     break;
+            case NotifyCollectionChangedAction.Reset:
+                InProgressPlayOperations.Clear();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
     private void RegisterThriveRunnerListeners()
     {
-        thriveRunner.ThriveRunningObservable.Subscribe(new LambdaBasedObserver<bool>(value =>
+        if (registeredRunnerCallbacks)
+            return;
+
+        registeredRunnerCallbacks = true;
+
+        runnerObservers.Add(thriveRunner.ThriveRunningObservable.Subscribe(new LambdaBasedObserver<bool>(value =>
         {
             ThriveIsRunning = value;
-        }));
+        })));
 
-        thriveRunner.OutputTruncated.Subscribe(new LambdaBasedObserver<bool>(value =>
+        runnerObservers.Add(thriveRunner.OutputTruncatedObservable.Subscribe(new LambdaBasedObserver<bool>(value =>
         {
             ThriveOutputIsTruncated = value;
-        }));
+        })));
 
         // The runner's messages overwrite the folder setup messages as both aren't important to show at once
-        thriveRunner.PlayMessages.CollectionChanged += (_, _) =>
-        {
-            if (!CurrentlyPlaying)
-            {
-                logger.LogWarning("Ignoring runner message as not currently playing");
-                return;
-            }
-
-            logger.LogDebug("Redoing play messages due to changes to runner messages");
-
-            PlayMessages.Clear();
-            PlayMessages.AddRange(thriveRunner.PlayMessages.Select(FormatPlayMessage));
-        };
+        thriveRunner.PlayMessages.CollectionChanged += OnPlayMessagesChanged;
 
         // Initial bunch of messages is never removed from so we can only append or redo the whole thing
-        thriveRunner.ThriveOutput.CollectionChanged += (_, args) =>
-        {
-            if (!CurrentlyPlaying)
-            {
-                logger.LogWarning("Ignoring runner output message as not currently playing");
-                return;
-            }
-
-            // We don't want to create duplicate lists of this as this may be a bit big so instead we lock to
-            // make sure the read and write to the object happen sensibly
-            lock (ThriveOutputFirstPart)
-            {
-                switch (args.Action)
-                {
-                    case NotifyCollectionChangedAction.Add:
-                        ThriveOutputFirstPart.AddOrInsertRange(args.NewItems!.Cast<ThriveOutputMessage>(),
-                            args.NewStartingIndex);
-
-                        break;
-                    case NotifyCollectionChangedAction.Reset:
-                        ThriveOutputFirstPart.Clear();
-                        break;
-                }
-            }
-        };
+        thriveRunner.ThriveOutput.CollectionChanged += OnThriveOutputChanged;
 
         // The second part of messages is exposed as the original object as whoever handles that should take
         // the partial updates into account for best performance
+    }
+
+    private void UnRegisterThriveRunnerListeners()
+    {
+        if (!registeredRunnerCallbacks)
+            return;
+
+        registeredRunnerCallbacks = false;
+
+        foreach (var observer in runnerObservers)
+        {
+            observer.Dispose();
+        }
+
+        runnerObservers.Clear();
+
+        thriveRunner.PlayMessages.CollectionChanged -= OnPlayMessagesChanged;
+
+        thriveRunner.ThriveOutput.CollectionChanged -= OnThriveOutputChanged;
+    }
+
+    private void OnPlayMessagesChanged(object? sender,
+        NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
+    {
+        if (!CurrentlyPlaying)
+        {
+            logger.LogWarning("Ignoring runner message as not currently playing");
+            return;
+        }
+
+        logger.LogDebug("Redoing play messages due to changes to runner messages");
+
+        PlayMessages.Clear();
+        PlayMessages.AddRange(thriveRunner.PlayMessages.Select(FormatPlayMessage));
+    }
+
+    private void OnThriveOutputChanged(object? sender, NotifyCollectionChangedEventArgs args)
+    {
+        if (!CurrentlyPlaying)
+        {
+            logger.LogWarning("Ignoring runner output message as not currently playing");
+            return;
+        }
+
+        // We don't want to create duplicate lists of this as this may be a bit big so instead we lock to
+        // make sure the read and write to the object happen sensibly
+        lock (ThriveOutputFirstPart)
+        {
+            switch (args.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    ThriveOutputFirstPart.AddOrInsertRange(args.NewItems!.Cast<ThriveOutputMessage>(),
+                        args.NewStartingIndex);
+
+                    break;
+                case NotifyCollectionChangedAction.Reset:
+                    ThriveOutputFirstPart.Clear();
+                    break;
+            }
+        }
     }
 
     private string FormatPlayMessage(ThrivePlayMessage message)
@@ -582,6 +631,57 @@ public partial class MainWindowViewModel
 
             // TODO:
             throw new NotImplementedException();
+        }
+    }
+
+    private async void DetectPlayingStatusFromBackend()
+    {
+        // We wait here to make sure that the window is registered to us to listen for stuff before we set up
+        // everything
+        // ReSharper disable once MethodSupportsCancellation
+        await Task.Delay(LauncherConstants.DelayForBackendStateCheckOnStart);
+        logger.LogDebug("Checking if launcher backend has active things we should know about");
+
+        try
+        {
+            if (thriveRunner.ThriveRunning || thriveRunner.PlayMessages.Count > 0 ||
+                thriveRunner.ThriveOutput.Count > 0)
+            {
+                logger.LogInformation("Restoring state from backend for Thrive runner");
+
+                CurrentlyPlaying = true;
+
+                logger.LogDebug("Restoring play messages from runner");
+                PlayMessages.Clear();
+                PlayMessages.AddRange(thriveRunner.PlayMessages.Select(FormatPlayMessage));
+
+                ThriveOutputFirstPart.Clear();
+                ThriveOutputFirstPart.AddRange(thriveRunner.ThriveOutput);
+
+                // Output last part has to be updated by the GUI to make sure it is showing the latest data
+
+                RegisterThriveRunnerListeners();
+
+                if (!thriveRunner.ThriveRunning)
+                {
+                    CanCancelPlaying = true;
+                    ThriveIsRunning = false;
+
+                    // Make sure this is called, which it isn't necessarily due to the default value of ThriveIsRunning
+                    // variable
+                    OnPlayingEnded();
+                }
+                else
+                {
+                    ThriveIsRunning = true;
+                }
+
+                ThriveOutputIsTruncated = thriveRunner.OutputTruncated;
+            }
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Failed to properly restore status of the launcher view model from backend");
         }
     }
 }

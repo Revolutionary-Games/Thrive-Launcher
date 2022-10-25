@@ -29,6 +29,8 @@ public class ThriveRunner : IThriveRunner
 
     private StoreVersionInfo? currentStoreVersionInfo;
 
+    private Thread? thriveRunnerThread;
+
     public ThriveRunner(ILogger<ThriveRunner> logger, ILauncherSettingsManager settingsManager,
         IThriveInstaller thriveInstaller, IStoreVersionDetector storeVersionDetector)
     {
@@ -38,12 +40,14 @@ public class ThriveRunner : IThriveRunner
         this.storeVersionDetector = storeVersionDetector;
     }
 
-    // TODO: hook these up to the viewmodel
     public ObservableCollection<ThrivePlayMessage> PlayMessages { get; } = new();
     public ObservableCollection<ThriveOutputMessage> ThriveOutput { get; } = new();
     public ObservableCollection<ThriveOutputMessage> ThriveOutputTrailing { get; } = new();
 
-    public IObservable<bool> OutputTruncated => truncatedObservable;
+    public IObservable<bool> OutputTruncatedObservable => truncatedObservable;
+
+    public bool OutputTruncated => truncatedObservable.Value;
+
     public IObservable<bool> ThriveRunningObservable => runningObservable;
 
     public bool ThriveRunning => runningObservable.Value;
@@ -60,6 +64,13 @@ public class ThriveRunner : IThriveRunner
 
     public void StartThrive(IPlayableVersion version, CancellationToken cancellationToken)
     {
+        if (thriveRunnerThread != null)
+        {
+            logger.LogInformation("Joining previous Thrive runner thread");
+            thriveRunnerThread.Join(TimeSpan.FromSeconds(30));
+            thriveRunnerThread = null;
+        }
+
         PlayMessages.Clear();
         ThriveOutput.Clear();
         ThriveOutputTrailing.Clear();
@@ -80,7 +91,6 @@ public class ThriveRunner : IThriveRunner
         runningObservable.Value = true;
 
         // We need to also be able to cancel things ourselves, so we create this one level of indirection
-        // TODO: check that the canceling (the token passed as parameter) here works
         playCancellationSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
         playCancellation = playCancellationSource.Token;
 
@@ -136,8 +146,13 @@ public class ThriveRunner : IThriveRunner
 
         logger.LogDebug("Thrive executable is: {ThriveExecutable}", thriveExecutable);
 
-        // We don't wait this here to allow UI to work while waiting for Thrive to exit
-        _ = RunThriveExecutable(thriveExecutable, version, playCancellation);
+        // ReSharper disable once MethodSupportsCancellation
+        thriveRunnerThread = new Thread(() => RunThriveExecutable(thriveExecutable, version, playCancellation).Wait())
+        {
+            // Even if this is running we want this process to be able to quit
+            IsBackground = true,
+        };
+        thriveRunnerThread.Start();
     }
 
     public bool QuitThrive()
@@ -147,7 +162,8 @@ public class ThriveRunner : IThriveRunner
             logger.LogWarning("Canceling running Thrive due to cancel request");
             playCancellationSource.Cancel();
 
-            runningObservable.Value = false;
+            // We rely on the Thrive runner thread to properly notice the cancellation and set the running flag to
+            // false, see OnThriveExited for why we do that
             return true;
         }
 
@@ -269,7 +285,6 @@ public class ThriveRunner : IThriveRunner
             ActiveErrorSuggestion = ErrorSuggestionType.MissingDll;
         }
 
-        // TODO: variable to detect unhandled exceptions being printed
         if (runFailException == null && exitCode == 0 && unhandledException == null)
         {
             logger.LogDebug("Thrive exited successfully");
@@ -288,7 +303,8 @@ public class ThriveRunner : IThriveRunner
             else if (unhandledException != null)
             {
                 // TODO: implement reporting unhandled exceptions as crashes
-                return;
+                OnErrorOutput("Thrive has encountered an unhandled exception, please report this to us. " +
+                    "In the future there will be support for automatically reporting these crashes.");
             }
             else
             {
@@ -416,14 +432,6 @@ public class ThriveRunner : IThriveRunner
 /// </summary>
 public interface IThriveRunner
 {
-    public void StartThrive(IPlayableVersion version, CancellationToken cancellationToken);
-
-    /// <summary>
-    ///   Quit Thrive if currently running
-    /// </summary>
-    /// <returns>True if an active Thrive process was told to quit</returns>
-    public bool QuitThrive();
-
     /// <summary>
     ///   General messages about the playing process
     /// </summary>
@@ -444,7 +452,9 @@ public interface IThriveRunner
     ///   True when there's so much game output that it wasn't kept entirely in <see cref="ThriveOutput"/> and
     ///   <see cref="ThriveOutputTrailing"/>
     /// </summary>
-    public IObservable<bool> OutputTruncated { get; }
+    public bool OutputTruncated { get; }
+
+    public IObservable<bool> OutputTruncatedObservable { get; }
 
     /// <summary>
     ///   Allows subscribing to <see cref="ThriveRunning"/> state changes
@@ -468,4 +478,12 @@ public interface IThriveRunner
     public IList<string>? ExtraThriveStartFlags { get; set; }
 
     public ErrorSuggestionType? ActiveErrorSuggestion { get; }
+
+    public void StartThrive(IPlayableVersion version, CancellationToken cancellationToken);
+
+    /// <summary>
+    ///   Quit Thrive if currently running
+    /// </summary>
+    /// <returns>True if an active Thrive process was told to quit</returns>
+    public bool QuitThrive();
 }

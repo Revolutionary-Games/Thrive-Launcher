@@ -6,7 +6,10 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.ReactiveUI;
 using CommandLine;
 using LauncherBackend.Models;
@@ -27,6 +30,9 @@ using ViewModels;
 
 internal class Program
 {
+    private static bool registeredCancelPressHandler;
+    private static int cancelPressCount;
+
     // Initialization code. Don't use any Avalonia, third-party APIs or any
     // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
     // yet and stuff might break.
@@ -203,18 +209,48 @@ internal class Program
 
         // Very important to use our existing services to configure the Avalonia app here, otherwise everything
         // will break
-        BuildAvaloniaAppWithServices(services).StartWithClassicDesktopLifetime(args);
+        bool keepShowingLauncher;
 
-        if (runner.ThriveRunning)
+        // We can't use StartWithClassicDesktopLifetime as we need control over the lifetime
+        var avaloniaBuilder = BuildAvaloniaAppWithServices(services);
+
+        using var lifetime = new ClassicDesktopStyleApplicationLifetime
         {
-            programLogger.LogInformation(
-                "Thrive is currently running, waiting for Thrive to quit before exiting the launcher process");
+            Args = args,
+            ShutdownMode = ShutdownMode.OnLastWindowClose,
+        };
+        avaloniaBuilder.SetupWithLifetime(lifetime);
+        var applicationInstance = (App)avaloniaBuilder.Instance;
 
-            // TODO: wait for Thrive to exit if currently running (and register a quit listener here to cancel the wait)
-            throw new NotImplementedException();
+        // This loop is here so that we can restart the avalonia GUI to show Thrive run errors and provide crash
+        // reporting
+        do
+        {
+            keepShowingLauncher = false;
 
-            // TODO: if we got an error can we restart avalonia here to show it?
+            programLogger.LogInformation("Start running Avalonia desktop lifetime");
+            lifetime.Start(args);
+
+            if (runner.ThriveRunning)
+            {
+                programLogger.LogInformation(
+                    "Thrive is currently running, waiting for Thrive to quit before exiting the launcher process");
+
+                if (!WaitForRunningThriveToExit(runner, programLogger))
+                {
+                    programLogger.LogInformation(
+                        "Thrive didn't quit properly while we waited for it, trying to re-show the launcher");
+                    keepShowingLauncher = true;
+                }
+            }
+
+            if (keepShowingLauncher)
+            {
+                programLogger.LogInformation("Recreating main window to prepare it to be shown again");
+                applicationInstance.ReSetupMainWindow();
+            }
         }
+        while (keepShowingLauncher);
 
         programLogger.LogInformation("Launcher process exiting normally");
     }
@@ -229,7 +265,7 @@ internal class Program
 
     private static LoggingConfiguration GetNLogConfiguration(bool fileLogging, bool verbose)
     {
-        // For debugging logging
+        // For debugging logging itself
         // InternalLogger.LogLevel = LogLevel.Trace;
         // InternalLogger.LogToConsole = true;
 
@@ -284,5 +320,61 @@ internal class Program
         }
 
         return configuration;
+    }
+
+    private static bool WaitForRunningThriveToExit(IThriveRunner runner, ILogger logger)
+    {
+        cancelPressCount = 0;
+
+        if (!registeredCancelPressHandler)
+        {
+            registeredCancelPressHandler = true;
+            Console.CancelKeyPress += (_, args) =>
+            {
+                logger.LogInformation("Got cancellation request, trying to close Thrive");
+                ++cancelPressCount;
+
+                if (!runner.QuitThrive())
+                {
+                    logger.LogInformation("Could not signal Thrive process to quit");
+                }
+                else
+                {
+                    logger.LogInformation("Thrive runner was signaled to stop");
+                }
+
+                if (cancelPressCount > 3)
+                {
+                    logger.LogInformation("Got so many cancellation requests that waiting will be canceled");
+                }
+
+                // Cancel terminating the current program until someone really mashes things on the keyboard
+                if (cancelPressCount < 5)
+                {
+                    args.Cancel = true;
+                }
+            };
+        }
+
+        int waitCounter = 0;
+
+        while (runner.ThriveRunning && cancelPressCount < 3)
+        {
+            Thread.Sleep(TimeSpan.FromMilliseconds(100));
+            ++waitCounter;
+
+            if (waitCounter > 300)
+            {
+                waitCounter = 0;
+                logger.LogInformation("Still waiting for our child Thrive process to quit...");
+            }
+        }
+
+        // If cancelled we don't want to even think about showing the launcher again
+        if (cancelPressCount > 0)
+            return true;
+
+        // Success when no crashes detected
+        return !runner.HasReportableCrash;
     }
 }

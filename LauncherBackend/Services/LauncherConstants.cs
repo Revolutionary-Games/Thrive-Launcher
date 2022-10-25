@@ -132,6 +132,8 @@ public static class LauncherConstants
 
     public static readonly TimeSpan RestoreDelayAfterGameEnd = TimeSpan.FromMilliseconds(500);
 
+    public static readonly TimeSpan DelayForBackendStateCheckOnStart = TimeSpan.FromMilliseconds(500);
+
     /// <summary>
     ///   Configures the launcher URL connection modes
     /// </summary>
