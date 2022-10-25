@@ -325,20 +325,20 @@ public class ThriveRunner : IThriveRunner
 
         // Performance of this collection type seems fine for now, but when getting stuff to the GUI, the GUI
         // needs to buffer removes
-        lock (ThriveOutputTrailing)
+
+        ThriveOutputTrailing.Add(outputObject);
+
+        if (ThriveOutputTrailing.Count > lastLinesToKeep)
         {
-            ThriveOutputTrailing.Add(outputObject);
-
-            if (ThriveOutputTrailing.Count > lastLinesToKeep)
+            if (!truncatedObservable.Value)
             {
-                if (!truncatedObservable.Value)
-                {
-                    logger.LogDebug("Output from Thrive is so long that it is truncated");
-                    truncatedObservable.Value = true;
-                }
-
-                ThriveOutputTrailing.RemoveAt(0);
+                logger.LogDebug("Output from Thrive is so long that it is truncated");
+                truncatedObservable.Value = true;
             }
+
+            // Performance-wise this is fine for us but the listeners listening to this might be pretty expensive to
+            // run...
+            ThriveOutputTrailing.RemoveAt(0);
         }
     }
 

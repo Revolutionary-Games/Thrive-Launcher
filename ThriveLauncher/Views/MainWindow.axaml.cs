@@ -40,7 +40,8 @@ public partial class MainWindow : Window
 
     private readonly Dictionary<FilePrepareProgress, ProgressDisplayer> activeProgressDisplayers = new();
 
-    private string? lastAddedFirstGameOutputMessage;
+    private readonly object lockForBulkOutputRemove = new();
+    private int bulkOutputRemoveCount;
 
     private bool dataContextReceived;
     private IThriveInstaller? installer;
@@ -754,6 +755,36 @@ public partial class MainWindow : Window
 
     private void OnLastPartOfOutputChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
+        // We specially handle remove here to bunch things up as that's *way* better performance
+        if (e.Action == NotifyCollectionChangedAction.Remove)
+        {
+            if (e.OldStartingIndex != 0)
+            {
+                throw new ArgumentException(
+                    "Elements are only expected to be removed from the start for performance reasons");
+            }
+
+            lock (lockForBulkOutputRemove)
+            {
+                int removeCount = e.OldItems?.Count ?? 1;
+
+                if (bulkOutputRemoveCount <= 0)
+                {
+                    // We are starting a new operation
+                    bulkOutputRemoveCount = removeCount;
+
+                    Dispatcher.UIThread.Post(PerformBulkOutputRemove, LogViewUpdatePriority);
+                }
+                else
+                {
+                    // We are appending to an existing operation
+                    bulkOutputRemoveCount += removeCount;
+                }
+            }
+
+            return;
+        }
+
         Dispatcher.UIThread.Post(() => HandleLastPartOfOutputChanged(e), LogViewUpdatePriority);
     }
 
@@ -799,11 +830,25 @@ public partial class MainWindow : Window
 
                 break;
             case NotifyCollectionChangedAction.Remove:
-                LastGameOutputContainer.Children.RemoveRange(e.OldStartingIndex, e.OldItems?.Count ?? 1);
-                break;
+                throw new InvalidOperationException("Our caller should have specially handled the remove action");
+
             case NotifyCollectionChangedAction.Reset:
                 LastGameOutputContainer.Children.Clear();
                 break;
         }
+    }
+
+    private async void PerformBulkOutputRemove()
+    {
+        await Task.Delay(TimeSpan.FromMilliseconds(250));
+
+        int removeCount;
+        lock (lockForBulkOutputRemove)
+        {
+            removeCount = bulkOutputRemoveCount;
+            bulkOutputRemoveCount = 0;
+        }
+
+        LastGameOutputContainer.Children.RemoveRange(0, removeCount);
     }
 }
