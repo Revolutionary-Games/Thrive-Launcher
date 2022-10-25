@@ -93,8 +93,7 @@ public partial class MainWindow : Window
         dataContext.InProgressPlayOperations.CollectionChanged +=
             (_, _) => OnPlayPopupProgressChanged(dataContext.InProgressPlayOperations);
 
-        dataContext.ThriveOutputFirstPart.CollectionChanged +=
-            (_, _) => OnFirstPartOfOutputChanged(dataContext.ThriveOutputFirstPart);
+        dataContext.ThriveOutputFirstPart.CollectionChanged += OnFirstPartOfOutputChanged;
         dataContext.ThriveOutputLastPart.CollectionChanged += OnLastPartOfOutputChanged;
 
         // Intentionally left hanging around in the background
@@ -688,32 +687,29 @@ public partial class MainWindow : Window
         }
     }
 
-    private void OnFirstPartOfOutputChanged(ObservableCollection<ThriveOutputMessage> thriveOutputMessages)
+    private void OnFirstPartOfOutputChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
-        Dispatcher.UIThread.Post(() => HandleFirstPartOfOutputChanged(thriveOutputMessages), LogViewUpdatePriority);
+        Dispatcher.UIThread.Post(() => HandleFirstPartOfOutputChanged(e), LogViewUpdatePriority);
     }
 
-    private void HandleFirstPartOfOutputChanged(ObservableCollection<ThriveOutputMessage> thriveOutputMessages)
+    private void HandleFirstPartOfOutputChanged(NotifyCollectionChangedEventArgs e)
     {
-        bool found = lastAddedFirstGameOutputMessage == null;
-        string? lastSeen = null;
+        IBrush? errorBrush = null;
 
-        lock (thriveOutputMessages)
+        switch (e.Action)
         {
-            if (thriveOutputMessages.Count < 1)
-            {
-                FirstGameOutputContainer.Children.Clear();
-                lastAddedFirstGameOutputMessage = null;
-                return;
-            }
+            case NotifyCollectionChangedAction.Add:
 
-            IBrush? errorBrush = null;
+                var children = FirstGameOutputContainer.Children;
+                int index = e.NewStartingIndex;
 
-            // Things can only be appended to the end, so ignore stuff until we find the point we previously handled
-            foreach (var message in thriveOutputMessages)
-            {
-                if (found)
+                foreach (var newItem in e.NewItems ?? throw new Exception("New items expected"))
                 {
+                    if (newItem == null)
+                        continue;
+
+                    var message = (ThriveOutputMessage)newItem;
+
                     if (message.IsError && errorBrush == null)
                     {
                         errorBrush = (IBrush?)Application.Current?.Resources["GameErrorOutput"] ??
@@ -730,27 +726,22 @@ public partial class MainWindow : Window
                     if (message.IsError)
                         textBlock.Foreground = errorBrush;
 
-                    FirstGameOutputContainer.Children.Add(textBlock);
-
-                    lastSeen = message.Message;
-                    continue;
+                    children.Insert(index++, textBlock);
                 }
 
-                if (ReferenceEquals(lastAddedFirstGameOutputMessage, message.Message))
-                {
-                    found = true;
-                }
-            }
+                // TODO: somehow skip scrolling if user is holding the scrollbar or scrolled to a position that
+                // isn't the end
+                GameOutputScrollContainer.ScrollToEnd();
+
+                break;
+            case NotifyCollectionChangedAction.Remove:
+                // This shouldn't be ever triggered, but this is included for completeness
+                FirstGameOutputContainer.Children.RemoveRange(e.OldStartingIndex, e.OldItems?.Count ?? 1);
+                break;
+            case NotifyCollectionChangedAction.Reset:
+                FirstGameOutputContainer.Children.Clear();
+                break;
         }
-
-        if (!found)
-            throw new Exception("Could not find spot to insert more game output messages");
-
-        if (lastSeen != null)
-            lastAddedFirstGameOutputMessage = lastSeen;
-
-        // TODO: somehow skip scrolling if user is holding the scrollbar or scrolled to a position that isn't the end
-        GameOutputScrollContainer.ScrollToEnd();
     }
 
     private void OnLastPartOfOutputChanged(object? sender, NotifyCollectionChangedEventArgs e)
