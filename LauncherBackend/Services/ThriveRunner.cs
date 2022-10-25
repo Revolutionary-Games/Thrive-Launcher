@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Microsoft.Extensions.Logging;
 using Models;
+using ScriptsBase.Utilities;
 using SharedBase.Models;
 using SharedBase.Utilities;
 
@@ -113,11 +114,22 @@ public class ThriveRunner : IThriveRunner
             return;
         }
 
-        var thriveExecutable =
-            thriveInstaller.FindThriveExecutableFolderInVersion(thriveFolder, thriveInstaller.GetCurrentPlatform());
+        var platform = thriveInstaller.GetCurrentPlatform();
+        var executableFolder =
+            thriveInstaller.FindThriveExecutableFolderInVersion(thriveFolder, platform);
+
+        string? thriveExecutable = null;
+
+        if (executableFolder != null)
+        {
+            if (thriveInstaller.ThriveExecutableExistsInFolder(executableFolder, platform))
+            {
+                thriveExecutable = Path.Join(executableFolder, ThriveProperties.GetThriveExecutableName(platform));
+            }
+        }
 
         // If we didn't find the executable or accidentally found a folder, give an error and don't try to run that
-        if (thriveExecutable == null || Directory.Exists(thriveExecutable))
+        if (executableFolder == null || thriveExecutable == null || Directory.Exists(thriveExecutable))
         {
             PlayMessages.Add(new ThrivePlayMessage(ThrivePlayMessage.Type.MissingThriveExecutable, thriveFolder));
             runningObservable.Value = false;
@@ -162,7 +174,7 @@ public class ThriveRunner : IThriveRunner
 
         PlayMessages.Add(new ThrivePlayMessage(ThrivePlayMessage.Type.StartingThrive));
 
-        logger.LogDebug("Trying to begin Thrive process...");
+        logger.LogDebug("Will start Thrive process next");
         var runTime = new Stopwatch();
         runTime.Start();
 
@@ -311,18 +323,22 @@ public class ThriveRunner : IThriveRunner
 
         // TODO: detection for restart and exiting to launcher
 
-        // TODO: check if we need to use a different collection type or approach for performance reasons
-        ThriveOutputTrailing.Add(outputObject);
-
-        if (ThriveOutputTrailing.Count > lastLinesToKeep)
+        // Performance of this collection type seems fine for now, but when getting stuff to the GUI, the GUI
+        // needs to buffer removes
+        lock (ThriveOutputTrailing)
         {
-            if (!truncatedObservable.Value)
-            {
-                logger.LogDebug("Output from Thrive is so long that it is truncated");
-                truncatedObservable.Value = true;
-            }
+            ThriveOutputTrailing.Add(outputObject);
 
-            ThriveOutputTrailing.RemoveAt(0);
+            if (ThriveOutputTrailing.Count > lastLinesToKeep)
+            {
+                if (!truncatedObservable.Value)
+                {
+                    logger.LogDebug("Output from Thrive is so long that it is truncated");
+                    truncatedObservable.Value = true;
+                }
+
+                ThriveOutputTrailing.RemoveAt(0);
+            }
         }
     }
 
@@ -350,8 +366,8 @@ public class ThriveRunner : IThriveRunner
 
             if (match.Success)
             {
-                DetectedFullLogFileLocation = $"{match.Captures[1].Value}/{match.Captures[2].Value}";
-                DetectedThriveDataFolder = Path.GetDirectoryName(match.Captures[1].Value);
+                DetectedFullLogFileLocation = $"{match.Groups[1].Value}/{match.Groups[2].Value}";
+                DetectedThriveDataFolder = Path.GetDirectoryName(match.Groups[1].Value);
 
                 logger.LogDebug(
                     "Detected Thrive log location as: {DetectedFullLogFileLocation}, and data folder: " +
