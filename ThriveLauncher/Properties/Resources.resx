@@ -641,7 +641,7 @@ Launcher logs will have more info.</value>
     <value>Output is too long, it was truncated! See the Thrive log file for full output.</value>
   </data>
   <data name="ThriveIsStarting" xml:space="preserve">
-    <value>Thrive is starting. Game log output:</value>
+    <value>Thrive is starting. Log output (due to buffering this is likely not in real time):</value>
   </data>
   <data name="ReportCrashButton" xml:space="preserve">
     <value>Report Crash</value>
