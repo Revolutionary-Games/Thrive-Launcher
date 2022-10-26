@@ -128,7 +128,7 @@ public static class LauncherConstants
     /// <summary>
     ///   Time before hiding the launcher when starting the game
     /// </summary>
-    public static readonly TimeSpan MinimizeDelayAfterGameStart = TimeSpan.FromMilliseconds(200);
+    public static readonly TimeSpan MinimizeDelayAfterGameStart = TimeSpan.FromMilliseconds(800);
 
     public static readonly TimeSpan RestoreDelayAfterGameEnd = TimeSpan.FromMilliseconds(500);
 
