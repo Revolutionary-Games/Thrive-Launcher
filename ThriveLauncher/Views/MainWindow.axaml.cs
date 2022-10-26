@@ -2,7 +2,6 @@ namespace ThriveLauncher.Views;
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
@@ -108,6 +107,10 @@ public partial class MainWindow : Window
         dataContext.WhenAnyValue(d => d.LatestAvailableDevBuilds).Subscribe(OnAvailableDevBuildsChanged);
 
         dataContext.WhenAnyValue(d => d.ThriveIsRunning).Subscribe(OnThriveRunningChanged);
+        dataContext.WhenAnyValue(d => d.ShowCloseButtonOnPlayPopup).Subscribe(OnShowCloseButtonOnPlayPopupChanged);
+
+        dataContext.WhenAnyValue(d => d.WantsWindowHidden).Subscribe(OnWantedWindowHiddenStateChanged);
+        dataContext.WhenAnyValue(d => d.LauncherShouldClose).Subscribe(OnLauncherWantsToClose);
 
         dataContext.PlayMessages.CollectionChanged += OnPlayMessagesChanged;
 
@@ -746,7 +749,7 @@ public partial class MainWindow : Window
 
                 // TODO: somehow skip scrolling if user is holding the scrollbar or scrolled to a position that
                 // isn't the end
-                GameOutputScrollContainer.ScrollToEnd();
+                PlayOutputScrollContainer.ScrollToEnd();
 
                 break;
             case NotifyCollectionChangedAction.Remove:
@@ -832,7 +835,7 @@ public partial class MainWindow : Window
                 }
 
                 // TODO: see the TODO in HandleFirstPartOfOutputChanged
-                GameOutputScrollContainer.ScrollToEnd();
+                PlayOutputScrollContainer.ScrollToEnd();
 
                 break;
             case NotifyCollectionChangedAction.Remove:
@@ -878,6 +881,16 @@ public partial class MainWindow : Window
         }
     }
 
+    private void OnShowCloseButtonOnPlayPopupChanged(bool show)
+    {
+        if (show)
+        {
+            // If we didn't manage to play Thrive we don't get the not running value change so the last line of the
+            // failure to start a build may not be visible if we don't do this here as well
+            ScrollOutputToEndWithDelay();
+        }
+    }
+
     /// <summary>
     ///   Scrolls the game output to the end after a delay to ensure that *really* the last message is visible
     /// </summary>
@@ -885,6 +898,47 @@ public partial class MainWindow : Window
     {
         await Task.Delay(TimeSpan.FromSeconds(1));
 
-        Dispatcher.UIThread.Post(() => { GameOutputScrollContainer.ScrollToEnd(); });
+        Dispatcher.UIThread.Post(() => { PlayOutputScrollContainer.ScrollToEnd(); });
+    }
+
+    private void OnWantedWindowHiddenStateChanged(bool hidden)
+    {
+        // ReSharper disable HeuristicUnreachableCode
+#pragma warning disable CS0162
+        if (LauncherConstants.EntirelyHideWindowOnHide)
+        {
+            if (hidden == !IsVisible)
+                return;
+
+            if (hidden)
+            {
+                Hide();
+            }
+            else
+            {
+                Show();
+            }
+
+            return;
+        }
+
+        var wantedState = hidden ? WindowState.Minimized : WindowState.Normal;
+
+        if (WindowState == wantedState)
+            return;
+
+        WindowState = wantedState;
+
+        if (wantedState != WindowState.Minimized)
+            Activate();
+
+        // ReSharper restore HeuristicUnreachableCode
+#pragma warning restore CS0162
+    }
+
+    private void OnLauncherWantsToClose(bool close)
+    {
+        if (close)
+            Close();
     }
 }

@@ -1226,5 +1226,35 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("DevBuildTypeSelectionHeading", resourceCulture);
             }
         }
+        
+        public static string PlayUnsafeBuildTitle {
+            get {
+                return ResourceManager.GetString("PlayUnsafeBuildTitle", resourceCulture);
+            }
+        }
+        
+        public static string PlayUnsafeBuildExplanation {
+            get {
+                return ResourceManager.GetString("PlayUnsafeBuildExplanation", resourceCulture);
+            }
+        }
+        
+        public static string AcceptUnsafeBuildButton {
+            get {
+                return ResourceManager.GetString("AcceptUnsafeBuildButton", resourceCulture);
+            }
+        }
+        
+        public static string FoundDevBuildToPlayInfo {
+            get {
+                return ResourceManager.GetString("FoundDevBuildToPlayInfo", resourceCulture);
+            }
+        }
+        
+        public static string FoundDevBuildToPlayDescription {
+            get {
+                return ResourceManager.GetString("FoundDevBuildToPlayDescription", resourceCulture);
+            }
+        }
     }
 }

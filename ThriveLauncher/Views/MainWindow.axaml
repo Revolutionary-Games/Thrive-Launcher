@@ -696,17 +696,17 @@
                               CloseCommand="{Binding ClosePlayingPopup}" ShowPopup="{Binding CurrentlyPlaying}">
             <Grid MinHeight="400" MinWidth="600" MaxWidth="600" MaxHeight="500"
                   ColumnDefinitions="*,Auto,Auto,Auto,Auto,*"
-                  RowDefinitions="Auto,Auto,Auto,*,Auto,Auto">
-                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Text="{Binding PlayPopupTopMessage}"
-                           IsVisible="{Binding PlayPopupTopMessage,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                           TextWrapping="Wrap" />
-
-                <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Name="PlayPrepareMessageContainer" />
-
-                <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Name="PlayPrepareProgressContainer" />
-
-                <ScrollViewer Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" Name="GameOutputScrollContainer">
+                  RowDefinitions="*,Auto,Auto">
+                <ScrollViewer Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Name="PlayOutputScrollContainer">
                     <StackPanel>
+                        <TextBlock Text="{Binding PlayPopupTopMessage}"
+                                   IsVisible="{Binding PlayPopupTopMessage,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                   TextWrapping="Wrap" />
+
+                        <StackPanel Name="PlayPrepareMessageContainer" />
+
+                        <StackPanel Name="PlayPrepareProgressContainer" />
+
                         <StackPanel Name="FirstGameOutputContainer" />
                         <TextBlock Text="{i18n:Localize TruncatedGameOutputWarning}" TextWrapping="Wrap"
                                    IsVisible="{Binding ThriveOutputIsTruncated}"
@@ -715,28 +715,47 @@
                     </StackPanel>
                 </ScrollViewer>
 
-                <Button Grid.Row="4" Grid.Column="1" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
+                <Button Grid.Row="1" Grid.Column="1" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
                         IsVisible="{Binding ShowCloseButtonOnPlayPopup}"
                         Content="{i18n:Localize CloseButton}" />
 
                 <!-- TODO: implement -->
-                <Button Grid.Row="4" Grid.Column="2" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
+                <Button Grid.Row="1" Grid.Column="2" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
                         IsVisible="False"
                         Content="{i18n:Localize ReportCrashButton}" />
 
                 <!-- TODO: copy icon and implement copying to clipboard -->
-                <!--<Button Grid.Row="4" Grid.Column="3" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
+                <!--<Button Grid.Row="1" Grid.Column="3" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
                         IsVisible="False"
                         Content="{i18n:Localize ReportCrashButton}" />-->
                 <!-- TODO: whatever this button was supposed to be...-->
-                <Button Grid.Row="4" Grid.Column="4" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
+                <Button Grid.Row="1" Grid.Column="4" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
                         IsVisible="False"
                         Content="{i18n:Localize ReportCrashButton}" />
 
-                <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="6" Text="{Binding PlayPopupBottomMessage}"
+                <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Text="{Binding PlayPopupBottomMessage}"
                            IsVisible="{Binding PlayPopupBottomMessage,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                            TextWrapping="Wrap" />
             </Grid>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog Title="{i18n:Localize PlayUnsafeBuildTitle}"
+                              ShowPopup="{Binding UnsafeBuildConfirmationRequired}"
+                              CloseCommand="{Binding CancelPlayUnsafeBuild}"
+                              ShowOKButton="False" ShowCloseX="True" MinWidth="400">
+            <DockPanel LastChildFill="True">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="3"
+                            Margin="0 15 0 0">
+                    <Button Classes="DialogButton Danger" Command="{Binding AcceptPlayUnsafeBuild}"
+                            Content="{i18n:Localize AcceptUnsafeBuildButton}" />
+
+                    <Button Classes="DialogButton" Command="{Binding CancelPlayUnsafeBuild}"
+                            Content="{i18n:Localize Cancel}" />
+                </StackPanel>
+
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="0 1 0 5" MaxWidth="400"
+                           Text="{i18n:Localize PlayUnsafeBuildExplanation}" />
+            </DockPanel>
         </controls:PopupDialog>
 
         <controls:PopupDialog Title="{Binding NoticeMessageTitle}" ShowOKButton="{Binding CanDismissNotice}"

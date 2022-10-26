@@ -655,4 +655,22 @@ Launcher logs will have more info.</value>
   <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
     <value>DevBuild type to play (when playing a DevBuild version is selected)</value>
   </data>
+  <data name="PlayUnsafeBuildTitle" xml:space="preserve">
+    <value>Play Unsafe DevBuild?</value>
+  </data>
+  <data name="PlayUnsafeBuildExplanation" xml:space="preserve">
+    <value>Normal DevBuilds are uploaded automatically by a CI server with a verified key. These builds can only be triggered by Thrive repository members. Unless such a person's account is compromised (or they act maliciously) the builds are about as safe to play as official releases. DevBuilds are also accepted from pull requests (PR), but in this case they are specifically marked unsafe (such as the currently selected build) as the pull request could contain all kinds of nasty stuff.
+
+If a Thrive team member verifies that the PR is safe this warning goes away. Alternative you can continue if you believe that this build is safe. Before doing so you should check the PR on Github to see that the latest commit hash matches and that the ThriveDevCenter build job says that it has uploaded a DevBuild with the hash. Additionally it should be checked that the PR does not change any build scripts. After doing that it should be relatively safe to continue, this is the same process Thrive team members use to verify PRs.</value>
+  </data>
+  <data name="AcceptUnsafeBuildButton" xml:space="preserve">
+    <value>I understand the risk, play anyway</value>
+  </data>
+  <data name="FoundDevBuildToPlayInfo" xml:space="preserve">
+    <value>Found DevBuild to play: {0}, hash: {1}, is BOTD: {2}, branch: {3}</value>
+  </data>
+  <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
+    <value>Build description:
+{0}</value>
+  </data>
 </root>

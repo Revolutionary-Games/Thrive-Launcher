@@ -27,6 +27,8 @@ public static class LauncherConstants
     public const string ToolsFolderName = "tools";
     public const string TemporaryExtractedFolderName = "temporary_extracted";
 
+    public const bool EntirelyHideWindowOnHide = false;
+
     /// <summary>
     ///   Maximum size in bytes for a file to be included in crash report
     /// </summary>

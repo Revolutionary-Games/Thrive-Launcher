@@ -41,9 +41,11 @@ public partial class MainWindowViewModel
     private string playPopupTopMessage = string.Empty;
     private string playPopupBottomMessage = string.Empty;
 
-    private List<ThriveOutputMessage> thriveOutputFirstPart = new();
-
+    private bool unsafeBuildConfirmationRequired;
     private DevBuildVersion? pendingBuildToPlay;
+
+    private bool wantsWindowHidden;
+    private bool launcherShouldClose;
 
     public bool CanPressPlayButton =>
         !CurrentlyPlaying && !string.IsNullOrEmpty(SelectedVersionToPlay) && !thriveIsRunning;
@@ -107,6 +109,40 @@ public partial class MainWindowViewModel
     {
         get => playPopupBottomMessage;
         private set => this.RaiseAndSetIfChanged(ref playPopupBottomMessage, value);
+    }
+
+    public bool UnsafeBuildConfirmationRequired
+    {
+        get => unsafeBuildConfirmationRequired;
+        private set => this.RaiseAndSetIfChanged(ref unsafeBuildConfirmationRequired, value);
+    }
+
+    /// <summary>
+    ///   True when the launcher window should be hidden (based on user preferences in the launcher settings)
+    /// </summary>
+    public bool WantsWindowHidden
+    {
+        get => wantsWindowHidden;
+        private set => this.RaiseAndSetIfChanged(ref wantsWindowHidden, value);
+    }
+
+    /// <summary>
+    ///   When this is set to true the launcher wants itself to be closed (based on non-default selectable options
+    ///   by the user)
+    /// </summary>
+    public bool LauncherShouldClose
+    {
+        get => launcherShouldClose;
+        private set
+        {
+            if (value == launcherShouldClose)
+                return;
+
+            this.RaiseAndSetIfChanged(ref launcherShouldClose, value);
+
+            if (launcherShouldClose)
+                logger.LogInformation($"{nameof(LauncherShouldClose)} has been set to true!");
+        }
     }
 
     public ObservableCollection<string> PlayMessages { get; } = new();
@@ -207,6 +243,8 @@ public partial class MainWindowViewModel
 
     public void AcceptPlayUnsafeBuild()
     {
+        UnsafeBuildConfirmationRequired = false;
+
         if (pendingBuildToPlay == null)
         {
             logger.LogError("No set build to play in unsafe build accepted");
@@ -219,9 +257,6 @@ public partial class MainWindowViewModel
             return;
         }
 
-        // hide the popup
-        throw new NotImplementedException();
-
         logger.LogInformation("Accepted playing potentially unsafe build");
         _ = CheckFilesAndStartThrive(pendingBuildToPlay);
         pendingBuildToPlay = null;
@@ -229,13 +264,10 @@ public partial class MainWindowViewModel
 
     public void CancelPlayUnsafeBuild()
     {
-        CurrentlyPlaying = false;
         pendingBuildToPlay = null;
+        UnsafeBuildConfirmationRequired = false;
 
-        // hide the popup
-        throw new NotImplementedException();
-
-        ReportRunFailure(Resources.PlayingUnsafeBuildWasCanceled);
+        ReportRunFailure(Resources.PlayingUnsafeBuildWasCanceled, true);
     }
 
     private async void StartPlayingThrive(IPlayableVersion version)
@@ -280,9 +312,14 @@ public partial class MainWindowViewModel
             {
                 logger.LogInformation("DevBuild is an unsafe build, asking for confirmation first");
 
-                // TODO: implement
-                throw new NotImplementedException();
+                pendingBuildToPlay = devBuildVersion;
+                UnsafeBuildConfirmationRequired = true;
+                return;
             }
+        }
+        else
+        {
+            PlayPopupTopMessage = string.Empty;
         }
 
         await CheckFilesAndStartThrive(version);
@@ -344,11 +381,19 @@ public partial class MainWindowViewModel
         });
     }
 
-    private void ReportRunFailure(string message)
+    private void ReportRunFailure(string message, bool preserveTopMessage = false)
     {
         Dispatcher.UIThread.Post(() =>
         {
-            PlayPopupTopMessage = string.Format(Resources.ThriveRunError, message);
+            if (preserveTopMessage)
+            {
+                PlayPopupTopMessage = PlayPopupTopMessage + "\n" + string.Format(Resources.ThriveRunError, message);
+            }
+            else
+            {
+                PlayPopupTopMessage = string.Format(Resources.ThriveRunError, message);
+            }
+
             CanCancelPlaying = true;
             ShowCloseButtonOnPlayPopup = true;
         });
@@ -363,8 +408,7 @@ public partial class MainWindowViewModel
             ShowCloseButtonOnPlayPopup = true;
             CanCancelPlaying = true;
 
-            // We don't want to block here waiting for this
-            _ = CheckLauncherUnHide();
+            bool allowUnHide = true;
 
             // Update bottom advice tip if there's something to show
             if (thriveRunner.ActiveErrorSuggestion != null)
@@ -380,6 +424,23 @@ public partial class MainWindowViewModel
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
+            }
+            else if (!thriveRunner.HasReportableCrash)
+            {
+                // Thrive ran without error, check the close after playing option if we want to close
+                if (CloseLauncherAfterGameExit)
+                {
+                    logger.LogInformation(
+                        "Closing launcher after playing Thrive without error as selected by the user");
+                    LauncherShouldClose = true;
+                    allowUnHide = false;
+                }
+            }
+
+            if (allowUnHide)
+            {
+                // We don't want to block here waiting for this
+                _ = CheckLauncherUnHide();
             }
         });
     }
@@ -594,8 +655,7 @@ public partial class MainWindowViewModel
             return;
         }
 
-        // TODO: handle closing
-        throw new NotImplementedException();
+        LauncherShouldClose = true;
     }
 
     private async Task HideLauncherAfterStart()
@@ -612,8 +672,7 @@ public partial class MainWindowViewModel
             return;
         }
 
-        // TODO:
-        throw new NotImplementedException();
+        WantsWindowHidden = true;
     }
 
     private async Task CheckLauncherUnHide()
@@ -629,8 +688,7 @@ public partial class MainWindowViewModel
         {
             logger.LogInformation("Showing the launcher again after running Thrive");
 
-            // TODO:
-            throw new NotImplementedException();
+            WantsWindowHidden = false;
         }
     }
 
