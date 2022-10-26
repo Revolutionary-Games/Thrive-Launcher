@@ -654,6 +654,10 @@ public partial class MainWindow : Window
                 Margin = new Thickness(0, 0, 0, 0),
             });
         }
+
+        // This is here to ensure when there's a really long devbuild description that the end of the messages is
+        // visible
+        PlayOutputScrollContainer.ScrollToEnd();
     }
 
     private void OnPlayPopupProgressChanged(object? o,
@@ -707,6 +711,8 @@ public partial class MainWindow : Window
             toDelete.Value.Dispose();
             activeProgressDisplayers.Remove(toDelete.Key);
         }
+
+        PlayOutputScrollContainer.ScrollToEnd();
     }
 
     private void OnFirstPartOfOutputChanged(object? sender, NotifyCollectionChangedEventArgs e)

@@ -141,8 +141,9 @@ public class ProgressDisplayer : IDisposable, IObserver<FilePrepareProgress>
         }
         else
         {
-            progressBar!.Maximum = progress.FinishedProgress ?? 0;
-            progressBar!.Value = progress.CurrentProgress ?? 0;
+            progressBar!.IsIndeterminate = false;
+            progressBar.Maximum = progress.FinishedProgress ?? 0;
+            progressBar.Value = progress.CurrentProgress ?? 0;
         }
     }
 
@@ -154,6 +155,7 @@ public class ProgressDisplayer : IDisposable, IObserver<FilePrepareProgress>
 
             var maxValue = progress.FinishedProgress?.BytesToMiB(2, false) ?? Properties.Resources.UnknownNumber;
 
+            // TODO: showing consistently 2 decimal places would make this nicer to read
             textualProgress!.Text = string.Format(Properties.Resources.DownloadProgressDisplay,
                 progress.CurrentProgress.Value.BytesToMiB(2, false), maxValue);
         }
