@@ -206,6 +206,10 @@ public partial class MainWindow : Window
         {
             DataContext = this.CreateInstance<LicensesWindowViewModel>(),
         };
+
+        // If we don't set the parent window then the license window can be open even after the main window is closed
+        // window.Show();
+
         window.Show(this);
     }
 
