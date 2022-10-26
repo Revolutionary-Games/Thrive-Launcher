@@ -308,6 +308,18 @@ public partial class MainWindowViewModel
             logger.LogInformation("DevBuild we want to really play: {Id}", build.Id);
             devBuildVersion.ExactBuild = build;
 
+            Dispatcher.UIThread.Post(() =>
+            {
+                PlayPopupTopMessage = string.Format(Resources.FoundDevBuildToPlayInfo, build.Id, build.BuildHash,
+                    build.BuildOfTheDay, build.Branch);
+
+                if (!string.IsNullOrWhiteSpace(build.Description))
+                {
+                    PlayPopupTopMessage = PlayPopupTopMessage + "\n" +
+                        string.Format(Resources.FoundDevBuildToPlayDescription, build.Description);
+                }
+            });
+
             if (build.Anonymous && !build.Verified)
             {
                 logger.LogInformation("DevBuild is an unsafe build, asking for confirmation first");
