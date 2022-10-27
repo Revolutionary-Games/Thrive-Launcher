@@ -27,6 +27,8 @@ public static class LauncherConstants
     public const string ToolsFolderName = "tools";
     public const string TemporaryExtractedFolderName = "temporary_extracted";
 
+    public const int SimultaneousRehydrationDownloads = 3;
+
     public const bool EntirelyHideWindowOnHide = false;
 
     /// <summary>

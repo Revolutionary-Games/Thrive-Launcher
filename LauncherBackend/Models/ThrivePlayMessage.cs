@@ -45,6 +45,16 @@ public class ThrivePlayMessage
         ///   Thrive is configured with extra flags, is given one parameter with the extra flags
         /// </summary>
         ExtraStartFlags,
+
+        /// <summary>
+        ///   Rehydration of a folder failed, is given one parameter with the dehydrated info file
+        /// </summary>
+        RehydrationFailed,
+
+        /// <summary>
+        ///   Rehydration is starting, no parameters
+        /// </summary>
+        Rehydrating,
     }
 
     public ThrivePlayMessage(Type type, params object?[] arguments)

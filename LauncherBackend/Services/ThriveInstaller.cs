@@ -27,12 +27,13 @@ public class ThriveInstaller : IThriveInstaller
     private readonly IDevCenterClient devCenterClient;
     private readonly ILauncherPaths launcherPaths;
     private readonly IExternalTools externalTools;
+    private readonly IRehydrator rehydrator;
     private readonly HttpClient downloadHttpClient;
 
     public ThriveInstaller(ILogger<ThriveInstaller> logger, ILauncherSettingsManager settingsManager,
         IThriveAndLauncherInfoRetriever infoRetriever, IStoreVersionDetector storeVersionDetector,
         ILauncherTranslations launcherTranslations, IDevCenterClient devCenterClient, ILauncherPaths launcherPaths,
-        INetworkDataRetriever networkDataRetriever, IExternalTools externalTools)
+        INetworkDataRetriever networkDataRetriever, IExternalTools externalTools, IRehydrator rehydrator)
     {
         this.logger = logger;
         this.settingsManager = settingsManager;
@@ -42,6 +43,7 @@ public class ThriveInstaller : IThriveInstaller
         this.devCenterClient = devCenterClient;
         this.launcherPaths = launcherPaths;
         this.externalTools = externalTools;
+        this.rehydrator = rehydrator;
 
         downloadHttpClient = new HttpClient();
         downloadHttpClient.Timeout = TimeSpan.FromMinutes(3);
@@ -316,14 +318,21 @@ public class ThriveInstaller : IThriveInstaller
             logger.LogInformation("Build is dehydrated (info file at: {DehydratedFile}), beginning rehydration",
                 dehydratedFile);
 
-            var operation =
-                new FilePrepareProgress(LauncherConstants.DehydratedCacheFileName, FilePrepareStep.Processing);
+            InstallerMessages.Add(new ThrivePlayMessage(ThrivePlayMessage.Type.Rehydrating));
 
-            InProgressOperations.Add(operation);
+            try
+            {
+                await rehydrator.Rehydrate(dehydratedFile, InProgressOperations, cancellationToken);
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e, "Rehydration failed with an exception on {DehydratedFile}", dehydratedFile);
+                InstallerMessages.Add(new ThrivePlayMessage(ThrivePlayMessage.Type.RehydrationFailed,
+                    e.Message));
+                return false;
+            }
 
-            throw new NotImplementedException();
-
-            InProgressOperations.Remove(operation);
+            logger.LogInformation("Rehydration succeeded");
         }
 
         return true;

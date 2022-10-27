@@ -619,6 +619,9 @@ Launcher logs will have more info.</value>
   <data name="DownloadProgressDisplay" xml:space="preserve">
     <value>Downloaded {0} of {1} MiB</value>
   </data>
+  <data name="ItemProgressDisplay" xml:space="preserve">
+    <value>Processed {0} of {1}</value>
+  </data>
   <data name="UnknownNumber" xml:space="preserve">
     <value>unknown</value>
   </data>
@@ -673,4 +676,11 @@ If a Thrive team member verifies that the PR is safe this warning goes away. Alt
     <value>Build description:
 {0}</value>
   </data>
+  <data name="RehydrationFailed" xml:space="preserve">
+    <value>Rehydration failed due to error: {0}</value>
+  </data>
+  <data name="RehydrationStarting" xml:space="preserve">
+    <value>This is a dehydrated build. Beginning rehydration.</value>
+  </data>
+
 </root>

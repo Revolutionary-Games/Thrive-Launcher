@@ -1155,6 +1155,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string ItemProgressDisplay {
+            get {
+                return ResourceManager.GetString("ItemProgressDisplay", resourceCulture);
+            }
+        }
+        
         public static string UnknownNumber {
             get {
                 return ResourceManager.GetString("UnknownNumber", resourceCulture);
@@ -1254,6 +1260,18 @@ namespace ThriveLauncher.Properties {
         public static string FoundDevBuildToPlayDescription {
             get {
                 return ResourceManager.GetString("FoundDevBuildToPlayDescription", resourceCulture);
+            }
+        }
+        
+        public static string RehydrationFailed {
+            get {
+                return ResourceManager.GetString("RehydrationFailed", resourceCulture);
+            }
+        }
+        
+        public static string RehydrationStarting {
+            get {
+                return ResourceManager.GetString("RehydrationStarting", resourceCulture);
             }
         }
     }

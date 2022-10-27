@@ -11,6 +11,7 @@ public static class ServiceCollectionExtensions
             .AddSingleton<IStoreVersionDetector, StoreVersionDetector>()
             .AddSingleton<ILauncherSettingsManager, LauncherSettingsManager>()
             .AddScoped<IHtmlSummaryParser, HtmlSummaryParser>()
+            .AddScoped<IRehydrator, Rehydrator>()
             .AddSingleton<ILauncherPaths, LauncherPaths>()
             .AddSingleton<IThriveAndLauncherInfoRetriever, ThriveAndLauncherInfoRetriever>()
             .AddSingleton<IThriveInstaller, ThriveInstaller>()

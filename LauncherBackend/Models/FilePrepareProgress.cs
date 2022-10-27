@@ -95,6 +95,14 @@ public class FilePrepareProgress : IObservable<FilePrepareProgress>
         PerformStepMove(FilePrepareStep.Extracting);
     }
 
+    public void MoveToVerifyStep()
+    {
+        if (CurrentStep == FilePrepareStep.Verifying)
+            return;
+
+        PerformStepMove(FilePrepareStep.Verifying);
+    }
+
     public IDisposable Subscribe(IObserver<FilePrepareProgress> observer)
     {
         if (!observers.Contains(observer))
