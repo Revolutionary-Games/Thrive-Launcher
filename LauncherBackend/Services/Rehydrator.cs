@@ -13,7 +13,7 @@ using SharedBase.Utilities;
 
 public class Rehydrator : IRehydrator
 {
-    private readonly Logger<Rehydrator> logger;
+    private readonly ILogger<Rehydrator> logger;
     private readonly ILauncherSettingsManager settingsManager;
     private readonly ILauncherPaths launcherPaths;
     private readonly IDevCenterClient devCenterClient;
@@ -27,7 +27,7 @@ public class Rehydrator : IRehydrator
 
     private readonly Stack<HttpClient> availableDownloadClients = new();
 
-    public Rehydrator(Logger<Rehydrator> logger, ILauncherSettingsManager settingsManager, ILauncherPaths launcherPaths,
+    public Rehydrator(ILogger<Rehydrator> logger, ILauncherSettingsManager settingsManager, ILauncherPaths launcherPaths,
         IDevCenterClient devCenterClient, INetworkDataRetriever networkDataRetriever, IExternalTools externalTools)
     {
         this.logger = logger;
