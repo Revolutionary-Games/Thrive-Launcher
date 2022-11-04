@@ -93,13 +93,24 @@ public class ThriveInstaller : IThriveInstaller
 
         foreach (var version in infoRetriever.CurrentlyLoadedInfo.Versions)
         {
+            if (!version.Stable)
+            {
+                if (!showAllBetaVersions &&
+                    !(showLatestBeta && version.Id == infoRetriever.CurrentlyLoadedInfo.LatestUnstable))
+                {
+                    continue;
+                }
+            }
+
             var allPlatformsForVersion = version.Platforms.Keys.ToList();
 
             foreach (var versionPlatform in version.Platforms)
             {
                 if (!settingsManager.Settings.ShouldShowVersionWithPlatform(versionPlatform.Key,
                         allPlatformsForVersion))
+                {
                     continue;
+                }
 
                 bool latest = infoRetriever.CurrentlyLoadedInfo.IsLatest(version);
 
@@ -153,6 +164,9 @@ public class ThriveInstaller : IThriveInstaller
                 return fallbackVersion;
             }
         });
+
+        // TODO: check that this works nicely for beta versions
+        sorted = sorted.ThenByDescending(t => t.VersionName);
 
         return sorted;
     }
