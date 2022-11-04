@@ -409,27 +409,42 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             var launcherInfo = FetchLauncherInfo().Result;
 
-            if (launcherInfo != null)
+            if (launcherInfo == null)
+                return;
+
+            try
             {
                 logger.LogInformation(
                     "Version information loaded. Thrive versions: {Versions}, latest launcher: {LatestVersion}",
                     launcherInfo.Versions.Count, launcherInfo.LauncherVersion.LatestVersion);
-
-                // Wait for devcenter connection task if currently running
-                while (CheckingDevCenterConnection)
-                {
-                    Task.Delay(TimeSpan.FromMilliseconds(300)).Wait();
-                    logger.LogDebug("Waiting for DevCenter status check request to complete...");
-                }
-
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e, "Got bad launcher info data");
                 Dispatcher.UIThread.Post(() =>
                 {
-                    // We now have the version info to work with
-                    ThriveVersionInformation = launcherInfo;
-
-                    CheckLauncherVersion(launcherInfo);
+                    ShowNotice(Resources.VersionInfoLoadFailureTitle, Resources.VersionInfoLoadFailureBadData);
                 });
+                return;
             }
+
+            // Wait for devcenter connection task if currently running
+            while (CheckingDevCenterConnection)
+            {
+                // ReSharper disable MethodSupportsCancellation
+                Task.Delay(TimeSpan.FromMilliseconds(300)).Wait();
+
+                // ReSharper restore MethodSupportsCancellation
+                logger.LogDebug("Waiting for DevCenter status check request to complete...");
+            }
+
+            Dispatcher.UIThread.Post(() =>
+            {
+                // We now have the version info to work with
+                ThriveVersionInformation = launcherInfo;
+
+                CheckLauncherVersion(launcherInfo);
+            });
         });
     }
 

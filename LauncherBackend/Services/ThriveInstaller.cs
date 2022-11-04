@@ -79,6 +79,18 @@ public class ThriveInstaller : IThriveInstaller
         if (infoRetriever.CurrentlyLoadedInfo == null)
             yield break;
 
+        // Guard against bad data, as somehow this can get called when we checked for bad data beforehand before
+        // assigning the variable which should trigger reading this
+        if (infoRetriever.CurrentlyLoadedInfo.Versions == null!)
+        {
+            logger.LogWarning("Loaded Thrive info is bad, returning no available versions");
+            yield break;
+        }
+
+        // TODO: create options to control these
+        bool showLatestBeta = false;
+        bool showAllBetaVersions = false;
+
         foreach (var version in infoRetriever.CurrentlyLoadedInfo.Versions)
         {
             var allPlatformsForVersion = version.Platforms.Keys.ToList();

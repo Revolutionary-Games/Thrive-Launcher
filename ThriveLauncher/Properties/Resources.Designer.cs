@@ -741,6 +741,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string VersionInfoLoadFailureBadData {
+            get {
+                return ResourceManager.GetString("VersionInfoLoadFailureBadData", resourceCulture);
+            }
+        }
+        
         public static string Retry {
             get {
                 return ResourceManager.GetString("Retry", resourceCulture);
