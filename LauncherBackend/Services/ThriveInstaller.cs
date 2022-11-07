@@ -277,16 +277,27 @@ public class ThriveInstaller : IThriveInstaller
             if (devBuildVersion.ExactBuild == null)
                 throw new InvalidOperationException("Exact build has not been set on DevBuild");
 
+            bool needsToDownload = false;
+
             if (Directory.Exists(targetFolder))
             {
                 if (!await VerifyRightDevBuildIsInstalled(targetFolder, devBuildCacheName, devBuildVersion,
                         cancellationToken))
                 {
-                    // Get the version to download here to avoid non-async blocking later
-                    logger.LogDebug("Fetching download info already for DevBuild to not block later");
-                    await devBuildVersion.DownloadAsync;
-                    logger.LogDebug("Done getting download info");
+                    needsToDownload = true;
                 }
+            }
+            else
+            {
+                needsToDownload = true;
+            }
+
+            if (needsToDownload)
+            {
+                // Get the version to download here to avoid non-async blocking later (which will cause a total lockup)
+                logger.LogDebug("Fetching download info already for DevBuild to not block later");
+                await devBuildVersion.DownloadAsync;
+                logger.LogDebug("Done getting download info");
             }
         }
         else

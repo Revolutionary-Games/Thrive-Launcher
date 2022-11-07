@@ -27,7 +27,8 @@ public class Rehydrator : IRehydrator
 
     private readonly Stack<HttpClient> availableDownloadClients = new();
 
-    public Rehydrator(ILogger<Rehydrator> logger, ILauncherSettingsManager settingsManager, ILauncherPaths launcherPaths,
+    public Rehydrator(ILogger<Rehydrator> logger, ILauncherSettingsManager settingsManager,
+        ILauncherPaths launcherPaths,
         IDevCenterClient devCenterClient, INetworkDataRetriever networkDataRetriever, IExternalTools externalTools)
     {
         this.logger = logger;
@@ -38,6 +39,9 @@ public class Rehydrator : IRehydrator
         this.externalTools = externalTools;
     }
 
+    public bool AlwaysShowDownloadHashes { get; set; }
+    public bool ShowFullDownloadUrls { get; set; }
+
     private string DehydratedCacheFolder => settingsManager.Settings.DehydratedCacheFolder ??
         launcherPaths.PathToDefaultDehydrateCacheFolder;
 
@@ -45,8 +49,7 @@ public class Rehydrator : IRehydrator
         launcherPaths.PathToTemporaryFolder;
 
     public async Task Rehydrate(string dehydratedCacheFile,
-        ObservableCollection<FilePrepareProgress> inProgressOperations,
-        CancellationToken cancellationToken)
+        ObservableCollection<FilePrepareProgress> inProgressOperations, CancellationToken cancellationToken)
     {
         var folder = Path.GetDirectoryName(dehydratedCacheFile) ??
             throw new ArgumentException("Couldn't get dehydrated folder");
@@ -84,8 +87,8 @@ public class Rehydrator : IRehydrator
     }
 
     private async Task ProcessDehydratedFile(string dehydratedFolder, DehydrateCache dehydrated,
-        FilePrepareProgress overallProgress,
-        ObservableCollection<FilePrepareProgress> inProgressOperations, CancellationToken cancellationToken)
+        FilePrepareProgress overallProgress, ObservableCollection<FilePrepareProgress> inProgressOperations,
+        CancellationToken cancellationToken)
     {
         knownFinalFilePathsForDehydrated.Clear();
 
@@ -98,7 +101,7 @@ public class Rehydrator : IRehydrator
         // Download missing
         if (missingHashes.Count > 0)
         {
-            logger.LogInformation("Download {Count} missing dehydrated objects", missingHashes.Count);
+            logger.LogInformation("Downloading {Count} missing dehydrated objects", missingHashes.Count);
 
             await DownloadDehydratedObjects(missingHashes, inProgressOperations, cancellationToken);
 
@@ -160,10 +163,10 @@ public class Rehydrator : IRehydrator
         }
     }
 
-    private List<DehydratedObjectIdentification> FindMissingDehydratedObjects(DehydrateCache dehydrated, out int total)
+    private HashSet<DehydratedObjectIdentification> FindMissingDehydratedObjects(DehydrateCache dehydrated, out int total)
     {
         total = 0;
-        var missingHashes = new List<DehydratedObjectIdentification>();
+        var missingHashes = new HashSet<DehydratedObjectIdentification>();
 
         foreach (var (fileName, data) in dehydrated.Files)
         {
@@ -287,12 +290,20 @@ public class Rehydrator : IRehydrator
             var tempZipped = Path.Join(TemporaryFolder, download.Sha3 + ".gz");
 
             // We show the final path to the user in the progress to make it clearer what's going on
-            if (!knownFinalFilePathsForDehydrated.TryGetValue(download.Sha3, out var finalPath))
-                finalPath = "unknown";
+            if (!knownFinalFilePathsForDehydrated.TryGetValue(download.Sha3, out var shownPath))
+            {
+                shownPath = $"unknown ({download.Sha3})";
+            }
+            else if (AlwaysShowDownloadHashes)
+            {
+                shownPath = $"{shownPath} ({download.Sha3})";
+            }
 
-            var downloadProgress =
-                new FilePrepareProgress($"{finalPath} ({download.Sha3})", download.DownloadUrl.UriWithoutQuery(),
-                    "unknown");
+            var uriToShow = ShowFullDownloadUrls ?
+                download.DownloadUrl.UriWithoutQuery() :
+                new Uri(download.DownloadUrl).Host;
+
+            var downloadProgress = new FilePrepareProgress(shownPath, uriToShow, "unknown");
             inProgressOperations.Add(downloadProgress);
 
             try
