@@ -272,6 +272,9 @@ public partial class MainWindowViewModel
 
     private async void StartPlayingThrive(IPlayableVersion version)
     {
+        logger.LogDebug("Clearing previous Thrive play logs");
+        thriveRunner.ClearOutput();
+
         if (version is DevBuildVersion devBuildVersion)
         {
             // For devbuild type builds we need to start retrieving the build info before we can check if we have it

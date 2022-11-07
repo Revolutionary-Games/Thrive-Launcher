@@ -70,16 +70,7 @@ public class ThriveRunner : IThriveRunner
             thriveRunnerThread = null;
         }
 
-        PlayMessages.Clear();
-        ThriveOutput.Clear();
-        ThriveOutputTrailing.Clear();
-        truncatedObservable.Value = false;
-        HasReportableCrash = false;
-        DetectedThriveDataFolder = null;
-        DetectedFullLogFileLocation = null;
-        readingUnhandledException = false;
-        unhandledException = null;
-        ActiveErrorSuggestion = null;
+        ClearOutput();
 
         // Update our copy of the settings variables
         firstLinesToKeep = settingsManager.Settings.BeginningKeptGameOutput;
@@ -167,6 +158,20 @@ public class ThriveRunner : IThriveRunner
         }
 
         return false;
+    }
+
+    public void ClearOutput()
+    {
+        PlayMessages.Clear();
+        ThriveOutput.Clear();
+        ThriveOutputTrailing.Clear();
+        truncatedObservable.Value = false;
+        HasReportableCrash = false;
+        DetectedThriveDataFolder = null;
+        DetectedFullLogFileLocation = null;
+        readingUnhandledException = false;
+        unhandledException = null;
+        ActiveErrorSuggestion = null;
     }
 
     private async Task RunThriveExecutable(string thriveExecutable, IPlayableVersion version,
@@ -485,4 +490,9 @@ public interface IThriveRunner
     /// </summary>
     /// <returns>True if an active Thrive process was told to quit</returns>
     public bool QuitThrive();
+
+    /// <summary>
+    ///   Clears the game output. Useful for starting a new install with clean output
+    /// </summary>
+    void ClearOutput();
 }
