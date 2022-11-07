@@ -13,7 +13,7 @@ public static class LauncherConstants
     ///   The mode the launcher is in. ONLY COMMIT WHEN IN PRODUCTION MODE. This can be changed temporarily for local
     ///   testing.
     /// </summary>
-    public const LauncherMode Mode = LauncherMode.LocalTesting;
+    public const LauncherMode Mode = LauncherMode.Production;
 
     /// <summary>
     ///   File name to determine which exact version is extracted as a DevBuild
@@ -60,7 +60,9 @@ public static class LauncherConstants
     public const string FacebookPageURL = "https://www.facebook.com/Thrive-182887991751358/";
     public const string TwitterProfileURL = "https://twitter.com/thrive_game";
     public const string LauncherDownloadsPageURL = "https://github.com/Revolutionary-Games/Thrive-Launcher/releases";
-    public const string LauncherLinkingInstructionsURL = "https://wiki.revolutionarygamesstudio.com/wiki/Linking_the_Launcher";
+
+    public const string LauncherLinkingInstructionsURL =
+        "https://wiki.revolutionarygamesstudio.com/wiki/Linking_the_Launcher";
 
     public const string StartOfUnhandledExceptionLogging = "------------ Begin of Unhandled Exception";
     public const string EndOfUnhandledExceptionLogging = "------------  End of Unhandled Exception";
@@ -98,7 +100,17 @@ public static class LauncherConstants
     public static readonly Uri DevForumFeedURL = new("https://thrivefeeds.b-cdn.net/posts.rss");
     public static readonly Uri MainSiteFeedURL = new("https://thrivefeeds.b-cdn.net/feed.rss");
 
-    public static readonly Uri LauncherInfoFileURL = new(DevCenterURL, "api/v1/LauncherInfo");
+#pragma warning disable CS0162
+
+    // ReSharper disable HeuristicUnreachableCode
+    // This goes through a CDN in production
+    public static readonly Uri LauncherInfoFileURL =
+        Mode == LauncherMode.Production ?
+            new Uri("https://thrivelauncher-info.b-cdn.net/") :
+            new Uri(DevCenterURL, "api/v1/LauncherInfo");
+
+    // ReSharper restore HeuristicUnreachableCode
+#pragma warning restore CS0162
 
     public static readonly Uri DevCenterUserTokenURL = new(DevCenterURL, "me");
 
