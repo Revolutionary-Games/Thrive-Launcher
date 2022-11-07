@@ -218,7 +218,7 @@
         <value>Päivän koontiversio (BOTD), suositeltu</value>
     </data>
     <data name="BuildTypeSelectionLatest" xml:space="preserve">
-        <value>Viimeisin (vaihtelee satunnaisesti paljon, sillä tämä on kirjaimellisesti koontiversio arkiston viimeisimmästä kommitista)</value>
+        <value>Viimeisin (vaihtelee satunnaisesti paljon, sillä tämä on kirjaimellisesti koontiversio arkiston viimeisimmästä commitista)</value>
     </data>
     <data name="BuildTypeSelectionManual" xml:space="preserve">
         <value>Manuaalisesti valittu "Tietty koontiversio"-välilehdellä</value>
@@ -242,7 +242,7 @@
         <value>OK</value>
     </data>
     <data name="EnterBuildHashPlaceholder" xml:space="preserve">
-        <value>Syötä koontiversion tarkistussumma (kommit)</value>
+        <value>Syötä koontiversion tarkistussumma (commit)</value>
     </data>
     <data name="FetchLatestBuildsButton" xml:space="preserve">
         <value>Hae viimeisimmät koontiversiot</value>
