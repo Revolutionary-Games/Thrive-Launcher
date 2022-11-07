@@ -1,0 +1,650 @@
+// This is the thrive version info database. This is automatically downloaded by the launcher
+// from github to let old versions see that there is a new version
+// To sign this file use:
+// gpg2 --clearsign --output "signed_versions.json" --local-user "Thrive Launcher Signing Key" --sign thrive_versions.json
+// After you have the pgp key
+{
+    // launcher version info
+    "launcher-meta": {
+
+        "latestVersion": "1.3.2",
+        "dlURL": "https://github.com/Revolutionary-Games/Thrive-Launcher/releases"
+    },
+
+    "platforms": [
+
+        {
+            // These ids should stay the same, same as the version ids
+            "id": 1,
+            "name": "Windows 32-bit",
+            // from os.arch
+            "arch": "ia32",
+            // from os.platform
+            "os": "win32"
+        },
+
+        {
+            "id": 2,
+            "name": "Windows 64-bit",
+            "arch": "x64",
+            "os": "win32"
+        },
+
+        {
+            "id": 3,
+            "name": "Linux x64",
+            "arch": "x64",
+            "os": "linux"
+        },
+        {
+            "id": 4,
+            "name": "Darwin x64",
+            "arch": "x64",
+            "os": "darwin"
+        }
+    ],
+
+    "latest": [
+
+        {
+            "type": "stable",
+            "id": 27
+        }
+    ],
+
+    "versions": [
+
+        {
+            // Unique id of the release
+            "id": 1,
+            "releaseNum": "0.3.3",
+
+            "platforms": [
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.3.3/LINUX_Thrive-v0.3.3.7z",
+                    // sha3-256 hash of the file, to verify downloads
+                    // on linux can be created with: `rhash --sha3-256 file`
+                    "hash": "7a3156f2eb6f86f9e6c6e12a6494cf1d21a062e1ba9493debc3be8f925c1380e"
+                },
+
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.3.3/WINDOWS_Thrive-v0.3.3.zip",
+                    "hash": "981443aebc5c1c406072cf8fb2bd37ec7189d71b4a19c749aa97cb2a9eb7ef34"
+                }
+            ]
+        },
+
+        {
+            "id": 2,
+            "releaseNum": "0.3.2",
+
+            "platforms": [
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.3.2/LINUX_Thrive.0.3.2.7z",
+
+                    "hash": "457667ce404ebff4e8a0fb42ebc34e9aa577504704babf0311f09071c9d4501b"
+                },
+
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.3.2/WINDOWS_Thrive.v0.3.2.zip",
+                    "hash": "d755839f492353b5b99dc26142c3af9a445ceea4ffbfbe91d01b00d21227d7ac"
+                }
+            ]
+        },
+
+
+        {
+            "id": 3,
+            "releaseNum": "0.3.4",
+
+            "platforms": [
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.3.4/LINUX_Thrive.0.3.4.7z",
+                    "hash": "a775922f6e5a2b1324f5a3f35d4cbed6b08985d5bce1c19ac15b2f6eb1a7ffbd"
+                },
+
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.3.4/WINDOWS_Thrive.0.3.4.zip",
+                    "hash": "1b289e805d717c66e831575ca82b156fe0b88bcc373c66d02092dfcbc6fd3caa"
+                }
+            ]
+        },
+
+        {
+            "id": 4,
+            "releaseNum": "0.4.0",
+
+            "platforms": [
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.0/Thrive-0.4.0.0-WINDOWS-64bit.7z",
+                    "hash": "3364565593685e7ae1c32b242e6dba7d5fffb13f359d47baf9d138fda2fef439"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.0/Thrive-0.4.0.0-LINUX-generic.7z",
+                    "hash": "303f282dfdd0b81b48f7a57f64ffd099437e4442b35b87876a838e5aa1233be2"
+                }
+            ]
+        },
+
+        {
+            "id": 5,
+            "releaseNum": "0.4.0.1",
+
+            "platforms": [
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.0.1/Thrive-0.4.0.1-WINDOWS-64bit.7z",
+                    "hash": "6183f6b6b6a6b584299564419ca0ccff471199b551b210556e97672924a4612a"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.0.1/Thrive-0.4.0.1-LINUX-generic.7z",
+                    "hash": "893d2e7f0712d5fc163f3bae0845662159aeee9055856e21d75585167bc1184e"
+                }
+            ]
+        },
+
+        {
+            "id": 6,
+            "releaseNum": "0.4.0.2",
+
+            "platforms": [
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.0.2/Thrive-0.4.0.2-WINDOWS-64bit.7z",
+                    "hash": "daa06720cc69bc871e1f9e26f86b1155f61b6deae84f39fe8aabd01573986cdd"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.0.2/Thrive-0.4.0.2-LINUX-generic.7z",
+                    "hash": "7dac551ac79a5e6dfebc30124c83aa6603153ede884bf36ddc27ed37f9002e0f"
+                }
+            ]
+        },
+
+        {
+            "id": 7,
+            "releaseNum": "0.4.1",
+
+            "platforms": [
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.1/Thrive-0.4.1.0-WINDOWS-64bit.7z",
+                    "hash": "c5d6c6631267422899a688b4ed54443f5b6ab7aab2213ba81f78af00d2ac93d0"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.1/Thrive-0.4.1.0-LINUX-generic.7z",
+                    "hash": "82fddd257588822fb36a6e7f784e49de848b0bdab7fb8a1067de7e9af5ed38d4"
+                }
+            ]
+        },
+
+        {
+            "id": 8,
+            "releaseNum": "0.4.1.1",
+
+            "platforms": [
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.1.1/Thrive-0.4.1.1-WINDOWS-64bit.7z",
+                    "hash": "8b33db41c87431be56efa41f2cdaf7d50b8e029cfc4f54cbd6724fc58b78ef03"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.1.1/Thrive-0.4.1.1-LINUX-generic.7z",
+                    "hash": "284f191238de84872f535520b7fb1f4c9d26201fbe9a182c29a9615f1bf85668"
+                }
+            ]
+        },
+
+        {
+            "id": 9,
+            "releaseNum": "0.4.2",
+
+            "platforms": [
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.2/Thrive-0.4.2.0-WINDOWS-64bit.7z",
+                    "hash": "43894ffa23107ff1e4193c6638bf7175eaa9d5a13928a19b3000c348aa78a525"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.2/Thrive-0.4.2.0-LINUX-generic.7z",
+                    "hash": "607cce1fc57aaa4ee0d846a8964a9fa748cd89eadeb4c2fb5846f5de1c41d19c"
+                }
+            ]
+        },
+
+        {
+            "id": 10,
+            "releaseNum": "0.4.3",
+
+            "platforms": [
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.3/Thrive-0.4.3.0-WINDOWS-64bit.7z",
+                    "hash": "e25d6e83603cc38f21ca2c717daf941901cfd7f01fe89e7bf5794540b50c3902"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.3/Thrive-0.4.3.0-LINUX-generic.7z",
+                    "hash": "9bdf430517a032e36524622fba13614ff555abdb3612bde4856f6f63163e23dc"
+                }
+            ]
+        },
+
+        {
+            "id": 11,
+            "releaseNum": "0.4.3.1",
+
+            "platforms": [
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.3.1/Thrive-0.4.3.1-WINDOWS-64bit.7z",
+                    "hash": "594af1e4e73a3fee1b76edc39fda49ae15eb3e737face8f57891e2c6ceb13861"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.4.3.1/Thrive-0.4.3.1-LINUX-generic.7z",
+                    "hash": "632dd59cc45c2fd3c06a28fd450eb763cbe90f40742a1122f9e73624c9652803"
+                }
+            ]
+        },
+
+
+        {
+            "id": 13,
+            "releaseNum": "0.5.0",
+
+            "platforms": [
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.0/Thrive_0.5.0.0_windows_desktop_.32-bit.7z",
+                    "hash": "54dfe0e4d31335d67fa292911a2ccb50044f3e67e873165e9678a2ffa28dcaf8"
+                },
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.0/Thrive_0.5.0.0_windows_desktop.7z",
+                    "hash": "a88fb27e6fda3ed8650997c8da01a076e0d448c0bdaf1ce132df138a6da1743f"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.0/Thrive_0.5.0.0_linux_x11.7z",
+                    "hash": "137ee0e220057dd147ff08f5904a032696aa64a760e7e227be387419e05b3cf1"
+                }
+            ]
+        },
+
+
+        {
+            "id": 14,
+            "releaseNum": "0.5.1",
+
+            "platforms": [
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.1/Thrive_0.5.1.0_windows_desktop_.32-bit.7z",
+                    "hash": "96dd007bf7509a8b7f9427e56ec69de69aeed70a967cfb8a4d22244d58defde2"
+                },
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.1/Thrive_0.5.1.0_windows_desktop.7z",
+                    "hash": "232b3963451db39d6101138bd3ecda9aebf1527480e418d3252a53407a6264c0"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.1/Thrive_0.5.1.0_linux_x11.7z",
+                    "hash": "7a6119994a11daaca2d317df03c42cf9da62205238d88168e687de331dba75ed"
+                }
+            ]
+        },
+        {
+            "id": 15,
+            "releaseNum": "0.5.1.1",
+
+            "platforms": [
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.1.1/Thrive_0.5.1.1_windows_desktop_.32-bit.7z",
+                    "hash": "cd9b0d1bb231cab59caf674a29f6bc132d199a3eacd0b84615d7572e6510efd3"
+                },
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.1.1/Thrive_0.5.1.1_windows_desktop.7z",
+                    "hash": "bf0fc3c863234d49ae31a4922c628c8f074529764a1299074756eccca2b0fce3"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.1.1/Thrive_0.5.1.1_linux_x11.7z",
+                    "hash": "305f6a75ebb699099d4df93ebf83f664f1bbf258ff25d5d0a10f709215945ce0"
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "releaseNum": "0.5.2",
+
+            "platforms": [
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.2/Thrive_0.5.2.0_windows_desktop_.32-bit.7z",
+                    "hash": "2757588ecb6d8dd3e51fc077c7e5cfe663655cfdbb60c6f70cb8a22c6b851b46"
+                },
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.2/Thrive_0.5.2.0_windows_desktop.7z",
+                    "hash": "1714653932f6b83183e9c37533cee3250d1edb384fbc6aaa1fab28ec97638d57"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.2/Thrive_0.5.2.0_linux_x11.7z",
+                    "hash": "400ae8e353d3b6411275e353fc534749c346f34f4509a4137a300fae0a5fed18"
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "releaseNum": "0.5.3",
+
+            "platforms": [
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.3/Thrive_0.5.3.0_windows_desktop_.32-bit.7z",
+                    "hash": "3f3a0ceb065718064e8baa9d0fc70227bad12075a2f67776178c3285f31c9ba2"
+                },
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.3/Thrive_0.5.3.0_windows_desktop.7z",
+                    "hash": "07a735b2b61abdc7bb43aae5d823b602307dc733f987eb44813b52f55888769a"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.3/Thrive_0.5.3.0_linux_x11.7z",
+                    "hash": "2d70be09d731ff4d318b0c17438c2222393c0dd1e830b0818270e4aea4c22d4e"
+                }
+            ]
+        },
+        {
+            "id": 18,
+            "releaseNum": "0.5.3.1",
+
+            "platforms": [
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.3.1/Thrive_0.5.3.1_windows_desktop_.32-bit.7z",
+                    "hash": "c76d0439615bd98903e37c7640e9d3a34acd990559c0811505f9f280bdd0cf16"
+                },
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.3.1/Thrive_0.5.3.1_windows_desktop.7z",
+                    "hash": "c2a99d2712d6e2d055925fc9fbdc90340a2503fd8802ceca17e1f798c366c217"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.3.1/Thrive_0.5.3.1_linux_x11.7z",
+                    "hash": "1fd9d3f52762b8cb0257d010e7eec140830761a70322409774237c87730a7b91"
+                },
+                {
+                    "os": 4,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.3.1/Thrive_0.5.3.1_mac_osx.zip",
+                    "hash": "f05328b8ad07a65fcf423d43f872af2b4e0a23db9b153e55a6d29f288ce135e3"
+                }
+            ]
+        },
+        {
+            "id": 19,
+            "releaseNum": "0.5.4",
+
+            "platforms": [
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.4/Thrive_0.5.4.0_windows_desktop_.32-bit.7z",
+                    "hash": "ade1533fd882ab78f41f0ab6baff03f5f095d5dd7b4456a9e20900a5744483cc"
+                },
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.4/Thrive_0.5.4.0_windows_desktop.7z",
+                    "hash": "ed73bdde7f207dc0116567ff42af4332cbe8fbbcf782c7581965d0c28f57a984"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.4/Thrive_0.5.4.0_linux_x11.7z",
+                    "hash": "454090ba1ca32cf99305a0fb12ade02d08cb88ab19925e9d75f0461ad63d2db3"
+                },
+                {
+                    "os": 4,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.4/Thrive_0.5.4.0_mac_osx.zip",
+                    "hash": "a48ee635073f3f5d1b3c65e13aa131a6e789e0b6b98d5cacb3b6b9de5f4d4206"
+                }
+            ]
+        },
+        {
+            "id": 20,
+            "releaseNum": "0.5.5",
+
+            "platforms": [
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.5/Thrive_0.5.5.0_windows_desktop_.32-bit.7z",
+                    "hash": "6f213f8990697ca781fc0aae4ef059da6de191e9d8639a381ec21e159f98cfe5"
+                },
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.5/Thrive_0.5.5.0_windows_desktop.7z",
+                    "hash": "2cfb1137cdc7a63e8693cfba55ab162f2415d64a93dbb39b4ce99c147962fa9d"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.5/Thrive_0.5.5.0_linux_x11.7z",
+                    "hash": "d030a900f3320c07c49821d67f6595e418f6fd9cf862a315fc091b4f0f5c9110"
+                },
+                {
+                    "os": 4,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.5/Thrive_0.5.5.0_mac_osx.zip",
+                    "hash": "0d28805c27f9bb6e95bda0c24d96e344d4726b97841a3e39a6d8c86ad52c4575"
+                }
+            ]
+        },
+        {
+            "id": 21,
+            "releaseNum": "0.5.6",
+
+            "platforms": [
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.6/Thrive_0.5.6.0_windows_desktop_.32-bit.7z",
+                    "hash": "4ee0a447a8a956b6b6cb98bb685f4f274c1b2befa7bf101a94db5d76819a30ff"
+                },
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.6/Thrive_0.5.6.0_windows_desktop.7z",
+                    "hash": "d905facf6f76fe7b183907b0d93bd5a1005faa9f0be2e68c7a8330ce4137b03a"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.6/Thrive_0.5.6.0_linux_x11.7z",
+                    "hash": "85162ab81db3375c5afd367fbb36c7dc75f26462e5ed33ce91f22f617f892033"
+                },
+                {
+                    "os": 4,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.6/Thrive_0.5.6.0_mac_osx.zip",
+                    "hash": "ee04234bfcc54a8068dd779bd3405474532407b8c59d3e21b279331ef99c7f34"
+                }
+            ]
+        },
+        {
+            "id": 22,
+            "releaseNum": "0.5.6.1",
+
+            "platforms": [
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.6.1/Thrive_0.5.6.1_windows_desktop_.32-bit.7z",
+                    "hash": "1a8c6d3e01328727421812ceb43ad83e99257fec6a13d1b1408114240beb2f06"
+                },
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.6.1/Thrive_0.5.6.1_windows_desktop.7z",
+                    "hash": "f22d06461adc2dfd40fada8960aaa4c158d5ec260ede1b36ae20e6ecbc37cba2"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.6.1/Thrive_0.5.6.1_linux_x11.7z",
+                    "hash": "932d4cc1d2ecf42c02daf7a81a7dfdaf2d2ff81cfde5c316f1c1cbe2daec9170"
+                },
+                {
+                    "os": 4,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.6.1/Thrive_0.5.6.1_mac_osx.zip",
+                    "hash": "a5009f5b26c680b48d2bfb1f675238535afcb2fcef9e5a385f911ef3714a94ef"
+                }
+            ]
+        },
+        {
+            "id": 23,
+            "releaseNum": "0.5.7",
+
+            "platforms": [
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.7/Thrive_0.5.7.0_windows_desktop_.32-bit.7z",
+                    "hash": "2fe7446aa7b6b1ea03daaf16a22d7c3fb8797c398caeddd16afa5de572be1aca"
+                },
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.7/Thrive_0.5.7.0_windows_desktop.7z",
+                    "hash": "fae0ffa003903aae4041443d6b0878879b67d8e60f733479accdcace8861d7cc"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.7/Thrive_0.5.7.0_linux_x11.7z",
+                    "hash": "160f316ff12b673e75a8a33051fa69b63bf89350473611270ff4019d4a793d3a"
+                },
+                {
+                    "os": 4,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.7/Thrive_0.5.7.0_mac_osx.zip",
+                    "hash": "9269260708b88a5051e9e1d2f61ece9c74ac6729dfb4c75caf760771c79545a8"
+                }
+            ]
+        },
+        {
+            "id": 24,
+            "releaseNum": "0.5.8",
+
+            "platforms": [
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.8/Thrive_0.5.8.0_windows_desktop_.32-bit.7z",
+                    "hash": "e6ed4469d2c334562dfa039a0569c3894799a539cd85ad1e9e8ac45843f95e7f"
+                },
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.8/Thrive_0.5.8.0_windows_desktop.7z",
+                    "hash": "207b182045c1f00d7a49ac39fe5a638d36f41be2d0bd89e77c649e1fc8540a59"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.8/Thrive_0.5.8.0_linux_x11.7z",
+                    "hash": "c997603986e3446ba14869748761ff0754cbd5ffd6a4dcb81f464fa385bd33cf"
+                },
+                {
+                    "os": 4,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.8/Thrive_0.5.8.0_mac_osx.zip",
+                    "hash": "f86d30767d2fcf2f9cf4b48d7620b22f702d7a2b6363ed984027cb62e264a8bb"
+                }
+            ]
+        },
+        {
+            "id": 25,
+            "releaseNum": "0.5.8.1",
+
+            "platforms": [
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.8.1/Thrive_0.5.8.1_windows_desktop_.32-bit.7z",
+                    "hash": "f745bb6e481be2c8e5ec634037b105fb2c14787af9aba4c0c070212c14eddb3e"
+                },
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.8.1/Thrive_0.5.8.1_windows_desktop.7z",
+                    "hash": "1a165327ae55f3c5d44dc050e9cd2c29932170600fd6d0850b764f56e9a7cbed"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.8.1/Thrive_0.5.8.1_linux_x11.7z",
+                    "hash": "dd3206db07cf96477e687bda6524dca979d486ca3786d5ae5abf361c368b692c"
+                },
+                {
+                    "os": 4,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.8.1/Thrive_0.5.8.1_mac_osx.zip",
+                    "hash": "65c0696ad327d30dbde04df3f886de7da90ffcdf0ee4033eae5724a8844985ef"
+                }
+            ]
+        },
+        {
+            "id": 26,
+            "releaseNum": "0.5.9",
+
+            "platforms": [
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.9/Thrive_0.5.9.0_windows_desktop_.32-bit.7z",
+                    "hash": "b38d192c6ebc98f1982c9c1d0df93e507496c13213828b924c563a21f54cfaba"
+                },
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.9/Thrive_0.5.9.0_windows_desktop.7z",
+                    "hash": "930d8f059a3b6132179083c9d8b6be8d3257efde4d9d3e90a86936053c26f66c"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.9/Thrive_0.5.9.0_linux_x11.7z",
+                    "hash": "827304db6b306a2e16b61250f4f3152ec03f05a0eb06bc6305259be20a49727f"
+                },
+                {
+                    "os": 4,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.9/Thrive_0.5.9.0_mac_osx.zip",
+                    "hash": "ae1738eed448129bb2117007afb739e16725727caf2760af13c834fb965816cc"
+                }
+            ]
+        },
+        {
+            "id": 27,
+            "releaseNum": "0.5.10",
+
+            "platforms": [
+                {
+                    "os": 1,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.10/Thrive_0.5.10.0_windows_desktop_.32-bit.7z",
+                    "hash": "889dc697871bccf5a22126d5ecb0ef25f2bdeaa68166a38e0731e28a9880fcd0"
+                },
+                {
+                    "os": 2,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.10/Thrive_0.5.10.0_windows_desktop.7z",
+                    "hash": "0e6fe97da9afc501c1e169f3944c1da73726853e3b58f61c3461266c152dd470"
+                },
+                {
+                    "os": 3,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.10/Thrive_0.5.10.0_linux_x11.7z",
+                    "hash": "7c9137ed64dc7e0d8c93113b90b79f84a63d85b2e8b824e9554a2f4457d72399"
+                },
+                {
+                    "os": 4,
+                    "url": "https://github.com/Revolutionary-Games/Thrive/releases/download/v0.5.10/Thrive_0.5.10.0_mac_osx.zip",
+                    "hash": "eeaef248c46dc539ede309149176359d9d716e23290e2e8d8dddb24b52fe2f8e"
+                }
+            ]
+        }
+    ]
+
+
+
+}
