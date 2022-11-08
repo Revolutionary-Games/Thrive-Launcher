@@ -16,3 +16,4 @@ obj
 
 /.jetbrains-cache
 /inspect_results.xml
+*.deb
