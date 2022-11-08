@@ -8,38 +8,20 @@ using SharedBase.Utilities;
 
 public class Program
 {
-    public class CheckOptions : CheckOptionsBase
-    {
-    }
-
-    [Verb("test", HelpText = "Run tests using 'dotnet' command")]
-    public class TestOptions : ScriptOptionsBase
-    {
-    }
-
-    public class ChangesOptions : ChangesOptionsBase
-    {
-        [Option('b', "branch", Required = false, Default = "master", HelpText = "The git remote branch name")]
-        public override string RemoteBranch { get; set; } = "master";
-    }
-
-    [Verb("icons", HelpText = "Generate icons needed by the launcher from source files")]
-    public class IconsOptions : ScriptOptionsBase
-    {
-    }
-
     [STAThread]
     public static int Main(string[] args)
     {
         RunFolderChecker.EnsureRightRunningFolder("ThriveLauncher.sln");
 
         var result = CommandLineHelpers.CreateParser()
-            .ParseArguments<CheckOptions, TestOptions, ChangesOptions, IconsOptions>(args)
+            .ParseArguments<CheckOptions, TestOptions, ChangesOptions, IconsOptions, ContainerOptions>(args)
             .MapResult(
                 (CheckOptions opts) => RunChecks(opts),
                 (TestOptions opts) => RunTests(opts),
                 (ChangesOptions opts) => RunChangesFinding(opts),
                 (IconsOptions opts) => RunIcons(opts),
+                (IconsOptions opts) => RunIcons(opts),
+                (ContainerOptions options) => RunContainer(options),
                 CommandLineHelpers.PrintCommandLineErrors);
 
         ConsoleHelpers.CleanConsoleStateForExit();
@@ -91,5 +73,44 @@ public class Program
         var checker = new IconProcessor(opts);
 
         return checker.Run(tokenSource.Token).Result ? 0 : 1;
+    }
+
+    private static int RunContainer(ContainerOptions options)
+    {
+        CommandLineHelpers.HandleDefaultOptions(options);
+
+        ColourConsole.WriteDebugLine("Running container tool");
+
+        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+
+        var tool = new ContainerTool(options);
+
+        return tool.Run(tokenSource.Token).Result ? 0 : 1;
+    }
+
+    public class CheckOptions : CheckOptionsBase
+    {
+    }
+
+    [Verb("test", HelpText = "Run tests using 'dotnet' command")]
+    public class TestOptions : ScriptOptionsBase
+    {
+    }
+
+    public class ChangesOptions : ChangesOptionsBase
+    {
+        [Option('b', "branch", Required = false, Default = "master", HelpText = "The git remote branch name")]
+        public override string RemoteBranch { get; set; } = "master";
+    }
+
+    [Verb("icons", HelpText = "Generate icons needed by the launcher from source files")]
+    public class IconsOptions : ScriptOptionsBase
+    {
+    }
+
+    public class ContainerOptions : ContainerOptionsBase
+    {
+        [Option('i', "image", Required = true, HelpText = "The image to build, either CI or ReleaseBuilder")]
+        public ImageType? Image { get; set; }
     }
 }

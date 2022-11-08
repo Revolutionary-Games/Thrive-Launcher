@@ -11,13 +11,13 @@ For more information, visit [Revolutionary Games' Website](http://revolutionaryg
 
 
 
-### Required packages
+### Requirements on Linux
 
-On Linux a new enough OS is needed to include new enough glibc
-version. Latest Ubuntu LTS is the oldest guaranteed distro to work.
+On Linux a new enough OS is needed to include new enough system
+libraries. Ubuntu 20.04 LTS is the oldest guaranteed distro to work.
 
 
-### Required windows version
+### Required Windows version
 
 Due to the used framework at least Windows 7 or newer is required.
 
@@ -75,9 +75,31 @@ Creating releases
 
 TODO: new packaging approach
 
+Packaging is currently done on Linux for Linux and Windows, and mac
+packages need to be made on a mac with development tools installed.
+
+```sh
+dotnet run --project Scripts -- container --export false --image ReleaseBuilder latest
+```
+
+With the build containers created, then just run:
+
 ```sh
 dotnet run --project Scripts -- package
 ```
 
+On a mac the build containers are not needed, so just run:
+```sh
+dotnet run --project Scripts -- package
+```
+
+CI Images
+---------
+
+CI image can be created with the container script like this:
+
+```sh
+dotnet run --project Scripts -- container --image CI 3
+```
 
 
