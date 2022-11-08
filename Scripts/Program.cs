@@ -14,7 +14,8 @@ public class Program
         RunFolderChecker.EnsureRightRunningFolder("ThriveLauncher.sln");
 
         var result = CommandLineHelpers.CreateParser()
-            .ParseArguments<CheckOptions, TestOptions, ChangesOptions, IconsOptions, ContainerOptions>(args)
+            .ParseArguments<CheckOptions, TestOptions, ChangesOptions, IconsOptions, ContainerOptions,
+                PackageOptions>(args)
             .MapResult(
                 (CheckOptions opts) => RunChecks(opts),
                 (TestOptions opts) => RunTests(opts),
@@ -22,6 +23,7 @@ public class Program
                 (IconsOptions opts) => RunIcons(opts),
                 (IconsOptions opts) => RunIcons(opts),
                 (ContainerOptions options) => RunContainer(options),
+                (PackageOptions options) => RunPackage(options),
                 CommandLineHelpers.PrintCommandLineErrors);
 
         ConsoleHelpers.CleanConsoleStateForExit();
@@ -88,6 +90,19 @@ public class Program
         return tool.Run(tokenSource.Token).Result ? 0 : 1;
     }
 
+    private static int RunPackage(PackageOptions options)
+    {
+        CommandLineHelpers.HandleDefaultOptions(options);
+
+        ColourConsole.WriteDebugLine("Running packaging tool");
+
+        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+
+        var packager = new PackageTool(options);
+
+        return packager.Run(tokenSource.Token).Result ? 0 : 1;
+    }
+
     public class CheckOptions : CheckOptionsBase
     {
     }
@@ -112,5 +127,28 @@ public class Program
     {
         [Option('i', "image", Required = true, HelpText = "The image to build, either CI or ReleaseBuilder")]
         public ImageType? Image { get; set; }
+    }
+
+    public class PackageOptions : PackageOptionsBase
+    {
+        [Option('p', "podman", Required = false, Default = true,
+            HelpText =
+                "Use to set build to happen inside a container. Should be used when using a desktop OS to " +
+                "make more widely compatible builds.")]
+        public bool? LinuxPodman { get; set; }
+
+        [Option('z', "compress", Default = true,
+            HelpText = "Control whether the created folders are compressed into simple packages")]
+        public bool? CompressRaw { get; set; }
+
+        [Option('i', "installers", Default = true,
+            HelpText = "When set installers are created after export")]
+        public bool? CreateInstallers { get; set; }
+
+        [Option("dynamic-files", Default = true,
+            HelpText = "Can be used to skip generating dynamic files, for use in recursive builds")]
+        public bool? CreateDynamicFiles { get; set; }
+
+        public override bool Compress => CompressRaw == true;
     }
 }
