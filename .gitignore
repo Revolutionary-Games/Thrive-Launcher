@@ -18,3 +18,5 @@ obj
 /.jetbrains-cache
 /inspect_results.xml
 *.deb
+*.*~
+/Scripts/installer_banner.bmp
