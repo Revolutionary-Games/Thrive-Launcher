@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using ScriptsBase.Models;
@@ -25,9 +24,11 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         PackagePlatform.Mac,
     };
 
-    private static readonly IReadOnlyCollection<FileToPackage> LicenseFiles = new List<FileToPackage>
+    private static readonly IReadOnlyCollection<FileToPackage> ExtraFilesToPackage = new List<FileToPackage>
     {
         new("LICENSE.md", "LICENSE.md"),
+        new("ThriveLauncher/ThriveLauncher.desktop", "ThriveLauncher.desktop", PackagePlatform.Linux),
+        new("ThriveLauncher/launcher-icon.png", "thrive-launcher-icon.png", PackagePlatform.Linux),
     };
 
     private static readonly IReadOnlyCollection<string> SourceItemsToPackage = new List<string>
@@ -237,7 +238,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             yield return new FileToPackage(RevisionFile, "revision.txt");
         }
 
-        foreach (var fileToPackage in LicenseFiles)
+        foreach (var fileToPackage in ExtraFilesToPackage)
         {
             yield return fileToPackage;
         }

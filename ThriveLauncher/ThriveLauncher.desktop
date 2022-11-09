@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Terminal=false
+Exec=ThriveLauncher
+Name=Thrive Launcher
+Icon=thrive-launcher-icon
+Comment=Launcher for downloading and updating Thrive, an evolution simulation game. Take control of your species in the environment and edit your species as a whole to compete with other evolving species
+Categories=Game;StrategyGame;
