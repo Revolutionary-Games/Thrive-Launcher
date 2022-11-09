@@ -13,9 +13,11 @@
     <!--Avalonia doesen't support TrimMode=link currently,but we are working on that https://github.com/AvaloniaUI/Avalonia/issues/6892 -->
 	  <TrimMode>copyused</TrimMode>
 	  <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationIcon>Assets\Icons\icon.ico</ApplicationIcon>
+    <Copyright>Copyright 2017-2022 Revolutionary Games</Copyright>
   </PropertyGroup>
   <PropertyGroup>
-    <RuntimeIdentifiers>linux-x64;win-x64;osx-x64;osx-arm64</RuntimeIdentifiers>
+    <RuntimeIdentifiers>linux-x64;win-x64;win-x86;osx-x64;osx-arm64</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets/**" />

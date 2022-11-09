@@ -16,6 +16,8 @@ using SharedBase.Utilities;
 public class PackageTool : PackageToolBase<Program.PackageOptions>
 {
     private const string BuilderImageName = "localhost/thrive/launcher-builder:latest";
+    private const string LauncherCsproj = "ThriveLauncher/ThriveLauncher.csproj";
+    private const string LauncherExecutableIconFile = "ThriveLauncher/Assets/Icons/icon.ico";
 
     private static readonly IReadOnlyList<PackagePlatform> LauncherPlatforms = new List<PackagePlatform>
     {
@@ -61,7 +63,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             DefaultPlatforms = LauncherPlatforms.Where(p => p != PackagePlatform.Mac).ToList();
         }
 
-        launcherVersion = AssemblyInfoReader.ReadVersionFromCsproj("ThriveLauncher/ThriveLauncher.csproj");
+        launcherVersion = AssemblyInfoReader.ReadVersionFromCsproj(LauncherCsproj);
     }
 
     protected override IReadOnlyCollection<PackagePlatform> ValidPlatforms => LauncherPlatforms;
@@ -203,17 +205,46 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         return true;
     }
 
-    protected override Task<bool> OnPostProcessExportedFolder(PackagePlatform platform, string folder,
+    protected override async Task<bool> OnPostProcessExportedFolder(PackagePlatform platform, string folder,
         CancellationToken cancellationToken)
     {
         if (platform == PackagePlatform.Mac)
         {
             // Maybe some folder cleanup here?
         }
+        else if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
+        {
+            if (!OperatingSystem.IsWindows())
+            {
+                ColourConsole.WriteInfoLine("Attempting to manually set right executable flags and metadata");
+
+                var versionData = AssemblyInfoReader.ReadAllProjectVersionMetadata(LauncherCsproj);
+
+                var executable = Path.Join(folder, "ThriveLauncher.exe");
+
+                await RunRcEdit(executable, cancellationToken, "--set-icon", LauncherExecutableIconFile,
+                    "--set-product-version", versionData.Version,
+                    "--set-version-string", "ProductName", "Thrive Launcher",
+                    "--set-version-string", "CompanyName", versionData.Authors,
+                    "--set-version-string", "FileDescription", "Thrive Launcher for downloading and installing Thrive",
+                    "--set-version-string", "LegalCopyright", versionData.Copyright,
+                    "--set-version-string", "FileVersion", versionData.Version);
+
+                using var modifier = new PEModifier(executable);
+
+                await modifier.SetExecutableToGUIMode(cancellationToken);
+
+                ColourConsole.WriteNormalLine("Executable modified");
+            }
+            else
+            {
+                ColourConsole.WriteNormalLine("Assuming export on Windows already set right executable properties");
+            }
+        }
 
         PrunePdbFiles(folder);
 
-        return Task.FromResult(true);
+        return true;
     }
 
     protected override async Task<bool> OnPostFolderHandled(PackagePlatform platform, string folderOrArchive,
@@ -316,5 +347,51 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private void ContainerOutput(string line)
     {
         ColourConsole.WriteNormalLine($" {line}");
+    }
+
+    private async Task RunRcEdit(string executable, CancellationToken cancellationToken, params string[] arguments)
+    {
+        ColourConsole.WriteNormalLine($"Running {options.RcEdit} on: {executable}");
+
+        string pathToRcEdit;
+
+        if (!File.Exists(options.RcEdit))
+        {
+            pathToRcEdit = ExecutableFinder.Which(options.RcEdit) ??
+                throw new Exception("Could not find rcedit in PATH");
+        }
+        else
+        {
+            pathToRcEdit = options.RcEdit;
+        }
+
+        ProcessStartInfo startInfo;
+        if (!OperatingSystem.IsWindows())
+        {
+            // It seems to work even without wine, but for clarify of what's happening this will try to run through
+            // wine explicitly
+            startInfo = new ProcessStartInfo(ExecutableFinder.Which("wine") ??
+                throw new Exception("Wine is not installed"));
+            startInfo.ArgumentList.Add(pathToRcEdit);
+        }
+        else
+        {
+            startInfo = new ProcessStartInfo(pathToRcEdit);
+        }
+
+        startInfo.ArgumentList.Add(executable);
+
+        foreach (var argument in arguments)
+        {
+            startInfo.ArgumentList.Add(argument);
+        }
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteWarningLine("Running rcedit failed. Is it installed?");
+            throw new Exception($"rcedit exited with {result.ExitCode}");
+        }
     }
 }

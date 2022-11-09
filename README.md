@@ -78,6 +78,16 @@ TODO: new packaging approach
 Packaging is currently done on Linux for Linux and Windows, and mac
 packages need to be made on a mac with development tools installed.
 
+The following extra tools are needed for creating packages on Linux:
+```sh
+wine mingw32-nsis rcedit flatpak-builder
+```
+
+Rcedit can be downloaded from
+[here](https://github.com/electron/rcedit/releases). On different
+distros the `nsis` package may be named differently and there may be
+separate packages that contain plugins.
+
 ```sh
 dotnet run --project Scripts -- container --export false --image ReleaseBuilder latest
 ```
@@ -102,4 +112,10 @@ CI image can be created with the container script like this:
 dotnet run --project Scripts -- container --image CI 3
 ```
 
+Miscellaneous
+-------------
 
+### Updating Copyright Year
+
+When updating the copyright year it needs to be updated in
+`LICENSE.md` and also in `ThriveLauncher/ThriveLauncher.csproj`.
