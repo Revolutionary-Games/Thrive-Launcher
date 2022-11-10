@@ -119,3 +119,9 @@ Miscellaneous
 
 When updating the copyright year it needs to be updated in
 `LICENSE.md` and also in `ThriveLauncher/ThriveLauncher.csproj`.
+
+### Updating dotnet version
+
+Currently version 6 is used. If updated the installer files in
+`DependencyInstallers` need to be updated and `PackageTool` as well as
+`Scripts/launcher.nsi.template` need to be updated to refer to the new version.

@@ -7,14 +7,15 @@ using LauncherBackend.Models;
 public class Options : ILauncherOptions
 {
     public Options(bool? verbose, string? language, bool skipAutoUpdate,
-        bool disableSeamlessMode, bool allowSeamlessMode, string? gameLDPreload, IList<string> thriveExtraFlags,
-        bool dummyOpenDev, bool dummyNoSandbox, string? dummyRemoteDebuggingPort)
+        bool disableSeamlessMode, bool allowSeamlessMode, string? gameLDPreload, bool skipGlobalMemory,
+        IList<string> thriveExtraFlags, bool dummyOpenDev, bool dummyNoSandbox, string? dummyRemoteDebuggingPort)
     {
         Verbose = verbose;
         Language = language;
         SkipAutoUpdate = skipAutoUpdate;
         DisableSeamlessMode = disableSeamlessMode;
         AllowSeamlessMode = allowSeamlessMode;
+        SkipGlobalMemory = skipGlobalMemory;
         GameLDPreload = gameLDPreload;
 
         ThriveExtraFlags = thriveExtraFlags;
@@ -62,6 +63,10 @@ public class Options : ILauncherOptions
     [Option("game-ld-preload", Default = null,
         HelpText = "Set what to pass as LD_PRELOAD to the game process when started")]
     public string? GameLDPreload { get; }
+
+    [Option("skip-global-memory", Default = false,
+        HelpText = "Skip creating globally shared memory for detecting existing running launchers")]
+    public bool SkipGlobalMemory { get; }
 
     // TODO: handle this
     [Value(0, MetaName = "THRIVE_OPTIONS", HelpText = "Extra flags to pass to Thrive processes when starting them",

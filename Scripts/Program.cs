@@ -149,6 +149,10 @@ public class Program
             HelpText = "Can be used to skip generating dynamic files, for use in recursive builds")]
         public bool? CreateDynamicFiles { get; set; }
 
+        [Option("windows-no-runtime-variant", Default = true,
+            HelpText = "Controls creating variants of Windows package without runtime included")]
+        public bool? CreateWindowsNoRuntime { get; set; }
+
         [Option("rcedit", Default = "rcedit-x64.exe",
             HelpText = "Name of the rcedit tool (required on non-Windows)")]
         public string RcEdit { get; set; } = "rcedit-x64.exe";

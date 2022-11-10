@@ -54,6 +54,12 @@ internal class Program
 
         var programLogger = services.GetRequiredService<ILogger<Program>>();
 
+        // Hold onto a memory mapped file while we are running to let other programs know we are open
+        MemoryMappedFile? globalMemory = null;
+
+        if (!options.SkipGlobalMemory)
+            globalMemory = CreateOrOpenMemoryMappedFile(programLogger);
+
         try
         {
             Trace.Listeners.Clear();
@@ -71,6 +77,10 @@ internal class Program
             // TODO: we should show a popup window or something showing the error
 
             throw;
+        }
+        finally
+        {
+            globalMemory?.Dispose();
         }
     }
 
@@ -376,5 +386,23 @@ internal class Program
 
         // Success when no crashes detected
         return !runner.HasReportableCrash;
+    }
+
+    private static MemoryMappedFile? CreateOrOpenMemoryMappedFile(ILogger logger)
+    {
+        try
+        {
+            // This is only currently done (and needed on windows)
+            if (!OperatingSystem.IsWindows())
+                return null;
+
+            return MemoryMappedFile.CreateNew(LauncherConstants.LauncherGlobalMemoryMapName, 256);
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Could not open global memory mapped file to mark ourselves as running. " +
+                "This may indicate the launcher is already open");
+            return null;
+        }
     }
 }

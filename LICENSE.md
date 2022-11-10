@@ -94,3 +94,9 @@ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
 CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 THE POSSIBILITY OF SUCH DAMAGE.
+
+### Dotnet
+
+The launcher is built on .NET using C#. The software either requires a
+runtime or is bundled with it. The runtime or installer is included as
+part of this software for convenience to the user.

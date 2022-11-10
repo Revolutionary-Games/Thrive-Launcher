@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using ScriptsBase.Models;
@@ -15,9 +16,19 @@ using SharedBase.Utilities;
 
 public class PackageTool : PackageToolBase<Program.PackageOptions>
 {
+    public const string DotnetInstallerName = "windowsdesktop-runtime-6.0.11-win-x64.exe";
+    public const string PathToDotnetInstaller = $"DependencyInstallers/{DotnetInstallerName}";
+
     private const string BuilderImageName = "localhost/thrive/launcher-builder:latest";
     private const string LauncherCsproj = "ThriveLauncher/ThriveLauncher.csproj";
     private const string LauncherExecutableIconFile = "ThriveLauncher/Assets/Icons/icon.ico";
+    private const string LauncherInstallerBannerImageFile = "Scripts/installer_banner.bmp";
+    private const string LauncherInstallerLicenseFile = "LICENSE.md";
+    private const string NoRuntimeSuffix = "_without_runtime";
+
+    private const string NSISFileName = "launcher.nsi";
+    private const string NSISDotnetInstallerFileName = "launcher_dotnet_installer.nsi";
+    private const string NSISTemplateFile = $"Scripts/{NSISFileName}.template";
 
     private static readonly IReadOnlyList<PackagePlatform> LauncherPlatforms = new List<PackagePlatform>
     {
@@ -48,6 +59,13 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private readonly string launcherVersion;
 
+    /// <summary>
+    ///   NSIS requires 4 numbers in the version always
+    /// </summary>
+    private readonly string launcherVersionAlwaysWithRevision;
+
+    private bool doingNoRuntimeExport;
+
     public PackageTool(Program.PackageOptions options) : base(options)
     {
         // Retries don't really work for us so set it to 0
@@ -64,6 +82,13 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         }
 
         launcherVersion = AssemblyInfoReader.ReadVersionFromCsproj(LauncherCsproj);
+
+        var parsedVersion = new Version(launcherVersion);
+
+        if (parsedVersion.Revision <= 0)
+            parsedVersion = new Version(parsedVersion.Major, parsedVersion.Minor, parsedVersion.Build, 0);
+
+        launcherVersionAlwaysWithRevision = parsedVersion.ToString();
     }
 
     protected override IReadOnlyCollection<PackagePlatform> ValidPlatforms => LauncherPlatforms;
@@ -74,6 +99,12 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private string ReadmeFile => Path.Join(options.OutputFolder, "README.txt");
     private string RevisionFile => Path.Join(options.OutputFolder, "revision.txt");
+
+    private string NSISInstallerName => doingNoRuntimeExport ?
+        $"ThriveLauncher_Windows-7_Installer_{launcherVersionAlwaysWithRevision}.exe" :
+        $"ThriveLauncher_Windows_Installer_{launcherVersionAlwaysWithRevision}.exe";
+
+    private string ExpectedLauncherInstallerFile => Path.Join(options.OutputFolder, NSISInstallerName);
 
     protected override async Task<bool> OnBeforeStartExport(CancellationToken cancellationToken)
     {
@@ -96,12 +127,38 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     protected override string GetFolderNameForExport(PackagePlatform platform)
     {
-        return ThriveProperties.GetFolderNameForLauncher(platform, launcherVersion);
+        var name = ThriveProperties.GetFolderNameForLauncher(platform, launcherVersion);
+
+        if (doingNoRuntimeExport)
+            name = $"{name}{NoRuntimeSuffix}";
+
+        return name;
     }
 
     protected override string GetCompressedExtensionForPlatform(PackagePlatform platform)
     {
         return $"_standalone{base.GetCompressedExtensionForPlatform(platform)}";
+    }
+
+    protected override async Task<bool> PackageForPlatform(CancellationToken cancellationToken,
+        PackagePlatform platform)
+    {
+        if (!await base.PackageForPlatform(cancellationToken, platform))
+            return false;
+
+        if (options.CreateWindowsNoRuntime == true)
+        {
+            ColourConsole.WriteInfoLine($"Doing a no runtime variant of export for {platform}");
+            doingNoRuntimeExport = true;
+
+            if (!await base.PackageForPlatform(cancellationToken, platform))
+                return false;
+
+            doingNoRuntimeExport = false;
+            ColourConsole.WriteInfoLine($"No runtime variant succeeded");
+        }
+
+        return true;
     }
 
     protected override async Task<bool> Export(PackagePlatform platform, string folder,
@@ -179,6 +236,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         else
         {
             string runtime;
+            bool canPublishWithNoRuntime = false;
 
             switch (platform)
             {
@@ -187,15 +245,18 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                     break;
                 case PackagePlatform.Windows:
                     runtime = "win-x64";
+                    canPublishWithNoRuntime = true;
                     break;
                 case PackagePlatform.Windows32:
                     runtime = "win-x86";
+                    canPublishWithNoRuntime = true;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
             }
 
-            if (!await RunPublish(folder, runtime, cancellationToken))
+            if (!await RunPublish(folder, runtime, !canPublishWithNoRuntime || !doingNoRuntimeExport,
+                    cancellationToken))
             {
                 return false;
             }
@@ -218,23 +279,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             {
                 ColourConsole.WriteInfoLine("Attempting to manually set right executable flags and metadata");
 
-                var versionData = AssemblyInfoReader.ReadAllProjectVersionMetadata(LauncherCsproj);
-
-                var executable = Path.Join(folder, "ThriveLauncher.exe");
-
-                await RunRcEdit(executable, cancellationToken, "--set-icon", LauncherExecutableIconFile,
-                    "--set-product-version", versionData.Version,
-                    "--set-version-string", "ProductName", "Thrive Launcher",
-                    "--set-version-string", "CompanyName", versionData.Authors,
-                    "--set-version-string", "FileDescription", "Thrive Launcher for downloading and installing Thrive",
-                    "--set-version-string", "LegalCopyright", versionData.Copyright,
-                    "--set-version-string", "FileVersion", versionData.Version);
-
-                using var modifier = new PEModifier(executable);
-
-                await modifier.SetExecutableToGUIMode(cancellationToken);
-
-                ColourConsole.WriteNormalLine("Executable modified");
+                await PostProcessWindowsFolder(folder, cancellationToken);
             }
             else
             {
@@ -253,9 +298,69 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         if (options.CreateInstallers == true)
         {
             ColourConsole.WriteInfoLine($"Creating installer for {platform} from {folderOrArchive}");
-            throw new NotImplementedException();
 
-            // AddReprintMessage();
+            if (platform == PackagePlatform.Linux)
+            {
+                ColourConsole.WriteInfoLine("Linux installer is made with flatpak (hosted on Flathub)");
+                AddReprintMessage("Linux installer needs to be separate updated for Flathub");
+            }
+            else if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
+            {
+                if (platform == PackagePlatform.Windows32)
+                {
+                    throw new NotImplementedException(
+                        "Windows32 installer needs a suffix or something to not conflict");
+                }
+
+                if (options.CreateWindowsNoRuntime != true)
+                    throw new NotImplementedException("Windows installers without runtime is not implemented");
+
+                var potentialExtension = GetCompressedExtensionForPlatform(platform);
+
+                string nsisSource = folderOrArchive;
+
+                if (folderOrArchive.EndsWith(potentialExtension))
+                    nsisSource = nsisSource.Substring(0, nsisSource.Length - potentialExtension.Length);
+
+                var nsisFileName = NSISFileName;
+                var nsisTemplate = NSISTemplateFile;
+
+                if (doingNoRuntimeExport)
+                {
+                    nsisFileName = NSISDotnetInstallerFileName;
+
+                    // TODO: remove the constant if it doesn't turn out useful
+                    // nsisTemplate = NSISTemplateDotnetInstallerFile;
+                }
+
+                // Windows installer is made with NSIS
+                await GenerateNSISFile(nsisSource, nsisFileName, nsisTemplate, cancellationToken);
+                await RunNSIS(nsisFileName, cancellationToken);
+
+                if (!File.Exists(ExpectedLauncherInstallerFile))
+                {
+                    ColourConsole.WriteErrorLine("Expected installer file did not get created");
+                    return false;
+                }
+
+                var hash = FileUtilities.HashToHex(
+                    await FileUtilities.CalculateSha3OfFile(ExpectedLauncherInstallerFile, cancellationToken));
+
+                var message1 = $"Created {platform} installer: {ExpectedLauncherInstallerFile}";
+                var message2 = $"SHA3: {hash}";
+
+                AddReprintMessage(string.Empty);
+                AddReprintMessage(message1);
+                AddReprintMessage(message2);
+
+                ColourConsole.WriteSuccessLine(message1);
+                ColourConsole.WriteNormalLine(message2);
+            }
+            else
+            {
+                ColourConsole.WriteErrorLine($"TODO installer creation");
+                throw new NotImplementedException();
+            }
         }
 
         return true;
@@ -306,7 +411,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         }
     }
 
-    private async Task<bool> RunPublish(string folder, string runtime, CancellationToken cancellationToken)
+    private async Task<bool> RunPublish(string folder, string runtime, bool selfContained,
+        CancellationToken cancellationToken)
     {
         ColourConsole.WriteNormalLine($"Publishing to folder: {folder}");
 
@@ -317,7 +423,16 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         startInfo.ArgumentList.Add("-r");
         startInfo.ArgumentList.Add(runtime);
         startInfo.ArgumentList.Add("--self-contained");
-        startInfo.ArgumentList.Add("true");
+
+        if (selfContained)
+        {
+            startInfo.ArgumentList.Add("true");
+        }
+        else
+        {
+            startInfo.ArgumentList.Add("false");
+        }
+
         startInfo.ArgumentList.Add("-o");
         startInfo.ArgumentList.Add(folder);
         startInfo.ArgumentList.Add("ThriveLauncher");
@@ -331,6 +446,32 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         }
 
         return true;
+    }
+
+    private async Task PostProcessWindowsFolder(string folder, CancellationToken cancellationToken)
+    {
+        var versionData = AssemblyInfoReader.ReadAllProjectVersionMetadata(LauncherCsproj);
+        var executable = Path.Join(folder, "ThriveLauncher.exe");
+
+        await RunRcEdit(executable, cancellationToken, "--set-icon", LauncherExecutableIconFile,
+            "--set-version-string", "ProductName", "Thrive Launcher",
+            "--set-version-string", "CompanyName", versionData.Authors,
+            "--set-version-string", "FileDescription", versionData.Description,
+            "--set-version-string", "LegalCopyright", versionData.Copyright,
+            "--set-version-string", "FileVersion", versionData.Version,
+            "--set-version-string", "ProductVersion", versionData.Version);
+
+        // This seems to require setting separately to stick
+        await RunRcEdit(executable, cancellationToken, "--set-product-version", versionData.Version);
+
+        // TODO: setting the executable date?
+
+        // TODO: put back
+        // using var modifier = new PEModifier(executable);
+        //
+        // await modifier.SetExecutableToGUIMode(cancellationToken);
+
+        ColourConsole.WriteNormalLine($"Executable ({executable}) modified");
     }
 
     private void PrunePdbFiles(string folder)
@@ -393,5 +534,81 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             ColourConsole.WriteWarningLine("Running rcedit failed. Is it installed?");
             throw new Exception($"rcedit exited with {result.ExitCode}");
         }
+    }
+
+    private async Task GenerateNSISFile(string sourceFolder, string nsisFileName, string templateFile,
+        CancellationToken cancellationToken)
+    {
+        var target =
+            Path.Combine(Path.GetDirectoryName(sourceFolder) ?? throw new ArgumentException("Can't get parent folder"),
+                nsisFileName);
+
+        var versionData = AssemblyInfoReader.ReadAllProjectVersionMetadata(LauncherCsproj);
+
+        ColourConsole.WriteNormalLine($"Generating NSIS config at {target} with source folder: {sourceFolder}");
+
+        var templateText = await File.ReadAllTextAsync(templateFile, Encoding.UTF8, cancellationToken);
+
+        var dotnetMode = "# ";
+        var installerName = NSISInstallerName;
+
+        if (doingNoRuntimeExport)
+        {
+            dotnetMode = string.Empty;
+        }
+
+        var replacedVariables = new Dictionary<string, string>
+        {
+            { "REPLACE_TEMPLATE_VERSION", launcherVersionAlwaysWithRevision },
+            { "REPLACE_TEMPLATE_ICON_FILE", PrepareNSISPath(LauncherExecutableIconFile) },
+            { "REPLACE_TEMPLATE_BANNER_IMAGE_FILE", PrepareNSISPath(LauncherInstallerBannerImageFile) },
+            { "REPLACE_TEMPLATE_PATH_TO_LICENSE", PrepareNSISPath(LauncherInstallerLicenseFile) },
+            { "REPLACE_TEMPLATE_SOURCE_DIRECTORY", PrepareNSISPath(sourceFolder) },
+            { "REPLACE_TEMPLATE_DESCRIPTION", versionData.Description },
+            { "REPLACE_TEMPLATE_COPYRIGHT", versionData.Copyright },
+            { "REPLACE_TEMPLATE_DOTNET_INSTALLER_NAME", DotnetInstallerName },
+            { "REPLACE_TEMPLATE_PATH_TO_DOTNET_INSTALLER", PrepareNSISPath(PathToDotnetInstaller) },
+            { "TEMPLATE_MODE_DOTNET;", dotnetMode },
+            { "REPLACE_TEMPLATE_INSTALLER_NAME", installerName },
+        };
+
+        string finalText = templateText;
+
+        foreach (var (variable, replacingText) in replacedVariables)
+        {
+            finalText = finalText.Replace(variable, replacingText);
+        }
+
+        await File.WriteAllTextAsync(target, finalText, new UTF8Encoding(true), cancellationToken);
+    }
+
+    private string PrepareNSISPath(string rawPath)
+    {
+        var full = Path.GetFullPath(rawPath);
+
+        // Some places only allow double \\ for paths, so to be safe we use that everywhere
+        return full.Replace("/", @"\").Replace(@"\", @"\\").Replace(@"\\\", @"\\");
+    }
+
+    private async Task RunNSIS(string nsisFileName, CancellationToken cancellationToken)
+    {
+        ColourConsole.WriteNormalLine($"Running makensis on {Path.Join(options.OutputFolder, nsisFileName)}");
+
+        var startInfo = new ProcessStartInfo("makensis")
+        {
+            WorkingDirectory = options.OutputFolder,
+        };
+
+        startInfo.ArgumentList.Add(nsisFileName);
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteWarningLine("Running makensis failed. Is it installed?");
+            throw new Exception($"makensis exited with {result.ExitCode}");
+        }
+
+        ColourConsole.WriteSuccessLine($"Running makensis succeeded");
     }
 }

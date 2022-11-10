@@ -12,9 +12,13 @@ using SharedBase.Utilities;
 
 public class IconProcessor
 {
+    public const string BANNER_TARGET = "Scripts/installer_banner.bmp";
+
     private const string TARGET_PATH = "ThriveLauncher/Assets/Icons/";
     private const string TEMP_ICON_FOLDER = "Temp/Icons";
     private const string SOURCE_IMAGE = "ThriveLauncher/launcher-icon.png";
+
+    private const string BANNER_SOURCE = "Scripts/installer_banner.png";
 
     private const string WINDOWS_MAGICK_EXECUTABLE = "magick.exe";
 
@@ -60,6 +64,12 @@ public class IconProcessor
         // Windows
         if (!await CreateMultiSize(magick, ".ico", cancellationToken))
             return false;
+
+        // Installer banner, NSIS is very picky about the exact format here
+        if (!await ConvertImage(magick, BANNER_SOURCE, $"BMP3:{BANNER_TARGET}", cancellationToken, "-compress", "none"))
+        {
+            return false;
+        }
 
         ColourConsole.WriteSuccessLine("All icons generated successfully");
         return true;
@@ -150,6 +160,30 @@ public class IconProcessor
         if (result.ExitCode != 0)
         {
             ColourConsole.WriteErrorLine("Failed to convert image (with multiple sizes)");
+            return false;
+        }
+
+        return true;
+    }
+
+    private async Task<bool> ConvertImage(string magicExecutable, string source, string target,
+        CancellationToken cancellationToken, params string[] extraOptions)
+    {
+        var startInfo = CreateStartInfo(magicExecutable);
+        startInfo.ArgumentList.Add(source);
+
+        foreach (var extraOption in extraOptions)
+        {
+            startInfo.ArgumentList.Add(extraOption);
+        }
+
+        startInfo.ArgumentList.Add(target);
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine("Failed to convert image");
             return false;
         }
 
