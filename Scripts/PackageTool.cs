@@ -146,7 +146,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         if (!await base.PackageForPlatform(cancellationToken, platform))
             return false;
 
-        if (options.CreateWindowsNoRuntime == true)
+        if (options.CreateWindowsNoRuntime == true && platform is PackagePlatform.Windows or PackagePlatform.Windows32)
         {
             ColourConsole.WriteInfoLine($"Doing a no runtime variant of export for {platform}");
             doingNoRuntimeExport = true;
