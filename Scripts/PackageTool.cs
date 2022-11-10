@@ -71,15 +71,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         // Retries don't really work for us so set it to 0
         options.Retries = 0;
 
-        // Mac builds need to be done on a mac
-        if (OperatingSystem.IsMacOS())
-        {
-            DefaultPlatforms = new[] { PackagePlatform.Mac };
-        }
-        else
-        {
-            DefaultPlatforms = LauncherPlatforms.Where(p => p != PackagePlatform.Mac).ToList();
-        }
+        // For now it's starting to look like all builds need to be done on their native platforms to fully work
+        var currentPlatform = PlatformUtilities.GetCurrentPlatform();
+        DefaultPlatforms = new[] { LauncherPlatforms.First(p => p == currentPlatform) };
 
         launcherVersion = AssemblyInfoReader.ReadVersionFromCsproj(LauncherCsproj);
 
