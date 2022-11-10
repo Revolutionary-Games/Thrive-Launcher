@@ -20,7 +20,7 @@ public class IconProcessor
 
     private const string BANNER_SOURCE = "Scripts/installer_banner.png";
 
-    private const string WINDOWS_MAGICK_EXECUTABLE = "magick.exe";
+    private const string WINDOWS_MAGICK_EXECUTABLE = "magick";
 
     public IconProcessor(Program.IconsOptions options)
     {
