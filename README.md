@@ -53,10 +53,12 @@ if your IDE doesn't do so automatically.
 
 ### Icons
 
-In order for the icons to work you need to run `dotnet run --project Scripts -- icons` to
-create all the icon files from the source images. The icon creation
-script requires you to
-have [ImageMagick](https://www.imagemagick.org/) installed.
+In order for the icons to work you need to run `dotnet run --project
+Scripts -- icons` to create all the icon files from the source
+images. The icon creation script requires you to have
+[ImageMagick](https://www.imagemagick.org/) installed. On Windows add
+the folder with `magick.exe` to the PATH environment variable
+manually.
 
 ### Running
 
@@ -73,7 +75,10 @@ installed and you have ran `dotnet restore` in the launcher's folder.
 Creating releases
 -----------------
 
-TODO: new packaging approach
+This section details what to do to create Launcher packages and
+installers. Note that due to various limitations you need to make the
+packages for each platform on that respective platform, which means
+you need a Windows, Linux, and mac systems.
 
 Packaging is currently done on Linux for Linux and Windows, and mac
 packages need to be made on a mac with development tools installed.
@@ -87,6 +92,12 @@ Rcedit can be downloaded from
 [here](https://github.com/electron/rcedit/releases). On different
 distros the `nsis` package may be named differently and there may be
 separate packages that contain plugins.
+
+
+On Windows creating packages requires:
+- Icons being generated (see above)
+- NSIS, needs to be added to PATH
+
 
 ```sh
 dotnet run --project Scripts -- container --export false --image ReleaseBuilder latest
