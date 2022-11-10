@@ -103,6 +103,21 @@ On a mac the build containers are not needed, so just run:
 dotnet run --project Scripts -- package
 ```
 
+Before publishing test that the created builds didn't have broken
+packages. If they did a clean needs to be run and then the packaging
+again:
+```sh
+dotnet run --project Scripts -- clean
+dotnet run --project Scripts -- package
+```
+
+To test on Linux, do not build with podman as that always results in
+clean working builds, but other builds might be broken. So build
+natively on the current platform and test the launcher works:
+```
+dotnet run --project Scripts -- package --compress false --podman false Linux
+```
+
 CI Images
 ---------
 

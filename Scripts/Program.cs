@@ -10,6 +10,11 @@ using SharedBase.Utilities;
 
 public class Program
 {
+    private static readonly IEnumerable<string> DefaultFoldersToClean = new List<string>
+    {
+        "LauncherBackend", "ThriveLauncher", "RevolutionaryGamesCommon/SharedBase",
+    };
+
     [STAThread]
     public static int Main(string[] args)
     {
@@ -17,7 +22,7 @@ public class Program
 
         var result = CommandLineHelpers.CreateParser()
             .ParseArguments<CheckOptions, TestOptions, ChangesOptions, IconsOptions, ContainerOptions,
-                PackageOptions>(args)
+                PackageOptions, CleanOptions>(args)
             .MapResult(
                 (CheckOptions opts) => RunChecks(opts),
                 (TestOptions opts) => RunTests(opts),
@@ -26,6 +31,7 @@ public class Program
                 (IconsOptions opts) => RunIcons(opts),
                 (ContainerOptions options) => RunContainer(options),
                 (PackageOptions options) => RunPackage(options),
+                (CleanOptions opts) => RunClean(opts),
                 CommandLineHelpers.PrintCommandLineErrors);
 
         ConsoleHelpers.CleanConsoleStateForExit();
@@ -105,6 +111,44 @@ public class Program
         return packager.Run(tokenSource.Token).Result ? 0 : 1;
     }
 
+    private static int RunClean(CleanOptions opts)
+    {
+        CommandLineHelpers.HandleDefaultOptions(opts);
+
+        ColourConsole.WriteDebugLine("Running cleaning tool");
+
+        foreach (var folder in DefaultFoldersToClean)
+        {
+            if (!Directory.Exists(folder))
+            {
+                ColourConsole.WriteErrorLine($"Folder to clean in doesn't exist: {folder}");
+                continue;
+            }
+
+            CleanIfExists(Path.Join(folder, "bin"));
+            CleanIfExists(Path.Join(folder, "obj"));
+        }
+
+        return 0;
+    }
+
+    private static void CleanIfExists(string folder)
+    {
+        if (!Directory.Exists(folder))
+            return;
+
+        ColourConsole.WriteNormalLine($"Deleting: {folder}");
+
+        try
+        {
+            Directory.Delete(folder, true);
+        }
+        catch (Exception e)
+        {
+            ColourConsole.WriteErrorLine($"Failed to delete a folder ({folder}): {e}");
+        }
+    }
+
     public class CheckOptions : CheckOptionsBase
     {
     }
@@ -160,5 +204,10 @@ public class Program
         public string RcEdit { get; set; } = "rcedit-x64.exe";
 
         public override bool Compress => CompressRaw == true;
+    }
+
+    [Verb("clean", HelpText = "Clean binaries (package upgrades can break deploy and this fixes that)")]
+    public class CleanOptions : ScriptOptionsBase
+    {
     }
 }
