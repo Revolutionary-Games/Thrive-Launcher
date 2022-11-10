@@ -116,6 +116,14 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             ColourConsole.WriteWarningLine("Skipping dynamic file generation");
         }
 
+        if (options.CreateWithoutRuntime == true)
+        {
+            ColourConsole.WriteWarningLine(
+                "Creating exports without runtime included. For now these kinds of builds are not needed.");
+
+            doingNoRuntimeExport = true;
+        }
+
         return true;
     }
 
@@ -137,20 +145,11 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     protected override async Task<bool> PackageForPlatform(CancellationToken cancellationToken,
         PackagePlatform platform)
     {
+        if (doingNoRuntimeExport)
+            ColourConsole.WriteInfoLine($"Doing a no runtime variant of export for {platform}");
+
         if (!await base.PackageForPlatform(cancellationToken, platform))
             return false;
-
-        if (options.CreateWindowsNoRuntime == true && platform is PackagePlatform.Windows or PackagePlatform.Windows32)
-        {
-            ColourConsole.WriteInfoLine($"Doing a no runtime variant of export for {platform}");
-            doingNoRuntimeExport = true;
-
-            if (!await base.PackageForPlatform(cancellationToken, platform))
-                return false;
-
-            doingNoRuntimeExport = false;
-            ColourConsole.WriteInfoLine($"No runtime variant succeeded");
-        }
 
         return true;
     }
@@ -230,7 +229,6 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         else
         {
             string runtime;
-            bool canPublishWithNoRuntime = false;
 
             switch (platform)
             {
@@ -239,18 +237,15 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                     break;
                 case PackagePlatform.Windows:
                     runtime = "win-x64";
-                    canPublishWithNoRuntime = true;
                     break;
                 case PackagePlatform.Windows32:
                     runtime = "win-x86";
-                    canPublishWithNoRuntime = true;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
             }
 
-            if (!await RunPublish(folder, runtime, !canPublishWithNoRuntime || !doingNoRuntimeExport,
-                    cancellationToken))
+            if (!await RunPublish(folder, runtime, !doingNoRuntimeExport, cancellationToken))
             {
                 return false;
             }
@@ -296,7 +291,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             if (platform == PackagePlatform.Linux)
             {
                 ColourConsole.WriteInfoLine("Linux installer is made with flatpak (hosted on Flathub)");
-                AddReprintMessage("Linux installer needs to be separate updated for Flathub");
+                AddReprintMessage("Linux installer needs to be separately updated for Flathub");
             }
             else if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
             {
@@ -305,9 +300,6 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                     throw new NotImplementedException(
                         "Windows32 installer needs a suffix or something to not conflict");
                 }
-
-                if (options.CreateWindowsNoRuntime != true)
-                    throw new NotImplementedException("Windows installers without runtime is not implemented");
 
                 var potentialExtension = GetCompressedExtensionForPlatform(platform);
 
@@ -321,10 +313,11 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
                 if (doingNoRuntimeExport)
                 {
-                    nsisFileName = NSISDotnetInstallerFileName;
+                    ColourConsole.WriteNormalLine(
+                        $"Windows installer without runtime will attempt to install the runtime, " +
+                        $"please make sure the runtime installer exists at {PathToDotnetInstaller}");
 
-                    // TODO: remove the constant if it doesn't turn out useful
-                    // nsisTemplate = NSISTemplateDotnetInstallerFile;
+                    nsisFileName = NSISDotnetInstallerFileName;
                 }
 
                 // Windows installer is made with NSIS
