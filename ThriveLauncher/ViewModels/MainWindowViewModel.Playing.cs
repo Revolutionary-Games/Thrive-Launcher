@@ -282,7 +282,7 @@ public partial class MainWindowViewModel
             Dispatcher.UIThread.Post(() =>
             {
                 PlayPopupTopMessage = string.Format(Resources.GettingDevBuildInfoMessage,
-                    settingsManager.Settings.SelectedDevBuildType.ToString());
+                    SelectedDevBuildType.ToString());
             });
 
             DevBuildLauncherDTO build;

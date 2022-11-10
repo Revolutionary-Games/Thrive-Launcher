@@ -199,7 +199,7 @@ public class DevCenterClient : IDevCenterClient
 
     public Task<DevBuildLauncherDTO?> FetchBuildWeWantToPlay()
     {
-        switch (settingsManager.Settings.SelectedDevBuildType)
+        switch (settingsManager.Settings.SelectedDevBuildType ?? DevBuildType.BuildOfTheDay)
         {
             case DevBuildType.BuildOfTheDay:
                 return QueryFindAPI(DevBuildFindByTypeForm.BuildType.BuildOfTheDay);
