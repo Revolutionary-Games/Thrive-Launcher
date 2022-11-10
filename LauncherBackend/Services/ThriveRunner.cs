@@ -117,7 +117,7 @@ public class ThriveRunner : IThriveRunner
             return;
         }
 
-        var platform = thriveInstaller.GetCurrentPlatform();
+        var platform = PlatformUtilities.GetCurrentPlatform();
         var executableFolder =
             thriveInstaller.FindThriveExecutableFolderInVersion(thriveFolder, platform);
 

@@ -381,25 +381,6 @@ public class ThriveInstaller : IThriveInstaller
         return true;
     }
 
-    public PackagePlatform GetCurrentPlatform()
-    {
-        if (OperatingSystem.IsLinux())
-            return PackagePlatform.Linux;
-
-        if (OperatingSystem.IsWindows())
-        {
-            if (Environment.Is64BitOperatingSystem)
-                return PackagePlatform.Windows;
-
-            return PackagePlatform.Windows32;
-        }
-
-        if (OperatingSystem.IsMacOS())
-            return PackagePlatform.Mac;
-
-        throw new NotSupportedException("Unknown OS to get current platform for");
-    }
-
     public string? FindThriveExecutableFolderInVersion(string installedThriveFolder, PackagePlatform platform,
         bool fallback)
     {
@@ -815,12 +796,6 @@ public interface IThriveInstaller
     /// <param name="cancellationToken">Cancellation</param>
     /// <returns>Task resulting in true when everything is fine</returns>
     public Task<bool> EnsureVersionIsDownloaded(IPlayableVersion playableVersion, CancellationToken cancellationToken);
-
-    /// <summary>
-    ///   Gets the current platform we run on for use with Thrive executable detection
-    /// </summary>
-    /// <returns>The current platform</returns>
-    public PackagePlatform GetCurrentPlatform();
 
     /// <summary>
     ///   Looks for the bin folder (old releases) or the folder containing the Thrive executable folder
