@@ -209,7 +209,7 @@ public partial class MainWindowViewModel
 
     public DevBuildType SelectedDevBuildType
     {
-        get => Settings.SelectedDevBuildType;
+        get => Settings.SelectedDevBuildType ?? DevBuildType.BuildOfTheDay;
         set
         {
             if (Settings.SelectedDevBuildType == value)
