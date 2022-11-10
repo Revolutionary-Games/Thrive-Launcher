@@ -1,7 +1,10 @@
 namespace LauncherBackend.Utilities;
 
+using System;
+using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 
 public static class ResourceUtilities
 {

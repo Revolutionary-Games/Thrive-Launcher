@@ -1,6 +1,7 @@
 namespace LauncherBackend.Utilities;
 
 using System.Diagnostics;
+using System.IO;
 
 // TODO: move these to the base scripts
 public static class FileUtilities

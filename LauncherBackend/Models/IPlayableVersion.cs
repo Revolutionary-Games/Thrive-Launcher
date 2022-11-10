@@ -1,5 +1,7 @@
 namespace LauncherBackend.Models;
 
+using System;
+using System.Threading.Tasks;
 using DevCenterCommunication.Models;
 
 public interface IPlayableVersion

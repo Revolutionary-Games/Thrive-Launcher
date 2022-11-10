@@ -1,5 +1,7 @@
 namespace LauncherBackend.Services;
 
+using System;
+
 /// <summary>
 ///   Thrown when all verifying keys are expired
 /// </summary>

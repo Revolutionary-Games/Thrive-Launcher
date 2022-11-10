@@ -1,5 +1,7 @@
 namespace LauncherBackend.Services;
 
+using System;
+using System.IO;
 using Microsoft.Extensions.Logging;
 
 /// <summary>
