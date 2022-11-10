@@ -379,6 +379,9 @@ public partial class MainWindowViewModel : ViewModelBase
         else
         {
             ShowNotice(Resources.ImportSucceededTitle, Resources.ImportSucceededMessage);
+
+            // In case there's a DevCenter connection, start checking that again
+            CheckDevCenterConnection();
         }
     }
 
