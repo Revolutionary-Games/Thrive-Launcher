@@ -450,26 +450,31 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private async Task PostProcessWindowsFolder(string folder, CancellationToken cancellationToken)
     {
-        var versionData = AssemblyInfoReader.ReadAllProjectVersionMetadata(LauncherCsproj);
         var executable = Path.Join(folder, "ThriveLauncher.exe");
 
-        await RunRcEdit(executable, cancellationToken, "--set-icon", LauncherExecutableIconFile,
-            "--set-version-string", "ProductName", "Thrive Launcher",
-            "--set-version-string", "CompanyName", versionData.Authors,
-            "--set-version-string", "FileDescription", versionData.Description,
-            "--set-version-string", "LegalCopyright", versionData.Copyright,
-            "--set-version-string", "FileVersion", versionData.Version,
-            "--set-version-string", "ProductVersion", versionData.Version);
+        // The following breaks some signature check or something so we cannot use it
+        // Even using a different tool breaks the executable when the version or icon is touched
+        var message = "Cannot set executable icon or version on Linux. This results in pretty bad Windows builds.";
+        ColourConsole.WriteErrorLine(message);
+        AddReprintMessage(message);
+
+        // var versionData = AssemblyInfoReader.ReadAllProjectVersionMetadata(LauncherCsproj);
+
+        // await RunRcEdit(executable, cancellationToken, "--set-icon", LauncherExecutableIconFile,
+        //     "--set-version-string", "ProductName", "Thrive Launcher",
+        //     "--set-version-string", "CompanyName", versionData.Authors,
+        //     "--set-version-string", "FileDescription", versionData.Description,
+        //     "--set-version-string", "LegalCopyright", versionData.Copyright
+        //     "--set-version-string", "FileVersion", versionData.Version,
+        //     "--set-version-string", "ProductVersion", versionData.Version);
 
         // This seems to require setting separately to stick
-        await RunRcEdit(executable, cancellationToken, "--set-product-version", versionData.Version);
+        // await RunRcEdit(executable, cancellationToken, "--set-product-version", versionData.Version);
 
-        // TODO: setting the executable date?
+        // This seems to luckily not break *everything* but this isn't really good enough
+        using var modifier = new PEModifier(executable);
 
-        // TODO: put back
-        // using var modifier = new PEModifier(executable);
-        //
-        // await modifier.SetExecutableToGUIMode(cancellationToken);
+        await modifier.SetExecutableToGUIMode(cancellationToken);
 
         ColourConsole.WriteNormalLine($"Executable ({executable}) modified");
     }
