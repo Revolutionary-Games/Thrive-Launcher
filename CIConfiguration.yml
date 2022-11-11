@@ -43,6 +43,10 @@ jobs:
       - run:
           name: File based checks
           command: dotnet run --project Scripts -- check files
+      # Makes sure that there aren't any changes at this point to not make the CI trip up on them
+      - run:
+          name: Make sure no changes to git tracked files at this point
+          command: GIT_LFS_SKIP_SMUDGE=1 git reset --hard HEAD
       - run:
           name: Jetbrains inspectcode
           command: dotnet run --project Scripts -- check inspectcode
