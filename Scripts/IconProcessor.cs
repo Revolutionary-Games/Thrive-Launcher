@@ -48,8 +48,12 @@ public class IconProcessor
             return false;
         }
 
-        if (!await CreateSingleImage(magick, 256, ".png", cancellationToken, false))
-            return false;
+        // Generate PNG sizes of the icons we'll need (some are only needed for flatpak packaging)
+        foreach (var size in new[] { 16, 48, 128, 256 })
+        {
+            if (!await CreateSingleImage(magick, size, ".png", cancellationToken, false))
+                return false;
+        }
 
         await CreateSingleImage(magick, 256, ".png", cancellationToken);
         await CreateSingleImage(magick, 128, ".png", cancellationToken);
