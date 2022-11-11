@@ -19,9 +19,6 @@
     <Copyright>Revolutionary Games Studio, 2017-2022</Copyright>
     <Description>Thrive Launcher for downloading and installing Thrive</Description>
   </PropertyGroup>
-  <PropertyGroup>
-    <RuntimeIdentifiers>linux-x64;win-x64;win-x86;osx-x64;osx-arm64</RuntimeIdentifiers>
-  </PropertyGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets/**" />
     <None Remove=".gitignore" />
