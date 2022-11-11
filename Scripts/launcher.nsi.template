@@ -44,8 +44,13 @@ InstallDir "${INSTALL_DIR}"
 RequestExecutionLevel user
 
 !define MULTIUSER_EXECUTIONLEVEL Highest
-#!define MULTIUSER_USE_PROGRAMFILES64 1
-;!define MULTIUSER_NOUNINSTALL ;Uncomment if no uninstaller is created
+# This option doesn't seem to sadly exist
+# !define MULTIUSER_EXECUTIONLEVEL Standard
+# If we want the next line defaults to installing just for the current user
+!define MULTIUSER_INSTALLMODE_DEFAULT_CURRENTUSER
+
+# !define MULTIUSER_USE_PROGRAMFILES64 1
+# !define MULTIUSER_NOUNINSTALL ;Uncomment if no uninstaller is created
 !define MULTIUSER_INSTALLMODE_DEFAULT_REGISTRY_KEY "${REG_APP_PATH}"
 !define MULTIUSER_INSTALLMODE_DEFAULT_REGISTRY_VALUENAME "InstallerMultiUserMode"
 !define MULTIUSER_MUI
