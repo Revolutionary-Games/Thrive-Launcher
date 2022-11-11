@@ -88,7 +88,8 @@ public class ExternalTools : IExternalTools
         if (result.ExitCode != 0)
         {
             throw new Exception(
-                $"Godotpcktool .pck modification failed to run, exit code: {result.ExitCode}, output: {output.ToString().Truncate(300)}");
+                $"Godotpcktool .pck modification failed to run, exit code: {result.ExitCode}, " +
+                $"output: {output.ToString().Truncate(300)}");
         }
     }
 

@@ -170,7 +170,8 @@ public class Rehydrator : IRehydrator
         }
     }
 
-    private HashSet<DehydratedObjectIdentification> FindMissingDehydratedObjects(DehydrateCache dehydrated, out int total)
+    private HashSet<DehydratedObjectIdentification> FindMissingDehydratedObjects(DehydrateCache dehydrated,
+        out int total)
     {
         total = 0;
         var missingHashes = new HashSet<DehydratedObjectIdentification>();

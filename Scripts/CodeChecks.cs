@@ -9,6 +9,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
     public CodeChecks(Program.CheckOptions opts) : base(opts)
     {
         FilePathsToAlwaysIgnore.Add(new Regex(@"\.Designer\.cs"));
+        FilePathsToAlwaysIgnore.Add(new Regex(@"version_data\/"));
     }
 
     protected override Dictionary<string, CodeCheck> ValidChecks { get; } = new()
