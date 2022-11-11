@@ -95,7 +95,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private string RevisionFile => Path.Join(options.OutputFolder, "revision.txt");
 
     private string NSISInstallerName => doingNoRuntimeExport ?
-        $"ThriveLauncher_Windows-7_Installer_{launcherVersionAlwaysWithRevision}.exe" :
+        $"ThriveLauncher_Windows_Installer_WithDotnet_{launcherVersionAlwaysWithRevision}.exe" :
         $"ThriveLauncher_Windows_Installer_{launcherVersionAlwaysWithRevision}.exe";
 
     private string ExpectedLauncherInstallerFile => Path.Join(options.OutputFolder, NSISInstallerName);
@@ -170,6 +170,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         }
         else if (platform == PackagePlatform.Linux && options.LinuxPodman == true)
         {
+            if (options.NugetSource != null)
+                ColourConsole.WriteWarningLine("Nuget source specifying doesn't work with podman build");
+
             ColourConsole.WriteInfoLine("Attempting Linux build in podman");
             var folderName = Path.GetFileName(folder);
 
@@ -418,6 +421,13 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         else
         {
             startInfo.ArgumentList.Add("false");
+        }
+
+        if (options.NugetSource != null)
+        {
+            ColourConsole.WriteNormalLine($"Using nuget source: {options.NugetSource}");
+            startInfo.ArgumentList.Add("--source");
+            startInfo.ArgumentList.Add(options.NugetSource);
         }
 
         startInfo.ArgumentList.Add("-o");
