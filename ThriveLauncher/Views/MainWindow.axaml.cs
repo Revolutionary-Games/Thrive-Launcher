@@ -952,4 +952,19 @@ public partial class MainWindow : Window
         if (close)
             Close();
     }
+
+    private async void CopyLogsToClipboard(object? sender, RoutedEventArgs e)
+    {
+        _ = sender;
+        _ = e;
+
+        var text = DerivedDataContext.GetFullOutputForClipboard();
+
+        var clipboard = Application.Current?.Clipboard;
+
+        if (clipboard == null)
+            throw new InvalidOperationException("Clipboard doesn't exist");
+
+        await clipboard.SetTextAsync(text);
+    }
 }

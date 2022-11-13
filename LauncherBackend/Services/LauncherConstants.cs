@@ -48,6 +48,8 @@ public static class LauncherConstants
     public const int DefaultFirstLinesToKeepOfThriveOutput = 100;
     public const int DefaultLastLinesToKeepOfThriveOutput = 900;
 
+    public const bool UsePlatformLineSeparatorsInCopiedLog = true;
+
     // URLs to our resources
     public const string MainSiteURL = "https://revolutionarygamesstudio.com";
     public const string DevelopmentForumsURL = "https://forum.revolutionarygamesstudio.com/";

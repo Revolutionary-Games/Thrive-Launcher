@@ -1280,5 +1280,11 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("RehydrationStarting", resourceCulture);
             }
         }
+        
+        public static string CopyLogWindowToClipboardToolTip {
+            get {
+                return ResourceManager.GetString("CopyLogWindowToClipboardToolTip", resourceCulture);
+            }
+        }
     }
 }

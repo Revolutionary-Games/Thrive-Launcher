@@ -72,6 +72,11 @@
                 <x:String>avares://ThriveLauncher/Assets/revert.png</x:String>
             </x:Arguments>
         </services:BitmapExtensions>
+        <services:BitmapExtensions x:Key="CopyIconWhite">
+            <x:Arguments>
+                <x:String>avares://ThriveLauncher/Assets/copy.png</x:String>
+            </x:Arguments>
+        </services:BitmapExtensions>
     </Application.Resources>
 
     <Application.Styles>

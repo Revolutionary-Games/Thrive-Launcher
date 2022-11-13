@@ -724,10 +724,12 @@
                         IsVisible="False"
                         Content="{i18n:Localize ReportCrashButton}" />
 
-                <!-- TODO: copy icon and implement copying to clipboard -->
-                <!--<Button Grid.Row="1" Grid.Column="3" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
-                        IsVisible="False"
-                        Content="{i18n:Localize ReportCrashButton}" />-->
+                <Button Grid.Row="1" Grid.Column="3" Classes="DialogButton" Click="CopyLogsToClipboard"
+                        IsVisible="{Binding ShowCloseButtonOnPlayPopup}"
+                        ToolTip.Tip="{i18n:Localize CopyLogWindowToClipboardToolTip}" VerticalAlignment="Center">
+                    <Image Height="19" Source="{DynamicResource CopyIconWhite}" />
+                </Button>
+
                 <!-- TODO: whatever this button was supposed to be...-->
                 <Button Grid.Row="1" Grid.Column="4" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
                         IsVisible="False"

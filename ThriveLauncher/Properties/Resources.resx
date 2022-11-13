@@ -685,4 +685,7 @@ If a Thrive team member verifies that the PR is safe this warning goes away. Alt
   <data name="RehydrationStarting" xml:space="preserve">
     <value>This is a dehydrated build. Beginning rehydration.</value>
   </data>
+  <data name="CopyLogWindowToClipboardToolTip" xml:space="preserve">
+    <value>Copy the game output to clipboard</value>
+  </data>
 </root>

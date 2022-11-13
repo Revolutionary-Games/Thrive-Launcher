@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Threading;
@@ -12,6 +13,7 @@ using DevCenterCommunication.Models;
 using DynamicData;
 using LauncherBackend.Models;
 using LauncherBackend.Services;
+using LauncherBackend.Utilities;
 using Microsoft.Extensions.Logging;
 using Properties;
 using ReactiveUI;
@@ -239,6 +241,79 @@ public partial class MainWindowViewModel
         logger.LogInformation("Closing play popup due to cancellation");
         CurrentlyPlaying = false;
         CanCancelPlaying = false;
+    }
+
+    public string GetFullOutputForClipboard()
+    {
+        logger.LogDebug("Start building full log output for copy");
+
+        var stringBuilder = new StringBuilder(5000);
+
+        if (!string.IsNullOrEmpty(PlayPopupTopMessage))
+        {
+            stringBuilder.Append(PlayPopupTopMessage);
+            stringBuilder.Append("\n");
+        }
+
+        bool first = true;
+        bool errorLineOutput = false;
+
+        foreach (var playMessage in thriveRunner.PlayMessages)
+        {
+            if (!first)
+                stringBuilder.Append("\n");
+
+            first = false;
+
+            stringBuilder.Append(FormatPlayMessage(playMessage));
+        }
+
+        foreach (var outputMessage in thriveRunner.ThriveOutput.Concat(thriveRunner.ThriveOutputTrailing))
+        {
+            if (!first)
+                stringBuilder.Append("\n");
+
+            first = false;
+
+            if (outputMessage.IsError && !errorLineOutput)
+            {
+                stringBuilder.Append(
+                    "Note: error lines may not match up when they happened in relation to normal output " +
+                    "due to buffering.\n");
+                stringBuilder.Append("Error lines are any lines received from the game's stderr output stream.\n");
+                errorLineOutput = true;
+            }
+
+            if (outputMessage.IsError && !outputMessage.Message.Contains("ERROR"))
+            {
+                stringBuilder.Append("ERROR: ");
+            }
+
+            stringBuilder.Append(outputMessage.Message);
+        }
+
+        if (!string.IsNullOrEmpty(PlayPopupBottomMessage))
+        {
+            stringBuilder.Append("\n");
+            stringBuilder.Append(PlayPopupBottomMessage);
+        }
+
+        if (thriveRunner.OutputTruncated)
+        {
+            stringBuilder.Append("\n");
+            stringBuilder.Append(Resources.TruncatedGameOutputWarning);
+        }
+
+        if (thriveRunner.ThriveRunning)
+            stringBuilder.Append("\nThrive is still running.");
+
+        if (LauncherConstants.UsePlatformLineSeparatorsInCopiedLog)
+            stringBuilder.MakeLineSeparatorsPlatformSpecific();
+
+        logger.LogInformation("Copying currently in-memory game logs to clipboard (length: {Length})",
+            stringBuilder.Length);
+
+        return stringBuilder.ToString();
     }
 
     public void AcceptPlayUnsafeBuild()
