@@ -1,6 +1,5 @@
 namespace LauncherBackend.Models;
 
-using System;
 using DevCenterCommunication.Models;
 
 /// <summary>

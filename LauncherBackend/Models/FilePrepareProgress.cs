@@ -1,8 +1,5 @@
 namespace LauncherBackend.Models;
 
-using System;
-using System.Collections.Generic;
-
 /// <summary>
 ///   Describes the progress of a file to be processed for Thrive to be playable.
 /// </summary>

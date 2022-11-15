@@ -1,6 +1,5 @@
 namespace LauncherBackend.Services;
 
-using System;
 using Microsoft.Extensions.Logging;
 using Models;
 

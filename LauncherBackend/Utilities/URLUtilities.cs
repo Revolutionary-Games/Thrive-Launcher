@@ -1,6 +1,5 @@
 namespace LauncherBackend.Utilities;
 
-using System;
 using System.Diagnostics;
 
 public static class URLUtilities

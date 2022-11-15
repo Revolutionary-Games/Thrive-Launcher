@@ -1,10 +1,6 @@
 namespace LauncherBackend.Services;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using FeedParser.Models;
 using FeedParser.Services;
 using FeedParser.Shared.Models;

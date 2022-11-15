@@ -190,19 +190,13 @@ public partial class MainWindowViewModel : ViewModelBase
     public bool CanLoadCachedVersions
     {
         get => canLoadCachedVersions;
-        private set
-        {
-            this.RaiseAndSetIfChanged(ref canLoadCachedVersions, value);
-        }
+        private set => this.RaiseAndSetIfChanged(ref canLoadCachedVersions, value);
     }
 
     public string LauncherInfoLoadError
     {
         get => launcherInfoLoadError;
-        private set
-        {
-            this.RaiseAndSetIfChanged(ref launcherInfoLoadError, value);
-        }
+        private set => this.RaiseAndSetIfChanged(ref launcherInfoLoadError, value);
     }
 
     public LauncherThriveInformation? ThriveVersionInformation

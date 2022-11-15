@@ -7,6 +7,7 @@ using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Threading;
 using LauncherBackend.Models;
+using Properties;
 using SharedBase.Utilities;
 
 /// <summary>
@@ -112,19 +113,19 @@ public class ProgressDisplayer : IDisposable, IObserver<FilePrepareProgress>
         switch (progress.CurrentStep)
         {
             case FilePrepareStep.Downloading:
-                label!.Text = string.Format(Properties.Resources.DownloadingStateItemProgress,
+                label!.Text = string.Format(Resources.DownloadingStateItemProgress,
                     progress.FileIdentifier, progress.DownloadUrlToShow);
                 break;
             case FilePrepareStep.Verifying:
-                label!.Text = string.Format(Properties.Resources.VerifyingStateItemProgress,
+                label!.Text = string.Format(Resources.VerifyingStateItemProgress,
                     progress.FileIdentifier);
                 break;
             case FilePrepareStep.Extracting:
-                label!.Text = string.Format(Properties.Resources.ExtractingStateItemProgress,
+                label!.Text = string.Format(Resources.ExtractingStateItemProgress,
                     progress.FileIdentifier);
                 break;
             case FilePrepareStep.Processing:
-                label!.Text = string.Format(Properties.Resources.ProcessingStateItemProgress,
+                label!.Text = string.Format(Resources.ProcessingStateItemProgress,
                     progress.FileIdentifier);
                 break;
             default:
@@ -153,19 +154,19 @@ public class ProgressDisplayer : IDisposable, IObserver<FilePrepareProgress>
         {
             textualProgress!.IsVisible = true;
 
-            var maxValue = progress.FinishedProgress?.BytesToMiB(2, false) ?? Properties.Resources.UnknownNumber;
+            var maxValue = progress.FinishedProgress?.BytesToMiB(2, false) ?? Resources.UnknownNumber;
 
             // TODO: showing consistently 2 decimal places would make this nicer to read
-            textualProgress!.Text = string.Format(Properties.Resources.DownloadProgressDisplay,
+            textualProgress!.Text = string.Format(Resources.DownloadProgressDisplay,
                 progress.CurrentProgress.Value.BytesToMiB(2, false), maxValue);
         }
         else if (progress.CurrentStep == FilePrepareStep.Processing && progress.CurrentProgress != null)
         {
             textualProgress!.IsVisible = true;
 
-            var maxValue = progress.FinishedProgress?.ToString() ?? Properties.Resources.UnknownNumber;
+            var maxValue = progress.FinishedProgress?.ToString() ?? Resources.UnknownNumber;
 
-            textualProgress!.Text = string.Format(Properties.Resources.ItemProgressDisplay,
+            textualProgress!.Text = string.Format(Resources.ItemProgressDisplay,
                 progress.CurrentProgress.ToString(), maxValue);
         }
         else

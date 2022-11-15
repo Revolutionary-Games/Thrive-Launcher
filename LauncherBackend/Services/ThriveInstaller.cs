@@ -1,15 +1,8 @@
 namespace LauncherBackend.Services;
 
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 using DevCenterCommunication.Models;
 using Microsoft.Extensions.Logging;
 using Models;

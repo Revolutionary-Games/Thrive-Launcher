@@ -121,55 +121,37 @@ public partial class MainWindowViewModel
     public bool HasPendingFileMoveOffer
     {
         get => hasPendingFileMoveOffer;
-        private set
-        {
-            this.RaiseAndSetIfChanged(ref hasPendingFileMoveOffer, value);
-        }
+        private set => this.RaiseAndSetIfChanged(ref hasPendingFileMoveOffer, value);
     }
 
     public bool CanAnswerFileMovePrompt
     {
         get => canAnswerFileMovePrompt;
-        private set
-        {
-            this.RaiseAndSetIfChanged(ref canAnswerFileMovePrompt, value);
-        }
+        private set => this.RaiseAndSetIfChanged(ref canAnswerFileMovePrompt, value);
     }
 
     public string FileMoveOfferTitle
     {
         get => fileMoveOfferTitle;
-        private set
-        {
-            this.RaiseAndSetIfChanged(ref fileMoveOfferTitle, value);
-        }
+        private set => this.RaiseAndSetIfChanged(ref fileMoveOfferTitle, value);
     }
 
     public string FileMoveOfferContent
     {
         get => fileMoveOfferContent;
-        private set
-        {
-            this.RaiseAndSetIfChanged(ref fileMoveOfferContent, value);
-        }
+        private set => this.RaiseAndSetIfChanged(ref fileMoveOfferContent, value);
     }
 
     public string FileMoveOfferError
     {
         get => fileMoveOfferError;
-        private set
-        {
-            this.RaiseAndSetIfChanged(ref fileMoveOfferError, value);
-        }
+        private set => this.RaiseAndSetIfChanged(ref fileMoveOfferError, value);
     }
 
     public float? FileMoveProgress
     {
         get => fileMoveProgress;
-        private set
-        {
-            this.RaiseAndSetIfChanged(ref fileMoveProgress, value);
-        }
+        private set => this.RaiseAndSetIfChanged(ref fileMoveProgress, value);
     }
 
     public Task<string> DehydrateCacheSize => dehydrateCacheSizeTask ?? throw new Exception("Constructor not ran");

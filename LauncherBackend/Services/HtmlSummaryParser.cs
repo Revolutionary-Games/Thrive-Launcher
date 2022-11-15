@@ -1,7 +1,5 @@
 namespace LauncherBackend.Services;
 
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;

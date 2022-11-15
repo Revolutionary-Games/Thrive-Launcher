@@ -1,7 +1,5 @@
 namespace LauncherBackend.Services;
 
-using System;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using DevCenterCommunication.Utilities;
 using SharedBase.Utilities;

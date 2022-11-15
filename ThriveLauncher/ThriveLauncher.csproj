@@ -13,8 +13,8 @@
     <PublishAot>false</PublishAot>
     <PublishTrimmed>false</PublishTrimmed>
     <!--Avalonia doesen't support TrimMode=link currently,but we are working on that https://github.com/AvaloniaUI/Avalonia/issues/6892 -->
-	  <TrimMode>copyused</TrimMode>
-	  <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <TrimMode>copyused</TrimMode>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationIcon>Assets\Icons\icon.ico</ApplicationIcon>
     <Copyright>Revolutionary Games Studio, 2017-2022</Copyright>
     <Description>Thrive Launcher for downloading and installing Thrive</Description>
@@ -24,11 +24,11 @@
     <None Remove=".gitignore" />
   </ItemGroup>
   <ItemGroup>
-	<!--This helps with theme dll-s trimming.
-	If you will publish your application in self-contained mode with p:PublishTrimmed=true and it will use Fluent theme Default theme will be trimmed from the output and vice versa.
-	https://github.com/AvaloniaUI/Avalonia/issues/5593 -->
-	<TrimmableAssembly Include="Avalonia.Themes.Fluent" />
-	<TrimmableAssembly Include="Avalonia.Themes.Default" />
+    <!--This helps with theme dll-s trimming.
+    If you will publish your application in self-contained mode with p:PublishTrimmed=true and it will use Fluent theme Default theme will be trimmed from the output and vice versa.
+    https://github.com/AvaloniaUI/Avalonia/issues/5593 -->
+    <TrimmableAssembly Include="Avalonia.Themes.Fluent" />
+    <TrimmableAssembly Include="Avalonia.Themes.Default" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.18" />
