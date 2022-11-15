@@ -18,6 +18,7 @@ obj
 
 /.jetbrains-cache
 /inspect_results.xml
+/files_to_check.txt
 
 *.*~
 *.bak
