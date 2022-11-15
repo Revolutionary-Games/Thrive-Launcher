@@ -217,7 +217,7 @@ function refreshVersionList(){
     playComboAllChoices.sort(function(a, b){
         // https://stackoverflow.com/a/55466325
         const cmp = a.version.releaseNum.localeCompare(b.version.releaseNum, undefined, {
-            numeric: true
+            numeric: true,
         });
 
         if(cmp !== 0)
