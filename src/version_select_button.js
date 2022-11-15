@@ -2,6 +2,7 @@
 "use strict";
 
 const log = require("electron-log");
+const semver = require("semver");
 
 const {assert} = require("./utils");
 const {getCurrentlySelected, setCurrentlySelectedVersion} = require("./remembered_version");
@@ -215,11 +216,10 @@ function refreshVersionList(){
 
     // Sort the versions //
     playComboAllChoices.sort(function(a, b){
-        // TODO: could use semver here (probably)
-        if(a.version.releaseNum < b.version.releaseNum)
-            return 1;
-        if(a.version.releaseNum > b.version.releaseNum)
-            return -1;
+        // https://stackoverflow.com/a/55466325
+        const cmp = a.version.releaseNum.localeCompare(b.version.releaseNum, undefined, { numeric: true });
+        if (cmp !== 0)
+            return -cmp
 
         return a.download.os < b.download.os;
     });
