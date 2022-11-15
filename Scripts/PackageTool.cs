@@ -168,7 +168,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
             throw new NotImplementedException();
         }
-        else if (platform == PackagePlatform.Linux && options.LinuxPodman == true)
+
+        if (platform == PackagePlatform.Linux && options.LinuxPodman == true)
         {
             if (options.NugetSource != null)
                 ColourConsole.WriteWarningLine("Nuget source specifying doesn't work with podman build");
@@ -317,7 +318,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 if (doingNoRuntimeExport)
                 {
                     ColourConsole.WriteNormalLine(
-                        $"Windows installer without runtime will attempt to install the runtime, " +
+                        "Windows installer without runtime will attempt to install the runtime, " +
                         $"please make sure the runtime installer exists at {PathToDotnetInstaller}");
 
                     nsisFileName = NSISDotnetInstallerFileName;
@@ -348,7 +349,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             }
             else
             {
-                ColourConsole.WriteErrorLine($"TODO installer creation");
+                ColourConsole.WriteErrorLine("TODO installer creation");
                 throw new NotImplementedException();
             }
         }
@@ -611,6 +612,6 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             throw new Exception($"makensis exited with {result.ExitCode}");
         }
 
-        ColourConsole.WriteSuccessLine($"Running makensis succeeded");
+        ColourConsole.WriteSuccessLine("Running makensis succeeded");
     }
 }
