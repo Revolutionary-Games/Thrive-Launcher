@@ -2,7 +2,6 @@
 "use strict";
 
 const log = require("electron-log");
-const semver = require("semver");
 
 const {assert} = require("./utils");
 const {getCurrentlySelected, setCurrentlySelectedVersion} = require("./remembered_version");
