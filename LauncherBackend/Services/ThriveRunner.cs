@@ -225,7 +225,8 @@ public class ThriveRunner : IThriveRunner
             return;
         }
 
-        // onGameEnded(signal, closeContainer, version.releaseNum, storeInfo.store, status,elapsed, gameOutput, detectedLogFile);
+        // onGameEnded(signal, closeContainer, version.releaseNum, storeInfo.store, status,elapsed, gameOutput,
+        // detectedLogFile);
         OnThriveExited(workingDirectory, result.ExitCode, null, version, runTime.Elapsed);
     }
 
