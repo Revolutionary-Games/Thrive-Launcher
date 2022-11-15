@@ -385,8 +385,8 @@ internal class Program
         if (cancelPressCount > 0)
             return true;
 
-        // Success when no crashes detected
-        return !runner.HasReportableCrash;
+        // Success when no crashes detected and the user didn't explicitly ask to open the launcher
+        return !runner.HasReportableCrash && !runner.ThriveWantsToOpenLauncher;
     }
 
     private static MemoryMappedFile? CreateOrOpenMemoryMappedFile(ILogger logger)

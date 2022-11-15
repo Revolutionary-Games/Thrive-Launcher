@@ -515,7 +515,7 @@ public partial class MainWindowViewModel
                         throw new ArgumentOutOfRangeException();
                 }
             }
-            else if (!thriveRunner.HasReportableCrash)
+            else if (!thriveRunner.HasReportableCrash && !thriveRunner.ThriveWantsToOpenLauncher)
             {
                 // Thrive ran without error, check the close after playing option if we want to close
                 if (CloseLauncherAfterGameExit)

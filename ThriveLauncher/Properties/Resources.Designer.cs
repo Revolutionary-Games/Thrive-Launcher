@@ -1286,5 +1286,125 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("CopyLogWindowToClipboardToolTip", resourceCulture);
             }
         }
+        
+        public static string CrashReporterWindowTitle {
+            get {
+                return ResourceManager.GetString("CrashReporterWindowTitle", resourceCulture);
+            }
+        }
+        
+        public static string ContinueReportingButton {
+            get {
+                return ResourceManager.GetString("ContinueReportingButton", resourceCulture);
+            }
+        }
+        
+        public static string CancelCreatingReportTitle {
+            get {
+                return ResourceManager.GetString("CancelCreatingReportTitle", resourceCulture);
+            }
+        }
+        
+        public static string CancelCreatingReportExplanation {
+            get {
+                return ResourceManager.GetString("CancelCreatingReportExplanation", resourceCulture);
+            }
+        }
+        
+        public static string ClearAllCrashesButton {
+            get {
+                return ResourceManager.GetString("ClearAllCrashesButton", resourceCulture);
+            }
+        }
+        
+        public static string Submit {
+            get {
+                return ResourceManager.GetString("Submit", resourceCulture);
+            }
+        }
+        
+        public static string SubmittingReportMessage {
+            get {
+                return ResourceManager.GetString("SubmittingReportMessage", resourceCulture);
+            }
+        }
+        
+        public static string ErrorSubmittingReport {
+            get {
+                return ResourceManager.GetString("ErrorSubmittingReport", resourceCulture);
+            }
+        }
+        
+        public static string SubmittingReportExtraInfo {
+            get {
+                return ResourceManager.GetString("SubmittingReportExtraInfo", resourceCulture);
+            }
+        }
+        
+        public static string SubmitRetryButton {
+            get {
+                return ResourceManager.GetString("SubmitRetryButton", resourceCulture);
+            }
+        }
+        
+        public static string SuccessfulReportSubmitMessage {
+            get {
+                return ResourceManager.GetString("SuccessfulReportSubmitMessage", resourceCulture);
+            }
+        }
+        
+        public static string ReportViewingPublicInfo {
+            get {
+                return ResourceManager.GetString("ReportViewingPublicInfo", resourceCulture);
+            }
+        }
+        
+        public static string ReportDeleteInfo {
+            get {
+                return ResourceManager.GetString("ReportDeleteInfo", resourceCulture);
+            }
+        }
+        
+        public static string ReportDeleteCaveat {
+            get {
+                return ResourceManager.GetString("ReportDeleteCaveat", resourceCulture);
+            }
+        }
+        
+        public static string ReporterEndMessage {
+            get {
+                return ResourceManager.GetString("ReporterEndMessage", resourceCulture);
+            }
+        }
+        
+        public static string SecondsDisplayPlural {
+            get {
+                return ResourceManager.GetString("SecondsDisplayPlural", resourceCulture);
+            }
+        }
+        
+        public static string SecondsDisplaySingular {
+            get {
+                return ResourceManager.GetString("SecondsDisplaySingular", resourceCulture);
+            }
+        }
+        
+        public static string StopAutoClose {
+            get {
+                return ResourceManager.GetString("StopAutoClose", resourceCulture);
+            }
+        }
+        
+        public static string AutoCloseStopped {
+            get {
+                return ResourceManager.GetString("AutoCloseStopped", resourceCulture);
+            }
+        }
+        
+        public static string CopyToClipboard {
+            get {
+                return ResourceManager.GetString("CopyToClipboard", resourceCulture);
+            }
+        }
     }
 }

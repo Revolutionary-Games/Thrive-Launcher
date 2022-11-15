@@ -5,6 +5,7 @@
       <map>
         <entry key="ThriveLauncher/App.axaml" value="ThriveLauncher/ThriveLauncher.csproj" />
         <entry key="ThriveLauncher/Controls/PopupDialog.axaml" value="ThriveLauncher/ThriveLauncher.csproj" />
+        <entry key="ThriveLauncher/Views/CrashReporterWindow.axaml" value="ThriveLauncher/ThriveLauncher.csproj" />
         <entry key="ThriveLauncher/Views/LicensesWindow.axaml" value="ThriveLauncher/ThriveLauncher.csproj" />
         <entry key="ThriveLauncher/Views/MainWindow.axaml" value="ThriveLauncher/ThriveLauncher.csproj" />
         <entry key="Views/MainWindow.axaml" value="ThriveLauncher.csproj" />

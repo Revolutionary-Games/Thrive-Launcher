@@ -688,4 +688,64 @@ If a Thrive team member verifies that the PR is safe this warning goes away. Alt
   <data name="CopyLogWindowToClipboardToolTip" xml:space="preserve">
     <value>Copy the game output to clipboard</value>
   </data>
+  <data name="CrashReporterWindowTitle" xml:space="preserve">
+    <value>Thrive Crash Reporter</value>
+  </data>
+  <data name="ContinueReportingButton" xml:space="preserve">
+    <value>Continue Reporting</value>
+  </data>
+  <data name="CancelCreatingReportTitle" xml:space="preserve">
+    <value>Cancel Creating a Report?</value>
+  </data>
+  <data name="CancelCreatingReportExplanation" xml:space="preserve">
+    <value>Are you sure you want to cancel creating a crash report? If no reports at all are submitted for a specific bug, the developers of Thrive may not know about it and are thus unable to fix it.</value>
+  </data>
+  <data name="ClearAllCrashesButton" xml:space="preserve">
+    <value>Delete ALL Crash Dumps</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="SubmittingReportMessage" xml:space="preserve">
+    <value>Submitting your report. Please be patient as uploading may take up to a few minutes...</value>
+  </data>
+  <data name="ErrorSubmittingReport" xml:space="preserve">
+    <value>An error occurred when trying to submit your crash report. Please verify the data is correct or try again later if the problem is a server issue. Failure type:</value>
+  </data>
+  <data name="SubmittingReportExtraInfo" xml:space="preserve">
+    <value>Extra information regarding the encountered error:</value>
+  </data>
+  <data name="SubmitRetryButton" xml:space="preserve">
+    <value>Retry</value>
+  </data>
+  <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
+    <value>Your report has been successfully submitted. Thank you for your report.</value>
+  </data>
+  <data name="ReportViewingPublicInfo" xml:space="preserve">
+    <value>You can view your report, if it is public, at the following address:</value>
+  </data>
+  <data name="ReportDeleteInfo" xml:space="preserve">
+    <value>If you want to delete your report, you can do so here:</value>
+  </data>
+  <data name="ReportDeleteCaveat" xml:space="preserve">
+    <value>IMPORTANT if you lose your delete link you won't be able to delete your report. So save it! You can press the copy button to the right of it to copy it.</value>
+  </data>
+  <data name="ReporterEndMessage" xml:space="preserve">
+    <value>You can now safely close this reporter. Or wait until this window automatically closes in</value>
+  </data>
+  <data name="SecondsDisplayPlural" xml:space="preserve">
+    <value>{0} seconds</value>
+  </data>
+  <data name="SecondsDisplaySingular" xml:space="preserve">
+    <value>1 second</value>
+  </data>
+  <data name="StopAutoClose" xml:space="preserve">
+    <value>Cancel Closing</value>
+  </data>
+  <data name="AutoCloseStopped" xml:space="preserve">
+    <value>auto close canceled</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Copy to clipboard</value>
+  </data>
 </root>

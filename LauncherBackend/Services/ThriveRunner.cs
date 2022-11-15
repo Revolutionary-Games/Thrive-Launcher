@@ -56,6 +56,7 @@ public class ThriveRunner : IThriveRunner
     public string? DetectedFullLogFileLocation { get; private set; }
 
     public bool HasReportableCrash { get; private set; }
+    public bool ThriveWantsToOpenLauncher { get; private set; }
 
     public string? LDPreload { get; set; }
     public IList<string>? ExtraThriveStartFlags { get; set; }
@@ -172,6 +173,7 @@ public class ThriveRunner : IThriveRunner
         readingUnhandledException = false;
         unhandledException = null;
         ActiveErrorSuggestion = null;
+        ThriveWantsToOpenLauncher = false;
     }
 
     private async Task RunThriveExecutable(string thriveExecutable, IPlayableVersion version,
@@ -239,10 +241,12 @@ public class ThriveRunner : IThriveRunner
             runInfo.Environment["LD_PRELOAD"] = "";
         }
 
-        if (settingsManager.Settings.DisableThriveVideos)
+        var settings = settingsManager.Settings;
+
+        if (settings.DisableThriveVideos)
             runInfo.ArgumentList.Add("--thrive-disable-videos");
 
-        if (settingsManager.Settings.ForceGles2Mode)
+        if (settings.ForceGles2Mode)
         {
             runInfo.ArgumentList.Add("--video-driver");
             runInfo.ArgumentList.Add("GLES2");
@@ -252,6 +256,14 @@ public class ThriveRunner : IThriveRunner
         {
             // TODO: pass arguments about the store version to Thrive for it to show correct information
             // This is needed because itch builds don't have anything special on the Thrive side to them
+        }
+
+        runInfo.ArgumentList.Add(LauncherConstants.OPENED_THROUGH_LAUNCHER_OPTION);
+
+        // If we are going to close our window, tell that to Thrive
+        if (settings.CloseLauncherOnGameStart || settings.CloseLauncherAfterGameExit)
+        {
+            runInfo.ArgumentList.Add(LauncherConstants.OPENING_LAUNCHER_IS_HIDDEN);
         }
 
         if (ExtraThriveStartFlags is { Count: > 0 })
@@ -328,6 +340,15 @@ public class ThriveRunner : IThriveRunner
         runningObservable.Value = false;
     }
 
+    private IEnumerable<string> AllGameOutput()
+    {
+        foreach (var message in ThriveOutput)
+            yield return message.Message;
+
+        foreach (var message in ThriveOutputTrailing)
+            yield return message.Message;
+    }
+
     private void AddLogLine(string line, bool error)
     {
         var outputObject = new ThriveOutputMessage(line, error);
@@ -338,6 +359,8 @@ public class ThriveRunner : IThriveRunner
 
             // Should be fine to only detect this from the first log lines
             DetectThriveDataFoldersFromOutput(line);
+
+            // TODO: detect Thrive properly started
 
             return;
         }
@@ -476,6 +499,8 @@ public interface IThriveRunner
     public string? DetectedFullLogFileLocation { get; }
 
     public bool HasReportableCrash { get; }
+
+    public bool ThriveWantsToOpenLauncher { get; }
 
     /// <summary>
     ///   For setting the LD_PRELOAD environment variable when starting Thrive

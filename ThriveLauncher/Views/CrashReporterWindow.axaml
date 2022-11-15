@@ -1,0 +1,118 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ThriveLauncher.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i18n="clr-namespace:ThriveLauncher.Services.Localization"
+        xmlns:controls="clr-namespace:ThriveLauncher.Controls"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="650"
+        Width="600" Height="650"
+        MinHeight="400"
+        MinWidth="600"
+        x:Class="ThriveLauncher.Views.CrashReporterWindow"
+        Icon="/Assets/Icons/icon.ico"
+        Title="{i18n:Localize CrashReporterWindowTitle}"
+        FontFamily="{StaticResource Lato}"
+        Background="{DynamicResource MainWindowBackground}">
+
+    <Design.DataContext>
+        <vm:CrashReporterWindowViewModel />
+    </Design.DataContext>
+
+    <Grid Margin="0" ColumnDefinitions="*" RowDefinitions="*">
+
+        <DockPanel LastChildFill="True">
+            <!-- selecting a crash -->
+            <DockPanel LastChildFill="True" IsVisible="{Binding ShowCrashPicker}">
+
+                <ScrollViewer>
+                    <StackPanel Spacing="5" Name="AvailableCrashesToReportList" />
+                </ScrollViewer>
+
+                <StackPanel DockPanel.Dock="Bottom">
+                    <Button Classes="DialogButton Danger" Command="{Binding ClearAllCrashes}"
+                            Content="{i18n:Localize ClearAllCrashesButton}" />
+                </StackPanel>
+
+            </DockPanel>
+
+            <!-- reporting a crash -->
+            <DockPanel LastChildFill="True" IsVisible="{Binding !ShowCrashPicker}">
+                <ScrollViewer IsVisible="{Binding !ReportSubmitted}">
+                    <DockPanel LastChildFill="True">
+                        <StackPanel Orientation="Horizontal" Spacing="3" HorizontalAlignment="Center">
+                            <Button DockPanel.Dock="Bottom" Classes="DialogButton" Command="{Binding SubmitReport}"
+                                    Content="{i18n:Localize Submit}" />
+
+                            <Button DockPanel.Dock="Bottom" Classes="DialogButton Danger"
+                                    Command="{Binding CancelCrashReporting}"
+                                    Content="{i18n:Localize Cancel}" />
+                        </StackPanel>
+
+                        <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,*">
+                            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                                       Text="{i18n:Localize SubmittingReportMessage}"
+                                       IsVisible="{Binding SubmittingReport}" />
+                        </Grid>
+                    </DockPanel>
+                </ScrollViewer>
+                <StackPanel IsVisible="{Binding ReportSubmitted}">
+
+                    <TextBlock TextWrapping="Wrap" Text="{i18n:Localize SuccessfulReportSubmitMessage}"
+                               Margin="0 5 0 15" />
+
+                    <TextBlock TextWrapping="Wrap" Text="{i18n:Localize ReportViewingPublicInfo}" />
+
+                    <Button Classes="TextLink" Command="{Binding OpenViewUrl}"
+                            Content="{Binding CreatedReportViewUrl}" />
+
+                    <TextBlock Text="{i18n:Localize ReportDeleteInfo}" />
+
+                    <WrapPanel Orientation="Horizontal" Margin="0 5 0 5">
+                        <Button Classes="TextLink" Command="{Binding OpenDeleteUrl}"
+                                Content="{Binding CreatedReportDeleteUrl}" />
+
+                        <Button Classes="DialogButton" Click="CopyDeleteLinkToClipboard"
+                                ToolTip.Tip="{i18n:Localize CopyToClipboard}" VerticalAlignment="Center">
+                            <Image Height="24" Source="{DynamicResource CopyIconWhite}" />
+                        </Button>
+                    </WrapPanel>
+
+                    <TextBlock TextWrapping="Wrap" Text="{i18n:Localize ReportDeleteCaveat}" />
+
+                    <WrapPanel Orientation="Horizontal" Margin="0 15">
+                        <TextBlock TextWrapping="Wrap" Text="{i18n:Localize ReporterEndMessage}" Margin="0 0 1 0" />
+                        <TextBlock TextWrapping="Wrap" Text="{i18n:Localize AutoCloseStopped}"
+                                   IsVisible="{Binding AutoCloseDelay,Converter={x:Static ObjectConverters.IsNull}}" />
+                        <TextBlock TextWrapping="Wrap" Text="{Binding AutoCloseDelayText}"
+                                   IsVisible="{Binding AutoCloseDelay,Converter={x:Static ObjectConverters.IsNotNull}}" />
+
+                        <Button Margin="15 0 0 0" Command="{Binding CancelAutoClose}"
+                                IsVisible="{Binding AutoCloseDelay,Converter={x:Static ObjectConverters.IsNotNull}}"
+                                Content="{i18n:Localize StopAutoClose}" />
+
+                    </WrapPanel>
+                </StackPanel>
+            </DockPanel>
+        </DockPanel>
+
+        <controls:PopupDialog Title="{i18n:Localize CancelCreatingReportTitle}"
+                              ShowPopup="{Binding ShowCloseConfirmation}"
+                              CloseCommand="{Binding DismissCloseConfirmation}"
+                              ShowOKButton="False" ShowCloseX="True" MinWidth="400">
+            <DockPanel LastChildFill="True">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="3"
+                            Margin="0 15 0 0">
+                    <Button Classes="DialogButton" Command="{Binding DismissCloseConfirmation}"
+                            Content="{i18n:Localize ContinueReportingButton}" />
+
+                    <Button Classes="DialogButton Danger" Click="CancelReporting"
+                            Content="{i18n:Localize Cancel}" />
+                </StackPanel>
+
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="0 1 0 5" MaxWidth="400"
+                           Text="{i18n:Localize CancelCreatingReportExplanation}" />
+            </DockPanel>
+        </controls:PopupDialog>
+    </Grid>
+</Window>

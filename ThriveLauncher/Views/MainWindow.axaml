@@ -718,8 +718,8 @@
                         IsVisible="{Binding ShowCloseButtonOnPlayPopup}"
                         Content="{i18n:Localize CloseButton}" />
 
-                <!-- TODO: implement -->
-                <Button Grid.Row="1" Grid.Column="2" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
+                <!-- TODO: implement visibility -->
+                <Button Grid.Row="1" Grid.Column="2" Classes="DialogButton" Click="OpenCrashReporterWindow"
                         IsVisible="False"
                         Content="{i18n:Localize ReportCrashButton}" />
 
@@ -729,7 +729,7 @@
                     <Image Height="19" Source="{DynamicResource CopyIconWhite}" />
                 </Button>
 
-                <!-- TODO: whatever this button was supposed to be...-->
+                <!-- TODO: whatever this button was supposed to be... Maybe a button to open the game logs folder? -->
                 <Button Grid.Row="1" Grid.Column="4" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
                         IsVisible="False"
                         Content="{i18n:Localize ReportCrashButton}" />

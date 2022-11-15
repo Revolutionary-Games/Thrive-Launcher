@@ -12,6 +12,7 @@ public static class ServiceCollectionExtensions
             .AddSingleton<ILauncherSettingsManager, LauncherSettingsManager>()
             .AddScoped<IHtmlSummaryParser, HtmlSummaryParser>()
             .AddScoped<IRehydrator, Rehydrator>()
+            .AddScoped<ICrashReporter, CrashReporter>()
             .AddSingleton<ILauncherPaths, LauncherPaths>()
             .AddSingleton<IThriveAndLauncherInfoRetriever, ThriveAndLauncherInfoRetriever>()
             .AddSingleton<IThriveInstaller, ThriveInstaller>()

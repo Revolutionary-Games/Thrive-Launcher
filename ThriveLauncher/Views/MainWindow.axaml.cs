@@ -213,6 +213,22 @@ public partial class MainWindow : Window
         window.Show(this);
     }
 
+    private void OpenCrashReporterWindow(object? sender, RoutedEventArgs routedEventArgs)
+    {
+        _ = sender;
+        _ = routedEventArgs;
+
+        var scope = this.GetServiceProvider().CreateScope();
+
+        var window = new CrashReporterWindow
+        {
+            DataContext = ActivatorUtilities.CreateInstance<CrashReporterWindowViewModel>(scope.ServiceProvider),
+        };
+
+        // Allow crash reporter to be open by itself by not giving it a parent
+        window.Show();
+    }
+
     private async void SelectNewThriveInstallLocation(object? sender, RoutedEventArgs routedEventArgs)
     {
         _ = sender;
