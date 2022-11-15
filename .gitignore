@@ -2,9 +2,23 @@ node_modules
 /release-builds
 /staging
 /installed
-/assets/icons
 /BundledThrive
+/Temp
+/Scripts/installer_banner.bmp
 
 /dist
+/builds
 *.tar.xz
+*.deb
 *.DS_Store
+*.DotSettings.user
+
+bin
+obj
+
+/.jetbrains-cache
+/inspect_results.xml
+/files_to_check.txt
+
+*.*~
+*.bak

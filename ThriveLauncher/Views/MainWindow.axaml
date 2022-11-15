@@ -1,0 +1,769 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ThriveLauncher.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:ThriveLauncher.Controls"
+        xmlns:i18n="clr-namespace:ThriveLauncher.Services.Localization"
+        mc:Ignorable="d" d:DesignWidth="950" d:DesignHeight="600"
+        Width="950" Height="600"
+        MinWidth="900" MinHeight="550"
+        x:Class="ThriveLauncher.Views.MainWindow"
+        Icon="/Assets/Icons/icon.ico"
+        Title="{i18n:Localize MainWindowTitle}"
+        FontFamily="{StaticResource Lato}"
+        Background="{DynamicResource MainWindowBackground}">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Window.KeyBindings>
+        <KeyBinding Gesture="Alt+D" Command="{Binding DevCenterViewActivation}">
+            <KeyBinding.CommandParameter>
+                <x:Int32>0</x:Int32>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+        <KeyBinding Gesture="Alt+E" Command="{Binding DevCenterViewActivation}">
+            <KeyBinding.CommandParameter>
+                <x:Int32>1</x:Int32>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+        <KeyBinding Gesture="Alt+V" Command="{Binding DevCenterViewActivation}">
+            <KeyBinding.CommandParameter>
+                <x:Int32>2</x:Int32>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+        <KeyBinding Gesture="Alt+C" Command="{Binding DevCenterViewActivation}">
+            <KeyBinding.CommandParameter>
+                <x:Int32>3</x:Int32>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+    </Window.KeyBindings>
+
+    <Grid Margin="0" ColumnDefinitions="*" RowDefinitions="*">
+        <Viewbox Stretch="UniformToFill">
+            <Image Source="/Assets/Planet-1.jpg" />
+        </Viewbox>
+
+        <DockPanel LastChildFill="True">
+            <Border DockPanel.Dock="Bottom" Background="{DynamicResource BottomBackground}"
+                    HorizontalAlignment="Stretch" Padding="15">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="3">
+                    <Button FontSize="18" VerticalAlignment="Stretch" Command="{Binding ToggleLinksView}"
+                            HotKey="Alt+L">
+                        <TextBlock VerticalAlignment="Center" Text="{i18n:Localize LinksButton}" />
+                    </Button>
+                    <Button VerticalAlignment="Stretch" Command="{Binding OpenSettings}" HotKey="Alt+O">
+                        <Image Source="/Assets/gear.png" Width="32" />
+                    </Button>
+                    <Button FontSize="28" Classes="PlayButton" Command="{Binding TryToPlayThrive}"
+                            IsEnabled="{Binding CanPressPlayButton}"
+                            Content="{i18n:Localize PlayButton}" HotKey="Alt+S" />
+
+                    <ComboBox SelectedIndex="0" FontSize="20" VerticalAlignment="Stretch" Classes="VersionSelect"
+                              IsVisible="{Binding ThriveVersionInformation,Converter={x:Static ObjectConverters.IsNotNull}}"
+                              x:Name="VersionComboBox" SelectionChanged="SelectedVersionComboBoxItemChanged" />
+                    <TextBlock Text="{i18n:Localize LoadingDotDotDot}"
+                               IsVisible="{Binding ThriveVersionInformation,Converter={x:Static ObjectConverters.IsNull}}" />
+                    <StackPanel Orientation="Horizontal" IsVisible="{Binding ShowDevCenterStatusArea}"
+                                Margin="2 0 0 0 ">
+                        <Button Classes="TextLink" Command="{Binding OpenDevCenterConnectionMenu}"
+                                IsVisible="{Binding !HasDevCenterConnection}"
+                                Content="{i18n:Localize ConnectToDevCenterPrompt}" />
+                        <StackPanel Orientation="Horizontal" IsVisible="{Binding HasDevCenterConnection}">
+                            <TextBlock IsVisible="{Binding DevCenterConnectionIsDeveloper}" VerticalAlignment="Center"
+                                       Text="{i18n:Localize ConnectedDeveloperGreeting}" />
+
+                            <TextBlock IsVisible="{Binding !DevCenterConnectionIsDeveloper}" VerticalAlignment="Center"
+                                       Text="{i18n:Localize ConnectedSupporterGreeting}" />
+
+                            <Button Classes="TextLink" Command="{Binding OpenDevCenterConnectionMenu}"
+                                    Content="{Binding DevCenterConnectedUser}" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Grid DockPanel.Dock="Top" ColumnDefinitions="4*, 12, 6*">
+                <Border Grid.Column="0" DockPanel.Dock="Left" Background="{DynamicResource FeedBackground}"
+                        CornerRadius="2" Margin="6,4,0,6">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" Padding="3">
+                        <StackPanel MinWidth="350">
+                            <TextBlock FontSize="24" Text="{i18n:Localize DevelopmentFeedTitle}" />
+                            <Border BorderBrush="{DynamicResource BlueElement}" BorderThickness="1" Margin="0 0 0 3" />
+                            <TextBlock IsVisible="{Binding !ShowWebContent}"
+                                       Text="{i18n:Localize WebContentIsDisabled}" />
+
+                            <TextBlock
+                                IsVisible="{Binding DevForumFetchError, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                Text="{Binding DevForumFetchError}" TextWrapping="Wrap" />
+
+                            <ProgressBar IsIndeterminate="True" Margin="0 10" IsVisible="{Binding LoadingDevForumFeed}" />
+
+                            <StackPanel Name="DevelopmentFeedItems" IsVisible="{Binding ShowWebContent}" />
+
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+                <GridSplitter Grid.Column="1" Background="Transparent" ResizeDirection="Columns" />
+                <Border Grid.Column="2" Background="{DynamicResource FeedBackground}"
+                        CornerRadius="2" Margin="0,4,6,6">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" Padding="3">
+                        <StackPanel>
+                            <TextBlock FontSize="24" Text="{i18n:Localize NewsFeedTitle}" />
+                            <Border BorderBrush="{DynamicResource BlueElement}" BorderThickness="1" Margin="0 0 0 3" />
+                            <TextBlock IsVisible="{Binding !ShowWebContent}"
+                                       Text="{i18n:Localize WebContentIsDisabled}" />
+
+                            <TextBlock
+                                IsVisible="{Binding MainSiteFetchError, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                Text="{Binding MainSiteFetchError}" TextWrapping="Wrap" />
+
+                            <ProgressBar IsIndeterminate="True" Margin="0 10" IsVisible="{Binding LoadingMainSiteFeed}" />
+
+                            <StackPanel Name="MainSiteFeedItems" IsVisible="{Binding ShowWebContent}" />
+
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+            </Grid>
+
+        </DockPanel>
+
+        <controls:PopupDialog Title="{i18n:Localize LinksPopupTitle}"
+                              CloseCommand="{Binding CloseLinksClicked}" ShowPopup="{Binding ShowLinksPopup}">
+            <Grid ColumnDefinitions="*, *" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+                <Button Grid.Column="0" Grid.Row="0" Classes="TextLink"
+                        Content="{i18n:Localize ExternalLinkMainWebsite}" FontSize="20"
+                        Command="{Binding OpenMainSiteLink}" />
+                <Button Grid.Column="0" Grid.Row="1" Classes="TextLink"
+                        Content="{i18n:Localize ExternalLinkDevelopmentForums}"
+                        Command="{Binding OpenDevelopmentForumsLink}" />
+                <Button Grid.Column="0" Grid.Row="2" Classes="TextLink"
+                        Content="{i18n:Localize ExternalLinkCommunityForums}"
+                        Command="{Binding OpenCommunityForumsLink}" />
+                <Button Grid.Column="0" Grid.Row="3" Classes="TextLink"
+                        Content="{i18n:Localize ExternalLinkDeveloperWiki}"
+                        Command="{Binding OpenDeveloperWikiLink}" />
+                <Button Grid.Column="0" Grid.Row="4" Classes="TextLink"
+                        Content="{i18n:Localize ExternalLinkThriveSteam}"
+                        Command="{Binding OpenThriveSteamLink}" />
+                <Button Grid.Column="0" Grid.Row="5" Classes="TextLink"
+                        IsVisible="{Binding ShowLinksNotInSteamVersion}"
+                        Content="{i18n:Localize ExternalLinkPatreon}"
+                        Command="{Binding OpenThrivePatreonLink}" />
+                <Button Grid.Column="0" Grid.Row="6" Classes="TextLink"
+                        IsVisible="{Binding !IsStoreVersion}"
+                        Content="{i18n:Localize ExternalLinkDonate}"
+                        Command="{Binding OpenDonateLink}" />
+                <Button Grid.Column="0" Grid.Row="7" Classes="TextLink"
+                        IsVisible="{Binding ShowLinksNotInSteamVersion}"
+                        Content="{i18n:Localize ExternalLinkThriveDevCenter}"
+                        Command="{Binding OpenThriveDevCenterBrowserLink}" />
+                <Button Grid.Column="0" Grid.Row="8" Classes="TextLink"
+                        IsVisible="{Binding ShowLinksNotInSteamVersion}"
+                        Content="{i18n:Localize ExternalLinkThriveItch}"
+                        Command="{Binding OpenThriveItchLink}" />
+
+                <Button Grid.Column="1" Grid.Row="0" Classes="TextLink"
+                        Content="{i18n:Localize ExternalLinkThriveGithub}" FontSize="20"
+                        Command="{Binding OpenThriveRepoLink}" />
+                <Button Grid.Column="1" Grid.Row="1" Classes="TextLink"
+                        Content="{i18n:Localize ExternalLinkLauncherGithub}"
+                        Command="{Binding OpenLauncherRepoLink}" />
+                <Button Grid.Column="1" Grid.Row="2" Classes="TextLink"
+                        Content="{i18n:Localize ExternalLinkFanWiki}"
+                        Command="{Binding OpenFanWikiLink}" />
+                <Button Grid.Column="1" Grid.Row="3" Classes="TextLink"
+                        Content="{i18n:Localize ExternalLinkDiscordServer}"
+                        Command="{Binding OpenDiscordServerLink}" />
+                <Button Grid.Column="1" Grid.Row="4" Classes="TextLink"
+                        Content="{i18n:Localize ExternalLinkSubreddit}"
+                        Command="{Binding OpenSubredditLink}" />
+                <Button Grid.Column="1" Grid.Row="5" Classes="TextLink"
+                        Content="{i18n:Localize ExternalLinkYouTubeChannel}"
+                        Command="{Binding OpenYoutubeChannelLink}" />
+                <Button Grid.Column="1" Grid.Row="6" Classes="TextLink"
+                        Content="{i18n:Localize ExternalLinkTwitterFeed}"
+                        Command="{Binding OpenTwitterProfileLink}" />
+                <Button Grid.Column="1" Grid.Row="7" Classes="TextLink"
+                        Content="{i18n:Localize ExternalLinkFacebookPage}"
+                        Command="{Binding OpenFacebookPageLink}" />
+                <Button Grid.Column="1" Grid.Row="8" Classes="TextLink" Content="{i18n:Localize ViewLicensesButton}"
+                        Click="OpenLicensesWindow" />
+            </Grid>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog ShowTitle="False" ShowCloseX="False" CloseCommand="{Binding CloseSettingsClicked}"
+                              ShowPopup="{Binding ShowSettingsPopup}" ShowOKButton="True">
+            <RelativePanel Width="750" Height="400">
+                <TabControl HorizontalAlignment="Stretch"
+                            RelativePanel.AlignLeftWithPanel="True"
+                            RelativePanel.AlignRightWithPanel="True"
+                            RelativePanel.AlignTopWithPanel="True"
+                            RelativePanel.AlignBottomWithPanel="True">
+                    <TabItem Header="{i18n:Localize ThriveOptions}">
+                        <StackPanel>
+                            <TextBlock FontSize="16" Text="{i18n:Localize LaunchOptionsTitle}" />
+                            <CheckBox IsChecked="{Binding DisableThriveVideos}">
+                                <TextBlock TextWrapping="Wrap" Text="{i18n:Localize LaunchOptionDisableVideos}" />
+                            </CheckBox>
+                            <CheckBox IsChecked="{Binding ForceGles2Mode}">
+                                <TextBlock TextWrapping="Wrap" Text="{i18n:Localize LaunchOptionForceGLES2}" />
+                            </CheckBox>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="{i18n:Localize LauncherOptions}">
+                        <StackPanel>
+                            <WrapPanel Orientation="Horizontal">
+                                <TextBlock Margin="0 0 1 0" Text="{i18n:Localize LauncherVersionDisplay}" />
+                                <TextBlock Text="{Binding LauncherVersion}" />
+                                <TextBlock Text="{i18n:Localize LauncherIsLatestVersion}" Margin="15 0"
+                                           IsVisible="{Binding LauncherIsLatestVersion}" />
+                            </WrapPanel>
+                            <Border DockPanel.Dock="Top" Padding="0" BorderThickness="1"
+                                    BorderBrush="{DynamicResource BlueElement}" />
+                            <CheckBox IsChecked="{Binding ShowWebContent}"
+                                      Content="{i18n:Localize LauncherOptionWebFeeds}" />
+
+                            <CheckBox IsChecked="{Binding Hide32BitVersions}"
+                                      Content="{i18n:Localize LauncherOptionHide32Bit}" />
+
+                            <CheckBox IsChecked="{Binding HideLauncherOnPlay}"
+                                      Content="{i18n:Localize LauncherOptionHideOnPlay}" />
+
+                            <CheckBox IsChecked="{Binding CloseLauncherAfterGameExit}"
+                                      Content="{i18n:Localize LauncherOptionCloseAfterPlaying}" />
+
+                            <CheckBox IsChecked="{Binding CloseLauncherOnGameStart}"
+                                      Content="{i18n:Localize LauncherOptionCloseAfterStart}" />
+
+                            <CheckBox IsChecked="{Binding EnableStoreVersionSeamlessMode}"
+                                      IsVisible="{Binding IsStoreVersion}"
+                                      Content="{i18n:Localize LauncherOptionAllowSeamlessMode}" />
+
+                            <!-- TODO: option to show external versions in store versions -->
+
+                            <CheckBox IsChecked="{Binding AllowAutoUpdate}"
+                                      IsVisible="{Binding !IsStoreVersion}"
+                                      Content="{i18n:Localize LauncherOptionAutoUpdate}" />
+
+                            <StackPanel Orientation="Horizontal" Margin="0 5">
+                                <TextBlock Margin="0 0 2 0" Text="{i18n:Localize LauncherSelectedLanguage}"
+                                           VerticalAlignment="Center" />
+                                <ComboBox x:Name="LanguageComboBox" SelectionChanged="LanguageSelectionChanged" />
+                            </StackPanel>
+
+                            <Border Padding="0" BorderThickness="1" Margin="0 0 0 3"
+                                    BorderBrush="{DynamicResource BlueElement}" />
+
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <Button Classes="DialogButton Danger" Content="{i18n:Localize ResetAllSettings}"
+                                        Command="{Binding ResetAllSettings}" />
+
+                                <Button Classes="TextLink" Content="{i18n:Localize ViewLicensesButton}"
+                                        Click="OpenLicensesWindow" />
+
+                                <Button Classes="TextLink" Content="{i18n:Localize OpenLogsFolderButton}"
+                                        Command="{Binding OpenLogsFolder}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="{i18n:Localize InstalledVersions}">
+                        <DockPanel LastChildFill="True">
+                            <TextBlock DockPanel.Dock="Top" IsVisible="{Binding IsStoreVersion}"
+                                       Text="{i18n:Localize StoreVersionExternalVersionsNote}" TextWrapping="Wrap" />
+                            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="2">
+                                <Button Classes="DialogButton" Content="{i18n:Localize BrowseInstalledFiles}"
+                                        Command="{Binding OpenFileBrowserToInstalled}" />
+                                <Button Classes="DialogButton" Content="{i18n:Localize SelectInstallLocation}"
+                                        Click="SelectNewThriveInstallLocation" />
+                                <Button Classes="DialogButton" Command="{Binding ResetInstallLocation}"
+                                        ToolTip.Tip="{i18n:Localize ResetInstallLocationToolTip}">
+                                    <Image Height="16" Source="{DynamicResource RevertIconWhite}" />
+                                </Button>
+                            </StackPanel>
+                            <Border DockPanel.Dock="Top" Margin="0 3" Padding="0" BorderThickness="1"
+                                    BorderBrush="{DynamicResource BlueElement}" />
+
+                            <WrapPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0 5">
+                                <TextBlock Margin="0 0 2 0" Text="{i18n:Localize FolderPathDisplay}" />
+                                <TextBlock Text="{Binding ThriveInstallationPath}" />
+                            </WrapPanel>
+
+                            <ScrollViewer>
+                                <StackPanel Spacing="5" Name="InstalledFoldersList" />
+                            </ScrollViewer>
+                        </DockPanel>
+                    </TabItem>
+                    <TabItem Header="{i18n:Localize CacheConfigurationTab}">
+                        <Grid RowDefinitions="Auto,Auto,*,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+                            <WrapPanel Grid.Row="0" Orientation="Horizontal" Margin="0 0 0 5">
+                                <TextBlock Margin="0 0 2 0" Text="{i18n:Localize TemporaryDownloadsPathDisplay}" />
+                                <TextBlock Text="{Binding TemporaryDownloadsFolder}" />
+                            </WrapPanel>
+
+                            <TextBlock Grid.Row="1" Text="{i18n:Localize FolderContentsLabel}" />
+
+                            <ScrollViewer Grid.Row="2">
+                                <StackPanel Spacing="5" Name="TemporaryFilesList" Margin="15 0 0 0" />
+                            </ScrollViewer>
+
+                            <TextBlock Grid.Row="3" Margin="0 5" TextWrapping="Wrap" FontSize="12"
+                                       Text="{i18n:Localize TemporaryFolderNoFilesMoveNotice}" />
+
+                            <StackPanel Grid.Row="4" Orientation="Horizontal" Spacing="2">
+                                <Button Classes="DialogButton" Content="{i18n:Localize SelectTemporaryFilesLocation}"
+                                        Click="SelectNewTemporaryLocation" />
+                                <Button Classes="DialogButton" Command="{Binding ResetTemporaryLocation}"
+                                        ToolTip.Tip="{i18n:Localize ResetTemporaryLocation}">
+                                    <Image Height="16" Source="{DynamicResource RevertIconWhite}" />
+                                </Button>
+                                <Button Classes="DialogButton" Command="{Binding PromptClearTemporaryLocation}"
+                                        Content="{i18n:Localize ClearFolder}"
+                                        ToolTip.Tip="{i18n:Localize ClearTemporaryLocation}" />
+                            </StackPanel>
+
+                            <!-- TODO: launcher 1.0 hid these options in the Steam store mode, should we still hide these? -->
+                            <Border Grid.Row="5" Margin="0 3" Padding="0" BorderThickness="1"
+                                    BorderBrush="{DynamicResource BlueElement}" />
+                            <WrapPanel Grid.Row="6" Orientation="Horizontal" Margin="0 0 0 5">
+                                <TextBlock Margin="0 0 2 0" Text="{i18n:Localize DevBuildsCachePathDisplay}" />
+                                <TextBlock Text="{Binding DehydratedCacheFolder}" />
+                            </WrapPanel>
+
+                            <StackPanel Grid.Row="7" Orientation="Horizontal" Spacing="2">
+                                <Button Classes="DialogButton" Content="{i18n:Localize SelectDevBuildCacheLocation}"
+                                        Click="SelectDevBuildCacheLocation" />
+                                <Button Classes="DialogButton" Command="{Binding ResetDehydratedCacheLocation}"
+                                        ToolTip.Tip="{i18n:Localize ResetCacheLocation}">
+                                    <Image Height="16" Source="{DynamicResource RevertIconWhite}" />
+                                </Button>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="8" Orientation="Horizontal" Margin="0 10">
+                                <TextBlock Margin="0 0 2 0" Text="{i18n:Localize CacheSizeDisplay}" />
+                                <TextBlock Text="{Binding DehydrateCacheSize^, FallbackValue='...'}" />
+                            </StackPanel>
+                            <Button Grid.Row="9" Classes="DialogButton" Content="{i18n:Localize ClearFolder}"
+                                    ToolTip.Tip="{i18n:Localize ClearDehydratedLocation}"
+                                    Command="{Binding PromptClearDehydratedCacheLocation}" />
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+                <Button Classes="Close" Command="{Binding CloseSettingsClicked}" HorizontalAlignment="Right"
+                        Width="36" Height="24"
+                        Margin="0 4 0 0"
+                        RelativePanel.AlignRightWithPanel="True"
+                        RelativePanel.AlignTopWithPanel="True">
+                    <Image Height="16" />
+                </Button>
+            </RelativePanel>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog Title="{i18n:Localize DevCenterConnectionDialogTitle}"
+                              CloseCommand="{Binding CloseDevCenterMenuClicked}"
+                              ShowPopup="{Binding ShowDevCenterPopup}" ShowOKButton="{Binding HasDevCenterConnection}">
+            <TabControl MinWidth="700" MinHeight="400" MaxHeight="400" MaxWidth="700"
+                        RelativePanel.AlignLeftWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True"
+                        RelativePanel.AlignTopWithPanel="True"
+                        RelativePanel.AlignBottomWithPanel="True">
+                <TabItem Header="{i18n:Localize ConnectionInfoTab}">
+                    <StackPanel>
+                        <!-- Connected controls -->
+                        <StackPanel IsVisible="{Binding HasDevCenterConnection}">
+                            <WrapPanel Orientation="Horizontal" Margin="0 5">
+                                <TextBlock Margin="0 0 2 0" Text="{i18n:Localize ConnectedAsUserDisplay}" />
+                                <TextBlock Text="{Binding DevCenterConnectedUserAndEmail}" />
+                            </WrapPanel>
+
+                            <TextBlock IsVisible="{Binding DevCenterConnectionIsDeveloper}"
+                                       Text="{i18n:Localize YouAreDeveloperInfo}" />
+
+                            <TextBlock IsVisible="{Binding !DevCenterConnectionIsDeveloper}"
+                                       Text="{i18n:Localize YouAreASupporter}" />
+
+                            <TextBlock Text="{i18n:Localize DevBuildTypeSelectionHeading}" Margin="0 15 0 2"
+                                       TextWrapping="Wrap" />
+
+                            <RadioButton GroupName="DevBuildTypeSelection"
+                                         IsChecked="{Binding SelectedDevBuildTypeIsBuildOfTheDay}"
+                                         Command="{Binding SelectBuildOfTheDay}">
+                                <TextBlock TextWrapping="Wrap" Text="{i18n:Localize BuildTypeSelectionBOTD}" />
+                            </RadioButton>
+                            <RadioButton GroupName="DevBuildTypeSelection"
+                                         IsChecked="{Binding SelectedDevBuildTypeIsLatest}"
+                                         Command="{Binding SelectLatestBuild}">
+                                <TextBlock TextWrapping="Wrap" Text="{i18n:Localize BuildTypeSelectionLatest}" />
+                            </RadioButton>
+                            <RadioButton GroupName="DevBuildTypeSelection"
+                                         IsChecked="{Binding SelectedDevBuildTypeIsManuallySelected}"
+                                         Command="{Binding SelectManuallySelectedBuild}">
+                                <TextBlock TextWrapping="Wrap" Text="{i18n:Localize BuildTypeSelectionManual}" />
+                            </RadioButton>
+
+                            <Button Classes="DialogButton Danger" Margin="0 90" Content="{i18n:Localize LogoutButton}"
+                                    Command="{Binding LogoutFromDevCenter}" />
+                        </StackPanel>
+                        <!-- Not connected controls -->
+                        <StackPanel IsVisible="{Binding !HasDevCenterConnection}">
+                            <TextBlock Margin="0 0 0 5" TextWrapping="Wrap"
+                                       Text="{i18n:Localize DevCenterConnectionExplanation}" />
+
+                            <StackPanel Orientation="Horizontal">
+                                <Button Classes="TextLink" Content="{i18n:Localize ConnectionInstructionsWikiPrompt}"
+                                        Margin="0 0 10 0" Command="{Binding VisitLinkingInstructions}" />
+
+                                <Button Classes="TextLink" Content="{i18n:Localize ConnectionInstructionsGetLinkCode}"
+                                        Command="{Binding VisitDevCenterTokenManagement}" />
+                            </StackPanel>
+
+                            <Button Classes="DialogButton" Command="{Binding RetryDevCenterConnectionCheck}"
+                                    IsVisible="{Binding CanRetryDevCenterConnection}"
+                                    Content="{i18n:Localize RetryExistingConnection}" Margin="0 15" />
+
+                            <TextBox Watermark="{i18n:Localize ConnectionKeyPlaceholder}"
+                                     Text="{Binding DevCenterConnectCode}"
+                                     IsEnabled="{Binding !CanFormDevCenterConnection}" />
+
+                            <TextBlock Text="{i18n:Localize LoadingDotDotDot}"
+                                       IsVisible="{Binding CheckingConnectionCode}" />
+                            <TextBlock Text="{Binding DevCenterConnectAttemptError}"
+                                       TextWrapping="Wrap"
+                                       IsVisible="{Binding DevCenterConnectAttemptError,Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+
+                            <Button Classes="DialogButton" Content="{i18n:Localize LoginButton}" Margin="0 5 0 10"
+                                    IsEnabled="{Binding !CheckingConnectionCode}"
+                                    IsVisible="{Binding !CanFormDevCenterConnection}"
+                                    Command="{Binding CheckConnectionCode}" />
+
+                            <!-- Shows details about the link to be made and allows confirming -->
+                            <StackPanel Orientation="Vertical" IsVisible="{Binding CanFormDevCenterConnection}">
+                                <TextBlock Text="{i18n:Localize ConfirmValidLink}" />
+
+                                <WrapPanel Orientation="Horizontal">
+                                    <TextBlock Text="{i18n:Localize NewLinkUsername}" />
+                                    <TextBlock Text="{Binding ToBeFormedLinkUserName}" Margin="3 0" />
+                                </WrapPanel>
+
+                                <WrapPanel Orientation="Horizontal">
+                                    <TextBlock Text="{i18n:Localize NewLinkEmail}" />
+                                    <TextBlock Text="{Binding ToBeFormedLinkEmail}" Margin="3 0" />
+                                </WrapPanel>
+
+                                <TextBlock Text="{i18n:Localize LoadingDotDotDot}" Margin="0 3"
+                                           IsVisible="{Binding FormingDevCenterConnection}" />
+
+                                <StackPanel Orientation="Horizontal" Margin="0 5" Spacing="3">
+                                    <Button Classes="DialogButton" Content="{i18n:Localize ConfirmButton}"
+                                            IsEnabled="{Binding !FormingDevCenterConnection}"
+                                            Command="{Binding ConfirmConnectionForming}" />
+
+                                    <Button Classes="DialogButton" Content="{i18n:Localize Cancel}"
+                                            IsEnabled="{Binding !FormingDevCenterConnection}"
+                                            Command="{Binding CancelConnectionForming}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="{i18n:Localize SpecificBuildTab}" IsEnabled="{Binding HasDevCenterConnection}">
+                    <Grid ColumnDefinitions="*">
+                        <!-- Just in case this tab is selected after disconnect, don't show the content controls -->
+                        <Grid Grid.Row="0" IsVisible="{Binding HasDevCenterConnection}"
+                              RowDefinitions="Auto,Auto,Auto,*">
+                            <Grid Grid.Row="0" DockPanel.Dock="Top" ColumnDefinitions="Auto,*,Auto"
+                                  RowDefinitions="Auto,Auto">
+                                <WrapPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
+                                           Margin="0 0 2 0">
+                                    <TextBlock Margin="0 0 2 0" Text="{i18n:Localize ManuallyEnteredHashDisplay}" />
+                                    <TextBlock Text="{Binding ManuallySelectedBuildHash}" />
+                                </WrapPanel>
+
+                                <TextBox Grid.Column="1" Grid.Row="1"
+                                         Text="{Binding ManuallyEnteredHashInput}"
+                                         Watermark="{i18n:Localize EnterBuildHashPlaceholder}">
+                                    <Control.KeyBindings>
+                                        <KeyBinding Gesture="Enter" Command="{Binding EnterManuallyEnteredHash}" />
+                                    </Control.KeyBindings>
+                                </TextBox>
+
+                                <Button Grid.Column="2" Grid.Row="1" Classes="DialogButton" HorizontalAlignment="Right"
+                                        Content="{i18n:Localize SelectButton}"
+                                        ToolTip.Tip="{i18n:Localize ManualHashSelectButtonToolTip}"
+                                        Command="{Binding EnterManuallyEnteredHash}" />
+                            </Grid>
+
+                            <Border Grid.Row="1" Margin="0 3" Padding="0" BorderThickness="1"
+                                    BorderBrush="{DynamicResource BlueElement}" />
+
+                            <Button Grid.Row="2" Classes="DialogButton" Margin="0 10"
+                                    Content="{i18n:Localize FetchLatestBuildsButton}"
+                                    IsEnabled="{Binding !RefreshingLatestDevBuilds}"
+                                    Command="{Binding RefreshLatestDevBuildsList}" />
+
+                            <ScrollViewer Grid.Row="3" IsVisible="{Binding !RefreshingLatestDevBuilds}">
+                                <StackPanel Spacing="3" Name="LatestBuildsList" />
+                            </ScrollViewer>
+
+                            <ProgressBar Grid.Row="3" IsVisible="{Binding RefreshingLatestDevBuilds}"
+                                         IsIndeterminate="True" />
+                        </Grid>
+                        <StackPanel Grid.Row="0" IsVisible="{Binding !HasDevCenterConnection}">
+                            <TextBlock Text="{i18n:Localize LoginToSeeThisContent}" />
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog Title="{i18n:Localize SettingsImportOldTitle}"
+                              CloseCommand="{Binding SkipSettingsUpgrade}"
+                              ShowPopup="{Binding ShowSettingsUpgrade}" ShowOKButton="False">
+            <DockPanel LastChildFill="True" MaxWidth="600">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="2"
+                            Margin="0 15 0 0">
+                    <Button Classes="DialogButton" Command="{Binding PerformSettingsUpgrade}"
+                            Content="{i18n:Localize PerformImport}" />
+
+                    <Button Classes="DialogButton Danger" Command="{Binding SkipSettingsUpgrade}"
+                            Content="{i18n:Localize SkipAction}" />
+                </StackPanel>
+
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
+                           Text="{i18n:Localize SettingsImportOldExplanation}" />
+            </DockPanel>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog Title="{i18n:Localize ClearTemporaryFilesPromptTitle}"
+                              ShowPopup="{Binding ShowClearTemporaryPrompt}"
+                              CloseCommand="{Binding CancelClearTemporaryFiles}"
+                              ShowOKButton="False" ShowCloseX="True">
+            <DockPanel LastChildFill="True" MaxWidth="600">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="2"
+                            Margin="0 15 0 0">
+                    <Button Classes="DialogButton Danger" Command="{Binding AcceptClearTemporaryFiles}"
+                            Content="{i18n:Localize Delete}" />
+
+                    <Button Classes="DialogButton" Command="{Binding CancelClearTemporaryFiles}"
+                            Content="{i18n:Localize Cancel}" />
+                </StackPanel>
+
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
+                           Text="{Binding ClearTemporaryPromptContent}" />
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="5"
+                           Text="{Binding ClearTemporaryPromptCountContent}" />
+            </DockPanel>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog Title="{i18n:Localize ClearDehydratedFilesPromptTitle}"
+                              ShowPopup="{Binding ShowClearDehydratedPrompt}"
+                              CloseCommand="{Binding CancelClearDehydratedCache}"
+                              ShowOKButton="False" ShowCloseX="True">
+            <DockPanel LastChildFill="True" MaxWidth="600">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="2"
+                            Margin="0 15 0 0">
+                    <Button Classes="DialogButton Danger" Command="{Binding AcceptClearDehydratedCache}"
+                            Content="{i18n:Localize Delete}" />
+
+                    <Button Classes="DialogButton" Command="{Binding CancelClearDehydratedCache}"
+                            Content="{i18n:Localize Cancel}" />
+                </StackPanel>
+
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
+                           Text="{Binding ClearDehydratedPromptContent}" />
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="0 5"
+                           Text="{Binding ClearDehydratedPromptCountContent}" />
+            </DockPanel>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog Title="{Binding FileMoveOfferTitle}"
+                              ShowPopup="{Binding HasPendingFileMoveOffer}"
+                              CloseCommand="{Binding CancelFileMove}"
+                              ShowOKButton="False" ShowCloseX="{Binding CanAnswerFileMovePrompt}">
+            <DockPanel LastChildFill="True" MaxWidth="600">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="2"
+                            Margin="0 15 0 0">
+                    <Button Classes="DialogButton" Command="{Binding PerformFileMove}"
+                            IsEnabled="{Binding CanAnswerFileMovePrompt}"
+                            Content="{i18n:Localize Move}" />
+
+                    <Button Classes="DialogButton Danger" Command="{Binding CancelFileMove}"
+                            IsEnabled="{Binding CanAnswerFileMovePrompt}"
+                            Content="{i18n:Localize Skip}" />
+                </StackPanel>
+
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
+                           Text="{Binding FileMoveOfferContent}" />
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="0 5"
+                           Text="{Binding FileMoveOfferError}" />
+
+                <ProgressBar DockPanel.Dock="Top" Minimum="0" Maximum="1"
+                             Value="{Binding FileMoveProgress,Mode=OneWay}"
+                             IsVisible="{Binding FileMoveProgress,Converter={x:Static ObjectConverters.IsNotNull}}" />
+            </DockPanel>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog Title="{i18n:Localize DevCenterConnectFailureTitle}"
+                              ShowPopup="{Binding HasDevCenterError}"
+                              CloseCommand="{Binding DismissDevCenterError}"
+                              ShowOKButton="False" ShowCloseX="{Binding !CheckingDevCenterConnection}">
+            <DockPanel LastChildFill="True" MaxWidth="600">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="2"
+                            Margin="0 15 0 0">
+                    <Button Classes="DialogButton" Command="{Binding RetryDevCenterConnectionCheck}"
+                            IsVisible="{Binding CanRetryDevCenterConnection}"
+                            IsEnabled="{Binding !CheckingDevCenterConnection}"
+                            Content="{i18n:Localize Retry}" />
+
+                    <Button Classes="DialogButton Danger" Command="{Binding DismissDevCenterError}"
+                            IsVisible="{Binding CanRetryDevCenterConnection}"
+                            IsEnabled="{Binding !CheckingDevCenterConnection}"
+                            Content="{i18n:Localize SkipAction}" />
+
+                    <Button Classes="DialogButton Danger" Command="{Binding DismissDevCenterError}"
+                            IsVisible="{Binding !CanRetryDevCenterConnection}"
+                            IsEnabled="{Binding !CheckingDevCenterConnection}"
+                            Content="{i18n:Localize DisconnectDevCenter}" />
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Top" IsVisible="{Binding UnknownDevCenterError}">
+                    <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
+                               Text="{i18n:Localize DevCenterConnectFailureUnknown}" />
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Top" IsVisible="{Binding !UnknownDevCenterError}">
+                    <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
+                               IsVisible="{Binding CanRetryDevCenterConnection}"
+                               Text="{i18n:Localize DevCenterConnectFailureConnection}" />
+                    <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
+                               IsVisible="{Binding !CanRetryDevCenterConnection}"
+                               Text="{i18n:Localize DevCenterConnectFailureForbidden}" />
+                </StackPanel>
+
+                <Button DockPanel.Dock="Top" Classes="TextLink" Command="{Binding VisitDevCenterTokenManagement}"
+                        Content="{i18n:Localize CheckDevCenterTokensLink}" />
+            </DockPanel>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog Title="{i18n:Localize VersionInfoLoadFailureTitle}"
+                              ShowPopup="{Binding LauncherInfoLoadError,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                              ShowOKButton="False" ShowCloseX="False">
+            <DockPanel LastChildFill="True" MaxWidth="600">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="2"
+                            Margin="0 15 0 0">
+                    <Button Classes="DialogButton" Command="{Binding SetRetryVersionInfoDownload}"
+                            Content="{i18n:Localize Retry}" />
+
+                    <Button Classes="DialogButton" Command="{Binding SetLoadCachedVersionInfo}"
+                            IsVisible="{Binding CanLoadCachedVersions}"
+                            Content="{i18n:Localize UseCached}" />
+                </StackPanel>
+
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
+                           Text="{i18n:Localize VersionInfoLoadFailureExplanation}" />
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="5"
+                           Text="{Binding LauncherInfoLoadError}" />
+            </DockPanel>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog Title="{i18n:Localize OutdatedLauncherTitle}"
+                              ShowPopup="{Binding LauncherOutdatedVersionMessage,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                              CloseCommand="{Binding DismissOutdatedMessage}"
+                              ShowOKButton="False" ShowCloseX="True">
+            <DockPanel LastChildFill="True" MaxWidth="600">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="2"
+                            Margin="0 15 0 0">
+                    <Button Classes="DialogButton" Command="{Binding VisitDownloadsPage}"
+                            Content="{i18n:Localize LauncherDownloadsPageButton}" />
+
+                    <Button Classes="DialogButton Danger" Command="{Binding DismissOutdatedMessage}"
+                            Content="{i18n:Localize SkipAction}" />
+                </StackPanel>
+
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="0 1 0 5"
+                           Text="{Binding LauncherOutdatedVersionMessage}" />
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
+                           Text="{i18n:Localize OutdatedLauncherExplanation}" />
+            </DockPanel>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog Title="{Binding PlayingThrivePopupTitle}" ShowOKButton="False"
+                              ShowCloseX="{Binding CanCancelPlaying}" Background="White" Foreground="Black"
+                              CloseCommand="{Binding ClosePlayingPopup}" ShowPopup="{Binding CurrentlyPlaying}">
+            <Grid MinHeight="400" MinWidth="600" MaxWidth="600" MaxHeight="500"
+                  ColumnDefinitions="*,Auto,Auto,Auto,Auto,*"
+                  RowDefinitions="*,Auto,Auto">
+                <ScrollViewer Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Name="PlayOutputScrollContainer">
+                    <StackPanel>
+                        <TextBlock Text="{Binding PlayPopupTopMessage}"
+                                   IsVisible="{Binding PlayPopupTopMessage,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                   TextWrapping="Wrap" />
+
+                        <StackPanel Name="PlayPrepareMessageContainer" />
+
+                        <StackPanel Name="PlayPrepareProgressContainer" />
+
+                        <StackPanel Name="FirstGameOutputContainer" />
+                        <TextBlock Text="{i18n:Localize TruncatedGameOutputWarning}" TextWrapping="Wrap"
+                                   IsVisible="{Binding ThriveOutputIsTruncated}"
+                                   Foreground="{DynamicResource GameErrorOutput}" />
+                        <StackPanel Name="LastGameOutputContainer" />
+                    </StackPanel>
+                </ScrollViewer>
+
+                <Button Grid.Row="1" Grid.Column="1" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
+                        IsVisible="{Binding ShowCloseButtonOnPlayPopup}"
+                        Content="{i18n:Localize CloseButton}" />
+
+                <!-- TODO: implement -->
+                <Button Grid.Row="1" Grid.Column="2" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
+                        IsVisible="False"
+                        Content="{i18n:Localize ReportCrashButton}" />
+
+                <Button Grid.Row="1" Grid.Column="3" Classes="DialogButton" Click="CopyLogsToClipboard"
+                        IsVisible="{Binding ShowCloseButtonOnPlayPopup}"
+                        ToolTip.Tip="{i18n:Localize CopyLogWindowToClipboardToolTip}" VerticalAlignment="Center">
+                    <Image Height="19" Source="{DynamicResource CopyIconWhite}" />
+                </Button>
+
+                <!-- TODO: whatever this button was supposed to be...-->
+                <Button Grid.Row="1" Grid.Column="4" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
+                        IsVisible="False"
+                        Content="{i18n:Localize ReportCrashButton}" />
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Text="{Binding PlayPopupBottomMessage}"
+                           IsVisible="{Binding PlayPopupBottomMessage,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                           TextWrapping="Wrap" />
+            </Grid>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog Title="{i18n:Localize PlayUnsafeBuildTitle}"
+                              ShowPopup="{Binding UnsafeBuildConfirmationRequired}"
+                              CloseCommand="{Binding CancelPlayUnsafeBuild}"
+                              ShowOKButton="False" ShowCloseX="True" MinWidth="400">
+            <DockPanel LastChildFill="True">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="3"
+                            Margin="0 15 0 0">
+                    <Button Classes="DialogButton Danger" Command="{Binding AcceptPlayUnsafeBuild}"
+                            Content="{i18n:Localize AcceptUnsafeBuildButton}" />
+
+                    <Button Classes="DialogButton" Command="{Binding CancelPlayUnsafeBuild}"
+                            Content="{i18n:Localize Cancel}" />
+                </StackPanel>
+
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="0 1 0 5" MaxWidth="400"
+                           Text="{i18n:Localize PlayUnsafeBuildExplanation}" />
+            </DockPanel>
+        </controls:PopupDialog>
+
+        <controls:PopupDialog Title="{Binding NoticeMessageTitle}" ShowOKButton="{Binding CanDismissNotice}"
+                              ShowCloseX="{Binding CanDismissNotice}" Background="White" Foreground="Black"
+                              CloseCommand="{Binding CloseNotice}" ShowPopup="{Binding HasNoticeMessage}">
+            <TextBlock Text="{Binding NoticeMessageText}" TextWrapping="Wrap" />
+        </controls:PopupDialog>
+    </Grid>
+
+</Window>

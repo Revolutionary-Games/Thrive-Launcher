@@ -1,0 +1,192 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:services="clr-namespace:ThriveLauncher.Services"
+             x:Class="ThriveLauncher.App">
+    <!-- This is configured in the code behind
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>-->
+
+    <Application.Resources>
+        <FontFamily x:Key="Lato">avares://ThriveLauncher/Assets/Fonts/Lato#Lato</FontFamily>
+        <FontFamily x:Key="RobotoMono">avares://ThriveLauncher/Assets/Fonts/Roboto#Roboto Mono</FontFamily>
+        <Color x:Key="DarkGrey">#303030</Color>
+        <Color x:Key="FeedBackgroundGradientStart">#dd333333</Color>
+        <Color x:Key="FeedBackgroundGradientEnd">#5a333333</Color>
+        <Color x:Key="CloseHoverBackground">#5a999999</Color>
+        <Color x:Key="BottomGradientEnd">#aa333333</Color>
+        <Color x:Key="MiddleGray">#555656</Color>
+        <Color x:Key="LightGrey">#dedede</Color>
+        <Color x:Key="CloseGrey">#0a0a0a</Color>
+        <Color x:Key="BlueBorder">#55dbdb</Color>
+        <Color x:Key="BlueElement">#4dd5ff</Color>
+        <Color x:Key="CheckBoxCheckBackgroundFillChecked">#4dd5ff</Color>
+        <Color x:Key="TextControlBorderBrushFocused">#4dd5ff</Color>
+        <Color x:Key="RadioButtonOuterEllipseCheckedFill">#4dd5ff</Color>
+        <Color x:Key="BlueElement2">#52e5ff</Color>
+        <Color x:Key="RadioButtonOuterEllipseFillPressed">#52e5ff</Color>
+        <Color x:Key="BlueBackground">#4890a7</Color>
+        <Color x:Key="ActiveBlue">#1dffff</Color>
+        <Color x:Key="CheckBoxCheckBackgroundFillCheckedPointerOver">#1dffff</Color>
+        <Color x:Key="RadioButtonOuterEllipseFillPointerOver">#1dffff</Color>
+        <Color x:Key="RadioButtonOuterEllipseCheckedFillPointerOver">#1fffff</Color>
+        <Color x:Key="FriendlyRed">#d43a3a</Color>
+        <Color x:Key="GameErrorOutputColour">#d43a3a</Color>
+        <Color x:Key="Danger">#801515</Color>
+        <Color x:Key="DangerHover">#d46a6a</Color>
+        <Color x:Key="DangerActive">#651212</Color>
+        <Color x:Key="ModalBackground">#fefefe</Color>
+        <Color x:Key="ModalBorder">#888</Color>
+        <Color x:Key="TextLink">#6acdeb</Color>
+        <Color x:Key="TextLinkHover">#56a7bf</Color>
+        <Color x:Key="MenuBackground">#ff444444</Color>
+        <Color x:Key="MenuBackgroundEnd">#aa444444</Color>
+        <Color x:Key="MainWindowBackgroundColour">#404040</Color>
+        <SolidColorBrush x:Key="MainWindowBackground" Color="{DynamicResource MainWindowBackgroundColour}" />
+        <SolidColorBrush x:Key="BackgroundDarkener" Color="Black" Opacity="0.75" />
+        <SolidColorBrush x:Key="GameErrorOutput" Color="{StaticResource GameErrorOutputColour}" />
+        <LinearGradientBrush x:Key="FeedBackground" StartPoint="0%,0%" EndPoint="100%,100%">
+            <GradientStop Offset="0" Color="{DynamicResource FeedBackgroundGradientStart}" />
+            <GradientStop Offset="1" Color="{DynamicResource FeedBackgroundGradientEnd}" />
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="BottomBackground" StartPoint="0%,0%" EndPoint="100%,100%">
+            <GradientStop Offset="0" Color="{DynamicResource FeedBackgroundGradientStart}" />
+            <GradientStop Offset="1" Color="{DynamicResource BottomGradientEnd}" />
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="SubMenuBackground" StartPoint="0%,0%" EndPoint="100%,100%">
+            <GradientStop Offset="0" Color="{DynamicResource MenuBackground}" />
+            <GradientStop Offset="1" Color="{DynamicResource MenuBackgroundEnd}" />
+        </LinearGradientBrush>
+        <services:BitmapExtensions x:Key="CloseIconDark">
+            <x:Arguments>
+                <x:String>avares://ThriveLauncher/Assets/close.png</x:String>
+            </x:Arguments>
+        </services:BitmapExtensions>
+        <services:BitmapExtensions x:Key="CloseIconLight">
+            <x:Arguments>
+                <x:String>avares://ThriveLauncher/Assets/close_light.png</x:String>
+            </x:Arguments>
+        </services:BitmapExtensions>
+        <services:BitmapExtensions x:Key="RevertIconWhite">
+            <x:Arguments>
+                <x:String>avares://ThriveLauncher/Assets/revert.png</x:String>
+            </x:Arguments>
+        </services:BitmapExtensions>
+        <services:BitmapExtensions x:Key="CopyIconWhite">
+            <x:Arguments>
+                <x:String>avares://ThriveLauncher/Assets/copy.png</x:String>
+            </x:Arguments>
+        </services:BitmapExtensions>
+    </Application.Resources>
+
+    <Application.Styles>
+        <FluentTheme Mode="Dark" />
+        <StyleInclude Source="/Controls/PopupDialog.axaml" />
+
+        <Style Selector="Button.PlayButton">
+            <Setter Property="Background" Value="{DynamicResource BlueBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ActiveBlue}" />
+            <Setter Property="BorderThickness" Value="3" />
+        </Style>
+        <Style Selector="Button.PlayButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource BlueElement}" />
+        </Style>
+        <Style Selector="Button.PlayButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource ActiveBlue}" />
+        </Style>
+
+        <Style Selector="Button.TextLink">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{DynamicResource TextLink}" />
+        </Style>
+        <!-- Here's a really important part is that the children of the content presenter need to be accessed
+        without the /template/ part in the selector -->
+        <Style Selector="Button.TextLink:pointerover AccessText">
+            <Setter Property="Foreground" Value="{DynamicResource TextLinkHover}" />
+        </Style>
+        <Style Selector="Button.TextLink:pressed AccessText">
+            <Setter Property="Foreground" Value="{DynamicResource ActiveBlue}" />
+        </Style>
+        <Style Selector="Button.TextLink:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="Button.TextLink:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+
+        <Style Selector="Button.Close">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{DynamicResource CloseGrey}" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="28" />
+        </Style>
+        <Style Selector="Button.Close:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource CloseHoverBackground}" />
+        </Style>
+        <Style Selector="Button.Close:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="Button.Close Image">
+            <Setter Property="Source" Value="{DynamicResource CloseIconDark}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="Button.Close:pointerover Image">
+            <Setter Property="Source" Value="{DynamicResource CloseIconLight}" />
+        </Style>
+
+        <Style Selector="Button.DialogButton">
+            <Setter Property="Foreground" Value="{DynamicResource ButtonForeground}" />
+            <Setter Property="Background" Value="{DynamicResource MiddleGray}" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+        <Style Selector="Button.DialogButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource DarkGrey}" />
+        </Style>
+        <Style Selector="Button.DialogButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource LightGrey}" />
+        </Style>
+
+        <Style Selector="Button.Danger">
+            <Setter Property="Foreground" Value="{DynamicResource ButtonForeground}" />
+            <Setter Property="Background" Value="{DynamicResource Danger}" />
+        </Style>
+        <Style Selector="Button.Danger:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource DangerHover}" />
+        </Style>
+        <Style Selector="Button.Danger:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource DangerActive}" />
+        </Style>
+
+        <Style Selector="ComboBox.VersionSelect">
+            <Setter Property="Background" Value="{DynamicResource BlueBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource LightGrey}" />
+        </Style>
+        <Style Selector="ComboBox.VersionSelect:pointerover /template/ Border">
+            <Setter Property="BorderBrush" Value="{DynamicResource ActiveBlue}" />
+            <Setter Property="Background" Value="{DynamicResource BlueElement}" />
+        </Style>
+
+        <Style Selector="TabItem">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Padding" Value="0 0 0 0" />
+            <Setter Property="BorderThickness" Value="0 0 0 2" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Margin" Value="8 0 8 2" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="TabItem:selected">
+            <Setter Property="BorderBrush" Value="{DynamicResource BlueElement}" />
+        </Style>
+        <Style Selector="TabItem:active">
+            <Setter Property="BorderBrush" Value="{DynamicResource BlueElement2}" />
+        </Style>
+        <!-- Hack to hide the default selected colour -->
+        <Style Selector="TabItem:selected /template/ Border#PART_SelectedPipe">
+            <Setter Property="Height" Value="0" />
+        </Style>
+    </Application.Styles>
+    <!-- TODO: implement this: -->
+    <NativeMenu.Menu>
+        <NativeMenu />
+    </NativeMenu.Menu>
+</Application>

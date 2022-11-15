@@ -1,18 +1,68 @@
 version: 1
 
 jobs:
-  lint:
-    image: thrive/launcher:v2
+  test:
+    image: thrive/launcher:v3
     cache:
       loadFrom:
-        - v2-{Branch}-lint
-        - v2-master-lint
-      writeTo: v2-{Branch}-lint
-      shared:
-        .git/lfs: v1-lfs
+        - v3-{Branch}-build
+      writeTo: v3-{Branch}-build
+      system:
+        /root/.nuget: v3-nuget
     steps:
       - run:
-          command: npm install
+           command: dotnet restore
       - run:
-          name: linters
-          command: npm run lint
+          name: Build
+          command: dotnet build
+      - run:
+          name: Test
+          command: dotnet test
+  lint:
+    image: thrive/launcher:v3
+    cache:
+      loadFrom:
+        - v3-{Branch}-build
+      writeTo: v3-{Branch}-build
+      system:
+        /root/.nuget: v3-nuget
+    steps:
+      - run:
+          name: Build list of changed files
+          # Remove the cat here once artifact uploads is done:
+          command: |
+            git diff-tree --no-commit-id --name-only -r HEAD..origin/$CI_DEFAULT_BRANCH > files_to_check.txt
+            git diff-tree --no-commit-id --name-only -r HEAD..$CI_EARLIER_COMMIT >> files_to_check.txt || echo compare with previous commit failed
+            echo Changed files:
+            cat files_to_check.txt
+      - run:
+          command: dotnet restore
+      - run:
+          name: Build with warnings
+          command: dotnet run --project Scripts -- check compile
+      - run:
+          name: File based checks
+          command: dotnet run --project Scripts -- check files
+      # Makes sure that there aren't any changes at this point to not make the CI trip up on them
+      - run:
+          name: Make sure no changes to git tracked files at this point
+          command: GIT_LFS_SKIP_SMUDGE=1 git reset --hard HEAD
+      - run:
+          name: Jetbrains inspectcode
+          command: dotnet run --project Scripts -- check inspectcode
+      - run:
+          name: Jetbrains format
+          command: dotnet run --project Scripts -- check cleanupcode
+      - run:
+          when: always
+          name: Check cleanup changes
+          command: |
+            git diff > cleanup_diff.patch
+            if grep -q '[^[:space:]]' < cleanup_diff.patch; then
+                echo "Code cleanup found things to be fixed:"
+                cat cleanup_diff.patch
+                exit 1
+            else
+                echo "No changes made"
+                rm -f cleanup_diff.patch
+            fi

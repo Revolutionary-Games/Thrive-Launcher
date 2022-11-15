@@ -1,0 +1,253 @@
+!define APP_NAME "Thrive Launcher"
+!define COMP_NAME "Revolutionary Games Studio"
+!define WEB_SITE "https://revolutionarygamesstudio.com/"
+!define VERSION "REPLACE_TEMPLATE_VERSION"
+!define COPYRIGHT "REPLACE_TEMPLATE_COPYRIGHT"
+!define DESCRIPTION "REPLACE_TEMPLATE_DESCRIPTION"
+!define INSTALLER_NAME "REPLACE_TEMPLATE_INSTALLER_NAME"
+!define MAIN_APP_EXE "ThriveLauncher.exe"
+!define ICON "REPLACE_TEMPLATE_ICON_FILE"
+!define BANNER "REPLACE_TEMPLATE_BANNER_IMAGE_FILE"
+!define LICENSE_TXT "REPLACE_TEMPLATE_PATH_TO_LICENSE"
+
+!define INSTALL_DIR "$PROGRAMFILES64\${APP_NAME}"
+!define INSTALL_TYPE "SetShellVarContext all"
+!define REG_ROOT "HKLM"
+!define REG_APP_PATH "Software\Microsoft\Windows\CurrentVersion\App Paths\${MAIN_APP_EXE}"
+!define UNINSTALL_PATH "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}"
+!define REG_START_MENU "Start Menu Folder"
+
+var SM_Folder
+
+######################################################################
+
+VIProductVersion  "${VERSION}"
+VIFileVersion "${VERSION}"
+VIAddVersionKey "ProductName"  "${APP_NAME}"
+VIAddVersionKey "CompanyName"  "${COMP_NAME}"
+VIAddVersionKey "LegalCopyright"  "${COPYRIGHT}"
+VIAddVersionKey "FileDescription"  "${DESCRIPTION}"
+VIAddVersionKey "FileVersion"  "${VERSION}"
+
+######################################################################
+
+SetCompressor /SOLID Lzma
+Name "${APP_NAME}"
+Caption "${APP_NAME}"
+OutFile "${INSTALLER_NAME}"
+BrandingText "${APP_NAME}"
+InstallDirRegKey "${REG_ROOT}" "${REG_APP_PATH}" ""
+InstallDir "${INSTALL_DIR}"
+
+# Current user or machine wide install options
+# Need this to not always request admin execution, only when wanted, but this doesn't work...
+RequestExecutionLevel user
+
+!define MULTIUSER_EXECUTIONLEVEL Highest
+# This option doesn't seem to sadly exist
+# !define MULTIUSER_EXECUTIONLEVEL Standard
+# If we want the next line defaults to installing just for the current user
+!define MULTIUSER_INSTALLMODE_DEFAULT_CURRENTUSER
+
+# !define MULTIUSER_USE_PROGRAMFILES64 1
+# !define MULTIUSER_NOUNINSTALL ;Uncomment if no uninstaller is created
+!define MULTIUSER_INSTALLMODE_DEFAULT_REGISTRY_KEY "${REG_APP_PATH}"
+!define MULTIUSER_INSTALLMODE_DEFAULT_REGISTRY_VALUENAME "InstallerMultiUserMode"
+!define MULTIUSER_MUI
+
+!include MultiUser.nsh
+
+# Seems to remove the choice between single user and everyone...
+# but at least with this the installer doesn't require admin privileges
+# RequestExecutionLevel user
+
+######################################################################
+
+!define MUI_ICON "${ICON}"
+!define MUI_UNICON "${ICON}"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "${BANNER}"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "${BANNER}"
+
+######################################################################
+
+!include "MUI2.nsh"
+
+!define MUI_ABORTWARNING
+!define MUI_UNABORTWARNING
+
+!insertmacro MUI_PAGE_WELCOME
+
+!ifdef LICENSE_TXT
+!insertmacro MUI_PAGE_LICENSE "${LICENSE_TXT}"
+!endif
+
+!insertmacro MUI_PAGE_COMPONENTS
+
+!insertmacro MULTIUSER_PAGE_INSTALLMODE
+
+!define MUI_PAGE_CUSTOMFUNCTION_LEAVE checkProgramRunning
+!insertmacro MUI_PAGE_DIRECTORY
+
+!ifdef REG_START_MENU
+!define MUI_STARTMENUPAGE_DEFAULTFOLDER "${APP_NAME}"
+!define MUI_STARTMENUPAGE_REGISTRY_ROOT "${REG_ROOT}"
+!define MUI_STARTMENUPAGE_REGISTRY_KEY "${UNINSTALL_PATH}"
+!define MUI_STARTMENUPAGE_REGISTRY_VALUENAME "${REG_START_MENU}"
+!insertmacro MUI_PAGE_STARTMENU Application $SM_Folder
+!endif
+
+!insertmacro MUI_PAGE_INSTFILES
+
+!define MUI_FINISHPAGE_RUN
+!define MUI_FINISHPAGE_RUN_FUNCTION launchApplication
+# !define MUI_FINISHPAGE_RUN_TEXT "Run the Thrive Launcher now"
+!insertmacro MUI_PAGE_FINISH
+
+!define MUI_UNPAGE_CUSTOMFUNCTION_LEAVE checkProgramRunning
+!insertmacro MUI_UNPAGE_CONFIRM
+
+!insertmacro MUI_UNPAGE_INSTFILES
+
+!insertmacro MUI_UNPAGE_FINISH
+
+!insertmacro MUI_LANGUAGE "English"
+
+# There's example multilanguage installer here:
+# https://nsis-dev.github.io/NSIS-Forums/html/t-317689.html
+
+######################################################################
+
+Function .onInit
+  !insertmacro MULTIUSER_INIT
+FunctionEnd
+
+Function un.onInit
+  !insertmacro MULTIUSER_UNINIT
+FunctionEnd
+
+######################################################################
+
+# This would increase the installer size a ton and should only be
+# needed for Windows 7 https://nsis.sourceforge.io/Embedding_other_installers
+TEMPLATE_MODE_DOTNET;Section ".NET Desktop Runtime 6" SEC_01
+
+TEMPLATE_MODE_DOTNET;  File "REPLACE_TEMPLATE_PATH_TO_DOTNET_INSTALLER"
+TEMPLATE_MODE_DOTNET;  ExecWait '"$INSTDIR\REPLACE_TEMPLATE_DOTNET_INSTALLER_NAME" /install /quiet /norestart'
+
+TEMPLATE_MODE_DOTNET;SectionEnd
+
+Section -MainProgram
+	${INSTALL_TYPE}
+
+	SetOverwrite ifnewer
+	SetOutPath "$INSTDIR"
+	File /r "REPLACE_TEMPLATE_SOURCE_DIRECTORY\\"
+
+SectionEnd
+
+######################################################################
+
+Section -Icons_Reg
+SetOutPath "$INSTDIR"
+WriteUninstaller "$INSTDIR\uninstall.exe"
+
+!ifdef REG_START_MENU
+!insertmacro MUI_STARTMENU_WRITE_BEGIN Application
+CreateDirectory "$SMPROGRAMS\$SM_Folder"
+CreateShortCut "$SMPROGRAMS\$SM_Folder\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
+CreateShortCut "$SMPROGRAMS\$SM_Folder\Uninstall ${APP_NAME}.lnk" "$INSTDIR\uninstall.exe"
+
+!ifdef WEB_SITE
+WriteIniStr "$INSTDIR\${APP_NAME} website.url" "InternetShortcut" "URL" "${WEB_SITE}"
+CreateShortCut "$SMPROGRAMS\$SM_Folder\${APP_NAME} Website.lnk" "$INSTDIR\${APP_NAME} website.url"
+!endif
+!insertmacro MUI_STARTMENU_WRITE_END
+!endif
+
+!ifndef REG_START_MENU
+CreateDirectory "$SMPROGRAMS\${APP_NAME}"
+CreateShortCut "$SMPROGRAMS\${APP_NAME}\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
+CreateShortCut "$SMPROGRAMS\${APP_NAME}\Uninstall ${APP_NAME}.lnk" "$INSTDIR\uninstall.exe"
+
+!ifdef WEB_SITE
+WriteIniStr "$INSTDIR\${APP_NAME} website.url" "InternetShortcut" "URL" "${WEB_SITE}"
+CreateShortCut "$SMPROGRAMS\${APP_NAME}\${APP_NAME} Website.lnk" "$INSTDIR\${APP_NAME} website.url"
+!endif
+!endif
+
+WriteRegStr ${REG_ROOT} "${REG_APP_PATH}" "" "$INSTDIR\${MAIN_APP_EXE}"
+WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayName" "${APP_NAME}"
+WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "UninstallString" "$INSTDIR\uninstall.exe"
+WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayIcon" "$INSTDIR\${MAIN_APP_EXE}"
+WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayVersion" "${VERSION}"
+WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "Publisher" "${COMP_NAME}"
+
+!ifdef WEB_SITE
+WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "URLInfoAbout" "${WEB_SITE}"
+!endif
+SectionEnd
+
+Section "Create a desktop shortcut" SEC_02
+  CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
+SectionEnd
+
+######################################################################
+
+Section Uninstall
+${INSTALL_TYPE}
+
+RmDir /r "$INSTDIR"
+
+!ifdef REG_START_MENU
+!insertmacro MUI_STARTMENU_GETFOLDER "Application" $SM_Folder
+Delete "$SMPROGRAMS\$SM_Folder\${APP_NAME}.lnk"
+Delete "$SMPROGRAMS\$SM_Folder\Uninstall ${APP_NAME}.lnk"
+!ifdef WEB_SITE
+Delete "$SMPROGRAMS\$SM_Folder\${APP_NAME} Website.lnk"
+!endif
+Delete "$DESKTOP\${APP_NAME}.lnk"
+
+RmDir "$SMPROGRAMS\$SM_Folder"
+!endif
+
+!ifndef REG_START_MENU
+Delete "$SMPROGRAMS\${APP_NAME}\${APP_NAME}.lnk"
+Delete "$SMPROGRAMS\${APP_NAME}\Uninstall ${APP_NAME}.lnk"
+!ifdef WEB_SITE
+Delete "$SMPROGRAMS\${APP_NAME}\${APP_NAME} Website.lnk"
+!endif
+Delete "$DESKTOP\${APP_NAME}.lnk"
+
+RmDir "$SMPROGRAMS\${APP_NAME}"
+!endif
+
+DeleteRegKey ${REG_ROOT} "${REG_APP_PATH}"
+DeleteRegKey ${REG_ROOT} "${UNINSTALL_PATH}"
+SectionEnd
+
+######################################################################
+
+TEMPLATE_MODE_DOTNET;LangString DESC_Section1 ${LANG_ENGLISH} "Install the required .NET runtime. Requires administrator access."
+LangString DESC_Section2 ${LANG_ENGLISH} "Create a desktop shortcut to the ${APP_NAME}"
+
+!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+  !insertmacro MUI_DESCRIPTION_TEXT ${SEC_02} $(DESC_Section2)
+  TEMPLATE_MODE_DOTNET;!insertmacro MUI_DESCRIPTION_TEXT ${SEC_01} $(DESC_Section1)
+!insertmacro MUI_FUNCTION_DESCRIPTION_END
+
+######################################################################
+# Custom functions
+Function checkProgramRunning
+  System::Call 'kernel32::OpenFileMapping(i 0x000F001F, i 0, t "ThriveLauncher-b27a18de-8f7b-48b9-b54c-75ab3a3816e9")p.R0'
+  IntPtrCmp $R0 0 notRunning
+      System::Call 'kernel32::CloseHandle(p $R0)'
+      MessageBox MB_OK|MB_ICONEXCLAMATION "${APP_NAME} is running. Please close it first" /SD IDOK
+      Abort
+  notRunning:
+FunctionEnd
+
+Function launchApplication
+  # We need to run it like this to run as current user instead of admin
+  # https://stackoverflow.com/questions/16555625/how-to-launch-an-executable-on-the-end-of-installation-with-proper-rights
+  Exec '"$WINDIR\explorer.exe" "$INSTDIR\${MAIN_APP_EXE}"'
+FunctionEnd

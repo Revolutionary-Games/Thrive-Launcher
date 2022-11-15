@@ -1,0 +1,128 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <Version>2.0.0</Version>
+    <Authors>Revolutionary Games Studio</Authors>
+    <AssemblyTitle>Thrive Launcher</AssemblyTitle>
+    <UseAppHost>true</UseAppHost>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <PublishSingleFile>true</PublishSingleFile>
+    <StripSymbols>true</StripSymbols>
+    <PublishAot>false</PublishAot>
+    <PublishTrimmed>false</PublishTrimmed>
+    <!--Avalonia doesen't support TrimMode=link currently,but we are working on that https://github.com/AvaloniaUI/Avalonia/issues/6892 -->
+    <TrimMode>copyused</TrimMode>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationIcon>Assets\Icons\icon.ico</ApplicationIcon>
+    <Copyright>Revolutionary Games Studio, 2017-2022</Copyright>
+    <Description>Thrive Launcher for downloading and installing Thrive</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="Assets/**"/>
+    <None Remove=".gitignore"/>
+  </ItemGroup>
+  <ItemGroup>
+    <!--This helps with theme dll-s trimming.
+    If you will publish your application in self-contained mode with p:PublishTrimmed=true and it will use Fluent theme Default theme will be trimmed from the output and vice versa.
+    https://github.com/AvaloniaUI/Avalonia/issues/5593 -->
+    <TrimmableAssembly Include="Avalonia.Themes.Fluent"/>
+    <TrimmableAssembly Include="Avalonia.Themes.Default"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.10.18"/>
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.18"/>
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.18"/>
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.18"/>
+    <PackageReference Include="CommandLineParser" Version="2.9.1"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0"/>
+    <PackageReference Include="NLog" Version="5.0.5"/>
+    <PackageReference Include="NLog.Extensions.Logging" Version="5.1.0"/>
+    <PackageReference Include="XamlNameReferenceGenerator" Version="1.4.2"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LauncherBackend\LauncherBackend.csproj"/>
+    <ProjectReference Include="..\RevolutionaryGamesCommon\DevCenterCommunication\DevCenterCommunication.csproj"/>
+    <ProjectReference Include="..\RevolutionaryGamesCommon\ScriptsBase\ScriptsBase.csproj"/>
+    <ProjectReference Include="..\RevolutionaryGamesCommon\SharedBase\SharedBase.csproj"/>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\LICENSE.md" LogicalName="LICENSE.md"/>
+    <EmbeddedResource Include="Assets\Fonts\Roboto\LICENSE.txt" LogicalName="Roboto/LICENSE.txt"/>
+    <EmbeddedResource Include="Assets\Fonts\Lato\OFL.txt" LogicalName="OFL.txt"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ContentWithTargetPath Include="..\tools\7zip\License.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>tools\7zip\%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="..\tools\pck\LibraryLicenses.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>tools\pck\%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="..\tools\pck\LICENSE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>tools\pck\%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
+  </ItemGroup>
+  <ItemGroup Condition="$(RuntimeIdentifier.StartsWith('win'))">
+    <ContentWithTargetPath Include="..\tools\7zip\*.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>tools\7zip\%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="..\tools\7zip\7za.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>tools\7zip\%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="..\tools\pck\godotpcktool.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>tools\pck\%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
+  </ItemGroup>
+  <ItemGroup Condition="$(RuntimeIdentifier.StartsWith('linux'))">
+    <ContentWithTargetPath Include="..\tools\7zip\7za">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>tools\7zip\%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="..\tools\pck\godotpcktool">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>tools\pck\%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
+  </ItemGroup>
+  <ItemGroup Condition="$(RuntimeIdentifier.StartsWith('osx'))">
+    <ContentWithTargetPath Include="..\tools\7zip\7za_mac">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>tools\7zip\%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(RuntimeIdentifier)' == '' ">
+    <!-- This group is enabled when debugging / not publishing. For simplicity this copies all of the tools -->
+    <ContentWithTargetPath Include="..\tools\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>tools\%(RecursiveDir)\%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
+  </ItemGroup>
+  <Target Name="Stuff" AfterTargets="Build">
+    <Message Text="Identifier is '$(RuntimeIdentifier)'" Importance="High"/>
+  </Target>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Resources.fi.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

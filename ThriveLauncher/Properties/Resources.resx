@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+  <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root"
+              xmlns="">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+      PublicKeyToken=b77a5c561934e089
+    </value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+      PublicKeyToken=b77a5c561934e089
+    </value>
+  </resheader>
+  <data name="SettingsImportOldTitle" xml:space="preserve">
+    <value>Import Previous Settings?</value>
+  </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>Settings from a previous version of the launcher have been found. You can import these existing settings to keep your installed Thrive versions and other customizations intact. If you do not import the old Thrive versions and caches will be left behind, but this launcher won't know about them. Importing the settings is recommended.</value>
+  </data>
+  <data name="SkipAction" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="PerformImport" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="ImportFailedTitle" xml:space="preserve">
+    <value>Import Failed</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>Failed to import settings. Please make sure the relevant file paths for settings are readable and writable by the launcher, then restart the launcher to try again.</value>
+  </data>
+  <data name="ImportSucceededTitle" xml:space="preserve">
+    <value>Import Succeeded</value>
+  </data>
+  <data name="ImportSucceededMessage" xml:space="preserve">
+    <value>Previous settings have been successfully imported.</value>
+  </data>
+  <data name="LauncherSelectedLanguage" xml:space="preserve">
+      <value>Launcher language:</value>
+  </data>
+  <data name="LinksButton" xml:space="preserve">
+      <value>Links</value>
+  </data>
+  <data name="PlayButton" xml:space="preserve">
+      <value>Play</value>
+  </data>
+  <data name="ConnectToDevCenterPrompt" xml:space="preserve">
+      <value>Connect to DevCenter</value>
+  </data>
+  <data name="ConnectedDeveloperGreeting" xml:space="preserve">
+      <value>Howdy,</value>
+  </data>
+  <data name="ConnectedSupporterGreeting" xml:space="preserve">
+      <value>Thank you,</value>
+  </data>
+  <data name="DevelopmentFeedTitle" xml:space="preserve">
+      <value>DEVELOPMENT FORUMS</value>
+  </data>
+  <data name="WebContentIsDisabled" xml:space="preserve">
+      <value>Web content disabled</value>
+  </data>
+  <data name="NewsFeedTitle" xml:space="preserve">
+      <value>NEWS</value>
+  </data>
+  <data name="LinksPopupTitle" xml:space="preserve">
+      <value>Revolutionary Games Links</value>
+  </data>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+      <value>Main website</value>
+  </data>
+  <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
+      <value>Development forums</value>
+  </data>
+  <data name="ExternalLinkCommunityForums" xml:space="preserve">
+      <value>Community forums</value>
+  </data>
+  <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
+      <value>Developer Wiki</value>
+  </data>
+  <data name="ExternalLinkPatreon" xml:space="preserve">
+      <value>Patreon</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+      <value>Donate</value>
+  </data>
+  <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
+      <value>ThriveDevCenter</value>
+  </data>
+  <data name="ExternalLinkThriveSteam" xml:space="preserve">
+      <value>Thrive on Steam</value>
+  </data>
+  <data name="ExternalLinkThriveItch" xml:space="preserve">
+      <value>Thrive on itch.io</value>
+  </data>
+  <data name="ExternalLinkThriveGithub" xml:space="preserve">
+      <value>Thrive on Github</value>
+  </data>
+  <data name="ExternalLinkLauncherGithub" xml:space="preserve">
+      <value>Launcher on Github</value>
+  </data>
+  <data name="ExternalLinkFanWiki" xml:space="preserve">
+      <value>Fan Wiki</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+      <value>Discord server</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+      <value>Subreddit</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+      <value>YouTube channel</value>
+  </data>
+  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
+      <value>Twitter feed</value>
+  </data>
+  <data name="ExternalLinkFacebookPage" xml:space="preserve">
+      <value>Facebook page</value>
+  </data>
+  <data name="ThriveOptions" xml:space="preserve">
+      <value>Thrive Options</value>
+  </data>
+  <data name="LauncherOptions" xml:space="preserve">
+      <value>Launcher Options</value>
+  </data>
+  <data name="InstalledVersions" xml:space="preserve">
+      <value>Installed Versions</value>
+  </data>
+  <data name="CacheConfigurationTab" xml:space="preserve">
+      <value>Cache</value>
+  </data>
+  <data name="LaunchOptionsTitle" xml:space="preserve">
+      <value>Launch Options</value>
+  </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+      <value>Disable all game videos (if Thrive crashes after showing the loading logo and before the intro video plays, this may help get the game to work)</value>
+  </data>
+  <data name="LaunchOptionForceGLES2" xml:space="preserve">
+      <value>Force GLES2 rendering mode (may make Thrive start, but causes slight graphics problems)</value>
+  </data>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+      <value>Launcher version:</value>
+  </data>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+      <value>Enable Web Feeds</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+      <value>Hide 32-bit versions if equivalent 64-bit version exists</value>
+  </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+      <value>Hide Launcher on Play</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+      <value>Close Launcher After Playing (if no error)</value>
+  </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+      <value>Close Launcher After Starting the Game</value>
+  </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+      <value>Allow Seamless Launcher Mode (launcher doesn't show itself before starting Thrive)</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+      <value>Automatically update the launcher</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+      <value>Reset All Settings</value>
+  </data>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+      <value>Browse Installed Files</value>
+  </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+      <value>Select Install Location</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+      <value>Reset Install Location</value>
+  </data>
+  <data name="FolderPathDisplay" xml:space="preserve">
+      <value>Directory:</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+      <value>Temporary downloads folder:</value>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+      <value>Contents:</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+      <value>Folder is empty</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+      <value>Note: moving temporary location won't move or delete existing files to prevent accidentally touching files unrelated to Thrive</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+      <value>Select Temporary Files Location</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+      <value>Reset Temporary Files Location</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+      <value>Delete ALL files in the temporary folder. May delete even non-Thrive related files if those exist!</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+      <value>Delete all files in the DevBuild dehydrated cache folder. If the location is non-default there may exist non-Thrive files in the folder which will also be deleted.</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+      <value>Clear</value>
+  </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+      <value>DevBuilds file cache:</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+      <value>Select Cache Location</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+      <value>Reset Cache Location</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+      <value>Cache size:</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+      <value>DevCenter Connection</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+      <value>OK</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+      <value>Info</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+      <value>Connected as:</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+      <value>You are a developer</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+      <value>Thank you for your support!</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+      <value>Build of the day (BOTD), recommended</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+      <value>Latest (changes a lot randomly as this is literally a build from the latest code commit)</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+      <value>Manually selected in "Specific Build" tab</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+      <value>Logout</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+      <value>Here you can link the launcher to the ThriveDevCenter to access DevBuilds and other features</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+      <value>Instructions on our Wiki</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+      <value>Get a link code</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+      <value>Link code</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+      <value>Connect</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+      <value>Login</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+      <value>Confirm</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+      <value>Specific Build</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+      <value>Manually entered hash:</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+      <value>Enter build hash (commit)</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+      <value>Select</value>
+  </data>
+  <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+      <value>Select the manually entered hash value to be used from the input box as the selected DevBuild to play when playing a DevBuild</value>
+  </data>
+  <data name="FetchLatestBuildsButton" xml:space="preserve">
+      <value>Fetch Latest Builds</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>Saving Settings Failed</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>Saving settings to the settings file has failed. Please make sure the launcher has write access and try again.
+Launcher logs will have more info.</value>
+  </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0} MiB</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>(size: {0})</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>Folder Not Found</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>The Thrive version installation folder does not exist.</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>Launcher Source Code</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>View Launcher Licenses</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Thrive Launcher</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Thrive Launcher Licenses</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>Roboto font is used in the launcher, Roboto license:</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf (Copyright (c) 2010-2011 by tyPoland Lukasz Dziedzic with Reserved Font Name "Lato"), OFL license:</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>Feed cannot be displayed. {0}</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>posted by {0} at {1}</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Click here</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>to read the full post.</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>Failed to create logs folder ({0}): {1}</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>View Logs</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>All Certificates Expired</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>All of the signing verifying certificates that this launcher is shipped with have expired. This means that this version of the launcher is extremely outdated. Please download and install a newer version.</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>{0} version</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} for {1}</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>Error Getting Available Thrive Versions</value>
+  </data>
+  <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
+    <value>Thrive Launcher loads the available Thrive versions from the internet in order to know what is available. Loading this information has failed (see the error below). You can retry downloading this information, or if the launcher was previously able to download this information you can load a cached copy. If the cached copy is very old it may not show all available Thrive versions.</value>
+  </data>
+  <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
+    <value>The downloaded Thrive Launcher information is invalid. Please try again in a short while and if the issue persist please contact us.</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Retry</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>Use Cached Version Info</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Unknown error</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>No Compatible Thrive Versions Found</value>
+  </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>The launcher could not find any compatible Thrive versions for the current platform. If you are using a weird operating system, this is expected. Otherwise, please report this as an issue.</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0} (Latest)</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>Move Existing Versions?</value>
+  </data>
+  <data name="MoveVersionsExplanation" xml:space="preserve">
+    <value>Installed Thrive versions have been detected at the previous path. These can be automatically moved to the new location. If not moved the files will be left behind and the launcher won't know about them until the previous path is selected as the install location again. Would you like to automatically move these files to the new location?</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>Move Existing Files?</value>
+  </data>
+  <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
+    <value>Existing items in the cache have been detected. These can be automatically moved to the new location. If not moved the files will be left behind and the launcher won't know about them until the previous path is selected as the location again. Would you like to automatically move {0} file(s) to the new location? Note that if non-Thrive related files exist in the cache folder they will be moved as well.</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>Internal Error</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>An internal error has occurred in the launcher. Please report this issue and provide the launcher log files along with your report how you ran into this problem.</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Move</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>Failed to Delete</value>
+  </data>
+  <data name="DeleteErrorExplanation" xml:space="preserve">
+    <value>Failed to delete data at the following path: "{0}" due to: {1}</value>
+  </data>
+  <data name="DeleteErrorDoesNotExist" xml:space="preserve">
+    <value>Failed to delete because the target path doesn't exist</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>Unknown folder:</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>Delete Temporary Files?</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
+    <value>You are about to delete all the files contained in the temporary folder at "{0}". Even non-Thrive files will be deleted if any happen to exist in that folder. The folder itself will also be deleted. Delete the temporary folder?</value>
+  </data>
+  <data name="ClearTemporaryFilesCount" xml:space="preserve">
+    <value>You are about to delete {0} files / folders</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>Delete DevBuild Cache?</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>You are about to delete all the files contained in the dehydrated cache folder at "{0}". Even non-Thrive files will be deleted if any happen to exist in that folder. Delete the folder contents?</value>
+  </data>
+  <data name="ClearDehydratedFilesCount" xml:space="preserve">
+    <value>You are about to delete {0} files</value>
+  </data>
+  <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
+    <value>The exit code can mean that you are missing a required DLL file. It may be Visual C++ Redistributable 2019, which you can download an installer for from: https://aka.ms/vs/17/release/vc_redist.x64.exe in order to install / repair it. You can also try running Thrive.exe manually as that may show an error dialog with the missing DLL file name in it. You should check that you have all Windows updates installed. If these don't help please contact us for additional assistance.</value>
+  </data>
+  <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
+    <value>If the game did not start correctly, please try the Thrive launch workarounds available under "Thrive Options" in the launcher settings</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>This version is up to date</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>You are using Thrive Launcher version {0} but the latest version is {1}</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>Visit Downloads Page</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>Launcher Version is Outdated</value>
+  </data>
+  <data name="OutdatedLauncherExplanation" xml:space="preserve">
+    <value>This version of the launcher is outdated and should be updated. As you are seeing this message auto-update has not started so you will need to manually download the update and install it. You can try to use the current version of the launcher by skipping updating, but you may run into unexpected issues as only the latest launcher version is guaranteed to work with the remote systems the launcher interacts with.</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>DevCenter Connection Failed</value>
+  </data>
+  <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
+    <value>Connecting to the DevCenter has failed. The DevCenter responded with a forbid response. This means that our connection key is no longer good. This may be caused by the connection being disconnected through the web UI or your account may be suspended. See the link below to check your account's connection statuses.</value>
+  </data>
+  <data name="DevCenterConnectFailureConnection" xml:space="preserve">
+    <value>Connecting to the DevCenter has failed. Please try again as the DevCenter may have just been temporarily unavailable. You should also check your internet connection. You can use the link below to visit the DevCenter to see if your browser can connect. Please try again later and if the problem persists for more than a few minutes, please report it.</value>
+  </data>
+  <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
+    <value>Connecting to the DevCenter has failed. The DevCenter responded with an unknown error or we ran into an error handling the response. Please try again later and if the problem persists, please report it. You can check with the link below to see if everything looks fine on the DevCenter's side.</value>
+  </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>Disconnect</value>
+  </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>Check tokens on DevCenter</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>Retry Existing Connection</value>
+  </data>
+  <data name="EnterDevCenterConnectionCode" xml:space="preserve">
+    <value>Please enter a DevCenter connection code first in the input box</value>
+  </data>
+  <data name="DevCenterConnectAttemptError" xml:space="preserve">
+    <value>Error checking linking code for the DevCenter. Please verify you typed in the code correctly and that it has not expired. Extra information: {0}</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>Code is valid. Please confirm linking to the following account:</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>Username:</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>Failed to form the link, please check the code again</value>
+  </data>
+  <data name="LoginToSeeThisContent" xml:space="preserve">
+    <value>Login to the DevCenter to see this content</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>unsafe</value>
+  </data>
+  <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
+    <value>BOTD</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>desc:</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>Cannot Play Thrive</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thrive has already been started, please close it and then try again</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>Please select a Thrive version from the dropdown next to the play button and try again</value>
+  </data>
+  <data name="PlayingTitle" xml:space="preserve">
+    <value>Playing {0}</value>
+  </data>
+  <data name="GettingDevBuildInfoMessage" xml:space="preserve">
+    <value>Retrieving info about selected DevBuild of type {0} to play...</value>
+  </data>
+  <data name="ErrorGettingDevBuild" xml:space="preserve">
+    <value>Error: failed to find DevBuild of specified type for current platform. Please select another build, for example the recommended BOTD, and try again. Cause of failure: {0}</value>
+  </data>
+  <data name="ThriveRunCanceled" xml:space="preserve">
+    <value>Running Thrive was canceled</value>
+  </data>
+  <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
+    <value>Playing an unsafe build was canceled</value>
+  </data>
+  <data name="ThriveRunError" xml:space="preserve">
+    <value>Thrive failed to run due to the following error: {0}</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="NoBuildToPlayFound" xml:space="preserve">
+    <value>No DevBuild matching the required type and current platform found</value>
+  </data>
+  <data name="DownloadingItem" xml:space="preserve">
+    <value>Downloading {0}</value>
+  </data>
+  <data name="DownloadError" xml:space="preserve">
+    <value>Download failed because of {0}</value>
+  </data>
+  <data name="ExtractError" xml:space="preserve">
+    <value>Failed to extract an archive due to error: {0}</value>
+  </data>
+  <data name="MissingThriveFolderError" xml:space="preserve">
+    <value>Thrive folder should exist at {0} but doesn't</value>
+  </data>
+  <data name="MissingThriveExecutableError" xml:space="preserve">
+    <value>Unable to find Thrive executable in folder at {0}, please either verify the game files or delete the version to re-download it.</value>
+  </data>
+  <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
+    <value>Version installation or checking installed version failed, see below for details.</value>
+  </data>
+  <data name="ThriveFolderPrepareFailed" xml:space="preserve">
+    <value>Preparing Thrive folder failed with error: {0}</value>
+  </data>
+  <data name="DownloadProgressDisplay" xml:space="preserve">
+    <value>Downloaded {0} of {1} MiB</value>
+  </data>
+  <data name="ItemProgressDisplay" xml:space="preserve">
+    <value>Processed {0} of {1}</value>
+  </data>
+  <data name="UnknownNumber" xml:space="preserve">
+    <value>unknown</value>
+  </data>
+  <data name="DownloadingStateItemProgress" xml:space="preserve">
+    <value>Downloading {0} from {1}</value>
+  </data>
+  <data name="VerifyingStateItemProgress" xml:space="preserve">
+    <value>Verifying integrity of {0}</value>
+  </data>
+  <data name="ExtractingStateItemProgress" xml:space="preserve">
+    <value>Extracting {0}. This may take many minutes for large files so please be patient.</value>
+  </data>
+  <data name="ProcessingStateItemProgress" xml:space="preserve">
+    <value>Processing {0}</value>
+  </data>
+  <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
+    <value>Error: child process has already ended, launcher window will not be closed</value>
+  </data>
+  <data name="TruncatedGameOutputWarning" xml:space="preserve">
+    <value>Output is too long, it was truncated! See the Thrive log file for full output.</value>
+  </data>
+  <data name="ThriveIsStarting" xml:space="preserve">
+    <value>Thrive is starting. Log output (due to buffering this is likely not in real time):</value>
+  </data>
+  <data name="ReportCrashButton" xml:space="preserve">
+    <value>Report Crash</value>
+  </data>
+  <data name="ExtraThriveStartFlags" xml:space="preserve">
+    <value>Thrive is being started with extra flags passed as command line arguments to the launcher, these may make Thrive behave in an unexpected way: {0}</value>
+  </data>
+  <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
+    <value>This tab lists externally installed versions. This is a store version of Thrive that includes a bundled (latest) game version. You can enable showing available external versions on the version selector dropdown in the launcher options. Once downloaded those versions show up here.</value>
+  </data>
+  <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
+    <value>DevBuild type to play (when playing a DevBuild version is selected)</value>
+  </data>
+  <data name="PlayUnsafeBuildTitle" xml:space="preserve">
+    <value>Play Unsafe DevBuild?</value>
+  </data>
+  <data name="PlayUnsafeBuildExplanation" xml:space="preserve">
+    <value>Normal DevBuilds are uploaded automatically by a CI server with a verified key. These builds can only be triggered by Thrive repository members. Unless such a person's account is compromised (or they act maliciously) the builds are about as safe to play as official releases. DevBuilds are also accepted from pull requests (PR), but in this case they are specifically marked unsafe (such as the currently selected build) as the pull request could contain all kinds of nasty stuff.
+
+If a Thrive team member verifies that the PR is safe this warning goes away. Alternative you can continue if you believe that this build is safe. Before doing so you should check the PR on Github to see that the latest commit hash matches and that the ThriveDevCenter build job says that it has uploaded a DevBuild with the hash. Additionally it should be checked that the PR does not change any build scripts. After doing that it should be relatively safe to continue, this is the same process Thrive team members use to verify PRs.</value>
+  </data>
+  <data name="AcceptUnsafeBuildButton" xml:space="preserve">
+    <value>I understand the risk, play anyway</value>
+  </data>
+  <data name="FoundDevBuildToPlayInfo" xml:space="preserve">
+    <value>Found DevBuild to play: {0}, hash: {1}, is BOTD: {2}, branch: {3}</value>
+  </data>
+  <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
+    <value>Build description:
+{0}</value>
+  </data>
+  <data name="RehydrationFailed" xml:space="preserve">
+    <value>Rehydration failed due to error: {0}</value>
+  </data>
+  <data name="RehydrationStarting" xml:space="preserve">
+    <value>This is a dehydrated build. Beginning rehydration.</value>
+  </data>
+  <data name="CopyLogWindowToClipboardToolTip" xml:space="preserve">
+    <value>Copy the game output to clipboard</value>
+  </data>
+</root>
