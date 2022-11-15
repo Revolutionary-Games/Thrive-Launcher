@@ -63,8 +63,7 @@
 
                     <ComboBox SelectedIndex="0" FontSize="20" VerticalAlignment="Stretch" Classes="VersionSelect"
                               IsVisible="{Binding ThriveVersionInformation,Converter={x:Static ObjectConverters.IsNotNull}}"
-                              x:Name="VersionComboBox" SelectionChanged="SelectedVersionComboBoxItemChanged">
-                    </ComboBox>
+                              x:Name="VersionComboBox" SelectionChanged="SelectedVersionComboBoxItemChanged" />
                     <TextBlock Text="{i18n:Localize LoadingDotDotDot}"
                                IsVisible="{Binding ThriveVersionInformation,Converter={x:Static ObjectConverters.IsNull}}" />
                     <StackPanel Orientation="Horizontal" IsVisible="{Binding ShowDevCenterStatusArea}"
