@@ -216,9 +216,14 @@ function refreshVersionList(){
     // Sort the versions //
     playComboAllChoices.sort(function(a, b){
         // https://stackoverflow.com/a/55466325
-        const cmp = a.version.releaseNum.localeCompare(b.version.releaseNum, undefined, { numeric: true });
-        if (cmp !== 0)
-            return -cmp
+        const cmp = a.version.releaseNum.localeCompare(
+            b.version.releaseNum,
+            undefined,
+            {numeric: true}
+        );
+
+        if(cmp !== 0)
+            return -cmp;
 
         return a.download.os < b.download.os;
     });
