@@ -277,6 +277,10 @@ public class ThriveRunner : IThriveRunner
     private void OnThriveExited(string thriveFolder, int? exitCode, Exception? runFailException,
         IPlayableVersion version, TimeSpan elapsed)
     {
+        // TODO: remove
+        _ = thriveFolder;
+        _ = version;
+
         if (exitCode != null)
         {
             OnNormalOutput($"Child process exited with code {exitCode}");
@@ -433,6 +437,7 @@ public class ThriveRunner : IThriveRunner
     private bool IsNonErrorSteamOutput(string line)
     {
         // TODO: implement this
+        _ = line;
         return false;
     }
 }
