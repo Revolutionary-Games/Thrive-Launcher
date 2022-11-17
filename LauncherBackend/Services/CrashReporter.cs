@@ -15,15 +15,17 @@ public class CrashReporter : ICrashReporter
     private readonly ILogger<CrashReporter> logger;
     private readonly IStoreVersionDetector storeVersionDetector;
     private readonly IThriveRunner thriveRunner;
+    private readonly ILauncherPaths launcherPaths;
     private readonly HttpClient httpClient;
     private readonly IReadOnlyList<string> potentialLogFileNames;
 
     public CrashReporter(ILogger<CrashReporter> logger, IStoreVersionDetector storeVersionDetector,
-        IThriveRunner thriveRunner, INetworkDataRetriever networkDataRetriever)
+        IThriveRunner thriveRunner, INetworkDataRetriever networkDataRetriever, ILauncherPaths launcherPaths)
     {
         this.logger = logger;
         this.storeVersionDetector = storeVersionDetector;
         this.thriveRunner = thriveRunner;
+        this.launcherPaths = launcherPaths;
 
         httpClient = new HttpClient
         {
@@ -36,27 +38,52 @@ public class CrashReporter : ICrashReporter
     }
 
     public long CreatedReportId { get; private set; }
-    public string CreatedReportDeleteKey { get; private set; }
+    public string CreatedReportDeleteKey { get; private set; } = string.Empty;
 
     public string? ExtendedErrorMessage { get; private set; }
 
-    public async Task<CrashReporterSubmitResult> SubmitReport(IEnumerable<string> logFiles, string extraDescription,
-        string reporterEmail, bool reportIsPublic)
+    public IEnumerable<string> GetAvailableLogFiles()
+    {
+        var detectedFromOutput = thriveRunner.DetectedFullLogFileLocation;
+
+        if (detectedFromOutput != null && File.Exists(detectedFromOutput))
+        {
+            logger.LogInformation("Using detected log file from game output at: {DetectedFromOutput}",
+                detectedFromOutput);
+            return new[] { detectedFromOutput };
+        }
+
+        var folder = thriveRunner.DetectedThriveDataFolder;
+
+        if (folder != null)
+            folder = Path.Join(folder, LauncherConstants.ThriveLogsFolderName);
+
+        if (string.IsNullOrEmpty(folder) || !Directory.Exists(folder))
+            folder = launcherPaths.ThriveDefaultLogsFolder;
+
+        return GetLogsInFolder(folder);
+    }
+
+    public IEnumerable<ReportableCrash> GetAvailableCrashesToReport()
+    {
+        return thriveRunner.GetAvailableCrashesToReport();
+    }
+
+    public async Task<CrashReporterSubmitResult> SubmitReport(ReportableCrash crash, IEnumerable<string> logFiles,
+        string? extraDescription, string? reporterEmail, bool reportIsPublic, string? launcherSavedOutput)
     {
         CreatedReportId = -1;
         CreatedReportDeleteKey = string.Empty;
         ExtendedErrorMessage = null;
 
-        var logFileBuilder = PrepareLogFiles(logFiles);
+        var logFileBuilder = PrepareLogFiles(logFiles, launcherSavedOutput);
 
-        DateTime selectedCrashTime;
-
-        var epochTime = selectedCrashTime - DateTime.UnixEpoch;
+        var elapsedSinceEpoch = crash.CrashTime - DateTime.UnixEpoch;
 
         var form = new CreateCrashReportData
         {
             ExitCode = thriveRunner.ExitCode.ToString(),
-            CrashTime = (long)Math.Round(epochTime.TotalSeconds),
+            CrashTime = (long)Math.Round(elapsedSinceEpoch.TotalSeconds),
             Public = reportIsPublic,
         };
 
@@ -66,10 +93,20 @@ public class CrashReporter : ICrashReporter
 
         var formData = new MultipartFormDataContent();
 
-        // TODO: implement crash callstack sending
-        string dumpFile;
+        if (crash is ReportableCrashException)
+        {
+            // TODO: implement crash callstack sending
+            throw new NotImplementedException("Sending reports about exceptions is not implemented");
+        }
 
-        formData.Add(new StreamContent(File.OpenRead(dumpFile)), "dump", "dump");
+        if (crash is ReportableCrashDump crashDump)
+        {
+            formData.Add(new StreamContent(File.OpenRead(crashDump.File)), "dump", "dump");
+        }
+        else
+        {
+            throw new ArgumentException("Unknown crash type to report");
+        }
 
         foreach (var formProperty in form.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public))
         {
@@ -85,7 +122,32 @@ public class CrashReporter : ICrashReporter
         return await SendCrashReport(formData);
     }
 
-    private static StringBuilder PrepareLogFiles(IEnumerable<string> logFiles)
+    public void ClearAllCrashes()
+    {
+        logger.LogInformation("Clearing all crashes");
+
+        foreach (var crash in GetAvailableCrashesToReport())
+        {
+            if (crash is ReportableCrashDump crashDump)
+            {
+                logger.LogInformation("Deleting crash dump: {File}", crashDump.File);
+
+                try
+                {
+                    File.Delete(crashDump.File);
+                }
+                catch (Exception e)
+                {
+                    logger.LogError(e, "Failed to delete a crash dump");
+                }
+            }
+        }
+
+        logger.LogDebug("Telling Thrive runner to forget its seen crashes");
+        thriveRunner.ClearDetectedCrashes();
+    }
+
+    private static StringBuilder PrepareLogFiles(IEnumerable<string> logFiles, string? launcherSavedOutput)
     {
         var logFileBuilder = new StringBuilder();
 
@@ -125,10 +187,17 @@ public class CrashReporter : ICrashReporter
             }
         }
 
+        if (!string.IsNullOrWhiteSpace(launcherSavedOutput))
+        {
+            logFileBuilder.Append("==== START OF LAUNCHER OUTPUT ====\n");
+            logFileBuilder.Append(launcherSavedOutput);
+            logFileBuilder.Append("==== END OF LAUNCHER OUTPUT ====\n");
+        }
+
         return logFileBuilder;
     }
 
-    private void SetFormFields(string extraDescription, string reporterEmail, CreateCrashReportData form,
+    private void SetFormFields(string? extraDescription, string? reporterEmail, CreateCrashReportData form,
         StringBuilder logFileBuilder)
     {
         if (OperatingSystem.IsWindows())
@@ -159,13 +228,19 @@ public class CrashReporter : ICrashReporter
 
         var storeVersion = storeVersionDetector.Detect();
 
-        if (storeVersion.IsStoreVersion)
+        form.GameVersion = thriveRunner.PlayedThriveVersion?.VersionName ?? "unknown";
+
+        // Only override the store name for when actually playing the store version and not an external one
+        // TODO: test that this is detected correctly
+        if (storeVersion.IsStoreVersion && form.GameVersion == storeVersion.StoreName)
         {
+            logger.LogInformation("This report is about a game store version");
             form.Store = storeVersion.StoreName;
+            form.GameVersion = null;
         }
         else
         {
-            form.GameVersion = thriveRunner.PlayedThriveVersion;
+            logger.LogInformation("The created report has version: {GameVersion}", form.GameVersion);
         }
     }
 
@@ -224,18 +299,6 @@ public class CrashReporter : ICrashReporter
         return CrashReporterSubmitResult.Success;
     }
 
-    private IEnumerable<(string File, DateTime ModifiedAt)> GetCrashDumpsInFolder(string folder)
-    {
-        var dumps = new List<(string File, DateTime ModifiedAt)>();
-
-        foreach (var dump in Directory.EnumerateFiles(folder, "*.dmp", SearchOption.AllDirectories))
-        {
-            dumps.Add((dump, new FileInfo(dump).LastWriteTimeUtc));
-        }
-
-        return dumps.OrderByDescending(t => t.ModifiedAt);
-    }
-
     private IEnumerable<string> GetLogsInFolder(string folder)
     {
         foreach (var potentialFile in Directory.EnumerateFiles(folder))
@@ -248,12 +311,6 @@ public class CrashReporter : ICrashReporter
             }
         }
     }
-
-    private string FormatTime(DateTime time)
-    {
-        // TODO: maybe would be better to use the duration displayer (but it wasn't in the common module yet) here?
-        return RecentTimeString.FormatRecentTimeInLocalTime(time, true, TimeSpan.FromHours(12));
-    }
 }
 
 public interface ICrashReporter
@@ -263,5 +320,12 @@ public interface ICrashReporter
 
     public string? ExtendedErrorMessage { get; }
 
-    public Task<CrashReporterSubmitResult> SubmitReport(IEnumerable<string> logFiles);
+    public IEnumerable<string> GetAvailableLogFiles();
+
+    public IEnumerable<ReportableCrash> GetAvailableCrashesToReport();
+
+    public Task<CrashReporterSubmitResult> SubmitReport(ReportableCrash crash, IEnumerable<string> logFiles,
+        string? extraDescription, string? reporterEmail, bool reportIsPublic, string? launcherSavedOutput);
+
+    public void ClearAllCrashes();
 }

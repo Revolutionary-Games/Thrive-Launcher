@@ -13,7 +13,7 @@ public static class LauncherConstants
     ///   The mode the launcher is in. ONLY COMMIT WHEN IN PRODUCTION MODE. This can be changed temporarily for local
     ///   testing.
     /// </summary>
-    public const LauncherMode Mode = LauncherMode.Production;
+    public const LauncherMode Mode = LauncherMode.LocalTesting;
 
     /// <summary>
     ///   File name to determine which exact version is extracted as a DevBuild
@@ -54,6 +54,9 @@ public static class LauncherConstants
     public const string REQUEST_LAUNCHER_OPEN = "------------ SHOWING LAUNCHER REQUESTED ------------";
 
     public const string DefaultThriveLogFileName = "log.txt";
+
+    public const string ThriveCrashesFolderName = "crashes";
+    public const string ThriveLogsFolderName = "logs";
 
     // URLs to our resources
     public const string MainSiteURL = "https://revolutionarygamesstudio.com";
@@ -129,6 +132,11 @@ public static class LauncherConstants
     public static readonly Uri DevCenterUserTokenURL = new(DevCenterURL, "me");
 
     public static readonly Uri DevCenterBuildInfoPagePrefix = new(DevCenterURL, "builds/");
+
+    public static readonly Uri DevCenterCrashReportURL = new(DevCenterURL, "api/v1/crashReport");
+
+    public static readonly Uri DevCenterCrashReportInfoPrefix = new(DevCenterURL, "reports/");
+    public static readonly Uri DevCenterCrashReportDeletePrefix = new(DevCenterURL, "deleteReport/");
 
     /// <summary>
     ///   Regex used to detect current log file in game output

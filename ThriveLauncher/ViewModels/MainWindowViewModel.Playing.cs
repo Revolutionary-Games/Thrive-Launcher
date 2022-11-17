@@ -32,6 +32,7 @@ public partial class MainWindowViewModel
 
     private bool thriveIsRunning;
     private bool thriveOutputIsTruncated;
+    private bool hasReportableCrash;
 
     private bool registeredInstallerCallbacks;
     private bool registeredRunnerCallbacks;
@@ -160,6 +161,12 @@ public partial class MainWindowViewModel
     }
 
     public ObservableCollection<ThriveOutputMessage> ThriveOutputLastPart => thriveRunner.ThriveOutputTrailing;
+
+    public bool HasReportableCrash
+    {
+        get => hasReportableCrash;
+        private set => this.RaiseAndSetIfChanged(ref hasReportableCrash, value);
+    }
 
     /// <summary>
     ///   The whole output that we buffer, used for copying to the clipboard
@@ -497,6 +504,7 @@ public partial class MainWindowViewModel
         {
             ShowCloseButtonOnPlayPopup = true;
             CanCancelPlaying = true;
+            HasReportableCrash = thriveRunner.HasReportableCrash;
 
             bool allowUnHide = true;
 

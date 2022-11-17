@@ -13,6 +13,7 @@ public class ThriveRunner : IThriveRunner
     private readonly ILauncherSettingsManager settingsManager;
     private readonly IThriveInstaller thriveInstaller;
     private readonly IStoreVersionDetector storeVersionDetector;
+    private readonly ILauncherPaths launcherPaths;
 
     private readonly ObservableValue<bool> runningObservable = new(false);
     private readonly ObservableValue<bool> truncatedObservable = new(false);
@@ -31,12 +32,13 @@ public class ThriveRunner : IThriveRunner
     private Thread? thriveRunnerThread;
 
     public ThriveRunner(ILogger<ThriveRunner> logger, ILauncherSettingsManager settingsManager,
-        IThriveInstaller thriveInstaller, IStoreVersionDetector storeVersionDetector)
+        IThriveInstaller thriveInstaller, IStoreVersionDetector storeVersionDetector, ILauncherPaths launcherPaths)
     {
         this.logger = logger;
         this.settingsManager = settingsManager;
         this.thriveInstaller = thriveInstaller;
         this.storeVersionDetector = storeVersionDetector;
+        this.launcherPaths = launcherPaths;
     }
 
     public ObservableCollection<ThrivePlayMessage> PlayMessages { get; } = new();
@@ -61,6 +63,34 @@ public class ThriveRunner : IThriveRunner
     public string? LDPreload { get; set; }
     public IList<string>? ExtraThriveStartFlags { get; set; }
     public ErrorSuggestionType? ActiveErrorSuggestion { get; private set; }
+
+    public int ExitCode { get; private set; } = -42;
+    public IPlayableVersion? PlayedThriveVersion { get; private set; }
+
+    public string? UnhandledThriveException
+    {
+        get
+        {
+            if (unhandledException == null || unhandledException.Count < 1)
+                return null;
+
+            return string.Join("\n", unhandledException);
+        }
+    }
+
+    public string? DetectedCrashDumpOutputLocation { get; private set; }
+
+    public static IEnumerable<(string File, DateTime ModifiedAt)> GetCrashDumpsInFolder(string folder)
+    {
+        var dumps = new List<(string File, DateTime ModifiedAt)>();
+
+        foreach (var dump in Directory.EnumerateFiles(folder, "*.dmp", SearchOption.AllDirectories))
+        {
+            dumps.Add((dump, new FileInfo(dump).LastWriteTimeUtc));
+        }
+
+        return dumps.OrderByDescending(t => t.ModifiedAt);
+    }
 
     public void StartThrive(IPlayableVersion version, CancellationToken cancellationToken)
     {
@@ -167,13 +197,60 @@ public class ThriveRunner : IThriveRunner
         ThriveOutput.Clear();
         ThriveOutputTrailing.Clear();
         truncatedObservable.Value = false;
-        HasReportableCrash = false;
         DetectedThriveDataFolder = null;
         DetectedFullLogFileLocation = null;
-        readingUnhandledException = false;
-        unhandledException = null;
         ActiveErrorSuggestion = null;
         ThriveWantsToOpenLauncher = false;
+
+        ClearDetectedCrashes();
+    }
+
+    public void ClearDetectedCrashes()
+    {
+        HasReportableCrash = false;
+        readingUnhandledException = false;
+        unhandledException = null;
+        DetectedCrashDumpOutputLocation = null;
+    }
+
+    public IEnumerable<ReportableCrash> GetAvailableCrashesToReport()
+    {
+        var potentialException = UnhandledThriveException;
+
+        if (!string.IsNullOrEmpty(potentialException))
+        {
+            yield return new ReportableCrashException(potentialException);
+        }
+
+        // If a dump was detected from the output of Thrive, that is always shown first as the latest crash
+        string? latestCrashDump = DetectedCrashDumpOutputLocation;
+
+        if (!string.IsNullOrEmpty(latestCrashDump) && File.Exists(latestCrashDump))
+        {
+            logger.LogInformation("Saw latest crash dump from Thrive output: {LatestCrashDump}", latestCrashDump);
+            yield return new ReportableCrashDump(latestCrashDump, new FileInfo(latestCrashDump).LastWriteTimeUtc, true);
+        }
+
+        var folder = DetectedThriveDataFolder;
+
+        // The detected folder is the data folder, which is the parent folder for the crashes folder
+        if (folder != null)
+            folder = Path.Join(folder, LauncherConstants.ThriveCrashesFolderName);
+
+        if (string.IsNullOrEmpty(folder) || !Directory.Exists(folder))
+            folder = launcherPaths.ThriveDefaultCrashesFolder;
+
+        // These are already in sorted order so we don't need to sort here
+        foreach (var (dumpFile, time) in GetCrashDumpsInFolder(folder))
+        {
+            // Skip duplicates, as this was already output above
+            if (latestCrashDump != null && Path.GetFullPath(latestCrashDump) == Path.GetFullPath(dumpFile))
+            {
+                continue;
+            }
+
+            yield return new ReportableCrashDump(dumpFile, time);
+        }
     }
 
     private async Task RunThriveExecutable(string thriveExecutable, IPlayableVersion version,
@@ -218,13 +295,11 @@ public class ThriveRunner : IThriveRunner
         {
             logger.LogError(e, "Thrive failed to run");
 
-            OnThriveExited(workingDirectory, null, e, version, runTime.Elapsed);
+            OnThriveExited(null, e, version, runTime.Elapsed);
             return;
         }
 
-        // onGameEnded(signal, closeContainer, version.releaseNum, storeInfo.store, status,elapsed, gameOutput,
-        // detectedLogFile);
-        OnThriveExited(workingDirectory, result.ExitCode, null, version, runTime.Elapsed);
+        OnThriveExited(result.ExitCode, null, version, runTime.Elapsed);
     }
 
     private void SetLaunchArgumentsAndEnvironment(ProcessStartInfo runInfo)
@@ -281,16 +356,35 @@ public class ThriveRunner : IThriveRunner
         }
     }
 
-    private void OnThriveExited(string thriveFolder, int? exitCode, Exception? runFailException,
-        IPlayableVersion version, TimeSpan elapsed)
+    private void OnThriveExited(int? exitCode, Exception? runFailException, IPlayableVersion version, TimeSpan elapsed)
     {
-        // TODO: remove
-        _ = thriveFolder;
-        _ = version;
+        PlayedThriveVersion = version;
+
+        logger.LogDebug("Detected log file ({DetectedFullLogFileLocation}) and data folder " +
+            "from game output: {DetectedThriveDataFolder}", DetectedFullLogFileLocation, DetectedThriveDataFolder);
+
+        if (DetectedFullLogFileLocation == null || DetectedThriveDataFolder == null)
+            logger.LogWarning("No log file (or data folder) location could be detected from game output");
+
+        ThriveWantsToOpenLauncher = AllGameOutput().Any(m => m.Contains(LauncherConstants.REQUEST_LAUNCHER_OPEN));
+
+        if (ThriveWantsToOpenLauncher)
+            logger.LogInformation("Thrive wants the launcher to be shown");
 
         if (exitCode != null)
         {
             OnNormalOutput($"Child process exited with code {exitCode}");
+            ExitCode = exitCode.Value;
+        }
+        else
+        {
+            ExitCode = -2;
+        }
+
+        if (!ThriveWantsToOpenLauncher)
+        {
+            // TODO: restart Thrive once if we didn't see the properly started Thrive log message, and the version is
+            // marked as supporting it
         }
 
         if (elapsed < LauncherConstants.RequiredRuntimeBeforeGameStartAdviceDisappears)
@@ -306,7 +400,14 @@ public class ThriveRunner : IThriveRunner
             ActiveErrorSuggestion = ErrorSuggestionType.MissingDll;
         }
 
-        if (runFailException == null && exitCode == 0 && unhandledException == null)
+        DetectCrashDumpFromOutput();
+        bool crashDumpsExist = GetAvailableCrashesToReport().Any();
+
+        if (crashDumpsExist)
+            logger.LogInformation("Thrive has generated crash dump(s)");
+
+        if (runFailException == null && exitCode == 0 && unhandledException == null &&
+            DetectedCrashDumpOutputLocation == null)
         {
             logger.LogDebug("Thrive exited successfully");
             OnNormalOutput("Thrive has exited normally (exit code 0).");
@@ -324,20 +425,51 @@ public class ThriveRunner : IThriveRunner
             else if (unhandledException != null)
             {
                 // TODO: implement reporting unhandled exceptions as crashes
+                // HasReportableCrash = true;
                 OnErrorOutput("Thrive has encountered an unhandled exception, please report this to us. " +
                     "In the future there will be support for automatically reporting these crashes.");
             }
             else
             {
-                // Detect crash dumps
-                // HasReportableCrash = true;
-
-                throw new NotImplementedException();
+                // Detected crash dumps that should be reportable
+                HasReportableCrash = true;
             }
+        }
+
+        if (crashDumpsExist && DetectedCrashDumpOutputLocation == null)
+        {
+            OnNormalOutput("Crash dumps have been detected but they may be from a previous Thrive run");
+            HasReportableCrash = true;
         }
 
         // This is set at the end to allow the handler to inspect the error conditions
         runningObservable.Value = false;
+    }
+
+    private void DetectCrashDumpFromOutput()
+    {
+        DetectedCrashDumpOutputLocation = null;
+
+        foreach (var outputLine in AllGameOutput())
+        {
+            var match = LauncherConstants.CrashDumpRegex.Match(outputLine);
+
+            if (!match.Success)
+                continue;
+
+            var dump = match.Groups[1].Value;
+
+            if (!File.Exists(dump))
+            {
+                logger.LogWarning("Game printed out non-existent crash dump file: {Dump}", dump);
+            }
+            else
+            {
+                logger.LogInformation("Detected crash dump created by the game: {Dump}", dump);
+                DetectedCrashDumpOutputLocation = dump;
+                break;
+            }
+        }
     }
 
     private IEnumerable<string> AllGameOutput()
@@ -514,6 +646,23 @@ public interface IThriveRunner
 
     public ErrorSuggestionType? ActiveErrorSuggestion { get; }
 
+    /// <summary>
+    ///   Exit code for last finished Thrive run
+    /// </summary>
+    public int ExitCode { get; }
+
+    public IPlayableVersion? PlayedThriveVersion { get; }
+
+    /// <summary>
+    ///   Contains an exception from Thrive output if Thrive output an unhandled exception log message. Null otherwise.
+    /// </summary>
+    public string? UnhandledThriveException { get; }
+
+    /// <summary>
+    ///   Set to a path to a file if the Thrive output is detected to contain a message about a created dump file
+    /// </summary>
+    public string? DetectedCrashDumpOutputLocation { get; }
+
     public void StartThrive(IPlayableVersion version, CancellationToken cancellationToken);
 
     /// <summary>
@@ -525,5 +674,9 @@ public interface IThriveRunner
     /// <summary>
     ///   Clears the game output. Useful for starting a new install with clean output
     /// </summary>
-    void ClearOutput();
+    public void ClearOutput();
+
+    public void ClearDetectedCrashes();
+
+    public IEnumerable<ReportableCrash> GetAvailableCrashesToReport();
 }

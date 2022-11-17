@@ -718,21 +718,20 @@
                         IsVisible="{Binding ShowCloseButtonOnPlayPopup}"
                         Content="{i18n:Localize CloseButton}" />
 
-                <!-- TODO: implement visibility -->
                 <Button Grid.Row="1" Grid.Column="2" Classes="DialogButton" Click="OpenCrashReporterWindow"
+                        IsVisible="{Binding HasReportableCrash}"
+                        Content="{i18n:Localize ReportCrashButton}" />
+
+                <!-- TODO: whatever this button was supposed to be... Maybe a button to open the game logs folder? -->
+                <Button Grid.Row="1" Grid.Column="3" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
                         IsVisible="False"
                         Content="{i18n:Localize ReportCrashButton}" />
 
-                <Button Grid.Row="1" Grid.Column="3" Classes="DialogButton" Click="CopyLogsToClipboard"
+                <Button Grid.Row="1" Grid.Column="4" Classes="DialogButton" Click="CopyLogsToClipboard"
                         IsVisible="{Binding ShowCloseButtonOnPlayPopup}"
                         ToolTip.Tip="{i18n:Localize CopyLogWindowToClipboardToolTip}" VerticalAlignment="Center">
                     <Image Height="19" Source="{DynamicResource CopyIconWhite}" />
                 </Button>
-
-                <!-- TODO: whatever this button was supposed to be... Maybe a button to open the game logs folder? -->
-                <Button Grid.Row="1" Grid.Column="4" Classes="DialogButton" Command="{Binding ClosePlayingPopup}"
-                        IsVisible="False"
-                        Content="{i18n:Localize ReportCrashButton}" />
 
                 <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Text="{Binding PlayPopupBottomMessage}"
                            IsVisible="{Binding PlayPopupBottomMessage,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"

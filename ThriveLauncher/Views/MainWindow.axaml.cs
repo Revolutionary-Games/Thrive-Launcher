@@ -220,9 +220,12 @@ public partial class MainWindow : Window
 
         var scope = this.GetServiceProvider().CreateScope();
 
+        var context = ActivatorUtilities.CreateInstance<CrashReporterWindowViewModel>(scope.ServiceProvider);
+        context.LauncherOutputText = DerivedDataContext.GetFullOutputForClipboard();
+
         var window = new CrashReporterWindow
         {
-            DataContext = ActivatorUtilities.CreateInstance<CrashReporterWindowViewModel>(scope.ServiceProvider),
+            DataContext = context,
         };
 
         // Allow crash reporter to be open by itself by not giving it a parent

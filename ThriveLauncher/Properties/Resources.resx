@@ -748,4 +748,55 @@ If a Thrive team member verifies that the PR is safe this warning goes away. Alt
   <data name="CopyToClipboard" xml:space="preserve">
     <value>Copy to clipboard</value>
   </data>
+  <data name="TimeMomentRightNow" xml:space="preserve">
+    <value>Now</value>
+  </data>
+  <data name="AtTime" xml:space="preserve">
+    <value>At {0}</value>
+  </data>
+  <data name="ViewFile" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Open Folder</value>
+  </data>
+  <data name="IncludeInReport" xml:space="preserve">
+    <value>Include?</value>
+  </data>
+  <data name="ActiveReportingInfo" xml:space="preserve">
+    <value>Reporting crash {0} at {1}</value>
+  </data>
+  <data name="CrashReportLogsSection" xml:space="preserve">
+    <value>Logs to Include</value>
+  </data>
+  <data name="CrashReportLogsSectionExplanation" xml:space="preserve">
+    <value>Please keep the logs included if they are from the same run of the game as the crash because the logs may help in identifying and fixing the problem. You can click the name of the file to open it, or the button to view the folder it is in, to view and edit it to remove any personal details you want. Log files are always only visible to Thrive developers, and are only shared with other parties if required for tracking down or fixing the reported problem.</value>
+  </data>
+  <data name="CrashReportDescriptionField" xml:space="preserve">
+    <value>Describe what you were doing when the crash happened (optional)</value>
+  </data>
+  <data name="CrashReportDescriptionFieldPlaceholder" xml:space="preserve">
+    <value>Crash description (optional)</value>
+  </data>
+  <data name="CrashReportEmailField" xml:space="preserve">
+    <value>Your email, if you want to receive updates about this report (optional)</value>
+  </data>
+  <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
+    <value>Email (optional)</value>
+  </data>
+  <data name="CrashReportEmailFieldNotice" xml:space="preserve">
+    <value>Your email will only be visible to ThriveDevCenter administrators.</value>
+  </data>
+  <data name="CrashReportIsPublic" xml:space="preserve">
+    <value>Public? Public reports have their crash callstack and description publicly visible. Private reports are visible only to Thrive developers.</value>
+  </data>
+  <data name="CrashReportSubmitAcceptConfirmation" xml:space="preserve">
+    <value>I agree that the information listed on this form, including any included files and the crash dump, along with my IP address will be stored in the Thrive crash database. And if this report is public anyone can read the crash callstack and description.</value>
+  </data>
+  <data name="SelectCrashToReport" xml:space="preserve">
+    <value>Select a crash to report by clicking its name</value>
+  </data>
+  <data name="CrashReportDeleteAfterSubmitting" xml:space="preserve">
+    <value>Delete this crash dump file after reporting (recommended)</value>
+  </data>
 </root>

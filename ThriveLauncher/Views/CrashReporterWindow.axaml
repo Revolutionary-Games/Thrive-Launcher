@@ -13,33 +13,49 @@
         Icon="/Assets/Icons/icon.ico"
         Title="{i18n:Localize CrashReporterWindowTitle}"
         FontFamily="{StaticResource Lato}"
-        Background="{DynamicResource MainWindowBackground}">
+        Background="{DynamicResource MainWindowBackground}"
+        WindowStartupLocation="CenterScreen">
 
     <Design.DataContext>
         <vm:CrashReporterWindowViewModel />
     </Design.DataContext>
 
     <Grid Margin="0" ColumnDefinitions="*" RowDefinitions="*">
+        <!-- selecting a crash -->
+        <DockPanel LastChildFill="True" IsVisible="{Binding ShowCrashPicker}">
 
-        <DockPanel LastChildFill="True">
-            <!-- selecting a crash -->
-            <DockPanel LastChildFill="True" IsVisible="{Binding ShowCrashPicker}">
+            <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Text="{i18n:Localize SelectCrashToReport}"
+                       HorizontalAlignment="Center" />
 
-                <ScrollViewer>
-                    <StackPanel Spacing="5" Name="AvailableCrashesToReportList" />
-                </ScrollViewer>
+            <StackPanel DockPanel.Dock="Bottom">
+                <Button Classes="DialogButton Danger" Command="{Binding ClearAllCrashes}"
+                        IsEnabled="{Binding CanClearDumps}" HorizontalAlignment="Center"
+                        Content="{i18n:Localize ClearAllCrashesButton}" />
+            </StackPanel>
 
-                <StackPanel DockPanel.Dock="Bottom">
-                    <Button Classes="DialogButton Danger" Command="{Binding ClearAllCrashes}"
-                            Content="{i18n:Localize ClearAllCrashesButton}" />
-                </StackPanel>
+            <ScrollViewer>
+                <StackPanel Spacing="5" Name="AvailableCrashesToReportList" />
+            </ScrollViewer>
 
-            </DockPanel>
+        </DockPanel>
 
-            <!-- reporting a crash -->
-            <DockPanel LastChildFill="True" IsVisible="{Binding !ShowCrashPicker}">
-                <ScrollViewer IsVisible="{Binding !ReportSubmitted}">
-                    <DockPanel LastChildFill="True">
+        <!-- reporting a crash -->
+        <DockPanel LastChildFill="True" IsVisible="{Binding !ShowCrashPicker}">
+            <ScrollViewer IsVisible="{Binding !ReportSubmitted}">
+                <DockPanel LastChildFill="True" Margin="3 2">
+                    <!-- Bottom part of the form -->
+                    <StackPanel DockPanel.Dock="Bottom">
+                        <Border BorderBrush="{DynamicResource BlueElement}" BorderThickness="1" Margin="0 0 0 3" />
+
+                        <CheckBox Content="{i18n:Localize CrashReportIsPublic}"
+                                  IsChecked="{Binding ReportIsPublic}" />
+
+                        <CheckBox Content="{i18n:Localize CrashReportSubmitAcceptConfirmation}"
+                                  IsChecked="{Binding AcceptedReportCreationTerms}" />
+
+                        <TextBlock TextWrapping="Wrap" Text="{i18n:Localize SubmittingReportMessage}"
+                                   IsVisible="{Binding SubmittingReport}" />
+
                         <StackPanel Orientation="Horizontal" Spacing="3" HorizontalAlignment="Center">
                             <Button DockPanel.Dock="Bottom" Classes="DialogButton" Command="{Binding SubmitReport}"
                                     Content="{i18n:Localize Submit}" />
@@ -48,52 +64,104 @@
                                     Command="{Binding CancelCrashReporting}"
                                     Content="{i18n:Localize Cancel}" />
                         </StackPanel>
+                    </StackPanel>
 
-                        <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,*">
-                            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
-                                       Text="{i18n:Localize SubmittingReportMessage}"
-                                       IsVisible="{Binding SubmittingReport}" />
-                        </Grid>
-                    </DockPanel>
-                </ScrollViewer>
-                <StackPanel IsVisible="{Binding ReportSubmitted}">
+                    <!-- TODO: handling for exception crash report -->
 
-                    <TextBlock TextWrapping="Wrap" Text="{i18n:Localize SuccessfulReportSubmitMessage}"
-                               Margin="0 5 0 15" />
+                    <!-- Top part of the form that can scroll when there's a bunch of content -->
+                    <Grid ColumnDefinitions="*"
+                          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*,Auto,Auto,Auto,Auto,Auto,Auto"
+                          IsVisible="True">
 
-                    <TextBlock TextWrapping="Wrap" Text="{i18n:Localize ReportViewingPublicInfo}" />
+                        <TextBlock Grid.Row="0" TextWrapping="Wrap"
+                                   Text="{Binding ReportingCrashInfoString}" />
 
-                    <Button Classes="TextLink" Command="{Binding OpenViewUrl}"
-                            Content="{Binding CreatedReportViewUrl}" />
+                        <TextBlock Grid.Row="1" TextWrapping="Wrap"
+                                   IsVisible="{Binding CrashReportIsOld}"
+                                   Text="{Binding CrashReportWarningAboutOldFile}" />
 
-                    <TextBlock Text="{i18n:Localize ReportDeleteInfo}" />
+                        <Border Grid.Row="2"
+                                BorderBrush="{DynamicResource BlueElement}" BorderThickness="1" Margin="0 0 0 3" />
 
-                    <WrapPanel Orientation="Horizontal" Margin="0 5 0 5">
-                        <Button Classes="TextLink" Command="{Binding OpenDeleteUrl}"
-                                Content="{Binding CreatedReportDeleteUrl}" />
+                        <CheckBox Grid.Row="3" Grid.Column="0"
+                                  Content="{i18n:Localize CrashReportDeleteAfterSubmitting}"
+                                  IsVisible="{Binding ShowCrashDumpDeleteAfterReportCheckBox}"
+                                  IsChecked="{Binding DeleteCrashDumpAfterReporting}" Margin="0 8" />
 
-                        <Button Classes="DialogButton" Click="CopyDeleteLinkToClipboard"
-                                ToolTip.Tip="{i18n:Localize CopyToClipboard}" VerticalAlignment="Center">
-                            <Image Height="24" Source="{DynamicResource CopyIconWhite}" />
-                        </Button>
-                    </WrapPanel>
+                        <!-- Logs section -->
+                        <TextBlock Grid.Row="4" TextWrapping="Wrap"
+                                   Text="{i18n:Localize CrashReportLogsSection}" Margin="0 0 0 3" />
 
-                    <TextBlock TextWrapping="Wrap" Text="{i18n:Localize ReportDeleteCaveat}" />
+                        <TextBlock Grid.Row="5" TextWrapping="Wrap"
+                                   FontSize="12" Text="{i18n:Localize CrashReportLogsSectionExplanation}" />
 
-                    <WrapPanel Orientation="Horizontal" Margin="0 15">
-                        <TextBlock TextWrapping="Wrap" Text="{i18n:Localize ReporterEndMessage}" Margin="0 0 1 0" />
-                        <TextBlock TextWrapping="Wrap" Text="{i18n:Localize AutoCloseStopped}"
-                                   IsVisible="{Binding AutoCloseDelay,Converter={x:Static ObjectConverters.IsNull}}" />
-                        <TextBlock TextWrapping="Wrap" Text="{Binding AutoCloseDelayText}"
-                                   IsVisible="{Binding AutoCloseDelay,Converter={x:Static ObjectConverters.IsNotNull}}" />
+                        <StackPanel Grid.Row="6" Spacing="5" Name="LogFilesToIncludeContainer" />
 
-                        <Button Margin="15 0 0 0" Command="{Binding CancelAutoClose}"
-                                IsVisible="{Binding AutoCloseDelay,Converter={x:Static ObjectConverters.IsNotNull}}"
-                                Content="{i18n:Localize StopAutoClose}" />
+                        <Border Grid.Row="7"
+                                BorderBrush="{DynamicResource BlueElement}" BorderThickness="1" Margin="0 0 0 3" />
 
-                    </WrapPanel>
-                </StackPanel>
-            </DockPanel>
+                        <!-- Other form fields -->
+                        <TextBlock Grid.Row="8" TextWrapping="Wrap"
+                                   Text="{i18n:Localize CrashReportDescriptionField}" Margin="0 0 0 3" />
+
+                        <TextBox Grid.Row="9" AcceptsTab="False"
+                                 MaxLength="5000"
+                                 Text="{Binding UserEnteredReportDescription}"
+                                 AcceptsReturn="True" MinHeight="150"
+                                 Watermark="{i18n:Localize CrashReportDescriptionFieldPlaceholder}" />
+
+                        <TextBlock Grid.Row="10" TextWrapping="Wrap"
+                                   Text="{i18n:Localize CrashReportEmailField}" Margin="0 15 0 3" />
+
+                        <TextBox Grid.Row="11" AcceptsTab="False"
+                                 MaxLength="250"
+                                 Text="{Binding ReporterEmail}"
+                                 AcceptsReturn="False"
+                                 Watermark="{i18n:Localize CrashReportEmailFieldPlaceholder}" />
+
+                        <TextBlock Grid.Row="12" TextWrapping="Wrap"
+                                   Text="{i18n:Localize CrashReportEmailFieldNotice}" Margin="0 5 0 5" />
+
+                    </Grid>
+                </DockPanel>
+            </ScrollViewer>
+            <StackPanel IsVisible="{Binding ReportSubmitted}">
+
+                <TextBlock TextWrapping="Wrap" Text="{i18n:Localize SuccessfulReportSubmitMessage}"
+                           Margin="0 5 0 15" />
+
+                <TextBlock TextWrapping="Wrap" Text="{i18n:Localize ReportViewingPublicInfo}" />
+
+                <Button Classes="TextLink" Command="{Binding OpenViewUrl}"
+                        Content="{Binding CreatedReportViewUrl}" />
+
+                <TextBlock Text="{i18n:Localize ReportDeleteInfo}" />
+
+                <WrapPanel Orientation="Horizontal" Margin="0 5 0 5">
+                    <Button Classes="TextLink" Command="{Binding OpenDeleteUrl}"
+                            Content="{Binding CreatedReportDeleteUrl}" />
+
+                    <Button Classes="DialogButton" Click="CopyDeleteLinkToClipboard"
+                            ToolTip.Tip="{i18n:Localize CopyToClipboard}" VerticalAlignment="Center">
+                        <Image Height="24" Source="{DynamicResource CopyIconWhite}" />
+                    </Button>
+                </WrapPanel>
+
+                <TextBlock TextWrapping="Wrap" Text="{i18n:Localize ReportDeleteCaveat}" />
+
+                <WrapPanel Orientation="Horizontal" Margin="0 15">
+                    <TextBlock TextWrapping="Wrap" Text="{i18n:Localize ReporterEndMessage}" Margin="0 0 1 0" />
+                    <TextBlock TextWrapping="Wrap" Text="{i18n:Localize AutoCloseStopped}"
+                               IsVisible="{Binding AutoCloseDelay,Converter={x:Static ObjectConverters.IsNull}}" />
+                    <TextBlock TextWrapping="Wrap" Text="{Binding AutoCloseDelayText}"
+                               IsVisible="{Binding AutoCloseDelay,Converter={x:Static ObjectConverters.IsNotNull}}" />
+
+                    <Button Margin="15 0 0 0" Command="{Binding CancelAutoClose}"
+                            IsVisible="{Binding AutoCloseDelay,Converter={x:Static ObjectConverters.IsNotNull}}"
+                            Content="{i18n:Localize StopAutoClose}" />
+
+                </WrapPanel>
+            </StackPanel>
         </DockPanel>
 
         <controls:PopupDialog Title="{i18n:Localize CancelCreatingReportTitle}"

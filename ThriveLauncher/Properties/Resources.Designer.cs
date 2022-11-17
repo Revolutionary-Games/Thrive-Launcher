@@ -1406,5 +1406,107 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("CopyToClipboard", resourceCulture);
             }
         }
+        
+        public static string TimeMomentRightNow {
+            get {
+                return ResourceManager.GetString("TimeMomentRightNow", resourceCulture);
+            }
+        }
+        
+        public static string AtTime {
+            get {
+                return ResourceManager.GetString("AtTime", resourceCulture);
+            }
+        }
+        
+        public static string ViewFile {
+            get {
+                return ResourceManager.GetString("ViewFile", resourceCulture);
+            }
+        }
+        
+        public static string OpenFolder {
+            get {
+                return ResourceManager.GetString("OpenFolder", resourceCulture);
+            }
+        }
+        
+        public static string IncludeInReport {
+            get {
+                return ResourceManager.GetString("IncludeInReport", resourceCulture);
+            }
+        }
+        
+        public static string ActiveReportingInfo {
+            get {
+                return ResourceManager.GetString("ActiveReportingInfo", resourceCulture);
+            }
+        }
+        
+        public static string CrashReportLogsSection {
+            get {
+                return ResourceManager.GetString("CrashReportLogsSection", resourceCulture);
+            }
+        }
+        
+        public static string CrashReportLogsSectionExplanation {
+            get {
+                return ResourceManager.GetString("CrashReportLogsSectionExplanation", resourceCulture);
+            }
+        }
+        
+        public static string CrashReportDescriptionField {
+            get {
+                return ResourceManager.GetString("CrashReportDescriptionField", resourceCulture);
+            }
+        }
+        
+        public static string CrashReportDescriptionFieldPlaceholder {
+            get {
+                return ResourceManager.GetString("CrashReportDescriptionFieldPlaceholder", resourceCulture);
+            }
+        }
+        
+        public static string CrashReportEmailField {
+            get {
+                return ResourceManager.GetString("CrashReportEmailField", resourceCulture);
+            }
+        }
+        
+        public static string CrashReportEmailFieldPlaceholder {
+            get {
+                return ResourceManager.GetString("CrashReportEmailFieldPlaceholder", resourceCulture);
+            }
+        }
+        
+        public static string CrashReportEmailFieldNotice {
+            get {
+                return ResourceManager.GetString("CrashReportEmailFieldNotice", resourceCulture);
+            }
+        }
+        
+        public static string CrashReportIsPublic {
+            get {
+                return ResourceManager.GetString("CrashReportIsPublic", resourceCulture);
+            }
+        }
+        
+        public static string CrashReportSubmitAcceptConfirmation {
+            get {
+                return ResourceManager.GetString("CrashReportSubmitAcceptConfirmation", resourceCulture);
+            }
+        }
+        
+        public static string SelectCrashToReport {
+            get {
+                return ResourceManager.GetString("SelectCrashToReport", resourceCulture);
+            }
+        }
+        
+        public static string CrashReportDeleteAfterSubmitting {
+            get {
+                return ResourceManager.GetString("CrashReportDeleteAfterSubmitting", resourceCulture);
+            }
+        }
     }
 }

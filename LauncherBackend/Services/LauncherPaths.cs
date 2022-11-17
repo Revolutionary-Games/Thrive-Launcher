@@ -52,8 +52,11 @@ public class LauncherPaths : ILauncherPaths
 
     public string ExpectedDefaultThriveUserFolder => thriveUserFolder ??= GetPlatformExpectedThriveUserFolder();
 
-    public string ThriveDefaultLogsFolder => Path.Combine(ExpectedDefaultThriveUserFolder, "logs");
-    public string ThriveDefaultCrashesFolder => Path.Combine(ExpectedDefaultThriveUserFolder, "crashes");
+    public string ThriveDefaultLogsFolder =>
+        Path.Combine(ExpectedDefaultThriveUserFolder, LauncherConstants.ThriveLogsFolderName);
+
+    public string ThriveDefaultCrashesFolder =>
+        Path.Combine(ExpectedDefaultThriveUserFolder, LauncherConstants.ThriveCrashesFolderName);
 
     // Launcher 1.x version folder paths
 
@@ -211,6 +214,9 @@ public interface ILauncherPaths
 
     public string PathToTemporaryFolder { get; }
     public string PathToLogFolder { get; }
+
+    public string ThriveDefaultLogsFolder { get; }
+    public string ThriveDefaultCrashesFolder { get; }
 
     // Launcher 1.x version folder paths
 
