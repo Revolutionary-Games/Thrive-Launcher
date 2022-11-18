@@ -356,6 +356,7 @@ public partial class MainWindowViewModel
     {
         logger.LogDebug("Clearing previous Thrive play logs");
         thriveRunner.ClearOutput();
+        HasReportableCrash = false;
 
         if (version is DevBuildVersion devBuildVersion)
         {
