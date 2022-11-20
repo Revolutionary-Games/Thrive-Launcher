@@ -1508,5 +1508,17 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("CrashReportDeleteAfterSubmitting", resourceCulture);
             }
         }
+        
+        public static string CrashReportWarningAboutOldFile {
+            get {
+                return ResourceManager.GetString("CrashReportWarningAboutOldFile", resourceCulture);
+            }
+        }
+        
+        public static string CrashReportIncludeLauncherOutput {
+            get {
+                return ResourceManager.GetString("CrashReportIncludeLauncherOutput", resourceCulture);
+            }
+        }
     }
 }

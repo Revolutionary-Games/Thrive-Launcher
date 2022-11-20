@@ -162,9 +162,9 @@ public partial class CrashReporterWindow : Window
 
             var checkBox = new CheckBox
             {
-                Content = includeBinding,
+                [!ContentProperty] = includeBinding,
                 VerticalAlignment = VerticalAlignment.Center,
-                Margin = new Thickness(3, 0, 5, 0),
+                Margin = new Thickness(0, 0, 5, 0),
             };
 
             checkBox.Checked += (_, _) =>

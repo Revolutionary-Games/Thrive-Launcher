@@ -47,18 +47,21 @@
                     <StackPanel DockPanel.Dock="Bottom">
                         <Border BorderBrush="{DynamicResource BlueElement}" BorderThickness="1" Margin="0 0 0 3" />
 
-                        <CheckBox Content="{i18n:Localize CrashReportIsPublic}"
-                                  IsChecked="{Binding ReportIsPublic}" />
+                        <CheckBox IsChecked="{Binding ReportIsPublic}">
+                            <TextBlock TextWrapping="Wrap" Text="{i18n:Localize CrashReportIsPublic}" />
+                        </CheckBox>
 
-                        <CheckBox Content="{i18n:Localize CrashReportSubmitAcceptConfirmation}"
-                                  IsChecked="{Binding AcceptedReportCreationTerms}" />
+                        <CheckBox IsChecked="{Binding AcceptedReportCreationTerms}"
+                                  Margin="0 5">
+                            <TextBlock TextWrapping="Wrap" Text="{i18n:Localize CrashReportSubmitAcceptConfirmation}" />
+                        </CheckBox>
 
                         <TextBlock TextWrapping="Wrap" Text="{i18n:Localize SubmittingReportMessage}"
                                    IsVisible="{Binding SubmittingReport}" />
 
                         <StackPanel Orientation="Horizontal" Spacing="3" HorizontalAlignment="Center">
                             <Button DockPanel.Dock="Bottom" Classes="DialogButton" Command="{Binding SubmitReport}"
-                                    Content="{i18n:Localize Submit}" />
+                                    Content="{i18n:Localize Submit}" IsEnabled="{Binding CanSubmitReport}" />
 
                             <Button DockPanel.Dock="Bottom" Classes="DialogButton Danger"
                                     Command="{Binding CancelCrashReporting}"
@@ -70,7 +73,7 @@
 
                     <!-- Top part of the form that can scroll when there's a bunch of content -->
                     <Grid ColumnDefinitions="*"
-                          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*,Auto,Auto,Auto,Auto,Auto,Auto"
+                          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
                           IsVisible="True">
 
                         <TextBlock Grid.Row="0" TextWrapping="Wrap"
@@ -78,48 +81,54 @@
 
                         <TextBlock Grid.Row="1" TextWrapping="Wrap"
                                    IsVisible="{Binding CrashReportIsOld}"
-                                   Text="{Binding CrashReportWarningAboutOldFile}" />
+                                   Text="{i18n:Localize CrashReportWarningAboutOldFile}" Margin="0 8" />
 
                         <Border Grid.Row="2"
                                 BorderBrush="{DynamicResource BlueElement}" BorderThickness="1" Margin="0 0 0 3" />
 
                         <CheckBox Grid.Row="3" Grid.Column="0"
-                                  Content="{i18n:Localize CrashReportDeleteAfterSubmitting}"
                                   IsVisible="{Binding ShowCrashDumpDeleteAfterReportCheckBox}"
-                                  IsChecked="{Binding DeleteCrashDumpAfterReporting}" Margin="0 8" />
+                                  IsChecked="{Binding DeleteCrashDumpAfterReporting}" Margin="0 3">
+                            <TextBlock TextWrapping="Wrap" Text="{i18n:Localize CrashReportDeleteAfterSubmitting}" />
+                        </CheckBox>
 
                         <!-- Logs section -->
-                        <TextBlock Grid.Row="4" TextWrapping="Wrap"
-                                   Text="{i18n:Localize CrashReportLogsSection}" Margin="0 0 0 3" />
+                        <TextBlock Grid.Row="4" TextWrapping="Wrap" FontSize="22" HorizontalAlignment="Center"
+                                   Text="{i18n:Localize CrashReportLogsSection}" Margin="0 0 0 4" />
 
                         <TextBlock Grid.Row="5" TextWrapping="Wrap"
                                    FontSize="12" Text="{i18n:Localize CrashReportLogsSectionExplanation}" />
 
-                        <StackPanel Grid.Row="6" Spacing="5" Name="LogFilesToIncludeContainer" />
+                        <StackPanel Grid.Row="6" Spacing="5" Name="LogFilesToIncludeContainer" Margin="5 5" />
 
-                        <Border Grid.Row="7"
+                        <CheckBox Grid.Row="7" Grid.Column="0" IsChecked="{Binding AttachLauncherOutput}"
+                                  Margin="0 3">
+                            <TextBlock TextWrapping="Wrap" Text="{i18n:Localize CrashReportIncludeLauncherOutput}" />
+                        </CheckBox>
+
+                        <Border Grid.Row="8"
                                 BorderBrush="{DynamicResource BlueElement}" BorderThickness="1" Margin="0 0 0 3" />
 
                         <!-- Other form fields -->
-                        <TextBlock Grid.Row="8" TextWrapping="Wrap"
+                        <TextBlock Grid.Row="9" TextWrapping="Wrap"
                                    Text="{i18n:Localize CrashReportDescriptionField}" Margin="0 0 0 3" />
 
-                        <TextBox Grid.Row="9" AcceptsTab="False"
+                        <TextBox Grid.Row="10" AcceptsTab="False"
                                  MaxLength="5000"
                                  Text="{Binding UserEnteredReportDescription}"
-                                 AcceptsReturn="True" MinHeight="150"
+                                 AcceptsReturn="True" MinHeight="100"
                                  Watermark="{i18n:Localize CrashReportDescriptionFieldPlaceholder}" />
 
-                        <TextBlock Grid.Row="10" TextWrapping="Wrap"
+                        <TextBlock Grid.Row="11" TextWrapping="Wrap"
                                    Text="{i18n:Localize CrashReportEmailField}" Margin="0 15 0 3" />
 
-                        <TextBox Grid.Row="11" AcceptsTab="False"
+                        <TextBox Grid.Row="12" AcceptsTab="False"
                                  MaxLength="250"
                                  Text="{Binding ReporterEmail}"
                                  AcceptsReturn="False"
                                  Watermark="{i18n:Localize CrashReportEmailFieldPlaceholder}" />
 
-                        <TextBlock Grid.Row="12" TextWrapping="Wrap"
+                        <TextBlock Grid.Row="13" TextWrapping="Wrap" FontSize="12"
                                    Text="{i18n:Localize CrashReportEmailFieldNotice}" Margin="0 5 0 5" />
 
                     </Grid>

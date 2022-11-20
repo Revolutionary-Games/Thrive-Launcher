@@ -761,7 +761,7 @@ If a Thrive team member verifies that the PR is safe this warning goes away. Alt
     <value>Open Folder</value>
   </data>
   <data name="IncludeInReport" xml:space="preserve">
-    <value>Include?</value>
+    <value>Include:</value>
   </data>
   <data name="ActiveReportingInfo" xml:space="preserve">
     <value>Reporting crash {0} at {1}</value>
@@ -798,5 +798,11 @@ If a Thrive team member verifies that the PR is safe this warning goes away. Alt
   </data>
   <data name="CrashReportDeleteAfterSubmitting" xml:space="preserve">
     <value>Delete this crash dump file after reporting (recommended)</value>
+  </data>
+  <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
+    <value>The selected crash happened a while ago. As such it may not be related to the latest log files or the game output stored by the launcher. Please check carefully if you are reporting the right crash and related log files.</value>
+  </data>
+  <data name="CrashReportIncludeLauncherOutput" xml:space="preserve">
+    <value>Include the game output as shown in the launcher currently played game popup (recommended when reporting a crash from the latest run of the game)</value>
   </data>
 </root>

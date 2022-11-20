@@ -175,11 +175,24 @@ public class CrashReporterWindowViewModel : ViewModelBase
             this.RaisePropertyChanged(nameof(SelectedCrashName));
             this.RaisePropertyChanged(nameof(ShowCrashDumpDeleteAfterReportCheckBox));
             this.RaisePropertyChanged(nameof(ReportingCrashInfoString));
+            this.RaisePropertyChanged(nameof(CrashReportIsOld));
         }
     }
 
     public string? SelectedCrashName => SelectedCrashToReport?.Name;
     public bool ShowCrashDumpDeleteAfterReportCheckBox => SelectedCrashToReport is ReportableCrashDump;
+
+    public bool CrashReportIsOld
+    {
+        get
+        {
+            if (SelectedCrashToReport == null)
+                return false;
+
+            return DateTime.UtcNow - SelectedCrashToReport.CrashTime >
+                LauncherConstants.OldCrashReportWarningThreshold;
+        }
+    }
 
     public string ReportingCrashInfoString => string.Format(Resources.ActiveReportingInfo, SelectedCrashName,
         SelectedCrashToReport?.FormatTime());
@@ -327,6 +340,7 @@ public class CrashReporterWindowViewModel : ViewModelBase
     public void CancelCrashReporting()
     {
         ShowCrashPicker = true;
+        RequireCloseConfirmationIfCloseAttempted = false;
     }
 
     public void SubmitReport()

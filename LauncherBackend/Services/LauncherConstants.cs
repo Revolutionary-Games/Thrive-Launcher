@@ -172,6 +172,8 @@ public static class LauncherConstants
 
     public static readonly TimeSpan DelayForBackendStateCheckOnStart = TimeSpan.FromMilliseconds(500);
 
+    public static readonly TimeSpan OldCrashReportWarningThreshold = TimeSpan.FromDays(1);
+
     /// <summary>
     ///   Configures the launcher URL connection modes
     /// </summary>
