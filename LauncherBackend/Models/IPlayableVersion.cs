@@ -23,9 +23,10 @@ public class StoreVersion : IPlayableVersion
 {
     private readonly string storeName;
 
-    public StoreVersion(string storeName)
+    public StoreVersion(string storeName, string readableName)
     {
-        this.storeName = storeName;
+        this.storeName = readableName;
+        InternalStoreName = storeName;
     }
 
     public string VersionName => storeName;
@@ -41,6 +42,8 @@ public class StoreVersion : IPlayableVersion
 
     public DownloadableInfo Download =>
         throw new InvalidOperationException("Store versions can't be separately downloaded");
+
+    public string InternalStoreName { get; }
 }
 
 public class DevBuildVersion : IPlayableVersion

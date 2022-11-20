@@ -116,6 +116,11 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             StartLauncherInfoFetch();
         }
+        else if (allowTaskStarts)
+        {
+            // Just show what info we have so far for the store version's available versions
+            DoStoreAlternativeToInfoRetrieve();
+        }
 
         // In case the launcher was restarted without the process ending we need to restore some state from the backend
         if (allowTaskStarts)
@@ -402,47 +407,86 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private void CreateLauncherInfoRetrieveTask()
     {
-        launcherInformationTask = new Task(() =>
+        launcherInformationTask = new Task(PerformLauncherInfoRetrieve);
+    }
+
+    private async void PerformLauncherInfoRetrieve()
+    {
+        var launcherInfo = await FetchLauncherInfo();
+
+        if (launcherInfo == null)
+            return;
+
+        try
         {
-            var launcherInfo = FetchLauncherInfo().Result;
-
-            if (launcherInfo == null)
-                return;
-
-            try
+            logger.LogInformation(
+                "Version information loaded. Thrive versions: {Versions}, latest launcher: {LatestVersion}",
+                launcherInfo.Versions.Count, launcherInfo.LauncherVersion.LatestVersion);
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Got bad launcher info data");
+            Dispatcher.UIThread.Post(() =>
             {
-                logger.LogInformation(
-                    "Version information loaded. Thrive versions: {Versions}, latest launcher: {LatestVersion}",
-                    launcherInfo.Versions.Count, launcherInfo.LauncherVersion.LatestVersion);
-            }
-            catch (Exception e)
-            {
-                logger.LogError(e, "Got bad launcher info data");
-                Dispatcher.UIThread.Post(() =>
-                {
-                    ShowNotice(Resources.VersionInfoLoadFailureTitle, Resources.VersionInfoLoadFailureBadData);
-                });
-                return;
-            }
+                ShowNotice(Resources.VersionInfoLoadFailureTitle, Resources.VersionInfoLoadFailureBadData);
+            });
+            return;
+        }
 
-            // Wait for devcenter connection task if currently running
-            while (CheckingDevCenterConnection)
-            {
-                // ReSharper disable MethodSupportsCancellation
-                Task.Delay(TimeSpan.FromMilliseconds(300)).Wait();
+        await WaitForDevCenterConnection();
 
-                // ReSharper restore MethodSupportsCancellation
-                logger.LogDebug("Waiting for DevCenter status check request to complete...");
-            }
+        Dispatcher.UIThread.Post(() =>
+        {
+            // We now have the version info to work with
+            ThriveVersionInformation = launcherInfo;
+
+            CheckLauncherVersion(launcherInfo);
+        });
+    }
+
+    /// <summary>
+    ///   Alternative operations when a store version is used that doesn't have external versions enabled to
+    ///   <see cref="PerformLauncherInfoRetrieve"/>
+    /// </summary>
+    private void DoStoreAlternativeToInfoRetrieve()
+    {
+        // ReSharper disable once MethodSupportsCancellation
+        Task.Run(async () =>
+        {
+            logger.LogInformation("Starting as launcher store version with external versions disabled");
+
+            await WaitForDevCenterConnection();
 
             Dispatcher.UIThread.Post(() =>
             {
-                // We now have the version info to work with
-                ThriveVersionInformation = launcherInfo;
-
-                CheckLauncherVersion(launcherInfo);
+                // We use dummy version info here to get rid of the loading screen in the launcher for store versions
+                ThriveVersionInformation = new LauncherThriveInformation(
+                    new LauncherVersionInfo(versionUtilities.AssemblyVersion.ToString()), -1,
+                    new List<ThriveVersionLauncherInfo>(), new Dictionary<string, DownloadMirrorInfo>());
             });
         });
+    }
+
+    private async Task WaitForDevCenterConnection()
+    {
+        // Wait for devcenter connection task if currently running
+        int timeout = 30;
+        while (CheckingDevCenterConnection)
+        {
+            // ReSharper disable MethodSupportsCancellation
+            await Task.Delay(TimeSpan.FromMilliseconds(300));
+
+            // ReSharper restore MethodSupportsCancellation
+            logger.LogDebug("Waiting for DevCenter status check request to complete...");
+
+            --timeout;
+
+            if (timeout < 1)
+            {
+                logger.LogWarning("Timing out waiting for a DevCenter connection");
+                break;
+            }
+        }
     }
 
     private void StartLauncherInfoFetch()

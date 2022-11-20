@@ -228,7 +228,7 @@ public class CrashReporter : ICrashReporter
 
         var storeVersion = storeVersionDetector.Detect();
 
-        form.GameVersion = thriveRunner.PlayedThriveVersion?.VersionName ?? "unknown";
+        form.GameVersion = "unknown";
 
         // Don't include the arch in normal versions in the report
         if (thriveRunner.PlayedThriveVersion is PlayableVersion playableVersion)
@@ -242,8 +242,7 @@ public class CrashReporter : ICrashReporter
 
         // Only override the store name for when actually playing the store version and not an external one
         // TODO: test that this is detected correctly
-        if (storeVersion.IsStoreVersion && (form.GameVersion == storeVersion.StoreName ||
-                thriveRunner.PlayedThriveVersion is StoreVersion))
+        if (storeVersion.IsStoreVersion && thriveRunner.PlayedThriveVersion is StoreVersion)
         {
             logger.LogInformation("This report is about a game store version");
             form.Store = storeVersion.StoreName;
