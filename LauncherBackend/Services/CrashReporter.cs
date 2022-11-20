@@ -154,7 +154,7 @@ public class CrashReporter : ICrashReporter
         foreach (var logFile in logFiles)
         {
             int length = 0;
-            bool truncated = true;
+            bool truncated = false;
 
             logFileBuilder.Append("==== START OF ");
             logFileBuilder.Append(Path.GetFileName(logFile));
@@ -191,7 +191,7 @@ public class CrashReporter : ICrashReporter
         {
             logFileBuilder.Append("==== START OF LAUNCHER OUTPUT ====\n");
             logFileBuilder.Append(launcherSavedOutput);
-            logFileBuilder.Append("==== END OF LAUNCHER OUTPUT ====\n");
+            logFileBuilder.Append("\n==== END OF LAUNCHER OUTPUT ====\n");
         }
 
         return logFileBuilder;
@@ -230,9 +230,20 @@ public class CrashReporter : ICrashReporter
 
         form.GameVersion = thriveRunner.PlayedThriveVersion?.VersionName ?? "unknown";
 
+        // Don't include the arch in normal versions in the report
+        if (thriveRunner.PlayedThriveVersion is PlayableVersion playableVersion)
+        {
+            form.GameVersion = playableVersion.PlainVersionNumber;
+        }
+        else if (thriveRunner.PlayedThriveVersion != null)
+        {
+            form.GameVersion = thriveRunner.PlayedThriveVersion.VersionName;
+        }
+
         // Only override the store name for when actually playing the store version and not an external one
         // TODO: test that this is detected correctly
-        if (storeVersion.IsStoreVersion && form.GameVersion == storeVersion.StoreName)
+        if (storeVersion.IsStoreVersion && (form.GameVersion == storeVersion.StoreName ||
+                thriveRunner.PlayedThriveVersion is StoreVersion))
         {
             logger.LogInformation("This report is about a game store version");
             form.Store = storeVersion.StoreName;

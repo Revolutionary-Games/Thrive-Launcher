@@ -7,10 +7,11 @@ using DevCenterCommunication.Models;
 /// </summary>
 public class PlayableVersion : IPlayableVersion
 {
-    public PlayableVersion(string formattedVersionWithArch, DownloadableInfo versionDownload, bool isLatest,
-        string folderName)
+    public PlayableVersion(string formattedVersionWithArch, string plainVersionNumber, DownloadableInfo versionDownload,
+        bool isLatest, string folderName)
     {
         VersionName = formattedVersionWithArch;
+        PlainVersionNumber = plainVersionNumber;
         IsLatest = isLatest;
         FolderName = folderName;
         Download = versionDownload;
@@ -32,4 +33,10 @@ public class PlayableVersion : IPlayableVersion
     public bool IsPublicBuildC => false;
 
     public DownloadableInfo Download { get; }
+
+    /// <summary>
+    ///   The plain version number (for example 1.0.2.4). In contrast the <see cref="VersionName"/> contains the
+    ///   platform etc. info.
+    /// </summary>
+    public string PlainVersionNumber { get; }
 }

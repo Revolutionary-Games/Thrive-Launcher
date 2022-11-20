@@ -1520,5 +1520,35 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("CrashReportIncludeLauncherOutput", resourceCulture);
             }
         }
+        
+        public static string ReportSubmitErrorTooManyRequests {
+            get {
+                return ResourceManager.GetString("ReportSubmitErrorTooManyRequests", resourceCulture);
+            }
+        }
+        
+        public static string ReportSubmitErrorServerError {
+            get {
+                return ResourceManager.GetString("ReportSubmitErrorServerError", resourceCulture);
+            }
+        }
+        
+        public static string ReportSubmitErrorBadRequest {
+            get {
+                return ResourceManager.GetString("ReportSubmitErrorBadRequest", resourceCulture);
+            }
+        }
+        
+        public static string ReportSubmitErrorNetworkError {
+            get {
+                return ResourceManager.GetString("ReportSubmitErrorNetworkError", resourceCulture);
+            }
+        }
+        
+        public static string ReportSubmitErrorUnknown {
+            get {
+                return ResourceManager.GetString("ReportSubmitErrorUnknown", resourceCulture);
+            }
+        }
     }
 }

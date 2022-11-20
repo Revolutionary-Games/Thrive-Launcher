@@ -48,6 +48,7 @@ public class CrashReporterWindowViewModel : ViewModelBase
     private bool showRetryButton;
     private bool reportSubmitted;
     private bool deleteDumpAfterReporting;
+    private string reportSubmitError = string.Empty;
 
     private int? autoCloseDelay;
 
@@ -203,7 +204,12 @@ public class CrashReporterWindowViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref submittingReport, value);
     }
 
-    // TODO: implement
+    public string ReportSubmitError
+    {
+        get => reportSubmitError;
+        set => this.RaiseAndSetIfChanged(ref reportSubmitError, value);
+    }
+
     public bool ShowRetryButton
     {
         get => showRetryButton;
@@ -282,6 +288,7 @@ public class CrashReporterWindowViewModel : ViewModelBase
         ShowRetryButton = false;
         AttachLauncherOutput = true;
         DeleteCrashDumpAfterReporting = true;
+        ReportSubmitError = string.Empty;
 
         AvailableLogFilesToAttach = crashReporter.GetAvailableLogFiles().ToList();
 
@@ -407,7 +414,15 @@ public class CrashReporterWindowViewModel : ViewModelBase
             {
                 logger.LogWarning("Failed to submit a report with error type: {Result}", result);
 
-                // TODO: show error
+                ReportSubmitError = result switch
+                {
+                    CrashReporterSubmitResult.TooManyRequests => Resources.ReportSubmitErrorTooManyRequests,
+                    CrashReporterSubmitResult.ServerError => Resources.ReportSubmitErrorServerError,
+                    CrashReporterSubmitResult.BadRequest => Resources.ReportSubmitErrorBadRequest,
+                    CrashReporterSubmitResult.NetworkError => Resources.ReportSubmitErrorNetworkError,
+                    CrashReporterSubmitResult.UnknownError => Resources.ReportSubmitErrorUnknown,
+                    _ => Resources.ReportSubmitErrorUnknown,
+                };
 
                 ShowRetryButton = true;
             }
@@ -418,6 +433,7 @@ public class CrashReporterWindowViewModel : ViewModelBase
                 this.RaisePropertyChanged(nameof(CreatedReportViewUrl));
                 this.RaisePropertyChanged(nameof(CreatedReportDeleteUrl));
                 ReportSubmitted = true;
+                ReportSubmitError = string.Empty;
 
                 if (DeleteCrashDumpAfterReporting && SelectedCrashToReport is ReportableCrashDump crashDump)
                 {
@@ -456,15 +472,18 @@ public class CrashReporterWindowViewModel : ViewModelBase
                 return;
             }
 
-            if (delay <= 0)
+            Dispatcher.UIThread.Post(() =>
             {
-                logger.LogInformation("Auto close delay expired, closing");
-                WantsReporterClosed = true;
-                return;
-            }
+                if (delay <= 0)
+                {
+                    logger.LogInformation("Auto close delay expired, closing");
+                    WantsReporterClosed = true;
+                    return;
+                }
 
-            // TODO: make sure this doesn't cause problems if the user manually closes the window
-            AutoCloseDelay = delay.Value - 1;
+                // TODO: make sure this doesn't cause problems if the user manually closes the window
+                AutoCloseDelay = delay.Value - 1;
+            });
         }
     }
 }

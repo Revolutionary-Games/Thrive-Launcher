@@ -805,4 +805,19 @@ If a Thrive team member verifies that the PR is safe this warning goes away. Alt
   <data name="CrashReportIncludeLauncherOutput" xml:space="preserve">
     <value>Include the game output as shown in the launcher currently played game popup (recommended when reporting a crash from the latest run of the game)</value>
   </data>
+  <data name="ReportSubmitErrorTooManyRequests" xml:space="preserve">
+    <value>Submitting the report failed due to too many recent requests from your IP address, please wait up to an hour and then try again</value>
+  </data>
+  <data name="ReportSubmitErrorServerError" xml:space="preserve">
+    <value>Submitting the report failed due to a server problem, please wait some time and then try again. If the issue persists, please let us know.</value>
+  </data>
+  <data name="ReportSubmitErrorBadRequest" xml:space="preserve">
+    <value>Submitting the report failed due to bad information entered in the crash report form, please double check the information you are trying to submit and then try again</value>
+  </data>
+  <data name="ReportSubmitErrorNetworkError" xml:space="preserve">
+    <value>Submitting the report failed due to a network problem, please check your internet connection and try again in a few minutes</value>
+  </data>
+  <data name="ReportSubmitErrorUnknown" xml:space="preserve">
+    <value>Submitting the report failed due to an unknown error, please try again later</value>
+  </data>
 </root>

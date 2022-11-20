@@ -13,7 +13,7 @@ public static class LauncherConstants
     ///   The mode the launcher is in. ONLY COMMIT WHEN IN PRODUCTION MODE. This can be changed temporarily for local
     ///   testing.
     /// </summary>
-    public const LauncherMode Mode = LauncherMode.LocalTesting;
+    public const LauncherMode Mode = LauncherMode.Production;
 
     /// <summary>
     ///   File name to determine which exact version is extracted as a DevBuild

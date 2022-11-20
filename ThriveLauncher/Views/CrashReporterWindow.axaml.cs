@@ -170,9 +170,12 @@ public partial class CrashReporterWindow : Window
             checkBox.Checked += (_, _) =>
             {
                 if (!autoChangingCheckBoxes)
-                {
-                    DerivedDataContext.ToggleLogInclusion(logFile, checkBox.IsChecked == true);
-                }
+                    DerivedDataContext.ToggleLogInclusion(logFile, true);
+            };
+            checkBox.Unchecked += (_, _) =>
+            {
+                if (!autoChangingCheckBoxes)
+                    DerivedDataContext.ToggleLogInclusion(logFile, false);
             };
 
             container.Children.Add(checkBox);

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i18n="clr-namespace:ThriveLauncher.Services.Localization"
         xmlns:controls="clr-namespace:ThriveLauncher.Controls"
-        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="650"
-        Width="600" Height="650"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="680"
+        Width="600" Height="680"
         MinHeight="400"
         MinWidth="600"
         x:Class="ThriveLauncher.Views.CrashReporterWindow"
@@ -59,9 +59,17 @@
                         <TextBlock TextWrapping="Wrap" Text="{i18n:Localize SubmittingReportMessage}"
                                    IsVisible="{Binding SubmittingReport}" />
 
+                        <TextBlock TextWrapping="Wrap" Text="{Binding ReportSubmitError}"
+                                   IsVisible="{Binding ReportSubmitError,Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+
                         <StackPanel Orientation="Horizontal" Spacing="3" HorizontalAlignment="Center">
                             <Button DockPanel.Dock="Bottom" Classes="DialogButton" Command="{Binding SubmitReport}"
-                                    Content="{i18n:Localize Submit}" IsEnabled="{Binding CanSubmitReport}" />
+                                    Content="{i18n:Localize Submit}" IsEnabled="{Binding CanSubmitReport}"
+                                    IsVisible="{Binding !ShowRetryButton}" />
+
+                            <Button DockPanel.Dock="Bottom" Classes="DialogButton" Command="{Binding SubmitReport}"
+                                    Content="{i18n:Localize Retry}" IsEnabled="{Binding CanSubmitReport}"
+                                    IsVisible="{Binding ShowRetryButton}" />
 
                             <Button DockPanel.Dock="Bottom" Classes="DialogButton Danger"
                                     Command="{Binding CancelCrashReporting}"
@@ -134,7 +142,7 @@
                     </Grid>
                 </DockPanel>
             </ScrollViewer>
-            <StackPanel IsVisible="{Binding ReportSubmitted}">
+            <StackPanel IsVisible="{Binding ReportSubmitted}" Margin="5">
 
                 <TextBlock TextWrapping="Wrap" Text="{i18n:Localize SuccessfulReportSubmitMessage}"
                            Margin="0 5 0 15" />
@@ -164,12 +172,11 @@
                                IsVisible="{Binding AutoCloseDelay,Converter={x:Static ObjectConverters.IsNull}}" />
                     <TextBlock TextWrapping="Wrap" Text="{Binding AutoCloseDelayText}"
                                IsVisible="{Binding AutoCloseDelay,Converter={x:Static ObjectConverters.IsNotNull}}" />
-
-                    <Button Margin="15 0 0 0" Command="{Binding CancelAutoClose}"
-                            IsVisible="{Binding AutoCloseDelay,Converter={x:Static ObjectConverters.IsNotNull}}"
-                            Content="{i18n:Localize StopAutoClose}" />
-
                 </WrapPanel>
+
+                <Button Margin="15 0 0 0" Command="{Binding CancelAutoClose}"
+                        IsVisible="{Binding AutoCloseDelay,Converter={x:Static ObjectConverters.IsNotNull}}"
+                        Content="{i18n:Localize StopAutoClose}" />
             </StackPanel>
         </DockPanel>
 
