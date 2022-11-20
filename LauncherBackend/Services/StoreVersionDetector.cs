@@ -21,7 +21,9 @@ public class StoreVersionDetector : IStoreVersionDetector
 
     private StoreVersionInfo DetectStoreVersion()
     {
-        // TODO: check that this approach works
+        // ReSharper disable HeuristicUnreachableCode
+#pragma warning disable CS0162
+
 #if LAUNCHER_STEAM
         logger.LogInformation("This is a Steam version of the launcher");
         return new StoreVersionInfo(StoreVersionInfo.SteamInternalName, "Steam", LauncherConstants.ThriveSteamURL);
@@ -32,6 +34,9 @@ public class StoreVersionDetector : IStoreVersionDetector
 
         logger.LogInformation("Not a store version of the launcher");
         return new StoreVersionInfo();
+
+        // ReSharper restore HeuristicUnreachableCode
+#pragma warning restore CS0162
     }
 }
 

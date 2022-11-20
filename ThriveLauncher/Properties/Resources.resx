@@ -820,4 +820,7 @@ If a Thrive team member verifies that the PR is safe this warning goes away. Alt
   <data name="ReportSubmitErrorUnknown" xml:space="preserve">
     <value>Submitting the report failed due to an unknown error, please try again later</value>
   </data>
+  <data name="LauncherOptionShowExternalVersions" xml:space="preserve">
+    <value>Show external Thrive versions that require separate downloads to play</value>
+  </data>
 </root>

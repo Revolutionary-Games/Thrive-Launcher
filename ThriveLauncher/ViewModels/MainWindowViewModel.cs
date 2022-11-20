@@ -457,13 +457,20 @@ public partial class MainWindowViewModel : ViewModelBase
 
             await WaitForDevCenterConnection();
 
-            Dispatcher.UIThread.Post(() =>
-            {
-                // We use dummy version info here to get rid of the loading screen in the launcher for store versions
-                ThriveVersionInformation = new LauncherThriveInformation(
-                    new LauncherVersionInfo(versionUtilities.AssemblyVersion.ToString()), -1,
-                    new List<ThriveVersionLauncherInfo>(), new Dictionary<string, DownloadMirrorInfo>());
-            });
+            LoadDummyStoreVersionData();
+        });
+    }
+
+    private void LoadDummyStoreVersionData()
+    {
+        Dispatcher.UIThread.Post(() =>
+        {
+            launcherInfoRetriever.ForgetInfo();
+
+            // We use dummy version info here to get rid of the loading screen in the launcher for store versions
+            ThriveVersionInformation = new LauncherThriveInformation(
+                new LauncherVersionInfo(versionUtilities.AssemblyVersion.ToString()), -1,
+                new List<ThriveVersionLauncherInfo>(), new Dictionary<string, DownloadMirrorInfo>());
         });
     }
 
@@ -492,7 +499,18 @@ public partial class MainWindowViewModel : ViewModelBase
     private void StartLauncherInfoFetch()
     {
         if (launcherInformationTask.Status == TaskStatus.Created)
+        {
+            logger.LogDebug("Starting fetch of launcher info...");
             launcherInformationTask.Start();
+        }
+        else if (IsStoreVersion)
+        {
+            // If the user toggles between the external versions option in the store version,
+            // we need to do this kind of thing here to get things back
+            launcherInfoRetriever.RestoreBackupInfo();
+
+            Dispatcher.UIThread.Post(() => { ThriveVersionInformation = launcherInfoRetriever.CurrentlyLoadedInfo; });
+        }
     }
 
     private void OnVersionInfoLoaded()

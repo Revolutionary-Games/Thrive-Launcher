@@ -1550,5 +1550,11 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("ReportSubmitErrorUnknown", resourceCulture);
             }
         }
+        
+        public static string LauncherOptionShowExternalVersions {
+            get {
+                return ResourceManager.GetString("LauncherOptionShowExternalVersions", resourceCulture);
+            }
+        }
     }
 }

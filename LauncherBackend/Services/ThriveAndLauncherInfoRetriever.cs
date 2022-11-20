@@ -19,6 +19,8 @@ public class ThriveAndLauncherInfoRetriever : IThriveAndLauncherInfoRetriever
     private readonly INetworkDataRetriever networkDataRetriever;
     private readonly ILauncherPaths launcherPaths;
 
+    private LauncherThriveInformation? backupOfRetrievedInfo;
+
     public ThriveAndLauncherInfoRetriever(ILogger<ThriveAndLauncherInfoRetriever> logger,
         INetworkDataRetriever networkDataRetriever, ILauncherPaths launcherPaths)
     {
@@ -86,6 +88,7 @@ public class ThriveAndLauncherInfoRetriever : IThriveAndLauncherInfoRetriever
         }
 
         CurrentlyLoadedInfo = result;
+        backupOfRetrievedInfo = result;
         return result;
     }
 
@@ -123,6 +126,26 @@ public class ThriveAndLauncherInfoRetriever : IThriveAndLauncherInfoRetriever
             logger.LogError(e, "Failed to load cached launcher info file");
             return null;
         }
+    }
+
+    public void RestoreBackupInfo()
+    {
+        if (backupOfRetrievedInfo == null)
+        {
+            logger.LogError("We should have stored a backup of the version info, but we don't have it");
+            return;
+        }
+
+        logger.LogInformation("Restoring backup version info to fix re-enabling external versions");
+        CurrentlyLoadedInfo = backupOfRetrievedInfo;
+    }
+
+    public void ForgetInfo()
+    {
+        logger.LogInformation(
+            "Forgetting downloaded info (for use with disabling external versions in store versions of the launcher)");
+
+        CurrentlyLoadedInfo = null;
     }
 
     private async Task CheckLauncherDataSignature(SignedDataHandler dataHandler, byte[] data, byte[] signature)
@@ -207,4 +230,15 @@ public interface IThriveAndLauncherInfoRetriever
     public bool HasCachedFile();
 
     public Task<LauncherThriveInformation?> LoadFromCache();
+
+    /// <summary>
+    ///   Re-enables info stored by <see cref="DownloadInfo"/> into <see cref="CurrentlyLoadedInfo"/>
+    /// </summary>
+    public void RestoreBackupInfo();
+
+    /// <summary>
+    ///   Forgets the currently loaded info in <see cref="CurrentlyLoadedInfo"/>. This is used for disabling external
+    ///   versions in store versions.
+    /// </summary>
+    public void ForgetInfo();
 }

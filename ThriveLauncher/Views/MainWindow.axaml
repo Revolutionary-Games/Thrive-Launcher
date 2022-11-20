@@ -224,30 +224,45 @@
                             </WrapPanel>
                             <Border DockPanel.Dock="Top" Padding="0" BorderThickness="1"
                                     BorderBrush="{DynamicResource BlueElement}" />
-                            <CheckBox IsChecked="{Binding ShowWebContent}"
-                                      Content="{i18n:Localize LauncherOptionWebFeeds}" />
 
-                            <CheckBox IsChecked="{Binding Hide32BitVersions}"
-                                      Content="{i18n:Localize LauncherOptionHide32Bit}" />
+                            <ScrollViewer>
+                                <StackPanel>
+                                    <CheckBox IsChecked="{Binding ShowWebContent}"
+                                              Content="{i18n:Localize LauncherOptionWebFeeds}" />
 
-                            <CheckBox IsChecked="{Binding HideLauncherOnPlay}"
-                                      Content="{i18n:Localize LauncherOptionHideOnPlay}" />
+                                    <CheckBox IsChecked="{Binding Hide32BitVersions}"
+                                              Content="{i18n:Localize LauncherOptionHide32Bit}" />
 
-                            <CheckBox IsChecked="{Binding CloseLauncherAfterGameExit}"
-                                      Content="{i18n:Localize LauncherOptionCloseAfterPlaying}" />
+                                    <CheckBox IsChecked="{Binding HideLauncherOnPlay}"
+                                              Content="{i18n:Localize LauncherOptionHideOnPlay}" />
 
-                            <CheckBox IsChecked="{Binding CloseLauncherOnGameStart}"
-                                      Content="{i18n:Localize LauncherOptionCloseAfterStart}" />
+                                    <CheckBox IsChecked="{Binding CloseLauncherAfterGameExit}"
+                                              Content="{i18n:Localize LauncherOptionCloseAfterPlaying}" />
 
-                            <CheckBox IsChecked="{Binding EnableStoreVersionSeamlessMode}"
-                                      IsVisible="{Binding IsStoreVersion}"
-                                      Content="{i18n:Localize LauncherOptionAllowSeamlessMode}" />
+                                    <CheckBox IsChecked="{Binding CloseLauncherOnGameStart}"
+                                              Content="{i18n:Localize LauncherOptionCloseAfterStart}" />
 
-                            <!-- TODO: option to show external versions in store versions -->
+                                    <CheckBox IsChecked="{Binding StoreVersionShowExternalVersions}"
+                                              IsVisible="{Binding IsStoreVersion}"
+                                              Content="{i18n:Localize LauncherOptionShowExternalVersions}" />
 
-                            <CheckBox IsChecked="{Binding AllowAutoUpdate}"
-                                      IsVisible="{Binding !IsStoreVersion}"
-                                      Content="{i18n:Localize LauncherOptionAutoUpdate}" />
+                                    <!-- TODO: implement beta version showing -->
+                                    <!--<CheckBox IsChecked="{Binding ShowLatestBetaVersion}"
+                                              Content="{i18n:Localize LauncherOptionShowLatestBetaVersion}" />
+
+                                    <CheckBox IsChecked="{Binding ShowAllBetaVersions}"
+                                              Content="{i18n:Localize LauncherOptionShowAllBetaVersions}" />-->
+
+                                    <CheckBox IsChecked="{Binding EnableStoreVersionSeamlessMode}"
+                                              IsVisible="{Binding IsStoreVersion}"
+                                              Content="{i18n:Localize LauncherOptionAllowSeamlessMode}" />
+
+
+                                    <CheckBox IsChecked="{Binding AllowAutoUpdate}"
+                                              IsVisible="{Binding !IsStoreVersion}"
+                                              Content="{i18n:Localize LauncherOptionAutoUpdate}" />
+                                </StackPanel>
+                            </ScrollViewer>
 
                             <StackPanel Orientation="Horizontal" Margin="0 5">
                                 <TextBlock Margin="0 0 2 0" Text="{i18n:Localize LauncherSelectedLanguage}"

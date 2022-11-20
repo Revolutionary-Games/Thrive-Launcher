@@ -1,6 +1,7 @@
 namespace ThriveLauncher.ViewModels;
 
 using LauncherBackend.Models;
+using Microsoft.Extensions.Logging;
 using Properties;
 using ReactiveUI;
 
@@ -102,7 +103,15 @@ public partial class MainWindowViewModel
             this.RaisePropertyChanged();
 
             if (StoreVersionShowExternalVersions)
+            {
                 StartLauncherInfoFetch();
+            }
+            else
+            {
+                // Remove the versions from the play selector
+                logger.LogInformation("Forgetting loaded launcher info if there is any");
+                LoadDummyStoreVersionData();
+            }
         }
     }
 
