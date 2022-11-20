@@ -143,7 +143,7 @@ public class ThriveAndLauncherInfoRetriever : IThriveAndLauncherInfoRetriever
                 () => ResourceUtilities.ReadManifestResourceRawAsync(resourceName), resourceName));
         }
 
-        string? signedWith = null;
+        string? signedWith;
         try
         {
             signedWith = await dataHandler.VerifySignature(data, signature, keys);
