@@ -68,7 +68,7 @@ public class ThriveInstaller : IThriveInstaller
         {
             // TODO: translations for this and the DevBuild name
             yield return (string.Format(launcherTranslations.StoreVersionName, detectedStore.StoreName),
-                new StoreVersion(detectedStore.StoreName, $"{detectedStore.StoreReadableName} Version"));
+                detectedStore.CreateStoreVersion());
         }
 
         if (devCenterClient.DevCenterConnection != null)

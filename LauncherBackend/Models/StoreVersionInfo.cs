@@ -30,4 +30,18 @@ public class StoreVersionInfo
     public bool IsSteam => IsStoreVersion && StoreName == SteamInternalName;
 
     public bool ShouldPreventDefaultDevCenterVisibility => IsSteam;
+
+    /// <summary>
+    ///   Creates a store version from this info
+    /// </summary>
+    /// <param name="overriddenReadableName">
+    ///   If not null overrides the store version. Note that played version remembering is based on this.
+    /// </param>
+    /// <returns>The created <see cref="StoreVersion"/> object</returns>
+    public StoreVersion CreateStoreVersion(string? overriddenReadableName = null)
+    {
+        overriddenReadableName ??= $"{StoreReadableName} Version";
+
+        return new StoreVersion(StoreName, overriddenReadableName);
+    }
 }

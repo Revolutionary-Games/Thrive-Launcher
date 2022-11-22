@@ -305,10 +305,10 @@ public partial class MainWindowViewModel : ViewModelBase
         SelectedVersionToPlay = userReadableVersion;
 
         // When selecting the latest version, we want to clear the remembered version so the user always gets the
-        // latest version to play
-        if (version.VersionObject is PlayableVersion { IsLatest: true })
+        // latest version to play. Or if playing a store version that also clears it
+        if (version.VersionObject is PlayableVersion { IsLatest: true } or StoreVersion)
         {
-            logger.LogInformation("Select version to play is latest, clearing remembered version");
+            logger.LogInformation("Select version to play is latest (or store version), clearing remembered version");
             settingsManager.RememberedVersion = null;
         }
         else

@@ -21,15 +21,13 @@ public interface IPlayableVersion
 
 public class StoreVersion : IPlayableVersion
 {
-    private readonly string storeName;
-
     public StoreVersion(string storeName, string readableName)
     {
-        this.storeName = readableName;
+        VersionName = readableName;
         InternalStoreName = storeName;
     }
 
-    public string VersionName => storeName;
+    public string VersionName { get; }
 
     public string FolderName => "./";
 
