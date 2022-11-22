@@ -211,7 +211,8 @@ internal class Program
                     try
                     {
                         // Seamless mode should only trigger when remembered version is null or the store version
-                        // otherwise we'd need to do complex stuff like potentially waiting for a devcenter connection here
+                        // otherwise we'd need to do complex stuff like potentially waiting for a
+                        // devcenter connection here
                         var rememberedVersion = settingsManager.RememberedVersion;
 
                         programLogger.LogDebug("Remembered version is: {RememberedVersion}", rememberedVersion);
@@ -239,7 +240,8 @@ internal class Program
                         programLogger.LogError(e, "Failed to run in seamless mode");
                     }
 
-                    // If we failed to start, then fallback to normal launcher operation
+                    // If we failed to start, then fallback to normal launcher operation (so only check running status
+                    // if we actually got to start Thrive)
                     if (started)
                     {
                         if (WaitForRunningThriveToExit(runner, programLogger))

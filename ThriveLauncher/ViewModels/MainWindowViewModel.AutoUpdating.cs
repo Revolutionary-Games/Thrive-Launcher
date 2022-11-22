@@ -251,7 +251,8 @@ public partial class MainWindowViewModel
         {
             logger.LogInformation("We are using the latest launcher version: {Latest}", latest);
 
-            // Only show the text that the launcher is up to date if we can really guarantee it by having loaded fresh data
+            // Only show the text that the launcher is up to date if we can really guarantee it by
+            // having loaded fresh data
             if (versionInfoIsFresh)
                 LauncherIsLatestVersion = true;
         }
