@@ -152,7 +152,8 @@ internal class Program
             programLogger.LogDebug("Verbose logging is enabled");
 
         programLogger.LogDebug("Loading settings");
-        var settings = services.GetRequiredService<ILauncherSettingsManager>().Settings;
+        var settingsManager = services.GetRequiredService<ILauncherSettingsManager>();
+        var settings = settingsManager.Settings;
         programLogger.LogDebug("Settings loaded");
 
         if (!string.IsNullOrEmpty(settings.SelectedLauncherLanguage) || !string.IsNullOrEmpty(options.Language))
@@ -188,7 +189,8 @@ internal class Program
 
         programLogger.LogInformation("Launcher language is: {CurrentCulture}", CultureInfo.CurrentCulture);
 
-        var isStore = services.GetRequiredService<IStoreVersionDetector>().Detect().IsStoreVersion;
+        var storeVersionInfo = services.GetRequiredService<IStoreVersionDetector>().Detect();
+        var isStore = storeVersionInfo.IsStoreVersion;
 
         if (isStore)
         {
@@ -205,8 +207,50 @@ internal class Program
                     programLogger.LogInformation(
                         "Using seamless launcher mode, will attempt to launch before initializing GUI");
 
-                    // TODO: handle transparent mode
-                    throw new NotImplementedException();
+                    bool started = false;
+                    try
+                    {
+                        // Seamless mode should only trigger when remembered version is null or the store version
+                        // otherwise we'd need to do complex stuff like potentially waiting for a devcenter connection here
+                        var rememberedVersion = settingsManager.RememberedVersion;
+
+                        programLogger.LogDebug("Remembered version is: {RememberedVersion}", rememberedVersion);
+
+                        // If the store version starts using translations in ThriveInstaller.GetAvailableThriveVersions
+                        // then this should be updated as well, though not the most critical thing as remembered
+                        // version being null should still allow things to work
+                        var storeVersion = storeVersionInfo.CreateStoreVersion();
+
+                        if (string.IsNullOrWhiteSpace(rememberedVersion) ||
+                            rememberedVersion == storeVersion.VersionName)
+                        {
+                            programLogger.LogInformation("Trying to start game in seamless mode...");
+                            runner.StartThrive(storeVersion, CancellationToken.None);
+                            started = true;
+                        }
+                        else
+                        {
+                            programLogger.LogInformation(
+                                "Seamless mode is disabled due to selected game version in the launcher");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        programLogger.LogError(e, "Failed to run in seamless mode");
+                    }
+
+                    // If we failed to start, then fallback to normal launcher operation
+                    if (started)
+                    {
+                        if (WaitForRunningThriveToExit(runner, programLogger))
+                        {
+                            programLogger.LogInformation("Exiting directly after playing Thrive in seamless mode, " +
+                                "as launcher doesn't want to be shown");
+                            return;
+                        }
+
+                        programLogger.LogInformation("Launcher wants to be shown after Thrive run in seamless mode");
+                    }
                 }
             }
             else

@@ -124,7 +124,11 @@ public class ThriveRunner : IThriveRunner
             currentStoreVersionInfo = storeVersionDetector.Detect();
 
             if (!currentStoreVersionInfo.IsStoreVersion)
+            {
+                // This is reset just in case here as otherwise the launcher starting can get into a really bad state
+                runningObservable.Value = false;
                 throw new Exception("We are playing a store version but we haven't detected the store");
+            }
 
             logger.LogDebug("Playing {StoreName} store version", currentStoreVersionInfo.StoreName);
         }
