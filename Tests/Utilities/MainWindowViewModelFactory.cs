@@ -38,12 +38,14 @@ public class MainWindowViewModelFactory
 
     public Options LauncherOptions { get; set; } = new();
 
+    public Mock<IAutoUpdater> AutoUpdaterMock { get; } = new();
+
     public ILogger<MainWindowViewModel> Logger { get; }
 
     public MainWindowViewModel Create()
     {
         return new MainWindowViewModel(Logger, FeedsMock.Object, StoreMock.Object, SettingsMock.Object,
             new VersionUtilities(), PathsMock.Object, InfoRetrieveMock.Object, InstallerMock.Object,
-            DevCenterMock.Object, ThriveRunnerMock.Object, LauncherOptions, false);
+            DevCenterMock.Object, ThriveRunnerMock.Object, LauncherOptions, AutoUpdaterMock.Object, false);
     }
 }

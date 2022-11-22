@@ -514,6 +514,18 @@ Launcher logs will have more info.</value>
   <data name="OutdatedLauncherExplanation" xml:space="preserve">
     <value>This version of the launcher is outdated and should be updated. As you are seeing this message auto-update has not started so you will need to manually download the update and install it. You can try to use the current version of the launcher by skipping updating, but you may run into unexpected issues as only the latest launcher version is guaranteed to work with the remote systems the launcher interacts with.</value>
   </data>
+  <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
+    <value>You are using a type of the launcher that cannot auto-update. If you would like to use auto-updates in the future, please install a variant of the launcher that has auto-update capability.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
+    <value>The launcher type you are using should be able to auto-update, but it has not worked for some reason and the latest launcher version has been available for a while now. Please check that you haven't disabled keeping Thrive up to date.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateDisabledByUser" xml:space="preserve">
+    <value>The launcher type you are using is capable of auto-updating, however auto-updating is currently disabled either by the launcher settings or a commandline flag.</value>
+  </data>
+  <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
+    <value>Error: no update file found for this type of launcher. This should not happen. Please try again later and if the issue persist, please let us know.</value>
+  </data>
   <data name="DevCenterConnectFailureTitle" xml:space="preserve">
     <value>DevCenter Connection Failed</value>
   </data>
@@ -822,5 +834,48 @@ If a Thrive team member verifies that the PR is safe this warning goes away. Alt
   </data>
   <data name="LauncherOptionShowExternalVersions" xml:space="preserve">
     <value>Show external Thrive versions that require separate downloads to play</value>
+  </data>
+  <data name="PerformingAutoUpdateTitle" xml:space="preserve">
+    <value>Updating The Launcher</value>
+  </data>
+  <data name="QuitLauncherButton" xml:space="preserve">
+    <value>Exit Launcher Now</value>
+  </data>
+  <data name="StartedAutoUpdateExplanation" xml:space="preserve">
+    <value>The launcher is currently downloading and installing an update, please wait. The downloaded updater may open a new window that requires user interaction to complete the update.</value>
+  </data>
+  <data name="LauncherVersionUpdateDescription" xml:space="preserve">
+    <value>Updating launcher to version {0} (current version: {1})</value>
+  </data>
+  <data name="AutoUpdateError" xml:space="preserve">
+    <value>Auto-update Error</value>
+  </data>
+  <data name="AutoUpdateMissingChannel" xml:space="preserve">
+    <value>Cannot retry an update as this launcher type doesn't have an associated update channel type</value>
+  </data>
+  <data name="RetryingAutoUpdate" xml:space="preserve">
+    <value>Retrying auto-update...</value>
+  </data>
+  <data name="AutoUpdateRetryFailed" xml:space="preserve">
+    <value>Retrying the auto-update has failed. You can ignore the failure to clear out existing auto-update files to make the launcher try again the next time it is restarted.</value>
+  </data>
+  <data name="AutoUpdateSucceededMessage" xml:space="preserve">
+    <value>The auto-updater should have started. You should now, or in a few seconds, see. The launcher needs to be closed for the update to finish. You can close the launcher manually or wait for automatic closing in</value>
+  </data>
+  <data name="IgnoreFailure" xml:space="preserve">
+    <value>Ignore Failure</value>
+  </data>
+  <data name="AutoUpdatingFailedExplanation" xml:space="preserve">
+    <value>Automatic updating of the launcher has failed. The problem is likely that the update installer failed to run correctly. You can retry running an updater by clicking its name below. Alternatively you can press the button below to open the folder the first updater is in, which should allow you to manually run the installer (please let us know if this helps in your case).
+
+You can ignore the failure in order to delete the downloaded updater files and retry the update the next time the launcher is restarted.
+
+If no files are listed below, downloading the update has failed and it cannot be retried without restarting the launcher.</value>
+  </data>
+  <data name="ViewFirstAutoUpdaterFolder" xml:space="preserve">
+    <value>Open Folder First Updater Is In</value>
+  </data>
+  <data name="AutoUpdateFailedTitle" xml:space="preserve">
+    <value>Launcher Update Failed</value>
   </data>
 </root>

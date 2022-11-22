@@ -702,6 +702,10 @@
                            Text="{Binding LauncherOutdatedVersionMessage}" />
                 <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap"
                            Text="{i18n:Localize OutdatedLauncherExplanation}" />
+
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="0 5 0 0"
+                           IsVisible="{Binding LauncherOutdatedAdditionalInfo,Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                           Text="{Binding LauncherOutdatedAdditionalInfo}" />
             </DockPanel>
         </controls:PopupDialog>
 
@@ -771,6 +775,77 @@
                 <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="0 1 0 5" MaxWidth="400"
                            Text="{i18n:Localize PlayUnsafeBuildExplanation}" />
             </DockPanel>
+        </controls:PopupDialog>
+
+        <!-- Auto updater popup -->
+        <controls:PopupDialog Title="{i18n:Localize PerformingAutoUpdateTitle}" ShowOKButton="False" ShowCloseX="True"
+                              CloseCommand="{Binding CancelAutoUpdate}" ShowPopup="{Binding ShowAutoUpdaterPopup}">
+            <Grid MinHeight="400" MinWidth="600" MaxWidth="600" MaxHeight="400" ColumnDefinitions="*,Auto,Auto,*"
+                  RowDefinitions="*,Auto,Auto">
+                <ScrollViewer Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
+                    <StackPanel>
+                        <TextBlock Text="{i18n:Localize StartedAutoUpdateExplanation}" TextWrapping="Wrap" />
+
+                        <TextBlock Text="{Binding AutoUpdateVersionDescription}" TextWrapping="Wrap" />
+
+                        <StackPanel Name="AutoUpdateProgressContainer" />
+                    </StackPanel>
+                </ScrollViewer>
+
+                <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
+                            IsVisible="{Binding AutoUpdatingSucceeded}" Margin="0 5">
+
+                    <TextBlock Text="{Binding AutoUpdateFailureExtraMessage}" TextWrapping="Wrap"
+                               IsVisible="{Binding AutoUpdateFailureExtraMessage,Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+
+                    <WrapPanel Orientation="Horizontal">
+                        <TextBlock TextWrapping="Wrap" Text="{i18n:Localize AutoUpdateSucceededMessage}"
+                                   Margin="0 0 1 0" />
+                        <TextBlock TextWrapping="Wrap" Text="{i18n:Localize AutoCloseStopped}"
+                                   IsVisible="{Binding AutoUpdateClose,Converter={x:Static ObjectConverters.IsNull}}" />
+                        <TextBlock TextWrapping="Wrap" Text="{Binding AutoUpdateCloseDelayText}"
+                                   IsVisible="{Binding AutoUpdateClose,Converter={x:Static ObjectConverters.IsNotNull}}" />
+                    </WrapPanel>
+                </StackPanel>
+
+                <Button Grid.Row="1" Grid.Column="1" Classes="DialogButton Danger" Command="{Binding CancelAutoUpdate}"
+                        IsVisible="{Binding !AutoUpdatingSucceeded}"
+                        Content="{i18n:Localize Cancel}" />
+
+                <Button Grid.Row="1" Grid.Column="1" Classes="DialogButton"
+                        Command="{Binding CloseLauncherAfterAutoUpdateStart}"
+                        IsVisible="{Binding AutoUpdatingSucceeded}"
+                        Content="{i18n:Localize QuitLauncherButton}" />
+
+                <Button Grid.Row="1" Grid.Column="2" Command="{Binding CancelCloseAfterAutoUpdate}"
+                        IsVisible="{Binding AutoUpdateClose,Converter={x:Static ObjectConverters.IsNotNull}}"
+                        Content="{i18n:Localize StopAutoClose}" />
+            </Grid>
+        </controls:PopupDialog>
+
+        <!-- Auto update failure popup -->
+        <controls:PopupDialog Title="{i18n:Localize AutoUpdateFailedTitle}" ShowOKButton="False" ShowCloseX="False"
+                              ShowPopup="{Binding AutoUpdatingFailed}">
+            <Grid MinHeight="400" MinWidth="600" MaxWidth="600" MaxHeight="400" ColumnDefinitions="*,Auto,*"
+                  RowDefinitions="*,Auto,Auto">
+                <ScrollViewer Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                    <StackPanel>
+                        <TextBlock Text="{i18n:Localize AutoUpdatingFailedExplanation}" TextWrapping="Wrap" />
+
+                        <StackPanel Name="AutoUpdateAvailableUpdatersContainer" />
+
+                        <Button Classes="DialogButton" Command="{Binding OpenFirstAutoUpdaterFolder}"
+                                IsEnabled="{Binding HasExistingAutoUpdaters}"
+                                Content="{i18n:Localize ViewFirstAutoUpdaterFolder}" Margin="0 10"/>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                           Text="{Binding AutoUpdateFailureExtraMessage}" TextWrapping="Wrap" />
+
+                <Button Grid.Row="2" Grid.Column="1" Classes="DialogButton Danger" Command="{Binding ClearFailedAutoUpdates}"
+                        Content="{i18n:Localize IgnoreFailure}" />
+            </Grid>
         </controls:PopupDialog>
 
         <controls:PopupDialog Title="{Binding NoticeMessageTitle}" ShowOKButton="{Binding CanDismissNotice}"

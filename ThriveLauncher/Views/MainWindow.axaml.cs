@@ -75,6 +75,7 @@ public partial class MainWindow : Window
             dataContext.InProgressPlayOperations.CollectionChanged -= OnPlayPopupProgressChanged;
             dataContext.ThriveOutputFirstPart.CollectionChanged -= OnFirstPartOfOutputChanged;
             dataContext.ThriveOutputLastPart.CollectionChanged -= OnLastPartOfOutputChanged;
+            dataContext.InProgressAutoUpdateOperations.CollectionChanged -= OnAutoUpdateProgressChanged;
         }
 
         base.OnClosed(e);
@@ -112,12 +113,16 @@ public partial class MainWindow : Window
         dataContext.WhenAnyValue(d => d.WantsWindowHidden).Subscribe(OnWantedWindowHiddenStateChanged);
         dataContext.WhenAnyValue(d => d.LauncherShouldClose).Subscribe(OnLauncherWantsToClose);
 
+        dataContext.WhenAnyValue(d => d.AvailableUpdaterFiles).Subscribe(OnAvailableAutoUpdatersForRetryUpdated);
+
         dataContext.PlayMessages.CollectionChanged += OnPlayMessagesChanged;
 
         dataContext.InProgressPlayOperations.CollectionChanged += OnPlayPopupProgressChanged;
 
         dataContext.ThriveOutputFirstPart.CollectionChanged += OnFirstPartOfOutputChanged;
         dataContext.ThriveOutputLastPart.CollectionChanged += OnLastPartOfOutputChanged;
+
+        dataContext.InProgressAutoUpdateOperations.CollectionChanged += OnAutoUpdateProgressChanged;
 
         // Intentionally left hanging around in the background
         _ = UpdateFeedItemsWhenRetrieved();
@@ -985,5 +990,94 @@ public partial class MainWindow : Window
             throw new InvalidOperationException("Clipboard doesn't exist");
 
         await clipboard.SetTextAsync(text);
+    }
+
+    private void OnAutoUpdateProgressChanged(object? o,
+        NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
+    {
+        Dispatcher.UIThread.Post(() =>
+            HandleAutoUpdateProgressChanges(DerivedDataContext.InProgressAutoUpdateOperations.ToList()));
+    }
+
+    private void HandleAutoUpdateProgressChanges(List<FilePrepareProgress> progress)
+    {
+        if (progress.Count < 1)
+        {
+            AutoUpdateProgressContainer.Children.Clear();
+
+            foreach (var displayer in activeProgressDisplayers)
+            {
+                displayer.Value.Dispose();
+            }
+
+            activeProgressDisplayers.Clear();
+
+            return;
+        }
+
+        foreach (var displayer in activeProgressDisplayers)
+        {
+            displayer.Value.Marked = false;
+        }
+
+        // We try to preserve as much state as possible here to keep progress bars working fine
+        foreach (var progressItem in progress)
+        {
+            if (!activeProgressDisplayers.TryGetValue(progressItem, out var displayer))
+            {
+                // No display yet for this progress item
+                displayer = new ProgressDisplayer(AutoUpdateProgressContainer, progressItem);
+                activeProgressDisplayers[progressItem] = displayer;
+            }
+            else
+            {
+                displayer.Marked = true;
+
+                // We don't update here as when we first see a progress item we start listening for its updates
+                // separately
+            }
+        }
+
+        // Delete displayers for progress items no longer present
+        foreach (var toDelete in activeProgressDisplayers.Where(t => !t.Value.Marked).ToList())
+        {
+            toDelete.Value.Dispose();
+            activeProgressDisplayers.Remove(toDelete.Key);
+        }
+
+        PlayOutputScrollContainer.ScrollToEnd();
+    }
+
+    private void OnAvailableAutoUpdatersForRetryUpdated(IReadOnlyCollection<string> updaters)
+    {
+        AutoUpdateAvailableUpdatersContainer.Children.Clear();
+
+        if (updaters.Count < 1)
+            return;
+
+        foreach (var updater in updaters)
+        {
+            var name = Path.GetFileName(updater);
+
+            var container = new WrapPanel();
+
+            var retryButton = new Button
+            {
+                Classes = new Classes("TextLink"),
+                Content = new TextBlock
+                {
+                    TextWrapping = TextWrapping.Wrap,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Text = name,
+                },
+                Margin = new Thickness(15, 0, 0, 0),
+            };
+
+            retryButton.Click += (_, _) => DerivedDataContext.RetryAutoUpdate(updater);
+
+            container.Children.Add(retryButton);
+
+            AutoUpdateAvailableUpdatersContainer.Children.Add(container);
+        }
     }
 }

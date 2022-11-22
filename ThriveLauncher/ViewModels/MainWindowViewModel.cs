@@ -30,6 +30,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly IDevCenterClient devCenterClient;
     private readonly IThriveRunner thriveRunner;
     private readonly ILauncherOptions launcherOptions;
+    private readonly IAutoUpdater autoUpdater;
 
     private readonly Dictionary<string, CultureInfo> availableLanguages;
     private readonly StoreVersionInfo detectedStore;
@@ -51,9 +52,6 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private bool versionInfoIsFresh = true;
 
-    private bool launcherIsLatestVersion;
-    private string launcherOutdatedVersionMessage = string.Empty;
-
     // Feeds
     private Task<List<ParsedLauncherFeedItem>> devForumFeedItems = null!;
     private string? devForumFetchError;
@@ -67,7 +65,7 @@ public partial class MainWindowViewModel : ViewModelBase
         IStoreVersionDetector storeInfo, ILauncherSettingsManager settingsManager, VersionUtilities versionUtilities,
         ILauncherPaths launcherPaths, IThriveAndLauncherInfoRetriever launcherInfoRetriever,
         IThriveInstaller thriveInstaller, IDevCenterClient devCenterClient, IThriveRunner thriveRunner,
-        ILauncherOptions launcherOptions, bool allowTaskStarts = true)
+        ILauncherOptions launcherOptions, IAutoUpdater autoUpdater, bool allowTaskStarts = true)
     {
         this.logger = logger;
         this.launcherFeeds = launcherFeeds;
@@ -80,6 +78,7 @@ public partial class MainWindowViewModel : ViewModelBase
         this.devCenterClient = devCenterClient;
         this.thriveRunner = thriveRunner;
         this.launcherOptions = launcherOptions;
+        this.autoUpdater = autoUpdater;
 
         availableLanguages = Languages.GetAvailableLanguages();
 
@@ -140,15 +139,14 @@ public partial class MainWindowViewModel : ViewModelBase
         DesignTimeServices.Services.GetRequiredService<IThriveInstaller>(),
         DesignTimeServices.Services.GetRequiredService<IDevCenterClient>(),
         DesignTimeServices.Services.GetRequiredService<IThriveRunner>(),
-        DesignTimeServices.Services.GetRequiredService<ILauncherOptions>(), false)
+        DesignTimeServices.Services.GetRequiredService<ILauncherOptions>(),
+        DesignTimeServices.Services.GetRequiredService<IAutoUpdater>(), false)
     {
         languagePlaceHolderIfNotSelected = string.Empty;
     }
 
     public bool HasNoticeMessage =>
         !string.IsNullOrEmpty(NoticeMessageText) || !string.IsNullOrEmpty(NoticeMessageTitle);
-
-    public string LauncherVersion => versionUtilities.LauncherVersion + LauncherConstants.ModeSuffix;
 
     public bool CanDismissNotice
     {
@@ -234,18 +232,6 @@ public partial class MainWindowViewModel : ViewModelBase
             this.RaiseAndSetIfChanged(ref selectedVersionToPlay, value);
             this.RaisePropertyChanged(nameof(CanPressPlayButton));
         }
-    }
-
-    public bool LauncherIsLatestVersion
-    {
-        get => launcherIsLatestVersion;
-        private set => this.RaiseAndSetIfChanged(ref launcherIsLatestVersion, value);
-    }
-
-    public string LauncherOutdatedVersionMessage
-    {
-        get => launcherOutdatedVersionMessage;
-        private set => this.RaiseAndSetIfChanged(ref launcherOutdatedVersionMessage, value);
     }
 
     public string? DevForumFetchError
@@ -465,6 +451,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         Dispatcher.UIThread.Post(() =>
         {
+            versionInfoIsFresh = false;
             launcherInfoRetriever.ForgetInfo();
 
             // We use dummy version info here to get rid of the loading screen in the launcher for store versions
@@ -508,6 +495,9 @@ public partial class MainWindowViewModel : ViewModelBase
             // If the user toggles between the external versions option in the store version,
             // we need to do this kind of thing here to get things back
             launcherInfoRetriever.RestoreBackupInfo();
+
+            // We don't set versionInfoIsFresh to true here as we don't know if the backed up info was fresh or not
+            // so we just skip that as it isn't super important here
 
             Dispatcher.UIThread.Post(() => { ThriveVersionInformation = launcherInfoRetriever.CurrentlyLoadedInfo; });
         }
@@ -653,76 +643,11 @@ public partial class MainWindowViewModel : ViewModelBase
                 // from spamming the remote server too much if it is down.
                 while (!LoadCachedVersionInfo && !RetryVersionInfoDownload)
                 {
+                    // ReSharper disable once MethodSupportsCancellation
                     await Task.Delay(TimeSpan.FromSeconds(1));
                 }
 
                 logger.LogInformation("Retrying or using cached data next");
-            }
-        }
-    }
-
-    private void CheckLauncherVersion(LauncherThriveInformation launcherInfo)
-    {
-        // Store versions are not updated through the launcher
-        if (detectedStore.IsStoreVersion)
-        {
-            logger.LogDebug("We are a store version, not checking launcher updates");
-
-            // TODO: though for manual itch downloads, those don't get updated, but we likely can't check that in
-            // any easy way
-            return;
-        }
-
-        // TODO: flatpak version also needs to skip this
-
-        var current = versionUtilities.AssemblyVersion;
-
-        if (!Version.TryParse(launcherInfo.LauncherVersion.LatestVersion, out var latest))
-        {
-            logger.LogError("Cannot check if we are the latest launcher version due to error");
-            return;
-        }
-
-        if (latest.Revision == -1)
-        {
-            // Covert to the same format as assembly version for better comparisons
-            latest = new Version(latest.Major, latest.Minor, latest.Build, 0);
-        }
-
-        // Only show the text that the launcher is up to date if we can really guarantee it by having loaded fresh data
-        if (versionInfoIsFresh)
-            LauncherIsLatestVersion = true;
-
-        if (current.Equals(latest))
-        {
-            logger.LogInformation("We are using the latest launcher version: {Latest}", latest);
-        }
-        else if (current > latest)
-        {
-            logger.LogInformation("We are using a newer launcher than is available {Current} > {Latest}", current,
-                latest);
-        }
-        else if (current < latest)
-        {
-            logger.LogInformation("We are not the latest launcher version, {Current} < {Latest}", current, latest);
-
-            LauncherIsLatestVersion = false;
-
-            bool autoUpdateStarted = false;
-
-            if (AllowAutoUpdate && !launcherOptions.SkipAutoUpdate)
-            {
-                // TODO: trigger auto-update
-                logger.LogInformation("Trying to trigger auto-update");
-            }
-
-            if (!autoUpdateStarted)
-            {
-                // Can't trigger auto-update so show outdated heads up
-                logger.LogInformation("Auto update not started, showing user we are outdated");
-
-                LauncherOutdatedVersionMessage = string.Format(Resources.OutdatedLauncherVersionComparison,
-                    LauncherVersion, launcherInfo.LauncherVersion.LatestVersion);
             }
         }
     }

@@ -945,6 +945,30 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string OutdatedLauncherTypeCannotUpdate {
+            get {
+                return ResourceManager.GetString("OutdatedLauncherTypeCannotUpdate", resourceCulture);
+            }
+        }
+        
+        public static string OutdatedLauncherUpdateHasBeenAvailable {
+            get {
+                return ResourceManager.GetString("OutdatedLauncherUpdateHasBeenAvailable", resourceCulture);
+            }
+        }
+        
+        public static string OutdatedLauncherUpdateDisabledByUser {
+            get {
+                return ResourceManager.GetString("OutdatedLauncherUpdateDisabledByUser", resourceCulture);
+            }
+        }
+        
+        public static string OutdatedLauncherTypeHasNoUpdateFile {
+            get {
+                return ResourceManager.GetString("OutdatedLauncherTypeHasNoUpdateFile", resourceCulture);
+            }
+        }
+        
         public static string DevCenterConnectFailureTitle {
             get {
                 return ResourceManager.GetString("DevCenterConnectFailureTitle", resourceCulture);
@@ -1554,6 +1578,84 @@ namespace ThriveLauncher.Properties {
         public static string LauncherOptionShowExternalVersions {
             get {
                 return ResourceManager.GetString("LauncherOptionShowExternalVersions", resourceCulture);
+            }
+        }
+        
+        public static string PerformingAutoUpdateTitle {
+            get {
+                return ResourceManager.GetString("PerformingAutoUpdateTitle", resourceCulture);
+            }
+        }
+        
+        public static string QuitLauncherButton {
+            get {
+                return ResourceManager.GetString("QuitLauncherButton", resourceCulture);
+            }
+        }
+        
+        public static string StartedAutoUpdateExplanation {
+            get {
+                return ResourceManager.GetString("StartedAutoUpdateExplanation", resourceCulture);
+            }
+        }
+        
+        public static string LauncherVersionUpdateDescription {
+            get {
+                return ResourceManager.GetString("LauncherVersionUpdateDescription", resourceCulture);
+            }
+        }
+        
+        public static string AutoUpdateError {
+            get {
+                return ResourceManager.GetString("AutoUpdateError", resourceCulture);
+            }
+        }
+        
+        public static string AutoUpdateMissingChannel {
+            get {
+                return ResourceManager.GetString("AutoUpdateMissingChannel", resourceCulture);
+            }
+        }
+        
+        public static string RetryingAutoUpdate {
+            get {
+                return ResourceManager.GetString("RetryingAutoUpdate", resourceCulture);
+            }
+        }
+        
+        public static string AutoUpdateRetryFailed {
+            get {
+                return ResourceManager.GetString("AutoUpdateRetryFailed", resourceCulture);
+            }
+        }
+        
+        public static string AutoUpdateSucceededMessage {
+            get {
+                return ResourceManager.GetString("AutoUpdateSucceededMessage", resourceCulture);
+            }
+        }
+        
+        public static string IgnoreFailure {
+            get {
+                return ResourceManager.GetString("IgnoreFailure", resourceCulture);
+            }
+        }
+        
+        public static string AutoUpdatingFailedExplanation {
+            get {
+                return ResourceManager.GetString("AutoUpdatingFailedExplanation", resourceCulture);
+            }
+        }
+        
+        public static string ViewFirstAutoUpdaterFolder {
+            get {
+                return ResourceManager.GetString("ViewFirstAutoUpdaterFolder", resourceCulture);
+            }
+        }
+        
+        public static string AutoUpdateFailedTitle {
+            get {
+                return ResourceManager.GetString("AutoUpdateFailedTitle", resourceCulture);
             }
         }
     }

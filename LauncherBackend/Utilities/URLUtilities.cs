@@ -18,6 +18,7 @@ public static class URLUtilities
         });
     }
 
+    // TODO: FileUtilities.OpenFolderInPlatformSpecificViewer is basically the same functionality
     public static void OpenLocalFileOrFolder(string fileOrFolder)
     {
         if (!fileOrFolder.StartsWith("file://"))

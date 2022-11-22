@@ -18,6 +18,8 @@ public class LauncherPaths : ILauncherPaths
 
     public static readonly string LauncherV1SettingsFileName = "launcher_settings.json";
 
+    private static readonly string AutoUpdateFileName = "attempted_auto_update.json";
+
     private readonly ILogger<LauncherPaths> logger;
 
     private string? configFolder;
@@ -34,6 +36,8 @@ public class LauncherPaths : ILauncherPaths
     public string PathToSettings => Path.Combine(PathToLauncherConfig, SettingsFileName);
 
     public string PathToRememberedVersion => Path.Combine(PathToLauncherConfig, RememberedVersionFileName);
+
+    public string PathToAutoUpdateFile => Path.Combine(PathToLauncherConfig, AutoUpdateFileName);
 
     public string PathToLauncherConfig => configFolder ??= GetPlatformConfigFolder();
     public string PathToLauncherInstallBaseFolder => fileInstallFolder ??= GetPlatformInstallFolder();
@@ -204,6 +208,8 @@ public interface ILauncherPaths
     public string PathToSettings { get; }
 
     public string PathToRememberedVersion { get; }
+
+    public string PathToAutoUpdateFile { get; }
 
     public string PathToLauncherConfig { get; }
 

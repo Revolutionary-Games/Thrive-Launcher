@@ -176,6 +176,8 @@ public static class LauncherConstants
 
     public static readonly TimeSpan OldCrashReportWarningThreshold = TimeSpan.FromDays(1);
 
+    public static readonly TimeSpan LauncherNotUpdatingWarningThreshold = TimeSpan.FromDays(7);
+
     /// <summary>
     ///   Configures the launcher URL connection modes
     /// </summary>

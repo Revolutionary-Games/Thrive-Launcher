@@ -103,6 +103,14 @@ public class FilePrepareProgress : IObservable<FilePrepareProgress>
         PerformStepMove(FilePrepareStep.Verifying);
     }
 
+    public void MoveToProcessingStep()
+    {
+        if (CurrentStep == FilePrepareStep.Processing)
+            return;
+
+        PerformStepMove(FilePrepareStep.Processing);
+    }
+
     public IDisposable Subscribe(IObserver<FilePrepareProgress> observer)
     {
         if (!observers.Contains(observer))
