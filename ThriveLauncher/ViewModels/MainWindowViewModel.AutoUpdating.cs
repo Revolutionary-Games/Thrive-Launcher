@@ -36,7 +36,7 @@ public partial class MainWindowViewModel
     private int? autoUpdateClose;
 
     private CancellationTokenSource autoUpdateCancellation = new();
-    private CancellationToken autoUpdateCancellationToken = new();
+    private CancellationToken autoUpdateCancellationToken = CancellationToken.None;
 
     public bool LauncherIsLatestVersion
     {
