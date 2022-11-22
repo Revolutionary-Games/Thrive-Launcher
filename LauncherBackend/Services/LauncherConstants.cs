@@ -29,6 +29,8 @@ public static class LauncherConstants
 
     public const int SimultaneousRehydrationDownloads = 3;
 
+    public const int DownloadBufferSize = 65536;
+
     public const bool EntirelyHideWindowOnHide = false;
 
     /// <summary>
