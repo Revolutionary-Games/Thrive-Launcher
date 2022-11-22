@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Models;
 using ScriptsBase.Models;
 using ScriptsBase.ToolBases;
 using ScriptsBase.Utilities;
@@ -65,6 +66,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private readonly string launcherVersionAlwaysWithRevision;
 
     private bool doingNoRuntimeExport;
+    private LauncherExportType currentExportType;
+    private bool originalInstallerMode;
 
     public PackageTool(Program.PackageOptions options) : base(options)
     {
@@ -124,12 +127,31 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             doingNoRuntimeExport = true;
         }
 
+        if (options.ExportTypes.Count < 1)
+        {
+            ColourConsole.WriteInfoLine("Exporting by default with Standalone type");
+            options.ExportTypes = new List<LauncherExportType>
+            {
+                LauncherExportType.Standalone,
+            };
+        }
+
+        if (options.ExportTypes.Count < 1)
+        {
+            ColourConsole.WriteErrorLine("No export types selected");
+            return false;
+        }
+
+        ColourConsole.WriteNormalLine($"Exporting with export types: {string.Join(" ", options.ExportTypes)}");
+
+        originalInstallerMode = options.CreateInstallers == true;
+
         return true;
     }
 
     protected override string GetFolderNameForExport(PackagePlatform platform)
     {
-        var name = ThriveProperties.GetFolderNameForLauncher(platform, launcherVersion);
+        var name = ThriveProperties.GetFolderNameForLauncher(platform, launcherVersion, currentExportType);
 
         if (doingNoRuntimeExport)
             name = $"{name}{NoRuntimeSuffix}";
@@ -148,8 +170,26 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         if (doingNoRuntimeExport)
             ColourConsole.WriteInfoLine($"Doing a no runtime variant of export for {platform}");
 
-        if (!await base.PackageForPlatform(cancellationToken, platform))
-            return false;
+        foreach (var exportType in options.ExportTypes)
+        {
+            options.CreateInstallers = originalInstallerMode;
+
+            currentExportType = exportType;
+            ColourConsole.WriteInfoLine($"Starting export with type {exportType}");
+
+            switch (exportType)
+            {
+                case LauncherExportType.Standalone:
+                case LauncherExportType.Steam:
+                case LauncherExportType.Itch:
+                    ColourConsole.WriteNormalLine("This export type doesn't have an installer");
+                    options.CreateInstallers = false;
+                    break;
+            }
+
+            if (!await base.PackageForPlatform(cancellationToken, platform))
+                return false;
+        }
 
         return true;
     }
@@ -190,7 +230,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
                 // Need to configure the build in the right way to do just the build we want in the container
                 "cd /build && dotnet run --project Scripts -- package " +
-                $"--podman false --compress false --installers false --dynamic-files false {platform}",
+                $"--podman false --compress false --installers false --dynamic-files false {platform} " +
+                $"--type {currentExportType}",
                 "echo 'build finished'",
                 "echo 'copying result'",
                 $"rsync -vhr '/build/builds/{folderName}/' /out/ --delete",
@@ -249,7 +290,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                     throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
             }
 
-            if (!await RunPublish(folder, runtime, !doingNoRuntimeExport, cancellationToken))
+            if (!await RunPublish(folder, runtime, !doingNoRuntimeExport, platform, cancellationToken))
             {
                 return false;
             }
@@ -288,70 +329,73 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     protected override async Task<bool> OnPostFolderHandled(PackagePlatform platform, string folderOrArchive,
         CancellationToken cancellationToken)
     {
-        if (options.CreateInstallers == true)
+        if (options.CreateInstallers != true)
+            return true;
+
+        if (currentExportType == LauncherExportType.Standalone)
+            throw new InvalidOperationException("Should not attempt to create installers for standalone type");
+
+        ColourConsole.WriteInfoLine($"Creating installer for {platform} from {folderOrArchive}");
+
+        if (platform == PackagePlatform.Linux)
         {
-            ColourConsole.WriteInfoLine($"Creating installer for {platform} from {folderOrArchive}");
-
-            if (platform == PackagePlatform.Linux)
+            ColourConsole.WriteInfoLine("Linux installer is made with flatpak (hosted on Flathub)");
+            AddReprintMessage("Linux installer needs to be separately updated for Flathub");
+        }
+        else if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
+        {
+            if (platform == PackagePlatform.Windows32)
             {
-                ColourConsole.WriteInfoLine("Linux installer is made with flatpak (hosted on Flathub)");
-                AddReprintMessage("Linux installer needs to be separately updated for Flathub");
+                throw new NotImplementedException(
+                    "Windows32 installer needs a suffix or something to not conflict");
             }
-            else if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
+
+            var potentialExtension = GetCompressedExtensionForPlatform(platform);
+
+            string nsisSource = folderOrArchive;
+
+            if (folderOrArchive.EndsWith(potentialExtension))
+                nsisSource = nsisSource.Substring(0, nsisSource.Length - potentialExtension.Length);
+
+            var nsisFileName = NSISFileName;
+            var nsisTemplate = NSISTemplateFile;
+
+            if (doingNoRuntimeExport)
             {
-                if (platform == PackagePlatform.Windows32)
-                {
-                    throw new NotImplementedException(
-                        "Windows32 installer needs a suffix or something to not conflict");
-                }
+                ColourConsole.WriteNormalLine(
+                    "Windows installer without runtime will attempt to install the runtime, " +
+                    $"please make sure the runtime installer exists at {PathToDotnetInstaller}");
 
-                var potentialExtension = GetCompressedExtensionForPlatform(platform);
-
-                string nsisSource = folderOrArchive;
-
-                if (folderOrArchive.EndsWith(potentialExtension))
-                    nsisSource = nsisSource.Substring(0, nsisSource.Length - potentialExtension.Length);
-
-                var nsisFileName = NSISFileName;
-                var nsisTemplate = NSISTemplateFile;
-
-                if (doingNoRuntimeExport)
-                {
-                    ColourConsole.WriteNormalLine(
-                        "Windows installer without runtime will attempt to install the runtime, " +
-                        $"please make sure the runtime installer exists at {PathToDotnetInstaller}");
-
-                    nsisFileName = NSISDotnetInstallerFileName;
-                }
-
-                // Windows installer is made with NSIS
-                await GenerateNSISFile(nsisSource, nsisFileName, nsisTemplate, cancellationToken);
-                await RunNSIS(nsisFileName, cancellationToken);
-
-                if (!File.Exists(ExpectedLauncherInstallerFile))
-                {
-                    ColourConsole.WriteErrorLine("Expected installer file did not get created");
-                    return false;
-                }
-
-                var hash = FileUtilities.HashToHex(
-                    await FileUtilities.CalculateSha3OfFile(ExpectedLauncherInstallerFile, cancellationToken));
-
-                var message1 = $"Created {platform} installer: {ExpectedLauncherInstallerFile}";
-                var message2 = $"SHA3: {hash}";
-
-                AddReprintMessage(string.Empty);
-                AddReprintMessage(message1);
-                AddReprintMessage(message2);
-
-                ColourConsole.WriteSuccessLine(message1);
-                ColourConsole.WriteNormalLine(message2);
+                nsisFileName = NSISDotnetInstallerFileName;
             }
-            else
+
+            // Windows installer is made with NSIS
+            await GenerateNSISFile(nsisSource, nsisFileName, nsisTemplate, cancellationToken);
+            await RunNSIS(nsisFileName, cancellationToken);
+
+            if (!File.Exists(ExpectedLauncherInstallerFile))
             {
-                ColourConsole.WriteErrorLine("TODO installer creation");
-                throw new NotImplementedException();
+                ColourConsole.WriteErrorLine("Expected installer file did not get created");
+                return false;
             }
+
+            var hash = FileUtilities.HashToHex(
+                await FileUtilities.CalculateSha3OfFile(ExpectedLauncherInstallerFile, cancellationToken));
+
+            var message1 = $"Created {platform} installer: {ExpectedLauncherInstallerFile}";
+            var message2 = $"SHA3: {hash}";
+
+            AddReprintMessage(string.Empty);
+            AddReprintMessage(message1);
+            AddReprintMessage(message2);
+
+            ColourConsole.WriteSuccessLine(message1);
+            ColourConsole.WriteNormalLine(message2);
+        }
+        else
+        {
+            ColourConsole.WriteErrorLine("TODO installer creation");
+            throw new NotImplementedException();
         }
 
         return true;
@@ -402,7 +446,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         }
     }
 
-    private async Task<bool> RunPublish(string folder, string runtime, bool selfContained,
+    private async Task<bool> RunPublish(string folder, string runtime, bool selfContained, PackagePlatform platform,
         CancellationToken cancellationToken)
     {
         ColourConsole.WriteNormalLine($"Publishing to folder: {folder}");
@@ -429,6 +473,46 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             ColourConsole.WriteNormalLine($"Using nuget source: {options.NugetSource}");
             startInfo.ArgumentList.Add("--source");
             startInfo.ArgumentList.Add(options.NugetSource);
+        }
+
+        // Compiler definitions
+        switch (currentExportType)
+        {
+            default:
+            case LauncherExportType.Standalone:
+                break;
+            case LauncherExportType.WithUpdater:
+                switch (platform)
+                {
+                    // TODO: should this copy the flatpak ref file here?
+                    // case PackagePlatform.Linux:
+                    //     break;
+                    case PackagePlatform.Windows:
+                        startInfo.ArgumentList.Add(
+                            "-p:MyConstants=\"LAUNCHER_UPDATER_WINDOWS\"");
+                        break;
+                    case PackagePlatform.Windows32:
+                        throw new NotImplementedException("Windows 32-bit auto update is not done");
+                    case PackagePlatform.Mac:
+                        startInfo.ArgumentList.Add("-p:MyConstants=\"LAUNCHER_UPDATER_MAC\"");
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(platform), platform,
+                            "Auto update type unknown for platform");
+                }
+
+                break;
+            case LauncherExportType.Steam:
+                startInfo.ArgumentList.Add("-p:MyConstants=\"LAUNCHER_STEAM;LAUNCHER_NO_OUTDATED_NOTICE\"");
+                break;
+            case LauncherExportType.Itch:
+                startInfo.ArgumentList.Add(
+                    "-p:MyConstants=\"LAUNCHER_ITCH;LAUNCHER_DELAYED_UPDATE_NOTICE\"");
+                break;
+            case LauncherExportType.Flatpak:
+                startInfo.ArgumentList.Add(
+                    "-p:MyConstants=\"LAUNCHER_DELAYED_UPDATE_NOTICE\"");
+                break;
         }
 
         startInfo.ArgumentList.Add("-o");

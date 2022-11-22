@@ -24,5 +24,10 @@
     <ProjectReference Include="..\RevolutionaryGamesCommon\ScriptsBase\ScriptsBase.csproj" />
     <ProjectReference Include="..\RevolutionaryGamesCommon\SharedBase\SharedBase.csproj" />
   </ItemGroup>
-
+  
+  <!-- Launcher build mode support -->
+  <PropertyGroup Condition=" '$(MyConstants)' != '' ">
+    <DefineConstants>$(DefineConstants);$(MyConstants)</DefineConstants>
+  </PropertyGroup>
+  
 </Project>

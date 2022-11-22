@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using CommandLine;
+using Models;
 using Scripts;
 using ScriptsBase.Models;
 using ScriptsBase.Utilities;
@@ -186,6 +187,12 @@ public class Program
         [Option('z', "compress", Default = true,
             HelpText = "Control whether the created folders are compressed into simple packages")]
         public bool? CompressRaw { get; set; }
+
+        [Option('t', "type",
+            HelpText =
+                "Types (auto update, store) of launcher builds to make. Need to be specified multiple times " +
+                "for multiple types.")]
+        public IList<LauncherExportType> ExportTypes { get; set; } = new List<LauncherExportType>();
 
         [Option('i', "installers", Default = true,
             HelpText = "When set installers are created after export")]

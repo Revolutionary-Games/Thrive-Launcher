@@ -98,6 +98,10 @@
       <TargetPath>tools\7zip\%(Filename)%(Extension)</TargetPath>
     </ContentWithTargetPath>
   </ItemGroup>
+  <!-- Launcher build mode support -->
+  <PropertyGroup Condition=" '$(MyConstants)' != '' ">
+    <DefineConstants>$(DefineConstants);$(MyConstants)</DefineConstants>
+  </PropertyGroup>
   <ItemGroup Condition=" '$(RuntimeIdentifier)' == '' ">
     <!-- This group is enabled when debugging / not publishing. For simplicity this copies all of the tools -->
     <ContentWithTargetPath Include="..\tools\**">

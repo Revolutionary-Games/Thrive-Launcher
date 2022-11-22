@@ -553,6 +553,7 @@ public partial class MainWindowViewModel
 
         thriveInstaller.InstallerMessages.CollectionChanged += OnInstallerMessagesChanged;
         thriveInstaller.InProgressOperations.CollectionChanged += OnInProgressOperationsChanged;
+        autoUpdater.InProgressOperations.CollectionChanged += OnUpdaterOperationsChanged;
     }
 
     private void UnRegisterInstallerMessageForwarders()
@@ -564,6 +565,7 @@ public partial class MainWindowViewModel
 
         thriveInstaller.InstallerMessages.CollectionChanged -= OnInstallerMessagesChanged;
         thriveInstaller.InProgressOperations.CollectionChanged -= OnInProgressOperationsChanged;
+        autoUpdater.InProgressOperations.CollectionChanged -= OnUpdaterOperationsChanged;
     }
 
     private void OnInstallerMessagesChanged(object? sender,
@@ -594,37 +596,7 @@ public partial class MainWindowViewModel
         logger.LogDebug("Installer in progress operation change type: {Action}, new: {NewItems}", args.Action,
             args.NewItems);
 
-        switch (args.Action)
-        {
-            case NotifyCollectionChangedAction.Add:
-                InProgressPlayOperations.AddOrInsertRange(args.NewItems!.Cast<FilePrepareProgress>(),
-                    args.NewStartingIndex);
-
-                break;
-            case NotifyCollectionChangedAction.Remove:
-                for (int i = 0; i < args.OldItems!.Count; ++i)
-                {
-                    InProgressPlayOperations.RemoveAt(args.OldStartingIndex);
-                }
-
-                break;
-            case NotifyCollectionChangedAction.Replace:
-                for (int i = 0; i < args.OldItems!.Count; ++i)
-                {
-                    InProgressPlayOperations.RemoveAt(args.OldStartingIndex);
-                }
-
-                goto case NotifyCollectionChangedAction.Add;
-
-            // For now move is not implemented
-            // case NotifyCollectionChangedAction.Move:
-            //     break;
-            case NotifyCollectionChangedAction.Reset:
-                InProgressPlayOperations.Clear();
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+        InProgressPlayOperations.ApplyChangeFromAnotherCollection(args);
     }
 
     private void RegisterThriveRunnerListeners()
