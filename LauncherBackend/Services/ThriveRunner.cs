@@ -656,8 +656,15 @@ public class ThriveRunner : IThriveRunner
     /// <returns>True if the output matches non-serious Steam output patterns</returns>
     private bool IsNonErrorSteamOutput(string line)
     {
-        // TODO: implement this
-        _ = line;
+        if (line.StartsWith("[S_API]"))
+            return true;
+
+        if (line.StartsWith("Setting breakpad"))
+            return true;
+
+        if (line.StartsWith("SteamInternal"))
+            return true;
+
         return false;
     }
 }
