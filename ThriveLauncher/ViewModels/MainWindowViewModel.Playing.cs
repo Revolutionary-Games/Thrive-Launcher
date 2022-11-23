@@ -708,6 +708,8 @@ public partial class MainWindowViewModel
                 return message.Format(Resources.RehydrationFailed);
             case ThrivePlayMessage.Type.Rehydrating:
                 return message.Format(Resources.RehydrationStarting);
+            case ThrivePlayMessage.Type.ThriveRunRetry:
+                return message.Format(Resources.ThriveRunRetryStarting);
             default:
                 throw new ArgumentOutOfRangeException();
         }

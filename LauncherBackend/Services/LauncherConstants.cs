@@ -33,6 +33,8 @@ public static class LauncherConstants
 
     public const bool EntirelyHideWindowOnHide = false;
 
+    public const int ThriveStartupFailureRetries = 1;
+
     /// <summary>
     ///   This is used to globally (computer-wide) mark that the launcher is open
     /// </summary>
@@ -54,6 +56,8 @@ public static class LauncherConstants
     public const string OPENED_THROUGH_LAUNCHER_OPTION = "--thrive-started-by-launcher";
     public const string OPENING_LAUNCHER_IS_HIDDEN = "--thrive-launcher-hidden";
     public const string THRIVE_LAUNCHER_STORE_PREFIX = "--thrive-store=";
+    public const string STARTUP_SUCCEEDED_MESSAGE = "------------ Thrive Startup Succeeded ------------";
+    public const string USER_REQUESTED_QUIT = "User requested program exit, Thrive will close shortly";
     public const string REQUEST_LAUNCHER_OPEN = "------------ SHOWING LAUNCHER REQUESTED ------------";
 
     public const string DefaultThriveLogFileName = "log.txt";
@@ -164,7 +168,7 @@ public static class LauncherConstants
     /// <summary>
     ///   How long Thrive must have ran to not show the game start failure advice
     /// </summary>
-    public static readonly TimeSpan RequiredRuntimeBeforeGameStartAdviceDisappears = TimeSpan.FromSeconds(9);
+    public static readonly TimeSpan RequiredRuntimeBeforeGameStartAdviceDisappears = TimeSpan.FromSeconds(10);
 
     /// <summary>
     ///   Time before hiding the launcher when starting the game
@@ -178,6 +182,9 @@ public static class LauncherConstants
     public static readonly TimeSpan OldCrashReportWarningThreshold = TimeSpan.FromDays(1);
 
     public static readonly TimeSpan LauncherNotUpdatingWarningThreshold = TimeSpan.FromDays(7);
+
+    public static readonly DateTime DevBuildNewerThanThisSupportStartupDetection =
+        new(2022, 11, 23, 12, 0, 0, DateTimeKind.Utc);
 
     /// <summary>
     ///   Configures the launcher URL connection modes

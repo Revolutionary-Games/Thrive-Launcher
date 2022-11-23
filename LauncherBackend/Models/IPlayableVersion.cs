@@ -1,6 +1,7 @@
 namespace LauncherBackend.Models;
 
 using DevCenterCommunication.Models;
+using Services;
 
 public interface IPlayableVersion
 {
@@ -17,6 +18,11 @@ public interface IPlayableVersion
     public bool IsPublicBuildC { get; }
 
     public DownloadableInfo Download { get; }
+
+    /// <summary>
+    ///   True when this is a new enough Thrive version to support startup fail detection
+    /// </summary>
+    public bool SupportsStartupDetection { get; }
 }
 
 public class StoreVersion : IPlayableVersion
@@ -40,6 +46,8 @@ public class StoreVersion : IPlayableVersion
 
     public DownloadableInfo Download =>
         throw new InvalidOperationException("Store versions can't be separately downloaded");
+
+    public bool SupportsStartupDetection => true;
 
     public string InternalStoreName { get; }
 }
@@ -85,6 +93,17 @@ public class DevBuildVersion : IPlayableVersion
     public bool IsPublicBuildC => type == PlayableDevCenterBuildType.PublicBuildC;
 
     public DownloadableInfo Download => DownloadAsync.Result;
+
+    public bool SupportsStartupDetection
+    {
+        get
+        {
+            if (ExactBuild == null)
+                throw new InvalidOperationException($"This build doesn't have {nameof(ExactBuild)} set");
+
+            return ExactBuild.CreatedAt > LauncherConstants.DevBuildNewerThanThisSupportStartupDetection;
+        }
+    }
 
     /// <summary>
     ///   Gets the async download operation, recommended over using the blocking <see cref="Download"/> property

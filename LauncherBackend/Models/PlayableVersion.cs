@@ -8,13 +8,14 @@ using DevCenterCommunication.Models;
 public class PlayableVersion : IPlayableVersion
 {
     public PlayableVersion(string formattedVersionWithArch, string plainVersionNumber, DownloadableInfo versionDownload,
-        bool isLatest, string folderName)
+        bool isLatest, string folderName, bool supportsStartupDetection)
     {
         VersionName = formattedVersionWithArch;
         PlainVersionNumber = plainVersionNumber;
         IsLatest = isLatest;
         FolderName = folderName;
         Download = versionDownload;
+        SupportsStartupDetection = supportsStartupDetection;
 
         if (string.IsNullOrWhiteSpace(FolderName))
             throw new ArgumentException("Empty folder name");
@@ -33,6 +34,7 @@ public class PlayableVersion : IPlayableVersion
     public bool IsPublicBuildC => false;
 
     public DownloadableInfo Download { get; }
+    public bool SupportsStartupDetection { get; }
 
     /// <summary>
     ///   The plain version number (for example 1.0.2.4). In contrast the <see cref="VersionName"/> contains the

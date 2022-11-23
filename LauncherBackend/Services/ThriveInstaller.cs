@@ -122,7 +122,8 @@ public class ThriveInstaller : IThriveInstaller
                     name = string.Format(launcherTranslations.LatestVersionTag, name);
 
                 yield return (version.ReleaseNumber, new PlayableVersion(name, version.ReleaseNumber,
-                    versionPlatform.Value, latest, versionPlatform.Value.LocalFileName));
+                    versionPlatform.Value, latest, versionPlatform.Value.LocalFileName,
+                    version.SupportsFailedStartupDetection));
             }
         }
     }

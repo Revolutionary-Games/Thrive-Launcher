@@ -881,4 +881,7 @@ If no files are listed below, downloading the update has failed and it cannot be
   <data name="CannotSubmitExceptionReportYet" xml:space="preserve">
     <value>The crash reporter doesn't support reporting crashed caused by unhandled exceptions yet. Please use the copy button below to copy the report to your clipboard and then manually send the report to us.</value>
   </data>
+  <data name="ThriveRunRetryStarting" xml:space="preserve">
+    <value>Thrive was not detected as having started correctly. Will attempt to start Thrive again, attempt number: {0}</value>
+  </data>
 </root>

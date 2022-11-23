@@ -1664,5 +1664,11 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("CannotSubmitExceptionReportYet", resourceCulture);
             }
         }
+        
+        public static string ThriveRunRetryStarting {
+            get {
+                return ResourceManager.GetString("ThriveRunRetryStarting", resourceCulture);
+            }
+        }
     }
 }

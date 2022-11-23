@@ -55,6 +55,12 @@ public class ThrivePlayMessage
         ///   Rehydration is starting, no parameters
         /// </summary>
         Rehydrating,
+
+        /// <summary>
+        ///   Running failed because Thrive didn't start properly and is being retries, is given one parameter with the
+        ///   current attempt number
+        /// </summary>
+        ThriveRunRetry,
     }
 
     public ThrivePlayMessage(Type type, params object?[] arguments)

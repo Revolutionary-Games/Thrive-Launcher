@@ -21,11 +21,15 @@ public class ThriveRunner : IThriveRunner
     private CancellationTokenSource? playCancellationSource;
     private CancellationToken playCancellation = CancellationToken.None;
 
+    private int startCounter;
+
     private int firstLinesToKeep;
     private int lastLinesToKeep;
 
     private bool readingUnhandledException;
     private List<string>? unhandledException;
+
+    private bool thriveProperlyStarted;
 
     private StoreVersionInfo? currentStoreVersionInfo;
 
@@ -96,14 +100,10 @@ public class ThriveRunner : IThriveRunner
 
     public void StartThrive(IPlayableVersion version, CancellationToken cancellationToken)
     {
-        if (thriveRunnerThread != null)
-        {
-            logger.LogInformation("Joining previous Thrive runner thread");
-            thriveRunnerThread.Join(TimeSpan.FromSeconds(30));
-            thriveRunnerThread = null;
-        }
+        JoinRunnerThreadIfExists();
 
         ClearOutput();
+        startCounter = 0;
 
         // Update our copy of the settings variables
         firstLinesToKeep = settingsManager.Settings.BeginningKeptGameOutput;
@@ -173,13 +173,7 @@ public class ThriveRunner : IThriveRunner
 
         logger.LogDebug("Thrive executable is: {ThriveExecutable}", thriveExecutable);
 
-        // ReSharper disable once MethodSupportsCancellation
-        thriveRunnerThread = new Thread(() => RunThriveExecutable(thriveExecutable, version, playCancellation).Wait())
-        {
-            // Even if this is running we want this process to be able to quit
-            IsBackground = true,
-        };
-        thriveRunnerThread.Start();
+        StartThriveWithRunnerThread(version, thriveExecutable);
     }
 
     public bool QuitThrive()
@@ -207,6 +201,7 @@ public class ThriveRunner : IThriveRunner
         DetectedFullLogFileLocation = null;
         ActiveErrorSuggestion = null;
         ThriveWantsToOpenLauncher = false;
+        thriveProperlyStarted = false;
 
         ClearDetectedCrashes();
     }
@@ -259,6 +254,29 @@ public class ThriveRunner : IThriveRunner
         }
     }
 
+    private void JoinRunnerThreadIfExists()
+    {
+        if (thriveRunnerThread != null)
+        {
+            logger.LogInformation("Joining previous Thrive runner thread");
+            thriveRunnerThread.Join(TimeSpan.FromSeconds(30));
+            thriveRunnerThread = null;
+        }
+    }
+
+    private void StartThriveWithRunnerThread(IPlayableVersion version, string thriveExecutable)
+    {
+        ++startCounter;
+
+        // ReSharper disable once MethodSupportsCancellation
+        thriveRunnerThread = new Thread(() => RunThriveExecutable(thriveExecutable, version, playCancellation).Wait())
+        {
+            // Even if this is running we want this process to be able to quit
+            IsBackground = true,
+        };
+        thriveRunnerThread.Start();
+    }
+
     private async Task RunThriveExecutable(string thriveExecutable, IPlayableVersion version,
         CancellationToken cancellationToken)
     {
@@ -301,11 +319,11 @@ public class ThriveRunner : IThriveRunner
         {
             logger.LogError(e, "Thrive failed to run");
 
-            OnThriveExited(null, e, version, runTime.Elapsed);
+            OnThriveExited(null, e, version, runTime.Elapsed, thriveExecutable);
             return;
         }
 
-        OnThriveExited(result.ExitCode, null, version, runTime.Elapsed);
+        OnThriveExited(result.ExitCode, null, version, runTime.Elapsed, thriveExecutable);
     }
 
     private void SetLaunchArgumentsAndEnvironment(ProcessStartInfo runInfo)
@@ -366,7 +384,8 @@ public class ThriveRunner : IThriveRunner
         }
     }
 
-    private void OnThriveExited(int? exitCode, Exception? runFailException, IPlayableVersion version, TimeSpan elapsed)
+    private void OnThriveExited(int? exitCode, Exception? runFailException, IPlayableVersion version, TimeSpan elapsed,
+        string executable)
     {
         PlayedThriveVersion = version;
 
@@ -377,9 +396,33 @@ public class ThriveRunner : IThriveRunner
             logger.LogWarning("No log file (or data folder) location could be detected from game output");
 
         ThriveWantsToOpenLauncher = AllGameOutput().Any(m => m.Contains(LauncherConstants.REQUEST_LAUNCHER_OPEN));
+        var userRequestedQuit = AllGameOutput().Any(m => m.Contains(LauncherConstants.USER_REQUESTED_QUIT));
 
         if (ThriveWantsToOpenLauncher)
             logger.LogInformation("Thrive wants the launcher to be shown");
+
+        // Restart Thrive if it didn't start correctly (and the user didn't request the close)
+        if (!thriveProperlyStarted && version.SupportsStartupDetection && !userRequestedQuit)
+        {
+            logger.LogWarning("Thrive was not detected as properly started");
+
+            if (startCounter - 1 < LauncherConstants.ThriveStartupFailureRetries)
+            {
+                logger.LogInformation("Will attempt to retry starting Thrive (start count: {StartCounter})",
+                    startCounter);
+
+                PlayMessages.Add(new ThrivePlayMessage(ThrivePlayMessage.Type.ThriveRunRetry, startCounter + 1));
+
+                AddLogLine("Restarting Thrive due to detected startup failure", true);
+
+                // As we are running on the runner thread, we can't *really* join ourselves here
+                // JoinRunnerThreadIfExists();
+                StartThriveWithRunnerThread(version, executable);
+                return;
+            }
+
+            logger.LogWarning("Ran out of Thrive start retries");
+        }
 
         if (exitCode != null)
         {
@@ -502,7 +545,11 @@ public class ThriveRunner : IThriveRunner
             // Should be fine to only detect this from the first log lines
             DetectThriveDataFoldersFromOutput(line);
 
-            // TODO: detect Thrive properly started
+            if (!thriveProperlyStarted && line.Contains(LauncherConstants.STARTUP_SUCCEEDED_MESSAGE))
+            {
+                logger.LogInformation("Thrive detected as properly started");
+                thriveProperlyStarted = true;
+            }
 
             return;
         }
