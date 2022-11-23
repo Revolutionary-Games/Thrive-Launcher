@@ -878,4 +878,7 @@ If no files are listed below, downloading the update has failed and it cannot be
   <data name="AutoUpdateFailedTitle" xml:space="preserve">
     <value>Launcher Update Failed</value>
   </data>
+  <data name="CannotSubmitExceptionReportYet" xml:space="preserve">
+    <value>The crash reporter doesn't support reporting crashed caused by unhandled exceptions yet. Please use the copy button below to copy the report to your clipboard and then manually send the report to us.</value>
+  </data>
 </root>

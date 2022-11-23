@@ -9,6 +9,7 @@ using DevCenterCommunication.Models;
 using Microsoft.Extensions.Logging;
 using Models;
 using SharedBase.Utilities;
+using Utilities;
 
 public class CrashReporter : ICrashReporter
 {
@@ -120,6 +121,65 @@ public class CrashReporter : ICrashReporter
         }
 
         return await SendCrashReport(formData);
+    }
+
+    public string CreateTextReport(ReportableCrash crash, IEnumerable<string> logFiles, string? extraDescription,
+        string? reporterEmail, string? launcherSavedOutput, bool platformSpecificLineEndings)
+    {
+        var stringBuilder = new StringBuilder();
+
+        stringBuilder.Append("Thrive has crashed at ");
+        stringBuilder.Append(crash.CrashTime.ToString("O"));
+
+        if (crash.HappenedNow)
+            stringBuilder.Append(" (crash happened immediately before creating this report)");
+
+        stringBuilder.Append("\n");
+
+        stringBuilder.Append("Exit code: ");
+        stringBuilder.Append(thriveRunner.ExitCode);
+        stringBuilder.Append("\n");
+
+        if (!string.IsNullOrEmpty(extraDescription))
+        {
+            stringBuilder.Append("Description: ");
+            stringBuilder.Append(extraDescription);
+            stringBuilder.Append("\n");
+        }
+
+        if (!string.IsNullOrEmpty(reporterEmail))
+        {
+            stringBuilder.Append("Reporter's email: ");
+            stringBuilder.Append(reporterEmail);
+            stringBuilder.Append("\n");
+        }
+
+        var logText = PrepareLogFiles(logFiles, launcherSavedOutput);
+
+        stringBuilder.Append(logText);
+        stringBuilder.Append("\n");
+
+        if (crash is ReportableCrashDump crashDump)
+        {
+            stringBuilder.Append("Crash dump is stored in file: ");
+            stringBuilder.Append(crashDump.File);
+            stringBuilder.Append("\n");
+        }
+        else if (crash is ReportableCrashException crashException)
+        {
+            stringBuilder.Append("Crash happened due to an unhandled exception:\n");
+            stringBuilder.Append(crashException.ExceptionCallstack);
+            stringBuilder.Append("\n");
+        }
+        else
+        {
+            stringBuilder.Append("Unknown crash type to provide extra info\n");
+        }
+
+        if (platformSpecificLineEndings)
+            stringBuilder.MakeLineSeparatorsPlatformSpecific();
+
+        return stringBuilder.ToString();
     }
 
     public void ClearAllCrashes()
@@ -336,6 +396,9 @@ public interface ICrashReporter
 
     public Task<CrashReporterSubmitResult> SubmitReport(ReportableCrash crash, IEnumerable<string> logFiles,
         string? extraDescription, string? reporterEmail, bool reportIsPublic, string? launcherSavedOutput);
+
+    public string CreateTextReport(ReportableCrash crash, IEnumerable<string> logFiles, string? extraDescription,
+        string? reporterEmail, string? launcherSavedOutput, bool platformSpecificLineEndings);
 
     public void ClearAllCrashes();
 }

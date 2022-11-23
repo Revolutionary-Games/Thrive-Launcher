@@ -1658,5 +1658,11 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("AutoUpdateFailedTitle", resourceCulture);
             }
         }
+        
+        public static string CannotSubmitExceptionReportYet {
+            get {
+                return ResourceManager.GetString("CannotSubmitExceptionReportYet", resourceCulture);
+            }
+        }
     }
 }

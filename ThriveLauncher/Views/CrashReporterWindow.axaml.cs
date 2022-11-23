@@ -96,6 +96,19 @@ public partial class CrashReporterWindow : Window
         await clipboard.SetTextAsync(DerivedDataContext.CreatedReportDeleteUrl);
     }
 
+    private async void CopyExceptionReportToClipboard(object? sender, RoutedEventArgs e)
+    {
+        _ = sender;
+        _ = e;
+
+        var clipboard = Application.Current?.Clipboard;
+
+        if (clipboard == null)
+            throw new InvalidOperationException("Clipboard doesn't exist");
+
+        await clipboard.SetTextAsync(DerivedDataContext.GetReportToCopyToClipboard());
+    }
+
     private void OnAvailableCrashesToReportChanged(List<ReportableCrash> crashes)
     {
         AvailableCrashesToReportList.Children.Clear();

@@ -177,11 +177,14 @@ public class CrashReporterWindowViewModel : ViewModelBase
             this.RaisePropertyChanged(nameof(ShowCrashDumpDeleteAfterReportCheckBox));
             this.RaisePropertyChanged(nameof(ReportingCrashInfoString));
             this.RaisePropertyChanged(nameof(CrashReportIsOld));
+            this.RaisePropertyChanged(nameof(CrashReportIsForException));
         }
     }
 
     public string? SelectedCrashName => SelectedCrashToReport?.Name;
     public bool ShowCrashDumpDeleteAfterReportCheckBox => SelectedCrashToReport is ReportableCrashDump;
+
+    public bool CrashReportIsForException => SelectedCrashToReport is ReportableCrashException;
 
     public bool CrashReportIsOld
     {
@@ -385,6 +388,16 @@ public class CrashReporterWindowViewModel : ViewModelBase
     {
         logger.LogInformation("Opening report DELETE url: {CreatedReportDeleteUrl}", CreatedReportDeleteUrl);
         URLUtilities.OpenURLInBrowser(CreatedReportDeleteUrl);
+    }
+
+    public string GetReportToCopyToClipboard()
+    {
+        if (SelectedCrashToReport == null)
+            throw new InvalidOperationException("No crash report is selected");
+
+        return crashReporter.CreateTextReport(SelectedCrashToReport, new string[] { },
+            CrashReportIsForException ? "Crash is an unhandled exception" : string.Empty, null, LauncherOutputText,
+            true);
     }
 
     private async Task DoReportSubmit()

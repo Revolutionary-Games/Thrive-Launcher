@@ -44,7 +44,7 @@
             <ScrollViewer IsVisible="{Binding !ReportSubmitted}">
                 <DockPanel LastChildFill="True" Margin="3 2">
                     <!-- Bottom part of the form -->
-                    <StackPanel DockPanel.Dock="Bottom">
+                    <StackPanel DockPanel.Dock="Bottom" IsVisible="{Binding !CrashReportIsForException}">
                         <Border BorderBrush="{DynamicResource BlueElement}" BorderThickness="1" Margin="0 0 0 3" />
 
                         <CheckBox IsChecked="{Binding ReportIsPublic}">
@@ -63,26 +63,42 @@
                                    IsVisible="{Binding ReportSubmitError,Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
 
                         <StackPanel Orientation="Horizontal" Spacing="3" HorizontalAlignment="Center">
-                            <Button DockPanel.Dock="Bottom" Classes="DialogButton" Command="{Binding SubmitReport}"
+                            <Button Classes="DialogButton" Command="{Binding SubmitReport}"
                                     Content="{i18n:Localize Submit}" IsEnabled="{Binding CanSubmitReport}"
                                     IsVisible="{Binding !ShowRetryButton}" />
 
-                            <Button DockPanel.Dock="Bottom" Classes="DialogButton" Command="{Binding SubmitReport}"
+                            <Button Classes="DialogButton" Command="{Binding SubmitReport}"
                                     Content="{i18n:Localize Retry}" IsEnabled="{Binding CanSubmitReport}"
                                     IsVisible="{Binding ShowRetryButton}" />
 
-                            <Button DockPanel.Dock="Bottom" Classes="DialogButton Danger"
+                            <Button Classes="DialogButton Danger"
                                     Command="{Binding CancelCrashReporting}"
                                     Content="{i18n:Localize Cancel}" />
                         </StackPanel>
                     </StackPanel>
 
                     <!-- TODO: handling for exception crash report -->
+                    <Grid IsVisible="{Binding CrashReportIsForException}"
+                          ColumnDefinitions="*,Auto,*" RowDefinitions="Auto,Auto,*,Auto">
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" TextWrapping="Wrap"
+                                   Text="{i18n:Localize CannotSubmitExceptionReportYet}" />
+
+                        <Button Grid.Row="1" Grid.Column="0" Classes="DialogButton" Margin="5 15"
+                                Click="CopyExceptionReportToClipboard"
+                                ToolTip.Tip="{i18n:Localize CopyToClipboard}" VerticalAlignment="Center">
+                            <Image Height="24" Source="{DynamicResource CopyIconWhite}" />
+                        </Button>
+
+                        <Button Grid.Row="3" Grid.Column="1" DockPanel.Dock="Bottom" Classes="DialogButton"
+                                HorizontalAlignment="Center"
+                                Command="{Binding CancelCrashReporting}"
+                                Content="{i18n:Localize Cancel}" />
+                    </Grid>
 
                     <!-- Top part of the form that can scroll when there's a bunch of content -->
-                    <Grid ColumnDefinitions="*"
-                          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
-                          IsVisible="True">
+                    <Grid ColumnDefinitions="*" IsVisible="{Binding !CrashReportIsForException}"
+                          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
 
                         <TextBlock Grid.Row="0" TextWrapping="Wrap"
                                    Text="{Binding ReportingCrashInfoString}" />
