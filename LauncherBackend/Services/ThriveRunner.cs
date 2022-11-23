@@ -442,9 +442,17 @@ public class ThriveRunner : IThriveRunner
 
         if (elapsed < LauncherConstants.RequiredRuntimeBeforeGameStartAdviceDisappears)
         {
-            logger.LogInformation("Thrive only ran for: {Elapsed}, showing startup fail advice", elapsed);
+            if (!thriveProperlyStarted)
+            {
+                logger.LogInformation("Thrive only ran for: {Elapsed}, showing startup fail advice", elapsed);
 
-            ActiveErrorSuggestion = ErrorSuggestionType.ExitedQuickly;
+                ActiveErrorSuggestion = ErrorSuggestionType.ExitedQuickly;
+            }
+            else
+            {
+                logger.LogInformation("Thrive ran for a really short time but output the startup success, " +
+                    "not showing short duration run advice");
+            }
         }
 
         // TODO: this constant might be totally wrong now
