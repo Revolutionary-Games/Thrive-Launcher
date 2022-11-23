@@ -257,9 +257,8 @@
                                               IsVisible="{Binding IsStoreVersion}"
                                               Content="{i18n:Localize LauncherOptionAllowSeamlessMode}" />
 
-
                                     <CheckBox IsChecked="{Binding AllowAutoUpdate}"
-                                              IsVisible="{Binding !IsStoreVersion}"
+                                              IsVisible="{Binding CanAutoUpdate}"
                                               Content="{i18n:Localize LauncherOptionAutoUpdate}" />
                                 </StackPanel>
                             </ScrollViewer>

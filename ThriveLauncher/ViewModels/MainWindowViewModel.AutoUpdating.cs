@@ -143,6 +143,8 @@ public partial class MainWindowViewModel
 
     public string LauncherVersion => versionUtilities.LauncherVersion + LauncherConstants.ModeSuffix;
 
+    public bool CanAutoUpdate => GetUsedAutoUpdateChannel() != null;
+
     public void CancelAutoUpdate()
     {
         if (autoUpdateCancellation.IsCancellationRequested)
