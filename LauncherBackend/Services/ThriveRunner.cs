@@ -29,6 +29,10 @@ public class ThriveRunner : IThriveRunner
     private bool readingUnhandledException;
     private List<string>? unhandledException;
 
+    // This variable makes sure error is read from the right stream to reduce the amount of interleaving with other
+    // log output
+    private bool unhandledExceptionIsInErrorOut;
+
     private bool thriveProperlyStarted;
 
     private StoreVersionInfo? currentStoreVersionInfo;
@@ -210,6 +214,7 @@ public class ThriveRunner : IThriveRunner
     {
         HasReportableCrash = false;
         readingUnhandledException = false;
+        unhandledExceptionIsInErrorOut = false;
         unhandledException = null;
         DetectedCrashDumpOutputLocation = null;
     }
@@ -398,11 +403,24 @@ public class ThriveRunner : IThriveRunner
         ThriveWantsToOpenLauncher = AllGameOutput().Any(m => m.Contains(LauncherConstants.REQUEST_LAUNCHER_OPEN));
         var userRequestedQuit = AllGameOutput().Any(m => m.Contains(LauncherConstants.USER_REQUESTED_QUIT));
 
+        // TODO: detection for restart request
+
         if (ThriveWantsToOpenLauncher)
             logger.LogInformation("Thrive wants the launcher to be shown");
 
+        if (exitCode != null)
+        {
+            OnNormalOutput($"Child process exited with code {exitCode}");
+            ExitCode = exitCode.Value;
+        }
+        else
+        {
+            ExitCode = -2;
+        }
+
         // Restart Thrive if it didn't start correctly (and the user didn't request the close)
-        if (!thriveProperlyStarted && version.SupportsStartupDetection && !userRequestedQuit)
+        if (!thriveProperlyStarted && version.SupportsStartupDetection && !userRequestedQuit &&
+            !ThriveWantsToOpenLauncher)
         {
             logger.LogWarning("Thrive was not detected as properly started");
 
@@ -422,22 +440,6 @@ public class ThriveRunner : IThriveRunner
             }
 
             logger.LogWarning("Ran out of Thrive start retries");
-        }
-
-        if (exitCode != null)
-        {
-            OnNormalOutput($"Child process exited with code {exitCode}");
-            ExitCode = exitCode.Value;
-        }
-        else
-        {
-            ExitCode = -2;
-        }
-
-        if (!ThriveWantsToOpenLauncher)
-        {
-            // TODO: restart Thrive once if we didn't see the properly started Thrive log message, and the version is
-            // marked as supporting it
         }
 
         if (elapsed < LauncherConstants.RequiredRuntimeBeforeGameStartAdviceDisappears)
@@ -485,8 +487,7 @@ public class ThriveRunner : IThriveRunner
             }
             else if (unhandledException != null)
             {
-                // TODO: implement reporting unhandled exceptions as crashes
-                // HasReportableCrash = true;
+                HasReportableCrash = true;
                 OnErrorOutput("Thrive has encountered an unhandled exception, please report this to us. " +
                     "In the future there will be support for automatically reporting these crashes.");
             }
@@ -546,6 +547,8 @@ public class ThriveRunner : IThriveRunner
     {
         var outputObject = new ThriveOutputMessage(line, error);
 
+        DetectUnhandledExceptionOutput(line, error);
+
         if (ThriveOutput.Count < firstLinesToKeep)
         {
             ThriveOutput.Add(outputObject);
@@ -561,10 +564,6 @@ public class ThriveRunner : IThriveRunner
 
             return;
         }
-
-        DetectUnhandledExceptionOutput(line);
-
-        // TODO: detection for restart and exiting to launcher
 
         // Performance of this collection type seems fine for now, but when getting stuff to the GUI, the GUI
         // needs to buffer removes
@@ -620,27 +619,33 @@ public class ThriveRunner : IThriveRunner
         }
     }
 
-    private void DetectUnhandledExceptionOutput(string line)
+    private void DetectUnhandledExceptionOutput(string line, bool isErrorOut)
     {
         if (readingUnhandledException)
         {
             if (unhandledException == null)
                 throw new Exception("Logic error in not setting unhandled exception storage list");
 
-            unhandledException.Add(line);
-
             if (line.Contains(LauncherConstants.EndOfUnhandledExceptionLogging))
             {
                 readingUnhandledException = false;
             }
+            else if (unhandledExceptionIsInErrorOut != isErrorOut)
+            {
+                // Wrong output, ignore
+                return;
+            }
+
+            unhandledException.Add(line);
         }
-        else if (line.Contains(LauncherConstants.StartOfUnhandledExceptionLogging))
+        else if (line.Contains(LauncherConstants.StartOfUnhandledExceptionLogging) && !readingUnhandledException)
         {
-            // TODO: test that the unhandled exception finding works correctly
             logger.LogDebug("Detected start of unhandled exception");
 
             unhandledException ??= new List<string>();
             unhandledException.Add(line);
+            readingUnhandledException = true;
+            unhandledExceptionIsInErrorOut = isErrorOut;
         }
     }
 
