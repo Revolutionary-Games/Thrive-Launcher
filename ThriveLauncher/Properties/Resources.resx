@@ -884,4 +884,10 @@ If no files are listed below, downloading the update has failed and it cannot be
   <data name="ThriveRunRetryStarting" xml:space="preserve">
     <value>Thrive was not detected as having started correctly. Will attempt to start Thrive again, attempt number: {0}</value>
   </data>
+  <data name="LauncherOptionShowLatestBetaVersion" xml:space="preserve">
+    <value>Show latest available beta version of Thrive in the version selector (if available)</value>
+  </data>
+  <data name="LauncherOptionShowAllBetaVersions" xml:space="preserve">
+    <value>Show all existing beta versions of Thrive</value>
+  </data>
 </root>

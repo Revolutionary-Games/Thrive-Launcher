@@ -1670,5 +1670,17 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("ThriveRunRetryStarting", resourceCulture);
             }
         }
+        
+        public static string LauncherOptionShowLatestBetaVersion {
+            get {
+                return ResourceManager.GetString("LauncherOptionShowLatestBetaVersion", resourceCulture);
+            }
+        }
+        
+        public static string LauncherOptionShowAllBetaVersions {
+            get {
+                return ResourceManager.GetString("LauncherOptionShowAllBetaVersions", resourceCulture);
+            }
+        }
     }
 }

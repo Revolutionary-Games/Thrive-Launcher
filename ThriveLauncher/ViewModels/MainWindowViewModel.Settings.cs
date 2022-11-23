@@ -59,6 +59,8 @@ public partial class MainWindowViewModel
             this.RaisePropertyChanging();
             Settings.Hide32Bit = value;
             this.RaisePropertyChanged();
+
+            NotifyChangesToAvailableVersions();
         }
     }
 
@@ -199,6 +201,38 @@ public partial class MainWindowViewModel
             this.RaisePropertyChanging();
             Settings.AllowAutoUpdate = value;
             this.RaisePropertyChanged();
+        }
+    }
+
+    public bool ShowLatestBetaVersion
+    {
+        get => Settings.ShowLatestBetaVersion;
+        set
+        {
+            if (Settings.ShowLatestBetaVersion == value)
+                return;
+
+            this.RaisePropertyChanging();
+            Settings.ShowLatestBetaVersion = value;
+            this.RaisePropertyChanged();
+
+            NotifyChangesToAvailableVersions();
+        }
+    }
+
+    public bool ShowAllBetaVersions
+    {
+        get => Settings.ShowAllBetaVersions;
+        set
+        {
+            if (Settings.ShowAllBetaVersions == value)
+                return;
+
+            this.RaisePropertyChanging();
+            Settings.ShowAllBetaVersions = value;
+            this.RaisePropertyChanged();
+
+            NotifyChangesToAvailableVersions();
         }
     }
 

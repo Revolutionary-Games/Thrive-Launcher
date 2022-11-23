@@ -505,6 +505,11 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private void OnVersionInfoLoaded()
     {
+        SetRememberedVersionToVersionSelector();
+    }
+
+    private void SetRememberedVersionToVersionSelector()
+    {
         var remembered = settingsManager.RememberedVersion;
 
         var availableThings = AvailableThriveVersions.ToList();
@@ -543,6 +548,13 @@ public partial class MainWindowViewModel : ViewModelBase
         // Otherwise just select the latest version
         SelectedVersionToPlay = availableThings.Where(t => t.VersionObject is PlayableVersion)
             .First(t => ((PlayableVersion)t.VersionObject).IsLatest).VersionObject.VersionName;
+    }
+
+    private void NotifyChangesToAvailableVersions()
+    {
+        this.RaisePropertyChanged(nameof(AvailableThriveVersions));
+
+        SetRememberedVersionToVersionSelector();
     }
 
     private async Task<List<ParsedLauncherFeedItem>> FetchFeed(string name, Uri uri, bool mainSite)

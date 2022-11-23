@@ -50,6 +50,12 @@ public class LauncherSettings
     [JsonPropertyName("allowAutoUpdate")]
     public bool AllowAutoUpdate { get; set; } = true;
 
+    [JsonPropertyName("showLatestBetaVersion")]
+    public bool ShowLatestBetaVersion { get; set; }
+
+    [JsonPropertyName("showAllBetaVersions")]
+    public bool ShowAllBetaVersions { get; set; }
+
     // DevCenter options
     [JsonPropertyName("devCenterKey")]
     public string? DevCenterKey { get; set; }

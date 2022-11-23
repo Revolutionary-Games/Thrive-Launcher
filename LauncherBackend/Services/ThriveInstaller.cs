@@ -87,9 +87,9 @@ public class ThriveInstaller : IThriveInstaller
             yield break;
         }
 
-        // TODO: create options to control these
-        bool showLatestBeta = false;
-        bool showAllBetaVersions = false;
+        var settings = settingsManager.Settings;
+        bool showLatestBeta = settings.ShowLatestBetaVersion;
+        bool showAllBetaVersions = settings.ShowAllBetaVersions && settings.ShowLatestBetaVersion;
 
         foreach (var version in infoRetriever.CurrentlyLoadedInfo.Versions)
         {
@@ -106,7 +106,7 @@ public class ThriveInstaller : IThriveInstaller
 
             foreach (var versionPlatform in version.Platforms)
             {
-                if (!settingsManager.Settings.ShouldShowVersionWithPlatform(versionPlatform.Key,
+                if (!settings.ShouldShowVersionWithPlatform(versionPlatform.Key,
                         allPlatformsForVersion))
                 {
                     continue;
@@ -166,8 +166,8 @@ public class ThriveInstaller : IThriveInstaller
             }
         });
 
-        // TODO: check that this works nicely for beta versions
-        sorted = sorted.ThenByDescending(t => t.VersionName);
+        // Then by is used here to sort beta versions to be after the full release equivalents
+        sorted = sorted.ThenBy(t => t.VersionName);
 
         return sorted;
     }

@@ -399,11 +399,16 @@ public partial class MainWindowViewModel
         this.RaisePropertyChanged(nameof(DevCenterConnectedUser));
         this.RaisePropertyChanged(nameof(DevCenterConnectedUserAndEmail));
         this.RaisePropertyChanged(nameof(DevCenterConnectionIsDeveloper));
-        this.RaisePropertyChanged(nameof(AvailableThriveVersions));
 
         // Make a version be selected (but only if version info is already loaded
         if (ThriveVersionInformation != null)
-            OnVersionInfoLoaded();
+        {
+            NotifyChangesToAvailableVersions();
+        }
+        else
+        {
+            this.RaisePropertyChanged(nameof(AvailableThriveVersions));
+        }
     }
 
     private async void PerformDevCenterCheck()

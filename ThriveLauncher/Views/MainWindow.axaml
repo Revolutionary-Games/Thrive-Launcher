@@ -215,17 +215,17 @@
                         </StackPanel>
                     </TabItem>
                     <TabItem Header="{i18n:Localize LauncherOptions}">
-                        <StackPanel>
-                            <WrapPanel Orientation="Horizontal">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto,Auto,*,Auto,Auto,Auto">
+                            <WrapPanel Grid.Row="0" Orientation="Horizontal">
                                 <TextBlock Margin="0 0 1 0" Text="{i18n:Localize LauncherVersionDisplay}" />
                                 <TextBlock Text="{Binding LauncherVersion}" />
                                 <TextBlock Text="{i18n:Localize LauncherIsLatestVersion}" Margin="15 0"
                                            IsVisible="{Binding LauncherIsLatestVersion}" />
                             </WrapPanel>
-                            <Border DockPanel.Dock="Top" Padding="0" BorderThickness="1"
+                            <Border Grid.Row="1" DockPanel.Dock="Top" Padding="0" BorderThickness="1"
                                     BorderBrush="{DynamicResource BlueElement}" />
 
-                            <ScrollViewer>
+                            <ScrollViewer Grid.Row="2">
                                 <StackPanel>
                                     <CheckBox IsChecked="{Binding ShowWebContent}"
                                               Content="{i18n:Localize LauncherOptionWebFeeds}" />
@@ -246,12 +246,16 @@
                                               IsVisible="{Binding IsStoreVersion}"
                                               Content="{i18n:Localize LauncherOptionShowExternalVersions}" />
 
-                                    <!-- TODO: implement beta version showing -->
-                                    <!--<CheckBox IsChecked="{Binding ShowLatestBetaVersion}"
+                                    <CheckBox IsChecked="{Binding ShowLatestBetaVersion}"
                                               Content="{i18n:Localize LauncherOptionShowLatestBetaVersion}" />
 
                                     <CheckBox IsChecked="{Binding ShowAllBetaVersions}"
-                                              Content="{i18n:Localize LauncherOptionShowAllBetaVersions}" />-->
+                                              IsVisible="{Binding ShowLatestBetaVersion}"
+                                              Content="{i18n:Localize LauncherOptionShowAllBetaVersions}" />
+
+                                    <CheckBox IsChecked="False" IsEnabled="False"
+                                              IsVisible="{Binding !ShowLatestBetaVersion}"
+                                              Content="{i18n:Localize LauncherOptionShowAllBetaVersions}" />
 
                                     <CheckBox IsChecked="{Binding EnableStoreVersionSeamlessMode}"
                                               IsVisible="{Binding IsStoreVersion}"
@@ -263,16 +267,16 @@
                                 </StackPanel>
                             </ScrollViewer>
 
-                            <StackPanel Orientation="Horizontal" Margin="0 5">
+                            <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0 5">
                                 <TextBlock Margin="0 0 2 0" Text="{i18n:Localize LauncherSelectedLanguage}"
                                            VerticalAlignment="Center" />
                                 <ComboBox x:Name="LanguageComboBox" SelectionChanged="LanguageSelectionChanged" />
                             </StackPanel>
 
-                            <Border Padding="0" BorderThickness="1" Margin="0 0 0 3"
+                            <Border Grid.Row="4" Padding="0" BorderThickness="1" Margin="0 0 0 3"
                                     BorderBrush="{DynamicResource BlueElement}" />
 
-                            <StackPanel Orientation="Horizontal" Spacing="5">
+                            <StackPanel Grid.Row="5" Orientation="Horizontal" Spacing="5" Margin="0 0 0 10">
                                 <Button Classes="DialogButton Danger" Content="{i18n:Localize ResetAllSettings}"
                                         Command="{Binding ResetAllSettings}" />
 
@@ -282,7 +286,7 @@
                                 <Button Classes="TextLink" Content="{i18n:Localize OpenLogsFolderButton}"
                                         Command="{Binding OpenLogsFolder}" />
                             </StackPanel>
-                        </StackPanel>
+                        </Grid>
                     </TabItem>
                     <TabItem Header="{i18n:Localize InstalledVersions}">
                         <DockPanel LastChildFill="True">
@@ -835,14 +839,15 @@
 
                         <Button Classes="DialogButton" Command="{Binding OpenFirstAutoUpdaterFolder}"
                                 IsEnabled="{Binding HasExistingAutoUpdaters}"
-                                Content="{i18n:Localize ViewFirstAutoUpdaterFolder}" Margin="0 10"/>
+                                Content="{i18n:Localize ViewFirstAutoUpdaterFolder}" Margin="0 10" />
                     </StackPanel>
                 </ScrollViewer>
 
                 <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
                            Text="{Binding AutoUpdateFailureExtraMessage}" TextWrapping="Wrap" />
 
-                <Button Grid.Row="2" Grid.Column="1" Classes="DialogButton Danger" Command="{Binding ClearFailedAutoUpdates}"
+                <Button Grid.Row="2" Grid.Column="1" Classes="DialogButton Danger"
+                        Command="{Binding ClearFailedAutoUpdates}"
                         Content="{i18n:Localize IgnoreFailure}" />
             </Grid>
         </controls:PopupDialog>
