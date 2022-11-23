@@ -298,6 +298,8 @@ public partial class MainWindowViewModel
 
         var updateChannel = GetUsedAutoUpdateChannel();
 
+        logger.LogInformation("Launcher update channel is: {UpdateChannel}", updateChannel);
+
         if (updateChannel != null)
         {
             if (AllowAutoUpdate && !launcherOptions.SkipAutoUpdate)
