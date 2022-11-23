@@ -410,7 +410,7 @@ Launcher logs will have more info.</value>
     <value>Error Getting Available Thrive Versions</value>
   </data>
   <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
-    <value>Thrive Launcher loads the available Thrive versions from the internet in order to know what is available. Loading this information has failed (see the error below). You can retry downloading this information, or if the launcher was previously able to download this information you can load a cached copy. If the cached copy is very old it may not show all available Thrive versions.</value>
+    <value>Thrive Launcher loads the available Thrive versions from the internet in order to know what is available. Loading this information has failed (see the error below). You can retry downloading this information, or if the launcher was previously able to download this information you can load a cached copy. If the cached copy is very old it may not show all available Thrive versions. Note that if your version of the launcher is very old, it may no longer be compatible with a newer data format and must be updated before the data can be loaded.</value>
   </data>
   <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
     <value>The downloaded Thrive Launcher information is invalid. Please try again in a short while and if the issue persist please contact us.</value>
