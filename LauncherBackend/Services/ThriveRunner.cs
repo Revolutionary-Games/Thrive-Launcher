@@ -80,6 +80,8 @@ public class ThriveRunner : IThriveRunner
 
     public string? DetectedCrashDumpOutputLocation { get; private set; }
 
+    public bool LaunchedInSeamlessMode { get; set; }
+
     public static IEnumerable<(string File, DateTime ModifiedAt)> GetCrashDumpsInFolder(string folder)
     {
         var dumps = new List<(string File, DateTime ModifiedAt)>();
@@ -333,15 +335,19 @@ public class ThriveRunner : IThriveRunner
 
         if (currentStoreVersionInfo != null)
         {
-            // TODO: pass arguments about the store version to Thrive for it to show correct information
+            // Pass arguments about the store version to Thrive for it to show correct information
             // This is needed because itch builds don't have anything special on the Thrive side to them
+            runInfo.ArgumentList.Add(
+                $"{LauncherConstants.THRIVE_LAUNCHER_STORE_PREFIX}{currentStoreVersionInfo.StoreName}");
         }
 
         runInfo.ArgumentList.Add(LauncherConstants.OPENED_THROUGH_LAUNCHER_OPTION);
 
         // If we are going to close our window, tell that to Thrive
-        if (settings.CloseLauncherOnGameStart || settings.CloseLauncherAfterGameExit)
+        // Or if we launched in seamless mode
+        if (settings.CloseLauncherOnGameStart || settings.CloseLauncherAfterGameExit || LaunchedInSeamlessMode)
         {
+            logger.LogDebug("Passing the launcher is hidden flag to Thrive");
             runInfo.ArgumentList.Add(LauncherConstants.OPENING_LAUNCHER_IS_HIDDEN);
         }
 
@@ -656,6 +662,11 @@ public interface IThriveRunner
     public int ExitCode { get; }
 
     public IPlayableVersion? PlayedThriveVersion { get; }
+
+    /// <summary>
+    ///   Set to true when launched in seamless mode to enable some specific features related to that
+    /// </summary>
+    public bool LaunchedInSeamlessMode { get; set; }
 
     /// <summary>
     ///   Contains an exception from Thrive output if Thrive output an unhandled exception log message. Null otherwise.

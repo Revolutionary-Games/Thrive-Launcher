@@ -226,6 +226,7 @@ internal class Program
                             rememberedVersion == storeVersion.VersionName)
                         {
                             programLogger.LogInformation("Trying to start game in seamless mode...");
+                            runner.LaunchedInSeamlessMode = true;
                             runner.StartThrive(storeVersion, CancellationToken.None);
                             started = true;
                         }
@@ -252,6 +253,7 @@ internal class Program
                         }
 
                         programLogger.LogInformation("Launcher wants to be shown after Thrive run in seamless mode");
+                        runner.LaunchedInSeamlessMode = false;
                     }
                 }
             }

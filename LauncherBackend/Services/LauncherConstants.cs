@@ -53,6 +53,7 @@ public static class LauncherConstants
     // TODO: combine to a common module with Thrive as these are there as well
     public const string OPENED_THROUGH_LAUNCHER_OPTION = "--thrive-started-by-launcher";
     public const string OPENING_LAUNCHER_IS_HIDDEN = "--thrive-launcher-hidden";
+    public const string THRIVE_LAUNCHER_STORE_PREFIX = "--thrive-store=";
     public const string REQUEST_LAUNCHER_OPEN = "------------ SHOWING LAUNCHER REQUESTED ------------";
 
     public const string DefaultThriveLogFileName = "log.txt";
