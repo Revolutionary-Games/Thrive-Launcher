@@ -161,7 +161,12 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     protected override string GetCompressedExtensionForPlatform(PackagePlatform platform)
     {
-        return $"_standalone{base.GetCompressedExtensionForPlatform(platform)}";
+        if (currentExportType == LauncherExportType.Standalone)
+        {
+            return $"_standalone{base.GetCompressedExtensionForPlatform(platform)}";
+        }
+
+        return base.GetCompressedExtensionForPlatform(platform);
     }
 
     protected override async Task<bool> PackageForPlatform(CancellationToken cancellationToken,
