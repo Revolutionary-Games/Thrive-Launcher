@@ -38,7 +38,7 @@ public class VersionUtilities
         if (version.Revision == 0)
             return $"{version.Major}.{version.Minor}.{version.Build}";
 
-        return $"{version.Major}.{version.Minor}.{version.Build}-{version.Revision}";
+        return $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
     }
 
     private Version GetAssemblyVersion()
