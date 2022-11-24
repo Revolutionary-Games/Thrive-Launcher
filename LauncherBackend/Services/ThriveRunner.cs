@@ -198,8 +198,13 @@ public class ThriveRunner : IThriveRunner
     public void ClearOutput()
     {
         PlayMessages.Clear();
-        ThriveOutput.Clear();
-        ThriveOutputTrailing.Clear();
+
+        lock (ThriveOutput)
+        {
+            ThriveOutput.Clear();
+            ThriveOutputTrailing.Clear();
+        }
+
         truncatedObservable.Value = false;
         DetectedThriveDataFolder = null;
         DetectedFullLogFileLocation = null;
@@ -538,51 +543,57 @@ public class ThriveRunner : IThriveRunner
 
     private IEnumerable<string> AllGameOutput()
     {
-        foreach (var message in ThriveOutput)
-            yield return message.Message;
+        lock (ThriveOutput)
+        {
+            foreach (var message in ThriveOutput)
+                yield return message.Message;
 
-        foreach (var message in ThriveOutputTrailing)
-            yield return message.Message;
+            foreach (var message in ThriveOutputTrailing)
+                yield return message.Message;
+        }
     }
 
     private void AddLogLine(string line, bool error)
     {
         var outputObject = new ThriveOutputMessage(line, error);
 
-        DetectUnhandledExceptionOutput(line, error);
-
-        if (ThriveOutput.Count < firstLinesToKeep)
+        lock (ThriveOutput)
         {
-            ThriveOutput.Add(outputObject);
+            DetectUnhandledExceptionOutput(line, error);
 
-            // Should be fine to only detect this from the first log lines
-            DetectThriveDataFoldersFromOutput(line);
-
-            if (!thriveProperlyStarted && line.Contains(LauncherConstants.STARTUP_SUCCEEDED_MESSAGE))
+            if (ThriveOutput.Count < firstLinesToKeep)
             {
-                logger.LogInformation("Thrive detected as properly started");
-                thriveProperlyStarted = true;
+                ThriveOutput.Add(outputObject);
+
+                // Should be fine to only detect this from the first log lines
+                DetectThriveDataFoldersFromOutput(line);
+
+                if (!thriveProperlyStarted && line.Contains(LauncherConstants.STARTUP_SUCCEEDED_MESSAGE))
+                {
+                    logger.LogInformation("Thrive detected as properly started");
+                    thriveProperlyStarted = true;
+                }
+
+                return;
             }
 
-            return;
-        }
+            // Performance of this collection type seems fine for now, but when getting stuff to the GUI, the GUI
+            // needs to buffer removes
 
-        // Performance of this collection type seems fine for now, but when getting stuff to the GUI, the GUI
-        // needs to buffer removes
+            ThriveOutputTrailing.Add(outputObject);
 
-        ThriveOutputTrailing.Add(outputObject);
-
-        if (ThriveOutputTrailing.Count > lastLinesToKeep)
-        {
-            if (!truncatedObservable.Value)
+            if (ThriveOutputTrailing.Count > lastLinesToKeep)
             {
-                logger.LogDebug("Output from Thrive is so long that it is truncated");
-                truncatedObservable.Value = true;
-            }
+                if (!truncatedObservable.Value)
+                {
+                    logger.LogDebug("Output from Thrive is so long that it is truncated");
+                    truncatedObservable.Value = true;
+                }
 
-            // Performance-wise this is fine for us but the listeners listening to this might be pretty expensive to
-            // run...
-            ThriveOutputTrailing.RemoveAt(0);
+                // Performance-wise this is fine for us but the listeners listening to this might be pretty
+                // expensive to run...
+                ThriveOutputTrailing.RemoveAt(0);
+            }
         }
     }
 
