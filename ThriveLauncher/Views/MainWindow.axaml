@@ -781,10 +781,11 @@
         </controls:PopupDialog>
 
         <!-- Auto updater popup -->
-        <controls:PopupDialog Title="{i18n:Localize PerformingAutoUpdateTitle}" ShowOKButton="False" ShowCloseX="True"
-                              CloseCommand="{Binding CancelAutoUpdate}" ShowPopup="{Binding ShowAutoUpdaterPopup}">
+        <controls:PopupDialog Title="{i18n:Localize PerformingAutoUpdateTitle}" ShowOKButton="False"
+                              ShowCloseX="{Binding !AutoUpdatingSucceeded}" CloseCommand="{Binding CancelAutoUpdate}"
+                              ShowPopup="{Binding ShowAutoUpdaterPopup}">
             <Grid MinHeight="400" MinWidth="600" MaxWidth="600" MaxHeight="400" ColumnDefinitions="*,Auto,Auto,*"
-                  RowDefinitions="*,Auto,Auto">
+                  RowDefinitions="*,Auto,Auto,Auto">
                 <ScrollViewer Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
                     <StackPanel>
                         <TextBlock Text="{i18n:Localize StartedAutoUpdateExplanation}" TextWrapping="Wrap" />
@@ -811,16 +812,16 @@
                     </WrapPanel>
                 </StackPanel>
 
-                <Button Grid.Row="1" Grid.Column="1" Classes="DialogButton Danger" Command="{Binding CancelAutoUpdate}"
+                <Button Grid.Row="2" Grid.Column="1" Classes="DialogButton Danger" Command="{Binding CancelAutoUpdate}"
                         IsVisible="{Binding !AutoUpdatingSucceeded}"
                         Content="{i18n:Localize Cancel}" />
 
-                <Button Grid.Row="1" Grid.Column="1" Classes="DialogButton"
+                <Button Grid.Row="2" Grid.Column="1" Classes="DialogButton"
                         Command="{Binding CloseLauncherAfterAutoUpdateStart}"
                         IsVisible="{Binding AutoUpdatingSucceeded}"
                         Content="{i18n:Localize QuitLauncherButton}" />
 
-                <Button Grid.Row="1" Grid.Column="2" Command="{Binding CancelCloseAfterAutoUpdate}"
+                <Button Grid.Row="2" Grid.Column="2" Command="{Binding CancelCloseAfterAutoUpdate}"
                         IsVisible="{Binding AutoUpdateClose,Converter={x:Static ObjectConverters.IsNotNull}}"
                         Content="{i18n:Localize StopAutoClose}" />
             </Grid>

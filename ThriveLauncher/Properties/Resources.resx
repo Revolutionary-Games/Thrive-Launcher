@@ -860,7 +860,7 @@ If a Thrive team member verifies that the PR is safe this warning goes away. Alt
     <value>Retrying the auto-update has failed. You can ignore the failure to clear out existing auto-update files to make the launcher try again the next time it is restarted.</value>
   </data>
   <data name="AutoUpdateSucceededMessage" xml:space="preserve">
-    <value>The auto-updater should have started. You should now, or in a few seconds, see. The launcher needs to be closed for the update to finish. You can close the launcher manually or wait for automatic closing in</value>
+    <value>The auto-updater should have started. You should now, or in a few seconds, see a new window opening for the updater. The launcher needs to be closed for the update to finish. You can close the launcher manually or wait for automatic closing in</value>
   </data>
   <data name="IgnoreFailure" xml:space="preserve">
     <value>Ignore Failure</value>

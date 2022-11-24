@@ -38,6 +38,7 @@ public partial class MainWindow : Window
     private readonly List<(IPlayableVersion Version, ComboBoxItem Item)> versionItems = new();
 
     private readonly Dictionary<FilePrepareProgress, ProgressDisplayer> activeProgressDisplayers = new();
+    private readonly Dictionary<FilePrepareProgress, ProgressDisplayer> activeUpdateProgressDisplayers = new();
 
     private readonly object lockForBulkOutputRemove = new();
     private int bulkOutputRemoveCount;
@@ -1005,17 +1006,16 @@ public partial class MainWindow : Window
         {
             AutoUpdateProgressContainer.Children.Clear();
 
-            foreach (var displayer in activeProgressDisplayers)
+            foreach (var displayer in activeUpdateProgressDisplayers)
             {
                 displayer.Value.Dispose();
             }
 
-            activeProgressDisplayers.Clear();
-
+            activeUpdateProgressDisplayers.Clear();
             return;
         }
 
-        foreach (var displayer in activeProgressDisplayers)
+        foreach (var displayer in activeUpdateProgressDisplayers)
         {
             displayer.Value.Marked = false;
         }
@@ -1023,29 +1023,24 @@ public partial class MainWindow : Window
         // We try to preserve as much state as possible here to keep progress bars working fine
         foreach (var progressItem in progress)
         {
-            if (!activeProgressDisplayers.TryGetValue(progressItem, out var displayer))
+            if (!activeUpdateProgressDisplayers.TryGetValue(progressItem, out var displayer))
             {
                 // No display yet for this progress item
                 displayer = new ProgressDisplayer(AutoUpdateProgressContainer, progressItem);
-                activeProgressDisplayers[progressItem] = displayer;
+                activeUpdateProgressDisplayers[progressItem] = displayer;
             }
             else
             {
                 displayer.Marked = true;
-
-                // We don't update here as when we first see a progress item we start listening for its updates
-                // separately
             }
         }
 
         // Delete displayers for progress items no longer present
-        foreach (var toDelete in activeProgressDisplayers.Where(t => !t.Value.Marked).ToList())
+        foreach (var toDelete in activeUpdateProgressDisplayers.Where(t => !t.Value.Marked).ToList())
         {
             toDelete.Value.Dispose();
-            activeProgressDisplayers.Remove(toDelete.Key);
+            activeUpdateProgressDisplayers.Remove(toDelete.Key);
         }
-
-        PlayOutputScrollContainer.ScrollToEnd();
     }
 
     private void OnAvailableAutoUpdatersForRetryUpdated(IReadOnlyCollection<string> updaters)

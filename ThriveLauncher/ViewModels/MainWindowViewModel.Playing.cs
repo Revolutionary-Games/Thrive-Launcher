@@ -553,7 +553,6 @@ public partial class MainWindowViewModel
 
         thriveInstaller.InstallerMessages.CollectionChanged += OnInstallerMessagesChanged;
         thriveInstaller.InProgressOperations.CollectionChanged += OnInProgressOperationsChanged;
-        autoUpdater.InProgressOperations.CollectionChanged += OnUpdaterOperationsChanged;
     }
 
     private void UnRegisterInstallerMessageForwarders()
@@ -565,7 +564,6 @@ public partial class MainWindowViewModel
 
         thriveInstaller.InstallerMessages.CollectionChanged -= OnInstallerMessagesChanged;
         thriveInstaller.InProgressOperations.CollectionChanged -= OnInProgressOperationsChanged;
-        autoUpdater.InProgressOperations.CollectionChanged -= OnUpdaterOperationsChanged;
     }
 
     private void OnInstallerMessagesChanged(object? sender,

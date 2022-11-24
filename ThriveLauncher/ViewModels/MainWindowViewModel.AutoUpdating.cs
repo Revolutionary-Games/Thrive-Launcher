@@ -22,6 +22,8 @@ using ReactiveUI;
 /// </summary>
 public partial class MainWindowViewModel
 {
+    private bool registeredUpdaterCallbacks;
+
     private bool launcherIsLatestVersion;
     private string launcherOutdatedVersionMessage = string.Empty;
     private string launcherOutdatedAdditionalInfo = string.Empty;
@@ -296,6 +298,7 @@ public partial class MainWindowViewModel
 
     private void TryToSTartAutoUpdate(LauncherVersionInfo launcherVersion, string currentVersion)
     {
+        RegisterAutoUpdaterCallbacks();
         InProgressAutoUpdateOperations.Clear();
 
         var updateChannel = GetUsedAutoUpdateChannel();
@@ -476,13 +479,30 @@ public partial class MainWindowViewModel
 #endif
     }
 
+    private void RegisterAutoUpdaterCallbacks()
+    {
+        if (registeredUpdaterCallbacks)
+            return;
+
+        registeredUpdaterCallbacks = true;
+
+        autoUpdater.InProgressOperations.CollectionChanged += OnUpdaterOperationsChanged;
+    }
+
+    private void UnRegisterAutoUpdaterCallbacks()
+    {
+        if (!registeredUpdaterCallbacks)
+            return;
+
+        registeredUpdaterCallbacks = false;
+
+        autoUpdater.InProgressOperations.CollectionChanged -= OnUpdaterOperationsChanged;
+    }
+
     private void OnUpdaterOperationsChanged(object? sender, NotifyCollectionChangedEventArgs args)
     {
-        if (!ShowAutoUpdaterPopup)
-        {
-            logger.LogWarning("Ignoring auto updater progress change as not currently showing progress");
-            return;
-        }
+        // We don't ignore updates here as the updater popup opening is a bit complicated logic-wise, so we let the
+        // updates always through to ensure the data there is up to date when it is shown
 
         InProgressAutoUpdateOperations.ApplyChangeFromAnotherCollection(args);
     }

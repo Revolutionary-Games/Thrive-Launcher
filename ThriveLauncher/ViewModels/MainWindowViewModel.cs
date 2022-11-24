@@ -275,6 +275,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         UnRegisterThriveRunnerListeners();
         UnRegisterInstallerMessageForwarders();
+        UnRegisterAutoUpdaterCallbacks();
     }
 
     public IEnumerable<string> GetAvailableLanguages()
