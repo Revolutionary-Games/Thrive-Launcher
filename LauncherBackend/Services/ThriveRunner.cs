@@ -500,7 +500,9 @@ public class ThriveRunner : IThriveRunner
 
         if (crashDumpsExist && DetectedCrashDumpOutputLocation == null)
         {
-            OnNormalOutput("Crash dumps have been detected but they may be from a previous Thrive run");
+            // TODO: the advice here would be really nice to localize
+            OnNormalOutput("Crash dumps have been detected but they may be from a previous Thrive run. " +
+                "To stop being notified about the crash dumps, please open the reporter and clear the crash dumps.");
             HasReportableCrash = true;
         }
 
