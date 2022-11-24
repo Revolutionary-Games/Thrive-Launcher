@@ -412,7 +412,7 @@ public partial class MainWindowViewModel
         }
         else
         {
-            logger.LogError("Auto-updating has been successful, launcher will auto close");
+            logger.LogInformation("Auto-updating has been successful, launcher will auto close");
 
             Dispatcher.UIThread.Post(() => { AutoUpdatingSucceeded = true; });
 
@@ -446,7 +446,7 @@ public partial class MainWindowViewModel
         }
         else
         {
-            logger.LogError("Auto-update retrying has been successful, launcher will auto close");
+            logger.LogInformation("Auto-update retrying has been successful, launcher will auto close");
 
             Dispatcher.UIThread.Post(() =>
             {
