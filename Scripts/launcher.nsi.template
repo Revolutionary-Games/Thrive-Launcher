@@ -43,11 +43,14 @@ InstallDir "${INSTALL_DIR}"
 # Need this to not always request admin execution, only when wanted, but this doesn't work...
 RequestExecutionLevel user
 
+!define MULTIUSER_INSTALLMODE_COMMANDLINE
+
 !define MULTIUSER_EXECUTIONLEVEL Highest
 # This option doesn't seem to sadly exist
 # !define MULTIUSER_EXECUTIONLEVEL Standard
 # If we want the next line defaults to installing just for the current user
-!define MULTIUSER_INSTALLMODE_DEFAULT_CURRENTUSER
+# !define MULTIUSER_INSTALLMODE_DEFAULT_CURRENTUSER
+!define MULTIUSER_INSTALLMODE_INSTDIR "Thrive Launcher"
 
 # !define MULTIUSER_USE_PROGRAMFILES64 1
 # !define MULTIUSER_NOUNINSTALL ;Uncomment if no uninstaller is created
