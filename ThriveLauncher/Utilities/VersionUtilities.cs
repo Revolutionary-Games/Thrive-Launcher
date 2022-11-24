@@ -35,10 +35,10 @@ public class VersionUtilities
     {
         var version = GetAssemblyVersion();
 
-        if (version.Build == 0)
-            return $"{version.Major}.{version.Minor}.{version.Revision}";
+        if (version.Revision == 0)
+            return $"{version.Major}.{version.Minor}.{version.Build}";
 
-        return $"{version.Major}.{version.Minor}.{version.Revision}-{version.Build}";
+        return $"{version.Major}.{version.Minor}.{version.Build}-{version.Revision}";
     }
 
     private Version GetAssemblyVersion()
