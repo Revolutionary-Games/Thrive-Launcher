@@ -17,13 +17,13 @@ using ReactiveUI;
 /// </summary>
 public partial class MainWindowViewModel
 {
-    // Devcenter features
+    // DevCenter features
     private bool showDevCenterStatusArea = true;
     private bool showDevCenterPopup;
 
     private int nextDevCenterOpenOverrideKeyIndex;
 
-    // Initial startup / later checking we have devcenter connection variables
+    // Initial startup / later checking we have DevCenter connection variables
     private bool checkingDevCenterConnection;
     private bool devCenterKeyClearQueued;
 

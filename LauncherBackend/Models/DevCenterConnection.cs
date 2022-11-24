@@ -3,7 +3,7 @@ namespace LauncherBackend.Models;
 using DevCenterCommunication.Models;
 
 /// <summary>
-///   A valid (last time we checked from the client) connection to the devcenter
+///   A valid (last time we checked from the client) connection to the DevCenter
 /// </summary>
 public class DevCenterConnection
 {

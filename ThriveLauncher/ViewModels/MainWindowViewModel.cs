@@ -463,7 +463,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private async Task WaitForDevCenterConnection()
     {
-        // Wait for devcenter connection task if currently running
+        // Wait for DevCenter connection task if currently running
         int timeout = 30;
         while (CheckingDevCenterConnection)
         {

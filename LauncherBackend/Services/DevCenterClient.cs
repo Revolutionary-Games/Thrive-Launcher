@@ -76,7 +76,7 @@ public class DevCenterClient : IDevCenterClient
     {
         if (string.IsNullOrEmpty(settingsManager.Settings.DevCenterKey))
         {
-            logger.LogInformation("No devcenter key stored");
+            logger.LogInformation("No DevCenter key stored");
             DevCenterConnection = null;
             return DevCenterResult.Success;
         }
@@ -483,7 +483,7 @@ public interface IDevCenterClient
     public Task<DevCenterResult> CheckDevCenterConnection();
 
     /// <summary>
-    ///   Retrieves info from the devcenter about the build we want to play
+    ///   Retrieves info from the DevCenter about the build we want to play
     /// </summary>
     /// <returns>The build to play or null</returns>
     /// <exception cref="Exception">If manually selected hash is selected but none is set in settings</exception>
@@ -505,7 +505,7 @@ public interface IDevCenterClient
         IEnumerable<DehydratedObjectIdentification> dehydratedObjects);
 
     /// <summary>
-    ///   Queries the devcenter for the latest builds
+    ///   Queries the DevCenter for the latest builds
     /// </summary>
     /// <param name="offset">Offset to use (start at 0)</param>
     /// <param name="pageSize">The page size to fetch at once</param>

@@ -3,7 +3,7 @@ namespace LauncherBackend.Models;
 public enum PlayableDevCenterBuildType
 {
     /// <summary>
-    ///   Normal devbuild, authenticated to the devcenter
+    ///   Normal devbuild, authenticated to the DevCenter
     /// </summary>
     DevBuild,
 

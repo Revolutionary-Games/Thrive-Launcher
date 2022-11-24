@@ -212,7 +212,7 @@ internal class Program
                     {
                         // Seamless mode should only trigger when remembered version is null or the store version
                         // otherwise we'd need to do complex stuff like potentially waiting for a
-                        // devcenter connection here
+                        // DevCenter connection here
                         var rememberedVersion = settingsManager.RememberedVersion;
 
                         programLogger.LogDebug("Remembered version is: {RememberedVersion}", rememberedVersion);
