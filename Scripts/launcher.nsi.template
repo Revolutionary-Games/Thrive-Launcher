@@ -54,8 +54,13 @@ RequestExecutionLevel user
 
 # !define MULTIUSER_USE_PROGRAMFILES64 1
 # !define MULTIUSER_NOUNINSTALL ;Uncomment if no uninstaller is created
-!define MULTIUSER_INSTALLMODE_DEFAULT_REGISTRY_KEY "${REG_APP_PATH}"
-!define MULTIUSER_INSTALLMODE_DEFAULT_REGISTRY_VALUENAME "InstallerMultiUserMode"
+
+# TODO: fix the following, which doesn't work for some reason
+!define MULTIUSER_INSTALLMODE_DEFAULT_REGISTRY_KEY "Software\ThriveLauncherInstaller"
+!define MULTIUSER_INSTALLMODE_DEFAULT_REGISTRY_VALUENAME "InstallMode"
+!define MULTIUSER_INSTALLMODE_INSTDIR_REGISTRY_KEY "Software\ThriveLauncherInstaller"
+!define MULTIUSER_INSTALLMODE_INSTDIR_REGISTRY_VALUENAME "InstallDir"
+
 !define MULTIUSER_MUI
 
 !include MultiUser.nsh
