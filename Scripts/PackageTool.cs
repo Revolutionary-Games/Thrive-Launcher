@@ -374,6 +374,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         {
             ColourConsole.WriteInfoLine("Linux installer is made with flatpak (hosted on Flathub)");
             AddReprintMessage("Linux installer needs to be separately updated for Flathub");
+
+            // TODO: copy the flatpakref file to the build folder
         }
         else if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
         {
