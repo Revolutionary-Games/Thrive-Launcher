@@ -211,10 +211,38 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             // dotnet publish -c Release -r osx-x64 --self-contained true -o dist/mac-x64 ThriveLauncher
             // dotnet publish -c Release -r osx-arm64 --self-contained true -o dist/mac-arm ThriveLauncher
 
-            throw new NotImplementedException();
-        }
+            // On mac we need to build both x64 and arm versions and then glue them together
+            // This only works on a mac as this depends on Apple developer tools£
 
-        if (platform == PackagePlatform.Linux && options.LinuxPodman == true)
+            var armDirectory = $"{folder}-arm64";
+
+            ColourConsole.WriteNormalLine("Exporting mac version for arm64...");
+
+            Directory.CreateDirectory(armDirectory);
+            if (!await RunPublish(armDirectory, "osx-arm64", !doingNoRuntimeExport, platform, cancellationToken))
+            {
+                return false;
+            }
+
+            var x64Directory = $"{folder}-amd64";
+
+            ColourConsole.WriteNormalLine("Exporting mac version for x64...");
+
+            Directory.CreateDirectory(armDirectory);
+            if (!await RunPublish(armDirectory, "osx-amd64", !doingNoRuntimeExport, platform, cancellationToken))
+            {
+                return false;
+            }
+
+            // Merge the two
+            ColourConsole.WriteNormalLine("Combining the mac files for universality");
+
+            throw new NotImplementedException();
+
+            Directory.Delete(armDirectory, true);
+            Directory.Delete(x64Directory, true);
+        }
+        else if (platform == PackagePlatform.Linux && options.LinuxPodman == true)
         {
             if (options.NugetSource != null)
                 ColourConsole.WriteWarningLine("Nuget source specifying doesn't work with podman build");
