@@ -210,6 +210,10 @@ public class Program
             HelpText = "Use nuget packages from a specific folder instead of auto downloading")]
         public string? NugetSource { get; set; }
 
+        [Option("mac-signing-key", Default = null,
+            HelpText = "Use a specific signing key for mac builds (defaults to 'SelfSigned')")]
+        public string? MacSigningKey { get; set; }
+
         [Option("rcedit", Default = "rcedit-x64.exe",
             HelpText = "Name of the rcedit tool (required on non-Windows)")]
         public string RcEdit { get; set; } = "rcedit-x64.exe";

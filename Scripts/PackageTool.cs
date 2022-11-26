@@ -31,6 +31,12 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private const string NSISDotnetInstallerFileName = "launcher_dotnet_installer.nsi";
     private const string NSISTemplateFile = $"Scripts/{NSISFileName}.template";
 
+    private const string LauncherAppName = "Thrive Launcher.app";
+    private const string LauncherAppPlistTemplate = "Scripts/launcher.plist.template";
+    private const string MacIcon = "ThriveLauncher/Assets/Icons/icon.icns";
+    private const string MacEntitlementsFile = "Scripts/ThriveLauncher.entitlements";
+    private const string AssumedSelfSignedCertificateName = "SelfSigned";
+
     private static readonly IReadOnlyList<PackagePlatform> LauncherPlatforms = new List<PackagePlatform>
     {
         PackagePlatform.Linux,
@@ -56,6 +62,29 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         "LICENSE.md",
         "README.md",
         "RevolutionaryGamesCommon",
+    };
+
+    private static readonly IReadOnlyCollection<string> MacExecutablesToMerge = new List<string>
+    {
+        "ThriveLauncher",
+    };
+
+    private static readonly IReadOnlyCollection<string> MacFilesToJustCopy = new List<string>
+    {
+        "tools",
+
+        // The native code libs already seem to be dual architecture so just copying is enough
+        "libAvaloniaNative.dylib",
+        "libHarfBuzzSharp.dylib",
+        "libSkiaSharp.dylib",
+    };
+
+    private static readonly IReadOnlyCollection<string> MacFilesToSign = new List<string>
+    {
+        "ThriveLauncher",
+        "libAvaloniaNative.dylib",
+        "libHarfBuzzSharp.dylib",
+        "libSkiaSharp.dylib",
     };
 
     private readonly string launcherVersion;
@@ -102,6 +131,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         $"ThriveLauncher_Windows_Installer_{launcherVersionAlwaysWithRevision}.exe";
 
     private string ExpectedLauncherInstallerFile => Path.Join(options.OutputFolder, NSISInstallerName);
+
+    private string DMGInstallerName => $"ThriveLauncher_Mac_Installer_{launcherVersionAlwaysWithRevision}.dmg";
+    private string ExpectedMacDMGFile => Path.Join(options.OutputFolder, DMGInstallerName);
 
     protected override async Task<bool> OnBeforeStartExport(CancellationToken cancellationToken)
     {
@@ -161,6 +193,11 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     protected override string GetCompressedExtensionForPlatform(PackagePlatform platform)
     {
+        // Mac .app files in a zip are as good as the proper installer, also it's common for .app files to be
+        // distributed as .zip files
+        if (platform == PackagePlatform.Mac)
+            return ".zip";
+
         if (currentExportType == LauncherExportType.Standalone)
         {
             return $"_standalone{base.GetCompressedExtensionForPlatform(platform)}";
@@ -214,22 +251,22 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             // On mac we need to build both x64 and arm versions and then glue them together
             // This only works on a mac as this depends on Apple developer tools£
 
-            var armDirectory = $"{folder}-arm64";
+            var armFolder = $"{folder}-arm64";
 
             ColourConsole.WriteNormalLine("Exporting mac version for arm64...");
 
-            Directory.CreateDirectory(armDirectory);
-            if (!await RunPublish(armDirectory, "osx-arm64", !doingNoRuntimeExport, platform, cancellationToken))
+            Directory.CreateDirectory(armFolder);
+            if (!await RunPublish(armFolder, "osx-arm64", !doingNoRuntimeExport, platform, cancellationToken))
             {
                 return false;
             }
 
-            var x64Directory = $"{folder}-amd64";
+            var x64Folder = $"{folder}-x64";
 
             ColourConsole.WriteNormalLine("Exporting mac version for x64...");
 
-            Directory.CreateDirectory(armDirectory);
-            if (!await RunPublish(armDirectory, "osx-amd64", !doingNoRuntimeExport, platform, cancellationToken))
+            Directory.CreateDirectory(x64Folder);
+            if (!await RunPublish(x64Folder, "osx-x64", !doingNoRuntimeExport, platform, cancellationToken))
             {
                 return false;
             }
@@ -237,10 +274,37 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             // Merge the two
             ColourConsole.WriteNormalLine("Combining the mac files for universality");
 
-            throw new NotImplementedException();
+            try
+            {
+                await RunMacUniversalMerge(folder, x64Folder, armFolder, cancellationToken);
+            }
+            catch (Exception)
+            {
+                ColourConsole.WriteErrorLine(
+                    "Failed to create a merged universal mac binary, leaving separate binary folders undeleted");
+                return false;
+            }
 
-            Directory.Delete(armDirectory, true);
-            Directory.Delete(x64Directory, true);
+            ColourConsole.WriteInfoLine(
+                "Merged universal binaries should now be in the target folder. Removing arch specific folders.");
+            Directory.Delete(armFolder, true);
+            Directory.Delete(x64Folder, true);
+
+            if (string.IsNullOrEmpty(options.MacSigningKey))
+            {
+                ColourConsole.WriteWarningLine(
+                    "Signing without a specific key for mac (this should work but in an optimal case " +
+                    "a signing key would be set)");
+            }
+            else
+            {
+                ColourConsole.WriteInfoLine($"Signing mac build with key {options.MacSigningKey}");
+            }
+
+            if (!await SignMacExecutables(folder, cancellationToken))
+            {
+                return false;
+            }
         }
         else if (platform == PackagePlatform.Linux && options.LinuxPodman == true)
         {
@@ -338,9 +402,26 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     {
         if (platform == PackagePlatform.Mac)
         {
-            // Maybe some folder cleanup here?
+            // We don't need to prune pdb files as the separate mac builds, made sure that no pdb files got copied
+            // anyway
+            ColourConsole.WriteInfoLine("Converting built mac folder to an .app");
+            try
+            {
+                await CreateMacApp(folder, cancellationToken);
+            }
+            catch (Exception e)
+            {
+                ColourConsole.WriteErrorLine($"Failed to convert build files to an .app: {e}");
+                return false;
+            }
+
+            // TODO: notarization
+            ColourConsole.WriteWarningLine("TODO: notarization support");
+
+            return true;
         }
-        else if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
+
+        if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
         {
             if (!OperatingSystem.IsWindows())
             {
@@ -427,10 +508,38 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             ColourConsole.WriteSuccessLine(message1);
             ColourConsole.WriteNormalLine(message2);
         }
+        else if (platform == PackagePlatform.Mac)
+        {
+            if (!await CreateMacDMG(folderOrArchive, ExpectedMacDMGFile, cancellationToken))
+            {
+                return false;
+            }
+
+            if (!File.Exists(ExpectedMacDMGFile))
+            {
+                ColourConsole.WriteErrorLine("Expected mac installer file did not get created");
+                return false;
+            }
+
+            // TODO: notarization (also needed for .dmg even when the app inside is notarized already)
+            ColourConsole.WriteWarningLine("TODO: notarization support");
+
+            var hash = FileUtilities.HashToHex(
+                await FileUtilities.CalculateSha3OfFile(ExpectedMacDMGFile, cancellationToken));
+
+            var message1 = $"Created {platform} installer: {ExpectedMacDMGFile}";
+            var message2 = $"SHA3: {hash}";
+
+            AddReprintMessage(string.Empty);
+            AddReprintMessage(message1);
+            AddReprintMessage(message2);
+
+            ColourConsole.WriteSuccessLine(message1);
+            ColourConsole.WriteNormalLine(message2);
+        }
         else
         {
-            ColourConsole.WriteErrorLine("TODO installer creation");
-            throw new NotImplementedException();
+            throw new NotSupportedException("unsupported target platform for installer creation");
         }
 
         return true;
@@ -493,15 +602,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         startInfo.ArgumentList.Add("-r");
         startInfo.ArgumentList.Add(runtime);
         startInfo.ArgumentList.Add("--self-contained");
-
-        if (selfContained)
-        {
-            startInfo.ArgumentList.Add("true");
-        }
-        else
-        {
-            startInfo.ArgumentList.Add("false");
-        }
+        startInfo.ArgumentList.Add(selfContained ? "true" : "false");
 
         if (options.NugetSource != null)
         {
@@ -515,6 +616,13 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         {
             default:
             case LauncherExportType.Standalone:
+
+                // Mac .app files can be considered to support updating just fine
+                if (platform == PackagePlatform.Mac)
+                {
+                    startInfo.ArgumentList.Add("-p:MyConstants=\"LAUNCHER_UPDATER_MAC\"");
+                }
+
                 break;
             case LauncherExportType.WithUpdater:
                 switch (platform)
@@ -594,6 +702,111 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         await modifier.SetExecutableToGUIMode(cancellationToken);
 
         ColourConsole.WriteNormalLine($"Executable ({executable}) modified");
+    }
+
+    private async Task RunMacUniversalMerge(string targetFolder, string firstDirectory, string secondDirectory,
+        CancellationToken cancellationToken)
+    {
+        foreach (var mergedName in MacExecutablesToMerge)
+        {
+            ColourConsole.WriteDebugLine($"Merging mac executable: {mergedName}");
+
+            var target = Path.Join(targetFolder, mergedName);
+
+            if (File.Exists(target))
+                File.Delete(target);
+
+            if (!await RunLipo(target, Path.Join(firstDirectory, mergedName), Path.Join(secondDirectory, mergedName),
+                    cancellationToken))
+            {
+                ColourConsole.WriteErrorLine($"Failed to merge {mergedName}");
+                throw new Exception("Running merge failed");
+            }
+        }
+
+        foreach (var fileName in MacFilesToJustCopy)
+        {
+            ColourConsole.WriteDebugLine($"Just moving mac resource from first folder: {fileName}");
+
+            var source = Path.Join(firstDirectory, fileName);
+
+            var target = Path.Join(targetFolder, fileName);
+
+            if (Directory.Exists(target))
+                Directory.Delete(target, true);
+
+            if (Directory.Exists(source))
+            {
+                Directory.Move(source, target);
+            }
+            else
+            {
+                File.Move(source, target, true);
+            }
+        }
+    }
+
+    private async Task<bool> RunLipo(string target, string source1, string source2, CancellationToken cancellationToken)
+    {
+        var startInfo = new ProcessStartInfo("xcrun");
+        startInfo.ArgumentList.Add("lipo");
+        startInfo.ArgumentList.Add("-create");
+        startInfo.ArgumentList.Add("-output");
+        startInfo.ArgumentList.Add(target);
+        startInfo.ArgumentList.Add(source1);
+        startInfo.ArgumentList.Add(source2);
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine("Running lipo failed. Are xcode tools installed?");
+            return false;
+        }
+
+        return true;
+    }
+
+    private async Task<bool> SignMacExecutables(string folder, CancellationToken cancellationToken)
+    {
+        foreach (var executable in MacFilesToSign)
+        {
+            var executablePath = Path.Join(folder, executable);
+
+            ColourConsole.WriteNormalLine($"Signing {executablePath}");
+
+            var startInfo = new ProcessStartInfo("xcrun");
+            startInfo.ArgumentList.Add("codesign");
+            startInfo.ArgumentList.Add("--force");
+            startInfo.ArgumentList.Add("--verbose");
+            startInfo.ArgumentList.Add("--timestamp");
+
+            startInfo.ArgumentList.Add("--sign");
+
+            if (!string.IsNullOrEmpty(options.MacSigningKey))
+            {
+                startInfo.ArgumentList.Add(options.MacSigningKey);
+            }
+            else
+            {
+                startInfo.ArgumentList.Add(AssumedSelfSignedCertificateName);
+            }
+
+            startInfo.ArgumentList.Add("--options=runtime");
+            startInfo.ArgumentList.Add("--entitlements");
+            startInfo.ArgumentList.Add(MacEntitlementsFile);
+            startInfo.ArgumentList.Add(executablePath);
+
+            var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+            if (result.ExitCode != 0)
+            {
+                ColourConsole.WriteErrorLine("Running lipo failed. Are xcode tools installed?");
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private void PrunePdbFiles(string folder)
@@ -722,6 +935,98 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         };
 
         startInfo.ArgumentList.Add(nsisFileName);
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteWarningLine("Running makensis failed. Is it installed?");
+            throw new Exception($"makensis exited with {result.ExitCode}");
+        }
+
+        ColourConsole.WriteSuccessLine("Running makensis succeeded");
+    }
+
+    private async Task CreateMacApp(string folder, CancellationToken cancellationToken)
+    {
+        var appBase = Path.Join(folder, LauncherAppName);
+
+        if (Directory.Exists(appBase))
+            Directory.Delete(appBase, true);
+
+        Directory.CreateDirectory(appBase);
+
+        ColourConsole.WriteNormalLine($"Generating app {appBase}");
+
+        var contents = Path.Join(appBase, "Contents");
+        var macFolder = Path.Join(contents, "MacOS");
+        var resourcesFolder = Path.Join(contents, "Resources");
+
+        Directory.CreateDirectory(contents);
+        Directory.CreateDirectory(macFolder);
+        Directory.CreateDirectory(resourcesFolder);
+
+        CopyHelpers.CopyToFolder(MacIcon, resourcesFolder);
+
+        // Move the created stuff in the build folder to the MacOS folder as that's where the executable needs to be
+        // so we might as move everything to there
+        foreach (var entry in Directory.EnumerateFileSystemEntries(folder, "*", SearchOption.TopDirectoryOnly))
+        {
+            // Ignore some files we may not move
+            if (entry.EndsWith(LauncherAppName))
+                continue;
+
+            ColourConsole.WriteDebugLine($"Moving {entry} -> {macFolder}");
+
+            if (Directory.Exists(entry))
+            {
+                Directory.Move(entry, Path.Join(macFolder, Path.GetFileName(entry)));
+            }
+            else
+            {
+                CopyHelpers.MoveToFolder(entry, macFolder);
+            }
+        }
+
+        // Setup the plist
+        ColourConsole.WriteNormalLine("Setting up plist for app");
+
+        var templateText = await File.ReadAllTextAsync(LauncherAppPlistTemplate, Encoding.UTF8, cancellationToken);
+
+        var versionData = AssemblyInfoReader.ReadAllProjectVersionMetadata(LauncherCsproj);
+
+        var replacedVariables = new Dictionary<string, string>
+        {
+            { "REPLACE_TEMPLATE_USER_VERSION", launcherVersion },
+            { "REPLACE_TEMPLATE_VERSION", launcherVersionAlwaysWithRevision },
+            { "REPLACE_TEMPLATE_COPYRIGHT", versionData.Copyright },
+        };
+
+        string finalText = templateText;
+
+        foreach (var (variable, replacingText) in replacedVariables)
+        {
+            finalText = finalText.Replace(variable, replacingText);
+        }
+
+        await File.WriteAllTextAsync(Path.Join(contents, "Info.plist"), finalText, new UTF8Encoding(false),
+            cancellationToken);
+
+        ColourConsole.WriteSuccessLine($"App created at {appBase}");
+    }
+
+    private async Task<bool> CreateMacDMG(string folder, string dmgToCreate, CancellationToken cancellationToken)
+    {
+        ColourConsole.WriteNormalLine($"Creating .dmg installer from folder {folder}");
+
+        throw new NotImplementedException();
+
+        var startInfo = new ProcessStartInfo("make dmg??")
+        {
+            WorkingDirectory = options.OutputFolder,
+        };
+
+        // startInfo.ArgumentList.Add(nsisFileName);
 
         var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
 
