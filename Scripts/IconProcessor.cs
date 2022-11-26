@@ -61,11 +61,20 @@ public class IconProcessor
         await CreateSingleImage(magick, 32, ".png", cancellationToken);
         await CreateSingleImage(magick, 16, ".png", cancellationToken);
 
-        // This depends on the temp folder png icons
-        if (!await CreateMacIcon(magick, cancellationToken))
-            return false;
+        if (OperatingSystem.IsMacOS())
+        {
+            if (!await CreateMacIcon(magick, cancellationToken))
+                return false;
+        }
+        else
+        {
+            ColourConsole.WriteNormalLine("Mac icon creation is only possible on a mac");
+        }
 
         // Windows
+        if (!OperatingSystem.IsWindows())
+            ColourConsole.WriteWarningLine("Creating .ico files on non-windows seems to result in lower quality");
+
         if (!await CreateMultiSize(magick, ".ico", cancellationToken))
             return false;
 
@@ -79,18 +88,24 @@ public class IconProcessor
         return true;
     }
 
-    private async Task<bool> CreateSingleImage(string magicExecutable, int size, string extension,
+    private async Task<bool> CreateSingleImage(string magickExecutable, int size, string extension,
         CancellationToken cancellationToken, bool storeInTemporaryFolder = true)
     {
         var targetFolder = storeInTemporaryFolder ? TEMP_ICON_FOLDER : TARGET_PATH;
 
         var target = Path.Join(targetFolder, $"{size}x{size}{extension}");
 
-        var startInfo = CreateStartInfo(magicExecutable);
-        startInfo.ArgumentList.Add(SOURCE_IMAGE);
+        return await RunResize(magickExecutable, SOURCE_IMAGE, size, target, cancellationToken);
+    }
+
+    private async Task<bool> RunResize(string magickExecutable, string sourceFile, int size, string targetFile,
+        CancellationToken cancellationToken)
+    {
+        var startInfo = CreateStartInfo(magickExecutable);
+        startInfo.ArgumentList.Add(sourceFile);
         startInfo.ArgumentList.Add("-resize");
         startInfo.ArgumentList.Add($"{size}x{size}");
-        startInfo.ArgumentList.Add(target);
+        startInfo.ArgumentList.Add(targetFile);
 
         var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
 
@@ -103,7 +118,7 @@ public class IconProcessor
         return true;
     }
 
-    private async Task<bool> CreateMultiSize(string magicExecutable, string extension,
+    private async Task<bool> CreateMultiSize(string magickExecutable, string extension,
         CancellationToken cancellationToken)
     {
         // Approach from:
@@ -112,7 +127,7 @@ public class IconProcessor
 
         var target = Path.Join(TARGET_PATH, $"icon{extension}");
 
-        var startInfo = CreateStartInfo(magicExecutable);
+        var startInfo = CreateStartInfo(magickExecutable);
         startInfo.ArgumentList.Add(SOURCE_IMAGE);
 
         foreach (var size in new[] { 16, 32, 48, 64, 128, 256 })
@@ -142,38 +157,86 @@ public class IconProcessor
         return true;
     }
 
-    private async Task<bool> CreateMacIcon(string magicExecutable, CancellationToken cancellationToken)
+    private async Task<bool> CreateMacIcon(string magickExecutable, CancellationToken cancellationToken)
     {
-        // Apparently this doesn't work for some reason (or it does but doesn't display right on other platforms)
+        if (!OperatingSystem.IsMacOS())
+            throw new NotSupportedException("This relies on a mac specific tool");
 
-        // looks like the only solution is to use this: https://github.com/pornel/libicns
+        // ReSharper disable once StringLiteralTypo
+        var iconSetName = "icon.iconset";
+
+        var iconSetFolder = Path.Join(TEMP_ICON_FOLDER, iconSetName);
+
+        if (Directory.Exists(iconSetFolder))
+        {
+            ColourConsole.WriteNormalLine("Deleting icon set generation temp folder before recreating it");
+            Directory.Delete(iconSetFolder, true);
+        }
+
+        Directory.CreateDirectory(iconSetFolder);
+
+        // Prepare all the png files needed for the mac icon (this is done here as these need very specific naming
+        // and folder structure which is not needed elsewhere)
+        foreach (var (size, doubled) in new[]
+                 {
+                     (16, false), (16, true), (32, false), (32, true), (128, false), (128, true), (256, false),
+                     (256, true), (512, false),
+                 })
+        {
+            string multiplier = string.Empty;
+
+            int actualSize = size;
+
+            if (doubled)
+            {
+                multiplier = "@2x";
+                actualSize *= 2;
+            }
+
+            var file = Path.Join(iconSetFolder, $"icon_{size}x{size}{multiplier}.png");
+
+            if (!await RunResize(magickExecutable, SOURCE_IMAGE, actualSize, file, cancellationToken))
+            {
+                return false;
+            }
+        }
+
+        File.Copy(SOURCE_IMAGE, Path.Join(iconSetFolder, "icon_512x512@2x.png"));
+
+        var temporaryTarget = Path.Join(TEMP_ICON_FOLDER, "icon.icns");
 
         var target = Path.Join(TARGET_PATH, "icon.icns");
 
-        var startInfo = CreateStartInfo(magicExecutable);
-
-        foreach (var size in new[] { 16, 32, 64, 128, 256 }.Reverse())
+        // We need to rely on a mac-specific tool here to do what we need
+        var startInfo = new ProcessStartInfo("iconutil")
         {
-            startInfo.ArgumentList.Add(Path.Join(TEMP_ICON_FOLDER, $"{size}x{size}.png"));
-        }
-
-        startInfo.ArgumentList.Add(target);
+            WorkingDirectory = TEMP_ICON_FOLDER,
+        };
+        startInfo.ArgumentList.Add("-c");
+        startInfo.ArgumentList.Add("icns");
+        startInfo.ArgumentList.Add(iconSetName);
 
         var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
 
         if (result.ExitCode != 0)
         {
-            ColourConsole.WriteErrorLine("Failed to convert image (with multiple sizes)");
+            ColourConsole.WriteErrorLine("Failed to run icns file generation");
             return false;
         }
 
+        if (File.Exists(target))
+            File.Delete(target);
+
+        File.Move(temporaryTarget, target);
+
+        Directory.Delete(iconSetFolder, true);
         return true;
     }
 
-    private async Task<bool> ConvertImage(string magicExecutable, string source, string target,
+    private async Task<bool> ConvertImage(string magickExecutable, string source, string target,
         CancellationToken cancellationToken, params string[] extraOptions)
     {
-        var startInfo = CreateStartInfo(magicExecutable);
+        var startInfo = CreateStartInfo(magickExecutable);
         startInfo.ArgumentList.Add(source);
 
         foreach (var extraOption in extraOptions)
