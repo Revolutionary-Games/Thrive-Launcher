@@ -81,7 +81,7 @@ public class LauncherPaths : ILauncherPaths
         }
         else if (OperatingSystem.IsMacOS())
         {
-            path = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            path = Path.Join(GetEnvironmentFolderOrFallback(Environment.SpecialFolder.ApplicationData),
                 LauncherConfigFolderName);
         }
         else
@@ -126,7 +126,7 @@ public class LauncherPaths : ILauncherPaths
         }
         else if (OperatingSystem.IsMacOS())
         {
-            path = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            path = Path.Join(GetEnvironmentFolderOrFallback(Environment.SpecialFolder.ApplicationData),
                 ThriveUserDataFolderName);
         }
         else
@@ -200,6 +200,28 @@ public class LauncherPaths : ILauncherPaths
             return path;
 
         return Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".local", "share");
+    }
+
+    private static string GetEnvironmentFolderOrFallback(Environment.SpecialFolder specialFolder)
+    {
+        var folder = Environment.GetFolderPath(specialFolder);
+
+        if (!string.IsNullOrWhiteSpace(folder) && folder != "/")
+            return folder;
+
+        // Older macs seem to mostly be in need of this fallback
+        if (OperatingSystem.IsMacOS())
+        {
+            return Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Library",
+                "Application Support");
+        }
+
+        if (OperatingSystem.IsWindows())
+        {
+            throw new NotSupportedException("Fallback shouldn't be necessary on Windows");
+        }
+
+        return GetXDGConfigHome();
     }
 }
 
