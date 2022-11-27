@@ -36,6 +36,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private const string MacIcon = "ThriveLauncher/Assets/Icons/icon.icns";
     private const string MacEntitlementsFile = "Scripts/ThriveLauncher.entitlements";
     private const string AssumedSelfSignedCertificateName = "SelfSigned";
+    private const string MacDsStore = ".DS_Store";
 
     private static readonly IReadOnlyList<PackagePlatform> LauncherPlatforms = new List<PackagePlatform>
     {
@@ -195,15 +196,26 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     {
         // Mac .app files in a zip are as good as the proper installer, also it's common for .app files to be
         // distributed as .zip files
-        if (platform == PackagePlatform.Mac)
-            return ".zip";
-
-        if (currentExportType == LauncherExportType.Standalone)
+        if (currentExportType == LauncherExportType.Standalone && platform != PackagePlatform.Mac)
         {
             return $"_standalone{base.GetCompressedExtensionForPlatform(platform)}";
         }
 
         return base.GetCompressedExtensionForPlatform(platform);
+    }
+
+    protected override CompressionType GetCompressionType(PackagePlatform platform)
+    {
+        if (platform == PackagePlatform.Mac)
+            return CompressionType.Zip;
+
+        return base.GetCompressionType(platform);
+    }
+
+    protected override bool CompressWithoutTopLevelFolder(PackagePlatform platform)
+    {
+        // Mac .app files should be directly compressed without extra level of folders
+        return platform == PackagePlatform.Mac;
     }
 
     protected override async Task<bool> PackageForPlatform(CancellationToken cancellationToken,
@@ -402,6 +414,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     {
         if (platform == PackagePlatform.Mac)
         {
+            DeleteDsStore(folder);
+
             // We don't need to prune pdb files as the separate mac builds, made sure that no pdb files got copied
             // anyway
             ColourConsole.WriteInfoLine("Converting built mac folder to an .app");
@@ -969,12 +983,17 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         CopyHelpers.CopyToFolder(MacIcon, resourcesFolder);
 
         // Move the created stuff in the build folder to the MacOS folder as that's where the executable needs to be
-        // so we might as move everything to there
+        // so we might as move everything (except a few things that are useful for .zip creation) to there
         foreach (var entry in Directory.EnumerateFileSystemEntries(folder, "*", SearchOption.TopDirectoryOnly))
         {
             // Ignore some files we may not move
-            if (entry.EndsWith(LauncherAppName))
+            // TODO: should we not ignore the .txt and .md files so that they aren't in the created .zip files?
+            // as the dmg files don't include any extra readmes
+            if (entry.EndsWith(LauncherAppName) || entry.EndsWith(".txt") || entry.EndsWith(".md") ||
+                entry.Contains(MacDsStore))
+            {
                 continue;
+            }
 
             ColourConsole.WriteDebugLine($"Moving {entry} -> {macFolder}");
 
@@ -1037,5 +1056,16 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         }
 
         ColourConsole.WriteSuccessLine("Running makensis succeeded");
+    }
+
+    private void DeleteDsStore(string folder)
+    {
+        var file = Path.Join(folder, MacDsStore);
+
+        if (File.Exists(file))
+        {
+            ColourConsole.WriteDebugLine($"Deleting mac folder settings: {file}");
+            File.Delete(file);
+        }
     }
 }
