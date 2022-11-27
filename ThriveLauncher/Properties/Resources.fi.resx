@@ -233,7 +233,7 @@
         <value>Yhdistämisen avain</value>
     </data>
   <data name="DevBuildsCachePathDisplay" xml:space="preserve">
-        <value>DevBuildine tiedostovälimuisti:</value>
+        <value>DevBuildien tiedostovälimuisti:</value>
     </data>
   <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
         <value>DevCenter yhteys</value>
