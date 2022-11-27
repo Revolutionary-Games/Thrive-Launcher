@@ -1198,7 +1198,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             }
         }
 
-        ColourConsole.WriteErrorLine($"dmg creator failed too many times");
+        ColourConsole.WriteErrorLine("dmg creator failed too many times");
         return false;
     }
 
