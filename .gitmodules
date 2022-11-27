@@ -1,3 +1,6 @@
 [submodule "RevolutionaryGamesCommon"]
 	path = RevolutionaryGamesCommon
 	url = https://github.com/Revolutionary-Games/RevolutionaryGamesCommon.git
+[submodule "create-dmg"]
+	path = create-dmg
+	url = https://github.com/create-dmg/create-dmg.git

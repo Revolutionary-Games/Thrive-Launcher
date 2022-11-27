@@ -23,7 +23,7 @@
     <key>LSApplicationCategoryType</key>
     <string>Game</string>
     <key>LSMinimumSystemVersion</key>
-    <string>10.11.0</string>
+    <string>10.12</string>
     <key>NSAppTransportSecurity</key>
     <dict>
       <key>NSAllowsArbitraryLoads</key>

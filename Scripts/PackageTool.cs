@@ -34,9 +34,17 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private const string LauncherAppName = "Thrive Launcher.app";
     private const string LauncherAppPlistTemplate = "Scripts/launcher.plist.template";
     private const string MacIcon = "ThriveLauncher/Assets/Icons/icon.icns";
+    private const string MacInstallerBackground = "Scripts/mac_installer_background.png";
     private const string MacEntitlementsFile = "Scripts/ThriveLauncher.entitlements";
     private const string AssumedSelfSignedCertificateName = "SelfSigned";
     private const string MacDsStore = ".DS_Store";
+
+    /// <summary>
+    ///   Controls whether the mag .dmg and zip files just have the app or if they also have the readme files in
+    ///   the root. License files are always accessible from the launcher licenses option once running, so these are
+    ///   just a matter of taste if we want to include these.
+    /// </summary>
+    private const bool IncludeMacReadmeFilesInRoot = false;
 
     private static readonly IReadOnlyList<PackagePlatform> LauncherPlatforms = new List<PackagePlatform>
     {
@@ -302,6 +310,14 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             Directory.Delete(armFolder, true);
             Directory.Delete(x64Folder, true);
 
+            var appFolder = Path.Join(folder, LauncherAppName);
+
+            if (Directory.Exists(appFolder))
+            {
+                ColourConsole.WriteNormalLine("Deleting existing .app folder");
+                Directory.Delete(appFolder, true);
+            }
+
             if (string.IsNullOrEmpty(options.MacSigningKey))
             {
                 ColourConsole.WriteWarningLine(
@@ -313,7 +329,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 ColourConsole.WriteInfoLine($"Signing mac build with key {options.MacSigningKey}");
             }
 
-            if (!await SignMacExecutables(folder, cancellationToken))
+            DeleteDsStore(folder);
+
+            if (!await SignMacFilesRecursively(folder, cancellationToken))
             {
                 return false;
             }
@@ -781,46 +799,64 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         return true;
     }
 
-    private async Task<bool> SignMacExecutables(string folder, CancellationToken cancellationToken)
+    private async Task<bool> SignMacFilesRecursively(string folder, CancellationToken cancellationToken)
     {
-        foreach (var executable in MacFilesToSign)
+        // Signing the final .app requires us to sign *everything* in the MacOS folder, so that's what we need to do
+        // here
+        foreach (var executable in Directory.EnumerateFiles(folder, "*", SearchOption.AllDirectories))
         {
-            var executablePath = Path.Join(folder, executable);
-
-            ColourConsole.WriteNormalLine($"Signing {executablePath}");
-
-            var startInfo = new ProcessStartInfo("xcrun");
-            startInfo.ArgumentList.Add("codesign");
-            startInfo.ArgumentList.Add("--force");
-            startInfo.ArgumentList.Add("--verbose");
-            startInfo.ArgumentList.Add("--timestamp");
-
-            startInfo.ArgumentList.Add("--sign");
-
-            if (!string.IsNullOrEmpty(options.MacSigningKey))
-            {
-                startInfo.ArgumentList.Add(options.MacSigningKey);
-            }
-            else
-            {
-                startInfo.ArgumentList.Add(AssumedSelfSignedCertificateName);
-            }
-
-            startInfo.ArgumentList.Add("--options=runtime");
-            startInfo.ArgumentList.Add("--entitlements");
-            startInfo.ArgumentList.Add(MacEntitlementsFile);
-            startInfo.ArgumentList.Add(executablePath);
-
-            var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
-
-            if (result.ExitCode != 0)
-            {
-                ColourConsole.WriteErrorLine("Running lipo failed. Are xcode tools installed?");
+            if (!await SignFileForMac(executable, cancellationToken))
                 return false;
-            }
         }
 
         return true;
+    }
+
+    private async Task<bool> SignFileForMac(string filePath, CancellationToken cancellationToken)
+    {
+        ColourConsole.WriteNormalLine($"Signing {filePath}");
+
+        var startInfo = new ProcessStartInfo("xcrun");
+        startInfo.ArgumentList.Add("codesign");
+        startInfo.ArgumentList.Add("--force");
+        startInfo.ArgumentList.Add("--verbose");
+        startInfo.ArgumentList.Add("--timestamp");
+
+        startInfo.ArgumentList.Add("--sign");
+
+        AddCodesignName(startInfo);
+
+        startInfo.ArgumentList.Add("--options=runtime");
+        startInfo.ArgumentList.Add("--entitlements");
+        startInfo.ArgumentList.Add(MacEntitlementsFile);
+        startInfo.ArgumentList.Add(filePath);
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine(
+                $"Running codesign on '{filePath}' failed. " +
+                "Are xcode tools installed and do you have the right certificates installed / " +
+                "self-signed certificate created?");
+            return false;
+        }
+
+        ColourConsole.WriteDebugLine("Codesign succeeded");
+
+        return true;
+    }
+
+    private void AddCodesignName(ProcessStartInfo startInfo)
+    {
+        if (!string.IsNullOrEmpty(options.MacSigningKey))
+        {
+            startInfo.ArgumentList.Add(options.MacSigningKey);
+        }
+        else
+        {
+            startInfo.ArgumentList.Add(AssumedSelfSignedCertificateName);
+        }
     }
 
     private void PrunePdbFiles(string folder)
@@ -987,13 +1023,13 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         foreach (var entry in Directory.EnumerateFileSystemEntries(folder, "*", SearchOption.TopDirectoryOnly))
         {
             // Ignore some files we may not move
-            // TODO: should we not ignore the .txt and .md files so that they aren't in the created .zip files?
-            // as the dmg files don't include any extra readmes
-            if (entry.EndsWith(LauncherAppName) || entry.EndsWith(".txt") || entry.EndsWith(".md") ||
-                entry.Contains(MacDsStore))
+#pragma warning disable CS0162
+            if (entry.EndsWith(LauncherAppName) || entry.Contains(MacDsStore) ||
+                (!IncludeMacReadmeFilesInRoot && (entry.EndsWith(".txt") || entry.EndsWith(".md"))))
             {
                 continue;
             }
+#pragma warning restore CS0162
 
             ColourConsole.WriteDebugLine($"Moving {entry} -> {macFolder}");
 
@@ -1006,6 +1042,18 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 CopyHelpers.MoveToFolder(entry, macFolder);
             }
         }
+
+        // Move some stuff to be more where Apple says they should be
+        MoveReadmeFiles(Path.Join(macFolder, "tools", "pck"), Path.Join(resourcesFolder, "godotpcktool"));
+        MoveReadmeFiles(Path.Join(macFolder, "tools", "7zip"), Path.Join(resourcesFolder, "7zip"));
+
+        MoveReadmeFiles(macFolder, Path.Join(resourcesFolder, "ReadmeFiles"));
+
+        // TODO: remove workaround once Avalonia works right on mac
+        // ReSharper disable StringLiteralTypo
+        File.Move(Path.Join(macFolder, "libAvaloniaNative.dylib"), Path.Join(macFolder, "liblibAvaloniaNative.dylib"));
+
+        // ReSharper restore StringLiteralTypo
 
         // Setup the plist
         ColourConsole.WriteNormalLine("Setting up plist for app");
@@ -1031,31 +1079,102 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         await File.WriteAllTextAsync(Path.Join(contents, "Info.plist"), finalText, new UTF8Encoding(false),
             cancellationToken);
 
+        // The base app file must be signed as well as all of the executables
+        if (!await SignFileForMac(appBase, cancellationToken))
+            throw new Exception("Signing .app file failed");
+
         ColourConsole.WriteSuccessLine($"App created at {appBase}");
+    }
+
+    private void MoveReadmeFiles(string fromFolder, string toFolder)
+    {
+        Directory.CreateDirectory(toFolder);
+
+        foreach (var file in Directory.EnumerateFiles(fromFolder, "*", SearchOption.AllDirectories))
+        {
+            if (file.EndsWith(".txt") || file.EndsWith(".md") || file.EndsWith("LICENSE"))
+            {
+                CopyHelpers.MoveToFolder(file, toFolder);
+            }
+        }
     }
 
     private async Task<bool> CreateMacDMG(string folder, string dmgToCreate, CancellationToken cancellationToken)
     {
         ColourConsole.WriteNormalLine($"Creating .dmg installer from folder {folder}");
+        ColourConsole.WriteWarningLine(
+            "This is a bit buggy so please check the result / run this multiple times if the visual " +
+            "customization fails");
 
-        throw new NotImplementedException();
-
-        var startInfo = new ProcessStartInfo("make dmg??")
+        if (File.Exists(dmgToCreate))
         {
-            WorkingDirectory = options.OutputFolder,
-        };
+            ColourConsole.WriteNormalLine("Deleting existing .dmg before recreating it");
+            File.Delete(dmgToCreate);
+        }
 
-        // startInfo.ArgumentList.Add(nsisFileName);
+        // TODO: retry running this if this has a chance to fail spuriously
+
+        var startInfo = new ProcessStartInfo("create-dmg/create-dmg");
+
+        // ReSharper disable StringLiteralTypo
+        startInfo.ArgumentList.Add("--volname");
+        startInfo.ArgumentList.Add("Thrive Launcher");
+        startInfo.ArgumentList.Add("--volicon");
+        startInfo.ArgumentList.Add(MacIcon);
+        startInfo.ArgumentList.Add("--background");
+        startInfo.ArgumentList.Add(MacInstallerBackground);
+        startInfo.ArgumentList.Add("--icon");
+        startInfo.ArgumentList.Add("Thrive Launcher.app");
+        startInfo.ArgumentList.Add("140");
+
+        // Do we want to align the icon text or visually where their tops are?
+        startInfo.ArgumentList.Add("120");
+
+        // Visual alignment
+        // startInfo.ArgumentList.Add("130");
+
+        startInfo.ArgumentList.Add("--hide-extension");
+        startInfo.ArgumentList.Add("Thrive Launcher.app");
+
+        startInfo.ArgumentList.Add("--app-drop-link");
+        startInfo.ArgumentList.Add("440");
+        startInfo.ArgumentList.Add("120");
+
+        startInfo.ArgumentList.Add("--icon-size");
+        startInfo.ArgumentList.Add("80");
+
+        startInfo.ArgumentList.Add("--window-pos");
+        startInfo.ArgumentList.Add("200");
+        startInfo.ArgumentList.Add("120");
+
+        startInfo.ArgumentList.Add("--window-size");
+        startInfo.ArgumentList.Add("650");
+        startInfo.ArgumentList.Add("350");
+
+        startInfo.ArgumentList.Add("--no-internet-enable");
+
+        startInfo.ArgumentList.Add("--codesign");
+        AddCodesignName(startInfo);
+
+        // TODO: notarization
+        // startInfo.ArgumentList.Add("--notarize");
+        // startInfo.ArgumentList.Add(notarizationCredentials);
+
+        startInfo.ArgumentList.Add(dmgToCreate);
+        startInfo.ArgumentList.Add(folder);
+
+        // ReSharper restore StringLiteralTypo
 
         var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
 
         if (result.ExitCode != 0)
         {
-            ColourConsole.WriteWarningLine("Running makensis failed. Is it installed?");
-            throw new Exception($"makensis exited with {result.ExitCode}");
+            ColourConsole.WriteWarningLine("Running dmg creation failed");
+            throw new Exception($"dmg creator exited with {result.ExitCode}");
         }
 
-        ColourConsole.WriteSuccessLine("Running makensis succeeded");
+        ColourConsole.WriteSuccessLine($"Created {dmgToCreate}");
+        return true;
     }
 
     private void DeleteDsStore(string folder)

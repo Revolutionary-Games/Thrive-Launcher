@@ -109,6 +109,9 @@ With the build containers created, then just run:
 dotnet run --project Scripts -- package
 ```
 
+On mac you need the xcode tools installed as well as allowing
+terminal / your IDE to automate Finder.
+
 On a mac the build containers are not needed, so just run:
 ```sh
 dotnet run --project Scripts -- package
