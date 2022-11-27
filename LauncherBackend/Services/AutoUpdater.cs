@@ -304,8 +304,23 @@ public class AutoUpdater : IAutoUpdater
                 break;
             }
             case LauncherAutoUpdateChannel.MacDmg:
-                // TODO: implement
-                throw new NotImplementedException();
+            {
+                // For mac we just want to get the .dmg file opened and mounted
+                var startInfo = new ProcessStartInfo("open");
+                startInfo.ArgumentList.Add(installerFile);
+
+                var process = Process.Start(startInfo);
+
+                await Task.Delay(TimeSpan.FromMilliseconds(350));
+
+                if (process is { HasExited: true })
+                {
+                    logger.LogInformation("File opener process for updater already exited with code: {ExitCode}",
+                        process.ExitCode);
+                }
+
+                break;
+            }
             case LauncherAutoUpdateChannel.LinuxUnpacked:
                 // This might get implemented at some point in the future
                 throw new NotImplementedException();
