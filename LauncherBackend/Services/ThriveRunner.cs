@@ -92,6 +92,9 @@ public class ThriveRunner : IThriveRunner
 
     public static IEnumerable<(string File, DateTime ModifiedAt)> GetCrashDumpsInFolder(string folder)
     {
+        if (!Directory.Exists(folder))
+            return Array.Empty<(string File, DateTime ModifiedAt)>();
+
         var dumps = new List<(string File, DateTime ModifiedAt)>();
 
         foreach (var dump in Directory.EnumerateFiles(folder, "*.dmp", SearchOption.AllDirectories))
