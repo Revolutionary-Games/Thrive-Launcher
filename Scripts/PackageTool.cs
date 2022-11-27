@@ -38,6 +38,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private const string MacEntitlementsFile = "Scripts/ThriveLauncher.entitlements";
     private const string AssumedSelfSignedCertificateName = "SelfSigned";
     private const string MacDsStore = ".DS_Store";
+    private const int DmgCreationRetries = 5;
 
     /// <summary>
     ///   Controls whether the mag .dmg and zip files just have the app or if they also have the readme files in
@@ -498,12 +499,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                     "Windows32 installer needs a suffix or something to not conflict");
             }
 
-            var potentialExtension = GetCompressedExtensionForPlatform(platform);
-
-            string nsisSource = folderOrArchive;
-
-            if (folderOrArchive.EndsWith(potentialExtension))
-                nsisSource = nsisSource.Substring(0, nsisSource.Length - potentialExtension.Length);
+            var nsisSource = ConvertArchiveNameToFolderName(platform, folderOrArchive);
 
             var nsisFileName = NSISFileName;
             var nsisTemplate = NSISTemplateFile;
@@ -542,7 +538,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         }
         else if (platform == PackagePlatform.Mac)
         {
-            if (!await CreateMacDMG(folderOrArchive, ExpectedMacDMGFile, cancellationToken))
+            if (!await CreateMacDMG(ConvertArchiveNameToFolderName(platform, folderOrArchive), ExpectedMacDMGFile,
+                    cancellationToken))
             {
                 return false;
             }
@@ -870,6 +867,16 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         }
     }
 
+    private string ConvertArchiveNameToFolderName(PackagePlatform platform, string folderOrArchive)
+    {
+        string result = folderOrArchive;
+
+        var potentialExtension = GetCompressedExtensionForPlatform(platform);
+        if (folderOrArchive.EndsWith(potentialExtension))
+            result = result.Substring(0, result.Length - potentialExtension.Length);
+        return result;
+    }
+
     private void ContainerOutput(string line)
     {
         ColourConsole.WriteNormalLine($" {line}");
@@ -1101,6 +1108,12 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private async Task<bool> CreateMacDMG(string folder, string dmgToCreate, CancellationToken cancellationToken)
     {
+        if (!Directory.Exists(folder))
+        {
+            ColourConsole.WriteErrorLine("Folder to make into dmg doesn't exist");
+            return false;
+        }
+
         ColourConsole.WriteNormalLine($"Creating .dmg installer from folder {folder}");
         ColourConsole.WriteWarningLine(
             "This is a bit buggy so please check the result / run this multiple times if the visual " +
@@ -1112,69 +1125,81 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             File.Delete(dmgToCreate);
         }
 
-        // TODO: retry running this if this has a chance to fail spuriously
-
-        var startInfo = new ProcessStartInfo("create-dmg/create-dmg");
-
-        // ReSharper disable StringLiteralTypo
-        startInfo.ArgumentList.Add("--volname");
-        startInfo.ArgumentList.Add("Thrive Launcher");
-        startInfo.ArgumentList.Add("--volicon");
-        startInfo.ArgumentList.Add(MacIcon);
-        startInfo.ArgumentList.Add("--background");
-        startInfo.ArgumentList.Add(MacInstallerBackground);
-        startInfo.ArgumentList.Add("--icon");
-        startInfo.ArgumentList.Add("Thrive Launcher.app");
-        startInfo.ArgumentList.Add("140");
-
-        // Do we want to align the icon text or visually where their tops are?
-        startInfo.ArgumentList.Add("120");
-
-        // Visual alignment
-        // startInfo.ArgumentList.Add("130");
-
-        startInfo.ArgumentList.Add("--hide-extension");
-        startInfo.ArgumentList.Add("Thrive Launcher.app");
-
-        startInfo.ArgumentList.Add("--app-drop-link");
-        startInfo.ArgumentList.Add("440");
-        startInfo.ArgumentList.Add("120");
-
-        startInfo.ArgumentList.Add("--icon-size");
-        startInfo.ArgumentList.Add("80");
-
-        startInfo.ArgumentList.Add("--window-pos");
-        startInfo.ArgumentList.Add("200");
-        startInfo.ArgumentList.Add("120");
-
-        startInfo.ArgumentList.Add("--window-size");
-        startInfo.ArgumentList.Add("650");
-        startInfo.ArgumentList.Add("350");
-
-        startInfo.ArgumentList.Add("--no-internet-enable");
-
-        startInfo.ArgumentList.Add("--codesign");
-        AddCodesignName(startInfo);
-
-        // TODO: notarization
-        // startInfo.ArgumentList.Add("--notarize");
-        // startInfo.ArgumentList.Add(notarizationCredentials);
-
-        startInfo.ArgumentList.Add(dmgToCreate);
-        startInfo.ArgumentList.Add(folder);
-
-        // ReSharper restore StringLiteralTypo
-
-        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
-
-        if (result.ExitCode != 0)
+        // Retry running this a few times as this has a chance to fail spuriously
+        for (int i = 0; i < DmgCreationRetries; ++i)
         {
-            ColourConsole.WriteWarningLine("Running dmg creation failed");
-            throw new Exception($"dmg creator exited with {result.ExitCode}");
+            if (i > 0)
+            {
+                ColourConsole.WriteWarningLine("Waiting until retrying .dmg creation...");
+                await Task.Delay(TimeSpan.FromSeconds(10), cancellationToken);
+            }
+
+            var startInfo = new ProcessStartInfo("create-dmg/create-dmg");
+
+            // ReSharper disable StringLiteralTypo
+            startInfo.ArgumentList.Add("--volname");
+            startInfo.ArgumentList.Add("Thrive Launcher");
+            startInfo.ArgumentList.Add("--volicon");
+            startInfo.ArgumentList.Add(MacIcon);
+            startInfo.ArgumentList.Add("--background");
+            startInfo.ArgumentList.Add(MacInstallerBackground);
+            startInfo.ArgumentList.Add("--icon");
+            startInfo.ArgumentList.Add("Thrive Launcher.app");
+            startInfo.ArgumentList.Add("140");
+
+            // Do we want to align the icon text or visually where their tops are?
+            startInfo.ArgumentList.Add("120");
+
+            // Visual alignment
+            // startInfo.ArgumentList.Add("130");
+
+            startInfo.ArgumentList.Add("--hide-extension");
+            startInfo.ArgumentList.Add("Thrive Launcher.app");
+
+            startInfo.ArgumentList.Add("--app-drop-link");
+            startInfo.ArgumentList.Add("440");
+            startInfo.ArgumentList.Add("120");
+
+            startInfo.ArgumentList.Add("--icon-size");
+            startInfo.ArgumentList.Add("80");
+
+            startInfo.ArgumentList.Add("--window-pos");
+            startInfo.ArgumentList.Add("200");
+            startInfo.ArgumentList.Add("120");
+
+            startInfo.ArgumentList.Add("--window-size");
+            startInfo.ArgumentList.Add("650");
+            startInfo.ArgumentList.Add("350");
+
+            startInfo.ArgumentList.Add("--no-internet-enable");
+
+            startInfo.ArgumentList.Add("--codesign");
+            AddCodesignName(startInfo);
+
+            // TODO: notarization
+            // startInfo.ArgumentList.Add("--notarize");
+            // startInfo.ArgumentList.Add(notarizationCredentials);
+
+            startInfo.ArgumentList.Add(dmgToCreate);
+            startInfo.ArgumentList.Add(folder);
+
+            // ReSharper restore StringLiteralTypo
+
+            var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+            if (result.ExitCode != 0)
+            {
+                ColourConsole.WriteWarningLine($"Running dmg creation failed. Exit code: {result.ExitCode}");
+            }
+            else
+            {
+                ColourConsole.WriteSuccessLine($"Created {dmgToCreate}");
+                return true;
+            }
         }
 
-        ColourConsole.WriteSuccessLine($"Created {dmgToCreate}");
-        return true;
+        ColourConsole.WriteErrorLine($"dmg creator failed too many times");
+        return false;
     }
 
     private void DeleteDsStore(string folder)
