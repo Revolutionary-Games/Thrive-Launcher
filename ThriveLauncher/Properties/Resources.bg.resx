@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -58,4 +58,100 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ConnectedDeveloperGreeting" xml:space="preserve">
+    <value>Здрасти,</value>
+  </data>
+  <data name="ExternalLinkPatreon" xml:space="preserve">
+    <value>„Patreon“</value>
+  </data>
+  <data name="DevelopmentFeedTitle" xml:space="preserve">
+    <value>ЧАСТЕН ФОРУМ</value>
+  </data>
+  <data name="CacheConfigurationTab" xml:space="preserve">
+    <value>Кеш</value>
+  </data>
+  <data name="InstalledVersions" xml:space="preserve">
+    <value>Инсталирани версии</value>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+    <value>Съдържание:</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+    <value>Папката е празна</value>
+  </data>
+  <data name="FolderPathDisplay" xml:space="preserve">
+    <value>Папка:</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+    <value>Размер на кеша:</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>Изчистване</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>Добре</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>Благодарим за Вашата поддръжка!</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+    <value>Избиране</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+    <value>Свързване</value>
+  </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0} МиБ</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>(размер: {0})</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>Папката не е намерена</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>Зареждане...</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Неизвестна грешка</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>описание:</value>
+  </data>
+  <data name="DownloadingItem" xml:space="preserve">
+    <value>Изтегляне на {0}</value>
+  </data>
+  <data name="DownloadingStateItemProgress" xml:space="preserve">
+    <value>Изтегляне на {0} от {1}</value>
+  </data>
+  <data name="SecondsDisplaySingular" xml:space="preserve">
+    <value>1 секунда</value>
+  </data>
+  <data name="SecondsDisplayPlural" xml:space="preserve">
+    <value>{0} секунди</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Отваряне на папката</value>
+  </data>
+  <data name="NewsFeedTitle" xml:space="preserve">
+    <value>НОВИНИ</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>Неизвестна папка:</value>
+  </data>
+  <data name="LinksButton" xml:space="preserve">
+    <value>Връзки</value>
+  </data>
+  <data name="SkipAction" xml:space="preserve">
+    <value>Пропускане</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>Вътрешна грешка</value>
+  </data>
+  <data name="ConnectedSupporterGreeting" xml:space="preserve">
+    <value>Благодарим Ви,</value>
+  </data>
 </root>
