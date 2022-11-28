@@ -489,4 +489,28 @@ Laukaisijan lokeissa on lisätietoa.</value>
   <data name="ExtractError" xml:space="preserve">
     <value>Arkiston purkaminen epäonnistui virheen takia: {0}</value>
   </data>
+  <data name="DownloadingStateItemProgress" xml:space="preserve">
+    <value>Ladataan {0} osoitteesta {1}</value>
+  </data>
+  <data name="VerifyingStateItemProgress" xml:space="preserve">
+    <value>Vahvistetaan {0} ehjyyttä</value>
+  </data>
+  <data name="ExtractingStateItemProgress" xml:space="preserve">
+    <value>Puretaan {0}. Tämä voi kestää monta minuuttia, joten kärsivällisyyttä, kiitos.</value>
+  </data>
+  <data name="ProcessingStateItemProgress" xml:space="preserve">
+    <value>Prosessoidaan {0}</value>
+  </data>
+  <data name="TruncatedGameOutputWarning" xml:space="preserve">
+    <value>Tuloste on liian pitkä, se on leikattu lyhyemmäksi! Lue Thriven lokitiedostot nähdäksesi koko tulosteen.</value>
+  </data>
+  <data name="ReportCrashButton" xml:space="preserve">
+    <value>Raportoi kaatuminen</value>
+  </data>
+  <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
+    <value>Virhe: lapsiprosessi on jo loppunut, laukaisijan ikkunaa ei tulla sulkemaan</value>
+  </data>
+  <data name="ThriveIsStarting" xml:space="preserve">
+    <value>Thrive on käynnistymässä. Lokituloste (bufferoinnin vuoksi tämä ei todennäköisesti ole reaaliaikaista):</value>
+  </data>
 </root>
