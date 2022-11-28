@@ -53,6 +53,9 @@
     <EmbeddedResource Include="..\LICENSE.md" LogicalName="LICENSE.md"/>
     <EmbeddedResource Include="Assets\Fonts\Roboto\LICENSE.txt" LogicalName="Roboto/LICENSE.txt"/>
     <EmbeddedResource Include="Assets\Fonts\Lato\OFL.txt" LogicalName="OFL.txt"/>
+    <EmbeddedResource Include="..\tools\7zip\License.txt" LogicalName="7ZipLicense.txt"/>
+    <EmbeddedResource Include="..\tools\pck\LibraryLicenses.txt" LogicalName="pckLibraryLicenses.txt"/>
+    <EmbeddedResource Include="..\tools\pck\LICENSE" LogicalName="pckLICENSE"/>
   </ItemGroup>
   <ItemGroup>
     <ContentWithTargetPath Include="..\tools\7zip\License.txt">

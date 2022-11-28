@@ -21,6 +21,13 @@ public class LicensesWindowViewModel : ViewModelBase
 
     public Task<string> OFLLicenseText => ResourceUtilities.ReadManifestResourceAsync("OFL.txt", assembly);
 
+    public Task<string> P7ZipLicenseText => ResourceUtilities.ReadManifestResourceAsync("7ZipLicense.txt", assembly);
+
+    public Task<string> PckLicenseText => ResourceUtilities.ReadManifestResourceAsync("pckLICENSE", assembly);
+
+    public Task<string> PckLibraryLicensesText =>
+        ResourceUtilities.ReadManifestResourceAsync("pckLibraryLicenses.txt", assembly);
+
     public void OpenLauncherSourceCode()
     {
         URLUtilities.OpenURLInBrowser(LauncherConstants.LauncherRepoURL);

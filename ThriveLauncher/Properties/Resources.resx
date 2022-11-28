@@ -888,4 +888,11 @@ If no files are listed below, downloading the update has failed and it cannot be
   <data name="LauncherOptionShowAllBetaVersions" xml:space="preserve">
     <value>Show all existing beta versions of Thrive</value>
   </data>
+  <data name="Embedded7ZipLicenseTitle" xml:space="preserve">
+    <value>The launcher includes some tools bundled in. These are separate executables the launcher invokes as command line programs. 7-zip license:</value>
+  </data>
+  <data name="EmbeddedPckToolLicenseTitle" xml:space="preserve">
+    <value>Bundled godotpcktool license and its used libraries licenses:</value>
+  </data>
+
 </root>

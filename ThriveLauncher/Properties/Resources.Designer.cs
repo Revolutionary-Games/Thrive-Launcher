@@ -1682,5 +1682,17 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("LauncherOptionShowAllBetaVersions", resourceCulture);
             }
         }
+        
+        public static string Embedded7ZipLicenseTitle {
+            get {
+                return ResourceManager.GetString("Embedded7ZipLicenseTitle", resourceCulture);
+            }
+        }
+        
+        public static string EmbeddedPckToolLicenseTitle {
+            get {
+                return ResourceManager.GetString("EmbeddedPckToolLicenseTitle", resourceCulture);
+            }
+        }
     }
 }
