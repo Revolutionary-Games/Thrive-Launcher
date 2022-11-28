@@ -27,6 +27,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private const string LauncherInstallerLicenseFile = "LICENSE.md";
     private const string NoRuntimeSuffix = "_without_runtime";
 
+    private const string FlatpakRefFile = "Scripts/com.revolutionarygamesstudio.ThriveLauncher.flatpakref";
+
     private const string NSISFileName = "launcher.nsi";
     private const string NSISDotnetInstallerFileName = "launcher_dotnet_installer.nsi";
     private const string NSISTemplateFile = $"Scripts/{NSISFileName}.template";
@@ -486,10 +488,15 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         if (platform == PackagePlatform.Linux)
         {
-            ColourConsole.WriteInfoLine("Linux installer is made with flatpak (hosted on Flathub)");
-            AddReprintMessage("Linux installer needs to be separately updated for Flathub");
+            ColourConsole.WriteWarningLine("Linux installer is made with flatpak (hosted on Flathub)");
+            AddReprintMessage(
+                "Linux installer needs to be separately updated for Flathub. Flatpak reference file is copied to " +
+                "output folder. Please do not use the created \"updateable\" linux files.");
 
-            // TODO: copy the flatpakref file to the build folder
+            CopyHelpers.CopyToFolder(FlatpakRefFile,
+                Path.GetDirectoryName(folderOrArchive) ?? throw new Exception("Unknown parent folder"));
+
+            ColourConsole.WriteNormalLine("Copied flatpak install file to output folder");
         }
         else if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
         {
@@ -656,9 +663,12 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             case LauncherExportType.WithUpdater:
                 switch (platform)
                 {
-                    // TODO: should this copy the flatpak ref file here?
-                    // case PackagePlatform.Linux:
-                    //     break;
+                    case PackagePlatform.Linux:
+                        // This is just here to make things work and copy the flatpak reference file instead of
+                        // making an actual installer
+                        startInfo.ArgumentList.Add(
+                            "-p:MyConstants=\"LAUNCHER_DELAYED_UPDATE_NOTICE\"");
+                        break;
                     case PackagePlatform.Windows:
                         startInfo.ArgumentList.Add(
                             "-p:MyConstants=\"LAUNCHER_UPDATER_WINDOWS\"");
