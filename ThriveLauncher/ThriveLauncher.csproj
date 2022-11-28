@@ -109,9 +109,6 @@
       <TargetPath>tools\%(RecursiveDir)\%(Filename)%(Extension)</TargetPath>
     </ContentWithTargetPath>
   </ItemGroup>
-  <Target Name="Stuff" AfterTargets="Build">
-    <Message Text="Identifier is '$(RuntimeIdentifier)'" Importance="High"/>
-  </Target>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
