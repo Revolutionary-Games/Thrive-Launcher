@@ -143,6 +143,9 @@ public partial class MainWindowViewModel
             Settings.SelectedLauncherLanguage = value;
             Languages.SetLanguage(availableLanguages[SelectedLauncherLanguage]);
             this.RaisePropertyChanged();
+
+            // Language affects the names in the version selector
+            NotifyChangesToAvailableVersions();
         }
     }
 
