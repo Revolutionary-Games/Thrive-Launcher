@@ -52,9 +52,10 @@ public static class Languages
         // Default language needs to be first
         yield return DefaultLanguage;
 
-        // The following need to sorted according to the native language names
+        // The following need to be sorted according to the native language names
 
         yield return new CultureInfo("fi-FI");
+        yield return new CultureInfo("bg-BG");
     }
 
     public static void SetLanguage(CultureInfo cultureInfo)
