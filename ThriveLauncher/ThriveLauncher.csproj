@@ -39,7 +39,7 @@
     <PackageReference Include="CommandLineParser" Version="2.9.1"/>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0"/>
-    <PackageReference Include="NLog" Version="5.0.5"/>
+    <PackageReference Include="NLog" Version="5.1.0"/>
     <PackageReference Include="NLog.Extensions.Logging" Version="5.1.0"/>
     <PackageReference Include="XamlNameReferenceGenerator" Version="1.4.2"/>
   </ItemGroup>
