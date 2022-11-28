@@ -65,7 +65,7 @@
     <value>Import Previous Settings?</value>
   </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
-    <value>Settings from a previous version of the launcher have been found. You can import these existing settings to keep your installed Thrive versions and other customizations intact. If you do not import the old Thrive versions and caches will be left behind, but this launcher won't know about them. Importing the settings is recommended.</value>
+    <value>Settings from a previous version of the launcher have been found. You can import these existing settings to keep your installed Thrive versions and other customizations intact. If you do not import the old Thrive versions and caches, they will be left behind and this launcher won't know about them. Importing the settings is recommended.</value>
   </data>
   <data name="SkipAction" xml:space="preserve">
     <value>Skip</value>
