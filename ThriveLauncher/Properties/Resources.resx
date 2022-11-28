@@ -77,7 +77,7 @@
     <value>Import Failed</value>
   </data>
   <data name="ImportFailedMessage" xml:space="preserve">
-    <value>Failed to import settings. Please make sure the relevant file paths for settings are readable and writable by the launcher, then restart the launcher to try again.</value>
+    <value>Failed to import settings. Please make sure the relevant file paths for settings are readable and writeable by the launcher, then restart the launcher to try again.</value>
   </data>
   <data name="ImportSucceededTitle" xml:space="preserve">
     <value>Import Succeeded</value>
@@ -889,10 +889,9 @@ If no files are listed below, downloading the update has failed and it cannot be
     <value>Show all existing beta versions of Thrive</value>
   </data>
   <data name="Embedded7ZipLicenseTitle" xml:space="preserve">
-    <value>The launcher includes some tools bundled in. These are separate executables the launcher invokes as command line programs. 7-zip license:</value>
+    <value>The launcher includes some tools bundled in. These are separate executables the launcher invokes as command line programs. 7-Zip license:</value>
   </data>
   <data name="EmbeddedPckToolLicenseTitle" xml:space="preserve">
     <value>Bundled godotpcktool license and its used libraries licenses:</value>
   </data>
-
 </root>
