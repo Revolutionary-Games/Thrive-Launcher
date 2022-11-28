@@ -1,46 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <root>
-  <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root"
-              xmlns="">
+  <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns="" id="root">
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -63,252 +61,432 @@
   </resheader>
   <data name="SettingsImportOldTitle" xml:space="preserve">
         <value>Tuo aikaisemmat asetukset?</value>
-    </data>
+  </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
         <value>Olemassaolevat asetukset aiemmasta laukaisijan versiosta ovat löytyneet. Nämä asetukset voidaan tuoda, jotta jo asennetut Thriven versiot ja muut vaihdetut asetukset voidaan säilyttää. Jos vanhoja asetuksia ei tuoda, vanhat Thriven versiot ja välimuistit jätetään olemaan sellaisennan, mutta tämä laukaisijan versio ei tule tietämään niistä. Asetuksien tuominen on suositeltua.</value>
-    </data>
+  </data>
   <data name="PerformImport" xml:space="preserve">
         <value>Tuo</value>
-    </data>
+  </data>
   <data name="SkipAction" xml:space="preserve">
         <value>Ohita</value>
-    </data>
+  </data>
   <data name="ImportFailedTitle" xml:space="preserve">
         <value>Tuonti epäonnistui</value>
-    </data>
+  </data>
   <data name="ImportSucceededTitle" xml:space="preserve">
         <value>Tuonti onnistui</value>
-    </data>
+  </data>
   <data name="ImportSucceededMessage" xml:space="preserve">
         <value>Edelliset asetukset on tuotu onnistuneesti.</value>
-    </data>
+  </data>
   <data name="ImportFailedMessage" xml:space="preserve">
         <value>Edellisten asetusten tuonti epäonnistui. Varmista, että laukaisijalla on luku- ja kirjoitusoikeus asetuksiin liittyviin tiedostopolkuihin, sitten käynnistä laukaisija uudelleen uutta yritystä varten.</value>
-    </data>
+  </data>
   <data name="BrowseInstalledFiles" xml:space="preserve">
         <value>Selaa asennettuja tiedostoja</value>
-    </data>
+  </data>
   <data name="CacheConfigurationTab" xml:space="preserve">
         <value>Välimuisti</value>
-    </data>
+  </data>
   <data name="ConnectedDeveloperGreeting" xml:space="preserve">
         <value>Moikka,</value>
-    </data>
+  </data>
   <data name="ConnectedSupporterGreeting" xml:space="preserve">
         <value>Kiitos tuesta,</value>
-    </data>
+  </data>
   <data name="ConnectToDevCenterPrompt" xml:space="preserve">
         <value>Yhdistä DevCenteriin</value>
-    </data>
+  </data>
   <data name="DevelopmentFeedTitle" xml:space="preserve">
         <value>KEHITTÄJIEN FOORUMI</value>
-    </data>
+  </data>
   <data name="ExternalLinkCommunityForums" xml:space="preserve">
         <value>Yhteisön foorumi</value>
-    </data>
+  </data>
   <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
         <value>Kehittäjien wiki</value>
-    </data>
+  </data>
   <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
         <value>Kehittäjien foorumi</value>
-    </data>
+  </data>
   <data name="ExternalLinkDiscordServer" xml:space="preserve">
         <value>Discord-palvelin</value>
-    </data>
+  </data>
   <data name="ExternalLinkDonate" xml:space="preserve">
         <value>Lahjoita</value>
-    </data>
+  </data>
   <data name="ExternalLinkFacebookPage" xml:space="preserve">
         <value>Facebook-sivu</value>
-    </data>
+  </data>
   <data name="ExternalLinkFanWiki" xml:space="preserve">
         <value>Fanien wiki</value>
-    </data>
+  </data>
   <data name="ExternalLinkLauncherGithub" xml:space="preserve">
         <value>Laukaisija Githubissa</value>
-    </data>
+  </data>
   <data name="ExternalLinkMainWebsite" xml:space="preserve">
         <value>Pääsivusto</value>
-    </data>
+  </data>
   <data name="ExternalLinkPatreon" xml:space="preserve">
         <value>Patreon</value>
-    </data>
+  </data>
   <data name="ExternalLinkSubreddit" xml:space="preserve">
         <value>Subreddit</value>
-    </data>
+  </data>
   <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
         <value>ThriveDevCenter</value>
-    </data>
+  </data>
   <data name="ExternalLinkThriveGithub" xml:space="preserve">
         <value>Thrive Githubissa</value>
-    </data>
+  </data>
   <data name="ExternalLinkThriveItch" xml:space="preserve">
         <value>Thrive itch.io:ssa</value>
-    </data>
+  </data>
   <data name="ExternalLinkThriveSteam" xml:space="preserve">
         <value>Thrive Steamissa</value>
-    </data>
+  </data>
   <data name="ExternalLinkTwitterFeed" xml:space="preserve">
         <value>Twitter aikajana</value>
-    </data>
+  </data>
   <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
         <value>Youtube-kanava</value>
-    </data>
+  </data>
   <data name="FolderPathDisplay" xml:space="preserve">
         <value>Hakemisto:</value>
-    </data>
+  </data>
   <data name="InstalledVersions" xml:space="preserve">
         <value>Asennetut versiot</value>
-    </data>
+  </data>
   <data name="LauncherOptions" xml:space="preserve">
         <value>Laukaisijan asetukset</value>
-    </data>
+  </data>
   <data name="LauncherOptionWebFeeds" xml:space="preserve">
         <value>Näytä verkkosyötteet</value>
-    </data>
+  </data>
   <data name="LauncherSelectedLanguage" xml:space="preserve">
         <value>Laukaisijan kieli:</value>
-    </data>
+  </data>
   <data name="LauncherVersionDisplay" xml:space="preserve">
         <value>Laukaisijan versio:</value>
-    </data>
+  </data>
   <data name="LaunchOptionsTitle" xml:space="preserve">
         <value>Laukaisuasetukset</value>
-    </data>
+  </data>
   <data name="LinksButton" xml:space="preserve">
         <value>Linkit</value>
-    </data>
+  </data>
   <data name="LinksPopupTitle" xml:space="preserve">
         <value>Revolutionary Games linkit</value>
-    </data>
+  </data>
   <data name="NewsFeedTitle" xml:space="preserve">
         <value>UUTISET</value>
-    </data>
+  </data>
   <data name="PlayButton" xml:space="preserve">
         <value>Pelaa</value>
-    </data>
+  </data>
   <data name="ResetAllSettings" xml:space="preserve">
         <value>Palauta kaikki asetukset oletuksiksi</value>
-    </data>
+  </data>
   <data name="ResetInstallLocationToolTip" xml:space="preserve">
         <value>Palauta asennussijainti oletukseksi</value>
-    </data>
+  </data>
   <data name="SelectInstallLocation" xml:space="preserve">
         <value>Valitse asennussijainti</value>
-    </data>
+  </data>
   <data name="ThriveOptions" xml:space="preserve">
         <value>Thriven asetukset</value>
-    </data>
+  </data>
   <data name="WebContentIsDisabled" xml:space="preserve">
         <value>Verkkosisältö on pois käytöstä</value>
-    </data>
+  </data>
   <data name="CacheSizeDisplay" xml:space="preserve">
         <value>Välimuistin koko:</value>
-    </data>
+  </data>
   <data name="ClearFolder" xml:space="preserve">
         <value>Tyhjennä</value>
-    </data>
+  </data>
   <data name="ConnectButton" xml:space="preserve">
         <value>Yhdistä</value>
-    </data>
+  </data>
   <data name="ConnectedAsUserDisplay" xml:space="preserve">
         <value>Yhdistetty käyttäjänä:</value>
-    </data>
+  </data>
   <data name="BuildTypeSelectionBOTD" xml:space="preserve">
         <value>Päivän koontiversio (BOTD), suositeltu</value>
-    </data>
+  </data>
   <data name="BuildTypeSelectionLatest" xml:space="preserve">
         <value>Viimeisin (vaihtelee satunnaisesti paljon, sillä tämä on kirjaimellisesti koontiversio arkiston viimeisimmästä commitista)</value>
-    </data>
+  </data>
   <data name="BuildTypeSelectionManual" xml:space="preserve">
         <value>Manuaalisesti valittu "Tietty koontiversio"-välilehdellä</value>
-    </data>
+  </data>
   <data name="ConnectionInfoTab" xml:space="preserve">
         <value>Info</value>
-    </data>
+  </data>
   <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
         <value>Ohjeet Wikissämme</value>
-    </data>
+  </data>
   <data name="ConnectionKeyPlaceholder" xml:space="preserve">
         <value>Yhdistämisen avain</value>
-    </data>
+  </data>
   <data name="DevBuildsCachePathDisplay" xml:space="preserve">
         <value>DevBuildien tiedostovälimuisti:</value>
-    </data>
+  </data>
   <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
         <value>DevCenter yhteys</value>
-    </data>
+  </data>
   <data name="DialogOk" xml:space="preserve">
         <value>OK</value>
-    </data>
+  </data>
   <data name="EnterBuildHashPlaceholder" xml:space="preserve">
         <value>Syötä koontiversion tarkistussumma (commit)</value>
-    </data>
+  </data>
   <data name="FetchLatestBuildsButton" xml:space="preserve">
         <value>Hae viimeisimmät koontiversiot</value>
-    </data>
+  </data>
   <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
         <value>Salli saumaton laukaisijan toimintatila</value>
-    </data>
+  </data>
   <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
         <value>Sulje laukaisija pelin pelaamisen jälkeen (jos ei tapahtunut virheitä)</value>
-    </data>
+  </data>
   <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
         <value>Sulje laukaisija pelin käynnistyksen jälkeen</value>
-    </data>
+  </data>
   <data name="LauncherOptionHideOnPlay" xml:space="preserve">
         <value>Piilota laukaisija pelin käynnistyttyä</value>
-    </data>
+  </data>
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
         <value>Poista käytöstä kaikki pelin videot (jos Thrive kaatuu näytettyään latauksen aikana näkyvän logon ja ennen intro videon näyttämistä, tämä asetus voi auttaa peliä toimimaan)</value>
-    </data>
+  </data>
   <data name="LaunchOptionForceGLES2" xml:space="preserve">
         <value>Pakota GLES2 renderöintimoodi (voi saada Thriven käynnistymään, mutta aiheuttaa pieniä visuaalisia ongelmia)</value>
-    </data>
+  </data>
   <data name="LogoutButton" xml:space="preserve">
         <value>Kirjaudu ulos</value>
-    </data>
+  </data>
   <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
         <value>Valitse manuaalisesti syötetty tarkistussumma käytettäväksi tekstinsyöttölaatikosta DevBuildin tyyppinä kun pelataan DevBuildia</value>
-    </data>
+  </data>
   <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
         <value>Manuaalisesti syötetty tarkistussumma:</value>
-    </data>
+  </data>
   <data name="ResetCacheLocation" xml:space="preserve">
         <value>Palautu välimuistin sijainti oletukseksi</value>
-    </data>
+  </data>
   <data name="ResetTemporaryLocation" xml:space="preserve">
         <value>Palauta väliaikaistiedostojen sijainti oletukseksi</value>
-    </data>
+  </data>
   <data name="SelectButton" xml:space="preserve">
         <value>Valitse</value>
-    </data>
+  </data>
   <data name="SelectDevBuildCacheLocation" xml:space="preserve">
         <value>Valitse välimuistin sijainti</value>
-    </data>
+  </data>
   <data name="SelectTemporaryFilesLocation" xml:space="preserve">
         <value>Valitse väliaikaistiedostojen sijainti</value>
-    </data>
+  </data>
   <data name="SpecificBuildTab" xml:space="preserve">
         <value>Tietty koontiversio</value>
-    </data>
+  </data>
   <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
         <value>Ladattujen väliaikaistiedostojen kansio:</value>
-    </data>
+  </data>
   <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
         <value>Huomio: väliaikaistiedostojen kansion sijainnin vaihto ei poista olemassaolevia tiedostoja, jotta Thriveen liittymättömiä tiedostoja ei poisteta vahingossa</value>
-    </data>
+  </data>
   <data name="YouAreDeveloperInfo" xml:space="preserve">
         <value>Olet kehittäjä</value>
-    </data>
+  </data>
   <data name="SettingsSaveFailedTitle" xml:space="preserve">
         <value>Asetusten tallennus epäonnistui</value>
-    </data>
+  </data>
   <data name="SettingsSaveFailedMessage" xml:space="preserve">
         <value>Asetusten tallennus asetustiedostoon on epäonnistunut. Ole hyvä ja vahvista, että laukaisijalla on kirjoitusoikeus ja kokeile uudestaan.
 Laukaisijan lokeissa on lisätietoa.</value>
-    </data>
+  </data>
   <data name="LauncherOptionHide32Bit" xml:space="preserve">
         <value>Piilota 32-bittiset versiot, jos vastaava 64-bittinen versio on olemassa</value>
-    </data>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+    <value>Sisältö:</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+    <value>Hakemisto on tyhjä</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>Kiitos tuestasi!</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>Kirjaudu sisään</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>(koko: {0})</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>Hakemistoa ei löytynyt</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Thriven laukaisija</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>Syötettä ei voida näyttää. {0}</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Paina tästä</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>lukeaksesi koko julkaisun.</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>Katsele lokeja</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>Kaikki varmenteet ovat vanhentuneet</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} {1} alustalle</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>Ladataan...</value>
+  </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>Virhe haettaessa saatavilla olevia Thriven versioita</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Tuntematon virhe</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>Siirrä olemassaolevat versiot?</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>Siirrä olemassaolevat tiedostot?</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Siirrä</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Poista</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Peruuta</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>Tuntematon hakemisto:</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>Poista väliaikaistiedostot?</value>
+  </data>
+  <data name="ClearDehydratedFilesCount" xml:space="preserve">
+    <value>Olet poistamassa {0} tiedostoa</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>Vieraile lataussivulla</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>Laukaisijan versio on vanhentunut</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>Käyttäjänimi:</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>Sähköposti:</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>epäturvallinen</value>
+  </data>
+  <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
+    <value>PKT</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>kuvaus:</value>
+  </data>
+  <data name="PlayingTitle" xml:space="preserve">
+    <value>Pelataan {0}</value>
+  </data>
+  <data name="DownloadingItem" xml:space="preserve">
+    <value>Ladataan {0}</value>
+  </data>
+  <data name="DownloadError" xml:space="preserve">
+    <value>Lataus epäonnistui syystä: {0}</value>
+  </data>
+  <data name="MissingThriveFolderError" xml:space="preserve">
+    <value>Thriven hakemiston tulisi olla olemassa polussa {0}, mutta sitä ei ole olemassa</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>Poista KAIKKI tiedostot väliaikaistiedostojen hakemistossa. Voi poistaa jopa Thriveen liittymättömiä tiedostoja, jos niitä on olemassa!</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>Hanki linkkikoodi</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>Vahvista</value>
+  </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0} MiB</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>Thrive-version asennushakemistoa ei ole olemassa.</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>Lokitiedostojen hakemiston ({0}) luonti epäonnistui: {1}</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>{0} versio</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Kokeile uudestaan</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>Käytä välimuistissa olevaa versiodataa</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>Yhteensopivia Thriven versioita ei löytynyt</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0} (Uusin)</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>Sisäinen virhe</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Ohita</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>Poistaminen epäonnistui</value>
+  </data>
+  <data name="ClearTemporaryFilesCount" xml:space="preserve">
+    <value>Olet poistamassa {0} tiedostoa / hakemistoa</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>Tämä versio on päivitetty viimeisimpään versioon</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>Käytössäsi on Thrive laukaisijan versio {0}, mutta viimeisin versio on {1}</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>Yhteys ThriveDevCenteriin epäonnistui</value>
+  </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>Katkaise yhteys</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>Kokeile olemassaolevaa yhteyttä uudestaan</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>Linkin muodostaminen epäonnistui, ole hyvä ja tarkasta koodi uudestaan</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>Thriven pelaaminen epäonnistui</value>
+  </data>
+  <data name="ThriveRunCanceled" xml:space="preserve">
+    <value>Thriven suorittaminen peruutettiin</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>Sulje</value>
+  </data>
+  <data name="ExtractError" xml:space="preserve">
+    <value>Arkiston purkaminen epäonnistui virheen takia: {0}</value>
+  </data>
 </root>
