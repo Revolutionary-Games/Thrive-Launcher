@@ -213,7 +213,7 @@
     <value>Yhdistetty käyttäjänä:</value>
   </data>
   <data name="BuildTypeSelectionBOTD" xml:space="preserve">
-    <value>Päivän koontiversio (PKT), suositeltu</value>
+    <value>Päivän koontiversio (PKV), suositeltu</value>
   </data>
   <data name="BuildTypeSelectionLatest" xml:space="preserve">
     <value>Viimeisin (vaihtelee satunnaisesti paljon, sillä tämä on kirjaimellisesti koontiversio arkiston viimeisimmästä commitista)</value>
@@ -397,7 +397,7 @@ Laukaisijan lokeissa on lisätietoa.</value>
     <value>epäturvallinen</value>
   </data>
   <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
-    <value>PKT</value>
+    <value>PKV</value>
   </data>
   <data name="BuildDescriptionLabelShort" xml:space="preserve">
     <value>kuvaus:</value>
