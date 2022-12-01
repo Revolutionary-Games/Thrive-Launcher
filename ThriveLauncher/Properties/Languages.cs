@@ -53,8 +53,13 @@ public static class Languages
         yield return DefaultLanguage;
 
         // The following need to be sorted according to the native language names
+        // TODO: create a tool (in Scripts) to output the correct order (a slight complication is that the scripts
+        // doesn't import this project, so this needs to be moved to a common module or a new one created)
 
+        yield return new CultureInfo("pl-PL");
+        yield return new CultureInfo("pt-BR");
         yield return new CultureInfo("fi-FI");
+        yield return new CultureInfo("tr-TR");
         yield return new CultureInfo("bg-BG");
     }
 
