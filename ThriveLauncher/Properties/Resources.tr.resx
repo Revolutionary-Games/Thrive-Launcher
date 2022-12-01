@@ -251,10 +251,10 @@
     <value>Onayla</value>
   </data>
   <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
-    <value>Elle girilen karma:</value>
+    <value>Elle girilen anahtar:</value>
   </data>
   <data name="EnterBuildHashPlaceholder" xml:space="preserve">
-    <value>Sürüm karması gir (işleme)</value>
+    <value>Sürüm anahtarı gir (işleme)</value>
   </data>
   <data name="SelectButton" xml:space="preserve">
     <value>Seç</value>
@@ -482,7 +482,7 @@
     <value>Güvenli Olmayan Geliştirme Sürümü Oynansın Mı?</value>
   </data>
   <data name="FoundDevBuildToPlayInfo" xml:space="preserve">
-    <value>Oynanacak Geliştirme Sürümü Bulundu: {0}, karma: {1}, BOTD: {2}, dal: {3}</value>
+    <value>Oynanacak Geliştirme Sürümü Bulundu: {0}, anahtar: {1}, BOTD: {2}, dal: {3}</value>
   </data>
   <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
     <value>Sürüm açıklaması:
@@ -678,7 +678,7 @@
     <value>Belirli Sürüm</value>
   </data>
   <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
-    <value>Geliştirme Sürümü oynandığında; giriş kutusundan da kullanılmak üzere, seçili Geliştirme Sürümü olarak elle girilen karma değerini seç</value>
+    <value>Geliştirme Sürümü oynandığında; giriş kutusundan da kullanılmak üzere, seçili Geliştirme Sürümü olarak elle girilen anahtar değerini seç</value>
   </data>
   <data name="FetchLatestBuildsButton" xml:space="preserve">
     <value>En Son Sürümleri Al</value>
@@ -885,5 +885,10 @@ Eğer aşağıda hiçbir dosya listelenmiyorsa, güncellemeyi indirme işlemi ba
   </data>
   <data name="AutoUpdateRetryFailed" xml:space="preserve">
     <value>Otomatik güncellemeyi tekrar deneme işlemi başarısız oldu. Mevcut otomatik güncelleme dosyalarını temizlemek için bu hatayı yoksayabilirsin. Böylece başlatıcı bir dahaki sefer başlatıldığında bu işlem tekrar denenebilir.</value>
+  </data>
+  <data name="PlayUnsafeBuildExplanation" xml:space="preserve">
+    <value>Normal Geliştirici Sürümleri, onaylı bir anahtar ile CI sunucusuna otomatik olarak karşıdan yüklenir. Bu sürümler yalnızca Thrive veri havuzu üyeleri tarafından başlatılabilir. Bir kişinin hesabı tehlikeli (ya da kötü niyetli) olmadığı sürece bu sürümlerin oynanması resmi sürümler kadar güvenlidir. Geliştirici Sürümler, çekme istekleri (PR) üzerinden de kabul edilir. Ancak bu durumda, çekme istekleri her türlü ağır şeyi içerebileceği için, özellikle, güvensiz olarak işaretlenir.
+
+Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı gider. Eğer bu sürümün güvenli olduğuna inanırsan, alternatif olarak, devam edebilirsin. Bunu yapmadan önce, son işleme anahtarının eşleşip eşleşmediğini ve ThriveDevCenter sürüm durumunda bu anahtar ile bir Geliştirici Sürümü'nün karşıya yüklenip yüklenmediğini belirttiğini görmek için Github'da bu PR'yi incelemelisin. Ayrıca, PR'nin herhangi bir sürüm kodunu değiştirip değiştirmediği incelenmeli. Bunu yaptıktan sonra, devam etmek oldukça güvenlidir. Bu yöntem, Thrive ekibi üyelerinin PR'leri doğrulamak için kullandığı yöntemin aynısıdır.</value>
   </data>
 </root>
