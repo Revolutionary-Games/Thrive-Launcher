@@ -239,6 +239,20 @@ public partial class MainWindowViewModel
         }
     }
 
+    public bool EnableThriveAutoRestart
+    {
+        get => Settings.EnableThriveAutoRestart;
+        set
+        {
+            if (Settings.EnableThriveAutoRestart == value)
+                return;
+
+            this.RaisePropertyChanging();
+            Settings.EnableThriveAutoRestart = value;
+            this.RaisePropertyChanged();
+        }
+    }
+
     public string? DevCenterKey
     {
         get => Settings.DevCenterKey;

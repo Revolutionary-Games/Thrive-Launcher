@@ -894,4 +894,7 @@ If no files are listed below, downloading the update has failed and it cannot be
   <data name="EmbeddedPckToolLicenseTitle" xml:space="preserve">
     <value>Bundled godotpcktool license and its used libraries licenses:</value>
   </data>
+  <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
+    <value>Automatically restart Thrive if starting it fails</value>
+  </data>
 </root>

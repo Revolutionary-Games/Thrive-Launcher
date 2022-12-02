@@ -1694,5 +1694,11 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("EmbeddedPckToolLicenseTitle", resourceCulture);
             }
         }
+        
+        public static string LauncherOptionAutoRestartThrive {
+            get {
+                return ResourceManager.GetString("LauncherOptionAutoRestartThrive", resourceCulture);
+            }
+        }
     }
 }

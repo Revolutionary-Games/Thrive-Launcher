@@ -56,6 +56,12 @@ public class LauncherSettings
     [JsonPropertyName("showAllBetaVersions")]
     public bool ShowAllBetaVersions { get; set; }
 
+    /// <summary>
+    ///   Thrive is restarted if it fails to run (and the played Thrive version supports proper startup detection)
+    /// </summary>
+    [JsonPropertyName("enableThriveAutoRestart")]
+    public bool EnableThriveAutoRestart { get; set; } = true;
+
     // DevCenter options
     [JsonPropertyName("devCenterKey")]
     public string? DevCenterKey { get; set; }

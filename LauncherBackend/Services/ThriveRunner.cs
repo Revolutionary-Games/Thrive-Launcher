@@ -432,22 +432,29 @@ public class ThriveRunner : IThriveRunner
         {
             logger.LogWarning("Thrive was not detected as properly started");
 
-            if (startCounter - 1 < LauncherConstants.ThriveStartupFailureRetries)
+            if (settingsManager.Settings.EnableThriveAutoRestart)
             {
-                logger.LogInformation("Will attempt to retry starting Thrive (start count: {StartCounter})",
-                    startCounter);
+                if (startCounter - 1 < LauncherConstants.ThriveStartupFailureRetries)
+                {
+                    logger.LogInformation("Will attempt to retry starting Thrive (start count: {StartCounter})",
+                        startCounter);
 
-                PlayMessages.Add(new ThrivePlayMessage(ThrivePlayMessage.Type.ThriveRunRetry, startCounter + 1));
+                    PlayMessages.Add(new ThrivePlayMessage(ThrivePlayMessage.Type.ThriveRunRetry, startCounter + 1));
 
-                AddLogLine("Restarting Thrive due to detected startup failure", true);
+                    AddLogLine("Restarting Thrive due to detected startup failure", true);
 
-                // As we are running on the runner thread, we can't *really* join ourselves here
-                // JoinRunnerThreadIfExists();
-                StartThriveWithRunnerThread(version, executable);
-                return;
+                    // As we are running on the runner thread, we can't *really* join ourselves here
+                    // JoinRunnerThreadIfExists();
+                    StartThriveWithRunnerThread(version, executable);
+                    return;
+                }
+
+                logger.LogWarning("Ran out of Thrive start retries");
             }
-
-            logger.LogWarning("Ran out of Thrive start retries");
+            else
+            {
+                logger.LogInformation("Auto retry of running Thrive is disabled in options");
+            }
         }
 
         if (elapsed < LauncherConstants.RequiredRuntimeBeforeGameStartAdviceDisappears)

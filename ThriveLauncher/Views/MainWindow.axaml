@@ -264,6 +264,9 @@
                                     <CheckBox IsChecked="{Binding AllowAutoUpdate}"
                                               IsVisible="{Binding CanAutoUpdate}"
                                               Content="{i18n:Localize LauncherOptionAutoUpdate}" />
+
+                                    <CheckBox IsChecked="{Binding EnableThriveAutoRestart}"
+                                              Content="{i18n:Localize LauncherOptionAutoRestartThrive}" />
                                 </StackPanel>
                             </ScrollViewer>
 
