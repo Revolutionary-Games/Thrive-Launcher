@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -58,4 +58,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SettingsImportOldTitle" xml:space="preserve">
+    <value>Імпортувати Попередні Налаштування?</value>
+  </data>
+  <data name="SkipAction" xml:space="preserve">
+    <value>Пропустити</value>
+  </data>
+  <data name="ImportSucceededTitle" xml:space="preserve">
+    <value>Імпорт виконано</value>
+  </data>
+  <data name="ImportSucceededMessage" xml:space="preserve">
+    <value>Попередні налаштування успішно імпортовані</value>
+  </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>Налаштування з попередньої версії лаунчера, знайдено. Ви можете імпортувати наявні налаштування, щоб зберегти встановлені версії Thrive та інші кастомізації незмінними. Якщо ви не імпортуєте старі версії Thrive та кеші, вони будуть відкинуті, і лаунчер не знає про них. Імпортування налаштувань є рекомендованим.</value>
+  </data>
+  <data name="PerformImport" xml:space="preserve">
+    <value>Імпортувати</value>
+  </data>
+  <data name="ImportFailedTitle" xml:space="preserve">
+    <value>Імпорт не вдався</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>файл для імпорту налаштувань. Будь-ласка, перевірте, що відповідні шляхи файлів для налаштуваннь достурні для читання та запуску лаунчером, а далі перезапустіть лаунчер, щоб повторити спробу.</value>
+  </data>
 </root>
