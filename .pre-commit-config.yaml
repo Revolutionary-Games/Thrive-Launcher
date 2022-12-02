@@ -1,0 +1,9 @@
+repos:
+-   repo: local
+    hooks:
+    - id: check_formatting
+      name: Run check formatting
+      entry: dotnet run --project Scripts -- check --pre-commit --disable-colour
+      language: system
+      verbose: true
+      pass_filenames: false  
