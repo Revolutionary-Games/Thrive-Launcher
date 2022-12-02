@@ -13,7 +13,6 @@ using Properties;
 using ReactiveUI;
 using ScriptsBase.Utilities;
 using SharedBase.Utilities;
-using FileUtilities = LauncherBackend.Utilities.FileUtilities;
 
 /// <summary>
 ///   Properties and methods for the options menu portion of the window. Settings properties are in the

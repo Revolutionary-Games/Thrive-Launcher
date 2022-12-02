@@ -16,6 +16,7 @@ using LauncherBackend.Utilities;
 using Microsoft.Extensions.Logging;
 using Properties;
 using ReactiveUI;
+using SharedBase.Utilities;
 
 /// <summary>
 ///   Auto-update part of the view model functionality

@@ -10,7 +10,6 @@ using SHA3.Net;
 using SharedBase.Models;
 using SharedBase.Utilities;
 using Utilities;
-using FileUtilities = Utilities.FileUtilities;
 
 /// <summary>
 ///   Manages downloading and installing Thrive versions
