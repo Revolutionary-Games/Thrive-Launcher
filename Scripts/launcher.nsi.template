@@ -52,7 +52,7 @@ RequestExecutionLevel user
 # !define MULTIUSER_INSTALLMODE_DEFAULT_CURRENTUSER
 !define MULTIUSER_INSTALLMODE_INSTDIR "Thrive Launcher"
 
-# !define MULTIUSER_USE_PROGRAMFILES64 1
+!define MULTIUSER_USE_PROGRAMFILES64 1
 # !define MULTIUSER_NOUNINSTALL ;Uncomment if no uninstaller is created
 
 # TODO: fix the following, which doesn't work for some reason
