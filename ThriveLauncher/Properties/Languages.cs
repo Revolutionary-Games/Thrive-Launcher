@@ -61,7 +61,7 @@ public static class Languages
         yield return new CultureInfo("fi-FI");
         yield return new CultureInfo("tr-TR");
         yield return new CultureInfo("bg-BG");
-        yield return new CultureInfo("uk-UK");
+        yield return new CultureInfo("uk-UA");
     }
 
     public static void SetLanguage(CultureInfo cultureInfo)
