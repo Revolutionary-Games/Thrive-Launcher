@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -58,4 +58,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SkipAction" xml:space="preserve">
+    <value>Passer</value>
+  </data>
+  <data name="PerformImport" xml:space="preserve">
+    <value>Importer</value>
+  </data>
+  <data name="ImportFailedTitle" xml:space="preserve">
+    <value>Échec de l'importation</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>Échec de l'importation des paramètres. Veuillez vous assurer que les chemins d'accès aux fichiers de paramètres peuvent être lues et modifiées par le lanceur, puis redémarrez le lanceur pour réessayer.</value>
+  </data>
+  <data name="ImportSucceededMessage" xml:space="preserve">
+    <value>Les paramètres précédents ont été importés avec succès.</value>
+  </data>
+  <data name="LauncherSelectedLanguage" xml:space="preserve">
+    <value>Langue du lanceur :</value>
+  </data>
+  <data name="LinksButton" xml:space="preserve">
+    <value>Liens</value>
+  </data>
+  <data name="PlayButton" xml:space="preserve">
+    <value>Jouer</value>
+  </data>
+  <data name="ConnectToDevCenterPrompt" xml:space="preserve">
+    <value>Se connecter au DevCenter</value>
+  </data>
+  <data name="ConnectedSupporterGreeting" xml:space="preserve">
+    <value>Merci,</value>
+  </data>
+  <data name="DevelopmentFeedTitle" xml:space="preserve">
+    <value>FORUMS DE DÉVELOPPEMENT</value>
+  </data>
+  <data name="WebContentIsDisabled" xml:space="preserve">
+    <value>Contenu web désactivé</value>
+  </data>
+  <data name="NewsFeedTitle" xml:space="preserve">
+    <value>NEWS</value>
+  </data>
+  <data name="SettingsImportOldTitle" xml:space="preserve">
+    <value>Importer les paramètres précédents ?</value>
+  </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>Des paramètres d'une version précédente du lanceur ont été trouvés. Vous pouvez importer ces paramètres existants pour conserver intactes vos versions Thrive installées et vos autres personnalisations. Si vous n'importez pas les anciennes versions de Thrive et les caches, ils seront abandonnés et ce lanceur n'en saura rien. Il est recommandé d'importer les paramètres.</value>
+  </data>
+  <data name="ImportSucceededTitle" xml:space="preserve">
+    <value>Importation réussie</value>
+  </data>
+  <data name="ConnectedDeveloperGreeting" xml:space="preserve">
+    <value>Salut,</value>
+  </data>
 </root>
