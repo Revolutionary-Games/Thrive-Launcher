@@ -109,4 +109,181 @@
   <data name="ConnectedDeveloperGreeting" xml:space="preserve">
     <value>Salut,</value>
   </data>
+  <data name="LinksPopupTitle" xml:space="preserve">
+    <value>Liens Revolutionary Games</value>
+  </data>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+    <value>Site web principal</value>
+  </data>
+  <data name="ExternalLinkCommunityForums" xml:space="preserve">
+    <value>Forums de la communauté</value>
+  </data>
+  <data name="ExternalLinkPatreon" xml:space="preserve">
+    <value>Patreon</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+    <value>Faire une donation</value>
+  </data>
+  <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
+    <value>ThriveDevCenter</value>
+  </data>
+  <data name="ExternalLinkThriveSteam" xml:space="preserve">
+    <value>Thrive sur Steam</value>
+  </data>
+  <data name="ExternalLinkThriveItch" xml:space="preserve">
+    <value>Thrive sur itch.io</value>
+  </data>
+  <data name="ExternalLinkThriveGithub" xml:space="preserve">
+    <value>Thrive sur Github</value>
+  </data>
+  <data name="ExternalLinkLauncherGithub" xml:space="preserve">
+    <value>Lanceur sur Github</value>
+  </data>
+  <data name="ExternalLinkFanWiki" xml:space="preserve">
+    <value>Wiki des supporteurs</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+    <value>Serveur Discord</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+    <value>Subreddit</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+    <value>Chaîne YouTube</value>
+  </data>
+  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
+    <value>Flux Twitter</value>
+  </data>
+  <data name="ExternalLinkFacebookPage" xml:space="preserve">
+    <value>Page Facebook</value>
+  </data>
+  <data name="ThriveOptions" xml:space="preserve">
+    <value>Options Thrive</value>
+  </data>
+  <data name="LauncherOptions" xml:space="preserve">
+    <value>Options du lanceur</value>
+  </data>
+  <data name="InstalledVersions" xml:space="preserve">
+    <value>Versions installées</value>
+  </data>
+  <data name="CacheConfigurationTab" xml:space="preserve">
+    <value>Cache</value>
+  </data>
+  <data name="LaunchOptionsTitle" xml:space="preserve">
+    <value>Options de démarrage</value>
+  </data>
+  <data name="LaunchOptionForceGLES2" xml:space="preserve">
+    <value>Forcer le mode de rendu GLES2 (peut faire démarrer Thrive, mais cause de légers problèmes graphiques)</value>
+  </data>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+    <value>Version du lanceur :</value>
+  </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>Masquer le lanceur pendant la partie</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>Fermer le lanceur après avoir joué (si aucune erreur ne survient)</value>
+  </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>Fermer le lanceur après avoir lancé la partie</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>Réinitialiser tous les paramètres</value>
+  </data>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+    <value>Parcourir les fichiers installés</value>
+  </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>Sélectionner l'emplacement d'installation</value>
+  </data>
+  <data name="FolderPathDisplay" xml:space="preserve">
+    <value>Dossier :</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+    <value>Dossier de téléchargement temporaire :</value>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+    <value>Contenus :</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+    <value>Le dossier est vide</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>Sélectionnez l'emplacement des fichiers temporaires</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>Réinitialiser l'emplacement des fichiers temporaires</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>Effacer</value>
+  </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+    <value>Cache des fichier des DevBuild :</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+    <value>Selectionner l'emplacement des fichiers de cache</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+    <value>Réinitialiser l'emplacement des fichiers de cache</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+    <value>Taille du cache :</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+    <value>Connection au DevCenter</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>Vous êtes un développeur</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>Merci de votre soutien !</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+    <value>Compilation du jour (CDJ), recommandée</value>
+  </data>
+  <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
+    <value>Forums de développement</value>
+  </data>
+  <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
+    <value>Wiki développeur</value>
+  </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+    <value>Désactivez toutes les vidéos du jeu (si Thrive se bloque après l'affichage du logo de chargement et avant la lecture de la vidéo d'introduction, cela peut résoudre le problème)</value>
+  </data>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+    <value>Activer les flux web</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>Masquer les versions 32 bits si une version 64 bits équivalente existe</value>
+  </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+    <value>Autoriser le mode lanceur transparent (le lanceur ne s'affiche pas avant le démarrage de Thrive)</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>Mettre à jour le lanceur automatiquement</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>Réinitialiser l'emplacement d'installation</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>Remarque : le changement de l'emplacement temporaire ne déplace ni ne supprime les fichiers existants afin d'éviter de toucher accidentellement des fichiers sans rapport avec le Thrive</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>Supprimez TOUS les fichiers dans le dossier temporaire. Pourrait supprimer des fichiers sans lien avec Thrive s'il y en a !</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+    <value>Supprimez tous les fichiers dans le dossier de cache déshydratée de DevBuild. Si l'emplacement n'est pas celui par défaut, il peut exister des fichiers non-Thrive dans le dossier qui seront également supprimés.</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+    <value>Connecté en tant que :</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+    <value>La plus récente (change beaucoup au hasard, car il s'agit littéralement d'une compilation à partir du dernier commit du code)</value>
+  </data>
 </root>
