@@ -82,4 +82,199 @@
   <data name="ImportFailedMessage" xml:space="preserve">
     <value>файл для імпорту налаштувань. Будь-ласка, перевірте, що відповідні шляхи файлів для налаштуваннь достурні для читання та запуску лаунчером, а далі перезапустіть лаунчер, щоб повторити спробу.</value>
   </data>
+  <data name="LauncherSelectedLanguage" xml:space="preserve">
+    <value>Мова лаунчеру:</value>
+  </data>
+  <data name="LinksButton" xml:space="preserve">
+    <value>Посилання</value>
+  </data>
+  <data name="PlayButton" xml:space="preserve">
+    <value>Грати</value>
+  </data>
+  <data name="ConnectToDevCenterPrompt" xml:space="preserve">
+    <value>Під'єднатися до Розробцентру</value>
+  </data>
+  <data name="ConnectedDeveloperGreeting" xml:space="preserve">
+    <value>Вітанячка</value>
+  </data>
+  <data name="ConnectedSupporterGreeting" xml:space="preserve">
+    <value>Дякую</value>
+  </data>
+  <data name="NewsFeedTitle" xml:space="preserve">
+    <value>НОВИНИ</value>
+  </data>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+    <value>Основний сайт</value>
+  </data>
+  <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
+    <value>Розробницький форум</value>
+  </data>
+  <data name="ExternalLinkCommunityForums" xml:space="preserve">
+    <value>Форум спільноти</value>
+  </data>
+  <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
+    <value>РОзробницька Wiki</value>
+  </data>
+  <data name="ExternalLinkPatreon" xml:space="preserve">
+    <value>Patreon</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+    <value>Донат</value>
+  </data>
+  <data name="ExternalLinkThriveSteam" xml:space="preserve">
+    <value>Thrive у Steam</value>
+  </data>
+  <data name="ExternalLinkThriveItch" xml:space="preserve">
+    <value>Thrive на itch.io</value>
+  </data>
+  <data name="ExternalLinkThriveGithub" xml:space="preserve">
+    <value>Thrive у Github</value>
+  </data>
+  <data name="ExternalLinkLauncherGithub" xml:space="preserve">
+    <value>Launcher на Github</value>
+  </data>
+  <data name="ExternalLinkFanWiki" xml:space="preserve">
+    <value>Фанатська Wiki</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+    <value>Сервер Discord</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+    <value>Subreddit</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+    <value>YouTube канал</value>
+  </data>
+  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
+    <value>Стрічка Twitter</value>
+  </data>
+  <data name="ExternalLinkFacebookPage" xml:space="preserve">
+    <value>Сторінка Facebook</value>
+  </data>
+  <data name="InstalledVersions" xml:space="preserve">
+    <value>Встановлені версії</value>
+  </data>
+  <data name="CacheConfigurationTab" xml:space="preserve">
+    <value>Кеш</value>
+  </data>
+  <data name="LauncherOptions" xml:space="preserve">
+    <value>Параметри Лаунчеру</value>
+  </data>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+    <value>Версія лаунчеру:</value>
+  </data>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+    <value>Увімкнути вебканали</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>Приховати 32-розрядні версії, якщо існує еквівалента 64-розрядна версія</value>
+  </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>Приховати Лаунчер при Грі</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>Закрити Лаунчер після відтворення (якщо немає помилки)</value>
+  </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>Закрити Лаунчер Після Початку Гри</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>Автоматичне оновлення Лаунчеру</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>Скинути усі налаштування</value>
+  </data>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+    <value>Переглянути встановлені файли</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>Скинути Місце Встановлення</value>
+  </data>
+  <data name="FolderPathDisplay" xml:space="preserve">
+    <value>Каталог:</value>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+    <value>Вміст:</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+    <value>Папка порожня</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>Скинути Тимчасове Розміщення Файлів</value>
+  </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+    <value>Кеш DevBuilds файлів</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>Очистити</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+    <value>Вибрати Розміщення Кешу</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+    <value>Скинутити Розміщення Кешу</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+    <value>Розмір кешу:</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+    <value>Під'єднання до Розробцентру</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>Добре</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+    <value>Інформація</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+    <value>Під'єднатися як:</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>Ви розробник</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>Дякуємо</value>
+  </data>
+  <data name="DevelopmentFeedTitle" xml:space="preserve">
+    <value>Розробницький форум</value>
+  </data>
+  <data name="WebContentIsDisabled" xml:space="preserve">
+    <value>Веб-вміст вимкнено</value>
+  </data>
+  <data name="LinksPopupTitle" xml:space="preserve">
+    <value>Посилання Revolutionary Games</value>
+  </data>
+  <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
+    <value>РозробЦентрThrive</value>
+  </data>
+  <data name="ThriveOptions" xml:space="preserve">
+    <value>Опції Thrive</value>
+  </data>
+  <data name="LaunchOptionsTitle" xml:space="preserve">
+    <value>Параметри Запуску</value>
+  </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+    <value>Вимкнути усі ігрові відео (якщо Thrive вилітає після показу логотипу завантаження та після програвання початкового відео, це може допомогти грі запрацювати)</value>
+  </data>
+  <data name="LaunchOptionForceGLES2" xml:space="preserve">
+    <value>Примусовий режим рендеру GLES2 (може призвести до запуску Thrive, але спричинить великі проблеми з графікою)</value>
+  </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+    <value>Дозволити Безперебійний Режим Лаунчеру (Лаунчер не показується перед запуску Thrive)</value>
+  </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>Вибрати Місце Встановлення</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+    <value>Папку тимчасових завантажень:</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>Примітка: зміна тимчасового розміщення не призведе до переміщення, або видалення наявних файлів, щоб зпапобігти випадковому об'єднанню з файлами, що непов'язані з</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>Вибрати Тимчасове Розміщення Файлів</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>Видалити УСІ файли в тимчасовій папці. Можна видалити навіть не пов'язані з Thrive, якщо такі є!</value>
+  </data>
 </root>
