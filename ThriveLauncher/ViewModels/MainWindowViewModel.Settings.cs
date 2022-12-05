@@ -114,6 +114,9 @@ public partial class MainWindowViewModel
                 logger.LogInformation("Forgetting loaded launcher info if there is any");
                 LoadDummyStoreVersionData();
             }
+
+            this.RaisePropertyChanged(nameof(CanEnableShowingBetaVersions));
+            this.RaisePropertyChanged(nameof(CanShowLatestBetaVersion));
         }
     }
 
@@ -218,6 +221,8 @@ public partial class MainWindowViewModel
             this.RaisePropertyChanging();
             Settings.ShowLatestBetaVersion = value;
             this.RaisePropertyChanged();
+
+            this.RaisePropertyChanged(nameof(CanShowLatestBetaVersion));
 
             NotifyChangesToAvailableVersions();
         }
@@ -367,4 +372,7 @@ public partial class MainWindowViewModel
             SelectedDevBuildType = DevBuildType.ManuallySelected;
         }
     }
+
+    public bool CanEnableShowingBetaVersions => StoreVersionShowExternalVersions || !detectedStore.IsStoreVersion;
+    public bool CanShowLatestBetaVersion => CanEnableShowingBetaVersions && ShowLatestBetaVersion;
 }

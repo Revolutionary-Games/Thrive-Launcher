@@ -897,4 +897,10 @@ If no files are listed below, downloading the update has failed and it cannot be
   <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
     <value>Automatically restart Thrive if starting it fails</value>
   </data>
+  <data name="RequiresLatestBetaShowingEnabled" xml:space="preserve">
+    <value>This option can only be enabled when showing latest beta version option is enabled first</value>
+  </data>
+  <data name="RequiresExternalVersionsEnabled" xml:space="preserve">
+    <value>This option requires external version downloads to be enabled</value>
+  </data>
 </root>

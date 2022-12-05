@@ -246,27 +246,48 @@
                                               IsVisible="{Binding IsStoreVersion}"
                                               Content="{i18n:Localize LauncherOptionShowExternalVersions}" />
 
-                                    <CheckBox IsChecked="{Binding ShowLatestBetaVersion}"
-                                              Content="{i18n:Localize LauncherOptionShowLatestBetaVersion}" />
+                                    <!-- latest beta -->
+                                    <StackPanel IsVisible="{Binding CanEnableShowingBetaVersions}">
+                                        <CheckBox IsChecked="{Binding ShowLatestBetaVersion}"
+                                                  Content="{i18n:Localize LauncherOptionShowLatestBetaVersion}" />
 
-                                    <CheckBox IsChecked="{Binding ShowAllBetaVersions}"
-                                              IsVisible="{Binding ShowLatestBetaVersion}"
-                                              Content="{i18n:Localize LauncherOptionShowAllBetaVersions}" />
+                                        <!-- all beta versions -->
+                                        <CheckBox IsChecked="{Binding ShowAllBetaVersions}"
+                                                  IsVisible="{Binding CanShowLatestBetaVersion}"
+                                                  Content="{i18n:Localize LauncherOptionShowAllBetaVersions}" />
 
-                                    <CheckBox IsChecked="False" IsEnabled="False"
-                                              IsVisible="{Binding !ShowLatestBetaVersion}"
-                                              Content="{i18n:Localize LauncherOptionShowAllBetaVersions}" />
+                                        <CheckBox IsChecked="False" IsEnabled="False"
+                                                  IsVisible="{Binding !CanShowLatestBetaVersion}"
+                                                  Content="{i18n:Localize LauncherOptionShowAllBetaVersions}" />
 
+                                        <TextBlock FontSize="11" Margin="30 0 3 5" TextWrapping="Wrap"
+                                                   IsVisible="{Binding !CanShowLatestBetaVersion}"
+                                                   Foreground="{DynamicResource LightGrey}"
+                                                   Text="{i18n:Localize RequiresLatestBetaShowingEnabled}" />
+                                    </StackPanel>
+
+                                    <StackPanel IsVisible="{Binding !CanEnableShowingBetaVersions}">
+                                        <!-- dummy disabled latest beta checkbox -->
+                                        <CheckBox IsChecked="False" IsEnabled="False"
+                                                  Content="{i18n:Localize LauncherOptionShowLatestBetaVersion}" />
+
+                                        <TextBlock FontSize="11" Margin="30 0 3 5" TextWrapping="Wrap"
+                                                   Foreground="{DynamicResource LightGrey}"
+                                                   Text="{i18n:Localize RequiresExternalVersionsEnabled}" />
+                                    </StackPanel>
+
+                                    <!-- seamless mode -->
                                     <CheckBox IsChecked="{Binding EnableStoreVersionSeamlessMode}"
-                                              IsVisible="{Binding IsStoreVersion}"
                                               Content="{i18n:Localize LauncherOptionAllowSeamlessMode}" />
+
+                                    <!-- rest of the options -->
+
+                                    <CheckBox IsChecked="{Binding EnableThriveAutoRestart}"
+                                              Content="{i18n:Localize LauncherOptionAutoRestartThrive}" />
 
                                     <CheckBox IsChecked="{Binding AllowAutoUpdate}"
                                               IsVisible="{Binding CanAutoUpdate}"
                                               Content="{i18n:Localize LauncherOptionAutoUpdate}" />
-
-                                    <CheckBox IsChecked="{Binding EnableThriveAutoRestart}"
-                                              Content="{i18n:Localize LauncherOptionAutoRestartThrive}" />
                                 </StackPanel>
                             </ScrollViewer>
 

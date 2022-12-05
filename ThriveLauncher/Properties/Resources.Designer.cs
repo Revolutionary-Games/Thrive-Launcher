@@ -1700,5 +1700,17 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("LauncherOptionAutoRestartThrive", resourceCulture);
             }
         }
+        
+        public static string RequiresLatestBetaShowingEnabled {
+            get {
+                return ResourceManager.GetString("RequiresLatestBetaShowingEnabled", resourceCulture);
+            }
+        }
+        
+        public static string RequiresExternalVersionsEnabled {
+            get {
+                return ResourceManager.GetString("RequiresExternalVersionsEnabled", resourceCulture);
+            }
+        }
     }
 }
