@@ -130,8 +130,8 @@ public class ThriveInstaller : IThriveInstaller
     public IOrderedEnumerable<(string VersionName, IPlayableVersion VersionObject)> SortVersions(
         IEnumerable<(string VersionName, IPlayableVersion VersionObject)> versions)
     {
-        // Store version first
-        var sorted = versions.OrderBy(t => t.VersionObject is StoreVersion);
+        // Store version first (descending is needed to put it first)
+        var sorted = versions.OrderByDescending(t => t.VersionObject is StoreVersion);
 
         // Then devbuilds (sorted by type)
         sorted = sorted.ThenBy(t =>
