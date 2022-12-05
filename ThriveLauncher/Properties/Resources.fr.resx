@@ -68,13 +68,13 @@
     <value>Échec de l'importation</value>
   </data>
   <data name="ImportFailedMessage" xml:space="preserve">
-    <value>Échec de l'importation des paramètres. Veuillez vous assurer que les chemins d'accès aux fichiers de paramètres peuvent être lues et modifiées par le lanceur, puis redémarrez le lanceur pour réessayer.</value>
+    <value>Échec de l'importation des paramètres. Veuillez vous assurer que les chemins d'accès aux fichiers de paramètres peuvent être lus et modifiés par le launcher, puis redémarrez-le pour réessayer.</value>
   </data>
   <data name="ImportSucceededMessage" xml:space="preserve">
     <value>Les paramètres précédents ont été importés avec succès.</value>
   </data>
   <data name="LauncherSelectedLanguage" xml:space="preserve">
-    <value>Langue du lanceur :</value>
+    <value>Langue du launcher :</value>
   </data>
   <data name="LinksButton" xml:space="preserve">
     <value>Liens</value>
@@ -101,7 +101,7 @@
     <value>Importer les paramètres précédents ?</value>
   </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
-    <value>Des paramètres d'une version précédente du lanceur ont été trouvés. Vous pouvez importer ces paramètres existants pour conserver intactes vos versions Thrive installées et vos autres personnalisations. Si vous n'importez pas les anciennes versions de Thrive et les caches, ils seront abandonnés et ce lanceur n'en saura rien. Il est recommandé d'importer les paramètres.</value>
+    <value>Des paramètres d'une version précédente du launcher ont été trouvés. Vous pouvez importer ces paramètres existants pour conserver intactes vos versions Thrive installées et vos autres personnalisations. Si vous n'importez pas les anciennes versions de Thrive et les caches, ils seront abandonnés et ce launcher n'en saura rien. Il est recommandé d'importer les paramètres.</value>
   </data>
   <data name="ImportSucceededTitle" xml:space="preserve">
     <value>Importation réussie</value>
@@ -137,7 +137,7 @@
     <value>Thrive sur Github</value>
   </data>
   <data name="ExternalLinkLauncherGithub" xml:space="preserve">
-    <value>Lanceur sur Github</value>
+    <value>Launcher sur Github</value>
   </data>
   <data name="ExternalLinkFanWiki" xml:space="preserve">
     <value>Wiki des supporteurs</value>
@@ -161,7 +161,7 @@
     <value>Options Thrive</value>
   </data>
   <data name="LauncherOptions" xml:space="preserve">
-    <value>Options du lanceur</value>
+    <value>Options du launcher</value>
   </data>
   <data name="InstalledVersions" xml:space="preserve">
     <value>Versions installées</value>
@@ -176,16 +176,16 @@
     <value>Forcer le mode de rendu GLES2 (peut faire démarrer Thrive, mais cause de légers problèmes graphiques)</value>
   </data>
   <data name="LauncherVersionDisplay" xml:space="preserve">
-    <value>Version du lanceur :</value>
+    <value>Version du launcher :</value>
   </data>
   <data name="LauncherOptionHideOnPlay" xml:space="preserve">
-    <value>Masquer le lanceur pendant la partie</value>
+    <value>Masquer le launcher pendant la partie</value>
   </data>
   <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
-    <value>Fermer le lanceur après avoir joué (si aucune erreur ne survient)</value>
+    <value>Fermer le launcher après avoir joué (si aucune erreur ne survient)</value>
   </data>
   <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
-    <value>Fermer le lanceur après avoir lancé la partie</value>
+    <value>Fermer le launcher après avoir lancé la partie</value>
   </data>
   <data name="ResetAllSettings" xml:space="preserve">
     <value>Réinitialiser tous les paramètres</value>
@@ -218,10 +218,10 @@
     <value>Effacer</value>
   </data>
   <data name="DevBuildsCachePathDisplay" xml:space="preserve">
-    <value>Cache des fichier des DevBuild :</value>
+    <value>Cache des fichiers des versions de développement :</value>
   </data>
   <data name="SelectDevBuildCacheLocation" xml:space="preserve">
-    <value>Selectionner l'emplacement des fichiers de cache</value>
+    <value>Sélectionner l'emplacement des fichiers de cache</value>
   </data>
   <data name="ResetCacheLocation" xml:space="preserve">
     <value>Réinitialiser l'emplacement des fichiers de cache</value>
@@ -245,7 +245,7 @@
     <value>Merci de votre soutien !</value>
   </data>
   <data name="BuildTypeSelectionBOTD" xml:space="preserve">
-    <value>Compilation du jour (CDJ), recommandée</value>
+    <value>Version du jour (VDJ), recommandée</value>
   </data>
   <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
     <value>Forums de développement</value>
@@ -263,10 +263,10 @@
     <value>Masquer les versions 32 bits si une version 64 bits équivalente existe</value>
   </data>
   <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
-    <value>Autoriser le mode lanceur transparent (le lanceur ne s'affiche pas avant le démarrage de Thrive)</value>
+    <value>Autoriser le mode seamless (le launcher ne s'affiche pas avant le démarrage de Thrive)</value>
   </data>
   <data name="LauncherOptionAutoUpdate" xml:space="preserve">
-    <value>Mettre à jour le lanceur automatiquement</value>
+    <value>Mettre à jour le launcher automatiquement</value>
   </data>
   <data name="ResetInstallLocationToolTip" xml:space="preserve">
     <value>Réinitialiser l'emplacement d'installation</value>
@@ -278,12 +278,204 @@
     <value>Supprimez TOUS les fichiers dans le dossier temporaire. Pourrait supprimer des fichiers sans lien avec Thrive s'il y en a !</value>
   </data>
   <data name="ClearDehydratedLocation" xml:space="preserve">
-    <value>Supprimez tous les fichiers dans le dossier de cache déshydratée de DevBuild. Si l'emplacement n'est pas celui par défaut, il peut exister des fichiers non-Thrive dans le dossier qui seront également supprimés.</value>
+    <value>Supprimez tous les fichiers dans le dossier de cache déshydratée des versions de développement. Si l'emplacement n'est pas celui par défaut, il peut exister des fichiers n'appartenant pas à Thrive dans le dossier qui seront également supprimés.</value>
   </data>
   <data name="ConnectedAsUserDisplay" xml:space="preserve">
     <value>Connecté en tant que :</value>
   </data>
   <data name="BuildTypeSelectionLatest" xml:space="preserve">
-    <value>La plus récente (change beaucoup au hasard, car il s'agit littéralement d'une compilation à partir du dernier commit du code)</value>
+    <value>La plus récente (change beaucoup aléatoirement, car il s'agit littéralement d'une compilation à partir du dernier commit du code)</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>Sélectionné manuellement dans l'onglet "Version spécifique"</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>Se déconnecter</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+    <value>Instructions sur notre Wiki</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>Obtenir un code</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+    <value>Se connecter</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>Connexion</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>Confirmer</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+    <value>Insérez le hash de version (commit)</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+    <value>Sélectionner</value>
+  </data>
+  <data name="FetchLatestBuildsButton" xml:space="preserve">
+    <value>Récupérer les dernières versions</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>Échec de la sauvegarde des paramètres</value>
+  </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0} MiO</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>(taille : {0})</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>Dossier introuvable</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>Le dossier d'installation de la version de Thrive n'existe pas.</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>Code source du launcher</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>Voir les licences du launcher</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Launcher Thrive</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Licences du launcher Thrive</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>La police Roboto est utilisée dans le lanceur, licence Roboto :</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>Le flux ne peux pas être affiché. {0}</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>posté par {0} à {1}</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Cliquez ici</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>pour lire le post entier.</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>Échec de la création du dossier des logs ({0}) : {1}</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>Voir les logs</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>Tous les certificats sont expirés</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>Version {0}</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} pour {1}</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>Chargement...</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Ressayer</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0} (dernière version)</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>Déplacer les fichiers existants ?</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>Erreur interne</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Passer</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>Dossier inconnu :</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>Effacer les fichiers temporaires ?</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>Échec de la connexion au ThriveDevCenter</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>Adresse e-mail :</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>pas sûre</value>
+  </data>
+  <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
+    <value>VDJ</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>desc :</value>
+  </data>
+  <data name="PlayingTitle" xml:space="preserve">
+    <value>Joue à {0}</value>
+  </data>
+  <data name="DownloadingItem" xml:space="preserve">
+    <value>Téléchargement de {0}</value>
+  </data>
+  <data name="UnknownNumber" xml:space="preserve">
+    <value>inconnu</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+    <value>Versions spécifiques</value>
+  </data>
+  <data name="PlayUnsafeBuildExplanation" xml:space="preserve">
+    <value>Les versions de développement normales sont téléchargées automatiquement par un serveur CI avec une clé vérifiée. Ces versions ne peuvent être déclenchés que par les membres du repository Thrive. À moins que le compte d'une telle personne ne soit compromis (ou qu'elle agisse de manière malveillante), les versions sont aussi sûres que les versions officielles. Les versions de développement sont également acceptés à partir de pull requests (PR), mais dans ce cas, elles sont spécifiquement marquées comme non sûres (comme la version actuellement sélectionnée), car la pull request pourrait contenir toutes sortes de choses désagréables.
+
+Si un membre de l'équipe Thrive vérifie que la PR est sûre, cet avertissement disparaît. Sinon, vous pouvez continuer si vous pensez que cette version est sûre. Avant de le faire, vous devez vérifier la PR sur Github pour voir si le dernier hash de commit correspond et si la compilation de ThriveDevCenter indique qu'elle a téléchargé une versions de développement avec le hash. En outre, il faut vérifier que la PR ne modifie pas les scripts de compilation. Après avoir fait cela, ce devrait être relativement sûr de continuer, car c'est le même processus que les membres de l'équipe Thrive utilisent pour vérifier les PRs.</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>Ici, vous pouvez lier le lanceur au ThriveDevCenter pour accéder aux versions de développement et à d'autres fonctionnalités</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+    <value>Entrez le hash manuellement :</value>
+  </data>
+  <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+    <value>Sélectionner le hash entré manuellement en tant que version de développement quand une version de développement est utilisée pour jouer</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>L'enregistrement des paramètres dans le fichier de paramètres a échoué. Veuillez vous assurer que le launcher a un accès en écriture et réessayez.
+Les logs du launcher contiendront plus d'informations.</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf (Copyright (c) 2010-2011 par tyPoland Lukasz Dziedzic avec nom de police résérvé "Lato"), licence OFL :</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Erreur inconnue</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Déplacer</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>Échec de la suppression</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>Cette version est à jour</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>Visiter la page des téléchargements</value>
+  </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>Se déconnecter</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>Nom d'utilisateur :</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>Fermer</value>
   </data>
 </root>
