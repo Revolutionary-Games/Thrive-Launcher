@@ -8,7 +8,8 @@ public class Options : ILauncherOptions
 {
     public Options(bool? verbose, string? language, bool skipAutoUpdate,
         bool disableSeamlessMode, bool allowSeamlessMode, string? gameLDPreload, bool skipGlobalMemory,
-        IList<string> thriveExtraFlags, bool dummyOpenDev, bool dummyNoSandbox, string? dummyRemoteDebuggingPort)
+        bool printAvailableLocales, IList<string> thriveExtraFlags, bool dummyOpenDev, bool dummyNoSandbox,
+        string? dummyRemoteDebuggingPort)
     {
         Verbose = verbose;
         Language = language;
@@ -16,6 +17,7 @@ public class Options : ILauncherOptions
         DisableSeamlessMode = disableSeamlessMode;
         AllowSeamlessMode = allowSeamlessMode;
         SkipGlobalMemory = skipGlobalMemory;
+        PrintAvailableLocales = printAvailableLocales;
         GameLDPreload = gameLDPreload;
 
         ThriveExtraFlags = thriveExtraFlags;
@@ -68,7 +70,10 @@ public class Options : ILauncherOptions
         HelpText = "Skip creating globally shared memory for detecting existing running launchers")]
     public bool SkipGlobalMemory { get; }
 
-    // TODO: handle this
+    [Option("list-languages", Default = false,
+        HelpText = "Print available languages in sorted order")]
+    public bool PrintAvailableLocales { get; }
+
     [Value(0, MetaName = "THRIVE_OPTIONS", HelpText = "Extra flags to pass to Thrive processes when starting them",
         Required = false)]
     public IList<string> ThriveExtraFlags { get; }

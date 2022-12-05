@@ -66,6 +66,9 @@ internal class Program
             Trace.Listeners.Clear();
             Trace.Listeners.Add(services.GetRequiredService<AvaloniaLogger>());
 
+            if (options.PrintAvailableLocales)
+                PrintAvailableLocales(programLogger);
+
             InnerMain(args, services, programLogger);
         }
         catch (Exception e)
@@ -454,5 +457,20 @@ internal class Program
                 "This may indicate the launcher is already open");
             return null;
         }
+    }
+
+    private static void PrintAvailableLocales(ILogger logger)
+    {
+        var message = new StringBuilder();
+
+        var sortingLocale = Languages.GetDefaultLanguage();
+
+        foreach (var cultureInfo in Languages.GetLanguagesEnumerable()
+                     .OrderBy(l => l.NativeName, StringComparer.Create(sortingLocale, true)))
+        {
+            message.Append($"\"{cultureInfo.Name}\",\n");
+        }
+
+        logger.LogInformation("Available locales:\n{Message}", message.ToString());
     }
 }

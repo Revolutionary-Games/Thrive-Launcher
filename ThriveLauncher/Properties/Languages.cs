@@ -2,6 +2,7 @@ namespace ThriveLauncher.Properties;
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 
@@ -12,6 +13,21 @@ public static class Languages
 {
     private static readonly CultureInfo StartUpLanguage = CultureInfo.CurrentCulture;
     private static readonly CultureInfo DefaultLanguage = new("en-GB");
+
+    /// <summary>
+    ///   The languages the launcher is translated into. These need to be sorted alphabetically.
+    ///   Running the launcher with "--list-languages" will give the right sorted order.
+    /// </summary>
+    private static readonly string[] AdditionalAvailableLanguages =
+    {
+        "fr-FR",
+        "pl-PL",
+        "pt-BR",
+        "fi-FI",
+        "tr-TR",
+        "bg-BG",
+        "uk-UA",
+    };
 
     public delegate void OnCurrentLanguageChanged();
 
@@ -52,16 +68,25 @@ public static class Languages
         // Default language needs to be first
         yield return DefaultLanguage;
 
-        // The following need to be sorted according to the native language names
-        // TODO: create a tool (in Scripts) to output the correct order (a slight complication is that the scripts
-        // doesn't import this project, so this needs to be moved to a common module or a new one created)
+        if (AdditionalAvailableLanguages.Contains("en-BG"))
+            throw new InvalidOperationException("Default locale should not be in the additional locales list");
 
-        yield return new CultureInfo("pl-PL");
-        yield return new CultureInfo("pt-BR");
-        yield return new CultureInfo("fi-FI");
-        yield return new CultureInfo("tr-TR");
-        yield return new CultureInfo("bg-BG");
-        yield return new CultureInfo("uk-UA");
+        foreach (var language in AdditionalAvailableLanguages)
+        {
+            CultureInfo cultureInfo;
+
+            try
+            {
+                cultureInfo = new CultureInfo(language);
+            }
+            catch (Exception e)
+            {
+                Trace.TraceError($"Language {language} is not available on this platform: {e}");
+                continue;
+            }
+
+            yield return cultureInfo;
+        }
     }
 
     public static void SetLanguage(CultureInfo cultureInfo)
@@ -84,5 +109,10 @@ public static class Languages
             throw new ArgumentException("Unknown specified language");
 
         SetLanguage(language);
+    }
+
+    public static CultureInfo GetDefaultLanguage()
+    {
+        return DefaultLanguage;
     }
 }
