@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -58,4 +58,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="PlayButton" xml:space="preserve">
+    <value>Spielen</value>
+  </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>Launcher während dem Spielen verstecken</value>
+  </data>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+    <value>Web Feeds aktivieren</value>
+  </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>Installationsverzeichnis auswählen</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>Installationsverzeichnis zurücksetzen</value>
+  </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>Launcher nach dem Starten des Spiels beenden</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+    <value>Cachegröße:</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>Einstellungen zurücksetzen</value>
+  </data>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+    <value>Installierte Dateien durchsuchen</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>Leeren</value>
+  </data>
+  <data name="LauncherSelectedLanguage" xml:space="preserve">
+    <value>Launcher Sprache:</value>
+  </data>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+    <value>Launcher Version:</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>Launcher nach dem Spielen beenden, wenn keine Fehler aufgetreten sind</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>Verstecke 32-Bit Versionen, wenn gleichwertige 64-Bit Versionen vorhanden sind</value>
+  </data>
 </root>
