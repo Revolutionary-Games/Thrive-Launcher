@@ -310,4 +310,86 @@
   <data name="Submit" xml:space="preserve">
     <value>提交</value>
   </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>你是一个开发人员</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>感谢您的支持！</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>注销</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>设置保存失败</value>
+  </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0}MiB</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>（大小：{0}）</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>未找到文件夹</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>启动器源代码</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>查看启动器证书</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Thrive启动器</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Thrive启动器证书</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>点击这里</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>查看日志</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>{0}版本</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>未知错误</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>删除失败</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>未知文件夹：</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>访问下载页面</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>ThriveDevCenter连接失败</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>将设置保存到设置文件失败。请确保启动程序具有读写权限，然后重试。
+启动器日志中有更多的信息。</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>Thrive版本安装文件夹不存在。</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>这个版本是最新版本</value>
+  </data>
+  <data name="DownloadingItem" xml:space="preserve">
+    <value>正在下载{0}</value>
+  </data>
 </root>
