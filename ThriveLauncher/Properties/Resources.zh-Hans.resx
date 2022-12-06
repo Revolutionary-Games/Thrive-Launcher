@@ -238,4 +238,13 @@
   <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
     <value>注意：更改临时目录不会移动或删除现有文件，以防止意外操作与 Thrive 无关的文件</value>
   </data>
+  <data name="SettingsImportOldTitle" xml:space="preserve">
+    <value>导入以前的设置？</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+    <value>选择缓存位置</value>
+  </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>旧版启动器的设置配置已被发现，你可以导入这些已有的设置以让你已安装的Thrive和其他自定义内容保持完整。如果你未导入旧版的Thrive和缓存，它们会被抛弃并且启动器不会知道这些内容。推荐导入这些设置。</value>
+  </data>
 </root>
