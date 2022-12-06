@@ -113,7 +113,7 @@
     <value>Steam 上的 Thrive</value>
   </data>
   <data name="ExternalLinkThriveItch" xml:space="preserve">
-    <value>Thrive on itch.io</value>
+    <value>itch.io上的Thrive</value>
   </data>
   <data name="ExternalLinkThriveGithub" xml:space="preserve">
     <value>Thrive on Github</value>
@@ -246,5 +246,68 @@
   </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
     <value>旧版启动器的设置配置已被发现，你可以导入这些已有的设置以让你已安装的Thrive和其他自定义内容保持完整。如果你未导入旧版的Thrive和缓存，它们会被抛弃并且启动器不会知道这些内容。推荐导入这些设置。</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>加载中......</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>重试</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>跳过</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>断开</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>邮箱：</value>
+  </data>
+  <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
+    <value>开发人员推荐</value>
+  </data>
+  <data name="UnknownNumber" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="SubmitRetryButton" xml:space="preserve">
+    <value>重试</value>
+  </data>
+  <data name="TimeMomentRightNow" xml:space="preserve">
+    <value>现在</value>
+  </data>
+  <data name="ViewFile" xml:space="preserve">
+    <value>查看</value>
+  </data>
+  <data name="IncludeInReport" xml:space="preserve">
+    <value>包括：</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>移动</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>用户名：</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>不安全</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>描述：</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
   </data>
 </root>
