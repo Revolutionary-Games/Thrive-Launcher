@@ -791,7 +791,7 @@ Eğer aşağıda hiçbir dosya listelenmiyorsa, güncellemeyi indirme işlemi ba
     <value>Çıkış kodu, gerekli bir DLL dosyasına sahip olmadığın anlamına gelebilir. Eğer bu dosya Visual C++ Redistributable 2019 yazılımına aitse, dosyayı yüklemek/düzeltmek için, bu dosyaya ait yükleyiciyi aşağıdaki bağlantıdan indirebilirsin: https://aka.ms/vs/17/release/vc_redist.x64.exe. Ayrıca, Thrive.exe uygulamasını elle çalıştırmayı deneyebilirsin. Böylece uygulama, eksik DLL dosya ismini içeren bir hata iletisi gösterebilir. Bütün Windows güncelleştirmelerini yükleyip yüklemediğini kontrol etmelisin. Eğer bunlar yardımcı olmazsa, daha fazla destek için lütfen bize ulaş.</value>
   </data>
   <data name="OutdatedLauncherExplanation" xml:space="preserve">
-    <value>Başlatıcının bu sürümü güncel değil ve güncellenmesi gerekli. Bu mesajı görüyorsan, otomatik güncelleme başlatılmadı. Bu yüzden, güncellemeyi elle indirmen ve yüklemen gerekecek. Güncellemeyi atlayarak, başlatıcının mevcut sürümünü kullanmayı deneyebilirsin. Ancak başlatıcının yalnızca en son sürümünün, eski sistemlerle etkileşim kurarak çalışmasına garanti verildiği için beklenmeyen sorunlarla karşılabilirsin.</value>
+    <value>Başlatıcının bu sürümü güncel değil ve güncellenmesi gerekli. Bu mesajı görüyorsan, otomatik güncelleme başlatılmadı. Bu yüzden, güncellemeyi elle indirmen ve yüklemen gerekecek. Güncellemeyi atlayarak, başlatıcının mevcut sürümünü kullanmayı deneyebilirsin. Ancak başlatıcının yalnızca en son sürümünün, uzak sistemlerle etkileşim kurarak çalışmasına garanti verildiği için beklenmeyen sorunlarla karşılabilirsin.</value>
   </data>
   <data name="CrashReportEmailField" xml:space="preserve">
     <value>E-postan, eğer bu rapor ile ilgili güncellemeler almak istersen (isteğe bağlı)</value>
@@ -893,5 +893,11 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı g
   </data>
   <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
     <value>Başlatma gerçekleşmezse, Thrive'ı otomatik olarak tekrar başlat</value>
+  </data>
+  <data name="RequiresLatestBetaShowingEnabled" xml:space="preserve">
+    <value>Bu seçenek, yalnızca en son beta sürümü gösterme seçeneği aktifken etkinleştirilebilir</value>
+  </data>
+  <data name="RequiresExternalVersionsEnabled" xml:space="preserve">
+    <value>Bu seçenek, dışarıdan gelen sürümlerin indirilmesini etkinleştirmeyi gerektirir</value>
   </data>
 </root>
