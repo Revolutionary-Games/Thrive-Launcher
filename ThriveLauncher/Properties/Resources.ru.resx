@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -58,4 +58,271 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SkipAction" xml:space="preserve">
+    <value>Пропустить</value>
+  </data>
+  <data name="PerformImport" xml:space="preserve">
+    <value>Импортировать</value>
+  </data>
+  <data name="ImportSucceededTitle" xml:space="preserve">
+    <value>Импорт завершён</value>
+  </data>
+  <data name="LauncherSelectedLanguage" xml:space="preserve">
+    <value>Язык лаунчера:</value>
+  </data>
+  <data name="LinksButton" xml:space="preserve">
+    <value>Ссылки</value>
+  </data>
+  <data name="PlayButton" xml:space="preserve">
+    <value>Играть</value>
+  </data>
+  <data name="ConnectedDeveloperGreeting" xml:space="preserve">
+    <value>Салют,</value>
+  </data>
+  <data name="ConnectedSupporterGreeting" xml:space="preserve">
+    <value>Спасибо,</value>
+  </data>
+  <data name="DevelopmentFeedTitle" xml:space="preserve">
+    <value>ФОРУМ РАЗРАБОТКИ</value>
+  </data>
+  <data name="WebContentIsDisabled" xml:space="preserve">
+    <value>Веб-контент отключён</value>
+  </data>
+  <data name="NewsFeedTitle" xml:space="preserve">
+    <value>НОВОСТИ</value>
+  </data>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+    <value>Основной сайт</value>
+  </data>
+  <data name="ExternalLinkCommunityForums" xml:space="preserve">
+    <value>Форум сообщества</value>
+  </data>
+  <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
+    <value>Вики для разработчиков</value>
+  </data>
+  <data name="ExternalLinkPatreon" xml:space="preserve">
+    <value>Patreon</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+    <value>Пожертвовать</value>
+  </data>
+  <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
+    <value>ThriveDevCenter</value>
+  </data>
+  <data name="ExternalLinkThriveSteam" xml:space="preserve">
+    <value>Thrive в Steam</value>
+  </data>
+  <data name="ExternalLinkThriveItch" xml:space="preserve">
+    <value>Thrive на itch.io</value>
+  </data>
+  <data name="ExternalLinkThriveGithub" xml:space="preserve">
+    <value>Thrive на Github</value>
+  </data>
+  <data name="ExternalLinkLauncherGithub" xml:space="preserve">
+    <value>Лаунчер на Github</value>
+  </data>
+  <data name="ExternalLinkFanWiki" xml:space="preserve">
+    <value>Фанатская вики</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+    <value>Сервер в Discord</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+    <value>Канал на YouTube</value>
+  </data>
+  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
+    <value>Лента в Twitter</value>
+  </data>
+  <data name="ExternalLinkFacebookPage" xml:space="preserve">
+    <value>Страница на Facebook</value>
+  </data>
+  <data name="ThriveOptions" xml:space="preserve">
+    <value>Настройки Thrive</value>
+  </data>
+  <data name="InstalledVersions" xml:space="preserve">
+    <value>Установленные версии</value>
+  </data>
+  <data name="CacheConfigurationTab" xml:space="preserve">
+    <value>Кэш</value>
+  </data>
+  <data name="LaunchOptionsTitle" xml:space="preserve">
+    <value>Настройки запуска</value>
+  </data>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+    <value>Версия лаунчера:</value>
+  </data>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+    <value>Включить веб-новости</value>
+  </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>Скрывать лаунчер при запуске игры</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>Закрыть лаунчер после игры (если не было ошибок)</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>Автоматически обновлять лаунчер</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>Сбросить все настройки</value>
+  </data>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+    <value>Открыть установленные файлы</value>
+  </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>Выбрать путь установки</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>Сбросить путь установки</value>
+  </data>
+  <data name="FolderPathDisplay" xml:space="preserve">
+    <value>Путь:</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+    <value>Папка для временных загрузок:</value>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+    <value>Содержимое:</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+    <value>Папка пуста</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>Спросить расположение временных файлов</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+    <value>Выбрать расположение кэша</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+    <value>Сбросить расположение кэша</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+    <value>Размер кэша:</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>ОК</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+    <value>Инфо</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+    <value>Вы подключены как:</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>Спасибо за поддержку!</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+    <value>Билд дня, рекомендуется</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+    <value>Инструкции на нашей вики</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>Получить код подключения</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+    <value>Код подключения</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+    <value>Подключиться</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+    <value>Ввести хэш билда (коммита)</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+    <value>Выбрать</value>
+  </data>
+  <data name="SettingsImportOldTitle" xml:space="preserve">
+    <value>Импортировать предыдущие настройки?</value>
+  </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>Найдены настройки от предыдущей версии лаунчера. Вы можете импортировать их, чтобы сохранить установленные версии Thrive и другие настройки нетронутыми. В противном случае, лаунчер не будет ничего о них знать. Рекомендуется импортировать настройки.</value>
+  </data>
+  <data name="ImportFailedTitle" xml:space="preserve">
+    <value>Импорт провалился</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>Не получилось импортировать настройки. Убедитесь, что лаунчер имеет права на чтение и запись к нужным файлам, затем перезапустите лаунчер и попробуйте снова.</value>
+  </data>
+  <data name="ImportSucceededMessage" xml:space="preserve">
+    <value>Предыдущие настройки успешно импортированы.</value>
+  </data>
+  <data name="ConnectToDevCenterPrompt" xml:space="preserve">
+    <value>Подключиться к DevCenter</value>
+  </data>
+  <data name="LinksPopupTitle" xml:space="preserve">
+    <value>Ссылки Revolutionary Games</value>
+  </data>
+  <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
+    <value>Форум разработки</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+    <value>Сабреддит</value>
+  </data>
+  <data name="LauncherOptions" xml:space="preserve">
+    <value>Настройки лаунчера</value>
+  </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+    <value>Выключить все видео в игре (если Thrive падает после логотипа загрузки и перед вступительным видео, это может помочь запустить игру)</value>
+  </data>
+  <data name="LaunchOptionForceGLES2" xml:space="preserve">
+    <value>Использовать рендеринг GLES2 (может помочь запустить Thrive, но вызывает проблемы с графикой)</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>Скрыть 32-битные версии если существуют соответствующие 64-битные версии</value>
+  </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>Закрыть лаунчер после игры</value>
+  </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+    <value>Включить незаметный режим лаунчера (лаунчер не показывается перед запуском Thrive)</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>Примечание: смена папки не удалит существующие файлы, чтобы не удалить случайно не связанные с Thrive файлы</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>Выбрать папку для временных файлов</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>Удалить ВСЕ файлы во временной папке. Может удалить даже не связанные с Thrive файлы если такие есть!</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+    <value>Удалить все файлы в папке сжатого кэша DevBuild. Если используется расположение не по умолчанию, могут быть удалены не связанные с Thrive файлы.</value>
+  </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+    <value>Файлы кэша DevBuilds:</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+    <value>Соединение с DevCenter</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>Вы разработчик</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+    <value>Последний (постоянно меняется, это буквально билд кода с последнего коммита)</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>Выбрано вручную во вкладке "Конкретный билд"</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>Здесь вы можете подключить лаунчер к ThriveDevCenter для доступа к DevBuilds и другим функциям</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+    <value>Конкретный билд</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+    <value>Вручную введённый хэш:</value>
+  </data>
 </root>
