@@ -478,4 +478,10 @@ Les logs du launcher contiendront plus d'informations.</value>
   <data name="CloseButton" xml:space="preserve">
     <value>Fermer</value>
   </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>Tous les certificats de vérification de signature avec lesquels ce launcher est livré ont expiré. Cela signifie que cette version du lanceur est extrêmement obsolète. Veuillez télécharger et installer une version plus récente.</value>
+  </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>Erreur en essayant d'obtenir les versions disponibles de Thrive</value>
+  </data>
 </root>
