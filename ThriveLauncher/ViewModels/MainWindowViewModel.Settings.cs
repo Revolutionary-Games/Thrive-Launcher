@@ -139,11 +139,16 @@ public partial class MainWindowViewModel
         get => Settings.SelectedLauncherLanguage ?? languagePlaceHolderIfNotSelected;
         set
         {
-            if (Settings.SelectedLauncherLanguage == value)
+            // When setting the user's default language, use null
+            string? languageToSave = value;
+            if (languagePlaceHolderIfNotSelected == value)
+                languageToSave = null;
+
+            if (Settings.SelectedLauncherLanguage == languageToSave)
                 return;
 
             this.RaisePropertyChanging();
-            Settings.SelectedLauncherLanguage = value;
+            Settings.SelectedLauncherLanguage = languageToSave;
             Languages.SetLanguage(availableLanguages[SelectedLauncherLanguage]);
             this.RaisePropertyChanged();
 
