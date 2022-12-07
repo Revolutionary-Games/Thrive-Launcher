@@ -242,6 +242,9 @@
                                     <CheckBox IsChecked="{Binding CloseLauncherOnGameStart}"
                                               Content="{i18n:Localize LauncherOptionCloseAfterStart}" />
 
+                                    <CheckBox IsChecked="{Binding EnableThriveAutoRestart}"
+                                              Content="{i18n:Localize LauncherOptionAutoRestartThrive}" />
+
                                     <CheckBox IsChecked="{Binding StoreVersionShowExternalVersions}"
                                               IsVisible="{Binding IsStoreVersion}"
                                               Content="{i18n:Localize LauncherOptionShowExternalVersions}" />
@@ -281,9 +284,6 @@
                                               Content="{i18n:Localize LauncherOptionAllowSeamlessMode}" />
 
                                     <!-- rest of the options -->
-
-                                    <CheckBox IsChecked="{Binding EnableThriveAutoRestart}"
-                                              Content="{i18n:Localize LauncherOptionAutoRestartThrive}" />
 
                                     <CheckBox IsChecked="{Binding AllowAutoUpdate}"
                                               IsVisible="{Binding CanAutoUpdate}"
