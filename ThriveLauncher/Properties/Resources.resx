@@ -903,4 +903,10 @@ If no files are listed below, downloading the update has failed and it cannot be
   <data name="RequiresExternalVersionsEnabled" xml:space="preserve">
     <value>This option requires external version downloads to be enabled</value>
   </data>
+  <data name="ForgetLastPlayedVersion" xml:space="preserve">
+    <value>Forget Last Played Version</value>
+  </data>
+  <data name="ForgetLastPlayedVersionToolTip" xml:space="preserve">
+    <value>Clears the remembered last selection made in the Thrive version selector. Can help get seamless mode working again if it is refusing to work.</value>
+  </data>
 </root>

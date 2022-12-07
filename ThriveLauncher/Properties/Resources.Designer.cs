@@ -1712,5 +1712,17 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("RequiresExternalVersionsEnabled", resourceCulture);
             }
         }
+        
+        public static string ForgetLastPlayedVersion {
+            get {
+                return ResourceManager.GetString("ForgetLastPlayedVersion", resourceCulture);
+            }
+        }
+        
+        public static string ForgetLastPlayedVersionToolTip {
+            get {
+                return ResourceManager.GetString("ForgetLastPlayedVersionToolTip", resourceCulture);
+            }
+        }
     }
 }

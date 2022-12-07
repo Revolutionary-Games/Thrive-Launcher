@@ -51,6 +51,9 @@ public class LauncherSettingsManager : ILauncherSettingsManager
         get => overriddenRememberedVersion?.OverriddenValue ?? rememberedVersion.Value;
         set
         {
+            if (string.IsNullOrWhiteSpace(value))
+                value = null;
+
             if (overriddenRememberedVersion != null && overriddenRememberedVersion.OverriddenValue == value)
                 return;
 
@@ -58,11 +61,7 @@ public class LauncherSettingsManager : ILauncherSettingsManager
 
             overriddenRememberedVersion.OverriddenValue = value;
 
-            // This is not awaited here to keep this code structure simple and adding a Wait call caused this to
-            // deadlock
-#pragma warning disable CS4014
-            SaveRememberedVersion(overriddenRememberedVersion.OverriddenValue);
-#pragma warning restore CS4014
+            Task.Run(() => SaveRememberedVersion(value));
         }
     }
 

@@ -288,6 +288,11 @@
                                     <CheckBox IsChecked="{Binding AllowAutoUpdate}"
                                               IsVisible="{Binding CanAutoUpdate}"
                                               Content="{i18n:Localize LauncherOptionAutoUpdate}" />
+
+                                    <Button Classes="DialogButton" Margin="0 5 0 0"
+                                            Content="{i18n:Localize ForgetLastPlayedVersion}"
+                                            Command="{Binding ForgetRememberedVersion}"
+                                            ToolTip.Tip="{i18n:Localize ForgetLastPlayedVersionToolTip}" />
                                 </StackPanel>
                             </ScrollViewer>
 

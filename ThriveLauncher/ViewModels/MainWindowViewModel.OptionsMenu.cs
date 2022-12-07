@@ -555,6 +555,19 @@ public partial class MainWindowViewModel
         return true;
     }
 
+    public void ForgetRememberedVersion()
+    {
+        if (string.IsNullOrEmpty(settingsManager.RememberedVersion))
+        {
+            logger.LogDebug("Remembered version already is null");
+            return;
+        }
+
+        logger.LogInformation("Forgetting remembered version (was: {RememberedVersion}) due to user request",
+            settingsManager.RememberedVersion);
+        settingsManager.RememberedVersion = null;
+    }
+
     public void ResetAllSettings()
     {
         logger.LogInformation("Resetting all settings");
