@@ -495,7 +495,8 @@ internal class Program
             else
             {
                 programLogger.LogInformation(
-                    "Seamless mode is disabled due to selected game version in the launcher");
+                    "Seamless mode is disabled due to selected game version ({RememberedVersion})in the launcher",
+                    rememberedVersion);
             }
         }
         catch (Exception e)
