@@ -331,7 +331,6 @@ internal class Program
 
             var fileTarget = new FileTarget("file")
             {
-                // TODO: detect the launcher folder we should put the logs folder in
                 FileName = $"{basePath}/thrive-launcher-log.txt",
                 ArchiveAboveSize = GlobalConstants.MEBIBYTE * 2,
                 ArchiveEvery = FileArchivePeriod.Month,
