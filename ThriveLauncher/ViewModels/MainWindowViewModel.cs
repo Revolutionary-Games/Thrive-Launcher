@@ -508,6 +508,15 @@ public partial class MainWindowViewModel : ViewModelBase
     private void OnVersionInfoLoaded()
     {
         SetRememberedVersionToVersionSelector();
+
+        // Only check for no available versions once the version data is loaded, otherwise this could trigger too early
+        // (as this used to be in SetRememberedVersionToVersionSelector)
+        if (!AvailableThriveVersions.Any())
+        {
+            logger.LogWarning(
+                "Could not detect any Thrive versions that are playable (compatible with current platform)");
+            ShowNotice(Resources.NoCompatibleVersionsFoundTitle, Resources.NoCompatibleVersionsFound);
+        }
     }
 
     private void SetRememberedVersionToVersionSelector()
@@ -518,8 +527,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         if (availableThings.Count < 1)
         {
-            logger.LogWarning("Could not detect any Thrive versions compatible with current platform");
-            ShowNotice(Resources.NoCompatibleVersionsFoundTitle, Resources.NoCompatibleVersionsFound);
+            logger.LogInformation("No detected versions, can't set a remembered version");
             return;
         }
 
