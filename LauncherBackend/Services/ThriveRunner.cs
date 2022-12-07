@@ -14,6 +14,7 @@ public class ThriveRunner : IThriveRunner
     private readonly IThriveInstaller thriveInstaller;
     private readonly IStoreVersionDetector storeVersionDetector;
     private readonly ILauncherPaths launcherPaths;
+    private readonly ILauncherOptions launcherOptions;
 
     private readonly ObservableValue<bool> runningObservable = new(false);
     private readonly ObservableValue<bool> truncatedObservable = new(false);
@@ -40,13 +41,15 @@ public class ThriveRunner : IThriveRunner
     private Thread? thriveRunnerThread;
 
     public ThriveRunner(ILogger<ThriveRunner> logger, ILauncherSettingsManager settingsManager,
-        IThriveInstaller thriveInstaller, IStoreVersionDetector storeVersionDetector, ILauncherPaths launcherPaths)
+        IThriveInstaller thriveInstaller, IStoreVersionDetector storeVersionDetector, ILauncherPaths launcherPaths,
+        ILauncherOptions launcherOptions)
     {
         this.logger = logger;
         this.settingsManager = settingsManager;
         this.thriveInstaller = thriveInstaller;
         this.storeVersionDetector = storeVersionDetector;
         this.launcherPaths = launcherPaths;
+        this.launcherOptions = launcherOptions;
     }
 
     public ObservableCollection<ThrivePlayMessage> PlayMessages { get; } = new();
@@ -105,12 +108,24 @@ public class ThriveRunner : IThriveRunner
         return dumps.OrderByDescending(t => t.ModifiedAt);
     }
 
-    public void StartThrive(IPlayableVersion version, CancellationToken cancellationToken)
+    public void StartThrive(IPlayableVersion version, bool applyCommandLineCustomizations,
+        CancellationToken cancellationToken)
     {
         JoinRunnerThreadIfExists();
 
         ClearOutput();
         startCounter = 0;
+
+        if (applyCommandLineCustomizations)
+        {
+            logger.LogDebug("Applying command line customizations to Thrive that is about to start");
+
+            LDPreload = launcherOptions.GameLDPreload;
+
+            ExtraThriveStartFlags = launcherOptions.ThriveExtraFlags is { Count: > 0 } ?
+                launcherOptions.ThriveExtraFlags :
+                null;
+        }
 
         // Update our copy of the settings variables
         firstLinesToKeep = settingsManager.Settings.BeginningKeptGameOutput;
@@ -768,7 +783,8 @@ public interface IThriveRunner
     /// </summary>
     public string? DetectedCrashDumpOutputLocation { get; }
 
-    public void StartThrive(IPlayableVersion version, CancellationToken cancellationToken);
+    public void StartThrive(IPlayableVersion version, bool applyCommandLineCustomizations,
+        CancellationToken cancellationToken);
 
     /// <summary>
     ///   Quit Thrive if currently running

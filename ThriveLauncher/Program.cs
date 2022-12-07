@@ -488,7 +488,9 @@ internal class Program
             {
                 programLogger.LogInformation("Trying to start game in seamless mode...");
                 runner.LaunchedInSeamlessMode = true;
-                runner.StartThrive(storeVersion, CancellationToken.None);
+
+                // No extra cancellation token is passed as we will use the cancel in WaitForRunningThriveToExit
+                runner.StartThrive(storeVersion, true, CancellationToken.None);
                 started = true;
             }
             else

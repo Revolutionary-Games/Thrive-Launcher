@@ -455,18 +455,7 @@ public partial class MainWindowViewModel
 
             RegisterThriveRunnerListeners();
 
-            thriveRunner.LDPreload = launcherOptions.GameLDPreload;
-
-            if (launcherOptions.ThriveExtraFlags is { Count: > 0 })
-            {
-                thriveRunner.ExtraThriveStartFlags = launcherOptions.ThriveExtraFlags;
-            }
-            else
-            {
-                thriveRunner.ExtraThriveStartFlags = null;
-            }
-
-            thriveRunner.StartThrive(version, playActionCancellation);
+            thriveRunner.StartThrive(version, true, playActionCancellation);
 
             if (settingsManager.Settings.CloseLauncherOnGameStart)
             {
