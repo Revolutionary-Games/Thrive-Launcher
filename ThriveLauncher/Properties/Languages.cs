@@ -51,16 +51,22 @@ public static class Languages
     }
 
     /// <summary>
-    ///   Detects the culture that should be shown as active (falls back to english
+    ///   Detects the culture that should be shown as active (falls back to english)
     /// </summary>
     /// <param name="availableCultures"></param>
     /// <returns></returns>
     public static CultureInfo GetCurrentlyUsedCulture(Dictionary<string, CultureInfo> availableCultures)
     {
-        var current = CultureInfo.DefaultThreadCurrentUICulture ?? CultureInfo.CurrentUICulture;
+        return GetMatchingCultureOrDefault(CultureInfo.DefaultThreadCurrentUICulture ?? CultureInfo.CurrentUICulture,
+            availableCultures);
+    }
+
+    public static CultureInfo GetMatchingCultureOrDefault(CultureInfo cultureToMatch,
+        Dictionary<string, CultureInfo> availableCultures)
+    {
         foreach (var culture in availableCultures.Values)
         {
-            if (culture.Equals(current))
+            if (culture.Equals(cultureToMatch))
                 return culture;
         }
 
@@ -95,6 +101,9 @@ public static class Languages
 
     public static void SetLanguage(CultureInfo cultureInfo)
     {
+        // Ensure startup language is detected, probably unneeded but we don't need any bugs related to this
+        GetStartupLanguage();
+
         CultureInfo.CurrentUICulture = cultureInfo;
         CultureInfo.CurrentCulture = cultureInfo;
         CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
@@ -118,5 +127,14 @@ public static class Languages
     public static CultureInfo GetDefaultLanguage()
     {
         return DefaultLanguage;
+    }
+
+    /// <summary>
+    ///   Gets the startup locale
+    /// </summary>
+    /// <returns>The startup locale</returns>
+    public static CultureInfo GetStartupLanguage()
+    {
+        return StartUpLanguage;
     }
 }

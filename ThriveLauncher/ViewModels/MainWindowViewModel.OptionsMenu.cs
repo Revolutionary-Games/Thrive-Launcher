@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Threading;
@@ -571,11 +572,12 @@ public partial class MainWindowViewModel
     public void ResetAllSettings()
     {
         logger.LogInformation("Resetting all settings");
+        logger.LogDebug("Previous settings: {Settings}", JsonSerializer.Serialize(settingsManager.Settings));
 
         settingsManager.Reset();
 
-        // TODO: reset language to the default for current user (currently seems to reset only to the currently
-        // applied language)
+        // Make sure the default language is actually set to the translation system
+        Languages.SetLanguage(languagePlaceHolderIfNotSelected);
 
         // Notify all settings changed
         this.RaisePropertyChanged(nameof(DisableThriveVideos));
