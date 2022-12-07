@@ -20,12 +20,16 @@ public static class Languages
     /// </summary>
     private static readonly string[] AdditionalAvailableLanguages =
     {
+        "de-DE",
         "fr-FR",
         "pl-PL",
         "pt-BR",
+        "ro-RO",
         "fi-FI",
+        "sv-SV",
         "tr-TR",
         "bg-BG",
+        "ru-RU",
         "uk-UA",
     };
 
