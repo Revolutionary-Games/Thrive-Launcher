@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -58,4 +58,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SettingsImportOldTitle" xml:space="preserve">
+    <value>Importă Setările Anterioare?</value>
+  </data>
+  <data name="SkipAction" xml:space="preserve">
+    <value>Săriți Peste</value>
+  </data>
+  <data name="PerformImport" xml:space="preserve">
+    <value>Importă</value>
+  </data>
+  <data name="ImportFailedTitle" xml:space="preserve">
+    <value>Import A Eșuat</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>Importarea setărilor a eșuat. Vă rugăm să vă asigurați că drumuri pentru filele relevante</value>
+  </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>Setări dintr-o versiune veche a lansatorului au fost găsite. Puteți să importați aceste setări pentru a păstra versiunile Thrive și alte personalizări intacte. Dacă nu vreți să importați versiunile vechi Thrive și alte cache-uri, vor fi șterse și acest lasator nu va știi despre ele. A importa setările e recomandat.</value>
+  </data>
 </root>
