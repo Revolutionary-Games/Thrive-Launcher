@@ -393,7 +393,7 @@ internal class Program
             Thread.Sleep(TimeSpan.FromMilliseconds(100));
             ++waitCounter;
 
-            if (waitCounter > 300)
+            if (waitCounter > 600)
             {
                 waitCounter = 0;
                 logger.LogInformation("Still waiting for our child Thrive process to quit...");
