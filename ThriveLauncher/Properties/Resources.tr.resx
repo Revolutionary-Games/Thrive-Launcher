@@ -900,4 +900,10 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı g
   <data name="RequiresExternalVersionsEnabled" xml:space="preserve">
     <value>Bu seçenek, dışarıdan gelen sürümlerin indirilmesini etkinleştirmeyi gerektirir</value>
   </data>
+  <data name="ForgetLastPlayedVersion" xml:space="preserve">
+    <value>Son Oynanan Sürümü Unut</value>
+  </data>
+  <data name="ForgetLastPlayedVersionToolTip" xml:space="preserve">
+    <value>Thrive sürüm seçicisinde yapılan son seçimi kaldırır. Kesintisiz modun çalışmayı reddettiği zamanlarda onun tekrar çalışmasına yardımcı olabilir.</value>
+  </data>
 </root>
