@@ -765,40 +765,54 @@ public partial class MainWindowViewModel
 
         try
         {
-            if (thriveRunner.ThriveRunning || thriveRunner.PlayMessages.Count > 0 ||
-                thriveRunner.ThriveOutput.Count > 0)
+            if (!thriveRunner.ThriveRunning && thriveRunner.PlayMessages.Count <= 0 &&
+                thriveRunner.ThriveOutput.Count <= 0)
             {
-                logger.LogInformation("Restoring state from backend for Thrive runner");
-
-                CurrentlyPlaying = true;
-
-                logger.LogDebug("Restoring play messages from runner");
-                PlayMessages.Clear();
-                PlayMessages.AddRange(thriveRunner.PlayMessages.Select(FormatPlayMessage));
-
-                ThriveOutputFirstPart.Clear();
-                ThriveOutputFirstPart.AddRange(thriveRunner.ThriveOutput);
-
-                // Output last part has to be updated by the GUI to make sure it is showing the latest data
-
-                RegisterThriveRunnerListeners();
-
-                if (!thriveRunner.ThriveRunning)
-                {
-                    CanCancelPlaying = true;
-                    ThriveIsRunning = false;
-
-                    // Make sure this is called, which it isn't necessarily due to the default value of ThriveIsRunning
-                    // variable
-                    OnPlayingEnded();
-                }
-                else
-                {
-                    ThriveIsRunning = true;
-                }
-
-                ThriveOutputIsTruncated = thriveRunner.OutputTruncated;
+                return;
             }
+
+            logger.LogInformation("Restoring state from backend for Thrive runner");
+
+            CurrentlyPlaying = true;
+
+            // Restore the playing title to not leave it awkwardly blank
+            if (thriveRunner.PlayedThriveVersion == null)
+            {
+                logger.LogWarning(
+                    "Could not detect played version from Thrive runner, play popup title will be blank");
+            }
+            else
+            {
+                PlayingThrivePopupTitle =
+                    string.Format(Resources.PlayingTitle, thriveRunner.PlayedThriveVersion.VersionName);
+            }
+
+            logger.LogDebug("Restoring play messages from runner");
+            PlayMessages.Clear();
+            PlayMessages.AddRange(thriveRunner.PlayMessages.Select(FormatPlayMessage));
+
+            ThriveOutputFirstPart.Clear();
+            ThriveOutputFirstPart.AddRange(thriveRunner.ThriveOutput);
+
+            // Output last part has to be updated by the GUI to make sure it is showing the latest data
+
+            RegisterThriveRunnerListeners();
+
+            if (!thriveRunner.ThriveRunning)
+            {
+                CanCancelPlaying = true;
+                ThriveIsRunning = false;
+
+                // Make sure this is called, which it isn't necessarily due to the default value of ThriveIsRunning
+                // variable
+                OnPlayingEnded();
+            }
+            else
+            {
+                ThriveIsRunning = true;
+            }
+
+            ThriveOutputIsTruncated = thriveRunner.OutputTruncated;
         }
         catch (Exception e)
         {
