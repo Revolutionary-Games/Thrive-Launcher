@@ -358,7 +358,6 @@ public class ThriveRunner : IThriveRunner
     {
         if (LDPreload != null)
         {
-            // TODO: test that this works
             logger.LogInformation("LD_PRELOAD for Thrive set to: {LDPreload}", LDPreload);
             runInfo.Environment["LD_PRELOAD"] = LDPreload;
         }

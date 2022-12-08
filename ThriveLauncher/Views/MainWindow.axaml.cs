@@ -343,7 +343,7 @@ public partial class MainWindow : Window
             {
                 TextWrapping = TextWrapping.Wrap,
 
-                // TODO: a library for x hours ago
+                // TODO: add a relative time if recent or a full time (same system should be used as for crash dumps)
                 Text = string.Format(Properties.Resources.FeedItemPostedByAndTime,
                     LauncherFeeds.GetPosterUsernameToDisplay(feedItem),
                     RecentTimeString.FormatRecentTimeInLocalTime(feedItem.PublishedAt, false)),

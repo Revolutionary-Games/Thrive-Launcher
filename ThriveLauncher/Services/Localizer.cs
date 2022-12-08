@@ -38,8 +38,7 @@ public class Localizer : INotifyPropertyChanged
                 return "TEXT NOT FOUND";
             }
 
-            // TODO: should we replace "\n" with actual new lines here? It seems like resx files can have new lines
-            // in them so this isn't absolutely required
+            // resx files can natively have new lines so this isn't needed
             // return result.Replace("\\n", "\n");
 
             return result;

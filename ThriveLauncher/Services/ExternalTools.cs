@@ -79,7 +79,6 @@ public class ExternalTools : IExternalTools
             output.Append("\n");
         }
 
-        // TODO: check that this works as this now adds a trailing newline to the input
         var result =
             await ProcessRunHelpers.RunProcessWithStdInAndOutputStreamingAsync(startInfo, cancellationToken,
                 new[] { fileData }, OnOutput, OnOutput);

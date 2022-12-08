@@ -498,7 +498,6 @@ public class CrashReporterWindowViewModel : ViewModelBase
                     return;
                 }
 
-                // TODO: make sure this doesn't cause problems if the user manually closes the window
                 AutoCloseDelay = delay.Value - 1;
             });
         }

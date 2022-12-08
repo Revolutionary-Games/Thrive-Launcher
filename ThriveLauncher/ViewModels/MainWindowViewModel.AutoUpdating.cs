@@ -240,7 +240,7 @@ public partial class MainWindowViewModel
         {
             logger.LogError("Cannot check if we are the latest launcher version due to error");
 
-            // TODO: maybe this should show the general error popup
+            // TODO: maybe this should show the general error popup (with a custom message)
             return;
         }
 

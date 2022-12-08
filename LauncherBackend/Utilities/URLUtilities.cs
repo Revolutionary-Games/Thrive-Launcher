@@ -24,7 +24,6 @@ public static class URLUtilities
         if (!fileOrFolder.StartsWith("file://"))
             fileOrFolder = $"file://{Path.GetFullPath(fileOrFolder)}";
 
-        // TODO: test on all platforms, not tested on Windows or mac
         Process.Start(new ProcessStartInfo
         {
             FileName = fileOrFolder,

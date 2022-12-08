@@ -301,7 +301,6 @@ public class CrashReporter : ICrashReporter
         }
 
         // Only override the store name for when actually playing the store version and not an external one
-        // TODO: test that this is detected correctly
         if (storeVersion.IsStoreVersion && thriveRunner.PlayedThriveVersion is StoreVersion)
         {
             logger.LogInformation("This report is about a game store version");

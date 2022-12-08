@@ -50,7 +50,8 @@
                                    MaxWidth="{TemplateBinding MaxWidth}">
                             <Grid DockPanel.Dock="Top" ColumnDefinitions="36, *, auto, *, 36"
                                   HorizontalAlignment="Stretch">
-                                <!-- TODO when title is not shown somehow make the X not take up vertical space -->
+                                <!-- Could add a special mode where without a title the X
+                                does not take up vertical space -->
                                 <TextBlock Grid.Column="2" Text="{TemplateBinding Title}"
                                            IsVisible="{TemplateBinding ShowTitle}"
                                            TextAlignment="Right" FontWeight="{TemplateBinding TitleFontWeight}"

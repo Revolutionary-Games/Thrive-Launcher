@@ -267,10 +267,6 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         if (platform == PackagePlatform.Mac)
         {
-            // TODO: do the two builds and combine them (as there doesn't seem to be a combined way)
-            // dotnet publish -c Release -r osx-x64 --self-contained true -o dist/mac-x64 ThriveLauncher
-            // dotnet publish -c Release -r osx-arm64 --self-contained true -o dist/mac-arm ThriveLauncher
-
             // On mac we need to build both x64 and arm versions and then glue them together
             // This only works on a mac as this depends on Apple developer tools£
 
