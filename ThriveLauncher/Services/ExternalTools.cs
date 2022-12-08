@@ -70,7 +70,7 @@ public class ExternalTools : IExternalTools
         // Read from stdin
         startInfo.ArgumentList.Add("-");
 
-        logger.LogDebug("Starting godotpcktool add operation with data: {FileData}", fileData);
+        logger.LogTrace("Starting godotpcktool add operation with data: {FileData}", fileData);
         var output = new StringBuilder();
 
         void OnOutput(string line)

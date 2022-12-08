@@ -563,7 +563,7 @@ public partial class MainWindowViewModel
             return;
         }
 
-        logger.LogDebug("Redoing play messages due to changes to installer messages");
+        logger.LogTrace("Redoing play messages due to changes to installer messages");
 
         // As this is just a list of strings we save the complicated code for the below collection and just redo
         // this each time
@@ -579,7 +579,7 @@ public partial class MainWindowViewModel
             return;
         }
 
-        logger.LogDebug("Installer in progress operation change type: {Action}, new: {NewItems}", args.Action,
+        logger.LogTrace("Installer in progress operation change type: {Action}, new: {NewItems}", args.Action,
             args.NewItems);
 
         InProgressPlayOperations.ApplyChangeFromAnotherCollection(args);
@@ -640,7 +640,7 @@ public partial class MainWindowViewModel
             return;
         }
 
-        logger.LogDebug("Redoing play messages due to changes to runner messages");
+        logger.LogTrace("Redoing play messages due to changes to runner messages");
 
         PlayMessages.Clear();
         PlayMessages.AddRange(thriveRunner.PlayMessages.Select(FormatPlayMessage));
