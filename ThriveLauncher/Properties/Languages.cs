@@ -26,7 +26,7 @@ public static class Languages
         "pt-BR",
         "ro-RO",
         "fi-FI",
-        "sv-SV",
+        "sv-SE",
         "tr-TR",
         "bg-BG",
         "ru-RU",
