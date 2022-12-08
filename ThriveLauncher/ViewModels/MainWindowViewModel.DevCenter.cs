@@ -225,12 +225,15 @@ public partial class MainWindowViewModel
         HasDevCenterError = false;
 
         // Give a bit of a delay here to play at least part of the popup dismiss animation
-        Task.Run(() =>
+        // ReSharper disable MethodSupportsCancellation
+        backgroundExceptionNoticeDisplayer.HandleTask(Task.Run(() =>
         {
             Task.Delay(TimeSpan.FromMilliseconds(300)).Wait();
 
             Dispatcher.UIThread.Post(CheckDevCenterConnection);
-        });
+        }));
+
+        // ReSharper restore MethodSupportsCancellation
     }
 
     public void DismissDevCenterError()

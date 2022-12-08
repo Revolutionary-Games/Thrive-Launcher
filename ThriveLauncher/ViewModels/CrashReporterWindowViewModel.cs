@@ -19,6 +19,7 @@ public class CrashReporterWindowViewModel : ViewModelBase
 {
     private readonly ILogger<CrashReporterWindowViewModel> logger;
     private readonly ICrashReporter crashReporter;
+    private readonly IBackgroundExceptionHandler backgroundExceptionHandler;
 
     private bool showCrashPicker = true;
 
@@ -52,10 +53,12 @@ public class CrashReporterWindowViewModel : ViewModelBase
 
     private int? autoCloseDelay;
 
-    public CrashReporterWindowViewModel(ILogger<CrashReporterWindowViewModel> logger, ICrashReporter crashReporter)
+    public CrashReporterWindowViewModel(ILogger<CrashReporterWindowViewModel> logger, ICrashReporter crashReporter,
+        IBackgroundExceptionHandler backgroundExceptionHandler)
     {
         this.logger = logger;
         this.crashReporter = crashReporter;
+        this.backgroundExceptionHandler = backgroundExceptionHandler;
     }
 
     /// <summary>
@@ -63,7 +66,8 @@ public class CrashReporterWindowViewModel : ViewModelBase
     /// </summary>
     public CrashReporterWindowViewModel() : this(
         DesignTimeServices.Services.GetRequiredService<ILogger<CrashReporterWindowViewModel>>(),
-        DesignTimeServices.Services.GetRequiredService<ICrashReporter>())
+        DesignTimeServices.Services.GetRequiredService<ICrashReporter>(),
+        DesignTimeServices.Services.GetRequiredService<IBackgroundExceptionHandler>())
     {
     }
 
@@ -370,7 +374,7 @@ public class CrashReporterWindowViewModel : ViewModelBase
         logger.LogInformation("Starting report submit");
         SubmittingReport = true;
 
-        Task.Run(DoReportSubmit);
+        backgroundExceptionHandler.HandleTask(DoReportSubmit());
     }
 
     public void CancelAutoClose()
@@ -463,7 +467,7 @@ public class CrashReporterWindowViewModel : ViewModelBase
                 }
 
                 AutoCloseDelay = 45;
-                Task.Run(CloseWindowWithDelay);
+                backgroundExceptionHandler.HandleTask(CloseWindowWithDelay());
             }
 
             SubmittingReport = false;

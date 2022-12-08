@@ -5,6 +5,7 @@ using LauncherBackend.Services;
 using Microsoft.Extensions.Logging;
 using Moq;
 using ThriveLauncher.Models;
+using ThriveLauncher.Services;
 using ThriveLauncher.Utilities;
 using ThriveLauncher.ViewModels;
 
@@ -38,7 +39,9 @@ public class MainWindowViewModelFactory
 
     public Options LauncherOptions { get; set; } = new();
 
-    public Mock<IAutoUpdater> AutoUpdaterMock { get; } = new();
+    public Mock<IAutoUpdater> AutoUpdaterMock { get; set; } = new();
+
+    public Mock<IBackgroundExceptionNoticeDisplayer> BackgroundExceptionNoticeDisplayer { get; set; } = new();
 
     public ILogger<MainWindowViewModel> Logger { get; }
 
@@ -46,6 +49,7 @@ public class MainWindowViewModelFactory
     {
         return new MainWindowViewModel(Logger, FeedsMock.Object, StoreMock.Object, SettingsMock.Object,
             new VersionUtilities(), PathsMock.Object, InfoRetrieveMock.Object, InstallerMock.Object,
-            DevCenterMock.Object, ThriveRunnerMock.Object, LauncherOptions, AutoUpdaterMock.Object, false);
+            DevCenterMock.Object, ThriveRunnerMock.Object, LauncherOptions, AutoUpdaterMock.Object,
+            BackgroundExceptionNoticeDisplayer.Object, false);
     }
 }

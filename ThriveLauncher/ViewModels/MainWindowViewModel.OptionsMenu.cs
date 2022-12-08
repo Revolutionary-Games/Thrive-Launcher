@@ -274,24 +274,21 @@ public partial class MainWindowViewModel
 
     public void PromptClearTemporaryLocation()
     {
-        Task.Run(() =>
+        var count = thriveInstaller.ListFilesInTemporaryFolder().Count();
+
+        Dispatcher.UIThread.Post(() =>
         {
-            var count = thriveInstaller.ListFilesInTemporaryFolder().Count();
-
-            Dispatcher.UIThread.Post(() =>
+            // Just directly, delete if there's nothing to prompt about
+            if (count < 1)
             {
-                // Just directly, delete if there's nothing to prompt about
-                if (count < 1)
-                {
-                    AcceptClearTemporaryFiles();
-                    return;
-                }
+                AcceptClearTemporaryFiles();
+                return;
+            }
 
-                ShowClearTemporaryPrompt = true;
-                ClearTemporaryPromptContent = string.Format(Resources.ClearTemporaryFilesPromptExplanation,
-                    TemporaryDownloadsFolder);
-                ClearTemporaryPromptCountContent = string.Format(Resources.ClearTemporaryFilesCount, count);
-            });
+            ShowClearTemporaryPrompt = true;
+            ClearTemporaryPromptContent = string.Format(Resources.ClearTemporaryFilesPromptExplanation,
+                TemporaryDownloadsFolder);
+            ClearTemporaryPromptCountContent = string.Format(Resources.ClearTemporaryFilesCount, count);
         });
     }
 
@@ -392,24 +389,21 @@ public partial class MainWindowViewModel
             return;
         }
 
-        Task.Run(() =>
+        var count = thriveInstaller.ListFilesInDehydrateCache().Count();
+
+        Dispatcher.UIThread.Post(() =>
         {
-            var count = thriveInstaller.ListFilesInDehydrateCache().Count();
-
-            Dispatcher.UIThread.Post(() =>
+            // Just directly, delete if there's nothing to prompt about
+            if (count < 1)
             {
-                // Just directly, delete if there's nothing to prompt about
-                if (count < 1)
-                {
-                    AcceptClearDehydratedCache();
-                    return;
-                }
+                AcceptClearDehydratedCache();
+                return;
+            }
 
-                ShowClearDehydratedPrompt = true;
-                ClearDehydratedPromptContent = string.Format(Resources.ClearDehydratedFilesPromptExplanation,
-                    TemporaryDownloadsFolder);
-                ClearDehydratedPromptCountContent = string.Format(Resources.ClearDehydratedFilesCount, count);
-            });
+            ShowClearDehydratedPrompt = true;
+            ClearDehydratedPromptContent = string.Format(Resources.ClearDehydratedFilesPromptExplanation,
+                TemporaryDownloadsFolder);
+            ClearDehydratedPromptCountContent = string.Format(Resources.ClearDehydratedFilesCount, count);
         });
     }
 
@@ -463,8 +457,7 @@ public partial class MainWindowViewModel
             {
                 logger.LogError("Files to move has not been set correctly");
 
-                Dispatcher.UIThread.Post(() =>
-                    ShowNotice(Resources.InternalErrorTitle, Resources.InternalErrorExplanation));
+                ShowNotice(Resources.InternalErrorTitle, Resources.InternalErrorExplanation);
                 return;
             }
 
@@ -688,19 +681,22 @@ public partial class MainWindowViewModel
         if (DehydrateCacheSize.Status == TaskStatus.Created)
             DehydrateCacheSize.Start();
 
-        Task.Run(() =>
+        // ReSharper disable MethodSupportsCancellation
+        backgroundExceptionNoticeDisplayer.HandleTask(Task.Run(() =>
         {
             var installed = thriveInstaller.ListFoldersInThriveInstallFolder().ToList();
 
             Dispatcher.UIThread.Post(() => InstalledFolders = installed);
-        });
+        }));
 
-        Task.Run(() =>
+        backgroundExceptionNoticeDisplayer.HandleTask(Task.Run(() =>
         {
             var files = thriveInstaller.ListFilesInTemporaryFolder().ToList();
 
             Dispatcher.UIThread.Post(() => TemporaryFolderFiles = files);
-        });
+        }));
+
+        // ReSharper restore MethodSupportsCancellation
     }
 
     private void TriggerSaveSettings()

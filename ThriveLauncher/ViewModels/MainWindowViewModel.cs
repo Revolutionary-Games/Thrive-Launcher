@@ -13,9 +13,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Properties;
 using ReactiveUI;
+using Services;
 using Utilities;
 
-public partial class MainWindowViewModel : ViewModelBase
+public partial class MainWindowViewModel : ViewModelBase, INoticeDisplayer
 {
     private const int TotalKeysInDevCenterActivationSequence = 4;
 
@@ -31,6 +32,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly IThriveRunner thriveRunner;
     private readonly ILauncherOptions launcherOptions;
     private readonly IAutoUpdater autoUpdater;
+    private readonly IBackgroundExceptionNoticeDisplayer backgroundExceptionNoticeDisplayer;
 
     private readonly Dictionary<string, CultureInfo> availableLanguages;
     private readonly StoreVersionInfo detectedStore;
@@ -65,7 +67,8 @@ public partial class MainWindowViewModel : ViewModelBase
         IStoreVersionDetector storeInfo, ILauncherSettingsManager settingsManager, VersionUtilities versionUtilities,
         ILauncherPaths launcherPaths, IThriveAndLauncherInfoRetriever launcherInfoRetriever,
         IThriveInstaller thriveInstaller, IDevCenterClient devCenterClient, IThriveRunner thriveRunner,
-        ILauncherOptions launcherOptions, IAutoUpdater autoUpdater, bool allowTaskStarts = true)
+        ILauncherOptions launcherOptions, IAutoUpdater autoUpdater,
+        IBackgroundExceptionNoticeDisplayer backgroundExceptionNoticeDisplayer, bool allowTaskStarts = true)
     {
         this.logger = logger;
         this.launcherFeeds = launcherFeeds;
@@ -79,6 +82,7 @@ public partial class MainWindowViewModel : ViewModelBase
         this.thriveRunner = thriveRunner;
         this.launcherOptions = launcherOptions;
         this.autoUpdater = autoUpdater;
+        this.backgroundExceptionNoticeDisplayer = backgroundExceptionNoticeDisplayer;
 
         availableLanguages = Languages.GetAvailableLanguages();
 
@@ -125,6 +129,8 @@ public partial class MainWindowViewModel : ViewModelBase
         // In case the launcher was restarted without the process ending we need to restore some state from the backend
         if (allowTaskStarts)
             DetectPlayingStatusFromBackend();
+
+        backgroundExceptionNoticeDisplayer.RegisterErrorDisplayer(this);
     }
 
     /// <summary>
@@ -141,7 +147,8 @@ public partial class MainWindowViewModel : ViewModelBase
         DesignTimeServices.Services.GetRequiredService<IDevCenterClient>(),
         DesignTimeServices.Services.GetRequiredService<IThriveRunner>(),
         DesignTimeServices.Services.GetRequiredService<ILauncherOptions>(),
-        DesignTimeServices.Services.GetRequiredService<IAutoUpdater>(), false)
+        DesignTimeServices.Services.GetRequiredService<IAutoUpdater>(),
+        DesignTimeServices.Services.GetRequiredService<IBackgroundExceptionNoticeDisplayer>(), false)
     {
         languagePlaceHolderIfNotSelected = string.Empty;
     }
@@ -277,6 +284,11 @@ public partial class MainWindowViewModel : ViewModelBase
         UnRegisterThriveRunnerListeners();
         UnRegisterInstallerMessageForwarders();
         UnRegisterAutoUpdaterCallbacks();
+
+        if (!backgroundExceptionNoticeDisplayer.RemoveErrorDisplayer(this))
+        {
+            logger.LogWarning("Could not unregister this window from showing background errors");
+        }
     }
 
     public IEnumerable<string> GetAvailableLanguages()
@@ -286,9 +298,12 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public void ShowNotice(string title, string text, bool canDismiss = true)
     {
-        NoticeMessageTitle = title;
-        NoticeMessageText = text;
-        CanDismissNotice = canDismiss;
+        Dispatcher.UIThread.Post(() =>
+        {
+            NoticeMessageTitle = title;
+            NoticeMessageText = text;
+            CanDismissNotice = canDismiss;
+        });
     }
 
     public void VersionSelected(string? userReadableVersion)
@@ -414,10 +429,7 @@ public partial class MainWindowViewModel : ViewModelBase
         catch (Exception e)
         {
             logger.LogError(e, "Got bad launcher info data");
-            Dispatcher.UIThread.Post(() =>
-            {
-                ShowNotice(Resources.VersionInfoLoadFailureTitle, Resources.VersionInfoLoadFailureBadData);
-            });
+            ShowNotice(Resources.VersionInfoLoadFailureTitle, Resources.VersionInfoLoadFailureBadData);
             return;
         }
 
@@ -439,14 +451,14 @@ public partial class MainWindowViewModel : ViewModelBase
     private void DoStoreAlternativeToInfoRetrieve()
     {
         // ReSharper disable once MethodSupportsCancellation
-        Task.Run(async () =>
+        backgroundExceptionNoticeDisplayer.HandleTask(Task.Run(async () =>
         {
             logger.LogInformation("Starting as launcher store version with external versions disabled");
 
             await WaitForDevCenterConnection();
 
             LoadDummyStoreVersionData();
-        });
+        }));
     }
 
     private void LoadDummyStoreVersionData()
@@ -644,10 +656,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
                 // For the launcher we assume that people can always update (and for example people never want to use an
                 // older version like some will want to do with Thrive itself)
-                Dispatcher.UIThread.Post(() =>
-                {
-                    ShowNotice(Resources.AllSigningKeysExpiredTitle, Resources.AllSigningKeysExpired, false);
-                });
+                ShowNotice(Resources.AllSigningKeysExpiredTitle, Resources.AllSigningKeysExpired, false);
                 return null;
             }
             catch (Exception e)

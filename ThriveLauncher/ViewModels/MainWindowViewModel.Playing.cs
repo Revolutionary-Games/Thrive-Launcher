@@ -340,7 +340,7 @@ public partial class MainWindowViewModel
         }
 
         logger.LogInformation("Accepted playing potentially unsafe build");
-        _ = CheckFilesAndStartThrive(pendingBuildToPlay);
+        backgroundExceptionNoticeDisplayer.HandleTask(CheckFilesAndStartThrive(pendingBuildToPlay));
         pendingBuildToPlay = null;
     }
 
@@ -459,11 +459,11 @@ public partial class MainWindowViewModel
 
             if (settingsManager.Settings.CloseLauncherOnGameStart)
             {
-                _ = CloseLauncherAfterStart();
+                backgroundExceptionNoticeDisplayer.HandleTask(CloseLauncherAfterStart());
             }
             else if (settingsManager.Settings.HideLauncherOnPlay)
             {
-                _ = HideLauncherAfterStart();
+                backgroundExceptionNoticeDisplayer.HandleTask(HideLauncherAfterStart());
             }
         });
     }
@@ -527,8 +527,7 @@ public partial class MainWindowViewModel
 
             if (allowUnHide)
             {
-                // We don't want to block here waiting for this
-                _ = CheckLauncherUnHide();
+                backgroundExceptionNoticeDisplayer.HandleTask(CheckLauncherUnHide());
             }
         });
     }

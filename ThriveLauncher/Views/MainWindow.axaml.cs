@@ -125,8 +125,8 @@ public partial class MainWindow : Window
 
         dataContext.InProgressAutoUpdateOperations.CollectionChanged += OnAutoUpdateProgressChanged;
 
-        // Intentionally left hanging around in the background
-        _ = UpdateFeedItemsWhenRetrieved();
+        this.GetServiceProvider().GetRequiredService<IBackgroundExceptionHandler>()
+            .HandleTask(UpdateFeedItemsWhenRetrieved());
     }
 
     private void SelectedVersionComboBoxItemChanged(object? sender, SelectionChangedEventArgs e)

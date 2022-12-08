@@ -111,6 +111,9 @@ internal class Program
             .AddScoped<LicensesWindowViewModel>()
             .AddSingleton<ViewLocator>()
             .AddSingleton<ILauncherTranslations, LauncherTranslationProxy>()
+            .AddSingleton<IBackgroundExceptionNoticeDisplayer, BackgroundExceptionHandler>()
+            .AddSingleton<IBackgroundExceptionHandler>(
+                sp => sp.GetRequiredService<IBackgroundExceptionNoticeDisplayer>())
             .AddScoped<IExternalTools, ExternalTools>();
 
         if (normalLogging)

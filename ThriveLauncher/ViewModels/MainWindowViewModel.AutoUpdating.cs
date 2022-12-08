@@ -89,7 +89,7 @@ public partial class MainWindowViewModel
 
             if (autoUpdatingFailed)
             {
-                Task.Run(RefreshExistingUpdaterFiles);
+                backgroundExceptionNoticeDisplayer.HandleTask(RefreshExistingUpdaterFiles());
             }
         }
     }
@@ -186,8 +186,7 @@ public partial class MainWindowViewModel
 
         logger.LogInformation("Retrying auto-update with updater file: {File}", file);
 
-        // ReSharper disable once MethodSupportsCancellation
-        Task.Run(() => RunAutoUpdateRetry(file, channel.Value));
+        backgroundExceptionNoticeDisplayer.HandleTask(RunAutoUpdateRetry(file, channel.Value));
     }
 
     public void OpenFirstAutoUpdaterFolder()
@@ -222,8 +221,7 @@ public partial class MainWindowViewModel
         logger.LogInformation("Ignoring and clearing failed auto-updates");
         CancelAutoUpdate();
 
-        // ReSharper disable once MethodSupportsCancellation
-        Task.Run(autoUpdater.ClearAutoUpdaterFiles);
+        backgroundExceptionNoticeDisplayer.HandleTask(autoUpdater.ClearAutoUpdaterFiles());
     }
 
     public void CancelCloseAfterAutoUpdate()
@@ -272,14 +270,13 @@ public partial class MainWindowViewModel
 
             LauncherIsLatestVersion = false;
 
-            // ReSharper disable once MethodSupportsCancellation
-            Task.Run(() => OnOutdatedLauncherDetected(launcherInfo.LauncherVersion, current.ToString()));
+            backgroundExceptionNoticeDisplayer.HandleTask(OnOutdatedLauncherDetected(launcherInfo.LauncherVersion,
+                current.ToString()));
             return;
         }
 
         // Clear auto-update data on successfully being an up to date version
-        // ReSharper disable once MethodSupportsCancellation
-        Task.Run(autoUpdater.NotifyLatestVersionInstalled);
+        backgroundExceptionNoticeDisplayer.HandleTask(autoUpdater.NotifyLatestVersionInstalled());
     }
 
     private async Task OnOutdatedLauncherDetected(LauncherVersionInfo launcherVersion, string currentVersion)
@@ -324,9 +321,8 @@ public partial class MainWindowViewModel
                     {
                         logger.LogInformation("Auto-update is possible and should start soon");
 
-                        // ReSharper disable once MethodSupportsCancellation
-                        Task.Run(() => RunAutoUpdate(download, updateChannel.Value, currentVersion,
-                            launcherVersion.LatestVersion));
+                        backgroundExceptionNoticeDisplayer.HandleTask(RunAutoUpdate(download, updateChannel.Value,
+                            currentVersion, launcherVersion.LatestVersion));
                         return;
                     }
                 }
@@ -420,9 +416,7 @@ public partial class MainWindowViewModel
 
             Dispatcher.UIThread.Post(() => { AutoUpdatingSucceeded = true; });
 
-            // The method manually checks the cancellation
-            // ReSharper disable once MethodSupportsCancellation
-            await Task.Run(CloseWithDelay);
+            backgroundExceptionNoticeDisplayer.HandleTask(CloseWithDelay());
         }
     }
 
@@ -460,9 +454,7 @@ public partial class MainWindowViewModel
                 AutoUpdateFailureExtraMessage = string.Empty;
             });
 
-            // The method manually checks the cancellation
-            // ReSharper disable once MethodSupportsCancellation
-            await Task.Run(CloseWithDelay);
+            backgroundExceptionNoticeDisplayer.HandleTask(CloseWithDelay());
         }
     }
 

@@ -9,6 +9,7 @@ public class LauncherSettingsManager : ILauncherSettingsManager
 {
     private readonly ILogger<LauncherSettingsManager> logger;
     private readonly ILauncherPaths launcherPaths;
+    private readonly IBackgroundExceptionHandler backgroundExceptionHandler;
 
     private readonly Lazy<string?> rememberedVersion;
 
@@ -24,10 +25,12 @@ public class LauncherSettingsManager : ILauncherSettingsManager
 
     private bool settingsLoaded;
 
-    public LauncherSettingsManager(ILogger<LauncherSettingsManager> logger, ILauncherPaths launcherPaths)
+    public LauncherSettingsManager(ILogger<LauncherSettingsManager> logger, ILauncherPaths launcherPaths,
+        IBackgroundExceptionHandler backgroundExceptionHandler)
     {
         this.logger = logger;
         this.launcherPaths = launcherPaths;
+        this.backgroundExceptionHandler = backgroundExceptionHandler;
 
         settings = new Lazy<LauncherSettings>(() => AttemptToLoadSettings() ?? new LauncherSettings());
         rememberedVersion = new Lazy<string?>(LoadRememberedVersion);
@@ -61,7 +64,7 @@ public class LauncherSettingsManager : ILauncherSettingsManager
 
             overriddenRememberedVersion.OverriddenValue = value;
 
-            Task.Run(() => SaveRememberedVersion(value));
+            backgroundExceptionHandler.HandleTask(SaveRememberedVersion(value));
         }
     }
 
