@@ -31,6 +31,9 @@ public static class Languages
         "bg-BG",
         "ru-RU",
         "uk-UA",
+
+        // Requires font support, See: https://github.com/Revolutionary-Games/Thrive-Launcher/issues/194
+        // "zh-CN",
     };
 
     public delegate void OnCurrentLanguageChanged();
