@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ConnectedDeveloperGreeting" xml:space="preserve">
-    <value>Здрасти,</value>
+    <value>Здравей,</value>
   </data>
   <data name="ExternalLinkPatreon" xml:space="preserve">
     <value>„Patreon“</value>
@@ -153,5 +153,23 @@
   </data>
   <data name="ConnectedSupporterGreeting" xml:space="preserve">
     <value>Благодарим Ви,</value>
+  </data>
+  <data name="PerformImport" xml:space="preserve">
+    <value>Импортиране</value>
+  </data>
+  <data name="LauncherSelectedLanguage" xml:space="preserve">
+    <value>Език:</value>
+  </data>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+    <value>Версия:</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>Вие сте разработчик</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>Потвърждаване</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>Изходен код</value>
   </data>
 </root>

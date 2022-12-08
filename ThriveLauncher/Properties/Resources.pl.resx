@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="SettingsImportOldTitle" xml:space="preserve">
-    <value>Importuj Poprzednie Ustawienia</value>
+    <value>Importować Poprzednie Ustawienia?</value>
   </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
-    <value>Ustawienia z poprzedniej wersji launchera zostały wykryte. Możesz zaimportować te istniejące ustawienia by utrzymać twoje zainstalowane wersje Thrive i inne dostosowania nienaruszone. Jeśli nie zaimportujesz starych wersji oraz pamięci podręcznej Thrive, zostaną one w tyle i ten launcher nie będzie ich znał. Zaimportowanie ustawień jest zalecane.</value>
+    <value>Ustawienia z poprzedniej wersji launchera zostały wykryte. Możesz zaimportować te istniejące ustawienia by utrzymać twoje zainstalowane wersje Thrive i inne dostosowania nienaruszone. Jeśli nie zaimportujesz starych wersji oraz pamięci podręcznej Thrive, zostaną zapomniane i ten launcher nie będzie ich znał. Zaimportowanie ustawień jest zalecane.</value>
   </data>
   <data name="SkipAction" xml:space="preserve">
     <value>Pomiń</value>
@@ -95,7 +95,7 @@
     <value>Dziękujemy Ci,</value>
   </data>
   <data name="DevelopmentFeedTitle" xml:space="preserve">
-    <value>FORA ROZBUDOWY</value>
+    <value>FORA DEWELOPERÓW</value>
   </data>
   <data name="WebContentIsDisabled" xml:space="preserve">
     <value>Zawartość sieciowa wyłączona</value>
@@ -107,7 +107,7 @@
     <value>Linki Revolutionary Games</value>
   </data>
   <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
-    <value>Fora rozbudowy</value>
+    <value>Fora deweloperów</value>
   </data>
   <data name="ExternalLinkCommunityForums" xml:space="preserve">
     <value>Fora społeczności</value>
@@ -374,7 +374,7 @@
     <value>Donejtuj</value>
   </data>
   <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
-    <value>Centrum Rozwoju Thrive</value>
+    <value>Centrum Deweloperskie Thrive</value>
   </data>
   <data name="ExternalLinkDiscordServer" xml:space="preserve">
     <value>Serwer Discord</value>
@@ -431,7 +431,7 @@
     <value>Tutaj możesz podlinkować launcher do Centrum Deweloperskiego Thrive by otrzymać dostęp do DevBuildów i innych funkcji</value>
   </data>
   <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
-    <value>Zdobądź [potrzebne wyjaśnienie]</value>
+    <value>Zdobądź kod linkowy</value>
   </data>
   <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
     <value>Wybierz manualnie wprowadzoną wartość hasha do użycia z ramki wejścia jako wybrany DevBuild to uruchomienia gdy grasz w DevBuildy</value>
@@ -496,5 +496,20 @@ Logi launchera nie mają więcej informacji.</value>
   </data>
   <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
     <value>Używasz wersji {0} Launchera Thrive, ale najnowszą jest {1}</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+    <value>Folder pobrań tymczasowych:</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>Uwaga: by uniknąć kontaktu z plikami nie[zapomnialemslowa] z Thrive, przeniesienie lokalizacji tymczasowej nie usunie bądź przeniesie istniejących plików.</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>Manualnie wybrane w zakładce "Specyficzny Build"</value>
+  </data>
+  <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
+    <value>Używasz niezdolnego do auto-aktualizacji rodzaju launchera. Jeśli chciałbyś je w przyszłości wykorzystywać, prosimy zainstalować zdolną to tego wersję launchera.</value>
+  </data>
+  <data name="OutdatedLauncherExplanation" xml:space="preserve">
+    <value>Ta wersja launchera jest przestarzała więc powinna zostać zaktualizowana. Jeśli widzisz tą wiadomość, oznacza to, że auto-aktualizacje nie zostały włączone więc będziesz musiał manualnie pobrać i zainstalować aktualizację. Możesz spróbować użyć obecnej wersji, pomijając aktualizację, lecz możesz spotkać się z nieoczekiwanymi problemami jako iż tylko najnowsza wersja launcher ma gwarancję działania z delikatnymi systemami z jakimi launcher wchodzi w intrerakcje.</value>
   </data>
 </root>

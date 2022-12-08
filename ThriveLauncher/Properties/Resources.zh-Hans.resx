@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SkipAction" xml:space="preserve">
+    <value>跳过</value>
+  </data>
+  <data name="ImportSucceededTitle" xml:space="preserve">
+    <value>导入成功</value>
+  </data>
+  <data name="ImportSucceededMessage" xml:space="preserve">
+    <value>成功导入旧设置。</value>
+  </data>
+  <data name="LauncherSelectedLanguage" xml:space="preserve">
+    <value>启动器语言：</value>
+  </data>
+  <data name="PlayButton" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="ConnectToDevCenterPrompt" xml:space="preserve">
+    <value>连接到开发中心</value>
+  </data>
+  <data name="ConnectedDeveloperGreeting" xml:space="preserve">
+    <value>你好，</value>
+  </data>
+  <data name="LinksButton" xml:space="preserve">
+    <value>相关链接</value>
+  </data>
+  <data name="ConnectedSupporterGreeting" xml:space="preserve">
+    <value>感谢，</value>
+  </data>
+  <data name="DevelopmentFeedTitle" xml:space="preserve">
+    <value>开发论坛</value>
+  </data>
+  <data name="WebContentIsDisabled" xml:space="preserve">
+    <value>Web内容禁用</value>
+  </data>
+  <data name="NewsFeedTitle" xml:space="preserve">
+    <value>新闻</value>
+  </data>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+    <value>官网主页</value>
+  </data>
+  <data name="ExternalLinkCommunityForums" xml:space="preserve">
+    <value>社区论坛</value>
+  </data>
+  <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
+    <value>开发者wiki</value>
+  </data>
+  <data name="ExternalLinkPatreon" xml:space="preserve">
+    <value>Patreon</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+    <value>捐赠</value>
+  </data>
+  <data name="ExternalLinkThriveSteam" xml:space="preserve">
+    <value>Steam 上的 Thrive</value>
+  </data>
+  <data name="ExternalLinkThriveItch" xml:space="preserve">
+    <value>itch.io上的Thrive</value>
+  </data>
+  <data name="ExternalLinkThriveGithub" xml:space="preserve">
+    <value>Thrive on Github</value>
+  </data>
+  <data name="ExternalLinkLauncherGithub" xml:space="preserve">
+    <value>启动器 Github</value>
+  </data>
+  <data name="ExternalLinkFanWiki" xml:space="preserve">
+    <value>Fan Wiki</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+    <value>Subreddit</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+    <value>官方YouTube</value>
+  </data>
+  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
+    <value>官方Twitter</value>
+  </data>
+  <data name="ExternalLinkFacebookPage" xml:space="preserve">
+    <value>官方Facebook</value>
+  </data>
+  <data name="ThriveOptions" xml:space="preserve">
+    <value>Thrive设置</value>
+  </data>
+  <data name="LauncherOptions" xml:space="preserve">
+    <value>启动器设置</value>
+  </data>
+  <data name="InstalledVersions" xml:space="preserve">
+    <value>已安装版本</value>
+  </data>
+  <data name="LaunchOptionsTitle" xml:space="preserve">
+    <value>启动器设置</value>
+  </data>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+    <value>启动器版本：</value>
+  </data>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+    <value>启用Web源</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>如果存在等效的 64 位版本，隐藏 32 位版本</value>
+  </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>开始后隐藏启动器</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>启动后关闭启动器（如果不报错）</value>
+  </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>开始游戏后关闭启动器</value>
+  </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+    <value>允许无缝启动器模式（启动游戏之前不会自行显示）</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>自动更新启动器</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>重置所有设置</value>
+  </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>选择安装位置</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>重置安装位置</value>
+  </data>
+  <data name="FolderPathDisplay" xml:space="preserve">
+    <value>目录：</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+    <value>临时下载文件夹：</value>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+    <value>内容：</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>选择临时文件位置</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>重置临时文件位置</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>删除临时文件夹中的所有文件。可能删除与 Thrive 无关的文件！</value>
+  </data>
+  <data name="PerformImport" xml:space="preserve">
+    <value>导入</value>
+  </data>
+  <data name="ImportFailedTitle" xml:space="preserve">
+    <value>导入失败</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>导入设置失败。请确保文件路径可读写，然后重启启动器。</value>
+  </data>
+  <data name="LinksPopupTitle" xml:space="preserve">
+    <value>Revolutionary Games 链接</value>
+  </data>
+  <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
+    <value>开发论坛</value>
+  </data>
+  <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
+    <value>Thrive开发中心</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+    <value>Discord 服务器</value>
+  </data>
+  <data name="CacheConfigurationTab" xml:space="preserve">
+    <value>缓存配置</value>
+  </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+    <value>禁用所有游戏视频（如果Thrive在显示加载徽标后和播放介绍视频之前崩溃，这可能有助于游戏正常运行）</value>
+  </data>
+  <data name="LaunchOptionForceGLES2" xml:space="preserve">
+    <value>强制GLES2渲染模式（可能启动Thrive，但会导致轻微的图形问题）</value>
+  </data>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+    <value>浏览已安装的文件</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+    <value>目录为空</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>注意：更改临时目录不会移动或删除现有文件，以防止意外操作与 Thrive 无关的文件</value>
+  </data>
+  <data name="SettingsImportOldTitle" xml:space="preserve">
+    <value>导入以前的设置？</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+    <value>选择缓存位置</value>
+  </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>旧版启动器的设置配置已被发现，你可以导入这些已有的设置以让你已安装的Thrive和其他自定义内容保持完整。如果你未导入旧版的Thrive和缓存，它们会被抛弃并且启动器不会知道这些内容。推荐导入这些设置。</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>加载中......</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>重试</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>跳过</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>断开</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>邮箱：</value>
+  </data>
+  <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
+    <value>开发人员推荐</value>
+  </data>
+  <data name="UnknownNumber" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="SubmitRetryButton" xml:space="preserve">
+    <value>重试</value>
+  </data>
+  <data name="TimeMomentRightNow" xml:space="preserve">
+    <value>现在</value>
+  </data>
+  <data name="ViewFile" xml:space="preserve">
+    <value>查看</value>
+  </data>
+  <data name="IncludeInReport" xml:space="preserve">
+    <value>包括：</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>移动</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>用户名：</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>不安全</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>描述：</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>你是一个开发人员</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>感谢您的支持！</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>注销</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>设置保存失败</value>
+  </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0}MiB</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>（大小：{0}）</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>未找到文件夹</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>启动器源代码</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>查看启动器证书</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Thrive启动器</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Thrive启动器证书</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>点击这里</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>查看日志</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>{0}版本</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>未知错误</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>删除失败</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>未知文件夹：</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>访问下载页面</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>ThriveDevCenter连接失败</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>将设置保存到设置文件失败。请确保启动程序具有读写权限，然后重试。
+启动器日志中有更多的信息。</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>Thrive版本安装文件夹不存在。</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>这个版本是最新版本</value>
+  </data>
+  <data name="DownloadingItem" xml:space="preserve">
+    <value>正在下载{0}</value>
+  </data>
+</root>

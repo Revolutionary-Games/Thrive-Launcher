@@ -224,7 +224,7 @@
     <value>Desteğin için teşekkürler!</value>
   </data>
   <data name="BuildTypeSelectionBOTD" xml:space="preserve">
-    <value>Günün sürümü (BOTD), önerilen</value>
+    <value>Günün sürümü (GS), önerilen</value>
   </data>
   <data name="BuildTypeSelectionLatest" xml:space="preserve">
     <value>En son (bu, doğrudan en son kod işlemesinden gelen bir sürümü aldığı için, çok sık ve rastgele değişir)</value>
@@ -404,7 +404,7 @@
     <value>güvenli olmayan</value>
   </data>
   <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
-    <value>BOTD</value>
+    <value>GS</value>
   </data>
   <data name="BuildDescriptionLabelShort" xml:space="preserve">
     <value>tanım:</value>
@@ -461,7 +461,7 @@
     <value>bilinmeyen</value>
   </data>
   <data name="DownloadingStateItemProgress" xml:space="preserve">
-    <value>{1} arasından {0} indirildi</value>
+    <value>{1} adresinden {0} indiriliyor</value>
   </data>
   <data name="VerifyingStateItemProgress" xml:space="preserve">
     <value>{0} öğesinin bütünlüğü doğrulanıyor</value>
@@ -482,7 +482,7 @@
     <value>Güvenli Olmayan Geliştirme Sürümü Oynatılsın Mı?</value>
   </data>
   <data name="FoundDevBuildToPlayInfo" xml:space="preserve">
-    <value>Oynatılacak Geliştirme Sürümü Bulundu: {0}, anahtar: {1}, BOTD: {2}, dal: {3}</value>
+    <value>Oynatılacak Geliştirme Sürümü Bulundu: {0}, anahtar: {1}, GS: {2}, dal: {3}</value>
   </data>
   <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
     <value>Sürüm açıklaması:
@@ -791,7 +791,7 @@ Eğer aşağıda hiçbir dosya listelenmiyorsa, güncellemeyi indirme işlemi ba
     <value>Çıkış kodu, gerekli bir DLL dosyasına sahip olmadığın anlamına gelebilir. Eğer bu dosya Visual C++ Redistributable 2019 yazılımına aitse, dosyayı yüklemek/düzeltmek için, bu dosyaya ait yükleyiciyi aşağıdaki bağlantıdan indirebilirsin: https://aka.ms/vs/17/release/vc_redist.x64.exe. Ayrıca, Thrive.exe uygulamasını elle çalıştırmayı deneyebilirsin. Böylece uygulama, eksik DLL dosya ismini içeren bir hata iletisi gösterebilir. Bütün Windows güncelleştirmelerini yükleyip yüklemediğini kontrol etmelisin. Eğer bunlar yardımcı olmazsa, daha fazla destek için lütfen bize ulaş.</value>
   </data>
   <data name="OutdatedLauncherExplanation" xml:space="preserve">
-    <value>Başlatıcının bu sürümü güncel değil ve güncellenmesi gerekli. Bu mesajı görüyorsan, otomatik güncelleme başlatılmadı. Bu yüzden, güncellemeyi elle indirmen ve yüklemen gerekecek. Güncellemeyi atlayarak, başlatıcının mevcut sürümünü kullanmayı deneyebilirsin. Ancak başlatıcının yalnızca en son sürümünün, eski sistemlerle etkileşim kurarak çalışmasına garanti verildiği için beklenmeyen sorunlarla karşılabilirsin.</value>
+    <value>Başlatıcının bu sürümü güncel değil ve güncellenmesi gerekli. Bu mesajı görüyorsan, otomatik güncelleme başlatılmadı. Bu yüzden, güncellemeyi elle indirmen ve yüklemen gerekecek. Güncellemeyi atlayarak, başlatıcının mevcut sürümünü kullanmayı deneyebilirsin. Ancak başlatıcının yalnızca en son sürümünün, uzak sistemlerle etkileşim kurarak çalışmasına garanti verildiği için beklenmeyen sorunlarla karşılabilirsin.</value>
   </data>
   <data name="CrashReportEmailField" xml:space="preserve">
     <value>E-postan, eğer bu rapor ile ilgili güncellemeler almak istersen (isteğe bağlı)</value>
@@ -860,7 +860,7 @@ Eğer aşağıda hiçbir dosya listelenmiyorsa, güncellemeyi indirme işlemi ba
     <value>DevCenter'a bağlanma işlemi başarısız oldu. DevCenter, geçici olarak müsait olmayabileceği için lütfen tekrar dene. Ayrıca, internet bağlantını da kontrol etmen gerekir. Tarayıcının bağlanıp bağlanmadığını görmek için aşağıdaki bağlantıyı kullanıp DevCenter'ı ziyaret edebilirsin. Lütfen daha sonra tekrar dene. Eğer sorun birkaç dakikadan daha uzun süre devam ederse, lütfen bunu bildir.</value>
   </data>
   <data name="ErrorGettingDevBuild" xml:space="preserve">
-    <value>Hata: Mevcut platform için belirtilen türde Geliştirme Sürümü bulma işlemi başarısız. Lütfen başka bir sürüm seç, örneğin önerilen BOTD, ve tekrar dene. Hata nedeni: {0}</value>
+    <value>Hata: Mevcut platform için belirtilen türde Geliştirme Sürümü bulma işlemi başarısız. Lütfen başka bir sürüm seç, örneğin önerilen GS, ve tekrar dene. Hata nedeni: {0}</value>
   </data>
   <data name="ExtraThriveStartFlags" xml:space="preserve">
     <value>Thrive, başlatıcıya komut satırı argümanları olarak geçirilen ek bayraklar ile başlatılıyor. Bunlar Thrive'ın beklenmeyen şekilde davranmasına neden olabilir: {0}</value>
@@ -893,5 +893,11 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı g
   </data>
   <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
     <value>Başlatma gerçekleşmezse, Thrive'ı otomatik olarak tekrar başlat</value>
+  </data>
+  <data name="RequiresLatestBetaShowingEnabled" xml:space="preserve">
+    <value>Bu seçenek, yalnızca en son beta sürümü gösterme seçeneği aktifken etkinleştirilebilir</value>
+  </data>
+  <data name="RequiresExternalVersionsEnabled" xml:space="preserve">
+    <value>Bu seçenek, dışarıdan gelen sürümlerin indirilmesini etkinleştirmeyi gerektirir</value>
   </data>
 </root>

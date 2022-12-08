@@ -58,58 +58,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SettingsImportOldTitle" xml:space="preserve">
-    <value>Importar as configurações anteriores?</value>
+  <data name="PlayButton" xml:space="preserve">
+    <value>Spielen</value>
   </data>
-  <data name="SettingsImportOldExplanation" xml:space="preserve">
-    <value>Configurações de uma versão anterior do lançador foram encontradas. Você pode importá-las para manter as versões de Thrive e outras customizações intactas. Se não fizer isso, as versões do jogo antigas e os caches não serão reconhecidos pelo lançador. Importar as configurações é recomendado.</value>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>Launcher während dem Spielen verstecken</value>
   </data>
-  <data name="SkipAction" xml:space="preserve">
-    <value>Pular</value>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+    <value>Web Feeds aktivieren</value>
   </data>
-  <data name="PerformImport" xml:space="preserve">
-    <value>Importar</value>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>Installationsverzeichnis auswählen</value>
   </data>
-  <data name="ImportFailedTitle" xml:space="preserve">
-    <value>Falha na importação</value>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>Installationsverzeichnis zurücksetzen</value>
   </data>
-  <data name="ConnectedSupporterGreeting" xml:space="preserve">
-    <value>Obrigado,</value>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>Launcher nach dem Starten des Spiels beenden</value>
   </data>
-  <data name="ImportFailedMessage" xml:space="preserve">
-    <value>Houve um erro ao importar configurações. Tenha certeza de que os locais dos arquivos de configurações possam ser lidos e escritos pelo lançador e reinicie o programa logo após.</value>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+    <value>Cachegröße:</value>
   </data>
-  <data name="ImportSucceededTitle" xml:space="preserve">
-    <value>Importação concluída</value>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>Einstellungen zurücksetzen</value>
   </data>
-  <data name="ImportSucceededMessage" xml:space="preserve">
-    <value>As configurações anteriores foram importadas com sucesso.</value>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+    <value>Installierte Dateien durchsuchen</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>Leeren</value>
   </data>
   <data name="LauncherSelectedLanguage" xml:space="preserve">
-    <value>Idioma do lançador:</value>
+    <value>Launcher Sprache:</value>
   </data>
-  <data name="LinksButton" xml:space="preserve">
-    <value>Links</value>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+    <value>Launcher Version:</value>
   </data>
-  <data name="PlayButton" xml:space="preserve">
-    <value>Jogar</value>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>Launcher nach dem Spielen beenden, wenn keine Fehler aufgetreten sind</value>
   </data>
-  <data name="ConnectToDevCenterPrompt" xml:space="preserve">
-    <value>Conectar ao DevCenter</value>
-  </data>
-  <data name="ConnectedDeveloperGreeting" xml:space="preserve">
-    <value>Olá,</value>
-  </data>
-  <data name="DevelopmentFeedTitle" xml:space="preserve">
-    <value>FÓRUNS DE DESENVOLVIMENTO</value>
-  </data>
-  <data name="WebContentIsDisabled" xml:space="preserve">
-    <value>Conteúdo da web desativado</value>
-  </data>
-  <data name="YouAreASupporter" xml:space="preserve">
-    <value>Obrigado pelo apoio!</value>
-  </data>
-  <data name="MainWindowTitle" xml:space="preserve">
-    <value>Lançador Thrive</value>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>Verstecke 32-Bit Versionen, wenn gleichwertige 64-Bit Versionen vorhanden sind</value>
   </data>
 </root>

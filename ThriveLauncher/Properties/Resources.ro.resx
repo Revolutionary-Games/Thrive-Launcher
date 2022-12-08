@@ -59,57 +59,75 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="SettingsImportOldTitle" xml:space="preserve">
-    <value>Importar as configurações anteriores?</value>
-  </data>
-  <data name="SettingsImportOldExplanation" xml:space="preserve">
-    <value>Configurações de uma versão anterior do lançador foram encontradas. Você pode importá-las para manter as versões de Thrive e outras customizações intactas. Se não fizer isso, as versões do jogo antigas e os caches não serão reconhecidos pelo lançador. Importar as configurações é recomendado.</value>
+    <value>Importă Setările Anterioare?</value>
   </data>
   <data name="SkipAction" xml:space="preserve">
-    <value>Pular</value>
+    <value>Săriți Peste</value>
   </data>
   <data name="PerformImport" xml:space="preserve">
-    <value>Importar</value>
+    <value>Importă</value>
   </data>
   <data name="ImportFailedTitle" xml:space="preserve">
-    <value>Falha na importação</value>
-  </data>
-  <data name="ConnectedSupporterGreeting" xml:space="preserve">
-    <value>Obrigado,</value>
+    <value>Import A Eșuat</value>
   </data>
   <data name="ImportFailedMessage" xml:space="preserve">
-    <value>Houve um erro ao importar configurações. Tenha certeza de que os locais dos arquivos de configurações possam ser lidos e escritos pelo lançador e reinicie o programa logo após.</value>
+    <value>Importarea setărilor a eșuat. Vă rugăm să vă asigurați că drumurile pentru filele relevante sunt legibile și scriibile pentru launcher, și apoi să restartați launcher-ul.</value>
   </data>
-  <data name="ImportSucceededTitle" xml:space="preserve">
-    <value>Importação concluída</value>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>Setări dintr-o versiune veche a launcher-ului au fost găsite. Puteți să importați aceste setări pentru a păstra versiunile Thrive și alte personalizări intacte. Dacă nu vreți să importați versiunile vechi Thrive și alte cache-uri, vor fi șterse și acest lasator nu va știi despre ele. A importa setările e recomandat.</value>
   </data>
   <data name="ImportSucceededMessage" xml:space="preserve">
-    <value>As configurações anteriores foram importadas com sucesso.</value>
+    <value>Setările vechi au fost importate cu success.</value>
   </data>
-  <data name="LauncherSelectedLanguage" xml:space="preserve">
-    <value>Idioma do lançador:</value>
+  <data name="ImportSucceededTitle" xml:space="preserve">
+    <value>Importul a Avut Succes</value>
   </data>
   <data name="LinksButton" xml:space="preserve">
-    <value>Links</value>
+    <value>Link-uri</value>
   </data>
   <data name="PlayButton" xml:space="preserve">
-    <value>Jogar</value>
+    <value>Joacă</value>
+  </data>
+  <data name="LauncherSelectedLanguage" xml:space="preserve">
+    <value>Limba launcher-ului:</value>
   </data>
   <data name="ConnectToDevCenterPrompt" xml:space="preserve">
-    <value>Conectar ao DevCenter</value>
+    <value>Conectați cu DevCenter</value>
   </data>
   <data name="ConnectedDeveloperGreeting" xml:space="preserve">
-    <value>Olá,</value>
+    <value>Salutare,</value>
   </data>
-  <data name="DevelopmentFeedTitle" xml:space="preserve">
-    <value>FÓRUNS DE DESENVOLVIMENTO</value>
+  <data name="ConnectedSupporterGreeting" xml:space="preserve">
+    <value>Mulțumim,</value>
   </data>
   <data name="WebContentIsDisabled" xml:space="preserve">
-    <value>Conteúdo da web desativado</value>
+    <value>Conținut web dezactivat</value>
   </data>
-  <data name="YouAreASupporter" xml:space="preserve">
-    <value>Obrigado pelo apoio!</value>
+  <data name="NewsFeedTitle" xml:space="preserve">
+    <value>ȘTIRI</value>
   </data>
-  <data name="MainWindowTitle" xml:space="preserve">
-    <value>Lançador Thrive</value>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+    <value>Site-ul principal</value>
+  </data>
+  <data name="ExternalLinkCommunityForums" xml:space="preserve">
+    <value>Forumul comunității</value>
+  </data>
+  <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
+    <value>Wiki-ul Dezvoltatorilor</value>
+  </data>
+  <data name="ExternalLinkPatreon" xml:space="preserve">
+    <value>Patreon</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+    <value>Donează</value>
+  </data>
+  <data name="DevelopmentFeedTitle" xml:space="preserve">
+    <value>FORUMUL DE DEZVOLTATORI</value>
+  </data>
+  <data name="LinksPopupTitle" xml:space="preserve">
+    <value>Link-uri Revolutionary Games</value>
+  </data>
+  <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
+    <value>Forumul de dezvoltatori</value>
   </data>
 </root>
