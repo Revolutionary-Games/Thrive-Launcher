@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="SettingsImportOldTitle" xml:space="preserve">
-    <value>Importă Setările Anterioare?</value>
+    <value>Importă Setările Vechi?</value>
   </data>
   <data name="SkipAction" xml:space="preserve">
     <value>Săriți Peste</value>
@@ -74,7 +74,7 @@
     <value>Importarea setărilor a eșuat. Vă rugăm să vă asigurați că drumurile pentru filele relevante sunt legibile și scriibile pentru launcher, și apoi să restartați launcher-ul.</value>
   </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
-    <value>Setări dintr-o versiune veche a launcher-ului au fost găsite. Puteți să importați aceste setări pentru a păstra versiunile Thrive și alte personalizări intacte. Dacă nu vreți să importați versiunile vechi Thrive și alte cache-uri, vor fi șterse și acest lasator nu va știi despre ele. A importa setările e recomandat.</value>
+    <value>Setări dintr-o versiune veche a launcher-ului au fost găsite. Puteți să importați aceste setări pentru a păstra versiunile Thrive și alte personalizări intacte. Dacă nu vreți să importați versiunile vechi Thrive și alte cache-uri, vor fi șterse și acest launcher nu va știi despre ele. A importa setările e recomandat.</value>
   </data>
   <data name="ImportSucceededMessage" xml:space="preserve">
     <value>Setările vechi au fost importate cu success.</value>
@@ -92,7 +92,7 @@
     <value>Limba launcher-ului:</value>
   </data>
   <data name="ConnectToDevCenterPrompt" xml:space="preserve">
-    <value>Conectați cu DevCenter</value>
+    <value>Conectați-vă pe DevCenter</value>
   </data>
   <data name="ConnectedDeveloperGreeting" xml:space="preserve">
     <value>Salutare,</value>
@@ -129,5 +129,8 @@
   </data>
   <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
     <value>Forumul de dezvoltatori</value>
+  </data>
+  <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
+    <value>ThriveDevCenter</value>
   </data>
 </root>
