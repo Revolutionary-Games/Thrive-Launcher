@@ -40,9 +40,9 @@ public class CrashReporterWindowViewModel : ViewModelBase
     private bool showCloseConfirmation;
     private bool canClearDumps;
 
-    public string userEnteredReportDescription = string.Empty;
-    public string reporterEmail = string.Empty;
-    public bool reportIsPublic = true;
+    private string userEnteredReportDescription = string.Empty;
+    private string reporterEmail = string.Empty;
+    private bool reportIsPublic = true;
 
     private bool acceptedReportCreationTerms;
     private bool submittingReport;

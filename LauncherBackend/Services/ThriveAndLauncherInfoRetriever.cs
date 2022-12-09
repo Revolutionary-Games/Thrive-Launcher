@@ -189,9 +189,8 @@ public class ThriveAndLauncherInfoRetriever : IThriveAndLauncherInfoRetriever
     {
         using var uncompressedStream = new MemoryStream();
 
+        using (var compressedDataStream = new MemoryStream(data, false))
         {
-            using var compressedDataStream = new MemoryStream(data, false);
-
             await using var decompressor = new BrotliStream(compressedDataStream, CompressionMode.Decompress, true);
 
             await decompressor.CopyToAsync(uncompressedStream);
@@ -217,28 +216,4 @@ public class ThriveAndLauncherInfoRetriever : IThriveAndLauncherInfoRetriever
 
         logger.LogInformation("Saving a cached copy of downloaded info to: {Path}", path);
     }
-}
-
-public interface IThriveAndLauncherInfoRetriever
-{
-    public bool IgnoreSigningRequirement { get; set; }
-
-    public LauncherThriveInformation? CurrentlyLoadedInfo { get; }
-
-    public Task<LauncherThriveInformation> DownloadInfo();
-
-    public bool HasCachedFile();
-
-    public Task<LauncherThriveInformation?> LoadFromCache();
-
-    /// <summary>
-    ///   Re-enables info stored by <see cref="DownloadInfo"/> into <see cref="CurrentlyLoadedInfo"/>
-    /// </summary>
-    public void RestoreBackupInfo();
-
-    /// <summary>
-    ///   Forgets the currently loaded info in <see cref="CurrentlyLoadedInfo"/>. This is used for disabling external
-    ///   versions in store versions.
-    /// </summary>
-    public void ForgetInfo();
 }

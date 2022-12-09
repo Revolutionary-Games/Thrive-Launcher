@@ -72,7 +72,7 @@ public class DevBuildVersion : IPlayableVersion
         PlayableDevCenterBuildType.PublicBuildA => "Public Test A",
         PlayableDevCenterBuildType.PublicBuildB => "Public Test B",
         PlayableDevCenterBuildType.PublicBuildC => "Public Test C",
-        _ => throw new ArgumentOutOfRangeException(),
+        _ => throw new InvalidOperationException("Unhandled DevBuild type"),
     };
 
     public bool IsStoreVersion => false;
@@ -85,7 +85,7 @@ public class DevBuildVersion : IPlayableVersion
         PlayableDevCenterBuildType.PublicBuildA => "devbuild_test_a",
         PlayableDevCenterBuildType.PublicBuildB => "devbuild_test_b",
         PlayableDevCenterBuildType.PublicBuildC => "devbuild_test_c",
-        _ => throw new ArgumentOutOfRangeException(),
+        _ => throw new InvalidOperationException("Unhandled DevBuild type"),
     };
 
     public bool IsPublicBuildA => type == PlayableDevCenterBuildType.PublicBuildA;

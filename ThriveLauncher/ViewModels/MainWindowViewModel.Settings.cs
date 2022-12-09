@@ -10,8 +10,6 @@ using ReactiveUI;
 /// </summary>
 public partial class MainWindowViewModel
 {
-    private LauncherSettings Settings => settingsManager.Settings;
-
     private readonly string languagePlaceHolderIfNotSelected;
 
     public bool ShowWebContent
@@ -380,4 +378,6 @@ public partial class MainWindowViewModel
 
     public bool CanEnableShowingBetaVersions => StoreVersionShowExternalVersions || !detectedStore.IsStoreVersion;
     public bool CanShowLatestBetaVersion => CanEnableShowingBetaVersions && ShowLatestBetaVersion;
+
+    private LauncherSettings Settings => settingsManager.Settings;
 }

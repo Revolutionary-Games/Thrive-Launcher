@@ -20,42 +20,42 @@
     <Description>Thrive Launcher for downloading and installing Thrive</Description>
   </PropertyGroup>
   <ItemGroup>
-    <AvaloniaResource Include="Assets/**"/>
-    <None Remove=".gitignore"/>
+    <AvaloniaResource Include="Assets/**" />
+    <None Remove=".gitignore" />
   </ItemGroup>
   <ItemGroup>
     <!--This helps with theme dll-s trimming.
     If you will publish your application in self-contained mode with p:PublishTrimmed=true and it will use Fluent theme Default theme will be trimmed from the output and vice versa.
     https://github.com/AvaloniaUI/Avalonia/issues/5593 -->
-    <TrimmableAssembly Include="Avalonia.Themes.Fluent"/>
-    <TrimmableAssembly Include="Avalonia.Themes.Default"/>
+    <TrimmableAssembly Include="Avalonia.Themes.Fluent" />
+    <TrimmableAssembly Include="Avalonia.Themes.Default" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.10.18"/>
-    <PackageReference Include="Avalonia.Desktop" Version="0.10.18"/>
+    <PackageReference Include="Avalonia" Version="0.10.18" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.18" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.18"/>
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.18"/>
-    <PackageReference Include="CommandLineParser" Version="2.9.1"/>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0"/>
-    <PackageReference Include="NLog" Version="5.1.0"/>
-    <PackageReference Include="NLog.Extensions.Logging" Version="5.2.0"/>
-    <PackageReference Include="XamlNameReferenceGenerator" Version="1.5.1"/>
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.18" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.18" />
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
+    <PackageReference Include="NLog" Version="5.1.0" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="5.2.0" />
+    <PackageReference Include="XamlNameReferenceGenerator" Version="1.5.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LauncherBackend\LauncherBackend.csproj"/>
-    <ProjectReference Include="..\RevolutionaryGamesCommon\DevCenterCommunication\DevCenterCommunication.csproj"/>
-    <ProjectReference Include="..\RevolutionaryGamesCommon\ScriptsBase\ScriptsBase.csproj"/>
-    <ProjectReference Include="..\RevolutionaryGamesCommon\SharedBase\SharedBase.csproj"/>
+    <ProjectReference Include="..\LauncherBackend\LauncherBackend.csproj" />
+    <ProjectReference Include="..\RevolutionaryGamesCommon\DevCenterCommunication\DevCenterCommunication.csproj" />
+    <ProjectReference Include="..\RevolutionaryGamesCommon\ScriptsBase\ScriptsBase.csproj" />
+    <ProjectReference Include="..\RevolutionaryGamesCommon\SharedBase\SharedBase.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\LICENSE.md" LogicalName="LICENSE.md"/>
-    <EmbeddedResource Include="Assets\Fonts\Roboto\LICENSE.txt" LogicalName="Roboto/LICENSE.txt"/>
-    <EmbeddedResource Include="Assets\Fonts\Lato\OFL.txt" LogicalName="OFL.txt"/>
-    <EmbeddedResource Include="..\tools\7zip\License.txt" LogicalName="7ZipLicense.txt"/>
-    <EmbeddedResource Include="..\tools\pck\LibraryLicenses.txt" LogicalName="pckLibraryLicenses.txt"/>
-    <EmbeddedResource Include="..\tools\pck\LICENSE" LogicalName="pckLICENSE"/>
+    <EmbeddedResource Include="..\LICENSE.md" LogicalName="LICENSE.md" />
+    <EmbeddedResource Include="Assets\Fonts\Roboto\LICENSE.txt" LogicalName="Roboto/LICENSE.txt" />
+    <EmbeddedResource Include="Assets\Fonts\Lato\OFL.txt" LogicalName="OFL.txt" />
+    <EmbeddedResource Include="..\tools\7zip\License.txt" LogicalName="7ZipLicense.txt" />
+    <EmbeddedResource Include="..\tools\pck\LibraryLicenses.txt" LogicalName="pckLibraryLicenses.txt" />
+    <EmbeddedResource Include="..\tools\pck\LICENSE" LogicalName="pckLICENSE" />
   </ItemGroup>
   <ItemGroup>
     <ContentWithTargetPath Include="..\tools\7zip\License.txt">

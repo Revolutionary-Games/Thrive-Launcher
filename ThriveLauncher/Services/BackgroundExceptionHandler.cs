@@ -3,7 +3,6 @@ namespace ThriveLauncher.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using LauncherBackend.Services;
 using Microsoft.Extensions.Logging;
 using Properties;
 
@@ -60,10 +59,4 @@ public class BackgroundExceptionHandler : IBackgroundExceptionNoticeDisplayer
             return noticeDisplayers.Remove(noticeDisplayer);
         }
     }
-}
-
-public interface IBackgroundExceptionNoticeDisplayer : IBackgroundExceptionHandler
-{
-    public void RegisterErrorDisplayer(INoticeDisplayer noticeDisplayer);
-    public bool RemoveErrorDisplayer(INoticeDisplayer noticeDisplayer);
 }

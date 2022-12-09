@@ -11,7 +11,7 @@ using Models;
 using SharedBase.Utilities;
 using Utilities;
 
-public class CrashReporter : ICrashReporter
+public sealed class CrashReporter : ICrashReporter, IDisposable
 {
     private readonly ILogger<CrashReporter> logger;
     private readonly IStoreVersionDetector storeVersionDetector;
@@ -207,6 +207,11 @@ public class CrashReporter : ICrashReporter
         thriveRunner.ClearDetectedCrashes();
     }
 
+    public void Dispose()
+    {
+        httpClient.Dispose();
+    }
+
     private static StringBuilder PrepareLogFiles(IEnumerable<string> logFiles, string? launcherSavedOutput)
     {
         var logFileBuilder = new StringBuilder();
@@ -380,24 +385,4 @@ public class CrashReporter : ICrashReporter
             }
         }
     }
-}
-
-public interface ICrashReporter
-{
-    public long CreatedReportId { get; }
-    public string CreatedReportDeleteKey { get; }
-
-    public string? ExtendedErrorMessage { get; }
-
-    public IEnumerable<string> GetAvailableLogFiles();
-
-    public IEnumerable<ReportableCrash> GetAvailableCrashesToReport();
-
-    public Task<CrashReporterSubmitResult> SubmitReport(ReportableCrash crash, IEnumerable<string> logFiles,
-        string? extraDescription, string? reporterEmail, bool reportIsPublic, string? launcherSavedOutput);
-
-    public string CreateTextReport(ReportableCrash crash, IEnumerable<string> logFiles, string? extraDescription,
-        string? reporterEmail, string? launcherSavedOutput, bool platformSpecificLineEndings);
-
-    public void ClearAllCrashes();
 }

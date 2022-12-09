@@ -98,7 +98,7 @@ public static class LauncherConstants
         LauncherMode.LocalTesting => "-test",
 
         // ReSharper restore HeuristicUnreachableCode
-        _ => "",
+        _ => string.Empty,
     };
 
     public static readonly Uri DevCenterURL = new(Mode switch

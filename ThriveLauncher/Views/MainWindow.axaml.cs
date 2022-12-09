@@ -26,6 +26,10 @@ using SharedBase.Utilities;
 using Utilities;
 using ViewModels;
 
+/// <summary>
+///   The main window of the application. Due to how badly child window positioning works, this has a ton of stuff
+///   packed in.
+/// </summary>
 public partial class MainWindow : Window
 {
     /// <summary>

@@ -16,7 +16,10 @@ using ReactiveUI;
 using Services;
 using Utilities;
 
-public partial class MainWindowViewModel : ViewModelBase, INoticeDisplayer
+/// <summary>
+///   The primary part of the main window's view model class
+/// </summary>
+public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplayer, IDisposable
 {
     private const int TotalKeysInDevCenterActivationSequence = 4;
 
@@ -40,6 +43,7 @@ public partial class MainWindowViewModel : ViewModelBase, INoticeDisplayer
     private string noticeMessageText = string.Empty;
     private string noticeMessageTitle = string.Empty;
     private bool canDismissNotice = true;
+    private bool registeredForNoticeDisplay;
 
     private bool showSettingsUpgrade;
 
@@ -131,6 +135,7 @@ public partial class MainWindowViewModel : ViewModelBase, INoticeDisplayer
             DetectPlayingStatusFromBackend();
 
         backgroundExceptionNoticeDisplayer.RegisterErrorDisplayer(this);
+        registeredForNoticeDisplay = true;
     }
 
     /// <summary>
@@ -285,9 +290,14 @@ public partial class MainWindowViewModel : ViewModelBase, INoticeDisplayer
         UnRegisterInstallerMessageForwarders();
         UnRegisterAutoUpdaterCallbacks();
 
-        if (!backgroundExceptionNoticeDisplayer.RemoveErrorDisplayer(this))
+        if (registeredForNoticeDisplay)
         {
-            logger.LogWarning("Could not unregister this window from showing background errors");
+            if (!backgroundExceptionNoticeDisplayer.RemoveErrorDisplayer(this))
+            {
+                logger.LogWarning("Could not unregister this window from showing background errors");
+            }
+
+            registeredForNoticeDisplay = false;
         }
     }
 
@@ -385,6 +395,11 @@ public partial class MainWindowViewModel : ViewModelBase, INoticeDisplayer
             // In case there's a DevCenter connection, start checking that again
             CheckDevCenterConnection();
         }
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
     }
 
     private void CreateFeedRetrieveTasks()
@@ -680,6 +695,21 @@ public partial class MainWindowViewModel : ViewModelBase, INoticeDisplayer
 
                 logger.LogInformation("Retrying or using cached data next");
             }
+        }
+    }
+
+    private void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            ShutdownListeners();
+
+            launcherInformationTask.Dispose();
+            devForumFeedItems.Dispose();
+            mainSiteFeedItems.Dispose();
+            dehydrateCacheSizeTask?.Dispose();
+            autoUpdateCancellation.Dispose();
+            playActionCancellationSource?.Dispose();
         }
     }
 }

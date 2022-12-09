@@ -154,7 +154,8 @@ public partial class MainWindowViewModel
         private set => this.RaiseAndSetIfChanged(ref fileMoveProgress, value);
     }
 
-    public Task<string> DehydrateCacheSize => dehydrateCacheSizeTask ?? throw new Exception("Constructor not ran");
+    public Task<string> DehydrateCacheSize =>
+        dehydrateCacheSizeTask ?? throw new InvalidOperationException("Constructor not ran");
 
     public void OpenSettings()
     {

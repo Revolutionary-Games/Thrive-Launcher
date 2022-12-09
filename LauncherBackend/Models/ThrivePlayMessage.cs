@@ -5,6 +5,12 @@ namespace LauncherBackend.Models;
 /// </summary>
 public class ThrivePlayMessage
 {
+    public ThrivePlayMessage(Type type, params object?[] arguments)
+    {
+        MessageType = type;
+        FormatArguments = arguments;
+    }
+
     /// <summary>
     ///   The type of the message. This is done this way to allow translations to be handled by whoever displays
     ///   the message.
@@ -61,12 +67,6 @@ public class ThrivePlayMessage
         ///   current attempt number
         /// </summary>
         ThriveRunRetry,
-    }
-
-    public ThrivePlayMessage(Type type, params object?[] arguments)
-    {
-        MessageType = type;
-        FormatArguments = arguments;
     }
 
     public object?[] FormatArguments { get; }

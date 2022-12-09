@@ -71,6 +71,48 @@ public class LauncherPaths : ILauncherPaths
     public string PathToDefaultThriveInstallFolderV1 => Path.Combine(PathToLauncherV1Config, "Installed");
     public string PathToDefaultDehydrateCacheFolderV1 => Path.Combine(PathToLauncherV1Config, "DehydratedCache");
 
+    private static string GetXDGConfigHome()
+    {
+        var path = Environment.GetEnvironmentVariable("XDG_CONFIG_HOME");
+
+        if (!string.IsNullOrEmpty(path))
+            return path;
+
+        return Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".config");
+    }
+
+    private static string GetXDGDataHome()
+    {
+        var path = Environment.GetEnvironmentVariable("XDG_DATA_HOME");
+
+        if (!string.IsNullOrEmpty(path))
+            return path;
+
+        return Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".local", "share");
+    }
+
+    private static string GetEnvironmentFolderOrFallback(Environment.SpecialFolder specialFolder)
+    {
+        var folder = Environment.GetFolderPath(specialFolder);
+
+        if (!string.IsNullOrWhiteSpace(folder) && folder != "/")
+            return folder;
+
+        // Older macs seem to mostly be in need of this fallback
+        if (OperatingSystem.IsMacOS())
+        {
+            return Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Library",
+                "Application Support");
+        }
+
+        if (OperatingSystem.IsWindows())
+        {
+            throw new NotSupportedException("Fallback shouldn't be necessary on Windows");
+        }
+
+        return GetXDGConfigHome();
+    }
+
     private string GetPlatformConfigFolder()
     {
         string path;
@@ -181,77 +223,4 @@ public class LauncherPaths : ILauncherPaths
         logger.LogInformation("Temporary folder is: {Path}", path);
         return path;
     }
-
-    private static string GetXDGConfigHome()
-    {
-        var path = Environment.GetEnvironmentVariable("XDG_CONFIG_HOME");
-
-        if (!string.IsNullOrEmpty(path))
-            return path;
-
-        return Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".config");
-    }
-
-    private static string GetXDGDataHome()
-    {
-        var path = Environment.GetEnvironmentVariable("XDG_DATA_HOME");
-
-        if (!string.IsNullOrEmpty(path))
-            return path;
-
-        return Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".local", "share");
-    }
-
-    private static string GetEnvironmentFolderOrFallback(Environment.SpecialFolder specialFolder)
-    {
-        var folder = Environment.GetFolderPath(specialFolder);
-
-        if (!string.IsNullOrWhiteSpace(folder) && folder != "/")
-            return folder;
-
-        // Older macs seem to mostly be in need of this fallback
-        if (OperatingSystem.IsMacOS())
-        {
-            return Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Library",
-                "Application Support");
-        }
-
-        if (OperatingSystem.IsWindows())
-        {
-            throw new NotSupportedException("Fallback shouldn't be necessary on Windows");
-        }
-
-        return GetXDGConfigHome();
-    }
-}
-
-public interface ILauncherPaths
-{
-    public string PathToSettings { get; }
-
-    public string PathToRememberedVersion { get; }
-
-    public string PathToAutoUpdateFile { get; }
-
-    public string PathToLauncherConfig { get; }
-
-    public string PathToDefaultThriveInstallFolder { get; }
-    public string PathToCachedDownloadedLauncherInfo { get; }
-
-    public string PathToDefaultDehydrateCacheFolder { get; }
-
-    public string PathToTemporaryFolder { get; }
-    public string PathToLogFolder { get; }
-
-    public string ThriveDefaultLogsFolder { get; }
-    public string ThriveDefaultCrashesFolder { get; }
-
-    // Launcher 1.x version folder paths
-
-    public string PathToSettingsV1 { get; }
-
-    public string PathToLauncherV1Config { get; }
-
-    public string PathToDefaultThriveInstallFolderV1 { get; }
-    public string PathToDefaultDehydrateCacheFolderV1 { get; }
 }

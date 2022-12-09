@@ -11,12 +11,12 @@ public class Localizer : INotifyPropertyChanged
     private const string IndexerName = "Item";
     private const string IndexerArrayName = "Item[]";
 
-    public event PropertyChangedEventHandler? PropertyChanged;
-
     public Localizer()
     {
         Languages.OnLanguageChanged += Invalidate;
     }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     // We don't need to dispose or finalize as we are a singleton
     // ~Localizer()

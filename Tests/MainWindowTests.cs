@@ -1,5 +1,6 @@
 namespace Tests;
 
+using System;
 using LauncherBackend.Models;
 using LauncherBackend.Services;
 using Moq;
@@ -9,7 +10,7 @@ using Utilities;
 using Xunit;
 using Xunit.Abstractions;
 
-public class MainWindowTests
+public sealed class MainWindowTests : IDisposable
 {
     private readonly XunitLogger<MainWindowViewModel> logger;
 
@@ -67,5 +68,10 @@ public class MainWindowTests
         viewModel = viewCreator.Create();
 
         Assert.True(viewModel.ShowDevCenterStatusArea);
+    }
+
+    public void Dispose()
+    {
+        logger.Dispose();
     }
 }

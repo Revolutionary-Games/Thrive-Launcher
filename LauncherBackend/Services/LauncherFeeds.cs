@@ -76,11 +76,6 @@ public class LauncherFeeds : ILauncherFeeds
     }
 }
 
-public interface ILauncherFeeds
-{
-    public Task<(string? Error, List<ParsedLauncherFeedItem>? Items)> FetchFeed(string name, Uri url);
-}
-
 internal class LauncherFeed : IFeed
 {
     public LauncherFeed(string name)

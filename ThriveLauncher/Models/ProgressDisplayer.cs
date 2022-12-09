@@ -90,22 +90,31 @@ public class ProgressDisplayer : IDisposable, IObserver<FilePrepareProgress>
 
     public void Dispose()
     {
-        if (listener != null)
-        {
-            listener.Dispose();
-            listener = null;
-        }
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
 
-        if (parent != null)
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
         {
-            parent.Children.Remove(container);
-            parent = null;
-        }
+            if (listener != null)
+            {
+                listener.Dispose();
+                listener = null;
+            }
 
-        container = null;
-        label = null;
-        progressBar = null;
-        textualProgress = null;
+            if (parent != null)
+            {
+                parent.Children.Remove(container);
+                parent = null;
+            }
+
+            container = null;
+            label = null;
+            progressBar = null;
+            textualProgress = null;
+        }
     }
 
     private void UpdateLabel(FilePrepareProgress progress)

@@ -305,13 +305,15 @@ internal class Program
 
         var configuration = new LoggingConfiguration();
 
-        // TODO: allow configuring the logging level
+        // TODO: allow configuring the logging level (on a more granular level than just with the verbose flag)
         configuration.AddRule(verbose ? NLog.LogLevel.Debug : NLog.LogLevel.Info, NLog.LogLevel.Fatal,
             new ConsoleTarget("console"));
 
         if (Debugger.IsAttached)
+        {
             configuration.AddRule(verbose ? NLog.LogLevel.Trace : NLog.LogLevel.Debug, NLog.LogLevel.Fatal,
                 new DebuggerTarget("debugger"));
+        }
 
         if (fileLogging)
         {

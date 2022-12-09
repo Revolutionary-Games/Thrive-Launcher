@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 /// <summary>
 ///   Allows some modification operations on PE files (Windows executables)
 /// </summary>
-public class PEModifier : IDisposable
+public sealed class PEModifier : IDisposable
 {
     private const int OffsetToPEHeaderLocation = 60;
     private const int OffsetFromPEHeaderToOptionalHeader = 24;

@@ -140,6 +140,7 @@ public class HtmlSummaryParser : IHtmlSummaryParser
 
                         break;
                     }
+
                     case IHtmlUnorderedListElement or IHtmlOrderedListElement:
                         // These are handled in the below case
                         break;
@@ -150,12 +151,14 @@ public class HtmlSummaryParser : IHtmlSummaryParser
                         stringBuilder.Append("- ");
                         break;
                     }
+
                     case IHtmlHrElement:
                     {
                         AddLastTextIfDoesNotEndWithAlready("\n");
                         stringBuilder.Append("---\n");
                         break;
                     }
+
                     case IHtmlParagraphElement or IHtmlHeadingElement or IHtmlBreakRowElement:
                     {
                         if (PendingText)
@@ -165,12 +168,14 @@ public class HtmlSummaryParser : IHtmlSummaryParser
 
                         break;
                     }
+
                     case IHtmlQuoteElement:
                     {
                         AddLastTextIfDoesNotEndWithAlready("> ");
 
                         break;
                     }
+
                     case IHtmlSpanElement or IHtmlDivElement:
                     {
                         if (PendingText)
@@ -178,6 +183,7 @@ public class HtmlSummaryParser : IHtmlSummaryParser
 
                         break;
                     }
+
                     case IHtmlInlineFrameElement iFrame:
                     {
                         FlushTextIfPending();
@@ -196,17 +202,20 @@ public class HtmlSummaryParser : IHtmlSummaryParser
 
                         break;
                     }
+
                     case IHtmlAnchorElement aElement:
                     {
                         HandleAElement(aElement, ref seenLength, length);
                         break;
                     }
+
                     case IHtmlImageElement:
                     {
                         // TODO: image support
                         truncated = true;
                         break;
                     }
+
                     case ISvgElement:
                     {
                         // TODO: svg support
@@ -367,9 +376,4 @@ public class HtmlSummaryParser : IHtmlSummaryParser
 
         currentItem = null;
     }
-}
-
-public interface IHtmlSummaryParser
-{
-    ParsedLauncherFeedItem ParseItem(ParsedFeedItem item);
 }
