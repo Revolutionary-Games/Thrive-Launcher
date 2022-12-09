@@ -125,7 +125,7 @@
     <value>Fan Wiki</value>
   </data>
   <data name="ExternalLinkSubreddit" xml:space="preserve">
-    <value>Subreddit</value>
+    <value>板块</value>
   </data>
   <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
     <value>官方YouTube</value>
@@ -391,5 +391,50 @@
   </data>
   <data name="DownloadingItem" xml:space="preserve">
     <value>正在下载{0}</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+    <value>删除DevBuild压缩缓存文件夹中的所有文件。如果该文件夹不在默认的位置，则可能会删除文件夹中与Thrive无关的文件。</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+    <value>重置缓存位置</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+    <value>缓存大小：</value>
+  </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+    <value>DevBuilds文件缓存：</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+    <value>连接到DevCenter</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+    <value>连接方式：</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>在“特定版本”选项卡中手动选择</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>在这里，您可以将启动器链接到ThriveDevCenter以访问DevBuilds和其他功能</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+    <value>特定版本</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+    <value>链接代码</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>获取链接代码</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+    <value>手动输入哈希值：</value>
+  </data>
+  <data name="LauncherOptionShowAllBetaVersions" xml:space="preserve">
+    <value>显示所有可用的Thrive测试版</value>
+  </data>
+  <data name="LauncherOptionShowLatestBetaVersion" xml:space="preserve">
+    <value>在版本选择器中显示可用的Thrive最新测试版</value>
+  </data>
+  <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
+    <value>如果启动失败，则自动重启Thrive</value>
   </data>
 </root>
