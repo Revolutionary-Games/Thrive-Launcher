@@ -68,7 +68,7 @@
     <value>Імпорт виконано</value>
   </data>
   <data name="ImportSucceededMessage" xml:space="preserve">
-    <value>Попередні налаштування успішно імпортовані</value>
+    <value>Попередні налаштування успішно імпортовані.</value>
   </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
     <value>Налаштування з попередньої версії лаунчера, знайдено. Ви можете імпортувати наявні налаштування, щоб зберегти встановлені версії Thrive та інші кастомізації незмінними. Якщо ви не імпортуєте старі версії Thrive та кеші, вони будуть відкинуті, і лаунчер не знає про них. Імпортування налаштувань є рекомендованим.</value>
@@ -276,5 +276,99 @@
   </data>
   <data name="ClearTemporaryLocation" xml:space="preserve">
     <value>Видалити УСІ файли в тимчасовій папці. Можна видалити навіть не пов'язані з Thrive, якщо такі є!</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+    <value>Збірка Оцього Дня(ЗОД), рекомендовано</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>Вибрано вручну на ''Окрема збірка''</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>Вийти</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>Тут ви можете зв'язати лаунчер з РозробЦентромThrive, щоб мати доступ до DevBuilds та інших функцій</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+    <value>Інструкції на нашій Wiki</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>Отримати код посилання</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+    <value>Останні (багато змінюється випадково, бо це буквально збірка останнього зафіксованого коду)</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+    <value>Під'єднатися</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>Логін</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>Підтвердити</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+    <value>Окрема збірка</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+    <value>Введіть хеш збірки (зафіксований)</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+    <value>Вибрати</value>
+  </data>
+  <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+    <value>Виберіть вручну значення хешу, що буде використано для відтворння під час програвання DevBuild, з поля введення як вибраний DevBuild</value>
+  </data>
+  <data name="FetchLatestBuildsButton" xml:space="preserve">
+    <value>Отримати Останні Збірки</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>Не Вдалося Зберегти Налаштування</value>
+  </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0} MiB</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>Папку не знайдено</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>(розмір: {0})</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>Папка встановлення версії Thrive не існує</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>Вихідний Код Лаунчеру</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>Побачити Ліцензії Лаунчену</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Лаунчер Thrive</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Ліцензії Лаунчеру Thrive</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>Лаунчер використовує шрифт Roboto, ліцензія Roboto:</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>Неможливо відобразити канал. {0}</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+    <value>Видаліть усі файли в DevBuild дегідрованого кешу. Якщо не за замовчуванням, то у папці можуть існувати файли не пов'язані з Thrive, які будуть видалені.</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+    <value>Код посилання</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+    <value>Вручну введений хеш:</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>Не вдалося зберегти налаштування у файл налаштувань. Будь-ласка, перевірте лаунчер має доступ для зппису, і повторіть спробу.
+У журналах лаунчеру можна знайти більше інформації.</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf (Авторське права (с) 2010-2011 від tyПольща Лукаш Джєджіц із Зарезвованою Назвою Шрифта"Lato"), ліцензія OFL:</value>
   </data>
 </root>
