@@ -570,7 +570,7 @@
     <value>E-posta (isteğe bağlı)</value>
   </data>
   <data name="LauncherVersionUpdateDescription" xml:space="preserve">
-    <value>Başlatıcı {0} sürümüne güncelleniyor (şu anki sürüm: {1})</value>
+    <value>Başlatıcı, {0} sürümüne güncelleniyor (şu anki sürüm: {1})</value>
   </data>
   <data name="ReportSubmitErrorServerError" xml:space="preserve">
     <value>Sunucu kaynaklı bir sorundan dolayı rapor gönderme işlemi başarısız oldu. Lütfen biraz bekle ve daha sonra tekrar dene. Eğer sorun devam ederse, lütfen bize bildir.</value>
@@ -800,7 +800,7 @@ Eğer aşağıda hiçbir dosya listelenmiyorsa, güncellemeyi indirme işlemi ba
     <value>Başlatıcı Güncelleniyor</value>
   </data>
   <data name="StartedAutoUpdateExplanation" xml:space="preserve">
-    <value>Başlatıcı, şu an da bir güncellemeyi indiriyor ve kuruyor, lütfen bekle. İndirilen güncelleyici, güncellemeyi tamamlamak için kullanıcı etkileşimi gerektiren yeni bir pencere açabilir.</value>
+    <value>Başlatıcı, şu anda bir güncellemeyi indiriyor ve kuruyor, lütfen bekle. İndirilen güncelleyici, güncellemeyi tamamlamak için kullanıcı etkileşimi gerektiren yeni bir pencere açabilir.</value>
   </data>
   <data name="AutoUpdateMissingChannel" xml:space="preserve">
     <value>Bu başlatıcı türü, ilişkili bir güncelleme kanal tipine sahip olmadığı için bir güncelleme tekrar denenemiyor</value>
