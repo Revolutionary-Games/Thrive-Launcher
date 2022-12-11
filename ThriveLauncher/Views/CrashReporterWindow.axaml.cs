@@ -15,6 +15,9 @@ using ReactiveUI;
 using Services.Localization;
 using ViewModels;
 
+/// <summary>
+///   The crash reporter window
+/// </summary>
 public partial class CrashReporterWindow : Window
 {
     private readonly Dictionary<string, CheckBox> fileSelectionCheckBoxes = new();

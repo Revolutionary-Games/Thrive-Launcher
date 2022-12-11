@@ -8,7 +8,7 @@ public static class TextUtilities
     ///   Converts line separators from <c>\n</c> to platform specific ones, while avoiding duplicating existing line
     ///   separators.
     /// </summary>
-    /// <param name="stringBuilder"></param>
+    /// <param name="stringBuilder">The string builder to process</param>
     public static void MakeLineSeparatorsPlatformSpecific(this StringBuilder stringBuilder)
     {
         stringBuilder.Replace("\n", Environment.NewLine);

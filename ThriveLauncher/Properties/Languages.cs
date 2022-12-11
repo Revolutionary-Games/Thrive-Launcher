@@ -56,8 +56,8 @@ public static class Languages
     /// <summary>
     ///   Detects the culture that should be shown as active (falls back to english)
     /// </summary>
-    /// <param name="availableCultures"></param>
-    /// <returns></returns>
+    /// <param name="availableCultures">The culture list to get the closest match</param>
+    /// <returns>The culture match (or default) that is found in the cultures</returns>
     public static CultureInfo GetCurrentlyUsedCulture(Dictionary<string, CultureInfo> availableCultures)
     {
         return GetMatchingCultureOrDefault(CultureInfo.DefaultThreadCurrentUICulture ?? CultureInfo.CurrentUICulture,
