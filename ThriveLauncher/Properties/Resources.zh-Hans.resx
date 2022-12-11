@@ -437,4 +437,67 @@
   <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
     <value>如果启动失败，则自动重启Thrive</value>
   </data>
+  <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
+    <value>电子邮箱（可选）</value>
+  </data>
+  <data name="CrashReportEmailFieldNotice" xml:space="preserve">
+    <value>您的电子邮箱仅对ThriveDevCenter管理员可见。</value>
+  </data>
+  <data name="ReportSubmitErrorTooManyRequests" xml:space="preserve">
+    <value>由于来自您的IP地址最近的请求太多，提交报告失败，请等待一小时，然后重试</value>
+  </data>
+  <data name="CrashReportDeleteAfterSubmitting" xml:space="preserve">
+    <value>报告后删除此崩溃文件（推荐）</value>
+  </data>
+  <data name="SelectCrashToReport" xml:space="preserve">
+    <value>单击名称选择要报告的崩溃文件</value>
+  </data>
+  <data name="QuitLauncherButton" xml:space="preserve">
+    <value>立即退出启动器</value>
+  </data>
+  <data name="PerformingAutoUpdateTitle" xml:space="preserve">
+    <value>更新启动器</value>
+  </data>
+  <data name="ReportSubmitErrorNetworkError" xml:space="preserve">
+    <value>由于网络问题，提交报告失败，请检查您的internet连接，几分钟后重试</value>
+  </data>
+  <data name="RetryingAutoUpdate" xml:space="preserve">
+    <value>正在重试自动更新……</value>
+  </data>
+  <data name="AutoUpdateError" xml:space="preserve">
+    <value>自动更新错误</value>
+  </data>
+  <data name="LauncherVersionUpdateDescription" xml:space="preserve">
+    <value>将启动器更新到版本 {0} (current version: {1})</value>
+  </data>
+  <data name="AutoUpdateRetryFailed" xml:space="preserve">
+    <value>自动更新失败。您可以忽略此错误以清除现有自动更新文件，以使启动器在下次启动时重试。</value>
+  </data>
+  <data name="IgnoreFailure" xml:space="preserve">
+    <value>忽略错误</value>
+  </data>
+  <data name="ThriveRunRetryStarting" xml:space="preserve">
+    <value>未检测到Thrive正确启动。将尝试再次启动Thrive，尝试次数：{0}</value>
+  </data>
+  <data name="CannotSubmitExceptionReportYet" xml:space="preserve">
+    <value>崩溃报告程序尚不支持上传未处理过的异常导致的崩溃。请使用下面的复制按钮将报告复制到剪贴板，然后手动将报告发送给我们。</value>
+  </data>
+  <data name="AutoUpdateFailedTitle" xml:space="preserve">
+    <value>启动器更新失败</value>
+  </data>
+  <data name="RequiresLatestBetaShowingEnabled" xml:space="preserve">
+    <value>启用最新测试版选项后，才能启用此选项</value>
+  </data>
+  <data name="AutoUpdateSucceededMessage" xml:space="preserve">
+    <value>自动更新程序已启动，您将很快看到更新程序弹出的新窗口。必须关闭启动器才能完成更新。您可以手动关闭或等待自动关闭启动器</value>
+  </data>
+  <data name="ReportSubmitErrorUnknown" xml:space="preserve">
+    <value>由于未知错误，提交报告失败，请稍后重试</value>
+  </data>
+  <data name="ReportSubmitErrorBadRequest" xml:space="preserve">
+    <value>由于报告表单中输入了错误信息，提交报告失败，请仔细检查您尝试提交的信息，然后重试</value>
+  </data>
+  <data name="ReportSubmitErrorServerError" xml:space="preserve">
+    <value>由于服务器问题，提交报告失败，请等待一段时间，然后重试。如果问题仍然存在，请告知我们。</value>
+  </data>
 </root>
