@@ -165,9 +165,8 @@ public class ProgressDisplayer : IDisposable, IObserver<FilePrepareProgress>
 
             var maxValue = progress.FinishedProgress?.BytesToMiB(2, false) ?? Resources.UnknownNumber;
 
-            // TODO: showing consistently 2 decimal places would make this nicer to read
             textualProgress!.Text = string.Format(Resources.DownloadProgressDisplay,
-                progress.CurrentProgress.Value.BytesToMiB(2, false), maxValue);
+                progress.CurrentProgress.Value.BytesToMiB(2, false, true), maxValue);
         }
         else if (progress.CurrentStep == FilePrepareStep.Processing && progress.CurrentProgress != null)
         {
