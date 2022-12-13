@@ -133,4 +133,103 @@
   <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
     <value>ThriveDevCenter</value>
   </data>
+  <data name="ExternalLinkThriveSteam" xml:space="preserve">
+    <value>Thrive pe Steam</value>
+  </data>
+  <data name="ExternalLinkThriveItch" xml:space="preserve">
+    <value>Thrive pe itch.io</value>
+  </data>
+  <data name="ExternalLinkThriveGithub" xml:space="preserve">
+    <value>Thrive pe Github</value>
+  </data>
+  <data name="ExternalLinkLauncherGithub" xml:space="preserve">
+    <value>Launcher pe Github</value>
+  </data>
+  <data name="ExternalLinkFanWiki" xml:space="preserve">
+    <value>Wikia Fanilor</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+    <value>Server Discord</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+    <value>Subreddit</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+    <value>Canal YouTube</value>
+  </data>
+  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
+    <value>Feed Twitter</value>
+  </data>
+  <data name="ExternalLinkFacebookPage" xml:space="preserve">
+    <value>Pagina Facebook</value>
+  </data>
+  <data name="ThriveOptions" xml:space="preserve">
+    <value>Opțiuni Pentru Thrive</value>
+  </data>
+  <data name="InstalledVersions" xml:space="preserve">
+    <value>Versiuni Instalate</value>
+  </data>
+  <data name="CacheConfigurationTab" xml:space="preserve">
+    <value>Cache</value>
+  </data>
+  <data name="LaunchOptionsTitle" xml:space="preserve">
+    <value>Opțiuni De Launch</value>
+  </data>
+  <data name="LaunchOptionForceGLES2" xml:space="preserve">
+    <value>Forțează mod de rendare GLES2 (poate face ca Thrive să funcționeze, dar poate cauza probleme grafice)</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>Ascunde versiuni 32-bit dacă o versiune corespunzătoare 64-bit există</value>
+  </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>Ascunde Launcher-ul Când Jucați</value>
+  </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>Închide launcher-ul după ce ați pornit jocul</value>
+  </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+    <value>Permite modul Seamless Launcher (launcher-ul nu apare înainte ca Thrive să înceapă)</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>Apdatați launcher-ul automat</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>Resetează Toate Setările</value>
+  </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>Selectați Locația Instalării</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>Resetează Locația Instalații</value>
+  </data>
+  <data name="FolderPathDisplay" xml:space="preserve">
+    <value>Director:</value>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+    <value>Conținuturi:</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+    <value>Folderul e gol</value>
+  </data>
+  <data name="LauncherOptions" xml:space="preserve">
+    <value>Opțiuni Pentru Launcher</value>
+  </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+    <value>Dezactivați toate video-urile din joc (dacă Thrive crash-ează după ce arată logo-ul de încărcare și după video-ul de intro, asta va putea face ca jocul să funcționeze)</value>
+  </data>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+    <value>Versiunea Launcher-ului:</value>
+  </data>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+    <value>Activează Feed-uri</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>Închide launcher-ul după ce ați jucat (dacă nu sunt erori)</value>
+  </data>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+    <value>Navigați File Instalate</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+    <value>Folder pentru downloaduri temporare:</value>
+  </data>
 </root>
