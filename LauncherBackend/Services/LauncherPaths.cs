@@ -98,10 +98,15 @@ public class LauncherPaths : ILauncherPaths
         if (!string.IsNullOrWhiteSpace(folder) && folder != "/")
             return folder;
 
-        // Older macs seem to mostly be in need of this fallback
+        // Older macs (Intel based) seem to mostly be in need of this fallback
         if (OperatingSystem.IsMacOS())
         {
-            return Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Library",
+            if (specialFolder == Environment.SpecialFolder.UserProfile)
+            {
+                return $"/Users/{Environment.UserName}";
+            }
+
+            return Path.Join(GetEnvironmentFolderOrFallback(Environment.SpecialFolder.UserProfile), "Library",
                 "Application Support");
         }
 
@@ -150,7 +155,7 @@ public class LauncherPaths : ILauncherPaths
         }
         else
         {
-            path = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            path = Path.Join(GetEnvironmentFolderOrFallback(Environment.SpecialFolder.ApplicationData),
                 LauncherConfigFolderName);
         }
 
@@ -195,7 +200,7 @@ public class LauncherPaths : ILauncherPaths
         }
         else if (OperatingSystem.IsMacOS())
         {
-            path = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Library",
+            path = Path.Join(GetEnvironmentFolderOrFallback(Environment.SpecialFolder.UserProfile), "Library",
                 "Application Support");
         }
         else
