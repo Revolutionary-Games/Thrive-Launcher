@@ -100,4 +100,13 @@
   <data name="LauncherOptionHide32Bit" xml:space="preserve">
     <value>Verstecke 32-Bit Versionen, wenn gleichwertige 64-Bit Versionen vorhanden sind</value>
   </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+    <value>Schnellstart-Modus (Starter nicht angezeigen vor dem Starten des eigentlichen Spiels)</value>
+  </data>
+  <data name="ForgetLastPlayedVersion" xml:space="preserve">
+    <value>Zuletzt gespielte Version vergessen</value>
+  </data>
+  <data name="ForgetLastPlayedVersionToolTip" xml:space="preserve">
+    <value>Vergisst welche Version zuletzt gespielt wurde; kann helfen den Schnellstart-Modus wieder zum Laufen zu bringen.</value>
+  </data>
 </root>
