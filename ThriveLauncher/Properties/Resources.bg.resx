@@ -62,7 +62,7 @@
     <value>Здравей,</value>
   </data>
   <data name="ExternalLinkPatreon" xml:space="preserve">
-    <value>„Patreon“</value>
+    <value>Страница в „Patreon“</value>
   </data>
   <data name="DevelopmentFeedTitle" xml:space="preserve">
     <value>ЧАСТЕН ФОРУМ</value>
@@ -171,5 +171,269 @@
   </data>
   <data name="LauncherSourceCodeButton" xml:space="preserve">
     <value>Изходен код</value>
+  </data>
+  <data name="ForgetLastPlayedVersion" xml:space="preserve">
+    <value>Забравяне на последната стартирана версия</value>
+  </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>Намерени са настройки от по-стара версия на стартиращата програма. Препоръчително е да ги импортирате. Ако не го направите, настройките, старите версии на „Thrive“ и запазеният кеш ще бъдат изтрити.</value>
+  </data>
+  <data name="SettingsImportOldTitle" xml:space="preserve">
+    <value>Импортиране на предишните настройки?</value>
+  </data>
+  <data name="ImportFailedTitle" xml:space="preserve">
+    <value>Импортирането е неуспешно</value>
+  </data>
+  <data name="ImportSucceededTitle" xml:space="preserve">
+    <value>Импортирането е успешно</value>
+  </data>
+  <data name="ImportSucceededMessage" xml:space="preserve">
+    <value>Импортирането на старите настройки е успешно.</value>
+  </data>
+  <data name="PlayButton" xml:space="preserve">
+    <value>Старт</value>
+  </data>
+  <data name="ConnectToDevCenterPrompt" xml:space="preserve">
+    <value>Свързване с Центъра за разработка</value>
+  </data>
+  <data name="WebContentIsDisabled" xml:space="preserve">
+    <value>Уеб съдържанието е изключено</value>
+  </data>
+  <data name="LinksPopupTitle" xml:space="preserve">
+    <value>Връзки на „Revolutionary Games“</value>
+  </data>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+    <value>Официален сайт</value>
+  </data>
+  <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
+    <value>Частен форум</value>
+  </data>
+  <data name="ExternalLinkCommunityForums" xml:space="preserve">
+    <value>Обществен форум</value>
+  </data>
+  <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
+    <value>Частна Уикипедия</value>
+  </data>
+  <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
+    <value>Център за разработка на „Thrive“</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+    <value>Страница за дарения</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+    <value>Сървър в „Discord“</value>
+  </data>
+  <data name="ExternalLinkFanWiki" xml:space="preserve">
+    <value>Обществена Уикипедия</value>
+  </data>
+  <data name="ExternalLinkLauncherGithub" xml:space="preserve">
+    <value>Стартиращата програма в „Github“</value>
+  </data>
+  <data name="ExternalLinkThriveSteam" xml:space="preserve">
+    <value>„Thrive“ в „Steam“</value>
+  </data>
+  <data name="ExternalLinkThriveItch" xml:space="preserve">
+    <value>„Thrive“ в „itch.io“</value>
+  </data>
+  <data name="ExternalLinkThriveGithub" xml:space="preserve">
+    <value>„Thrive“ в „Github“</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+    <value>Канал в „YouTube“</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+    <value>Общност в „Reddit“</value>
+  </data>
+  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
+    <value>Страница в „Twitter“</value>
+  </data>
+  <data name="ExternalLinkFacebookPage" xml:space="preserve">
+    <value>Страница в „Facebook“</value>
+  </data>
+  <data name="ThriveOptions" xml:space="preserve">
+    <value>Настройки на играта</value>
+  </data>
+  <data name="LauncherOptions" xml:space="preserve">
+    <value>Настройки на стартиращата програма</value>
+  </data>
+  <data name="LaunchOptionsTitle" xml:space="preserve">
+    <value>При стартиране</value>
+  </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+    <value>Принудително изключване на видеоклиповете</value>
+  </data>
+  <data name="LaunchOptionForceGLES2" xml:space="preserve">
+    <value>Принудително изпълнение с GLES2</value>
+  </data>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+    <value>Включване на уеб съдържанието</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>Нулиране на всичко</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>Нулиране на местоположението</value>
+  </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>Скриване на стартиращата програма след започване на играта</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>Скриване на стартиращата програма след излизане от играта (ако няма грешки)</value>
+  </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>Скриване на стартиращата програма след натискане на бутона „Старт“</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>Автоматично обновяване на стартиращата програма</value>
+  </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+    <value>Включване на плавен режим (стартиращата програма е скрита преди започване на играта)</value>
+  </data>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+    <value>Отваряне на местоположението</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>Нулиране на местоположението</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+    <value>Нулиране на местоположението</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+    <value>Свързване с Центъра за разработка</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+    <value>Свързани сте като:</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>Излизане</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+    <value>Дневна версия (препоръчително)</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>Влизане</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+    <value>Конкретна версия</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>Запазването на настройките е неуспешно</value>
+  </data>
+  <data name="FetchLatestBuildsButton" xml:space="preserve">
+    <value>Извличане на последните версии</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>Лицензи на стартиращата програма</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Лицензи на стартиращата програма</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Стартираща програма на „Thrive“</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>Дневници</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>Създаването на папката с дневниците е неуспешно({0}): {1}</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Натиснете тук</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>за да прочетете цялата публикация.</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} за {1}</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>Преместване на съществуващите версии?</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>Преместване на съществуващите файлове?</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Преместване</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Пропускане</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Изтриване</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отказ</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>Изтриването е неуспешно</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>Изтриване на временните файлове?</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>Това е последната версия</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>Свързването към Центъра за разработка на „Thrive“ е неуспешно</value>
+  </data>
+  <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
+    <value>Дневна версия</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>несигурна</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>Затваряне</value>
+  </data>
+  <data name="DownloadError" xml:space="preserve">
+    <value>Изтеглянето е неуспешно поради {0}</value>
+  </data>
+  <data name="ExtractError" xml:space="preserve">
+    <value>Разархивирането на архива е неуспешно поради следната грешка: {0}</value>
+  </data>
+  <data name="DownloadProgressDisplay" xml:space="preserve">
+    <value>Изтеглени са {0} от {1} МиБ</value>
+  </data>
+  <data name="UnknownNumber" xml:space="preserve">
+    <value>неизвестно</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Изпращане</value>
+  </data>
+  <data name="SubmitRetryButton" xml:space="preserve">
+    <value>Повтаряне</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Копиране в клипборда</value>
+  </data>
+  <data name="TimeMomentRightNow" xml:space="preserve">
+    <value>Сега</value>
+  </data>
+  <data name="AtTime" xml:space="preserve">
+    <value>В {0}</value>
+  </data>
+  <data name="ViewFile" xml:space="preserve">
+    <value>Преглед</value>
+  </data>
+  <data name="IncludeInReport" xml:space="preserve">
+    <value>Включва:</value>
+  </data>
+  <data name="PerformingAutoUpdateTitle" xml:space="preserve">
+    <value>Обновяване на стартиращата програма</value>
+  </data>
+  <data name="LauncherVersionUpdateDescription" xml:space="preserve">
+    <value>Обновяване на стартиращата програма от версия {1} към {0}</value>
+  </data>
+  <data name="IgnoreFailure" xml:space="preserve">
+    <value>Игнориране</value>
+  </data>
+  <data name="AutoUpdateFailedTitle" xml:space="preserve">
+    <value>Обновяването на стартиращата програма е неуспешно</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>Импортирането на старите настройки е неуспешно. Моля, проверете дали стартиращата програма има разрешение за четене и записване в папката с настройките, рестартирайте програмата и опитайте отново.</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>Скриване на 32-битовите версии при наличие на 64-битова архитектура</value>
   </data>
 </root>
