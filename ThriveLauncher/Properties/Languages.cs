@@ -73,6 +73,16 @@ public static class Languages
                 return culture;
         }
 
+        // If no full match is possible, match the first 2 characters
+        var firstCharacters = cultureToMatch.Name.Split("-")[0];
+
+        foreach (var culture in availableCultures.Values)
+        {
+            // This is probably good enough matching here. This is not split to save a bit on computation here
+            if (culture.Name.StartsWith(firstCharacters))
+                return culture;
+        }
+
         return DefaultLanguage;
     }
 
