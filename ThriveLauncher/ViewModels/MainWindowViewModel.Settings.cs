@@ -140,10 +140,18 @@ public partial class MainWindowViewModel
             // When setting the user's default language, use null
             string? languageToSave = value;
             if (languagePlaceHolderIfNotSelected == value)
+            {
+                logger.LogDebug("Replacing default language value with null");
                 languageToSave = null;
+            }
 
             if (Settings.SelectedLauncherLanguage == languageToSave)
+            {
+                logger.LogDebug("Language changed to language that is currently set, ignoring");
                 return;
+            }
+
+            logger.LogInformation("Launcher language is changing to: {Value}", value);
 
             this.RaisePropertyChanging();
             Settings.SelectedLauncherLanguage = languageToSave;

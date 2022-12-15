@@ -160,6 +160,8 @@ internal class Program
         if (options.Verbose == true)
             programLogger.LogDebug("Verbose logging is enabled");
 
+        programLogger.LogDebug("Startup culture is: {StartupLanguage}", Languages.GetStartupLanguage());
+
         programLogger.LogDebug("Loading settings");
         var settingsManager = services.GetRequiredService<ILauncherSettingsManager>();
         var settings = settingsManager.Settings;
@@ -172,6 +174,8 @@ internal class Program
             // Command line language overrides launcher configured language
             if (string.IsNullOrEmpty(language) || !string.IsNullOrEmpty(options.Language))
             {
+                programLogger.LogInformation("Using command line defined language: {Language}", options.Language);
+
                 try
                 {
                     language = new CultureInfo(options.Language!).NativeName;
@@ -194,6 +198,17 @@ internal class Program
                 programLogger.LogInformation("Available languages: {Languages}",
                     Languages.GetLanguagesEnumerable().Select(l => l.Name));
             }
+        }
+        else
+        {
+            var availableCultures = Languages.GetAvailableLanguages();
+            var currentlyUsed = Languages.GetCurrentlyUsedCulture(availableCultures);
+
+            programLogger.LogInformation(
+                "No language selected, making sure default is applied. Detected default language: {Name}",
+                currentlyUsed.Name);
+
+            Languages.SetLanguage(currentlyUsed);
         }
 
         programLogger.LogInformation("Launcher language is: {CurrentCulture}", CultureInfo.CurrentCulture);

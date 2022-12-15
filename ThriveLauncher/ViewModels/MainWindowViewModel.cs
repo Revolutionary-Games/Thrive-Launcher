@@ -93,6 +93,13 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
         languagePlaceHolderIfNotSelected = Languages
             .GetMatchingCultureOrDefault(Languages.GetStartupLanguage(), availableLanguages).NativeName;
 
+        if (allowTaskStarts)
+        {
+            logger.LogDebug(
+                "Stored language placeholder based on startup language to be: {LanguagePlaceHolderIfNotSelected}",
+                languagePlaceHolderIfNotSelected);
+        }
+
         showSettingsUpgrade = settingsManager.V1Settings != null;
 
         detectedStore = storeInfo.Detect();
