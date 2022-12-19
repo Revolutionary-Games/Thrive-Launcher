@@ -232,4 +232,100 @@
   <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
     <value>Folder pentru downloaduri temporare:</value>
   </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>Notă: mutarea locației temporară nu va șterge sau muta alte file ca să nu atingă file fără legătură cu Thrive</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>Selectați Locația Temporară a Filelor</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>Resetați Locația Temporară a Filelor</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>Ștergeți</value>
+  </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+    <value>Cache-ul filelor DevBuild:</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+    <value>Alegeți Locația Cache-ului</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+    <value>Resetați Locația Cache-ului</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+    <value>Mărimea Cache-ului:</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+    <value>Conexiune DevCenter</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+    <value>Informație</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>Sunteți un dezvoltator</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>Vă mulțumim pentru suport!</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+    <value>Ultima (se schimbă repede pentru că e literalmente ultima versiune de la ultimul commit de cod)</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>Selectat manual în tab-ul "Versiune Specifică"</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>De-logați-vă</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+    <value>Instrucțiuni pe Wiki-ul nostru</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>Primiți un cod pentru link</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+    <value>Cod pentru link</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+    <value>Conectați-vă</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>Logați-vă</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>Acceptați</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+    <value>Versiune Specifică</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+    <value>Selectați</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>Salvarea Setărilor a Eșuat</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>Ștergeți TOATE filele în folderul temporar. Poate și șterge file fără legătură cu Thrive!</value>
+  </data>
+  <data name="FetchLatestBuildsButton" xml:space="preserve">
+    <value>Găsește Ultimele Versiuni</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+    <value>Ștergeți toate filele din folderul cache deshidratat DevBuild. Dacă locația nu este default, vor putea exista file fără legătură cu Thrive, care vor fi șterse împreună cu restul filelor.</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>Aicea puteți să atașați launcher-ul cu ThriveDevCenter-ul pentru a accesa DevBuild-uri și alte chestii</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+    <value>Conectat ca:</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>Salvarea setărilor în filele de setări a eșuat</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+    <value>Versiunea Zilei (BOTD) recomandată</value>
+  </data>
 </root>
