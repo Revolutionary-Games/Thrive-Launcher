@@ -140,7 +140,7 @@
     <value>Сервер Discord</value>
   </data>
   <data name="ExternalLinkSubreddit" xml:space="preserve">
-    <value>Subreddit</value>
+    <value>Наш Subreddit</value>
   </data>
   <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
     <value>YouTube канал</value>
@@ -203,7 +203,7 @@
     <value>Скинути Тимчасове Розміщення Файлів</value>
   </data>
   <data name="DevBuildsCachePathDisplay" xml:space="preserve">
-    <value>Кеш DevBuilds файлів</value>
+    <value>Кеш DevBuilds файлів:</value>
   </data>
   <data name="ClearFolder" xml:space="preserve">
     <value>Очистити</value>
@@ -233,7 +233,7 @@
     <value>Ви розробник</value>
   </data>
   <data name="YouAreASupporter" xml:space="preserve">
-    <value>Дякуємо</value>
+    <value>Дякуємо за вашу підтримку!</value>
   </data>
   <data name="DevelopmentFeedTitle" xml:space="preserve">
     <value>Розробницький форум</value>
@@ -335,7 +335,7 @@
     <value>(розмір: {0})</value>
   </data>
   <data name="ThriveInstallFolderNotFound" xml:space="preserve">
-    <value>Папка встановлення версії Thrive не існує</value>
+    <value>Папка встановлення версії Thrive не існує.</value>
   </data>
   <data name="LauncherSourceCodeButton" xml:space="preserve">
     <value>Вихідний Код Лаунчеру</value>
@@ -370,5 +370,71 @@
   </data>
   <data name="LatoLicenseTitle" xml:space="preserve">
     <value>Lato.ttf (Авторське права (с) 2010-2011 від tyПольща Лукаш Джєджіц із Зарезвованою Назвою Шрифта"Lato"), ліцензія OFL:</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>запощено {0} {1}</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Клікніть сюди</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>прочитати цілий пост.</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>Не вдалося створити папку журналів ({0}): {1}</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>Переглянути журнали</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>Термін дії минув для всіх сертифікатів</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>{0} версія</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} для {1}</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>Завантаження...</value>
+  </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>Помилка Отримання Доступних Thrive Версій</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Повторити</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Невідома помилка</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>Використовувати Інформацію Кешованої Версії</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0} (Остання)</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>Перемістити Наявні Версії?</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>Термін дії всіх сертифікати з підтвердженим підписом, з якими надається цей лаунчер, закінчився. А це означає, що ця версія лаунчеру вкрай застаріла. Будь-ласка завантажте та встановіть новішу версію.</value>
+  </data>
+  <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
+    <value>Лаунчер Thrive завантажує доступні версії Thrive з інтернету, щоб знати котрі є такими. Не вдалось завантажити інформацію(дивіться помилку нижче). Ви можете повторити завантаження цієї інформації, або якщо лаунчер раніше міг завантажити цю інформацію, то ви можете завантажити кешову копію. Якщо кешова копія дуже стара, то вона не має показувати усі доступні версії Thrive. Проте якщо ваша версія лаунчеру дуже стара, це можу бути несумісною з новим форматом даних, і її потрібно оновити, перш ніж ви зможете завантажити дані.</value>
+  </data>
+  <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
+    <value>Завантажена інформація лаунчеру Thrive недійсна. Будь-ласка повторіть спробу за короткий час, та якщо проблема не зникне спробуйте зв'язатися з нами.</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>Сумісних версій Thrive не знайдено</value>
+  </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>Лаунчер не може знайти жодної версії Thrive для поточної платформи. Якщо ви використовуєте незрозумілу операційну систему, то це звична річ. В іншому випадку повідомте про це, як про проблему.</value>
+  </data>
+  <data name="MoveVersionsExplanation" xml:space="preserve">
+    <value>Встановлені версії Thrive були виявлені на попередній дорозі. Їх можна автоматично перенести на нове місце. Якщо не перемістити файли, то вони залишаться ззаду, та лаунчер не побачить їх, допоки попередня дорога не буде знову обрана місцем встановленням. Ви бажаєте автоматично перемістити ці файли на нове місце?</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>Перемістити Наявні Файли?</value>
   </data>
 </root>
