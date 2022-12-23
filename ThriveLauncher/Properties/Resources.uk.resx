@@ -341,7 +341,7 @@
     <value>Вихідний Код Лаунчеру</value>
   </data>
   <data name="ViewLicensesButton" xml:space="preserve">
-    <value>Побачити Ліцензії Лаунчену</value>
+    <value>Побачити ліцензії лаунчеру</value>
   </data>
   <data name="MainWindowTitle" xml:space="preserve">
     <value>Лаунчер Thrive</value>
@@ -436,5 +436,80 @@
   </data>
   <data name="MoveFilesTitle" xml:space="preserve">
     <value>Перемістити Наявні Файли?</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>Внутрішня помилка</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>У лаунчері сталася внутрішня помилка. Будь ласка, залиште відгук про цю проблему та запровадьте файли журналу разом з детальним описом виникнення проблеми.</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Перемістити</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Пропустити</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Скасувати</value>
+  </data>
+  <data name="DeleteErrorExplanation" xml:space="preserve">
+    <value>Не вдалося видалити дані за наступним шляхом: "{0}" через: {1}</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>Невідомий каталог:</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>Видалити тимчасові файли?</value>
+  </data>
+  <data name="ClearTemporaryFilesCount" xml:space="preserve">
+    <value>Буде видалено {0} файлів/каталогів</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>Видалити кеш Dev-збірок?</value>
+  </data>
+  <data name="ClearDehydratedFilesCount" xml:space="preserve">
+    <value>Буде видалено {0} файлів</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>Це актуальна версія</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>Ви користуєтеся версією {0} лаунчеру Thrive, але останньою версією є {1}</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>Відвідати сторінку завантажень</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>Ця версія лаунчеру не є актуальною</value>
+  </data>
+  <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
+    <value>Знайдено наявні об'єкти в кеші. Їх можна автоматично перемістити до нового місця. Якщо їх не перемістити, лаунчер не знатиме про їх існування, доки попередній шлях знов не буде вказаний. Чи бажаєте Ви автоматично перемістити {0} файл(и) до нового місця? Файли, що не відносяться до Thrive, також будуть переміщені.</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>Видалення не вдалося</value>
+  </data>
+  <data name="DeleteErrorDoesNotExist" xml:space="preserve">
+    <value>Видалення не вдалося, тому що вказаний шлях не існує</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
+    <value>Буде видалено всі файли, що містяться у тимчасовому каталозі за шляхом "{0}". Навіть файли, що не відносяться до Thrive, також будуть видалені у разі, якщо існують у вищеозначеному каталозі. Видалити тимчасовий каталог?</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>Буде видалено всі файли, що містяться у каталозі стиснутого кешу за шляхом "{0}". Навіть файли, що не відносяться до Thrive, також будуть видалені у разі, якщо існують у вищеозначеному каталозі. Видалити зміст каталогу?</value>
+  </data>
+  <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
+    <value>Цей код завершення може значити, що системі бракує необхідного DLL-файлу. Він може бути у середі Visual C++ Redistributable 2019, встановлювач якої можна завантажити з: https://aka.ms/vs/17/release/vc_redist.x64.exe, щоб установити або відновити її. Ви також можете спробувати запустити Thrive.exe власноруч, оскільки це може показати повідомлення про помилку, де буде вказане ім'я зниклого DLL-файлу. Вам також слід перевірити, чи всі оновлення Windows установлені. Якщо це не допоможе, будь ласка, зверніться до нас за додатковою допомогою.</value>
+  </data>
+  <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
+    <value>Якщо гра не запустилася коректно, спробуйте допоміжні налаштування запуску в секції "Налаштування Thrive" у налаштування лаунчеру</value>
+  </data>
+  <data name="OutdatedLauncherExplanation" xml:space="preserve">
+    <value>Ця версія лаунчеру є застарілою та повинна бути оновлена. Оскільки Ви бачите це повідомлення, це означає, що автооновлення не запустилося, тож Вам буде потрібно власноруч завантажити та встановити оновлення. Ви можете продовжити користуватися поточною версією лаунчеру, пропустивши оновлення, але це може призвести до неочікуваних наслідків, оскільки лише остання версія лаунчеру гарантовано працюватиме з видаленими системами, з якими взаємодіє лаунчер.</value>
+  </data>
+  <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
+    <value>Ви користуєтеся типом лаунчеру, який не може автооновлюватися. Якщо вам знадобляться автооновлення у майбутньому, будь ласка, встановіть варіант лаунчеру з можливістю автооновлення.</value>
   </data>
 </root>
