@@ -533,4 +533,52 @@
   <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
     <value>Під'єднання до РозробЦентру невдале. РозробЦентр відповів невідомою помилкою, або це ми зіткнулися з помилою під час обробки вашої. Будь-ласка спробуйте знову, але пізніше, і якщо проблема не зникне, то повідомте нам. Ви можете перевірити посилання нижче, аби побачити чи все виглядає чудово з боку РозробЦентру.</value>
   </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>Роз'єднатися</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>Перез'єднатися</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>Код вірний. Будь ласка, підтвердить зв'язування з наступним акаунтом:</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>Ім'я користувача:</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="LoginToSeeThisContent" xml:space="preserve">
+    <value>Увійдіть до DevCenter, щоб побачити цей контент</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>небезпечно</value>
+  </data>
+  <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
+    <value>Збірка дня</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>опис:</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>Неможливо грати у Thrive</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>Будь ласка, оберіть версію Thrive зі спадного меню біля кнопки запуску та спробуйте знову</value>
+  </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>Перевірити токени у DevCenter</value>
+  </data>
+  <data name="EnterDevCenterConnectionCode" xml:space="preserve">
+    <value>Будь ласка, спочатку введіть код з'єднання з DevCenter у поле вводу</value>
+  </data>
+  <data name="DevCenterConnectAttemptError" xml:space="preserve">
+    <value>Помилка при перевірянні зв'язувального коду для DevCenter. Будь ласка, перевірте, чи є код введеним коректно та, чи його термін дії не є вичерпаним. Додаткова інформація: {0}</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>Не вдалося створити зв'язок, будь ласка, перевірте код знову</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thrive уже запущено, будь ласка, закрийте її та спробуйте знову</value>
+  </data>
 </root>
