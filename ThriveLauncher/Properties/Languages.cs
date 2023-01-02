@@ -28,6 +28,7 @@ public static class Languages
     {
         "de-DE",
         "fr-FR",
+        "it-IT",
         "pl-PL",
         "pt-BR",
         "ro-RO",
