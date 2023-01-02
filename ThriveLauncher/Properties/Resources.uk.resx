@@ -140,7 +140,7 @@
     <value>Сервер Discord</value>
   </data>
   <data name="ExternalLinkSubreddit" xml:space="preserve">
-    <value>Subreddit</value>
+    <value>Наш Subreddit</value>
   </data>
   <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
     <value>YouTube канал</value>
@@ -203,7 +203,7 @@
     <value>Скинути Тимчасове Розміщення Файлів</value>
   </data>
   <data name="DevBuildsCachePathDisplay" xml:space="preserve">
-    <value>Кеш DevBuilds файлів</value>
+    <value>Кеш DevBuilds файлів:</value>
   </data>
   <data name="ClearFolder" xml:space="preserve">
     <value>Очистити</value>
@@ -233,7 +233,7 @@
     <value>Ви розробник</value>
   </data>
   <data name="YouAreASupporter" xml:space="preserve">
-    <value>Дякуємо</value>
+    <value>Дякуємо за вашу підтримку!</value>
   </data>
   <data name="DevelopmentFeedTitle" xml:space="preserve">
     <value>Розробницький форум</value>
@@ -335,13 +335,13 @@
     <value>(розмір: {0})</value>
   </data>
   <data name="ThriveInstallFolderNotFound" xml:space="preserve">
-    <value>Папка встановлення версії Thrive не існує</value>
+    <value>Папка встановлення версії Thrive не існує.</value>
   </data>
   <data name="LauncherSourceCodeButton" xml:space="preserve">
     <value>Вихідний Код Лаунчеру</value>
   </data>
   <data name="ViewLicensesButton" xml:space="preserve">
-    <value>Побачити Ліцензії Лаунчену</value>
+    <value>Побачити ліцензії лаунчеру</value>
   </data>
   <data name="MainWindowTitle" xml:space="preserve">
     <value>Лаунчер Thrive</value>
@@ -370,5 +370,215 @@
   </data>
   <data name="LatoLicenseTitle" xml:space="preserve">
     <value>Lato.ttf (Авторське права (с) 2010-2011 від tyПольща Лукаш Джєджіц із Зарезвованою Назвою Шрифта"Lato"), ліцензія OFL:</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>запощено {0} {1}</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Клікніть сюди</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>прочитати цілий пост.</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>Не вдалося створити папку журналів ({0}): {1}</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>Переглянути журнали</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>Термін дії минув для всіх сертифікатів</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>{0} версія</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} для {1}</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>Завантаження...</value>
+  </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>Помилка Отримання Доступних Thrive Версій</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Повторити</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Невідома помилка</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>Використовувати Інформацію Кешованої Версії</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0} (Остання)</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>Перемістити Наявні Версії?</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>Термін дії всіх сертифікати з підтвердженим підписом, з якими надається цей лаунчер, закінчився. А це означає, що ця версія лаунчеру вкрай застаріла. Будь-ласка завантажте та встановіть новішу версію.</value>
+  </data>
+  <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
+    <value>Лаунчер Thrive завантажує доступні версії Thrive з інтернету, щоб знати котрі є такими. Не вдалось завантажити інформацію(дивіться помилку нижче). Ви можете повторити завантаження цієї інформації, або якщо лаунчер раніше міг завантажити цю інформацію, то ви можете завантажити кешову копію. Якщо кешова копія дуже стара, то вона не має показувати усі доступні версії Thrive. Проте якщо ваша версія лаунчеру дуже стара, це можу бути несумісною з новим форматом даних, і її потрібно оновити, перш ніж ви зможете завантажити дані.</value>
+  </data>
+  <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
+    <value>Завантажена інформація лаунчеру Thrive недійсна. Будь-ласка повторіть спробу за короткий час, та якщо проблема не зникне спробуйте зв'язатися з нами.</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>Сумісних версій Thrive не знайдено</value>
+  </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>Лаунчер не може знайти жодної версії Thrive для поточної платформи. Якщо ви використовуєте незрозумілу операційну систему, то це звична річ. В іншому випадку повідомте про це, як про проблему.</value>
+  </data>
+  <data name="MoveVersionsExplanation" xml:space="preserve">
+    <value>Встановлені версії Thrive були виявлені на попередній дорозі. Їх можна автоматично перенести на нове місце. Якщо не перемістити файли, то вони залишаться ззаду, та лаунчер не побачить їх, допоки попередня дорога не буде знову обрана місцем встановленням. Ви бажаєте автоматично перемістити ці файли на нове місце?</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>Перемістити Наявні Файли?</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>Внутрішня помилка</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>У лаунчері сталася внутрішня помилка. Будь ласка, залиште відгук про цю проблему та запровадьте файли журналу разом з детальним описом виникнення проблеми.</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Перемістити</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Пропустити</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Скасувати</value>
+  </data>
+  <data name="DeleteErrorExplanation" xml:space="preserve">
+    <value>Не вдалося видалити дані за наступним шляхом: "{0}" через: {1}</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>Невідомий каталог:</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>Видалити тимчасові файли?</value>
+  </data>
+  <data name="ClearTemporaryFilesCount" xml:space="preserve">
+    <value>Буде видалено {0} файлів/каталогів</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>Видалити кеш Dev-збірок?</value>
+  </data>
+  <data name="ClearDehydratedFilesCount" xml:space="preserve">
+    <value>Буде видалено {0} файлів</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>Це актуальна версія</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>Ви користуєтеся версією {0} лаунчеру Thrive, але останньою версією є {1}</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>Відвідати сторінку завантажень</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>Ця версія лаунчеру не є актуальною</value>
+  </data>
+  <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
+    <value>Знайдено наявні об'єкти в кеші. Їх можна автоматично перемістити до нового місця. Якщо їх не перемістити, лаунчер не знатиме про їх існування, доки попередній шлях знов не буде вказаний. Чи бажаєте Ви автоматично перемістити {0} файл(и) до нового місця? Файли, що не відносяться до Thrive, також будуть переміщені.</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>Видалення не вдалося</value>
+  </data>
+  <data name="DeleteErrorDoesNotExist" xml:space="preserve">
+    <value>Видалення не вдалося, тому що вказаний шлях не існує</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
+    <value>Буде видалено всі файли, що містяться у тимчасовому каталозі за шляхом "{0}". Навіть файли, що не відносяться до Thrive, також будуть видалені у разі, якщо існують у вищеозначеному каталозі. Видалити тимчасовий каталог?</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>Буде видалено всі файли, що містяться у каталозі стиснутого кешу за шляхом "{0}". Навіть файли, що не відносяться до Thrive, також будуть видалені у разі, якщо існують у вищеозначеному каталозі. Видалити зміст каталогу?</value>
+  </data>
+  <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
+    <value>Цей код завершення може значити, що системі бракує необхідного DLL-файлу. Він може бути у середі Visual C++ Redistributable 2019, встановлювач якої можна завантажити з: https://aka.ms/vs/17/release/vc_redist.x64.exe, щоб установити або відновити її. Ви також можете спробувати запустити Thrive.exe власноруч, оскільки це може показати повідомлення про помилку, де буде вказане ім'я зниклого DLL-файлу. Вам також слід перевірити, чи всі оновлення Windows установлені. Якщо це не допоможе, будь ласка, зверніться до нас за додатковою допомогою.</value>
+  </data>
+  <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
+    <value>Якщо гра не запустилася коректно, спробуйте допоміжні налаштування запуску в секції "Налаштування Thrive" у налаштування лаунчеру</value>
+  </data>
+  <data name="OutdatedLauncherExplanation" xml:space="preserve">
+    <value>Ця версія лаунчеру є застарілою та повинна бути оновлена. Оскільки Ви бачите це повідомлення, це означає, що автооновлення не запустилося, тож Вам буде потрібно власноруч завантажити та встановити оновлення. Ви можете продовжити користуватися поточною версією лаунчеру, пропустивши оновлення, але це може призвести до неочікуваних наслідків, оскільки лише остання версія лаунчеру гарантовано працюватиме з видаленими системами, з якими взаємодіє лаунчер.</value>
+  </data>
+  <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
+    <value>Ви користуєтеся типом лаунчеру, який не може автооновлюватися. Якщо вам знадобляться автооновлення у майбутньому, будь ласка, встановіть варіант лаунчеру з можливістю автооновлення.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateDisabledByUser" xml:space="preserve">
+    <value>Викорисовуваний тип лаунчеру підтримує автоматичні оновлення, автоматичні оновлення наразі вимкнені через налаштування лаунчеру чи прапорець командного рядка.</value>
+  </data>
+  <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
+    <value>Помилка: файл оновлення для цього типу програм не знайдено. Це не мало б статися. Спробуйте пізніше, та якщо проблема не зникне, повідомте нам.</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>Не Вдалося Під'єднатися до РозробЦентруThrive</value>
+  </data>
+  <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
+    <value>Викорисовуваний тип лаунчеру повинен могти автоматично оновлюватися, але це не працюває з певних причин, та остання версія лаунчеру вже певний час недоступна. Будь-ласка перевірте, що ви не вимкнули підтримку Thrive в актуальному стані.</value>
+  </data>
+  <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
+    <value>Під'єднання до РозробЦентру невдале. РозробЦентр відмовив. А це означає, що наш ключ під'єднання більше не працює. Це може бути спричинено тим, що з'єднання було розірвано веб-інтерфейс, або ваш акаунт може бути призупинено. Подивіться посилання знизу, аби перевірити статус підключення акаунту.</value>
+  </data>
+  <data name="DevCenterConnectFailureConnection" xml:space="preserve">
+    <value>Під'єднання до РозробЦентру невдале. Будь-ласка повторіть спробу, бо РозробЦентр міг просто тимчасово бути недоступним. Ви також можете перевірити ваше з'єднання з інтернетом. Ви можете використати посилання нижче, щоб відвідати РозробЦентр та побачити чи може ваш браузер підключитися. Будь-ласка спробуйте знову пізніше, та якщо проблема не вирішиться протягом кількох хвилин, то повідомте про це.</value>
+  </data>
+  <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
+    <value>Під'єднання до РозробЦентру невдале. РозробЦентр відповів невідомою помилкою, або це ми зіткнулися з помилою під час обробки вашої. Будь-ласка спробуйте знову, але пізніше, і якщо проблема не зникне, то повідомте нам. Ви можете перевірити посилання нижче, аби побачити чи все виглядає чудово з боку РозробЦентру.</value>
+  </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>Роз'єднатися</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>Перез'єднатися</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>Код вірний. Будь ласка, підтвердить зв'язування з наступним акаунтом:</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>Ім'я користувача:</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="LoginToSeeThisContent" xml:space="preserve">
+    <value>Увійдіть до DevCenter, щоб побачити цей контент</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>небезпечно</value>
+  </data>
+  <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
+    <value>Збірка дня</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>опис:</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>Неможливо грати у Thrive</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>Будь ласка, оберіть версію Thrive зі спадного меню біля кнопки запуску та спробуйте знову</value>
+  </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>Перевірити токени у DevCenter</value>
+  </data>
+  <data name="EnterDevCenterConnectionCode" xml:space="preserve">
+    <value>Будь ласка, спочатку введіть код з'єднання з DevCenter у поле вводу</value>
+  </data>
+  <data name="DevCenterConnectAttemptError" xml:space="preserve">
+    <value>Помилка при перевірянні зв'язувального коду для DevCenter. Будь ласка, перевірте, чи є код введеним коректно та, чи його термін дії не є вичерпаним. Додаткова інформація: {0}</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>Не вдалося створити зв'язок, будь ласка, перевірте код знову</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thrive уже запущено, будь ласка, закрийте її та спробуйте знову</value>
   </data>
 </root>

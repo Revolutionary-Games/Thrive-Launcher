@@ -112,4 +112,175 @@
   <data name="MainWindowTitle" xml:space="preserve">
     <value>Lançador Thrive</value>
   </data>
+  <data name="NewsFeedTitle" xml:space="preserve">
+    <value>NOVIDADES</value>
+  </data>
+  <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
+    <value>Fóruns de desenvolvimento</value>
+  </data>
+  <data name="ExternalLinkPatreon" xml:space="preserve">
+    <value>Patreon</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+    <value>Doar</value>
+  </data>
+  <data name="ExternalLinkThriveSteam" xml:space="preserve">
+    <value>Thrive no Steam</value>
+  </data>
+  <data name="ExternalLinkThriveItch" xml:space="preserve">
+    <value>Thrive no itch.io</value>
+  </data>
+  <data name="ExternalLinkThriveGithub" xml:space="preserve">
+    <value>Thrive no Github</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+    <value>Servidor no Discord</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+    <value>Subreddit</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+    <value>Canal no YouTube</value>
+  </data>
+  <data name="ExternalLinkFacebookPage" xml:space="preserve">
+    <value>Página no Facebook</value>
+  </data>
+  <data name="ThriveOptions" xml:space="preserve">
+    <value>Opções do Thrive</value>
+  </data>
+  <data name="InstalledVersions" xml:space="preserve">
+    <value>Versões Instaladas</value>
+  </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+    <value>Desabilitar todos os vídeos do jogo (se o Thrive fecha após a logo de "carregando" aparecer e antes do vídeo de introdução tocar, isso pode ajudar a fazer o jogo funcionar)</value>
+  </data>
+  <data name="LaunchOptionForceGLES2" xml:space="preserve">
+    <value>Forçar modo de renderização GLES2 (pode fazer o Thrive iniciar, mas causa leves problemas gráficos)</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>Redefinir Todas as Configurações</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>Redefinir Local de Instalação</value>
+  </data>
+  <data name="FolderPathDisplay" xml:space="preserve">
+    <value>Diretório:</value>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+    <value>Conteúdo:</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+    <value>A pasta está vazia</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>Selecionar o Local dos Arquivos Temporários</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>Redefinir o Local dos Arquivos Temporários</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>Remover TODOS os arquivos na pasta temporária. Pode remover arquivos não relacionados ao Thrive se existirem!</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>Limpar</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+    <value>Conectado como:</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>Você é um desenvolvedor</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+    <value>Instruções na nossa Wiki</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+    <value>Conectar</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+    <value>Selecionar</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>(tamanho: {0})</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>Pasta Não Encontrada</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>publicado por {0} em {1}</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Clique aqui</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>para ler a publicação completa.</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>Carregando...</value>
+  </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>Erro ao Obter Versões do Thrive Disponíveis</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Erro desconhecido</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>Nenhuma Versão Compatível do Thrive Encontrada</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0} (Última)</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>Mover Versões Existentes?</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>Mover Arquivos Existentes?</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>Erro Interno</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Mover</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Pular</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Remover</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>Falha ao Remover</value>
+  </data>
+  <data name="DeleteErrorExplanation" xml:space="preserve">
+    <value>Falha ao remover dados no seguinte endereço: "{0}" devido a: {1}</value>
+  </data>
+  <data name="DeleteErrorDoesNotExist" xml:space="preserve">
+    <value>Falha ao remover porque o endereço indicado não existe</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>Pasta desconhecida:</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>Remover Arquivos Temporários?</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
+    <value>Você está prestes a remover todos os arquivos contidos na pasta temporária em "{0}". Mesmo arquivos que não são do Thrive serão removidos se estes existirem na pasta. A pasta em si também será removida. Remover pasta temporária?</value>
+  </data>
+  <data name="ClearTemporaryFilesCount" xml:space="preserve">
+    <value>Você está prestes a remover {0} arquivos / pastas</value>
+  </data>
+  <data name="ClearDehydratedFilesCount" xml:space="preserve">
+    <value>Você está prestes a remover {0} arquivos</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>Esta versão está atualizada</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>Ocultar versões de 32-bit se uma versão de 64-bit equivalente existir</value>
+  </data>
 </root>
