@@ -109,4 +109,16 @@
   <data name="ForgetLastPlayedVersionToolTip" xml:space="preserve">
     <value>Vergisst welche Version zuletzt gespielt wurde; kann helfen den Schnellstart-Modus wieder zum Laufen zu bringen.</value>
   </data>
+  <data name="SettingsImportOldTitle" xml:space="preserve">
+    <value>Vorherige Einstellungen importieren?</value>
+  </data>
+  <data name="SkipAction" xml:space="preserve">
+    <value>Überspringen</value>
+  </data>
+  <data name="PerformImport" xml:space="preserve">
+    <value>Importieren</value>
+  </data>
+  <data name="ImportFailedTitle" xml:space="preserve">
+    <value>Import fehlgeschlagen</value>
+  </data>
 </root>
