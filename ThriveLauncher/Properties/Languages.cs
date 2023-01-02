@@ -11,7 +11,13 @@ using System.Linq;
 /// </summary>
 public static class Languages
 {
-    private static readonly CultureInfo StartUpLanguage = CultureInfo.CurrentCulture;
+    /// <summary>
+    ///   The language that the launcher supports and is used by the current user (set to us by the operating system
+    ///   on startup). This is a lazy variable to make sure the other fields are initialized before this is tried to
+    ///   be computed.
+    /// </summary>
+    private static readonly Lazy<CultureInfo> StartUpLanguage = new(DetectCurrentLanguageAtStartup);
+
     private static readonly CultureInfo DefaultLanguage = new("en-GB");
 
     /// <summary>
@@ -114,7 +120,7 @@ public static class Languages
 
     public static void SetLanguage(CultureInfo cultureInfo)
     {
-        // Ensure startup language is detected, probably unneeded but we don't need any bugs related to this
+        // Ensure startup language is detected, this is now needed as the value is a lazy one
         GetStartupLanguage();
 
         CultureInfo.CurrentUICulture = cultureInfo;
@@ -143,11 +149,16 @@ public static class Languages
     }
 
     /// <summary>
-    ///   Gets the startup locale
+    ///   Gets the startup locale (but only when it is supported)
     /// </summary>
     /// <returns>The startup locale</returns>
     public static CultureInfo GetStartupLanguage()
     {
-        return StartUpLanguage;
+        return StartUpLanguage.Value;
+    }
+
+    private static CultureInfo DetectCurrentLanguageAtStartup()
+    {
+        return GetCurrentlyUsedCulture(GetAvailableLanguages());
     }
 }

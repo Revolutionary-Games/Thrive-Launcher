@@ -160,7 +160,16 @@ internal class Program
         if (options.Verbose == true)
             programLogger.LogDebug("Verbose logging is enabled");
 
-        programLogger.LogDebug("Startup culture is: {StartupLanguage}", Languages.GetStartupLanguage());
+        programLogger.LogDebug("Current process culture (language) is: {CurrentCulture}", CultureInfo.CurrentCulture);
+
+        var uiCulture = CultureInfo.DefaultThreadCurrentUICulture ?? CultureInfo.CurrentUICulture;
+
+        if (!Equals(uiCulture, CultureInfo.CurrentCulture))
+        {
+            programLogger.LogWarning("Startup current culture doesn't match UI culture ({UICulture})", uiCulture);
+        }
+
+        programLogger.LogDebug("Startup launcher language is: {StartupLanguage}", Languages.GetStartupLanguage());
 
         programLogger.LogDebug("Loading settings");
         var settingsManager = services.GetRequiredService<ILauncherSettingsManager>();
@@ -211,7 +220,7 @@ internal class Program
             Languages.SetLanguage(currentlyUsed);
         }
 
-        programLogger.LogInformation("Launcher language is: {CurrentCulture}", CultureInfo.CurrentCulture);
+        programLogger.LogInformation("Launcher language (culture) is: {CurrentCulture}", CultureInfo.CurrentCulture);
 
         var storeVersionInfo = services.GetRequiredService<IStoreVersionDetector>().Detect();
         var isStore = storeVersionInfo.IsStoreVersion;
