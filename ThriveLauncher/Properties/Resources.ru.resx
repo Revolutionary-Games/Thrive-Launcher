@@ -325,4 +325,53 @@
   <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
     <value>Вручную введённый хэш:</value>
   </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>Папка установки версии Thrive не существует.</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>Лента не может быть отображена. {0}</value>
+  </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>Включить ведение журнала отладки лаунчера (прежде чем сообщать о проблеме или баге с лаунчером, пожалуйста, включите это и перезапустите лаунчер)</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf (Авторское право (c) 2010-2011 tyPoland Лукаш Дзедзич с зарезервированным названием шрифта "Lato"), лицензия OFL:</value>
+  </data>
+  <data name="FetchLatestBuildsButton" xml:space="preserve">
+    <value>Извлекать последние сборки</value>
+  </data>
+  <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+    <value>Выберите введенное вручную хэш-значение, которое будет использоваться в поле ввода в качестве выбранной сборки разработчика для воспроизведения при воспроизведении сборки разработчика</value>
+  </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0}МиБ</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>(размер:{0})</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>Хранилище не найдено</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>Не удалось сохранить настройки</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>Не удалось сохранить настройки в файл настроек. Пожалуйста, убедитесь, что программа запуска имеет доступ на запись, и повторите попытку.
+В журналах запуска будет больше информации.</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>Шрифт Roboto используется в лаунчере, лицензия Roboto:</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>Исходный код лаунчера</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>Просмотр лицензий на запуск</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Лаунчер Thrive</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Лицензии лаунчера Thrive</value>
+  </data>
 </root>
