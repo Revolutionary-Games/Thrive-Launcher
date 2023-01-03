@@ -481,9 +481,13 @@ public class ThriveRunner : IThriveRunner
             }
             else
             {
-                logger.LogInformation("Thrive ran for a really short time but output the startup success, " +
+                logger.LogInformation("Thrive ran for a short time but output the startup success, " +
                     "not showing short duration run advice");
             }
+        }
+        else
+        {
+            logger.LogDebug("Not showing startup fail advice as elapsed time is {Elapsed}", elapsed);
         }
 
         // TODO: this constant might be totally wrong now

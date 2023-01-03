@@ -168,7 +168,12 @@ public static class LauncherConstants
     /// <summary>
     ///   How long Thrive must have ran to not show the game start failure advice
     /// </summary>
-    public static readonly TimeSpan RequiredRuntimeBeforeGameStartAdviceDisappears = TimeSpan.FromSeconds(10);
+    /// <remarks>
+    ///   <para>
+    ///     This is now much longer as the launcher can detect proper Thrive startup now
+    ///   </para>
+    /// </remarks>
+    public static readonly TimeSpan RequiredRuntimeBeforeGameStartAdviceDisappears = TimeSpan.FromSeconds(60);
 
     /// <summary>
     ///   Time before hiding the launcher when starting the game
