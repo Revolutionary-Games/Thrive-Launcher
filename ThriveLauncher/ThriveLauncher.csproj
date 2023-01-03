@@ -16,7 +16,7 @@
     <TrimMode>copyused</TrimMode>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationIcon>Assets\Icons\icon.ico</ApplicationIcon>
-    <Copyright>Revolutionary Games Studio, 2017-2022</Copyright>
+    <Copyright>Revolutionary Games Studio, 2017-2023</Copyright>
     <Description>Thrive Launcher for downloading and installing Thrive</Description>
   </PropertyGroup>
   <ItemGroup>
