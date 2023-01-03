@@ -256,10 +256,16 @@ public partial class MainWindowViewModel
 
         var stringBuilder = new StringBuilder(5000);
 
+        if (!string.IsNullOrEmpty(PlayingThrivePopupTitle))
+        {
+            stringBuilder.Append(PlayingThrivePopupTitle);
+            stringBuilder.Append('\n');
+        }
+
         if (!string.IsNullOrEmpty(PlayPopupTopMessage))
         {
             stringBuilder.Append(PlayPopupTopMessage);
-            stringBuilder.Append("\n");
+            stringBuilder.Append('\n');
         }
 
         bool first = true;
@@ -268,7 +274,7 @@ public partial class MainWindowViewModel
         foreach (var playMessage in thriveRunner.PlayMessages)
         {
             if (!first)
-                stringBuilder.Append("\n");
+                stringBuilder.Append('\n');
 
             first = false;
 
@@ -278,7 +284,7 @@ public partial class MainWindowViewModel
         foreach (var outputMessage in thriveRunner.ThriveOutput.Concat(thriveRunner.ThriveOutputTrailing))
         {
             if (!first)
-                stringBuilder.Append("\n");
+                stringBuilder.Append('\n');
 
             first = false;
 
@@ -301,13 +307,13 @@ public partial class MainWindowViewModel
 
         if (!string.IsNullOrEmpty(PlayPopupBottomMessage))
         {
-            stringBuilder.Append("\n");
+            stringBuilder.Append('\n');
             stringBuilder.Append(PlayPopupBottomMessage);
         }
 
         if (thriveRunner.OutputTruncated)
         {
-            stringBuilder.Append("\n");
+            stringBuilder.Append('\n');
             stringBuilder.Append(Resources.TruncatedGameOutputWarning);
         }
 
