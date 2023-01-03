@@ -31,6 +31,7 @@ using Services;
 using SharedBase.Utilities;
 using Utilities;
 using ViewModels;
+using LogLevel = NLog.LogLevel;
 
 internal class Program
 {
@@ -51,6 +52,9 @@ internal class Program
 
         if (parsed.Value != null)
             options = parsed.Value;
+
+        if (!CheckLogLevelOptionIsFine(options))
+            return;
 
         // We build services before starting avalonia so that we can use launcher backend services before we decide
         // if we want to fire up ourGUI
@@ -123,8 +127,10 @@ internal class Program
             builder = builder.AddLogging(config =>
                 {
                     config.ClearProviders();
-                    config.SetMinimumLevel(verbose ? LogLevel.Trace : LogLevel.Debug);
-                    config.AddNLog(GetNLogConfiguration(true, verbose));
+                    config.SetMinimumLevel(verbose ?
+                        Microsoft.Extensions.Logging.LogLevel.Trace :
+                        Microsoft.Extensions.Logging.LogLevel.Debug);
+                    config.AddNLog(GetNLogConfiguration(true, verbose, LogLevel.FromString(options.LogLevel)));
                 })
                 .AddScoped<AvaloniaLogger>();
         }
@@ -133,8 +139,8 @@ internal class Program
             // Design time logging
             builder = builder.AddLogging(config =>
             {
-                config.SetMinimumLevel(LogLevel.Debug);
-                config.AddNLog(GetNLogConfiguration(false, false));
+                config.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Debug);
+                config.AddNLog(GetNLogConfiguration(false, false, LogLevel.Info));
             });
         }
 
@@ -321,7 +327,28 @@ internal class Program
             .UseReactiveUI();
     }
 
-    private static LoggingConfiguration GetNLogConfiguration(bool fileLogging, bool verbose)
+    private static bool CheckLogLevelOptionIsFine(Options options)
+    {
+        try
+        {
+            LogLevel.FromString(options.LogLevel);
+        }
+        catch (ArgumentException)
+        {
+            ColourConsole.WriteErrorLine("Invalid log level specified");
+
+            var logLevels = string.Join(", ", LogLevel.AllLevels.Select(l => l.Name));
+
+            ColourConsole.WriteNormalLine($"Available log levels: {logLevels}");
+            Environment.Exit(1);
+            return false;
+        }
+
+        return true;
+    }
+
+    private static LoggingConfiguration GetNLogConfiguration(bool fileLogging, bool verbose,
+        LogLevel overrideLogLevel)
     {
         // For debugging logging itself
         // InternalLogger.LogLevel = LogLevel.Trace;
@@ -329,14 +356,38 @@ internal class Program
 
         var configuration = new LoggingConfiguration();
 
-        // TODO: allow configuring the logging level (on a more granular level than just with the verbose flag)
-        configuration.AddRule(verbose ? NLog.LogLevel.Debug : NLog.LogLevel.Info, NLog.LogLevel.Fatal,
-            new ConsoleTarget("console"));
+        // Map log levels higher if verbose flag is set
+        if (verbose)
+        {
+            if (overrideLogLevel == LogLevel.Debug)
+            {
+                overrideLogLevel = LogLevel.Trace;
+            }
+            else if (overrideLogLevel == LogLevel.Info)
+            {
+                overrideLogLevel = LogLevel.Debug;
+            }
+            else if (overrideLogLevel == LogLevel.Warn)
+            {
+                overrideLogLevel = LogLevel.Info;
+            }
+            else if (overrideLogLevel == LogLevel.Error)
+            {
+                overrideLogLevel = LogLevel.Warn;
+            }
+
+            if (overrideLogLevel == LogLevel.Fatal)
+            {
+                overrideLogLevel = LogLevel.Error;
+            }
+        }
+
+        configuration.AddRule(overrideLogLevel, LogLevel.Fatal, new ConsoleTarget("console"));
 
         if (Debugger.IsAttached)
         {
-            configuration.AddRule(verbose ? NLog.LogLevel.Trace : NLog.LogLevel.Debug, NLog.LogLevel.Fatal,
-                new DebuggerTarget("debugger"));
+            configuration.AddRule(overrideLogLevel == LogLevel.Debug ? LogLevel.Trace : overrideLogLevel,
+                LogLevel.Fatal, new DebuggerTarget("debugger"));
         }
 
         if (fileLogging)
@@ -375,7 +426,7 @@ internal class Program
                 LineEnding = LineEndingMode.Default,
             };
 
-            configuration.AddRule(NLog.LogLevel.Debug, NLog.LogLevel.Fatal, fileTarget);
+            configuration.AddRule(overrideLogLevel, LogLevel.Fatal, fileTarget);
         }
 
         return configuration;

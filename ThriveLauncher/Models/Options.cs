@@ -6,12 +6,13 @@ using LauncherBackend.Models;
 
 public class Options : ILauncherOptions
 {
-    public Options(bool? verbose, string? language, bool skipAutoUpdate,
+    public Options(bool? verbose, string logLevel, string? language, bool skipAutoUpdate,
         bool disableSeamlessMode, bool allowSeamlessMode, string? gameLDPreload, bool skipGlobalMemory,
         bool printAvailableLocales, IList<string> thriveExtraFlags, bool dummyOpenDev, bool dummyNoSandbox,
         string? dummyRemoteDebuggingPort)
     {
         Verbose = verbose;
+        LogLevel = logLevel;
         Language = language;
         SkipAutoUpdate = skipAutoUpdate;
         DisableSeamlessMode = disableSeamlessMode;
@@ -41,9 +42,15 @@ public class Options : ILauncherOptions
 #if DEBUG
     [Option('v', "verbose", Default = true, HelpText = "Set output to verbose messages")]
     public bool? Verbose { get; } = true;
+
+    [Option("log-level", Default = "debug", HelpText = "Set the output log level verbosity")]
+    public string LogLevel { get; } = "debug";
 #else
     [Option('v', "verbose", HelpText = "Set output to verbose messages")]
     public bool? Verbose { get; }
+
+    [Option("log-level", Default = "info", HelpText = "Set the output log level verbosity")]
+    public string LogLevel { get; } = "info";
 #endif
 
     [Option('l', "language", Default = null,
