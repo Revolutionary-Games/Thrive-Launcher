@@ -238,9 +238,9 @@ public partial class MainWindowViewModel
 
         if (!Version.TryParse(launcherInfo.LauncherVersion.LatestVersion, out var latest))
         {
-            logger.LogError("Cannot check if we are the latest launcher version due to error");
+            logger.LogError("Cannot check if we are the latest launcher version due to error in data format");
 
-            // TODO: maybe this should show the general error popup (with a custom message)
+            ShowNotice(Resources.InvalidVersionInfoLoadedTitle, Resources.LatestVersionParsingFailed);
             return;
         }
 

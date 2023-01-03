@@ -909,4 +909,10 @@ If no files are listed below, downloading the update has failed and it cannot be
   <data name="ForgetLastPlayedVersionToolTip" xml:space="preserve">
     <value>Clears the remembered last selection made in the Thrive version selector. Can help get seamless mode working again if it is refusing to work.</value>
   </data>
+  <data name="InvalidVersionInfoLoadedTitle" xml:space="preserve">
+    <value>Loaded Version Information Is Invalid</value>
+  </data>
+  <data name="LatestVersionParsingFailed" xml:space="preserve">
+    <value>Parsing the info on the latest available launcher version failed. New launcher version availability notices and auto-updating will not work.</value>
+  </data>
 </root>

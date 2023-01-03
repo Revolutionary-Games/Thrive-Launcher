@@ -1724,5 +1724,17 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("ForgetLastPlayedVersionToolTip", resourceCulture);
             }
         }
+        
+        public static string InvalidVersionInfoLoadedTitle {
+            get {
+                return ResourceManager.GetString("InvalidVersionInfoLoadedTitle", resourceCulture);
+            }
+        }
+        
+        public static string LatestVersionParsingFailed {
+            get {
+                return ResourceManager.GetString("LatestVersionParsingFailed", resourceCulture);
+            }
+        }
     }
 }
