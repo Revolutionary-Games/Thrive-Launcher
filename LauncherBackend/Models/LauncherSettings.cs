@@ -62,6 +62,9 @@ public class LauncherSettings
     [JsonPropertyName("enableThriveAutoRestart")]
     public bool EnableThriveAutoRestart { get; set; } = true;
 
+    [JsonPropertyName("verboseLogging")]
+    public bool VerboseLogging { get; set; }
+
     // DevCenter options
     [JsonPropertyName("devCenterKey")]
     public string? DevCenterKey { get; set; }

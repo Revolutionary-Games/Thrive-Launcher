@@ -269,6 +269,23 @@ public partial class MainWindowViewModel
         }
     }
 
+    public bool VerboseLogging
+    {
+        get => Settings.VerboseLogging;
+        set
+        {
+            if (Settings.VerboseLogging == value)
+                return;
+
+            this.RaisePropertyChanging();
+            Settings.VerboseLogging = value;
+            this.RaisePropertyChanged();
+
+            logger.LogInformation("Setting verbose logging option to: {VerboseLogging}", Settings.VerboseLogging);
+            loggingManager.ApplyVerbosityOption(Settings.VerboseLogging);
+        }
+    }
+
     public string? DevCenterKey
     {
         get => Settings.DevCenterKey;

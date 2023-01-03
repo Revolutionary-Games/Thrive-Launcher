@@ -42,16 +42,14 @@ public class Options : ILauncherOptions
 #if DEBUG
     [Option('v', "verbose", Default = true, HelpText = "Set output to verbose messages")]
     public bool? Verbose { get; } = true;
-
-    [Option("log-level", Default = "debug", HelpText = "Set the output log level verbosity")]
-    public string LogLevel { get; } = "debug";
 #else
     [Option('v', "verbose", HelpText = "Set output to verbose messages")]
     public bool? Verbose { get; }
-
-    [Option("log-level", Default = "info", HelpText = "Set the output log level verbosity")]
-    public string LogLevel { get; } = "info";
 #endif
+
+    [Option("log-level", Default = "info",
+        HelpText = "Set the output log level verbosity with more granularity than the verbose flag")]
+    public string LogLevel { get; } = "info";
 
     [Option('l', "language", Default = null,
         HelpText = "Override launcher language (use en-GB for maximum stability)")]

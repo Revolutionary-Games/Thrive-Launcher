@@ -36,6 +36,7 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
     private readonly ILauncherOptions launcherOptions;
     private readonly IAutoUpdater autoUpdater;
     private readonly IBackgroundExceptionNoticeDisplayer backgroundExceptionNoticeDisplayer;
+    private readonly ILoggingManager loggingManager;
 
     private readonly Dictionary<string, CultureInfo> availableLanguages;
     private readonly StoreVersionInfo detectedStore;
@@ -72,7 +73,8 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
         ILauncherPaths launcherPaths, IThriveAndLauncherInfoRetriever launcherInfoRetriever,
         IThriveInstaller thriveInstaller, IDevCenterClient devCenterClient, IThriveRunner thriveRunner,
         ILauncherOptions launcherOptions, IAutoUpdater autoUpdater,
-        IBackgroundExceptionNoticeDisplayer backgroundExceptionNoticeDisplayer, bool allowTaskStarts = true)
+        IBackgroundExceptionNoticeDisplayer backgroundExceptionNoticeDisplayer, ILoggingManager loggingManager,
+        bool allowTaskStarts = true)
     {
         this.logger = logger;
         this.launcherFeeds = launcherFeeds;
@@ -87,6 +89,7 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
         this.launcherOptions = launcherOptions;
         this.autoUpdater = autoUpdater;
         this.backgroundExceptionNoticeDisplayer = backgroundExceptionNoticeDisplayer;
+        this.loggingManager = loggingManager;
 
         availableLanguages = Languages.GetAvailableLanguages();
 
@@ -160,7 +163,8 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
         DesignTimeServices.Services.GetRequiredService<IThriveRunner>(),
         DesignTimeServices.Services.GetRequiredService<ILauncherOptions>(),
         DesignTimeServices.Services.GetRequiredService<IAutoUpdater>(),
-        DesignTimeServices.Services.GetRequiredService<IBackgroundExceptionNoticeDisplayer>(), false)
+        DesignTimeServices.Services.GetRequiredService<IBackgroundExceptionNoticeDisplayer>(),
+        DesignTimeServices.Services.GetRequiredService<ILoggingManager>(), false)
     {
         languagePlaceHolderIfNotSelected = string.Empty;
     }

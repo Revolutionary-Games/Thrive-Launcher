@@ -43,6 +43,8 @@ public class MainWindowViewModelFactory
 
     public Mock<IBackgroundExceptionNoticeDisplayer> BackgroundExceptionNoticeDisplayer { get; set; } = new();
 
+    public Mock<ILoggingManager> LoggingManagerMock { get; set; } = new();
+
     public ILogger<MainWindowViewModel> Logger { get; }
 
     public MainWindowViewModel Create()
@@ -50,6 +52,6 @@ public class MainWindowViewModelFactory
         return new MainWindowViewModel(Logger, FeedsMock.Object, StoreMock.Object, SettingsMock.Object,
             new VersionUtilities(), PathsMock.Object, InfoRetrieveMock.Object, InstallerMock.Object,
             DevCenterMock.Object, ThriveRunnerMock.Object, LauncherOptions, AutoUpdaterMock.Object,
-            BackgroundExceptionNoticeDisplayer.Object, false);
+            BackgroundExceptionNoticeDisplayer.Object, LoggingManagerMock.Object, false);
     }
 }

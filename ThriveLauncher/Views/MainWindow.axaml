@@ -290,6 +290,11 @@
                                               IsVisible="{Binding CanAutoUpdate}"
                                               Content="{i18n:Localize LauncherOptionAutoUpdate}" />
 
+                                    <CheckBox IsChecked="{Binding VerboseLogging}">
+                                        <TextBlock TextWrapping="Wrap"
+                                                   Text="{i18n:Localize LauncherOptionVerboseLogging}" />
+                                    </CheckBox>
+
                                     <Button Classes="DialogButton" Margin="0 5 0 0"
                                             Content="{i18n:Localize ForgetLastPlayedVersion}"
                                             Command="{Binding ForgetRememberedVersion}"

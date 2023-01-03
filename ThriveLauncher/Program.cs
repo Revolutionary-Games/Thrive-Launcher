@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
-using System.IO;
 using System.IO.MemoryMappedFiles;
 using System.Linq;
 using System.Text;
@@ -22,9 +21,7 @@ using LauncherBackend.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Models;
-using NLog.Config;
 using NLog.Extensions.Logging;
-using NLog.Targets;
 using Properties;
 using ScriptsBase.Utilities;
 using Services;
@@ -107,6 +104,7 @@ internal class Program
     {
         var builder = new ServiceCollection()
             .AddThriveLauncher()
+            .AddSingleton<ILoggingManager, LoggingManager>()
             .AddSingleton<VersionUtilities>()
             .AddSingleton<INetworkDataRetriever, NetworkDataRetriever>()
             .AddSingleton<ILauncherOptions>(options)
@@ -120,31 +118,49 @@ internal class Program
                 sp => sp.GetRequiredService<IBackgroundExceptionNoticeDisplayer>())
             .AddScoped<IExternalTools, ExternalTools>();
 
+        bool verboseState = options.Verbose == true;
+        LogLevel normalLogLevel = LogLevel.FromString(options.LogLevel);
+
+        // Before we create logging, we need to create a special paths object with a custom logger to get past this
+        // circular dependency
+        var pathWithManualLogging = new LauncherPaths(new ConsoleLogger<LauncherPaths>
+        {
+            LogLevel = (Microsoft.Extensions.Logging.LogLevel)LoggingManager.GetLogLevel(verboseState, normalLogLevel)
+                .Ordinal,
+        });
+
         if (normalLogging)
         {
-            bool verbose = options.Verbose == true;
-
             builder = builder.AddLogging(config =>
                 {
                     config.ClearProviders();
-                    config.SetMinimumLevel(verbose ?
-                        Microsoft.Extensions.Logging.LogLevel.Trace :
-                        Microsoft.Extensions.Logging.LogLevel.Debug);
-                    config.AddNLog(GetNLogConfiguration(true, verbose, LogLevel.FromString(options.LogLevel)));
+
+                    // Always passing everything from Microsoft logging may have a tiny performance penalty, but we can
+                    // simplify things a lot with this
+                    config.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+                    config.AddNLog(LoggingManager.GetNLogConfiguration(true, verboseState, normalLogLevel,
+                        pathWithManualLogging));
                 })
                 .AddScoped<AvaloniaLogger>();
         }
         else
         {
+            verboseState = false;
+            normalLogLevel = LogLevel.Info;
+
             // Design time logging
             builder = builder.AddLogging(config =>
             {
                 config.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Debug);
-                config.AddNLog(GetNLogConfiguration(false, false, LogLevel.Info));
+                config.AddNLog(LoggingManager.GetNLogConfiguration(false, verboseState, normalLogLevel,
+                    pathWithManualLogging));
             });
         }
 
         var services = builder.BuildServiceProvider();
+
+        var logManager = services.GetRequiredService<ILoggingManager>();
+        logManager.SetDefaultOptions(verboseState, normalLogLevel);
 
         return services;
     }
@@ -181,6 +197,22 @@ internal class Program
         var settingsManager = services.GetRequiredService<ILauncherSettingsManager>();
         var settings = settingsManager.Settings;
         programLogger.LogDebug("Settings loaded");
+
+        var logManager = services.GetRequiredService<ILoggingManager>();
+
+        if (settings.VerboseLogging)
+        {
+            programLogger.LogInformation(
+                "Enabling verbose logging based on saved launcher settings, note that to get all startup logging " +
+                "in verbose mode a command line flag is required");
+            logManager.ApplyVerbosityOption(true);
+        }
+        else
+        {
+            // The verbosity apply will log the new settings so that ends with two prints if we did this anyway, that's
+            // why this is inside an if
+            logManager.LogLoggingOptions();
+        }
 
         if (!string.IsNullOrEmpty(settings.SelectedLauncherLanguage) || !string.IsNullOrEmpty(options.Language))
         {
@@ -345,91 +377,6 @@ internal class Program
         }
 
         return true;
-    }
-
-    private static LoggingConfiguration GetNLogConfiguration(bool fileLogging, bool verbose,
-        LogLevel overrideLogLevel)
-    {
-        // For debugging logging itself
-        // InternalLogger.LogLevel = LogLevel.Trace;
-        // InternalLogger.LogToConsole = true;
-
-        var configuration = new LoggingConfiguration();
-
-        // Map log levels higher if verbose flag is set
-        if (verbose)
-        {
-            if (overrideLogLevel == LogLevel.Debug)
-            {
-                overrideLogLevel = LogLevel.Trace;
-            }
-            else if (overrideLogLevel == LogLevel.Info)
-            {
-                overrideLogLevel = LogLevel.Debug;
-            }
-            else if (overrideLogLevel == LogLevel.Warn)
-            {
-                overrideLogLevel = LogLevel.Info;
-            }
-            else if (overrideLogLevel == LogLevel.Error)
-            {
-                overrideLogLevel = LogLevel.Warn;
-            }
-
-            if (overrideLogLevel == LogLevel.Fatal)
-            {
-                overrideLogLevel = LogLevel.Error;
-            }
-        }
-
-        configuration.AddRule(overrideLogLevel, LogLevel.Fatal, new ConsoleTarget("console"));
-
-        if (Debugger.IsAttached)
-        {
-            configuration.AddRule(overrideLogLevel == LogLevel.Debug ? LogLevel.Trace : overrideLogLevel,
-                LogLevel.Fatal, new DebuggerTarget("debugger"));
-        }
-
-        if (fileLogging)
-        {
-            var paths = new LauncherPaths(new ConsoleLogger<LauncherPaths>());
-
-            var basePath = "${basedir}/logs";
-
-            try
-            {
-                Directory.CreateDirectory(paths.PathToLogFolder);
-                basePath = paths.PathToLogFolder;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(Resources.LogFolderCreateFailed, paths.PathToLogFolder, e);
-            }
-
-            if (basePath.EndsWith("/"))
-                basePath = basePath.Substring(0, basePath.Length - 1);
-
-            var fileTarget = new FileTarget("file")
-            {
-                FileName = $"{basePath}/thrive-launcher-log.txt",
-                ArchiveAboveSize = GlobalConstants.MEBIBYTE * 2,
-                ArchiveEvery = FileArchivePeriod.Month,
-                ArchiveFileName = $"{basePath}/thrive-launcher-log.{{#}}.txt",
-                ArchiveNumbering = ArchiveNumberingMode.DateAndSequence,
-                ArchiveDateFormat = "yyyy-MM-dd",
-                MaxArchiveFiles = 4,
-                Encoding = Encoding.UTF8,
-                KeepFileOpen = true,
-                ConcurrentWrites = true,
-
-                // Use default because people will use notepad on Windows to open the logs and copy a mess
-                LineEnding = LineEndingMode.Default,
-            };
-
-            configuration.AddRule(overrideLogLevel, LogLevel.Fatal, fileTarget);
-        }
-
-        return configuration;
     }
 
     private static bool WaitForRunningThriveToExit(IThriveRunner runner, ILogger logger)

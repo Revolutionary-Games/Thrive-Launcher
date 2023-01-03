@@ -345,6 +345,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string LauncherOptionVerboseLogging {
+            get {
+                return ResourceManager.GetString("LauncherOptionVerboseLogging", resourceCulture);
+            }
+        }
+        
         public static string ResetAllSettings {
             get {
                 return ResourceManager.GetString("ResetAllSettings", resourceCulture);
