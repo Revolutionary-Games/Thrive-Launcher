@@ -497,7 +497,7 @@ public partial class MainWindow : Window
                         string.Format(Properties.Resources.SizeInMiB,
                             Math.Round((float)installFolder.Size / GlobalConstants.MEBIBYTE, 2))),
                     VerticalAlignment = VerticalAlignment.Center,
-                    Margin = new Thickness(0, 0, 3, 0),
+                    Margin = new Thickness(2, 0, 3, 0),
                 });
 
                 var deleteButton = new Button
