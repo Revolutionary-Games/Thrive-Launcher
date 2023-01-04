@@ -906,4 +906,16 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı g
   <data name="ForgetLastPlayedVersionToolTip" xml:space="preserve">
     <value>Thrive sürüm seçicisinde yapılan son seçimi kaldırır. Kesintisiz modun çalışmayı reddettiği zamanlarda onun tekrar çalışmasına yardımcı olabilir.</value>
   </data>
+  <data name="InvalidVersionInfoLoadedTitle" xml:space="preserve">
+    <value>Yüklü Sürüm Bilgisi Geçersiz</value>
+  </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>Başlatıcı günlüğünü ayıklamayı etkinleştir (başlatıcı ile ilgili bir sorunu ya da hatayı bildirmeden önce lütfen bunu etkinleştir ve başlatıcıyı yeniden başlat)</value>
+  </data>
+  <data name="LatestVersionParsingFailed" xml:space="preserve">
+    <value>Mevcut olan en son başlatıcı sürümündeki bilgilerin ayrıştırılma işlemi başarısız oldu. Yeni başlatıcı sürümü mevcudiyeti ile ilgili hatırlatmalar ve otomatik güncelleme artık çalışmayacak.</value>
+  </data>
+  <data name="CrashDumpsDetectedAdvice" xml:space="preserve">
+    <value>Çökme dökümleri algılandı ancak bu dökümler bir önceki Thrive oturumundan olabilir (bildirmeden önce lütfen kontrol et). Çökme dökümleri ile ilgili bildirim almayı durdurmak için lütfen bildiriciyi aç ve çökme dökümlerini temizle.</value>
+  </data>
 </root>
