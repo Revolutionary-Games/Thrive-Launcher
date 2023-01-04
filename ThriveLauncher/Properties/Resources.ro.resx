@@ -323,9 +323,30 @@
     <value>Conectat ca:</value>
   </data>
   <data name="SettingsSaveFailedMessage" xml:space="preserve">
-    <value>Salvarea setărilor în filele de setări a eșuat</value>
+    <value>Salvarea setărilor în filele de setări a eșuat. Vă rugăm să vă asigurați că launcher-ul are voie să scrie și încercați din nou. Log-urile launcher-ului vor avea mai multe informații.</value>
   </data>
   <data name="BuildTypeSelectionBOTD" xml:space="preserve">
     <value>Versiunea Zilei (BOTD) recomandată</value>
+  </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>Activați logarea de depanare a launcher-ului. (Înainte să raportați o problemă cu acest launcher, vă rugăm să activați această opțiune și să restartați launcher-ul)</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+    <value>Intrați hash-ul versiunii (commit)</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+    <value>Hash introdus manual:</value>
+  </data>
+  <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+    <value>Selectați valoarea hash-ului întrată manual ca să fie folosită din cutia de input ca DevBuild-ul selectat când vă jucați un DevBuild</value>
+  </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0} MiB</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>(mărime: {0})</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>Folder-ul n-a fost găsit</value>
   </data>
 </root>

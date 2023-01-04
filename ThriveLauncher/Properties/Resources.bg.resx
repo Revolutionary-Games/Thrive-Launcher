@@ -436,4 +436,13 @@
   <data name="LauncherOptionHide32Bit" xml:space="preserve">
     <value>Скриване на 32-битовите версии при наличие на 64-битова архитектура</value>
   </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>Избиране на местоположение</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>Избиране на местоположение</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+    <value>Избиране на местоположение</value>
+  </data>
 </root>

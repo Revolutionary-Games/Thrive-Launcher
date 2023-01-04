@@ -544,7 +544,7 @@ Laukaisijan lokeissa on lisätietoa.</value>
     <value>Kopioi leikepöydälle</value>
   </data>
   <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
-    <value>Sähköposti (valinnainen)</value>
+    <value>Sähköposti (ei pakollinen)</value>
   </data>
   <data name="CrashReporterWindowTitle" xml:space="preserve">
     <value>Thriven kaatumisen raportoija</value>
