@@ -374,4 +374,61 @@
   <data name="LicensesWindowTitle" xml:space="preserve">
     <value>Лицензии лаунчера Thrive</value>
   </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>опубликовано {0} в {1}</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} для {1}</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>Загрузка...</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Нажмите здесь</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>Не удалось создать папку логов ({0}): {1}</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>Посмотреть логи</value>
+  </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>Ошибка при получении доступных версий Thrive</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Повторить</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Неизвестная ошибка</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0} (Последняя)</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Двигаться</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Пропустить</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>Удалить временные файлы?</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>Не получилось удалить</value>
+  </data>
+  <data name="DeleteErrorExplanation" xml:space="preserve">
+    <value>Не удалось удалить данные по следующему пути: "{0}" из-за: {1}</value>
+  </data>
+  <data name="DeleteErrorDoesNotExist" xml:space="preserve">
+    <value>Не удалось удалить, так как текущий путь не был найден</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>Неизвестная папка:</value>
+  </data>
 </root>
