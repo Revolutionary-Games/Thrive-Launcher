@@ -17,18 +17,4 @@ public static class URLUtilities
             Verb = "open",
         });
     }
-
-    // TODO: FileUtilities.OpenFolderInPlatformSpecificViewer is basically the same functionality
-    public static void OpenLocalFileOrFolder(string fileOrFolder)
-    {
-        if (!fileOrFolder.StartsWith("file://"))
-            fileOrFolder = $"file://{Path.GetFullPath(fileOrFolder)}";
-
-        Process.Start(new ProcessStartInfo
-        {
-            FileName = fileOrFolder,
-            UseShellExecute = true,
-            Verb = "open",
-        });
-    }
 }

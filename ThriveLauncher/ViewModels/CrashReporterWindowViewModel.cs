@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Properties;
 using ReactiveUI;
+using SharedBase.Utilities;
 using Utilities;
 
 public class CrashReporterWindowViewModel : ViewModelBase
@@ -338,7 +339,7 @@ public class CrashReporterWindowViewModel : ViewModelBase
     public void OpenLogFile(string logFile)
     {
         logger.LogInformation("Attempting to open log file: {LogFile}", logFile);
-        URLUtilities.OpenLocalFileOrFolder(logFile);
+        FileUtilities.OpenFileOrFolderInDefaultProgram(logFile);
     }
 
     public void OpenFileFolder(string logFile)
@@ -348,7 +349,7 @@ public class CrashReporterWindowViewModel : ViewModelBase
 
         logger.LogInformation("Attempting to open folder {Folder}", folder);
 
-        URLUtilities.OpenLocalFileOrFolder(folder);
+        FileUtilities.OpenFileOrFolderInDefaultProgram(folder);
     }
 
     public void CancelCrashReporting()
