@@ -11,4 +11,5 @@ public class LauncherTranslationProxy : ILauncherTranslations
     public string StoreVersionName => Resources.StoreVersionName;
     public string VersionWithPlatform => Resources.VersionWithPlatform;
     public string LatestVersionTag => Resources.LatestVersionTag;
+    public string CrashDumpsDetectedAdvice => Resources.CrashDumpsDetectedAdvice;
 }

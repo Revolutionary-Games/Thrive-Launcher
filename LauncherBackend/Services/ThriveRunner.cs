@@ -15,6 +15,7 @@ public class ThriveRunner : IThriveRunner
     private readonly IStoreVersionDetector storeVersionDetector;
     private readonly ILauncherPaths launcherPaths;
     private readonly ILauncherOptions launcherOptions;
+    private readonly ILauncherTranslations launcherTranslations;
 
     private readonly ObservableValue<bool> runningObservable = new(false);
     private readonly ObservableValue<bool> truncatedObservable = new(false);
@@ -42,7 +43,7 @@ public class ThriveRunner : IThriveRunner
 
     public ThriveRunner(ILogger<ThriveRunner> logger, ILauncherSettingsManager settingsManager,
         IThriveInstaller thriveInstaller, IStoreVersionDetector storeVersionDetector, ILauncherPaths launcherPaths,
-        ILauncherOptions launcherOptions)
+        ILauncherOptions launcherOptions, ILauncherTranslations launcherTranslations)
     {
         this.logger = logger;
         this.settingsManager = settingsManager;
@@ -50,6 +51,7 @@ public class ThriveRunner : IThriveRunner
         this.storeVersionDetector = storeVersionDetector;
         this.launcherPaths = launcherPaths;
         this.launcherOptions = launcherOptions;
+        this.launcherTranslations = launcherTranslations;
     }
 
     public ObservableCollection<ThrivePlayMessage> PlayMessages { get; } = new();
@@ -533,9 +535,7 @@ public class ThriveRunner : IThriveRunner
 
         if (crashDumpsExist && DetectedCrashDumpOutputLocation == null)
         {
-            // TODO: the advice here would be really nice to localize
-            OnNormalOutput("Crash dumps have been detected but they may be from a previous Thrive run. " +
-                "To stop being notified about the crash dumps, please open the reporter and clear the crash dumps.");
+            OnNormalOutput(launcherTranslations.CrashDumpsDetectedAdvice);
             HasReportableCrash = true;
         }
 

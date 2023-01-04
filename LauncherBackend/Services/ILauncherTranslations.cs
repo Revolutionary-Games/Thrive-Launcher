@@ -8,4 +8,5 @@ public interface ILauncherTranslations
     public string StoreVersionName { get; }
     public string VersionWithPlatform { get; }
     public string LatestVersionTag { get; }
+    public string CrashDumpsDetectedAdvice { get; }
 }

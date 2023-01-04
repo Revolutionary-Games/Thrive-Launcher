@@ -1742,5 +1742,11 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("LatestVersionParsingFailed", resourceCulture);
             }
         }
+        
+        public static string CrashDumpsDetectedAdvice {
+            get {
+                return ResourceManager.GetString("CrashDumpsDetectedAdvice", resourceCulture);
+            }
+        }
     }
 }

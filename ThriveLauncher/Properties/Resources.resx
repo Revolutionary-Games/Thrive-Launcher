@@ -918,4 +918,7 @@ If no files are listed below, downloading the update has failed and it cannot be
   <data name="LatestVersionParsingFailed" xml:space="preserve">
     <value>Parsing the info on the latest available launcher version failed. New launcher version availability notices and auto-updating will not work.</value>
   </data>
+  <data name="CrashDumpsDetectedAdvice" xml:space="preserve">
+    <value>Crash dumps have been detected but they may be from a previous Thrive run (please check before reporting). To stop being notified about the crash dumps, please open the reporter and clear the crash dumps.</value>
+  </data>
 </root>
