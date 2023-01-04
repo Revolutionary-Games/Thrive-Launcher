@@ -513,4 +513,49 @@ Laukaisijan lokeissa on lisätietoa.</value>
   <data name="ThriveIsStarting" xml:space="preserve">
     <value>Thrive on käynnistymässä. Lokituloste (bufferoinnin vuoksi tämä ei todennäköisesti ole reaaliaikaista):</value>
   </data>
+  <data name="CrashDumpsDetectedAdvice" xml:space="preserve">
+    <value>Kaatumistiedostoja on havaittu, mutta ne saattavat olla aiemmista Thriven suorituskerroista (ole hyvä ja tarkasta tämä asia ennen niiden raportoimista). Tämä viesti voidaan hiljentää avaamalla kaatumisen raportoija ja tyhjentämällä lista havaituista kaatumisista.</value>
+  </data>
+  <data name="ActiveReportingInfo" xml:space="preserve">
+    <value>Raportoidaan kaatumista {0}, joka tapahtui {1}</value>
+  </data>
+  <data name="AtTime" xml:space="preserve">
+    <value>klo {0}</value>
+  </data>
+  <data name="CancelCreatingReportExplanation" xml:space="preserve">
+    <value>Haluatko varmasti peruuttaa kaatumisen raportoimisen? Jos yhtään raporttia ei tehdä tietystä bugista, Thriven kehittäjät eivät välttämättä tiedä siitä ongelmasta ja eivät voi siitä syystä korjata sitä.</value>
+  </data>
+  <data name="CancelCreatingReportTitle" xml:space="preserve">
+    <value>Peruuta raporting luominen?</value>
+  </data>
+  <data name="ClearAllCrashesButton" xml:space="preserve">
+    <value>Poista KAIKKI kaatumistiedostot</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>Koodi on kelvollinen. Ole hyvä ja vahvista linkitys tiliin:</value>
+  </data>
+  <data name="ContinueReportingButton" xml:space="preserve">
+    <value>Jatka raportointia</value>
+  </data>
+  <data name="CopyLogWindowToClipboardToolTip" xml:space="preserve">
+    <value>Kopioi pelin tuloste leikepöydälle</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Kopioi leikepöydälle</value>
+  </data>
+  <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
+    <value>Sähköposti (valinnainen)</value>
+  </data>
+  <data name="CrashReporterWindowTitle" xml:space="preserve">
+    <value>Thriven kaatumisen raportoija</value>
+  </data>
+  <data name="CrashReportIsPublic" xml:space="preserve">
+    <value>Julkinen? Julkisten raporttien kaatumisen pinojöljitykset ja kuvaukset ovat julkisesti näkyviä. Yksityiset raportit ovat näkyvillä pelkästään Thriven kehittäjille.</value>
+  </data>
+  <data name="CrashReportLogsSection" xml:space="preserve">
+    <value>Sisällytettävät lokit</value>
+  </data>
+  <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
+    <value>Jos peli ei käynnistynyt oikein, ole hyvä ja kokeile Thriven käynnistämisongelmien kiertämisasetuksia, jotka löytyvät laukaisijan asetuksista "Thriven asetukset" -kohdasta</value>
+  </data>
 </root>
