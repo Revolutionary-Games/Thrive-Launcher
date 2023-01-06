@@ -349,4 +349,58 @@
   <data name="FolderNotFound" xml:space="preserve">
     <value>Folder-ul n-a fost găsit</value>
   </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf (Copyright (c) 2010-2011 de tyPoland Lukasz Dziedzic cu Reserved Font Name "Lato"), licență OFL:</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>Feed-ul nu poate fi afișat. {0}</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>postat de {0} la {1}</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Dă click aici</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>Vedeți Licențele Launcher-ului</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Launcher-ul Thrive</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Licențele Launcher-ului Thrive</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>Fontul Roboto este folosit în launcher, licență Roboto:</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>Folderul pentru instalarea versiunilor Thrive nu există.</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>Codul De Sursă Pentru Launcher</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>Se încarcă...</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>pentru a citi toată postarea.</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>A eșuat crearea folderului pentru log-uri({0}): {1}</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>Afișați Log-urile</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>Toate Certificatele Au Expirat</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>Toate semnăturile care verifică certificatele cu care acest launcher este expediat au expirat. Asta înseamnă că versiunea asta a launcher-ului este foarte veche. Vă rugăm să download-ați și să instalați o versiune mai nouă.</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>versiunea {0}</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} pentru {1}</value>
+  </data>
 </root>
