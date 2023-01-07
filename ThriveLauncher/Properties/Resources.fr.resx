@@ -484,4 +484,34 @@ Les logs du launcher contiendront plus d'informations.</value>
   <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
     <value>Erreur en essayant d'obtenir les versions disponibles de Thrive</value>
   </data>
+  <data name="DownloadProgressDisplay" xml:space="preserve">
+    <value>{0} de {1} MiO téléchargés</value>
+  </data>
+  <data name="SubmitRetryButton" xml:space="preserve">
+    <value>Réessayer</value>
+  </data>
+  <data name="SecondsDisplayPlural" xml:space="preserve">
+    <value>{0} secondes</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>La version actuelle du launcher est obsolète</value>
+  </data>
+  <data name="DownloadError" xml:space="preserve">
+    <value>Le téléchargement a échoué en raison de {0}</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Soumettre</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>Aucune version compatible de Thrive n'a été trouvée</value>
+  </data>
+  <data name="OutdatedLauncherExplanation" xml:space="preserve">
+    <value>Cette version du launcher est obsolète et devrait être mise à jour. Comme vous voyez ce message, la mise à jour automatique n'a pas débuté, vous devrez donc télécharger manuellement la mise à jour et l'installer. Vous pouvez essayer d'utiliser la version actuelle du launcher en ignorant la mise à jour, mais cela pourrait causer des problèmes inattendus car seule la dernière version du launcher est certaine de fonctionner avec les systèmes avec lesquels le launcher interagit.</value>
+  </data>
+  <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
+    <value>Erreur  : le processus enfant a déjà terminé son exécution, la fenêtre du launcher ne sera pas fermée</value>
+  </data>
+  <data name="ReportDeleteInfo" xml:space="preserve">
+    <value>Si vous souhaitez supprimer votre rapport, vous pouvez le faire ici :</value>
+  </data>
 </root>
