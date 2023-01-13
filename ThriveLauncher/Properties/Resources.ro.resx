@@ -230,10 +230,10 @@
     <value>Navigați File Instalate</value>
   </data>
   <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
-    <value>Folder pentru downloaduri temporare:</value>
+    <value>Folder pentru descărcări temporare:</value>
   </data>
   <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
-    <value>Notă: mutarea locației temporară nu va șterge sau muta alte file ca să nu atingă file fără legătură cu Thrive</value>
+    <value>Mutarea locației temporară nu va șterge sau muta alte file ca să nu atingă file fără legătură cu Thrive</value>
   </data>
   <data name="SelectTemporaryFilesLocation" xml:space="preserve">
     <value>Selectați Locația Temporară a Filelor</value>
@@ -263,7 +263,7 @@
     <value>OK</value>
   </data>
   <data name="ConnectionInfoTab" xml:space="preserve">
-    <value>Informație</value>
+    <value>Informații</value>
   </data>
   <data name="YouAreDeveloperInfo" xml:space="preserve">
     <value>Sunteți un dezvoltator</value>
@@ -314,7 +314,7 @@
     <value>Găsește Ultimele Versiuni</value>
   </data>
   <data name="ClearDehydratedLocation" xml:space="preserve">
-    <value>Ștergeți toate filele din folderul cache deshidratat DevBuild. Dacă locația nu este default, vor putea exista file fără legătură cu Thrive, care vor fi șterse împreună cu restul filelor.</value>
+    <value>Ștergeți toate filele din folderul cache comprimat DevBuild. Dacă locația nu este default, vor putea exista file fără legătură cu Thrive, care vor fi șterse împreună cu restul filelor.</value>
   </data>
   <data name="DevCenterConnectionExplanation" xml:space="preserve">
     <value>Aicea puteți să atașați launcher-ul cu ThriveDevCenter-ul pentru a accesa DevBuild-uri și alte chestii</value>
@@ -323,7 +323,8 @@
     <value>Conectat ca:</value>
   </data>
   <data name="SettingsSaveFailedMessage" xml:space="preserve">
-    <value>Salvarea setărilor în filele de setări a eșuat. Vă rugăm să vă asigurați că launcher-ul are voie să scrie și încercați din nou. Log-urile launcher-ului vor avea mai multe informații.</value>
+    <value>Salvarea setărilor în filele de setări a eșuat. Vă rugăm să vă asigurați că launcher-ul are voie să scrie și încercați din nou.
+Log-urile launcher-ului vor avea mai multe informații.</value>
   </data>
   <data name="BuildTypeSelectionBOTD" xml:space="preserve">
     <value>Versiunea Zilei (BOTD) recomandată</value>
@@ -338,7 +339,7 @@
     <value>Hash introdus manual:</value>
   </data>
   <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
-    <value>Selectați valoarea hash-ului întrată manual ca să fie folosită din cutia de input ca DevBuild-ul selectat când vă jucați un DevBuild</value>
+    <value>Selectați valoarea hash-ului intrată manual ca să fie folosită din cutia de input ca DevBuild-ul selectat când vă jucați un DevBuild</value>
   </data>
   <data name="SizeInMiB" xml:space="preserve">
     <value>{0} MiB</value>
@@ -347,6 +348,147 @@
     <value>(mărime: {0})</value>
   </data>
   <data name="FolderNotFound" xml:space="preserve">
-    <value>Folder-ul n-a fost găsit</value>
+    <value>Folder-ul N-a Fost Găsit</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf (Copyright (c) 2010-2011 de tyPoland Lukasz Dziedzic cu Reserved Font Name "Lato"), licență OFL:</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>Feed-ul nu poate fi afișat. {0}</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>postat de {0} la {1}</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Dă click aici</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>Vedeți Licențele Launcher-ului</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Launcher-ul Thrive</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Licențele Launcher-ului Thrive</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>Fontul Roboto este folosit în launcher, licența Roboto:</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>Folderul pentru instalarea versiunilor Thrive nu există.</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>Codul De Sursă Pentru Launcher</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>Se încarcă...</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>pentru a citi toată postarea.</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>A eșuat crearea folderului pentru log-uri({0}): {1}</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>Afișați Log-urile</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>Toate Certificatele Au Expirat</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>Toate semnăturile care verifică certificatele cu care acest launcher este expediat au expirat. Asta înseamnă că versiunea asta a launcher-ului este foarte veche. Vă rugăm să descărcați și să instalați o versiune mai nouă.</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>versiunea {0}</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} pentru {1}</value>
+  </data>
+  <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
+    <value>Launcher-ul Thrive încarcă versiunile disponibile de pe internet casă știe ce are disponibil. Încărcarea acestelor informații a eșuat (vedeți eroarea mai jos). Puteți să descărcați aceste informații din nou, sau dacă launcher-ul a putut să descarce aceste informații înainte, veți putea să încărcați o copie din cache. Dacă copia din cache e foarte veche, ar putea să nu arate toate versiunile Thrive disponibile. Dacă versiunea launcher-ului dvs. e foarte veche, ar putea să nu mai fie compatibil cu un format de date mai nou, și launcher-ul trebuie apdatat înainte ca datele să fie încărcate.</value>
+  </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>Obținerea Versiunilor Disponibile Thrive A Avut Eroare</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>Eroare Internă</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Încercați Din Nou</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>Folosiți Informații De Versiune Din Cache</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Eroare necunoscută</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>Nicio Versiune Thrive Compatibilă A Fost Găsită</value>
+  </data>
+  <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
+    <value>Informațiile din launcher-ul Thrive descărcate nu sunt valide. Vă rugăm să încercați din nou în scurt timp, și dacă încă mai aveți această problemă, vă rugăm să ne contactați.</value>
+  </data>
+  <data name="MoveVersionsExplanation" xml:space="preserve">
+    <value>Versiuni Thrive instalate au fost găsite pe calea anterioară. Pot să fie mutate automat la locația nouă. Dacă nu sunt mutate, filele vor fi lăsate în urmă și launcher-ul nu va știi de ele până când calea veche e selectată ca locația de instalare din nou. Vreți să mutați aceste file automat la locația nouă?</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>Vreți Să Mutați Filele?</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0} (Ultima)</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>Vreți Să Mutați Versiunile?</value>
+  </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>Launcher-ul n-a putut să găsească nicio versiune Thrive compatibilă cu această platformă. Dacă folosiți un sistem de operare ciudat, asta e de așteptat. Dacă nu e așa, vă rugăm să raportați această problemă.</value>
+  </data>
+  <data name="DeleteErrorExplanation" xml:space="preserve">
+    <value>Ştergerea datelor a eșuat la calea: "{0}" pentru că: {1}</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>Ștergerea A Eşuat</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>A apărut o eroare internă în launcher. Vă rugăm să raportați această eroare și să ne dați filele de log ale launcher-ului împreună cu raportul dvs. cu ce s-a întâmplat.</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Mutați</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Săriți Peste</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Ștergeți</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Anulați</value>
+  </data>
+  <data name="DeleteErrorDoesNotExist" xml:space="preserve">
+    <value>Ştergerea a eșuat pentru că calea alesă nu există</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>Folder necunoscut:</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>Ștergeți File Temporare?</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
+    <value>Sunteți pe cale să ștergeți toate filele din folderul temporar la "{0}". Și file fără legătură cu Thrive vor fi șterse dacă sunt în folder. Și folderul în sine va fi șters. Ștergeți folderul temporar?</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>Ștergeți Cache-ul De DevBuild?</value>
+  </data>
+  <data name="ClearTemporaryFilesCount" xml:space="preserve">
+    <value>Sunteți pe cale să ștergeți {0} file / foldere</value>
+  </data>
+  <data name="ClearDehydratedFilesCount" xml:space="preserve">
+    <value>Sunteți pe cale să ștergeți {0} file</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>Sunteți pe cale să ștergeți toate filele în folderul cache comprimat la "{0}". Și file fără legătură cu Thrive vor fi șterse dacă sunt în acel folder. Ștergeți conținuturile din folder?</value>
+  </data>
+  <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
+    <value>Au fost detectate file în cache. Filele pot fi mutate automat la noua locație. Dacă nu sunt mutate, vor rămâne în urmă, și launcher-ul nu va știi despre ele până când calea veche e selectată din nou. Vreți să mutați automat {0} file la noua locație? Dacă file fără legătură cu Thrive sunt în folderul de cache vor fi și ele mutate.</value>
   </data>
 </root>
