@@ -96,7 +96,7 @@
     <value>Kiitos tuesta,</value>
   </data>
   <data name="ConnectToDevCenterPrompt" xml:space="preserve">
-    <value>Yhdistä DevCenteriin</value>
+    <value>Yhdistä ThriveDevCenteriin</value>
   </data>
   <data name="DevelopmentFeedTitle" xml:space="preserve">
     <value>KEHITTÄJIEN FOORUMI</value>
@@ -234,7 +234,7 @@
     <value>DevBuildien tiedostovälimuisti:</value>
   </data>
   <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
-    <value>DevCenter yhteys</value>
+    <value>ThriveDevCenter-yhteys</value>
   </data>
   <data name="DialogOk" xml:space="preserve">
     <value>OK</value>
