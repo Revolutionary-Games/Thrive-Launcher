@@ -618,7 +618,7 @@
     <value>Önceki Ayarlar İçe Aktarılsın mı?</value>
   </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
-    <value>Önceki sürüme ait başlatıcı ayarları bulundu. Yüklü Thrive sürümlerinizi ve diğer özelleştirmelerinizi olduğu gibi tutmak için bu mevcut ayarları içe aktarabilirsiniz.Eğer eski Thrive sürümlerini ve önbellekleri içe aktarmazsanız, bu ayarlar geride bırakılacak ve bu başlatıcı onları kullanmayacak. Ayarların içe aktarılması önerilir.</value>
+    <value>Önceki sürüme ait başlatıcı ayarları bulundu. Yüklü Thrive sürümlerinizi ve diğer özelleştirmelerinizi olduğu gibi tutmak için mevcut ayarları içe aktarabilirsiniz. Eğer eski Thrive sürümlerini ve önbellekleri içe aktarmazsanız, bu ayarlar geride bırakılacak ve bu başlatıcı onları kullanmayacak. Ayarların içe aktarılması önerilir.</value>
   </data>
   <data name="ImportSucceededTitle" xml:space="preserve">
     <value>İçe Aktarma Başarılı</value>
@@ -633,13 +633,13 @@
     <value>Thrive itch.io'da</value>
   </data>
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
-    <value>Bütün oyun videolarını devre dışı bırak (Eğerki Thrive, yükleme logosunu gösterdikten sonra ve giriş videosu oynatılmadan önce çökerse bu, oyunun çalışmasına yardımcı olabilir)</value>
+    <value>Bütün oyun videolarını devre dışı bırak (Eğer ki Thrive, yükleme logosu gösterildikten sonra ve giriş videosu oynatılmadan önce çökerse, bu ayar oyunun çalışmasına yardımcı olabilir)</value>
   </data>
   <data name="LaunchOptionForceGLES2" xml:space="preserve">
     <value>GLES2 işleme moduna zorla (Thrive'ı başlatabilir, ancak hafif grafik sorunlarına neden olabilir.)</value>
   </data>
   <data name="LauncherOptionHide32Bit" xml:space="preserve">
-    <value>Eşdeğer bir 64-bit sürümü mevcutsa, 32-bit sürümleri gizleyin</value>
+    <value>Eşdeğer bir 64-bit sürüm mevcutsa, 32-bit sürümleri gizle</value>
   </data>
   <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
     <value>Başlatıcıyı Oyun Başlatıldıktan Sonra Kapat</value>
