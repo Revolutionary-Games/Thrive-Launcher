@@ -179,16 +179,16 @@
     <value>Tüm Ayarları Sıfırla</value>
   </data>
   <data name="FolderPathDisplay" xml:space="preserve">
-    <value>Rehber:</value>
+    <value>Dizin:</value>
   </data>
   <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
     <value>Geçici indirilenler klasörü:</value>
   </data>
   <data name="ResetInstallLocationToolTip" xml:space="preserve">
-    <value>Kurulum Lokasyonunu Sıfırla</value>
+    <value>Kurulum Yerini Sıfırla</value>
   </data>
   <data name="SelectInstallLocation" xml:space="preserve">
-    <value>Kurulum Lokasyonunu Seçiniz</value>
+    <value>Kurulum Yerini Seç</value>
   </data>
   <data name="FolderIsEmpty" xml:space="preserve">
     <value>Klasör boş</value>
@@ -362,16 +362,16 @@
     <value>Geçici Dosyalar Silinsin Mi?</value>
   </data>
   <data name="ClearTemporaryFilesCount" xml:space="preserve">
-    <value>{0} dosyaları/klasörleri silmek üzeresin</value>
+    <value>{0} dosya/klasör silmek üzeresin</value>
   </data>
   <data name="ClearDehydratedFilesCount" xml:space="preserve">
-    <value>{0} dosyalarını silmek üzeresin</value>
+    <value>{0} dosyayı silmek üzeresin</value>
   </data>
   <data name="LauncherIsLatestVersion" xml:space="preserve">
     <value>Bu sürüm güncel</value>
   </data>
   <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
-    <value>Thrive Başlatıcısı'nın {0} sürümünü kullanmaktasın. Ancak en son sürüm {1} dir</value>
+    <value>Thrive Başlatıcısı'nın {0} sürümünü kullanmaktasın. Ancak en son sürüm {1}</value>
   </data>
   <data name="LauncherDownloadsPageButton" xml:space="preserve">
     <value>İndirilenler Sayfasını Ziyaret Et</value>
@@ -386,7 +386,7 @@
     <value>Kullandığın başlatıcı türünün otomatik olarak güncelleme imkanı var ancak otomatik güncelleme özelliği şu anda, başlatıcı ayarları ya da komut satırı bayrağı üzerinden, devre dışı bırakıldı.</value>
   </data>
   <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
-    <value>ThriveDevCenter'a bağlanma işlemi başarısız oldu. Sunucu, bilinmeyen bir hata  verdi ya da biz yanıtı işlerken hata ile karşılaştık. Lütfen daha sonra tekrar deneyiniz ve eğer sorun devam ederse, lütfen bunu bildiriniz. ThriveDevCenter tarafında her şeyin yolunda olup olmadığını görmek için aşağıdaki bağlantıyı inceleyebilirsiniz.</value>
+    <value>ThriveDevCenter'a bağlanma işlemi başarısız oldu. Sunucu, bilinmeyen bir hata verdi ya da biz yanıtı işlerken hata ile karşılaştık. Lütfen daha sonra tekrar deneyiniz ve eğer sorun devam ederse, lütfen bunu bildiriniz. ThriveDevCenter tarafında her şeyin yolunda olup olmadığını görmek için aşağıdaki bağlantıyı inceleyebilirsiniz.</value>
   </data>
   <data name="RetryExistingConnection" xml:space="preserve">
     <value>Mevcut Bağlantıyı Tekrar Dene</value>
@@ -651,7 +651,7 @@
     <value>Yüklü Dosyalara Gözat</value>
   </data>
   <data name="FolderContentsLabel" xml:space="preserve">
-    <value>İçerikler:</value>
+    <value>İçerik:</value>
   </data>
   <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
     <value>Not: Geçici konumu taşımak, Thrive ile ilgili olmayan dosyalara yanlışlıkla dokunulmasını önlemek amacıyla, mevcut dosyaları taşımaz veya silmez</value>
@@ -669,7 +669,7 @@
     <value>Bilgi</value>
   </data>
   <data name="DevCenterConnectionExplanation" xml:space="preserve">
-    <value>Burada, Geliştirme Sürümleri'ne ve diğer özelliklere erişmek için, başlatıcıyı Thrive Geliştirme Merkezine bağlayabilirsin</value>
+    <value>Burada, Geliştirme Sürümleri'ne ve diğer özelliklere erişmek için, başlatıcıyı ThriveDevCenter'a bağlayabilirsin</value>
   </data>
   <data name="LoginButton" xml:space="preserve">
     <value>Giriş Yap</value>
@@ -712,7 +712,7 @@ Başlatıcı logları bununla ilgili daha fazla bilgi içermekte.</value>
     <value>Lütfen önce giriş kutusuna ThriveDevCenter bağlantı kodunu giriniz</value>
   </data>
   <data name="DevCenterConnectAttemptError" xml:space="preserve">
-    <value>ThriveDevCenter için bağlanma kodu incelenirken hata oluştu. Lütfen kodu doğru bir şekilde girdiğinize ve süresinin dolmadığını emin olun. Ek bilgi: {0}</value>
+    <value>ThriveDevCenter için bağlanma kodu incelenirken hata oluştu. Lütfen kodu doğru bir şekilde girdiğinize ve süresinin dolmadığına emin olun. Ek bilgi: {0}</value>
   </data>
   <data name="LoginToSeeThisContent" xml:space="preserve">
     <value>Bu içeriği görmek için ThriveDevCenter'a giriş yap</value>
@@ -881,7 +881,7 @@ Eğer aşağıda hiçbir dosya listelenmiyorsa, güncellemeyi indirme işlemi ba
     <value>Çökme bildirici, beklenmeyen hatalardan kaynaklı çökme raporlarını henüz desteklemiyor. Lütfen raporu kopyalamak için aşağıdaki kopyala butonunu kullan ve sonra raporu bize elle gönder.</value>
   </data>
   <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
-    <value>Thrive başlatıcısı, neyin mevcut olduğunu öğrenmek için internetten mevcut Thrive sürümlerini yükler. Bu bilgilerin yüklenmesi başarısız oldu (aşağıdaki hataya bakın). Bu bilgileri indirmeyi yeniden deneyebilir veya başlatıcı daha önce bu bilgileri indirebiliyorsa önbelleğe alınmış bir kopya yükleyebilirsiniz. Önbelleğe alınan kopya çok eskiyse, mevcut tüm Thrive sürümlerini göstermeyebilir. Başlatıcı sürümünüz çok eskiyse, artık daha yeni bir veri formatıyla uyumlu olmayabileceğini ve verilerin yüklenebilmesi için manuel olarak güncellenmesi gerektiğini unutmayın.</value>
+    <value>Thrive başlatıcısı, neyin mevcut olduğunu öğrenmek için internetten mevcut Thrive sürümlerini yükler. Bu bilgilerin yüklenmesi başarısız oldu (aşağıdaki hataya bakın). Bu bilgileri indirmeyi yeniden deneyebilir veya başlatıcı daha önce bu bilgileri indirebildiyse, önbelleğe alınmış bir kopyayı yükleyebilirsiniz. Önbelleğe alınan kopya çok eskiyse, mevcut tüm Thrive sürümlerini göstermeyebilir. Başlatıcı sürümünüz çok eskiyse, artık daha yeni bir veri formatıyla uyumlu olmayabileceğini ve verilerin yüklenebilmesi için manuel olarak güncellenmesi gerektiğini unutmayın.</value>
   </data>
   <data name="AutoUpdateRetryFailed" xml:space="preserve">
     <value>Otomatik güncellemeyi tekrar deneme işlemi başarısız oldu. Mevcut otomatik güncelleme dosyalarını temizlemek için bu hatayı yoksayabilirsin. Böylece başlatıcı bir dahaki sefer başlatıldığında bu işlem tekrar denenebilir.</value>
