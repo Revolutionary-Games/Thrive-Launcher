@@ -92,7 +92,7 @@
     <value>Limba launcher-ului:</value>
   </data>
   <data name="ConnectToDevCenterPrompt" xml:space="preserve">
-    <value>Conectați-vă pe DevCenter</value>
+    <value>Conectați-vă pe ThriveDevCenter</value>
   </data>
   <data name="ConnectedDeveloperGreeting" xml:space="preserve">
     <value>Salutare,</value>
@@ -257,7 +257,7 @@
     <value>Mărimea Cache-ului:</value>
   </data>
   <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
-    <value>Conexiune DevCenter</value>
+    <value>Conexiune ThriveDevCenter</value>
   </data>
   <data name="DialogOk" xml:space="preserve">
     <value>OK</value>
@@ -405,7 +405,7 @@ Log-urile launcher-ului vor avea mai multe informații.</value>
     <value>{0} pentru {1}</value>
   </data>
   <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
-    <value>Launcher-ul Thrive încarcă versiunile disponibile de pe internet casă știe ce are disponibil. Încărcarea acestelor informații a eșuat (vedeți eroarea mai jos). Puteți să descărcați aceste informații din nou, sau dacă launcher-ul a putut să descarce aceste informații înainte, veți putea să încărcați o copie din cache. Dacă copia din cache e foarte veche, ar putea să nu arate toate versiunile Thrive disponibile. Dacă versiunea launcher-ului dvs. e foarte veche, ar putea să nu mai fie compatibil cu un format de date mai nou, și launcher-ul trebuie apdatat înainte ca datele să fie încărcate.</value>
+    <value>Launcher-ul Thrive încarcă versiunile disponibile de pe internet casă știe ce are disponibil. Încărcarea acestelor informații a eșuat (vedeți eroarea mai jos). Puteți să descărcați aceste informații din nou, sau dacă launcher-ul a putut să descarce aceste informații înainte, veți putea să încărcați o copie din cache. Dacă copia din cache e foarte veche, ar putea să nu arate toate versiunile Thrive disponibile. Dacă versiunea launcher-ului dvs. e foarte veche, ar putea să nu mai fie compatibil cu un format de date mai nou, și launcher-ul trebuie apdatat manual înainte ca datele să fie încărcate.</value>
   </data>
   <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
     <value>Obținerea Versiunilor Disponibile Thrive A Avut Eroare</value>
@@ -490,5 +490,44 @@ Log-urile launcher-ului vor avea mai multe informații.</value>
   </data>
   <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
     <value>Au fost detectate file în cache. Filele pot fi mutate automat la noua locație. Dacă nu sunt mutate, vor rămâne în urmă, și launcher-ul nu va știi despre ele până când calea veche e selectată din nou. Vreți să mutați automat {0} file la noua locație? Dacă file fără legătură cu Thrive sunt în folderul de cache vor fi și ele mutate.</value>
+  </data>
+  <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
+    <value>Dacă jocul nu a început corect, vă rugăm să folosiți soluții alternative pentru lansarea lui Thrive găsite sub "Opțiuni Thrive" în setările launcher-ului</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>Versiunea asta e la curent</value>
+  </data>
+  <data name="OutdatedLauncherExplanation" xml:space="preserve">
+    <value>Versiunea asta a launcher-ului e învechită și ar trebui apdatată. Cât citiți acest mesaj, apdatarea automată n-a început, așa că trebuie să descărcați apdatarea și s-o instalați. Puteți și să folosiți versiunea curentă a launcher-ului prin a sări peste apdatare, dar ați putea să întâlniți erori, că numai ultima versiune a launcher-ului e garantată să meargă cu sistemele exterioare cu care launcher-ul interacționează.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
+    <value>Tipul de launcher care o folosiți ar trebui să se apdateze automat, dar nu a mers și ultima versiune a launcher-ului a fost disponibilă de ceva vreme. Vă rugăm să verificați dacă nu ați dezactivat menținerea actualizată a Thrive.</value>
+  </data>
+  <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
+    <value>Codul de ieșire poate să însemne că lipsiți o filă DLL. Poate fi Visual C++ Redistributable 2019, care puteți descărca un program de instalare de la: https://aka.ms/vs/17/release/vc_redist.x64.exe pentru a-l instala sau repara. Puteți și să rulați Thrive.exe manual, că ar putea să arate un dialog de eroare cu numele filei DLL care lipsește. Ar trebui să vă asigurați că aveți toate apdatările Windows instalate. Dacă asta n-a ajutat, vă rugăm să ne contactați în legătură cu problema dvs.</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>Vizitați Pagina De Descărcări</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>Folosiți versiunea launcher-ului Thrive {0}, dar ultima versiune e {1}</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>Versiunea Launcher-ului E Învechită</value>
+  </data>
+  <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
+    <value>Folosiți un tip de launcher care nu poate apdata automat. Dacă vreți să folosiți apdatări automate în viitor, vă rugăm să instalați o variantă a launcher-ului care poate apdata automat.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateDisabledByUser" xml:space="preserve">
+    <value>Tipul de launcher care o folosiți are capabilitatea să se apdateze automat, dar apdatarea automată este dezactivată ori prin setările launcher-ului sau un steag de linie de comand.</value>
+  </data>
+  <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
+    <value>Eroare: n-a fost găsită nicio filă de apdatare pentru acest tip de launcher. Asta n-ar trebui să se întâmple. Vă rugăm să încercați din nou, și dacă nu merge, vă rugăm să ne contactați.</value>
+  </data>
+  <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
+    <value>Conexiune la ThriveDevCenter a eșuat. Server-ul a răspuns cu o interzicere. Asta înseamnă că cheia noastră de conexiune nu mai funcționează. Asta poate fi cauzat de o lipsă de conexiune la UI-ul de web, sau contul dvs. poate fi suspendat. Verificați link-ul de jos ca să vă vedeți starea contului dvs.</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>Conexiunea La ThriveDevCenter A Eșuat</value>
   </data>
 </root>
