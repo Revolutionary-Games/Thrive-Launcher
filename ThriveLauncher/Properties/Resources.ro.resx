@@ -530,4 +530,52 @@ Log-urile launcher-ului vor avea mai multe informații.</value>
   <data name="DevCenterConnectFailureTitle" xml:space="preserve">
     <value>Conexiunea La ThriveDevCenter A Eșuat</value>
   </data>
+  <data name="DevCenterConnectFailureConnection" xml:space="preserve">
+    <value>Conectatea la ThriveDevCenter a eșuat. Vă rugăm să încercați din nou, deoarece ThriveDevCenter poate să fi fost temporar indisponibil. Ar trebui să vă verificați conexiunea dvs. la internet. Puteți să folosiți link-ul de jos ca să accesați ThriveDevCenter-ul prin browser-ul dvs. Vă rugăm să încercați din nou mai târziu, și dacă încă mai aveți probleme pentru mai mult decât câteva minute, vă rugăm s-o raportați.</value>
+  </data>
+  <data name="EnterDevCenterConnectionCode" xml:space="preserve">
+    <value>Vă rugăm să intrați un cod de conexiune ThriveDevCenter în prima cutie de input</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>Crearea link-ului a eșuat, vă rugăm să verificați codul din nou</value>
+  </data>
+  <data name="LoginToSeeThisContent" xml:space="preserve">
+    <value>Logați-vă pe ThriveDevCenter ca să vedeți acest conținut</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>riscant</value>
+  </data>
+  <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
+    <value>BOTD</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>descriere:</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>Nu Puteți Juca Thrive</value>
+  </data>
+  <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
+    <value>Conexiunea la ThriveDevCenter a eșuat. Server-ul a răspuns cu o eroare necunoscută sau am întâlnit o eroare la gestionarea răspunsului. Vă rugăm să încercați din nou, și dacă încă mai aveți această problemă, vă rugăm s-o raportați. Puteți să vă uitați la link-ul de jos ca să vă asigurați că totul e bine pe partea ThriveDevCenter-ului.</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>Reîncărcați Ultima Conexiune</value>
+  </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>Deconectați-vă</value>
+  </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>Verificați Coduri De Conectare Pe ThriveDevCenter</value>
+  </data>
+  <data name="DevCenterConnectAttemptError" xml:space="preserve">
+    <value>A fost o eroare la verificarea codului pentru ThriveDevCenter. Vă rugăm să verificați dacă ați scris codul corect și că nu a expirat. Informații extra: {0}</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>Codul e valabil. Vă rugăm să confirmați atașarea acestui cont:</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>Nume:</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>Email:</value>
+  </data>
 </root>
