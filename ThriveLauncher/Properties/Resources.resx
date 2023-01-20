@@ -95,7 +95,7 @@
       <value>Play</value>
   </data>
   <data name="ConnectToDevCenterPrompt" xml:space="preserve">
-      <value>Connect to DevCenter</value>
+      <value>Connect to ThriveDevCenter</value>
   </data>
   <data name="ConnectedDeveloperGreeting" xml:space="preserve">
       <value>Howdy,</value>
@@ -269,7 +269,7 @@
       <value>Cache size:</value>
   </data>
   <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
-      <value>DevCenter Connection</value>
+      <value>ThriveDevCenter Connection</value>
   </data>
   <data name="DialogOk" xml:space="preserve">
       <value>OK</value>
@@ -531,28 +531,28 @@ Launcher logs will have more info.</value>
     <value>ThriveDevCenter Connection Failed</value>
   </data>
   <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
-    <value>Connecting to the DevCenter has failed. The DevCenter responded with a forbid response. This means that our connection key is no longer good. This may be caused by the connection being disconnected through the web UI or your account may be suspended. See the link below to check your account's connection statuses.</value>
+    <value>Connecting to the ThriveDevCenter has failed. The server responded with a forbid response. This means that our connection key is no longer good. This may be caused by the connection being disconnected through the web UI or your account may be suspended. See the link below to check your account's connection statuses.</value>
   </data>
   <data name="DevCenterConnectFailureConnection" xml:space="preserve">
-    <value>Connecting to the DevCenter has failed. Please try again as the DevCenter may have just been temporarily unavailable. You should also check your internet connection. You can use the link below to visit the DevCenter to see if your browser can connect. Please try again later and if the problem persists for more than a few minutes, please report it.</value>
+    <value>Connecting to the ThriveDevCenter has failed. Please try again as the ThriveDevCenter may have just been temporarily unavailable. You should also check your internet connection. You can use the link below to visit the DevCenter to see if your browser can connect. Please try again later and if the problem persists for more than a few minutes, please report it.</value>
   </data>
   <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
-    <value>Connecting to the DevCenter has failed. The DevCenter responded with an unknown error or we ran into an error handling the response. Please try again later and if the problem persists, please report it. You can check with the link below to see if everything looks fine on the DevCenter's side.</value>
+    <value>Connecting to the ThriveDevCenter has failed. The server responded with an unknown error or we ran into an error handling the response. Please try again later and if the problem persists, please report it. You can check with the link below to see if everything looks fine on the ThriveDevCenter's side.</value>
   </data>
   <data name="DisconnectDevCenter" xml:space="preserve">
     <value>Disconnect</value>
   </data>
   <data name="CheckDevCenterTokensLink" xml:space="preserve">
-    <value>Check tokens on DevCenter</value>
+    <value>Check tokens on ThriveDevCenter</value>
   </data>
   <data name="RetryExistingConnection" xml:space="preserve">
     <value>Retry Existing Connection</value>
   </data>
   <data name="EnterDevCenterConnectionCode" xml:space="preserve">
-    <value>Please enter a DevCenter connection code first in the input box</value>
+    <value>Please enter a ThriveDevCenter connection code first in the input box</value>
   </data>
   <data name="DevCenterConnectAttemptError" xml:space="preserve">
-    <value>Error checking linking code for the DevCenter. Please verify you typed in the code correctly and that it has not expired. Extra information: {0}</value>
+    <value>Error checking linking code for the ThriveDevCenter. Please verify you typed in the code correctly and that it has not expired. Extra information: {0}</value>
   </data>
   <data name="ConfirmValidLink" xml:space="preserve">
     <value>Code is valid. Please confirm linking to the following account:</value>
@@ -567,7 +567,7 @@ Launcher logs will have more info.</value>
     <value>Failed to form the link, please check the code again</value>
   </data>
   <data name="LoginToSeeThisContent" xml:space="preserve">
-    <value>Login to the DevCenter to see this content</value>
+    <value>Login to the ThriveDevCenter to see this content</value>
   </data>
   <data name="UnsafeBuild" xml:space="preserve">
     <value>unsafe</value>

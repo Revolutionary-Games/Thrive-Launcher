@@ -80,7 +80,7 @@
     <value>Oyna</value>
   </data>
   <data name="ConnectToDevCenterPrompt" xml:space="preserve">
-    <value>DevCenter'a bağlan</value>
+    <value>ThriveDevCenter'a bağlan</value>
   </data>
   <data name="ConnectedDeveloperGreeting" xml:space="preserve">
     <value>N'aber,</value>
@@ -128,7 +128,7 @@
     <value>Başlatıcı GitHub'da</value>
   </data>
   <data name="ExternalLinkFanWiki" xml:space="preserve">
-    <value>Fan Vikisi</value>
+    <value>Hayran Vikisi</value>
   </data>
   <data name="ExternalLinkDiscordServer" xml:space="preserve">
     <value>Discord sunucusu</value>
@@ -179,16 +179,16 @@
     <value>Tüm Ayarları Sıfırla</value>
   </data>
   <data name="FolderPathDisplay" xml:space="preserve">
-    <value>Rehber:</value>
+    <value>Dizin:</value>
   </data>
   <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
     <value>Geçici indirilenler klasörü:</value>
   </data>
   <data name="ResetInstallLocationToolTip" xml:space="preserve">
-    <value>Kurulum Lokasyonunu Sıfırla</value>
+    <value>Kurulum Yerini Sıfırla</value>
   </data>
   <data name="SelectInstallLocation" xml:space="preserve">
-    <value>Kurulum Lokasyonunu Seçiniz</value>
+    <value>Kurulum Yerini Seç</value>
   </data>
   <data name="FolderIsEmpty" xml:space="preserve">
     <value>Klasör boş</value>
@@ -209,7 +209,7 @@
     <value>Önbellek büyüklüğü:</value>
   </data>
   <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
-    <value>Geliştirme Merkezi Bağlantısı</value>
+    <value>ThriveDevCenter Bağlantısı</value>
   </data>
   <data name="DialogOk" xml:space="preserve">
     <value>Tamam</value>
@@ -362,16 +362,16 @@
     <value>Geçici Dosyalar Silinsin Mi?</value>
   </data>
   <data name="ClearTemporaryFilesCount" xml:space="preserve">
-    <value>{0} dosyaları/klasörleri silmek üzeresin</value>
+    <value>{0} dosya/klasör silmek üzeresin</value>
   </data>
   <data name="ClearDehydratedFilesCount" xml:space="preserve">
-    <value>{0} dosyalarını silmek üzeresin</value>
+    <value>{0} dosyayı silmek üzeresin</value>
   </data>
   <data name="LauncherIsLatestVersion" xml:space="preserve">
     <value>Bu sürüm güncel</value>
   </data>
   <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
-    <value>Thrive Başlatıcısı'nın {0} sürümünü kullanmaktasın. Ancak en son sürüm {1} dir</value>
+    <value>Thrive Başlatıcısı'nın {0} sürümünü kullanmaktasın. Ancak en son sürüm {1}</value>
   </data>
   <data name="LauncherDownloadsPageButton" xml:space="preserve">
     <value>İndirilenler Sayfasını Ziyaret Et</value>
@@ -386,7 +386,7 @@
     <value>Kullandığın başlatıcı türünün otomatik olarak güncelleme imkanı var ancak otomatik güncelleme özelliği şu anda, başlatıcı ayarları ya da komut satırı bayrağı üzerinden, devre dışı bırakıldı.</value>
   </data>
   <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
-    <value>DevCenter'a bağlanma işlemi başarısız oldu. DevCenter, bilinmeyen bir hata ile yanıt verdi ya da biz yanıtı işlerken hata ile karşılaştık. Lütfen daha sonra tekrar dene ve eğer sorun devam ederse, lütfen bunu bildir. DevCenter tarafında her şeyin yolunda olup olmadığını görmek için aşağıdaki bağlantıyı inceleyebilirsin.</value>
+    <value>ThriveDevCenter'a bağlanma işlemi başarısız oldu. Sunucu, bilinmeyen bir hata verdi ya da biz yanıtı işlerken hata ile karşılaştık. Lütfen daha sonra tekrar deneyiniz ve eğer sorun devam ederse, lütfen bunu bildiriniz. ThriveDevCenter tarafında her şeyin yolunda olup olmadığını görmek için aşağıdaki bağlantıyı inceleyebilirsiniz.</value>
   </data>
   <data name="RetryExistingConnection" xml:space="preserve">
     <value>Mevcut Bağlantıyı Tekrar Dene</value>
@@ -618,7 +618,7 @@
     <value>Önceki Ayarlar İçe Aktarılsın mı?</value>
   </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
-    <value>Önceki sürüme ait başlatıcı ayarları bulundu. Yüklü Thrive sürümlerinizi ve diğer özelleştirmelerinizi olduğu gibi tutmak için bu mevcut ayarları içe aktarabilirsiniz.Eğer eski Thrive sürümlerini ve önbellekleri içe aktarmazsanız, bu ayarlar geride bırakılacak ve bu başlatıcı onları kullanmayacak. Ayarların içe aktarılması önerilir.</value>
+    <value>Önceki sürüme ait başlatıcı ayarları bulundu. Yüklü Thrive sürümlerinizi ve diğer özelleştirmelerinizi olduğu gibi tutmak için mevcut ayarları içe aktarabilirsiniz. Eğer eski Thrive sürümlerini ve önbellekleri içe aktarmazsanız, bu ayarlar geride bırakılacak ve bu başlatıcı onları kullanmayacak. Ayarların içe aktarılması önerilir.</value>
   </data>
   <data name="ImportSucceededTitle" xml:space="preserve">
     <value>İçe Aktarma Başarılı</value>
@@ -633,13 +633,13 @@
     <value>Thrive itch.io'da</value>
   </data>
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
-    <value>Bütün oyun videolarını devre dışı bırak (Eğerki Thrive, yükleme logosunu gösterdikten sonra ve giriş videosu oynatılmadan önce çökerse bu, oyunun çalışmasına yardımcı olabilir)</value>
+    <value>Bütün oyun videolarını devre dışı bırak (Eğer ki Thrive, yükleme logosu gösterildikten sonra ve giriş videosu oynatılmadan önce çökerse, bu ayar oyunun çalışmasına yardımcı olabilir)</value>
   </data>
   <data name="LaunchOptionForceGLES2" xml:space="preserve">
     <value>GLES2 işleme moduna zorla (Thrive'ı başlatabilir, ancak hafif grafik sorunlarına neden olabilir.)</value>
   </data>
   <data name="LauncherOptionHide32Bit" xml:space="preserve">
-    <value>Eşdeğer bir 64-bit sürümü mevcutsa, 32-bit sürümleri gizleyin</value>
+    <value>Eşdeğer bir 64-bit sürüm mevcutsa, 32-bit sürümleri gizle</value>
   </data>
   <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
     <value>Başlatıcıyı Oyun Başlatıldıktan Sonra Kapat</value>
@@ -651,7 +651,7 @@
     <value>Yüklü Dosyalara Gözat</value>
   </data>
   <data name="FolderContentsLabel" xml:space="preserve">
-    <value>İçerikler:</value>
+    <value>İçerik:</value>
   </data>
   <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
     <value>Not: Geçici konumu taşımak, Thrive ile ilgili olmayan dosyalara yanlışlıkla dokunulmasını önlemek amacıyla, mevcut dosyaları taşımaz veya silmez</value>
@@ -669,7 +669,7 @@
     <value>Bilgi</value>
   </data>
   <data name="DevCenterConnectionExplanation" xml:space="preserve">
-    <value>Burada, Geliştirme Sürümleri'ne ve diğer özelliklere erişmek için, başlatıcıyı Thrive Geliştirme Merkezine bağlayabilirsin</value>
+    <value>Burada, Geliştirme Sürümleri'ne ve diğer özelliklere erişmek için, başlatıcıyı ThriveDevCenter'a bağlayabilirsin</value>
   </data>
   <data name="LoginButton" xml:space="preserve">
     <value>Giriş Yap</value>
@@ -706,16 +706,16 @@ Başlatıcı logları bununla ilgili daha fazla bilgi içermekte.</value>
     <value>Bağlantıyı Kes</value>
   </data>
   <data name="CheckDevCenterTokensLink" xml:space="preserve">
-    <value>DevCenter'daki jetonları incele</value>
+    <value>ThriveDevCenter'daki jetonları incele</value>
   </data>
   <data name="EnterDevCenterConnectionCode" xml:space="preserve">
-    <value>Lütfen önce giriş kutusuna DevCenter bağlantı kodunu gir</value>
+    <value>Lütfen önce giriş kutusuna ThriveDevCenter bağlantı kodunu giriniz</value>
   </data>
   <data name="DevCenterConnectAttemptError" xml:space="preserve">
-    <value>DevCenter'a bağlanma kodu incelenirken hata oluştu. Lütfen kodu doğru bir şekilde girdiğini ve süresinin dolmadığını doğrula. Ek bilgi: {0}</value>
+    <value>ThriveDevCenter için bağlanma kodu incelenirken hata oluştu. Lütfen kodu doğru bir şekilde girdiğinize ve süresinin dolmadığına emin olun. Ek bilgi: {0}</value>
   </data>
   <data name="LoginToSeeThisContent" xml:space="preserve">
-    <value>Bu içeriği görmek için DevCenter'a giriş yap</value>
+    <value>Bu içeriği görmek için ThriveDevCenter'a giriş yap</value>
   </data>
   <data name="GettingDevBuildInfoMessage" xml:space="preserve">
     <value>Oynamak için seçili Geliştirme Sürümü {0} türü ile ilgili bilgi alınıyor...</value>
@@ -854,10 +854,10 @@ Eğer aşağıda hiçbir dosya listelenmiyorsa, güncellemeyi indirme işlemi ba
     <value>Kullandığın başlatıcı türünün otomatik olarak güncelleme yapabilmesi lazım ancak bazı nedenlerden dolayı çalışamadı. Ayrıca, en son başlatıcı sürümü de uzun süredir mevcut. Lütfen Thrive'ı güncel tutma özelliğini devre dışı bırakıp bırakmadığını kontrol et.</value>
   </data>
   <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
-    <value>DevCenter'a bağlanma işlemi başarısız oldu. DevCenter, bir engel ile yanıt verdi. Bu, bağlantı anahtarımızın artık iyi olmadığı anlamına gelir. Bu sorun, hesabının askıya alınması ya da web UI aracılığıyla bağlantının kopması nedeniyle meydana gelmiş olabilir. Hesabının bağlantı durumunu incelemek için aşağıdaki bağlantıya bak.</value>
+    <value>ThriveDevCenter'a bağlanma işlemi başarısız oldu. Sunucu, bir engel ile yanıt verdi. Bu, bağlantı anahtarımızın artık iyi olmadığı anlamına gelir. Bu sorun, web arayüzü aracılığıyla bağlantının kopması veya hesabının askıya alınması nedeniyle meydana gelmiş olabilir. Hesabınızın bağlantı durumunu incelemek için aşağıdaki bağlantıya bakabilirsiniz.</value>
   </data>
   <data name="DevCenterConnectFailureConnection" xml:space="preserve">
-    <value>DevCenter'a bağlanma işlemi başarısız oldu. DevCenter, geçici olarak müsait olmayabileceği için lütfen tekrar dene. Ayrıca, internet bağlantını da kontrol etmen gerekir. Tarayıcının bağlanıp bağlanmadığını görmek için aşağıdaki bağlantıyı kullanıp DevCenter'ı ziyaret edebilirsin. Lütfen daha sonra tekrar dene. Eğer sorun birkaç dakikadan daha uzun süre devam ederse, lütfen bunu bildir.</value>
+    <value>ThriveDevCenter'a bağlanma işlemi başarısız oldu. ThriveDevCenter, geçici olarak müsait olmayabileceği için lütfen tekrar deneyiniz. Ayrıca, internet bağlantınızıda kontrol etmeniz gerekir. Tarayıcınızın bağlanıp bağlanmadığını görmek için aşağıdaki bağlantıyı kullanıp DevCenter'ı ziyaret edebilirsiniz. Lütfen daha sonra tekrar deneyiniz. Eğer sorun birkaç dakikadan daha uzun süre devam ederse, lütfen bunu bildiriniz.</value>
   </data>
   <data name="ErrorGettingDevBuild" xml:space="preserve">
     <value>Hata: Mevcut platform için belirtilen türde Geliştirme Sürümü bulma işlemi başarısız. Lütfen başka bir sürüm seç, örneğin önerilen GS, ve tekrar dene. Hata nedeni: {0}</value>
@@ -881,7 +881,7 @@ Eğer aşağıda hiçbir dosya listelenmiyorsa, güncellemeyi indirme işlemi ba
     <value>Çökme bildirici, beklenmeyen hatalardan kaynaklı çökme raporlarını henüz desteklemiyor. Lütfen raporu kopyalamak için aşağıdaki kopyala butonunu kullan ve sonra raporu bize elle gönder.</value>
   </data>
   <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
-    <value>Thrive başlatıcısı, neyin mevcut olduğunu öğrenmek için internetten mevcut Thrive sürümlerini yükler. Bu bilgilerin yüklenmesi başarısız oldu (aşağıdaki hataya bakın). Bu bilgileri indirmeyi yeniden deneyebilir veya başlatıcı daha önce bu bilgileri indirebiliyorsa önbelleğe alınmış bir kopya yükleyebilirsiniz. Önbelleğe alınan kopya çok eskiyse, mevcut tüm Thrive sürümlerini göstermeyebilir. Başlatıcı sürümünüz çok eskiyse, artık daha yeni bir veri biçimiyle uyumlu olmayabileceğini ve verilerin yüklenebilmesi için güncellenmesi gerektiğini unutmayın.</value>
+    <value>Thrive başlatıcısı, neyin mevcut olduğunu öğrenmek için internetten mevcut Thrive sürümlerini yükler. Bu bilgilerin yüklenmesi başarısız oldu (aşağıdaki hataya bakın). Bu bilgileri indirmeyi yeniden deneyebilir veya başlatıcı daha önce bu bilgileri indirebildiyse, önbelleğe alınmış bir kopyayı yükleyebilirsiniz. Önbelleğe alınan kopya çok eskiyse, mevcut tüm Thrive sürümlerini göstermeyebilir. Başlatıcı sürümünüz çok eskiyse, artık daha yeni bir veri formatıyla uyumlu olmayabileceğini ve verilerin yüklenebilmesi için manuel olarak güncellenmesi gerektiğini unutmayın.</value>
   </data>
   <data name="AutoUpdateRetryFailed" xml:space="preserve">
     <value>Otomatik güncellemeyi tekrar deneme işlemi başarısız oldu. Mevcut otomatik güncelleme dosyalarını temizlemek için bu hatayı yoksayabilirsin. Böylece başlatıcı bir dahaki sefer başlatıldığında bu işlem tekrar denenebilir.</value>
