@@ -578,4 +578,10 @@ Log-urile launcher-ului vor avea mai multe informații.</value>
   <data name="NewLinkEmail" xml:space="preserve">
     <value>Email:</value>
   </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thrive a fost deja pornit, vă rugăm să-l închideți și să încercați din nou</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>Vă rugăm să selectați o versiune Thrive din cutia drop-down lângă butonul de joc și să încercați din nou</value>
+  </data>
 </root>
