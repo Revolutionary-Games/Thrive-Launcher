@@ -310,4 +310,13 @@
   <data name="LauncherOptionWebFeeds" xml:space="preserve">
     <value>Ativar Feeds da Web</value>
   </data>
+  <data name="ExternalLinkCommunityForums" xml:space="preserve">
+    <value>Fóruns comunitários</value>
+  </data>
+  <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
+    <value>Wiki dos Desenvolvedores</value>
+  </data>
+  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
+    <value>Perfil no Twitter</value>
+  </data>
 </root>
