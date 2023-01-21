@@ -95,7 +95,7 @@
     <value>Jogar</value>
   </data>
   <data name="ConnectToDevCenterPrompt" xml:space="preserve">
-    <value>Conectar ao DevCenter</value>
+    <value>Conectar ao ThriveDevCenter</value>
   </data>
   <data name="ConnectedDeveloperGreeting" xml:space="preserve">
     <value>Olá,</value>
@@ -282,5 +282,32 @@
   </data>
   <data name="LauncherOptionHide32Bit" xml:space="preserve">
     <value>Ocultar versões de 32-bit se uma versão de 64-bit equivalente existir</value>
+  </data>
+  <data name="LinksPopupTitle" xml:space="preserve">
+    <value>Links de Revolutionary Games</value>
+  </data>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+    <value>Website principal</value>
+  </data>
+  <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
+    <value>ThriveDevCenter</value>
+  </data>
+  <data name="ExternalLinkLauncherGithub" xml:space="preserve">
+    <value>Lançador no Github</value>
+  </data>
+  <data name="LauncherOptions" xml:space="preserve">
+    <value>Opções do Lançador</value>
+  </data>
+  <data name="CacheConfigurationTab" xml:space="preserve">
+    <value>Cache</value>
+  </data>
+  <data name="LaunchOptionsTitle" xml:space="preserve">
+    <value>Opções de Lançamento</value>
+  </data>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+    <value>Versão do lançador:</value>
+  </data>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+    <value>Ativar Feeds da Web</value>
   </data>
 </root>
