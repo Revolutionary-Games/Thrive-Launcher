@@ -131,8 +131,9 @@ public class LoggingManager : ILoggingManager
         provider.LogFactory.Configuration =
             GetNLogConfiguration(true, effectiveVerbose, defaultLevel, launcherPaths);
 
-        logger.LogInformation("Reconfigured logging with verbose: {EffectiveVerbose} and level: {DefaultLevel}",
-            effectiveVerbose, defaultLevel);
+        logger.LogInformation(
+            "Reconfigured logging with verbose: {EffectiveVerbose} and level: {DefaultLevel} " +
+            "(without verbosity adjustment)", effectiveVerbose, defaultLevel);
         LogLoggingOptions();
     }
 
