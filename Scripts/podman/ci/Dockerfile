@@ -1,4 +1,4 @@
 FROM fedora:37
 
-RUN dnf install -y --setopt=deltarpm=false git git-lfs dotnet-sdk-6.0 p7zip ImageMagick && dnf clean all
+RUN dnf install -y --setopt=deltarpm=false git git-lfs dotnet-sdk-7.0 p7zip ImageMagick && dnf clean all
 RUN git lfs install

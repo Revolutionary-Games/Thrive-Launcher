@@ -7,4 +7,4 @@ ENV TZ=Etc/UTC
 COPY packages-microsoft-prod.deb /packages-microsoft-prod.deb
 
 RUN apt-get update && apt-get install -y ca-certificates && dpkg -i /packages-microsoft-prod.deb && \
-    apt-get update && apt-get install -y dotnet-sdk-6.0 p7zip git rsync imagemagick && apt-get clean
+    apt-get update && apt-get install -y dotnet-sdk-7.0 p7zip git rsync imagemagick && apt-get clean
