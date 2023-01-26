@@ -584,4 +584,37 @@ Log-urile launcher-ului vor avea mai multe informații.</value>
   <data name="NoVersionSelected" xml:space="preserve">
     <value>Vă rugăm să selectați o versiune Thrive din cutia drop-down lângă butonul de joc și să încercați din nou</value>
   </data>
+  <data name="PlayingTitle" xml:space="preserve">
+    <value>Jucați {0}</value>
+  </data>
+  <data name="GettingDevBuildInfoMessage" xml:space="preserve">
+    <value>Recuperăm informații despre DevBuild-ul selectat de tipul {0} să jucați...</value>
+  </data>
+  <data name="ErrorGettingDevBuild" xml:space="preserve">
+    <value>A fost o eroare la recuperarea DevBuild-ului de tipul selectat pentru această platformă. Vă rugăm să selectați un alt DevBuild, de exemplu BOTD-ul recomandat, și să încercați din nou. Cauza erorii: {0}</value>
+  </data>
+  <data name="ThriveRunCanceled" xml:space="preserve">
+    <value>Rularea lui Thrive a fost anulată</value>
+  </data>
+  <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
+    <value>Jocul unei versiuni nesigure a fost anulată</value>
+  </data>
+  <data name="DownloadingItem" xml:space="preserve">
+    <value>Descărcați {0}</value>
+  </data>
+  <data name="DownloadError" xml:space="preserve">
+    <value>Descărcarea a eșuat pentru că {0}</value>
+  </data>
+  <data name="ExtractError" xml:space="preserve">
+    <value>Extragerea unei arhive a eșuat pentru că {0}</value>
+  </data>
+  <data name="ThriveRunError" xml:space="preserve">
+    <value>Thrive n-a putut să joace din cauza acestei erori: {0}</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>Închideți</value>
+  </data>
+  <data name="NoBuildToPlayFound" xml:space="preserve">
+    <value>Niciun DevBuild cu tipul ales și pentru această platformă n-a fost găsit</value>
+  </data>
 </root>
