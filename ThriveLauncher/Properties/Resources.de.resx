@@ -80,7 +80,7 @@
     <value>Cachegröße:</value>
   </data>
   <data name="ResetAllSettings" xml:space="preserve">
-    <value>Einstellungen zurücksetzen</value>
+    <value>Alle Einstellungen zurücksetzen</value>
   </data>
   <data name="BrowseInstalledFiles" xml:space="preserve">
     <value>Installierte Dateien durchsuchen</value>
@@ -92,16 +92,16 @@
     <value>Launcher Sprache:</value>
   </data>
   <data name="LauncherVersionDisplay" xml:space="preserve">
-    <value>Launcher Version:</value>
+    <value>Launcher-Version:</value>
   </data>
   <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
-    <value>Launcher nach dem Spielen beenden, wenn keine Fehler aufgetreten sind</value>
+    <value>Launcher nach dem Spielen beenden (wenn keine Fehler aufgetreten sind)</value>
   </data>
   <data name="LauncherOptionHide32Bit" xml:space="preserve">
     <value>Verstecke 32-Bit Versionen, wenn gleichwertige 64-Bit Versionen vorhanden sind</value>
   </data>
   <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
-    <value>Schnellstart-Modus (Starter nicht angezeigen vor dem Starten des eigentlichen Spiels)</value>
+    <value>"Nahtloser Launcher"-Modus zulassen (Launcher wird vor dem Starten von Thrive nicht angezeigt)</value>
   </data>
   <data name="ForgetLastPlayedVersion" xml:space="preserve">
     <value>Zuletzt gespielte Version vergessen</value>
@@ -120,5 +120,92 @@
   </data>
   <data name="ImportFailedTitle" xml:space="preserve">
     <value>Import fehlgeschlagen</value>
+  </data>
+  <data name="ImportSucceededMessage" xml:space="preserve">
+    <value>Vorherige Einstellungen wurden erfolgreich importiert.</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>Importieren der Einstellungen fehlgeschlagen. Bitte stelle sicher, dass die relevanten Dateipfade vom Launcher gelesen und bearbeitet werden können, und starte dann den Launcher neu, um es erneut zu versuchen.</value>
+  </data>
+  <data name="LinksButton" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="LinksPopupTitle" xml:space="preserve">
+    <value>Revolutionary Games Links</value>
+  </data>
+  <data name="ExternalLinkPatreon" xml:space="preserve">
+    <value>Patreon</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+    <value>Spenden</value>
+  </data>
+  <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
+    <value>ThriveDevCenter</value>
+  </data>
+  <data name="ExternalLinkThriveSteam" xml:space="preserve">
+    <value>Thrive bei Steam</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+    <value>Discord-Server</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+    <value>Subreddit</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+    <value>YouTube-Kanal</value>
+  </data>
+  <data name="ThriveOptions" xml:space="preserve">
+    <value>Thrive Einstellungen</value>
+  </data>
+  <data name="LauncherOptions" xml:space="preserve">
+    <value>Launcher Einstellungen</value>
+  </data>
+  <data name="InstalledVersions" xml:space="preserve">
+    <value>Installierte Versionen</value>
+  </data>
+  <data name="CacheConfigurationTab" xml:space="preserve">
+    <value>Cache</value>
+  </data>
+  <data name="LaunchOptionsTitle" xml:space="preserve">
+    <value>Startoptionen</value>
+  </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+    <value>Alle Spielvideos deaktivieren (Wenn Thrive abstürzt nachdem das Ladelogo angezeigt wurde und bevor des Einführungsvideo abgespielt wird, kann diese Einstellung dazu beitragen, dass das Spiel funktioniert.)</value>
+  </data>
+  <data name="LaunchOptionForceGLES2" xml:space="preserve">
+    <value>Erzwinge GLES2-Rendering (Kann Thrive zum Starten bringen, aber führt zu leichten Grafikproblemen.)</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>Automatisches Aktualisieren des Launchers</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+    <value>Ordner für temporäre Downloads:</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>Anmerkung: Beim Verschieben des temporären Speicherorts werden keine vorhandenen Dateien verschoben oder gelöscht, um zu verhindern, dass versehentlich Dateien verändert werden, die nichts mit Thrive zu tun haben</value>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+    <value>Inhalte:</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+    <value>Ordner ist leer</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+    <value>Verbunden als:</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>Danke für Ihre Unterstützung!</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>Ausloggen</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>Sie sind ein Entwickler</value>
   </data>
 </root>
