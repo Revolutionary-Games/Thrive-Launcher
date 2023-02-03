@@ -58,6 +58,7 @@ public class Rehydrator : IRehydrator
             dehydratedCacheFile);
 
         Directory.CreateDirectory(DehydratedCacheFolder);
+        Directory.CreateDirectory(TemporaryFolder);
 
         var operation =
             new FilePrepareProgress(Path.GetFileName(dehydratedCacheFile), FilePrepareStep.Processing);
