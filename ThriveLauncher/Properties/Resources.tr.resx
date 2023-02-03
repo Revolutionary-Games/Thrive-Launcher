@@ -913,7 +913,7 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı g
     <value>Başlatıcı hata ayıklama günlüğünü etkinleştir (başlatıcıyla ilgili bir sorunu veya hatayı bildirmeden önce lütfen bunu etkinleştirin ve başlatıcıyı yeniden başlatın)</value>
   </data>
   <data name="LatestVersionParsingFailed" xml:space="preserve">
-    <value>Mevcut olan en son başlatıcı sürümündeki bilgilerin ayrıştırılma işlemi başarısız oldu. Yeni başlatıcı sürümü mevcudiyeti ile ilgili hatırlatmalar ve otomatik güncelleme artık çalışmayacak.</value>
+    <value>Mevcut olan en son başlatıcı sürümündeki bilgileri ayrıştırma işlemi başarısız oldu. Yeni başlatıcı sürümü mevcudiyeti ile ilgili hatırlatmalar ve otomatik güncelleme artık çalışmayacak.</value>
   </data>
   <data name="CrashDumpsDetectedAdvice" xml:space="preserve">
     <value>Çökme dökümleri algılandı ancak bu dökümler bir önceki Thrive oturumundan olabilir (bildirmeden önce lütfen kontrol et). Çökme dökümleri ile ilgili bildirim almayı durdurmak için lütfen bildiriciyi aç ve çökme dökümlerini temizle.</value>
