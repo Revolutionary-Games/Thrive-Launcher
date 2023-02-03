@@ -591,7 +591,7 @@ Log-urile launcher-ului vor avea mai multe informații.</value>
     <value>Recuperăm informații despre DevBuild-ul selectat de tipul {0} să jucați...</value>
   </data>
   <data name="ErrorGettingDevBuild" xml:space="preserve">
-    <value>A fost o eroare la recuperarea DevBuild-ului de tipul selectat pentru această platformă. Vă rugăm să selectați un alt DevBuild, de exemplu BOTD-ul recomandat, și să încercați din nou. Cauza erorii: {0}</value>
+    <value>Eroare: recuperarea DevBuild-ului de tipul selectat pentru această platformă a eșuat. Vă rugăm să selectați un alt DevBuild, de exemplu BOTD-ul recomandat, și să încercați din nou. Cauza erorii: {0}</value>
   </data>
   <data name="ThriveRunCanceled" xml:space="preserve">
     <value>Rularea lui Thrive a fost anulată</value>
@@ -606,7 +606,7 @@ Log-urile launcher-ului vor avea mai multe informații.</value>
     <value>Descărcarea a eșuat pentru că {0}</value>
   </data>
   <data name="ExtractError" xml:space="preserve">
-    <value>Extragerea unei arhive a eșuat pentru că {0}</value>
+    <value>Extragerea unei arhive a eșuat pentru că din cauza erorii: {0}</value>
   </data>
   <data name="ThriveRunError" xml:space="preserve">
     <value>Thrive n-a putut să joace din cauza acestei erori: {0}</value>
@@ -616,5 +616,41 @@ Log-urile launcher-ului vor avea mai multe informații.</value>
   </data>
   <data name="NoBuildToPlayFound" xml:space="preserve">
     <value>Niciun DevBuild cu tipul ales și pentru această platformă n-a fost găsit</value>
+  </data>
+  <data name="ExtractingStateItemProgress" xml:space="preserve">
+    <value>Extrageți {0}. Asta durează mult timp pentru file mari, vă rugăm să așteptați.</value>
+  </data>
+  <data name="ProcessingStateItemProgress" xml:space="preserve">
+    <value>Procesăm {0}</value>
+  </data>
+  <data name="MissingThriveFolderError" xml:space="preserve">
+    <value>Folderul Thrive ar trebui să fie la {0} dar nu e</value>
+  </data>
+  <data name="MissingThriveExecutableError" xml:space="preserve">
+    <value>N-am putut găsi folderul Thrive executabil la {0}, vă rugăm să verificați filele jocului sau să ștergeți versiunea ca s-o descărcați din nou.</value>
+  </data>
+  <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
+    <value>Instalarea versiunii sau verificarea versiunii instalate a eșuat, vedeți mai jos pentru detalii.</value>
+  </data>
+  <data name="ThriveFolderPrepareFailed" xml:space="preserve">
+    <value>Prepararea folderului Thrive a eșuat cu eroarea: {0}</value>
+  </data>
+  <data name="DownloadProgressDisplay" xml:space="preserve">
+    <value>Descărcat {0} din {1} MiB</value>
+  </data>
+  <data name="ItemProgressDisplay" xml:space="preserve">
+    <value>Procesat {0} din {1}</value>
+  </data>
+  <data name="UnknownNumber" xml:space="preserve">
+    <value>necunoscut</value>
+  </data>
+  <data name="DownloadingStateItemProgress" xml:space="preserve">
+    <value>Descărcați {0} de la {1}</value>
+  </data>
+  <data name="VerifyingStateItemProgress" xml:space="preserve">
+    <value>Verificăm integritatea lui {0}</value>
+  </data>
+  <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
+    <value>Eroare: procesul secundar a terminat deja, fereastra launcher-ului nu va fi închis</value>
   </data>
 </root>
