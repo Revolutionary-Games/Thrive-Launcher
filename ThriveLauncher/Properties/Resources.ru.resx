@@ -260,7 +260,7 @@
     <value>Предыдущие настройки успешно импортированы.</value>
   </data>
   <data name="ConnectToDevCenterPrompt" xml:space="preserve">
-    <value>Подключиться к DevCenter</value>
+    <value>Подключиться к Центру Разработчиков</value>
   </data>
   <data name="LinksPopupTitle" xml:space="preserve">
     <value>Ссылки Revolutionary Games</value>
@@ -305,7 +305,7 @@
     <value>Файлы кэша DevBuilds:</value>
   </data>
   <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
-    <value>Соединение с DevCenter</value>
+    <value>Соединение с Центром Разработчиков</value>
   </data>
   <data name="YouAreDeveloperInfo" xml:space="preserve">
     <value>Вы разработчик</value>
@@ -430,5 +430,239 @@
   </data>
   <data name="UnknownFolder" xml:space="preserve">
     <value>Неизвестная папка:</value>
+  </data>
+  <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
+    <value>Лаунчер Thrive загружает доступные версии Thrive с интернета, дабы удостовериться что в принципе доступно. Загрузка этой информации провалилась (Ошибку можно просмотреть снизу). Вы можете попытаться вновь установить эту информацию иль если Лаунчер ранее загружал эту информацию вы в праве загрузить копию из кэша.</value>
+  </data>
+  <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
+    <value>Существующие данные в кэше были найдены. Они были автоматически перемещены в новую директорию. Переместить {0} файлы в новую директорию?{0}</value>
+  </data>
+  <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
+    <value>Судя по коду выхода вам не хватает DLL файла. Им может являться Visual c++ Redistributable 2019, что вы можете скачать с : https://aka.ms/vs/17/release/vc_redist.x64.exe. Вы так же можете попробовать запустить Thrive вручную, это позволит показать диалоговое окно ошибки с отсутствующими DLL файлами. Вам стоит проверить - есть ли у вас все актуальные на данный момент обновления WIndows. Если это всё не помогло - свяжитесь с нами напрямую для помощи. Контакты можно найти на веб-сайте Thrive : https://revolutionarygamesstudio.com/.</value>
+  </data>
+  <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
+    <value>Если игра запустилась не корректно, то попробуйте запустить Thrive напрямую, через папку с игрой</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>Версия лаунчера устарела</value>
+  </data>
+  <data name="OutdatedLauncherExplanation" xml:space="preserve">
+    <value>Версия лаунчера устарела и должна быть обновлена. Если вы видите это сообщение, но авто-обновление не началось, то вам следует самим скачать обновление. Вы можете использовать нынешнюю версию лаунчера пропустив обновление, но при этом вы подвергаете себя непредвиденным последствиям, в любом случае рекомендуется установить обновление.</value>
+  </data>
+  <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
+    <value>Вы используете тип лаунчера, что не может автоматически обновиться. Если вы хотите иметь доступ к автоматическим обновлениям просим вас установить лаунчер, что обладает возможность автоматического обновления.</value>
+  </data>
+  <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
+    <value>Подключение к центру разработчиков Thrive провалилось. Сервер ответил отказом. Это значит то, что подключение отвратное. Это может быть вызвано отключением соединения через веб-интерфейс или блокировкой учетной записи. Перейдите по ссылке ниже, чтобы проверить статус подключения вашей учетной записи.</value>
+  </data>
+  <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
+    <value>Подключение к Центру Разработчиков Thrive провалилось. Сервер ответил неизвестной ошибкой, иль у нас самих возникла ошибка в связи с ответом сервера. Пожалуйста, попробуйте позже и если проблема повторите - сообщите о ней. Вы можете проверить ссылкой ниже состояние центра Разработчиков Thrive.</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>Не удалось сформировать ссылку, пожалуйста, проверьте код вновь</value>
+  </data>
+  <data name="LoginToSeeThisContent" xml:space="preserve">
+    <value>Зайдите в Центр Разработчиков Thrive дабы увидеть содержимое</value>
+  </data>
+  <data name="ThriveFolderPrepareFailed" xml:space="preserve">
+    <value>Подготовка папки Thrive не удалось из-за ошибки:{0}</value>
+  </data>
+  <data name="ExtractingStateItemProgress" xml:space="preserve">
+    <value>Разархивируем {0} . Это может занять пару минут из-за огромных файлов, так что просим быть терпеливыми.</value>
+  </data>
+  <data name="ExtraThriveStartFlags" xml:space="preserve">
+    <value>Thrive запускается с дополнительными параметрами, что были добавлены через командную строку к лаунчеру, эти "добавки" могут привести к тому, что Thrive поведёт себя не лучшим образом{0} .</value>
+  </data>
+  <data name="ErrorGettingDevBuild" xml:space="preserve">
+    <value>Ошибка: Не удалось найти билд Разработчика определенного типа для нынешней платформы. Пожалуйста, выберите другой билд, например - рекомендуемый Билд Дня и попробуйте вновь. Причина ошибки: {0}</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>Версия актуальна на данный момент</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>Вы используете версию лаунчера Thrive {0} , но актуальна версия {1}</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>Зайти на сайт с ручной установкой</value>
+  </data>
+  <data name="EnterDevCenterConnectionCode" xml:space="preserve">
+    <value>Введите код подключения центра разработчика в поле ввода</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>Не безопасное</value>
+  </data>
+  <data name="GettingDevBuildInfoMessage" xml:space="preserve">
+    <value>Собираем информацию о выбранном Билде Разработчика типа {0} играт.ь..</value>
+  </data>
+  <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
+    <value>Билд Дня</value>
+  </data>
+  <data name="DownloadProgressDisplay" xml:space="preserve">
+    <value>Скачано {0} из {1} Мегабайт</value>
+  </data>
+  <data name="ItemProgressDisplay" xml:space="preserve">
+    <value>Выполнено {0} из {1}</value>
+  </data>
+  <data name="UnknownNumber" xml:space="preserve">
+    <value>неизвестно</value>
+  </data>
+  <data name="DownloadingStateItemProgress" xml:space="preserve">
+    <value>Скачиваем {0} из {1}</value>
+  </data>
+  <data name="VerifyingStateItemProgress" xml:space="preserve">
+    <value>Проверяем Девственность {0}</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>Срок Всех Сертификатов Истёк</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>Ваша версия лаунчера устарела. Рекомендуем обновить его до последней версии.</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>{0}версия</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>прочитать полную публикацию.</value>
+  </data>
+  <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
+    <value>Установленный лаунчер Thrive не действителен.</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>Использовать информацию из Кэшированных версий</value>
+  </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>Лаунчер не может обнаружить совместимые версии Thrive для вашей текущей платформы. Если вы используете лютый самогон на подобии Temple OS, то ошибка не мудрена. Если нет - Сообщите об этой ошибке в Github.</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>Не найдено совместимых версий Thrive</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>Переместить Существующие Файлы?</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>Переместить Существующие Версии?</value>
+  </data>
+  <data name="MoveVersionsExplanation" xml:space="preserve">
+    <value>Установленные прежде версии Thrive были обнаружены. Они могут автоматически переместиться в новую директорию. Переместить ли эти файлы в новую директорию?</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>Внешняя Ошибка</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>Внешняя ошибка произошла в лаунчере.Пожалуйста, сообщите о данной  проблеме и приложите лог Лаунчера.</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
+    <value>Вы собираетесь удалить все файлы, что содержатся в {0}. Будут удалены даже файлы, что никак не связаны с Thrive, но каким-то чудесным образом оказались в директории с Thrive. Сама папка так же будет удалена. Удалить временную папку?</value>
+  </data>
+  <data name="ClearTemporaryFilesCount" xml:space="preserve">
+    <value>Вы собираетесь удалить {0} файлов / папок</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>Удалить кэш Центра Разработчиков?</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>Вы собираетесь удалить все файлы, что содержатся в папке кэша {0}. Будут удалены так же все файлы, что не относятся к Thrive. Удалить содержимое папки?</value>
+  </data>
+  <data name="ClearDehydratedFilesCount" xml:space="preserve">
+    <value>Вы собираетесь удалить {0} файлов</value>
+  </data>
+  <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
+    <value>Тип лаунчера, что вы используете должен иметь возможность к автоматическому обновлению, но данная функция почему-то не работает. Пожалуйста, проверьте что вы не выключили возможность автоматического обновления в настройках лаунчера.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateDisabledByUser" xml:space="preserve">
+    <value>Тип лаунчера, что вы используете должен иметь возможность к автоматическому обновлению, но данная функция почему-то не работает. Пожалуйста, проверьте что вы не выключили возможность автоматического обновления в настройках лаунчера.</value>
+  </data>
+  <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
+    <value>Ошибка: Не найдено файлов обновления для.</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>Подключение к Центру Разработки Thrive провалилось</value>
+  </data>
+  <data name="DevCenterConnectFailureConnection" xml:space="preserve">
+    <value>Подключение к Центру Разработчиков Thrive не удалось. Повторите попытку, так как Центр Разработчиков Thrive, возможно, был временно недоступен. Вы также должны проверить свое подключение к Интернету. Вы можете использовать ссылку ниже, чтобы посетить Центр разработки, чтобы узнать, может ли ваш браузер подключиться. Повторите попытку позже, и если проблема сохраняется более нескольких минут, сообщите об этом.</value>
+  </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>Отключиться</value>
+  </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>Кнопка, чтобы отвести пользователя в Центр Разработчиков Thrive , чтобы проверить, что на странице его учетной записи написано о кодах подключения лаунчера</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>Повторите попытку с существующим соединением</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>Код верен. Пожалуйста, подтвердите состыковку со следующим аккаунтом:</value>
+  </data>
+  <data name="DevCenterConnectAttemptError" xml:space="preserve">
+    <value>Проверьте код ссылки для ThriveDevCenter. Проверьте правильность введенного кода и срок его действия еще не истек. Дополнительная информация: {0}</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>Псевдоним:</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>Электронная Почта Email:</value>
+  </data>
+  <data name="PlayingTitle" xml:space="preserve">
+    <value>Играет {0}</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>Описание:</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>Невозможно запустить Thrive</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thrive уже запущен, пожалуйста закройте его и откройте вновь</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>Пожалуйста, выберите версию Thrive из списка, что находится рядом с кнопкой "Играт" и нажмите "Попробовать вновь"</value>
+  </data>
+  <data name="ThriveRunCanceled" xml:space="preserve">
+    <value>Запускающийся Thrive был закрыт</value>
+  </data>
+  <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
+    <value>Запуск  небезопасного билда отменен</value>
+  </data>
+  <data name="NoBuildToPlayFound" xml:space="preserve">
+    <value>Не было найдено Билдов Разработчика нужного типа и нужной платформы</value>
+  </data>
+  <data name="ThriveRunError" xml:space="preserve">
+    <value>Thrive не удалось запустить из-за данной ошибки:{0}</value>
+  </data>
+  <data name="DownloadingItem" xml:space="preserve">
+    <value>Скачиваем{0}</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="DownloadError" xml:space="preserve">
+    <value>Установка провалилась из-за {0}</value>
+  </data>
+  <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
+    <value>Установка версии или проверка установки версии провалились, Смотрите ниже для деталей.</value>
+  </data>
+  <data name="ExtractError" xml:space="preserve">
+    <value>Не удалось разархивировать из-за ошибки:{0}</value>
+  </data>
+  <data name="MissingThriveFolderError" xml:space="preserve">
+    <value>Папка Thrive должна находиться в {0} , но её там нет</value>
+  </data>
+  <data name="MissingThriveExecutableError" xml:space="preserve">
+    <value>Не удалось найти .exe Thrive в папке {0} , пожалуйста, либо проверьте файлы игры либо удалите версию для её дальнейшей переустановки.</value>
+  </data>
+  <data name="ProcessingStateItemProgress" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
+    <value>Ошибка: дочерний процесс уже завершился, окно лаунчера не закроется</value>
+  </data>
+  <data name="TruncatedGameOutputWarning" xml:space="preserve">
+    <value>Выход слишком длинный и усеченный! Полный вывод см. в файле записи Thrive.</value>
+  </data>
+  <data name="ThriveIsStarting" xml:space="preserve">
+    <value>Thrive стартует. Выдача логов:</value>
+  </data>
+  <data name="ReportCrashButton" xml:space="preserve">
+    <value>Сообщить о вылете игры</value>
   </data>
 </root>
