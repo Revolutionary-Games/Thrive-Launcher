@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -58,4 +58,864 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SettingsImportOldTitle" xml:space="preserve">
+    <value>Vorige instellingen importeren?</value>
+  </data>
+  <data name="SkipAction" xml:space="preserve">
+    <value>Overslaan</value>
+  </data>
+  <data name="PerformImport" xml:space="preserve">
+    <value>Importeren</value>
+  </data>
+  <data name="ImportSucceededTitle" xml:space="preserve">
+    <value>Importeren was succesvol</value>
+  </data>
+  <data name="ImportSucceededMessage" xml:space="preserve">
+    <value>Het importeren van vorige instellingen is gelukt.</value>
+  </data>
+  <data name="LauncherSelectedLanguage" xml:space="preserve">
+    <value>Taal opstarthulpprogramma:</value>
+  </data>
+  <data name="LinksButton" xml:space="preserve">
+    <value>Koppelingen</value>
+  </data>
+  <data name="ConnectToDevCenterPrompt" xml:space="preserve">
+    <value>Verbinden met ThriveDevCenter</value>
+  </data>
+  <data name="ConnectedDeveloperGreeting" xml:space="preserve">
+    <value>Hallo,</value>
+  </data>
+  <data name="ConnectedSupporterGreeting" xml:space="preserve">
+    <value>Bedankt,</value>
+  </data>
+  <data name="DevelopmentFeedTitle" xml:space="preserve">
+    <value>ONTWIKKELFORUMS</value>
+  </data>
+  <data name="WebContentIsDisabled" xml:space="preserve">
+    <value>Webinhoud is uitgezet</value>
+  </data>
+  <data name="NewsFeedTitle" xml:space="preserve">
+    <value>NIEUWS</value>
+  </data>
+  <data name="LinksPopupTitle" xml:space="preserve">
+    <value>Revolutionary Games Koppelingen</value>
+  </data>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+    <value>Hoofdwebsite</value>
+  </data>
+  <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
+    <value>Ontwikkelforums</value>
+  </data>
+  <data name="PlayButton" xml:space="preserve">
+    <value>Spelen</value>
+  </data>
+  <data name="ExternalLinkCommunityForums" xml:space="preserve">
+    <value>Gemeenschapsforums</value>
+  </data>
+  <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
+    <value>Ontwikkelwiki</value>
+  </data>
+  <data name="ExternalLinkPatreon" xml:space="preserve">
+    <value>Patreon</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+    <value>Doneren</value>
+  </data>
+  <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
+    <value>ThriveDevCenter</value>
+  </data>
+  <data name="ExternalLinkThriveSteam" xml:space="preserve">
+    <value>Thrive op Steam</value>
+  </data>
+  <data name="ExternalLinkThriveItch" xml:space="preserve">
+    <value>Thrive op itch.io</value>
+  </data>
+  <data name="ExternalLinkThriveGithub" xml:space="preserve">
+    <value>Thrive op Github</value>
+  </data>
+  <data name="ExternalLinkLauncherGithub" xml:space="preserve">
+    <value>Opstarthulpprogramma op Github</value>
+  </data>
+  <data name="ExternalLinkFanWiki" xml:space="preserve">
+    <value>Fanwiki</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+    <value>Discord server</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+    <value>Subreddit</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+    <value>Youtube kanaal</value>
+  </data>
+  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
+    <value>Twitter feed</value>
+  </data>
+  <data name="ExternalLinkFacebookPage" xml:space="preserve">
+    <value>Facebookpagina</value>
+  </data>
+  <data name="LauncherOptions" xml:space="preserve">
+    <value>Opties Opstarthulpprogramma</value>
+  </data>
+  <data name="ThriveOptions" xml:space="preserve">
+    <value>Opties Thrive</value>
+  </data>
+  <data name="InstalledVersions" xml:space="preserve">
+    <value>Geïnstalleerde Versies</value>
+  </data>
+  <data name="CacheConfigurationTab" xml:space="preserve">
+    <value>Cache</value>
+  </data>
+  <data name="LaunchOptionForceGLES2" xml:space="preserve">
+    <value>Dwing GLES2 tekenmodus af (kan helpen Thrive te starten, maar kan kleine grafische problemen veroorzaken)</value>
+  </data>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+    <value>Opstarthulpporgramma versie:</value>
+  </data>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+    <value>Zet Web-Feeds aan</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>Verberg 32-bits versie als een equivalente 64-bits versie bestaat</value>
+  </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>Verberg Opstarthulpprogramma wanneer Thrive is gestart</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>Sluit Opstarthulpprogramma na Spelen (wanneer er geen fout is voorgekomen)</value>
+  </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+    <value>Laat Naadloze Opstartmodus toe (opstarthulpprogramma laat zich niet zien voordat Thrive wordt gestart)</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>Werk opstarthulpprogramma automatisch bij</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>Zet Alle Instellingen Naar Standaard</value>
+  </data>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+    <value>Blader door Geïnstalleerde Bestanden</value>
+  </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>Selecteer Installatielocatie</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>Stel Installatielocatie in op standaard</value>
+  </data>
+  <data name="FolderPathDisplay" xml:space="preserve">
+    <value>Map:</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+    <value>Map voor tijdelijke downloads:</value>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+    <value>Inhoud:</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+    <value>Map is leeg</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>Selecteer Locatie voor Tijdelijke Bestanden</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>Stel Tijdelijke Bestandslocatie in op Standaard</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>Verwijder ALLE bestanden in tijdelijke map. Dit verwijderd mogelijk ook bestanden die niets met Thrive te maken hebben!</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>Wissen</value>
+  </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+    <value>DevBuilds bestandscache:</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+    <value>Selecteer opslaglocatie voor Cache</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+    <value>Formaat cache:</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+    <value>ThriveDevCenter Verbinding</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+    <value>Verbonden als:</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>Je bent een ontwikkelaar</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>Bedankt voor je steun!</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+    <value>Meest recente (veranderd veel en op willekeurige momenten aangezien dit letterlijke de laatste build van de meest recente code-versie is)</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>Handmatig geselecteerd in "Specifieke Build" tabblad</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>Uitloggen</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>Hier kun je het opstarthulpprogramma koppelen aan ThriveDevCenter om toegang te krijgen tot DevBuilds en andere functies</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+    <value>Instructies op onze Wiki</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+    <value>Koppelingscode</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+    <value>Verbinden</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>Bevestigen</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+    <value>Specifieke Build</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+    <value>Handmatig ingevulde hash:</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+    <value>Vul build-hash (commit) in</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+    <value>Selecteer</value>
+  </data>
+  <data name="FetchLatestBuildsButton" xml:space="preserve">
+    <value>Haal meest recente Builds op</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>Opslaan Instellingen Mislukt</value>
+  </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0} MiB</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>(formaat: {0})</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>Map Niet Gevonden</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>De Thrive versie installatiemap bestaat niet.</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>Broncode van Opstarthulpprograma</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>Toon Licenties van Opstarthulpprogramma</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Thrive Opstarthulpprogramma</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Licenties Thrive Opstarthulpprogramma</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>Feed kon niet worden weergegeven. {0}</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>Bericht geplaatst door {0} op {1}</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Klik hier</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>om het volledige bericht te lezen.</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>Kon logbestandenmap niet maken ({0}): {1}</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>Open Logboeken</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>Alle Certificaten zijn Verlopen</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>Alle certificaten voor ondertekenen en verifiëren die zijn meegeleverd met het opstarthulpprogramma zijn verlopen. Dit betekent dat deze versie van het opstarthulpprogramma erg verouderd is. Gelieve een nieuwere versie te downloaden en te installeren.</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>{0} versie</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} voor {1}</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>Laden...</value>
+  </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>Fout tijdens het ophalen van beschikbare Thrive versies</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Opnieuw proberen</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>Gebruik Gecachede Versie Informatie</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Onbekende fout</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>Geen Bruikbare Thrive Versies Gevonden</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0} (Meest recente)</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>Bestaande Versies Verplaatsen?</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>Bestaande Bestanden Verplaatsen?</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>Interne Fout</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>Er heeft zich een interne fout in het opstarthulpprogramma voorgedaan. Gelieve het probleem te rapporteren. Als je het probleem rapporteert, en de logbestanden van het opstarthulpprogramma mee te leveren bij dit rapport.</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Verplaats</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Overslaan</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Verwijder</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>Fout bij Verwijderen</value>
+  </data>
+  <data name="DeleteErrorExplanation" xml:space="preserve">
+    <value>Kon data op het pad "{0}" niet verwijderen door: {1}</value>
+  </data>
+  <data name="DeleteErrorDoesNotExist" xml:space="preserve">
+    <value>Kon niet verwijderen omdat het doelpad niet bestaat</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>Onbekende map:</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>Verwijder Tijdelijke Bestanden?</value>
+  </data>
+  <data name="ClearTemporaryFilesCount" xml:space="preserve">
+    <value>Je staat op het punt {0} bestanden/mappen te verwijderen</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>Verwijder DevBuild Cache?</value>
+  </data>
+  <data name="ClearDehydratedFilesCount" xml:space="preserve">
+    <value>Je staat op het punt {0} bestanden te verwijderen</value>
+  </data>
+  <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
+    <value>Als het spel niet correct werd gestart, probeer dan de tijdelijke Thrive opstartopties onder 'Opties Thrive' in de instellingen van het opstarthulpprogramma</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>Dit is de meest recente versie</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>Je gebruikt Thrive opstarthulpprogramma versie {0}, de laatste versie is {1}</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>Bezoek Downloads Pagina</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>Versie Opstarthulpprogramma is Verouderd</value>
+  </data>
+  <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
+    <value>Je gebruikt een type van het opstarthulpprogramma die niet automatisch bijgewerkt kan worden. Als je in de toekomst het programma automatisch bij wil laten werken, installeer dan een variant van het opstarthulpprogramma die zichzelf automatisch kan bijwerken.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
+    <value>Het type opstarthulpprogramma wat je gebruikt zou zichzelf moeten kunnen bijwerken, maar heeft dit niet kunnen doen. De meest recente versie van het opstarthulpprogramma is al een langere tijd geleden gepubliceerd. Controleer of je deze optie niet hebt uitgeschakeld.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateDisabledByUser" xml:space="preserve">
+    <value>Het type opstarthulpprogramma wat je gebruikt kan zichzelf bijwerken, maar deze optie is op dit moment uitgeschakeld. Het kan een instelling zijn, of een optie geselecteerd bij het opstarten vanaf de opdrachtprompt.</value>
+  </data>
+  <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
+    <value>Fout: geen bijwerkbestand is gevonden voor dit type opstarthulpprogramma. Dit zou niet mogen gebeuren. Probeer het later nog een keer. Neem contact op met ons als het probleem aanhoudt.</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>Verbinding met ThriveDevCenter Mislukt</value>
+  </data>
+  <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
+    <value>Verbinding met ThriveDevCenter is mislukt. De server heeft een verboden antwoord gestuurd. Dit betekent dat onze verbindingssleutel niet langer bruikbaar is. Dit kan veroorzaakt worden door een verbinding die in de website is verbroken of omdat je account is geschorst. Zie de link hieronder en controleer de verbindingsstatus van je account.</value>
+  </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>Verbinding Verbreken</value>
+  </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>Controleer tokens op ThriveDevCenter</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>Probeer Bestaande Verbinding Opnieuw</value>
+  </data>
+  <data name="EnterDevCenterConnectionCode" xml:space="preserve">
+    <value>Gelieve eerst een ThriveDevCenter verbindingscode in het invulveld in te vullen</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>Code is correct. Gelieve te verifiëren dat je wil verbinden met het volgende account:</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>Gebruikersnaam:</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>Kon de koppeling niet maken, graag de code opnieuw controleren</value>
+  </data>
+  <data name="LoginToSeeThisContent" xml:space="preserve">
+    <value>Meld aan bij ThriveDevCenter om deze inhoud te zien</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>onveilig</value>
+  </data>
+  <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
+    <value>BVDD</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>besch:</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>Kan Thrive niet Spelen</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thrive is al gestart. Gelieve Thrive af te sluiten en opnieuw te proberen</value>
+  </data>
+  <data name="PlayingTitle" xml:space="preserve">
+    <value>{0} Wordt gespeeld</value>
+  </data>
+  <data name="GettingDevBuildInfoMessage" xml:space="preserve">
+    <value>Informatie over de geselecteerde DevBuild van type {0} wordt opgehaald...</value>
+  </data>
+  <data name="ThriveRunCanceled" xml:space="preserve">
+    <value>Het draaien van Thrive was geannuleerd</value>
+  </data>
+  <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
+    <value>Het spelen van een onveilige build was geannuleerd</value>
+  </data>
+  <data name="ThriveRunError" xml:space="preserve">
+    <value>Thrive kon niet draaien vanwege de volgende fout: {0}</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>Sluiten</value>
+  </data>
+  <data name="NoBuildToPlayFound" xml:space="preserve">
+    <value>Geen DevBuild van het benodigde type voor het huidige platform is gevonden</value>
+  </data>
+  <data name="DownloadingItem" xml:space="preserve">
+    <value>{0} wordt gedownload</value>
+  </data>
+  <data name="ExtractError" xml:space="preserve">
+    <value>Kon het archief niet uitpakken door fout: {0}</value>
+  </data>
+  <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
+    <value>Versie installatie of het controleren van de geïnstalleerde versie is mislukt. Voor details, zie hieronder.</value>
+  </data>
+  <data name="ThriveFolderPrepareFailed" xml:space="preserve">
+    <value>Het voorbereiden van de Thrive map is mislukt met fout: {0}</value>
+  </data>
+  <data name="DownloadProgressDisplay" xml:space="preserve">
+    <value>{0} van {1} MiB gedownload</value>
+  </data>
+  <data name="ItemProgressDisplay" xml:space="preserve">
+    <value>{0} van {1} verwerkt</value>
+  </data>
+  <data name="UnknownNumber" xml:space="preserve">
+    <value>onbekend</value>
+  </data>
+  <data name="DownloadingStateItemProgress" xml:space="preserve">
+    <value>{0} wordt van {1} gedownload</value>
+  </data>
+  <data name="VerifyingStateItemProgress" xml:space="preserve">
+    <value>Integriteit van {0} wordt gecontroleerd</value>
+  </data>
+  <data name="ExtractingStateItemProgress" xml:space="preserve">
+    <value>{0} wordt uitgepakt. Dit kan bij grote bestanden lang duren.</value>
+  </data>
+  <data name="ProcessingStateItemProgress" xml:space="preserve">
+    <value>{0} wordt verwerkt</value>
+  </data>
+  <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
+    <value>Fout: kindproces is al beëindigd. Opstarthulpprogrammavenster zal niet gesloten worden</value>
+  </data>
+  <data name="ReportCrashButton" xml:space="preserve">
+    <value>Rapporteer Crash</value>
+  </data>
+  <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
+    <value>Dit tabblad laat de extern geïnstalleerde versies zien. Dit is een winkelversie van Thrive die is gebundeld de (meest recente) spelversie. Je kunt de beschikbare externe versies laten zien op de versieselectie in de opties van het opstarthulpprogramma. Gedownloade versies worden hier getoond.</value>
+  </data>
+  <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
+    <value>DevBuild type om te spelen (wanneer het spelen van een DevBuild versie is geselecteerd)</value>
+  </data>
+  <data name="PlayUnsafeBuildTitle" xml:space="preserve">
+    <value>Onveilige DevBuild Spelen?</value>
+  </data>
+  <data name="AcceptUnsafeBuildButton" xml:space="preserve">
+    <value>Ik ben me bewust van het risico, alsnog spelen</value>
+  </data>
+  <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
+    <value>Build omschrijving:
+{0}</value>
+  </data>
+  <data name="RehydrationFailed" xml:space="preserve">
+    <value>Uitpakken mislukt door fout: {0}</value>
+  </data>
+  <data name="RehydrationStarting" xml:space="preserve">
+    <value>Dit is een gecomprimeerde build. Het bestand wordt uitgepakt.</value>
+  </data>
+  <data name="CopyLogWindowToClipboardToolTip" xml:space="preserve">
+    <value>Kopieer uit uitvoer van het spel naar het klembord</value>
+  </data>
+  <data name="CrashReporterWindowTitle" xml:space="preserve">
+    <value>Thrive Crash Rapportage Hulpprogramma</value>
+  </data>
+  <data name="ContinueReportingButton" xml:space="preserve">
+    <value>Ga verder met Rapporteren</value>
+  </data>
+  <data name="ClearAllCrashesButton" xml:space="preserve">
+    <value>Verwijder ALLE Crash Dumpbestanden</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Indienen</value>
+  </data>
+  <data name="SubmittingReportMessage" xml:space="preserve">
+    <value>Je rapport wordt ingedient. Graag een moment geduld, het uploaden kan enkele minuten duren...</value>
+  </data>
+  <data name="SubmittingReportExtraInfo" xml:space="preserve">
+    <value>Extra informatie met betrekking tot de aangetroffen fout:</value>
+  </data>
+  <data name="SubmitRetryButton" xml:space="preserve">
+    <value>Opnieuw Proberen</value>
+  </data>
+  <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
+    <value>Je rapport is succesvol ingediend. Veel dank voor je rapport.</value>
+  </data>
+  <data name="ReportViewingPublicInfo" xml:space="preserve">
+    <value>Als je rapport publiek is, kun je deze op het volgende adres inzien:</value>
+  </data>
+  <data name="ReportDeleteInfo" xml:space="preserve">
+    <value>Als je je rapport wil verwijderen, kan je dat hier doen:</value>
+  </data>
+  <data name="ReporterEndMessage" xml:space="preserve">
+    <value>Je kunt het rapportagehulpmiddel nu zonder problemen afsluiten, of wachten tot dit venster automatisch sluit in</value>
+  </data>
+  <data name="SecondsDisplayPlural" xml:space="preserve">
+    <value>{0} seconden</value>
+  </data>
+  <data name="SecondsDisplaySingular" xml:space="preserve">
+    <value>1 seconde</value>
+  </data>
+  <data name="StopAutoClose" xml:space="preserve">
+    <value>Sluiten Annuleren</value>
+  </data>
+  <data name="AutoCloseStopped" xml:space="preserve">
+    <value>Automatisch sluiten geannuleerd</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Kopieer naar klembord</value>
+  </data>
+  <data name="TimeMomentRightNow" xml:space="preserve">
+    <value>Nu</value>
+  </data>
+  <data name="AtTime" xml:space="preserve">
+    <value>Op {0}</value>
+  </data>
+  <data name="ViewFile" xml:space="preserve">
+    <value>Weergeven</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Open Map</value>
+  </data>
+  <data name="ActiveReportingInfo" xml:space="preserve">
+    <value>Crash {0} wordt gerapporteerd aan {1}</value>
+  </data>
+  <data name="CrashReportDescriptionField" xml:space="preserve">
+    <value>Beschrijf wat je aan het doen was toen de crash gebeurde (optioneel)</value>
+  </data>
+  <data name="CrashReportDescriptionFieldPlaceholder" xml:space="preserve">
+    <value>Crash beschrijving (optioneel)</value>
+  </data>
+  <data name="CrashReportEmailField" xml:space="preserve">
+    <value>Je e-mail adres voor als je informatie wil over de behandeling van dit rapport (optioneel)</value>
+  </data>
+  <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
+    <value>E-mail (optioneel)</value>
+  </data>
+  <data name="CrashReportEmailFieldNotice" xml:space="preserve">
+    <value>Je e-mail adres zal alleen zichtbaar zijn voor beheerders van ThriveDevCenter.</value>
+  </data>
+  <data name="CrashReportIsPublic" xml:space="preserve">
+    <value>Publiek? Van publieke rapportages worden de programmafunctie-informatie (callstack) en beschrijving publiek zichtbaar gemaakt. Privé-rapportages zijn alleen zichtbaar voor ontwikkelaars van Thrive.</value>
+  </data>
+  <data name="SelectCrashToReport" xml:space="preserve">
+    <value>Selecteer een crash om te rapporteren door op de naam te klikken</value>
+  </data>
+  <data name="CrashReportDeleteAfterSubmitting" xml:space="preserve">
+    <value>Verwijder dit crash dumpbestand na het rapporteren (aangeraden)</value>
+  </data>
+  <data name="ReportSubmitErrorTooManyRequests" xml:space="preserve">
+    <value>Indienen van het rapport is mislukt omdat er te veel aanvragen vanuit jou IP adres zijn binnen gekomen. Gelieve tot een uur te wachten en dan opnieuw te proberen</value>
+  </data>
+  <data name="ReportSubmitErrorServerError" xml:space="preserve">
+    <value>Het indienen van het rapport is mislukt door een serverprobleem. Gelieve een tijd te wachten en dan opnieuw te proberen. Mocht het probleem zich blijven voortdoen, laat dit ons dan weten.</value>
+  </data>
+  <data name="ReportSubmitErrorBadRequest" xml:space="preserve">
+    <value>Het indienen van het rapport is mislukt omdat verkeerde informatie is ingevuld in het crashrapportageformulier. Gelieve opnieuw de ingevulde informatie te controleren en dan opnieuw te proberen</value>
+  </data>
+  <data name="ReportSubmitErrorNetworkError" xml:space="preserve">
+    <value>Het indienen van het rapport is mislukt door een netwerkprobleem. Gelieve je internetverbinding te controleren en over een paar minuten opnieuw te proberen</value>
+  </data>
+  <data name="ReportSubmitErrorUnknown" xml:space="preserve">
+    <value>Indienen van het rapport is mislukt door een onbekende fout. Gelieve later opnieuw te proberen</value>
+  </data>
+  <data name="LauncherOptionShowExternalVersions" xml:space="preserve">
+    <value>Toon externe Thrive versies die aparte downloads nodig hebben om te spelen</value>
+  </data>
+  <data name="PerformingAutoUpdateTitle" xml:space="preserve">
+    <value>Het Opstarthulpprogramma wordt Bijgewerkt</value>
+  </data>
+  <data name="QuitLauncherButton" xml:space="preserve">
+    <value>Verlaat Opstarthulpprogramma Nu</value>
+  </data>
+  <data name="LauncherVersionUpdateDescription" xml:space="preserve">
+    <value>Het opstarthulpprogramma wordt bijgewerkt tot versie {0} (huidige versie: {1})</value>
+  </data>
+  <data name="AutoUpdateError" xml:space="preserve">
+    <value>Fout met Automatisch Bijwerken</value>
+  </data>
+  <data name="AutoUpdateMissingChannel" xml:space="preserve">
+    <value>Kan het bijwerken niet opnieuw proberen omdat dit type opstarthulpprogramma geen bijwerkkanaaltype heeft</value>
+  </data>
+  <data name="RetryingAutoUpdate" xml:space="preserve">
+    <value>Automatisch updaten wordt opnieuw geprobeerd...</value>
+  </data>
+  <data name="IgnoreFailure" xml:space="preserve">
+    <value>Negeer Fout</value>
+  </data>
+  <data name="ViewFirstAutoUpdaterFolder" xml:space="preserve">
+    <value>Open Map Met Eerste Bijwerkbestand</value>
+  </data>
+  <data name="AutoUpdateFailedTitle" xml:space="preserve">
+    <value>Bijwerken Opstarthulpprogramma Mislukt</value>
+  </data>
+  <data name="ThriveRunRetryStarting" xml:space="preserve">
+    <value>Thrive lijkt niet correct te hebben gestart. Er wordt een poging gedaan Thrive nogmaals te starten. Poging: {0}</value>
+  </data>
+  <data name="LauncherOptionShowLatestBetaVersion" xml:space="preserve">
+    <value>Toon de meest recent beschikbare beta versie van Thrive in de versieselectie (wanneer beschikbaar)</value>
+  </data>
+  <data name="LauncherOptionShowAllBetaVersions" xml:space="preserve">
+    <value>Toon alle bestaande beta versies van Thrive</value>
+  </data>
+  <data name="EmbeddedPckToolLicenseTitle" xml:space="preserve">
+    <value>De licentie van de gebundelde godotpcktool en diens gebruikte softwarebibliotheken:</value>
+  </data>
+  <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
+    <value>Automatische herstart van Thrive als starten mislukt</value>
+  </data>
+  <data name="RequiresLatestBetaShowingEnabled" xml:space="preserve">
+    <value>Deze optie kan alleen aangezet worden als het weergeven van de meest recente betaversie eerst is aangezet</value>
+  </data>
+  <data name="RequiresExternalVersionsEnabled" xml:space="preserve">
+    <value>Deze optie vereist dat het downloaden van externe versies is aangezet</value>
+  </data>
+  <data name="ForgetLastPlayedVersion" xml:space="preserve">
+    <value>Vergeet Laatst Gespeelde Versie</value>
+  </data>
+  <data name="ForgetLastPlayedVersionToolTip" xml:space="preserve">
+    <value>Wist de onthouden laatste selectie gemaakt in de Thrive versieselectie. Dit kan helpen om naadloze modus weer te laten werken als deze niet goed werkt.</value>
+  </data>
+  <data name="InvalidVersionInfoLoadedTitle" xml:space="preserve">
+    <value>Geladen Versieinformatie Is Verkeerd</value>
+  </data>
+  <data name="LatestVersionParsingFailed" xml:space="preserve">
+    <value>Het inlezen van de informatie over de meest recente versie van het opstarthulpprogramma is mislukt. Notificaties over nieuwe versies van het opstarthulpprogramma en het automatisch bijwerken zal niet werken.</value>
+  </data>
+  <data name="CrashDumpsDetectedAdvice" xml:space="preserve">
+    <value>Er zijn crash dumpbestanden gevonden maar deze kunnen van een eerder speelmoment van thrive zijn (gaarne dit te controleren alvorens te rapporteren). Om geen meldingen meer over crash dumpbestanden te krijgen, kun je het rapportageprogramma openen en deze dumpbestanden verwijderen.</value>
+  </data>
+  <data name="ImportFailedTitle" xml:space="preserve">
+    <value>Importeren mislukt</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>Het importeren van instellingen is mislukt. Controleer of de relevante bestandspaden leesbaar en schrijfbaar zijn door het opstarthulpprogramma, start het opstarthulpprogramma opnieuw op, en probeer het nogmaals.</value>
+  </data>
+  <data name="LaunchOptionsTitle" xml:space="preserve">
+    <value>Opstartopties</value>
+  </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+    <value>Zet alle spelvideos uit (dit kan helpen het spel werkend te krijgen als Thrive meteen na de weergave van het logo, maar voor het weergeven van de introvideo, crasht)</value>
+  </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>Sluit Opstarthulpprogramma na Starten van Spel</value>
+  </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>Zet opstarthulpprogramma debug-logboeken aan (zet deze functie aan en herstart het opstarthulpprogramma alvorens je een fout met het opstarthulpprogramma rapporteert)</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>Opmerking: het verplaatsen van de tijdelijke locatie zal bestaande bestanden niet verplaatsen of verwijderen om te voorkomen dat bestanden die niets met Thrive te maken hebben worden aangeraakt</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+    <value>Verwijderde alle bestanden in de DevBuild cache-map voor gecomprimeerde bestanden. Als deze map zich niet op de standaardlocatie bevindt, kunnen er mogelijk ook bestanden die niets met Thrive te maken hebben in deze map staan. Deze bestanden worden dan ook verwijderd.</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+    <value>Stel opslaglocatie voor Cache in op standaard</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+    <value>Build van de dag (BOTD), aangeraden</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>Koppelingscode ophalen</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>Inloggen</value>
+  </data>
+  <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+    <value>Selecteer de handmatig ingevulde hash uit het invulveld als de geselecteerde DevBuild om te spelen wanneer je een DevBuild speelt</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>Opslaan van instellingen naar het instellingenbestand is mislukt. Controleer of het opstarthulpprogramma schrijftoegang heeft tot dit bestand en probeer opnieuw.
+De logboeken van het opstarthulpprogramma hebben meer informatie.</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>Roboto font wordt gebruikt in opstarthulpprogramma, Roboto licentie:</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf (Auteursrecht (c) 2010-2011 door tyPoland Lukasz Dziedzic met Gereserveerde FontNaam "Lato"), OFL Licentie:</value>
+  </data>
+  <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
+    <value>Het Thrive opstarthulpprogramma haalt een lijst van beschikbare Thrive versies op van het internet. Deze informatie kon niet worden geladen (zie de foutmelding hieronder). Je kunt proberen de informatie opnieuw te downloaden of, als dit eerder wel is gelukt, een gecachede kopie laden. Als de gecachede kopie zeer oud is, kan het zijn dat niet alle beschikbare versies van Thrive worden weergegeven. Als de versie van het opstarthulpprogramma zeer oud is, kan het zijn dat deze niet langer meer om kan gaan met het huidige dataformaat. Het opstarthulpprogramma moet dan handmatig worden bijgewerkt alvorens de data geladen kan worden.</value>
+  </data>
+  <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
+    <value>De opgehaalde Thrive Opstarthulpprogramma informatie klopt niet. Probeer het dadelijk nog een keer. Neem contact met ons op als het probleem zich blijft voordoen.</value>
+  </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>Het opstarthulpprogramma kon geen Thrive versies vinden die op het huidige platform werken. Als je een bijzonder besturingssysteem gebruikt, is dit te verwachten. Neem in andere gevallen met ons contact op.</value>
+  </data>
+  <data name="CancelCreatingReportTitle" xml:space="preserve">
+    <value>Het Maken van een Rapport Annuleren?</value>
+  </data>
+  <data name="MoveVersionsExplanation" xml:space="preserve">
+    <value>Geïnstalleerde versies van Thrive zijn gevonden op het vorige pad. Deze kunnen automatisch verplaatst worden naar de nieuwe locatie. Als ze niet worden verplaatst, zullen ze op de oude plek blijven staan. Het opstarthulpprogramma zal deze vergeten tot het moment dat het vorige pad weer als de installatielocatie wordt gekozen. Wil je deze bestanden naar de nieuwe locatie verplaatsen?</value>
+  </data>
+  <data name="CancelCreatingReportExplanation" xml:space="preserve">
+    <value>Weet je zeker dat je het maken van een crashrapportage wil annuleren? Als geen rapportages worden gemeld voor een specifieke bug, kan het zijn dat de ontwikkelaars van Thrive er niets van weten en het dus ook niet kunnen repareren.</value>
+  </data>
+  <data name="ErrorSubmittingReport" xml:space="preserve">
+    <value>Er heeft zich een fout voorgedaan bij het indienen van je crashrapportage. Gelieve te controleren dat de data correct is. In het geval van een serverprobleem, graag later nogmaals proberen. Fouttype:</value>
+  </data>
+  <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
+    <value>Bestaande items zijn in de cache gevonden. Deze kunnen automatische naar de nieuwe locatie worden verplaatst. Als ze niet worden verplaatst, zullen ze op de oude plek blijven staan. Het opstarthulpprogramma zal deze vergeten tot het moment dat het vorige pad weer als de locatie wordt gekozen. Wil je automatisch {0} bestand(en) naar de nieuwe locatie verplaatsen? Houdt er rekening mee dat als er bestanden die niets met Thrive te maken hebben in de vorige cachemap staan, deze ook zullen worden verplaatst.</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
+    <value>Je staat op het punt alle bestanden in de tijdelijke map "{0}" te verwijderen. Ook bestanden in deze map die niets met Thrive te maken hebben zullen worden verwijderd. De map zelf wordt ook verwijderd. Doorgaan met tijdelijke map verwijderen?</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>Je staat op het punt de bestanden in de gecomprimeerde cachemap "{0}" te verwijderen. Ook bestanden die niets met Thrive te maken hebben zullen worden verwijderd als ze in die map staan. Doorgaan met mapinhoud verwijderen?</value>
+  </data>
+  <data name="ReportDeleteCaveat" xml:space="preserve">
+    <value>BELANGRIJK! Als je je verwijderkoppeling verliest, kun je het rapport niet mee verwijderen. Zorg dat je het goed opslaat! Je kunt de kopieknop rechts van het rapport gebruiken om de koppeling te kopiëren.</value>
+  </data>
+  <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
+    <value>Deze exit-code kan betekenen dat je een DLL bestand mist. Het kan zijn dat het om de Visual C++ Redistributable 2019 gaat. Om deze te repareren kun je deze downloaden van https://aka.ms/vs/17/release/vc_redist.x64.exe. Je kunt ook proberen om Thrive.exe handmatig te starten om te kijken. Het kan zijn dat er dan een foutmelding met de bestandsnaam van de missende DLL wordt weergegeven. Controleer daarnaast of je alle Windows updates hebt gecontroleerd. Als dit alles niet helpt, neem dan alstublieft contact op met ons voor verdere ondersteuning.</value>
+  </data>
+  <data name="IncludeInReport" xml:space="preserve">
+    <value>Voeg toe:</value>
+  </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>Er zijn instellingen van een oudere versie van het opstarthulpprogramma gevonden. Je kunt deze bestaande instellingen importeren. Je geïnstalleerde Thrive versies en aanpassingen blijven dan bewaard. Als je de oude Thrive versies en caches niet importeert, worden ze door het opstarthulpprogramma vergeten. De bestanden blijven wel bestaan. Het wordt aangeraden om de instellingen te importeren.</value>
+  </data>
+  <data name="CrashReportLogsSection" xml:space="preserve">
+    <value>Logboeken om bij te voegen</value>
+  </data>
+  <data name="OutdatedLauncherExplanation" xml:space="preserve">
+    <value>De versie van het opstarthulpprogramma is verouderd en dient bijgewerkt te worden. Als je dit bericht ziet, is het automatisch bijwerken niet gestart en moet je handmatig de update downloaden en installeren. Je kunt proberen deze versie van het opstarthulpprogramma te blijven gebruiken, maar het kan zijn dat dit problemen oplevert. Alleen van de meest recente versie wordt gegarandeerd te werken met de server waar het opstarthulpprogramma informatie van ophaalt.</value>
+  </data>
+  <data name="DevCenterConnectFailureConnection" xml:space="preserve">
+    <value>Verbinding met ThriveDevCenter is mislukt. Gelieve opnieuw te proberen aangezien ThriveDevCenter mogelijk slechts kort onbeschikbaar was. Controleer ook je internetverbinding. Je kunt de link hieronder gebruiken om de DevCenter in je browser te laden. Probeer later nogmaals. Neem contact op met ons wanneer het probleem voor meer dan enkele minuten aanhoudt.</value>
+  </data>
+  <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
+    <value>Verbinding met ThriveDevCenter is mislukt. De server reageerde met een onbekende fout of het afhandelen van de reactie ging fout. Probeer later nogmaals en neem contact op met ons als het probleem aanhoudt. Je kunt de link hieronder gebruiken om te controleren of alles goed gaat bij ThriveDevCenter.</value>
+  </data>
+  <data name="DevCenterConnectAttemptError" xml:space="preserve">
+    <value>Fout bij controle van verbindingscode voor ThriveDevCenter. Gelieve te controleren of de code correct is ingevuld en niet is verlopen. Extra informatie: {0}</value>
+  </data>
+  <data name="CrashReportLogsSectionExplanation" xml:space="preserve">
+    <value>Gelieve de logboeken toe te voegen als ze van hetzelfde speelmoment zijn als de crash. Deze logboeken kunnen helpen in het identificeren en repareren van het probleem. Je kunt op de naam van het bestand klikken om het te openen. Je kunt op de knop klikken om de map waar het bestand zich in bevind te zien. Je kunt eventuele persoonlijke details aanpassen of verwijderen. Verzonden logbestanden zijn altijd zichtbaar voor ontwikkelaars van Thrive, en worden alleen gedeeld met derde partijen als dit nodig blijkt voor het nazoeken of repareren van het gerapporteerde probleem.</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>Gelieve een versie van Thrive te selecteren uit het selectiemenu naast de speelknop en opnieuw te proberen</value>
+  </data>
+  <data name="ErrorGettingDevBuild" xml:space="preserve">
+    <value>Fout: kon geen DevBuild van gespecificeerde type voor het huidige platform vinden. Gelieve een andere build te selecteren, zoals de aangeraden BVDD, en opnieuw te proberen. Oorzaak van fout: {0}</value>
+  </data>
+  <data name="CrashReportSubmitAcceptConfirmation" xml:space="preserve">
+    <value>Ik stem in met het opslaan van de informatie in dit formulier, inclusief meeverzonden bestanden en het crash dumpbestand, in de Thrive crash database. Ook stem ik in met het opslaan van mijn IP Adres in deze database. Ik weet en stem in met het feit dat als het rapport publiek is, iedereen de programmafunctie-informatie (callstack) en beschrijving kan zien.</value>
+  </data>
+  <data name="DownloadError" xml:space="preserve">
+    <value>Het downloaden is mislukt door {0}</value>
+  </data>
+  <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
+    <value>De geselecteerde crash is al een tijd geleden gebeurd. Het kan zijn dat de meest recente logbestanden en uitvoer van het spel die opgeslagen worden door het opstarthulpprogramma niet meer gerelateerd zijn tot deze crash. Gelieve zorgvuldig te controleren of je de juist crash en gerelateerde logbestanden rapporteert.</value>
+  </data>
+  <data name="MissingThriveFolderError" xml:space="preserve">
+    <value>Thrive map zou moeten bestaan op {0} maar bestaat niet</value>
+  </data>
+  <data name="CrashReportIncludeLauncherOutput" xml:space="preserve">
+    <value>Voeg de uitvoer van het spel zoals weergegeven in het opstarthulpprogramma wat wordt weergegeven in het 'net gespeeld pop-upvenster.' (aangeraden wanneer je de crash van het meest recente speelmoment rapporteert)</value>
+  </data>
+  <data name="MissingThriveExecutableError" xml:space="preserve">
+    <value>Kon geen uitvoerbaar bestand van Thrive vinden in folder op {0}. Verifieer de spelbestanden of verwijderd de versie om het opnieuw te downloaden.</value>
+  </data>
+  <data name="StartedAutoUpdateExplanation" xml:space="preserve">
+    <value>Het opstarthulpprogramma wordt op dit moment bijgewerkt. Gelieve een moment te wachten. Het kan zijn dat er tijdens het bijwerken een nieuw venster wordt geopend waarbij gebruikersinteractie nodig is om het bijwerken te voltooien.</value>
+  </data>
+  <data name="TruncatedGameOutputWarning" xml:space="preserve">
+    <value>Uitvoer is te lang en afgekapt. Zie het Thrive logbestand voor de volledige uitvoer.</value>
+  </data>
+  <data name="AutoUpdateRetryFailed" xml:space="preserve">
+    <value>Het opnieuw proberen van het automatisch updaten is mislukt. Je kunt deze fout negeren door de bestaande bestanden voor het automatisch updaten te verwijderen. Het opstarthulpprogramma zal dan opnieuw proberen zichzelf bij te werken de volgende keer dat het herstart wordt.</value>
+  </data>
+  <data name="ThriveIsStarting" xml:space="preserve">
+    <value>Thrive wordt gestart. Loguitvoer (vanwege buffering is dit waarschijnlijk vertraagd):</value>
+  </data>
+  <data name="AutoUpdateSucceededMessage" xml:space="preserve">
+    <value>Het automatisch bijwerken zou gestart moeten zijn. Je zult nu, of binnen een paar seconden, een nieuw venster zien voor het bijwerken. Het opstarthulpprogramma moet gesloten worden om het bijwerken af te ronden. Je kunt het opstarthulpprogramma zelfstandig afsluiten, of wachten tot dit automatisch gebeurt</value>
+  </data>
+  <data name="ExtraThriveStartFlags" xml:space="preserve">
+    <value>Thrive wordt gestart met extra opties die als opdrachtargumenten aan het opstarthulpprogramma zijn aangeboden. Deze kunnen ervoor zorgen dat Thrive zich op rare manieren gedraagt: {0}</value>
+  </data>
+  <data name="AutoUpdatingFailedExplanation" xml:space="preserve">
+    <value>Automatisch bijwerken van het opstarthulpprogramma is mislukt. Waarschijnlijk heeft het installatiehulpprogramma niet correct gewerkt. Je kunt proberen om het installatiehulpprogramma nogmaals te draaien door op de naam hieronder te klikken. Het is ook mogelijk om de knop hieronder te klikken om de map waar het installatiehulpprogramma zich in bevindt te openen. Je kunt dan handmatig het installatiehulpprogramma starten (gelieve het ons te laten weten als dit helpt).
+
+Je kunt deze fout negeren door de bestaande bestanden voor het automatisch updaten te verwijderen. Het opstarthulpprogramma zal dan opnieuw proberen zichzelf bij te werken de volgende keer dat het herstart wordt.
+
+Als hieronder geen bestanden worden weergegeven, dan kon de update niet gedownload worden. Het is dan niet mogelijk om het bijwerken opnieuw te proberen zonder het opstarthulpprogramma opnieuw te starten.</value>
+  </data>
+  <data name="FoundDevBuildToPlayInfo" xml:space="preserve">
+    <value>DevBuild om te spelen gevonden: {0}, hash: {1}, is BVDD:{2}, vertakking: {3}</value>
+  </data>
+  <data name="CannotSubmitExceptionReportYet" xml:space="preserve">
+    <value>Het rapporteren van onbehandele uitzonderingen wordt nog niet ondersteund door het crashrapportageprogramma. Gebruik de kopieknop hieronder om het rapport naar je klembord te kopiëren en het rapport handmatig naar ons te sturen.</value>
+  </data>
+  <data name="Embedded7ZipLicenseTitle" xml:space="preserve">
+    <value>Het opstarthulpprogramma bevat enkele gebundelde hulpprogrammas. Dit zijn aparte uitvoerbare bestanden die door het opstarthulpprogramma worden gestart als opdrachtpromptapplicaties. Licentie van 7-Zip:</value>
+  </data>
+  <data name="PlayUnsafeBuildExplanation" xml:space="preserve">
+    <value>Normale DevBuilds worden automatisch door een CI server met een geverifieerde sleutel geupload. Deze builds kunnen alleen door de leden van de Thrive bewaarplaats worden gestart. Tenzij hun account is gehackt (of zij kwaadwillig handelen), zijn deze builds net zo veilig om te spelen als officieel uitgegeven versies van Thrive. DevBuilds worden ook geaccepteerd vanuit 'pull aanvraag (PR)', maar deze worden specifiek als onveilig gemarkeerd (zoals de huidig geselecteerde build) aangezien een pull aanvraag allerlei smerige dingen zou kunnen bevatten.
+
+Als een teamlid van Thrive de PR als veilig heeft geverifieerd, dan verdwijnt deze waarschuwing. Het is in elk geval mogelijk om door te gaan als je er zeker van bent dat deze build veilig is. Voordat je dit doet, is het aangeraden om dePR op Github te controleren en te verifiëren dat de hash van die commit klopt. Ook is het aangeraden om te controleren dat de ThriveDevCenter buildtaak een DevBuild heeft geupload met deze specifieke hash. Daarbij dient ook gecontroleerd te worden dat de PR geen buildscripts heeft veranderd. Zodra dit alles gedaan is, zou het relatief veilig moeten zijn om door te gaan. Dit is hetzelfde proces als dat Thrive teamleden gebruiken om PRs te verifiëren.</value>
+  </data>
 </root>
