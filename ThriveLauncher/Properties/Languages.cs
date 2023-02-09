@@ -29,6 +29,7 @@ public static class Languages
         "de-DE",
         "fr-FR",
         "it-IT",
+        "nl-NL",
         "pl-PL",
         "pt-BR",
         "ro-RO",
