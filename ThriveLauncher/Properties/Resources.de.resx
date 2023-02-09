@@ -241,4 +241,7 @@
   <data name="ExternalLinkFanWiki" xml:space="preserve">
     <value>Fan-Wiki</value>
   </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>Es wurden Einstellungen von einer älteren Version des Launchers gefunden. Du kannst diese Einstellungen importieren, um installierte Thrive Versionen und andere Anpassungen zu behalten. Wenn du diese alten Thrive Versionen und Caches nicht importierst, werden sie in Zukunft vom Launcher ignoriert. Es wird empfohlen, die Einstellungen zu importieren.</value>
+  </data>
 </root>
