@@ -244,4 +244,46 @@
   <data name="SettingsImportOldExplanation" xml:space="preserve">
     <value>Es wurden Einstellungen von einer älteren Version des Launchers gefunden. Du kannst diese Einstellungen importieren, um installierte Thrive Versionen und andere Anpassungen zu behalten. Wenn du diese alten Thrive Versionen und Caches nicht importierst, werden sie in Zukunft vom Launcher ignoriert. Es wird empfohlen, die Einstellungen zu importieren.</value>
   </data>
+  <data name="NewsFeedTitle" xml:space="preserve">
+    <value>NEUIGKEITEN</value>
+  </data>
+  <data name="ExternalLinkCommunityForums" xml:space="preserve">
+    <value>Community-Foren</value>
+  </data>
+  <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
+    <value>Entwickler-Wiki</value>
+  </data>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+    <value>Hauptseite</value>
+  </data>
+  <data name="ExternalLinkThriveGithub" xml:space="preserve">
+    <value>Thrive auf Github</value>
+  </data>
+  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
+    <value>Twitter-Feed</value>
+  </data>
+  <data name="ExternalLinkFacebookPage" xml:space="preserve">
+    <value>Facebook-Seite</value>
+  </data>
+  <data name="FolderPathDisplay" xml:space="preserve">
+    <value>Verzeichnis:</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>Wähle den Speicherort für temporäre Dateien</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>Speicherort für temporäre Dateien zurücksetzen</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>Lösche ALLE Dateien im temporären Ordner. Dies könnte Dateien löschen, die nichts mit Thrive zu tun haben, sollten diese existieren!</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+    <value>Speicherort für Cache wählen</value>
+  </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+    <value>DevBuilds-Dateicache:</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+    <value>Build des Tage (BDT), empfohlen</value>
+  </data>
 </root>
