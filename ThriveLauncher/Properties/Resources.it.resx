@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -58,4 +58,268 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>Abilita log di debug del launcher (prima di riportare un problema o bug con il launcher per favore abilita questa modalità e fai ripartire il launcher)</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Salta</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Rimuovi</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>Non sicuro</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>Chiudi</value>
+  </data>
+  <data name="UnknownNumber" xml:space="preserve">
+    <value>Sconociuto</value>
+  </data>
+  <data name="SubmitRetryButton" xml:space="preserve">
+    <value>Riprova</value>
+  </data>
+  <data name="SettingsImportOldTitle" xml:space="preserve">
+    <value>Importare le impostazioni precedenti?</value>
+  </data>
+  <data name="SkipAction" xml:space="preserve">
+    <value>Salta</value>
+  </data>
+  <data name="PerformImport" xml:space="preserve">
+    <value>Importa</value>
+  </data>
+  <data name="ImportFailedTitle" xml:space="preserve">
+    <value>Importazione fallita</value>
+  </data>
+  <data name="ImportSucceededTitle" xml:space="preserve">
+    <value>Importazione avvenuta con successo</value>
+  </data>
+  <data name="ImportSucceededMessage" xml:space="preserve">
+    <value>Le impostazioni precedenti sono state importate con successo.</value>
+  </data>
+  <data name="LauncherSelectedLanguage" xml:space="preserve">
+    <value>Lingua del launcher:</value>
+  </data>
+  <data name="PlayButton" xml:space="preserve">
+    <value>Gioca</value>
+  </data>
+  <data name="ConnectToDevCenterPrompt" xml:space="preserve">
+    <value>Connettiti al ThriveDevCenter</value>
+  </data>
+  <data name="ConnectedSupporterGreeting" xml:space="preserve">
+    <value>Grazie,</value>
+  </data>
+  <data name="LinksButton" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="ConnectedDeveloperGreeting" xml:space="preserve">
+    <value>Salve,</value>
+  </data>
+  <data name="WebContentIsDisabled" xml:space="preserve">
+    <value>Contenuti web disabilitati</value>
+  </data>
+  <data name="NewsFeedTitle" xml:space="preserve">
+    <value>NOTIZIE</value>
+  </data>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+    <value>Sito web principale</value>
+  </data>
+  <data name="DevelopmentFeedTitle" xml:space="preserve">
+    <value>FORUM SVILUPPO</value>
+  </data>
+  <data name="LinksPopupTitle" xml:space="preserve">
+    <value>Revolutionary Games Link</value>
+  </data>
+  <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
+    <value>Forum sviluppo</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+    <value>Dona</value>
+  </data>
+  <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
+    <value>ThriveDevCenter</value>
+  </data>
+  <data name="ExternalLinkThriveSteam" xml:space="preserve">
+    <value>Thrive su Steam</value>
+  </data>
+  <data name="ExternalLinkThriveItch" xml:space="preserve">
+    <value>Thrive su itch.io</value>
+  </data>
+  <data name="ExternalLinkThriveGithub" xml:space="preserve">
+    <value>Thrive su Github</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+    <value>Server Discord</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+    <value>Canale YouTube</value>
+  </data>
+  <data name="ExternalLinkFacebookPage" xml:space="preserve">
+    <value>Pagina Facebook</value>
+  </data>
+  <data name="ThriveOptions" xml:space="preserve">
+    <value>Opzioni di Thrive</value>
+  </data>
+  <data name="InstalledVersions" xml:space="preserve">
+    <value>Versioni installate</value>
+  </data>
+  <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
+    <value>Wiki sviluppo</value>
+  </data>
+  <data name="ExternalLinkLauncherGithub" xml:space="preserve">
+    <value>Launcher su Github</value>
+  </data>
+  <data name="ExternalLinkFanWiki" xml:space="preserve">
+    <value>Wiki amatori</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+    <value>Subreddit</value>
+  </data>
+  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
+    <value>Feed Twitter</value>
+  </data>
+  <data name="LauncherOptions" xml:space="preserve">
+    <value>Opzioni del launcher</value>
+  </data>
+  <data name="CacheConfigurationTab" xml:space="preserve">
+    <value>Cache</value>
+  </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+    <value>Disabilita tutti i video del gioco (se Thrive crasha dopo di aver mostrato il logo di caricamento e prima del video di introduzione, questo potrebbe far funzionare il gioco)</value>
+  </data>
+  <data name="LaunchOptionForceGLES2" xml:space="preserve">
+    <value>Forza modalità di rendering GLES2 (potrebbe far partire Thrive, ma causa alcuni piccoli problemi di grafica)</value>
+  </data>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+    <value>Versione del launcher:</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>Nasconde la versione a 32 bit se una versione equivalente del gioco esiste</value>
+  </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>Nascondi il Launcher durante il gioco</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>Chiudi il launcher dopo aver giocato (se non ci sono errori)</value>
+  </data>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+    <value>Abilita Feed Web</value>
+  </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>Seleziona dove installare</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>Aggiorna automaticamente il launcher</value>
+  </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>Chiudi launcher dopo aver fatto partire il gioco</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>Ripristina tutte le impostazioni</value>
+  </data>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+    <value>Cerca file installati</value>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+    <value>Contenuti:</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+    <value>La cartella è vuota</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>Nota: muovere la località temporaneamente non sposterà né cancellerà file per evitare di toccare accidentalmente file non relativi a Thrive</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>Ripristina la località di installazione</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>Seleziona la località dei file temporanei</value>
+  </data>
+  <data name="FolderPathDisplay" xml:space="preserve">
+    <value>Cartella:</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>Ripristina la località dei file temporanei</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>Cancella tutti i file nella cartella temporanea. Potrebbe cancellare anche file non relativi a Thrive se ce ne sono!</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+    <value>Cancella tutti i file nella cartella compressa DevBuild. Se la cartella non è quella predefinita alcuni file non di Thrive presenti dentro la cartella potrebbero venire cancellati.</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+    <value>Cartella temporanea di download:</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>Cancella</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+    <value>Connessione al ThriveDevCenter</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+    <value>Connesso come:</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+    <value>Build del giorno (BOTD), consigliata</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>Tu sei uno sviluppatore</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>Grazie per il tuo sostegno!</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+    <value>Ultimo (cambia molto in maniera casuale siccome si tratta dell'ultima build data dall'ultimo commit)</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>Selezionata manualmente nella tab "Build specifica"</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+    <value>Connetti</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>Conferma</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+    <value>Seleziona</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>Caricamento...</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Riprova</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Errore sconosciuto</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>Nessuna versione compatibile di Thrive trovata</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Sposta</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancella</value>
+  </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>Disconnetti</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>Nome utente:</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="TimeMomentRightNow" xml:space="preserve">
+    <value>Adesso</value>
+  </data>
+  <data name="ReportDeleteCaveat" xml:space="preserve">
+    <value>IMPORTANTE se perdi il tuo link per rimuovere non sarai in grado di cancellare il tuo report. Quindi salvalo! Puoi premere il pulsante Copia sulla destra per copiarlo.</value>
+  </data>
 </root>
