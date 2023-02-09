@@ -211,4 +211,34 @@
   <data name="ImportSucceededTitle" xml:space="preserve">
     <value>Import erfolgreich</value>
   </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>Aktiviere Launcher Debug-Aufzeichnung( bevor du einen Problem oder Bug Report über den Launcher erstellst aktiviere diese Aufzeichnung und starte den Launcher neu)</value>
+  </data>
+  <data name="ConnectedDeveloperGreeting" xml:space="preserve">
+    <value>Howdy,</value>
+  </data>
+  <data name="ConnectedSupporterGreeting" xml:space="preserve">
+    <value>Danke,</value>
+  </data>
+  <data name="ConnectToDevCenterPrompt" xml:space="preserve">
+    <value>Verbinde zu ThriveDevCenter</value>
+  </data>
+  <data name="DevelopmentFeedTitle" xml:space="preserve">
+    <value>ENTWICKLER FOREN</value>
+  </data>
+  <data name="WebContentIsDisabled" xml:space="preserve">
+    <value>Web Inhalte deaktiviert</value>
+  </data>
+  <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
+    <value>Entwickler-Foren</value>
+  </data>
+  <data name="ExternalLinkThriveItch" xml:space="preserve">
+    <value>Thrive auf itch.io</value>
+  </data>
+  <data name="ExternalLinkLauncherGithub" xml:space="preserve">
+    <value>Launcher auf Github</value>
+  </data>
+  <data name="ExternalLinkFanWiki" xml:space="preserve">
+    <value>Fan-Wiki</value>
+  </data>
 </root>
