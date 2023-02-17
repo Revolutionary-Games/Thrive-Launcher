@@ -17,10 +17,10 @@ public interface IAutoUpdater
     /// </summary>
     /// <param name="installerDownload">The download to download from</param>
     /// <param name="updateChannel">
-    ///     The update channel the download is for, needs to be known for how to handle the update file
+    ///   The update channel the download is for, needs to be known for how to handle the update file
     /// </param>
     /// <param name="currentVersion">
-    ///     The current version of the launcher, this is needed to detect whether the update succeeded or not.
+    ///   The current version of the launcher, this is needed to detect whether the update succeeded or not.
     /// </param>
     /// <param name="cancellationToken">Cancellation</param>
     /// <returns>

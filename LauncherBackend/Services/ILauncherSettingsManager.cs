@@ -1,4 +1,4 @@
-namespace LauncherBackend.Services;
+﻿namespace LauncherBackend.Services;
 
 using Models;
 
@@ -25,7 +25,7 @@ public interface ILauncherSettingsManager
     /// <summary>
     ///   Resets all settings to default values
     /// </summary>
-    void Reset();
+    public void Reset();
 
-    Task<bool> ImportOldSettings();
+    public Task<bool> ImportOldSettings();
 }
