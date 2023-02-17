@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using Microsoft.Extensions.Logging;
 using Models;
 using Services;
+using SharedBase.Utilities;
 
 /// <summary>
 ///   Handles downloading a file and calculating its hash at the same time
@@ -92,8 +93,7 @@ public static class HashedFileDownloader
             // Finalize the hasher state
             hasher.TransformFinalBlock(Array.Empty<byte>(), 0, 0);
 
-            hash = SharedBase.Utilities.FileUtilities.HashToHex(hasher.Hash ??
-                throw new Exception("Hasher didn't calculate hash"));
+            hash = FileUtilities.HashToHex(hasher.Hash ?? throw new Exception("Hasher didn't calculate hash"));
 
             logger.LogDebug("Downloaded {DownloadedBytes} bytes with hash of: {Hash}", downloadedBytes, hash);
 
