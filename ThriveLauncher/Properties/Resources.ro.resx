@@ -653,4 +653,25 @@ Log-urile launcher-ului vor avea mai multe informații.</value>
   <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
     <value>Eroare: procesul secundar a terminat deja, fereastra launcher-ului nu va fi închis</value>
   </data>
+  <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
+    <value>Această pagină listează versiunile instalate extern. Aceasta este o versiune de magazin ce include (ultima) versiune a jocului. Poți permite versiunilor externe să apară în selectorul de versiuni în setările launcher-ului. Odată descărcate, acele versiuni vor apărea aici.</value>
+  </data>
+  <data name="ExtraThriveStartFlags" xml:space="preserve">
+    <value>Thrive a fost pornit cu atenționări ce pot face Thrive să se comporte într-un mod neașteptat:{0}</value>
+  </data>
+  <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
+    <value>DevBuild pe care o să o joci(când este selectată versiunea DevBuild)</value>
+  </data>
+  <data name="ReportCrashButton" xml:space="preserve">
+    <value>Raportul Crash-ului</value>
+  </data>
+  <data name="PlayUnsafeBuildTitle" xml:space="preserve">
+    <value>Vrei sa joci versiunea DevBuild instabilă?</value>
+  </data>
+  <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
+    <value>Descrierea versiunii: {0}</value>
+  </data>
+  <data name="AcceptUnsafeBuildButton" xml:space="preserve">
+    <value>Înțeleg riscul, joc oricum</value>
+  </data>
 </root>
