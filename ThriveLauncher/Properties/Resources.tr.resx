@@ -359,7 +359,7 @@
     <value>Bilinmeyen klasör:</value>
   </data>
   <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
-    <value>Geçici Dosyalar Silinsin Mi?</value>
+    <value>Geçici Dosyalar Silinsin mi?</value>
   </data>
   <data name="ClearTemporaryFilesCount" xml:space="preserve">
     <value>{0} dosya/klasör silmek üzeresin</value>
@@ -501,7 +501,7 @@
     <value>Bildirmeye Devam Et</value>
   </data>
   <data name="CancelCreatingReportTitle" xml:space="preserve">
-    <value>Rapor Oluşturma İşlemi İptal Edilsin Mi?</value>
+    <value>Rapor Oluşturma İşlemi İptal Edilsin mi?</value>
   </data>
   <data name="ClearAllCrashesButton" xml:space="preserve">
     <value>BÜTÜN Çökme Dökümünü Sil</value>
@@ -697,7 +697,7 @@ Başlatıcı logları bununla ilgili daha fazla bilgi içermekte.</value>
     <value>Log klasörü oluşturulamadı ({0}): {1}</value>
   </data>
   <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
-    <value>Geliştirme Sürümü Önbelleği Silinsin Mi?</value>
+    <value>Geliştirme Sürümü Önbelleği Silinsin mi?</value>
   </data>
   <data name="DevCenterConnectFailureTitle" xml:space="preserve">
     <value>Thrive Geliştirme Merkezine Bağlanma İşlemi Başarısız</value>
