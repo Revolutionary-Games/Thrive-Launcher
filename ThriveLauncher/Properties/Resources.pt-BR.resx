@@ -319,4 +319,7 @@
   <data name="ExternalLinkTwitterFeed" xml:space="preserve">
     <value>Perfil no Twitter</value>
   </data>
+  <data name="ExternalLinkFanWiki" xml:space="preserve">
+    <value>Fã Wiki</value>
+  </data>
 </root>
