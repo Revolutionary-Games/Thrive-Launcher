@@ -674,4 +674,16 @@ Log-urile launcher-ului vor avea mai multe informații.</value>
   <data name="AcceptUnsafeBuildButton" xml:space="preserve">
     <value>Înțeleg riscul, joc oricum</value>
   </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Copie în clipboard</value>
+  </data>
+  <data name="TimeMomentRightNow" xml:space="preserve">
+    <value>Acum</value>
+  </data>
+  <data name="IncludeInReport" xml:space="preserve">
+    <value>Include:</value>
+  </data>
+  <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
+    <value>Email (opțional)</value>
+  </data>
 </root>
