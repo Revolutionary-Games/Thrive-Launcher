@@ -448,4 +448,31 @@
   <data name="LatestVersionTag" xml:space="preserve">
     <value>{0} (Последна)</value>
   </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>Включване на отстраняването на грешки (преди да докладвате за проблем, моля, включете тази опция и рестартирайте стартиращата програма)</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+    <value>Последна версия (включва последните промени)</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>Ръчно избрана в раздела „Конкретна версия“</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+    <value>Код за връзка</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+    <value>Ръчно въведен хеш:</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>Папката на „Thrive“ не съществува.</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>Всички сертификати са изтекли</value>
+  </data>
+  <data name="ClearTemporaryFilesCount" xml:space="preserve">
+    <value>Ще бъдат изтрити {0} файла / папки</value>
+  </data>
+  <data name="ClearDehydratedFilesCount" xml:space="preserve">
+    <value>Ще бъдат изтрити {0} файла</value>
+  </data>
 </root>
