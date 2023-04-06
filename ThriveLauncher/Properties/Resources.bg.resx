@@ -215,7 +215,7 @@
     <value>Частна Уикипедия</value>
   </data>
   <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
-    <value>Център за разработка на „Thrive“</value>
+    <value>Център за разработка</value>
   </data>
   <data name="ExternalLinkDonate" xml:space="preserve">
     <value>Страница за дарения</value>
@@ -374,7 +374,7 @@
     <value>Това е последната версия</value>
   </data>
   <data name="DevCenterConnectFailureTitle" xml:space="preserve">
-    <value>Свързването към Центъра за разработка на „Thrive“ е неуспешно</value>
+    <value>Свързването към Центъра за разработка е неуспешно</value>
   </data>
   <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
     <value>Дневна версия</value>
@@ -444,5 +444,8 @@
   </data>
   <data name="SelectDevBuildCacheLocation" xml:space="preserve">
     <value>Избиране на местоположение</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0} (Последна)</value>
   </data>
 </root>
