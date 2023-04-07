@@ -405,7 +405,7 @@
     <value>DevBuilds文件缓存：</value>
   </data>
   <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
-    <value>连接到DevCenter</value>
+    <value>连接到 ThriveDevCenter</value>
   </data>
   <data name="ConnectedAsUserDisplay" xml:space="preserve">
     <value>连接方式：</value>
@@ -499,5 +499,101 @@
   </data>
   <data name="ReportSubmitErrorServerError" xml:space="preserve">
     <value>由于服务器问题，提交报告失败，请等待一段时间，然后重试。如果问题仍然存在，请告知我们。</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>启动器使用了 Roboto 字体，Roboto 证书：</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>无法显示订阅。{0}</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>由 {0} 于 {1} 发表</value>
+  </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>启动器无法找到与当前系统兼容的 Thrive 版本。如果您使用的是其他操作系统，这属于正常现象。否则，请将此现象作为问题报告。</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0}（最新版本）</value>
+  </data>
+  <data name="DeleteErrorExplanation" xml:space="preserve">
+    <value>删除以下路径中的数据失败：“{0}”，原因：{1}</value>
+  </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>启用启动器debug日志（在报告问题或bug前，请启用该选项并重启启动器）</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+    <value>连接</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+    <value>Wiki 上的说明</value>
+  </data>
+  <data name="FetchLatestBuildsButton" xml:space="preserve">
+    <value>获取最新版本</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+    <value>输入版本哈希值（commit）</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>创建日志文件夹失败（{0}）：{1}</value>
+  </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>获取可用 Thrive 版本时发生错误</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>使用已缓存的版本信息</value>
+  </data>
+  <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
+    <value>下载的 Thrive 启动器信息无效。请稍候再尝试一次，如果问题仍然存在，请联系我们。</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>移动已存在的版本？</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>找不到可兼容的 Thrive 版本</value>
+  </data>
+  <data name="MoveVersionsExplanation" xml:space="preserve">
+    <value>在之前选择的路径中存在已安装的 Thrive 版本。现可自动将其移动到新位置。如果不移动，这些文件将保留在之前的路径中，启动器无法再找到这些文件，除非将安装位置重新设置为之前所选择的路径。您想要让这些文件自动地移动到新位置吗？</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>移动已存在的文件？</value>
+  </data>
+  <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
+    <value>缓存路径中存在文件。现可自动将其移动到新位置。如果不移动，这些文件将保留在之前的路径中，启动器无法再找到这些文件，除非将安装位置重新设置为之前所选择的路径。您想要让这 {0} 个文件自动地移动到新位置吗？请注意，如果缓存文件夹中存在与 Thrive 无关的文件也会被一并移动。</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>内部错误</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>启动器内部发生错误。请报告此问题，并提供启动器日志文件，同时写明你是如何触发该问题的。</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>删除临时文件？</value>
+  </data>
+  <data name="DeleteErrorDoesNotExist" xml:space="preserve">
+    <value>删除失败，目标路径不存在</value>
+  </data>
+  <data name="ClearTemporaryFilesCount" xml:space="preserve">
+    <value>你将要删除 {0} 个文件或文件夹</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
+    <value>你将要删除临时文件夹“{0}”中的所有文件。若其中存在非 Thrive 的文件，也会被一并删除。最后，整个文件夹也会被删除。确定删除临时文件夹吗？</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>删除开发版缓存？</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>你将要删除压缩缓存文件夹“{0}”中的所有文件。若其中存在非 Thrive 的文件，也会被一并删除。确定删除文件夹中的所有文件吗？</value>
+  </data>
+  <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
+    <value>退出代码可能表示你缺少DLL文件。可能是 Visual C++ Redistributable 2019 运行库发生问题，你可以从：https://aka.ms/vs/17/release/vc_redist.x64.exe 下载软件，用以安装或修复运行库。你也可以尝试手动运行 Thrive.exe，或许能从显示的错误提示中获知缺少的DLL文件名。你应该检查是否安装了所有的 Windows 更新。如果以上方法均无法解决问题，请联系我们以获取更多帮助。</value>
+  </data>
+  <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
+    <value>如果游戏无法正常开始，请尝试启动器设置中的“Thrive 设置”中提供的 Thrive 启动解决方法</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>当前使用中的 Thrive 启动器版本为 {0}，而最新版本为 {1}</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>启动器版本已过时</value>
   </data>
 </root>
