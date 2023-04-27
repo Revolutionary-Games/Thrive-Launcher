@@ -751,4 +751,7 @@
   <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
     <value>E-mail (необязательно)</value>
   </data>
+  <data name="CrashReportEmailFieldNotice" xml:space="preserve">
+    <value>Ваш email будет виден только администраторам центра разработки Thrive.</value>
+  </data>
 </root>
