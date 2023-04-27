@@ -864,4 +864,16 @@
     <value>Описание сборки:
 {0}</value>
   </data>
+  <data name="ContinueReportingButton" xml:space="preserve">
+    <value>Продолжить отчет</value>
+  </data>
+  <data name="ClearAllCrashesButton" xml:space="preserve">
+    <value>Удалить ВСЮ информацию об ошибках?</value>
+  </data>
+  <data name="CancelCreatingReportTitle" xml:space="preserve">
+    <value>Отменить создание отчета?</value>
+  </data>
+  <data name="ErrorSubmittingReport" xml:space="preserve">
+    <value>При попытке отправить отчет об ошибке произошел сбой. Пожалуйста, проверьте правильность данных или повторите попытку позже, если проблема связана с сервером. Тип сбоя:</value>
+  </data>
 </root>
