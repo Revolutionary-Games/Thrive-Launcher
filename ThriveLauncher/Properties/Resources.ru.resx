@@ -868,7 +868,7 @@
     <value>Продолжить отчет</value>
   </data>
   <data name="ClearAllCrashesButton" xml:space="preserve">
-    <value>Удалить ВСЮ информацию об ошибках?</value>
+    <value>Удалить ВСЮ информацию об ошибках</value>
   </data>
   <data name="CancelCreatingReportTitle" xml:space="preserve">
     <value>Отменить создание отчета?</value>
