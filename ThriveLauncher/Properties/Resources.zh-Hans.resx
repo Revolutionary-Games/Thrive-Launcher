@@ -411,7 +411,7 @@
     <value>连接方式：</value>
   </data>
   <data name="BuildTypeSelectionManual" xml:space="preserve">
-    <value>在“特定版本”选项卡中手动选择</value>
+    <value>手动选择“特定版本”</value>
   </data>
   <data name="DevCenterConnectionExplanation" xml:space="preserve">
     <value>在这里，您可以将启动器链接到ThriveDevCenter以访问DevBuilds和其他功能</value>
@@ -595,5 +595,327 @@
   </data>
   <data name="OutdatedLauncherTitle" xml:space="preserve">
     <value>启动器版本已过时</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf (版权所有 (c) 2010-2011 由 tyPoland Lukasz Dziedzic创建，保留字型名称 "Lato")，开源字型授权:</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>所有证书已过期</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>此启动程序附带的所有签名验证证书都已过期。这意味着这个版本的启动器已经不再可用。请手动下载并安装新版本。</value>
+  </data>
+  <data name="LoginToSeeThisContent" xml:space="preserve">
+    <value>登录到ThriveDevCenter以查看此内容</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>无法运行Thrive</value>
+  </data>
+  <data name="MissingThriveFolderError" xml:space="preserve">
+    <value>Thrive文件夹应存在于{0}，但它并不存在</value>
+  </data>
+  <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
+    <value>版本安装或检查已安装的版本失败，请参阅下面的详细信息。</value>
+  </data>
+  <data name="ThriveFolderPrepareFailed" xml:space="preserve">
+    <value>准备Thrive文件夹失败，错误代码：{0}</value>
+  </data>
+  <data name="ItemProgressDisplay" xml:space="preserve">
+    <value>处理{1}中的{0}</value>
+  </data>
+  <data name="DownloadProgressDisplay" xml:space="preserve">
+    <value>已下载{0}MB，总共{1}MB</value>
+  </data>
+  <data name="MissingThriveExecutableError" xml:space="preserve">
+    <value>无法在{0}文件夹中找到Thrive可执行文件，请验证游戏文件完整性或删除当前版本以重新下载。</value>
+  </data>
+  <data name="AcceptUnsafeBuildButton" xml:space="preserve">
+    <value>我已了解风险，继续进行游戏</value>
+  </data>
+  <data name="ErrorSubmittingReport" xml:space="preserve">
+    <value>在尝试提交您的崩溃报告时，发生了一个错误。请验证数据是否正确，如果是服务器的问题，请稍后再试。故障类型：</value>
+  </data>
+  <data name="CancelCreatingReportExplanation" xml:space="preserve">
+    <value>你确定你要取消创建崩溃报告吗？如果没有提交任何关于某个特定错误的报告，Thrive的开发者可能无法了解这个问题，因此无法修复它。</value>
+  </data>
+  <data name="ClearAllCrashesButton" xml:space="preserve">
+    <value>删除所有崩溃文件储存</value>
+  </data>
+  <data name="SubmittingReportMessage" xml:space="preserve">
+    <value>正在删除你的报告。请耐心等待，上传可能需要几分钟时间......</value>
+  </data>
+  <data name="SecondsDisplayPlural" xml:space="preserve">
+    <value>{0}秒</value>
+  </data>
+  <data name="SecondsDisplaySingular" xml:space="preserve">
+    <value>1秒</value>
+  </data>
+  <data name="AtTime" xml:space="preserve">
+    <value>当前时间：{0}</value>
+  </data>
+  <data name="LauncherOptionShowExternalVersions" xml:space="preserve">
+    <value>显示需要单独下载才能玩的外部Thrive版本</value>
+  </data>
+  <data name="StartedAutoUpdateExplanation" xml:space="preserve">
+    <value>当前启动器正在下载安装更新，请等待。下载的更新程序可能会打开一个新窗口，需要用户交互才能完成更新。</value>
+  </data>
+  <data name="ViewFirstAutoUpdaterFolder" xml:space="preserve">
+    <value>打开第一个更新器所在的文件夹</value>
+  </data>
+  <data name="RequiresExternalVersionsEnabled" xml:space="preserve">
+    <value>此选项需要启用外部版本下载</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+    <value>最新版（因为加入了新代码所以会有很多随机变动）</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+    <value>Build of the day (BOTD)模式，开发者推荐</value>
+  </data>
+  <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+    <value>在游玩DevBuild时选择手动输入自定义哈希值进行游玩</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>阅读完整通知。</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} 版本 {1}平台</value>
+  </data>
+  <data name="ClearDehydratedFilesCount" xml:space="preserve">
+    <value>你将要删除{0}文件</value>
+  </data>
+  <data name="OutdatedLauncherExplanation" xml:space="preserve">
+    <value>此版本的启动器已经过时，需要更新。当您看到此消息时，自动更新尚未启动，因此您需要手动下载更新并安装。您可以尝试通过跳过更新来继续使用当前版本的启动程序，但是您可能会遇到意料之外的问题，只有最新的启动程序版本才能保证与启动程序交互的远程系统能协同运行。</value>
+  </data>
+  <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
+    <value>您使用的启动器无法进行自动更新。如果您想在将来使用自动更新，请安装其它版本具有自动更新功能的启动器。</value>
+  </data>
+  <data name="OutdatedLauncherUpdateDisabledByUser" xml:space="preserve">
+    <value>您正在使用的启动器类型能够自动更新，但是自动更新功能目前被启动器设置或命令行标志禁用。</value>
+  </data>
+  <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
+    <value>错误：没有找到此类型启动器的更新文件。这本不该 发生。请稍后再试，如果问题仍然存在，请联系我们。</value>
+  </data>
+  <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
+    <value>连接ThriveDevCenter失败。服务器收到了一个禁止回应。这意味着我们的账户密钥不再生效。这可能是由于通过web界面连接被断开或您的帐户被停用所致。请参阅下面的链接来检查您的帐户的连接状态。</value>
+  </data>
+  <data name="DevCenterConnectFailureConnection" xml:space="preserve">
+    <value>连接ThriveDevCenter失败。请再试一次，因为ThriveDevCenter可能暂时无法使用。您也需要检查一下你的网络连接。您可以使用下面的链接访问DevCenter，检查网络是否可用。请稍后再试，如果问题持续存在，请反馈。</value>
+  </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>检查ThriveDevCenter上的令牌</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>重试现有连接</value>
+  </data>
+  <data name="EnterDevCenterConnectionCode" xml:space="preserve">
+    <value>请在输入框中输入ThriveDevCenter的连接码</value>
+  </data>
+  <data name="DevCenterConnectAttemptError" xml:space="preserve">
+    <value>检查ThriveDevCenter链接代码时出现错误。请确认您输入的代码是否正确且没有过期。额外信息:{0}</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>代码有效。请确认链接到以下账户:</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thrive已启动，请关闭进程后再试</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>链接失败，请重新检查代码</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>请从开始游戏旁边的下拉菜单中选择Thrive版本，然后再试一次</value>
+  </data>
+  <data name="PlayingTitle" xml:space="preserve">
+    <value>游玩{0}</value>
+  </data>
+  <data name="GettingDevBuildInfoMessage" xml:space="preserve">
+    <value>检索关于{0}类型的DevBuild的信息以进行游戏…</value>
+  </data>
+  <data name="ErrorGettingDevBuild" xml:space="preserve">
+    <value>错误：未能找到当前平台指定类型的DevBuild。请选择另一个版本，例如推荐的BOTD模式，然后重试。故障原因:{0}</value>
+  </data>
+  <data name="ThriveRunCanceled" xml:space="preserve">
+    <value>Thrive进程运行终止</value>
+  </data>
+  <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
+    <value>已取消游玩不安全的版本</value>
+  </data>
+  <data name="ThriveRunError" xml:space="preserve">
+    <value>Thrive运行失败，原因如下:{0}</value>
+  </data>
+  <data name="NoBuildToPlayFound" xml:space="preserve">
+    <value>没有找到匹配所需类型和当前平台的DevBuild</value>
+  </data>
+  <data name="DownloadError" xml:space="preserve">
+    <value>下载失败，原因是{0}</value>
+  </data>
+  <data name="ExtractError" xml:space="preserve">
+    <value>由于错误：{0}，读取存档失败</value>
+  </data>
+  <data name="DownloadingStateItemProgress" xml:space="preserve">
+    <value>正在从{1}中下载{0}</value>
+  </data>
+  <data name="VerifyingStateItemProgress" xml:space="preserve">
+    <value>正在验证{0}的完整性</value>
+  </data>
+  <data name="ExtractingStateItemProgress" xml:space="preserve">
+    <value>正在解压{0}。对于大文件，这可能需要几分钟，请耐心等待。</value>
+  </data>
+  <data name="ProcessingStateItemProgress" xml:space="preserve">
+    <value>加载{0}中</value>
+  </data>
+  <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
+    <value>错误：子进程已关闭，启动器窗口将不会关闭</value>
+  </data>
+  <data name="TruncatedGameOutputWarning" xml:space="preserve">
+    <value>输出时间过长，已停止加载！有关完整输出，请参阅Thrive日志文件。</value>
+  </data>
+  <data name="ThriveIsStarting" xml:space="preserve">
+    <value>Thrive正在运行。日志输出(由于缓冲更新可能不及时)：</value>
+  </data>
+  <data name="ReportCrashButton" xml:space="preserve">
+    <value>报告崩溃</value>
+  </data>
+  <data name="ExtraThriveStartFlags" xml:space="preserve">
+    <value>在启动Thrive时，额外的flags作为命令行参数传递给启动器，这些flags可能会使Thrive以意想不到的方式运行:{0}</value>
+  </data>
+  <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
+    <value>此选项卡列出外部安装的版本。这是Thrive的商店版本，包含捆绑(最新)游戏版本。您可以在启动器选项中的版本选择器下拉菜单上启用显示可用的外部版本。下载后，这些版本会显示在这里。</value>
+  </data>
+  <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
+    <value>要玩的DevBuild类型（当选择玩DevBuild版本时）</value>
+  </data>
+  <data name="PlayUnsafeBuildTitle" xml:space="preserve">
+    <value>确定游玩不安全的Devbuild？</value>
+  </data>
+  <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
+    <value>版本描述：
+{0}</value>
+  </data>
+  <data name="RehydrationFailed" xml:space="preserve">
+    <value>文件解压失败，因为错误：{0}</value>
+  </data>
+  <data name="RehydrationStarting" xml:space="preserve">
+    <value>这是一个被压缩的版本。开始解压。</value>
+  </data>
+  <data name="CopyLogWindowToClipboardToolTip" xml:space="preserve">
+    <value>复制游戏输出到剪贴板</value>
+  </data>
+  <data name="CrashReporterWindowTitle" xml:space="preserve">
+    <value>Thrive崩溃报告器</value>
+  </data>
+  <data name="ContinueReportingButton" xml:space="preserve">
+    <value>继续报告</value>
+  </data>
+  <data name="CancelCreatingReportTitle" xml:space="preserve">
+    <value>确定取消创建报告吗？</value>
+  </data>
+  <data name="SubmittingReportExtraInfo" xml:space="preserve">
+    <value>关于所遇到的错误的额外信息：</value>
+  </data>
+  <data name="FoundDevBuildToPlayInfo" xml:space="preserve">
+    <value>发现可用的Devbuild：{0}，哈希值：{1}，是否为BOTD模式：{2}，分支：{3}</value>
+  </data>
+  <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
+    <value>您的报告已经成功提交。谢谢你的报告。</value>
+  </data>
+  <data name="ReportViewingPublicInfo" xml:space="preserve">
+    <value>如果你的报告是公开的，你可以在以下地址查看：</value>
+  </data>
+  <data name="ReportDeleteInfo" xml:space="preserve">
+    <value>如果你想删除你的报告，你可以这样做:</value>
+  </data>
+  <data name="ReportDeleteCaveat" xml:space="preserve">
+    <value>重要！如果你遗忘了你的删除链接，你将无法删除你的报告。所以要保存它! 你可以按它右边的复制按钮来复制它。</value>
+  </data>
+  <data name="ReporterEndMessage" xml:space="preserve">
+    <value>你现在可以安全地关闭这个报告器。或者等到这个窗口自动关闭</value>
+  </data>
+  <data name="StopAutoClose" xml:space="preserve">
+    <value>取消关闭</value>
+  </data>
+  <data name="AutoCloseStopped" xml:space="preserve">
+    <value>自动关闭取消</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>复制到剪切板</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>打开文件夹</value>
+  </data>
+  <data name="ActiveReportingInfo" xml:space="preserve">
+    <value>报告崩溃{0}在{1}</value>
+  </data>
+  <data name="CrashReportLogsSection" xml:space="preserve">
+    <value>包含的日志</value>
+  </data>
+  <data name="CrashReportLogsSectionExplanation" xml:space="preserve">
+    <value>如果日志与崩溃的游戏运行时间相同，请保留日志，因为日志可能有助于识别和解决这个问题。你可以点击文件的名称来打开它，或者点击按钮来查看它所在的文件夹，来查看和编辑它，删除任何你想要的个人信息。日志文件始终只对Thrive开发人员可见，只有在追踪或修复报告的问题需要时，才会与其他各方共享。</value>
+  </data>
+  <data name="CrashReportDescriptionField" xml:space="preserve">
+    <value>描述当崩溃发生时你正在做什么(可选)</value>
+  </data>
+  <data name="CrashReportDescriptionFieldPlaceholder" xml:space="preserve">
+    <value>崩溃描述（可选）</value>
+  </data>
+  <data name="CrashReportEmailField" xml:space="preserve">
+    <value>您的电子邮件，如果您想收到有关此报告的后续进展（可选）</value>
+  </data>
+  <data name="CrashReportIsPublic" xml:space="preserve">
+    <value>确定公开？公开报告的崩溃调用堆栈和描述是公开可见的。私有报告仅对Thrive开发人员可见。</value>
+  </data>
+  <data name="CrashReportSubmitAcceptConfirmation" xml:space="preserve">
+    <value>我同意在此表格中列出的信息，包括任何包含的文件和崩溃转储，以及我的IP地址将存储在Thrive崩溃数据库中。如果这份报告是公开的，任何人都可以阅读崩溃调用栈和描述。</value>
+  </data>
+  <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
+    <value>所选的崩溃发生在一段时间之前。因此，它可能与最新的日志文件或启动器存储的游戏输出无关。请仔细检查你是否报告了正确的崩溃和相关的日志文件。</value>
+  </data>
+  <data name="CrashReportIncludeLauncherOutput" xml:space="preserve">
+    <value>包括在启动器当前进行的游戏弹出窗口中显示的游戏输出（建议在报告最新运行的游戏的崩溃时使用）</value>
+  </data>
+  <data name="AutoUpdateMissingChannel" xml:space="preserve">
+    <value>无法重试更新，因为此启动程序类型没有相关的更新通道类型</value>
+  </data>
+  <data name="AutoUpdatingFailedExplanation" xml:space="preserve">
+    <value>启动器的自动更新失败了。这个问题很可能是更新安装程序未能正确运行。你可以点击下面的更新器名称，重新尝试运行一个更新器。或者，你可以按下下面的按钮，打开第一个更新程序所在的文件夹，这应该允许你手动运行安装程序（如果这对你的情况有帮助，请让我们知道）。
+
+您可以忽略该失败，以便删除下载的更新程序文件，并在下次启动程序重新启动时重试更新。
+
+如果下面没有列出任何文件，说明下载更新失败，在重启启动程序之前无法重试。</value>
+  </data>
+  <data name="Embedded7ZipLicenseTitle" xml:space="preserve">
+    <value>启动器包含一些捆绑的工具。这些是启动程序作为命令行程序调用的单独的可执行文件。7 - zip许可证:</value>
+  </data>
+  <data name="EmbeddedPckToolLicenseTitle" xml:space="preserve">
+    <value>捆绑的godotpcktool许可证和其使用的库的许可证：</value>
+  </data>
+  <data name="InvalidVersionInfoLoadedTitle" xml:space="preserve">
+    <value>加载的版本信息无效</value>
+  </data>
+  <data name="LatestVersionParsingFailed" xml:space="preserve">
+    <value>解析最新可用启动器版本上的信息失败。新启动器版本可用性通知和自动更新将不起作用。</value>
+  </data>
+  <data name="CrashDumpsDetectedAdvice" xml:space="preserve">
+    <value>已检测到崩溃转储，但它们可能来自以前运行的Thrive(请在报告之前检查)。要停止收到关于崩溃转储的通知，请打开报告程序并清除崩溃转储。</value>
+  </data>
+  <data name="ForgetLastPlayedVersionToolTip" xml:space="preserve">
+    <value>清除在Thrive版本选择器中所做的上次选择。可以帮助获得无缝模式再次运行，如果它拒绝运行。</value>
+  </data>
+  <data name="ForgetLastPlayedVersion" xml:space="preserve">
+    <value>遗忘上次游玩的版本</value>
+  </data>
+  <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
+    <value>Thrive Launcher需要通过互联网以了解所有可用的版本。加载此信息失败(请参阅下面的错误)。您可以重试下载此信息，或者如果先前的启动程序能够下载此信息，则可以加载缓存副本。如果缓存的副本过于久远，它可能不会显示所有可用的Thrive版本。请注意，如果您的启动器版本过于古老，它可能不再与较新的数据格式兼容，您必须通过手动更新才能加载数据。</value>
+  </data>
+  <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
+    <value>你正在使用的启动器类型本该可以进行自动更新，但由于某种原因它没有运行，最新的启动器版本已经可用了一段时间了。请检查您是否禁用“保持Thrive更新”。</value>
+  </data>
+  <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
+    <value>连接ThriveDevCenter失败。服务器响应了未知错误，或者我们在处理响应时遇到了错误。请稍后再试，如果问题仍然存在，请反馈。您可以点击下面的链接，检查ThriveDevCenter是否一切正常。</value>
+  </data>
+  <data name="PlayUnsafeBuildExplanation" xml:space="preserve">
+    <value>正常的DevBuilds是由CI服务器自动上传的，有一个经过验证的密钥。这些构建只能由Thrive版本库成员触发。除非这个人的账户被泄露（或者他们有恶意行为），否则构建和官方发布一样安全。DevBuilds也可以从拉动请求（PR）中接受，但在这种情况下，它们被特别标记为不安全（如当前选择的构建），因为拉动请求可能包含各种讨厌的东西。
+
+如果Thrive团队成员验证了PR是安全的，这个警告就会消失。如果你相信这个构建是安全的，你可以继续。在这样做之前，你应该检查Github上的PR，看看最新的提交哈希值是否匹配，以及ThriveDevCenter的构建工作是否显示它已经上传了具有该哈希值的DevBuild。此外，应该检查PR没有改变任何构建脚本。做完这些后，应该可以继续进行，这与Thrive团队成员用来验证PR的过程相同。</value>
   </data>
 </root>

@@ -435,7 +435,7 @@
     <value>Лаунчер Thrive загружает доступные версии Thrive с интернета, дабы удостовериться что в принципе доступно. Загрузка этой информации провалилась (Ошибку можно просмотреть снизу). Вы можете попытаться вновь установить эту информацию иль если Лаунчер ранее загружал эту информацию вы в праве загрузить копию из кэша.</value>
   </data>
   <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
-    <value>Существующие данные в кэше были найдены. Они были автоматически перемещены в новую директорию. Переместить {0} файлы в новую директорию?{0}</value>
+    <value>Существующие элементы в кэше были обнаружены. Они могут быть автоматически перемещены в новое место. Если файлы не переместить, они останутся позади, и программа запуска не узнает о них, пока предыдущий путь не будет снова выбран в качестве местоположения. Хотите ли вы автоматически переместить {0} файл(ы) в новое место? Обратите внимание, что если в папке кэша есть файлы, не относящиеся к Thrive, они также будут перемещены.</value>
   </data>
   <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
     <value>Судя по коду выхода вам не хватает DLL файла. Им может являться Visual c++ Redistributable 2019, что вы можете скачать с : https://aka.ms/vs/17/release/vc_redist.x64.exe. Вы так же можете попробовать запустить Thrive вручную, это позволит показать диалоговое окно ошибки с отсутствующими DLL файлами. Вам стоит проверить - есть ли у вас все актуальные на данный момент обновления WIndows. Если это всё не помогло - свяжитесь с нами напрямую для помощи. Контакты можно найти на веб-сайте Thrive : https://revolutionarygamesstudio.com/.</value>
@@ -471,7 +471,7 @@
     <value>Разархивируем {0} . Это может занять пару минут из-за огромных файлов, так что просим быть терпеливыми.</value>
   </data>
   <data name="ExtraThriveStartFlags" xml:space="preserve">
-    <value>Thrive запускается с дополнительными параметрами, что были добавлены через командную строку к лаунчеру, эти "добавки" могут привести к тому, что Thrive поведёт себя не лучшим образом{0} .</value>
+    <value>Thrive запускается с дополнительными параметрами, что были добавлены через командную строку к лаунчеру, эти "добавки" могут привести к тому, что Thrive поведёт себя не лучшим образом{0}</value>
   </data>
   <data name="ErrorGettingDevBuild" xml:space="preserve">
     <value>Ошибка: Не удалось найти билд Разработчика определенного типа для нынешней платформы. Пожалуйста, выберите другой билд, например - рекомендуемый Билд Дня и попробуйте вновь. Причина ошибки: {0}</value>
@@ -549,7 +549,7 @@
     <value>Внешняя Ошибка</value>
   </data>
   <data name="InternalErrorExplanation" xml:space="preserve">
-    <value>Внешняя ошибка произошла в лаунчере.Пожалуйста, сообщите о данной  проблеме и приложите лог Лаунчера.</value>
+    <value>Внешняя ошибка произошла в лаунчере.Пожалуйста, сообщите о данной проблеме и приложите лог Лаунчера.</value>
   </data>
   <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
     <value>Вы собираетесь удалить все файлы, что содержатся в {0}. Будут удалены даже файлы, что никак не связаны с Thrive, но каким-то чудесным образом оказались в директории с Thrive. Сама папка так же будет удалена. Удалить временную папку?</value>
@@ -621,7 +621,7 @@
     <value>Запускающийся Thrive был закрыт</value>
   </data>
   <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
-    <value>Запуск  небезопасного билда отменен</value>
+    <value>Запуск небезопасного билда отменен</value>
   </data>
   <data name="NoBuildToPlayFound" xml:space="preserve">
     <value>Не было найдено Билдов Разработчика нужного типа и нужной платформы</value>
@@ -721,5 +721,159 @@
   </data>
   <data name="AutoUpdateError" xml:space="preserve">
     <value>Ошибка автоматического обновления</value>
+  </data>
+  <data name="PlayUnsafeBuildExplanation" xml:space="preserve">
+    <value>Обычные Билды Разработчиков загружаются автоматически CI-сервером с проверенным ключом. Эти сборки могут быть запущены только участниками репозитория Thrive. Если только аккаунт такого человека не взломан (или он не действует злонамеренно), сборки так же безопасны для игры, как и официальные релизы. DevBuilds также принимаются из pull request'ов (PR), но в этом случае они специально помечаются как небезопасные (как, например, текущая выбранная сборка), поскольку pull request может содержать всевозможные неприятные вещи.
+
+Если член команды Thrive проверяет, что PR безопасен, это предупреждение исчезает. Альтернативный вариант Вы можете продолжить, если уверены, что эта сборка безопасна. Перед этим вы должны проверить PR на Github, чтобы убедиться, что хэш последнего коммита совпадает и что задание сборки Центр Разработки Thrive говорит, что оно загрузило Билд Разработчиков с этим хэшем. Кроме того, следует проверить, что PR не изменяет никаких скриптов сборки. После этого можно смело продолжать, это тот же процесс, который члены команды Thrive используют для проверки PR.</value>
+  </data>
+  <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
+    <value>Тип Билды Разработчиков для воспроизведения (когда выбрано воспроизведение версии Билды Разработчиков)</value>
+  </data>
+  <data name="RehydrationFailed" xml:space="preserve">
+    <value>Регидратация не удалась из-за ошибки: {0}</value>
+  </data>
+  <data name="RehydrationStarting" xml:space="preserve">
+    <value>Это обезвоженное телосложение. Начинаем регидратацию.</value>
+  </data>
+  <data name="FoundDevBuildToPlayInfo" xml:space="preserve">
+    <value>Найден Билд Разработчиков для игры: {0}, хэш: {1}, является Билд дня: {2}, ветка: {3}</value>
+  </data>
+  <data name="CrashReporterWindowTitle" xml:space="preserve">
+    <value>Репортер об авариях Thrive</value>
+  </data>
+  <data name="CrashReportLogsSection" xml:space="preserve">
+    <value>Журналы для включения</value>
+  </data>
+  <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
+    <value>На этой вкладке перечислены установленные извне версии. Это версия Thrive для магазина, которая включает в себя поставляемую (последнюю) версию игры. Вы можете включить показ доступных внешних версий в выпадающем списке выбора версий в параметрах пусковой установки. После загрузки эти версии отображаются здесь.</value>
+  </data>
+  <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
+    <value>E-mail (необязательно)</value>
+  </data>
+  <data name="CrashReportEmailFieldNotice" xml:space="preserve">
+    <value>Ваш e-mail будет виден только администраторам центра разработки Thrive.</value>
+  </data>
+  <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
+    <value>Выбранный сбой произошел некоторое время назад. Поэтому он может быть не связан с последними лог-файлами или результатами игры, сохраненными программой запуска. Пожалуйста, внимательно проверьте, правильно ли вы сообщаете о сбое и соответствующих файлах журнала.</value>
+  </data>
+  <data name="CrashReportDeleteAfterSubmitting" xml:space="preserve">
+    <value>Удалите этот файл дампа аварии после создания отчета (рекомендуется)</value>
+  </data>
+  <data name="CrashReportIncludeLauncherOutput" xml:space="preserve">
+    <value>Включите вывод игры, отображаемый во всплывающем окне текущей игры в пусковой установке (рекомендуется при сообщении о сбое после последнего запуска игры)</value>
+  </data>
+  <data name="ReportSubmitErrorTooManyRequests" xml:space="preserve">
+    <value>Отправка отчета не удалась из-за слишком большого количества последних запросов с вашего IP-адреса, пожалуйста, подождите до часа, а затем повторите попытку</value>
+  </data>
+  <data name="AutoUpdateMissingChannel" xml:space="preserve">
+    <value>Невозможно повторить попытку обновления, поскольку данный тип пусковой установки не имеет связанного с ним типа канала обновления</value>
+  </data>
+  <data name="IgnoreFailure" xml:space="preserve">
+    <value>Игнорировать неудачу</value>
+  </data>
+  <data name="EmbeddedPckToolLicenseTitle" xml:space="preserve">
+    <value>Пакетная лицензия инструмент командной строки и лицензии используемых библиотек:</value>
+  </data>
+  <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
+    <value>Автоматический перезапуск Thrive при неудачном запуске</value>
+  </data>
+  <data name="LatestVersionParsingFailed" xml:space="preserve">
+    <value>Разбор информации о последней доступной версии пусковой установки не удался. Уведомления о доступности новой версии пусковой установки и автообновление не будут работать.</value>
+  </data>
+  <data name="AcceptUnsafeBuildButton" xml:space="preserve">
+    <value>Я понимаю риск, все равно играйте</value>
+  </data>
+  <data name="CrashReportIsPublic" xml:space="preserve">
+    <value>Публичные? В публичных отчетах стек вызовов и описание сбоя находятся в открытом доступе. Приватные отчеты видны только разработчикам Thrive.</value>
+  </data>
+  <data name="CrashReportSubmitAcceptConfirmation" xml:space="preserve">
+    <value>Я согласен, что информация, указанная в этой форме, включая все включенные файлы и дамп аварии, а также мой IP-адрес будут сохранены в базе данных аварий Thrive. И если этот отчет будет публичным, любой желающий сможет прочитать коллстек и описание аварии.</value>
+  </data>
+  <data name="ReportSubmitErrorBadRequest" xml:space="preserve">
+    <value>Отправка отчета не удалась из-за плохой информации, введенной в форму отчета об аварии, пожалуйста, проверьте информацию, которую вы пытаетесь отправить, и повторите попытку</value>
+  </data>
+  <data name="ReportSubmitErrorUnknown" xml:space="preserve">
+    <value>Отправка отчета не удалась из-за неизвестной ошибки, повторите попытку позже</value>
+  </data>
+  <data name="ReportSubmitErrorServerError" xml:space="preserve">
+    <value>Отправка отчета не удалась из-за проблем с сервером, пожалуйста, подождите некоторое время и повторите попытку. Если проблема сохранится, пожалуйста, сообщите нам.</value>
+  </data>
+  <data name="ReportSubmitErrorNetworkError" xml:space="preserve">
+    <value>Отправка отчета не удалась из-за проблемы с сетью, пожалуйста, проверьте подключение к интернету и повторите попытку через несколько минуты</value>
+  </data>
+  <data name="LauncherOptionShowExternalVersions" xml:space="preserve">
+    <value>Показывать внешние версии Thrive, для воспроизведения которых требуются отдельные загрузки</value>
+  </data>
+  <data name="StartedAutoUpdateExplanation" xml:space="preserve">
+    <value>В настоящее время пусковая установка загружает и устанавливает обновление, пожалуйста, подождите. Загруженное средство обновления может открыть новое окно, требующее вмешательства пользователя для завершения обновления.</value>
+  </data>
+  <data name="AutoUpdatingFailedExplanation" xml:space="preserve">
+    <value>Автоматическое обновление пусковой установки не удалось. Вероятно, проблема заключается в том, что программа установки обновления не смогла запуститься правильно. Вы можете повторить запуск программы обновления, щелкнув ее название ниже. Также вы можете нажать кнопку ниже, чтобы открыть папку, в которой находится первое обновление, что позволит вам вручную запустить программу установки (пожалуйста, сообщите нам, помогло ли это в вашем случае).
+
+Вы можете проигнорировать сбой, чтобы удалить загруженные файлы программы обновления и повторить обновление при следующем перезапуске программы запуска.
+
+Если в списке ниже нет ни одного файла, загрузка обновления завершилась неудачно, и его нельзя повторить без перезапуска программы запуска.</value>
+  </data>
+  <data name="ViewFirstAutoUpdaterFolder" xml:space="preserve">
+    <value>Открыть папку, в которой находится первая программа обновления</value>
+  </data>
+  <data name="CannotSubmitExceptionReportYet" xml:space="preserve">
+    <value>Отчет о сбоях пока не поддерживает отчеты о сбоях, вызванных необработанными исключениями. Пожалуйста, используйте кнопку копирования ниже, чтобы скопировать отчет в буфер обмена, а затем вручную отправьте его нам.</value>
+  </data>
+  <data name="ThriveRunRetryStarting" xml:space="preserve">
+    <value>Не обнаружено, что Thrive запущен правильно. Будет предпринята попытка запустить Thrive снова, номер попытки: {0}</value>
+  </data>
+  <data name="LauncherOptionShowAllBetaVersions" xml:space="preserve">
+    <value>Показать все существующие бета-версии Thrive</value>
+  </data>
+  <data name="Embedded7ZipLicenseTitle" xml:space="preserve">
+    <value>Пусковая установка включает в себя некоторые инструменты. Это отдельные исполняемые файлы, которые запускающая программа вызывает как программы командной строки. Лицензия 7-Zip:</value>
+  </data>
+  <data name="LauncherOptionShowLatestBetaVersion" xml:space="preserve">
+    <value>Показывать последнюю доступную бета-версию Thrive в селекторе версий (если доступно)</value>
+  </data>
+  <data name="RequiresLatestBetaShowingEnabled" xml:space="preserve">
+    <value>Эта опция может быть включена только тогда, когда сначала включена опция показа последней бета-версии</value>
+  </data>
+  <data name="RequiresExternalVersionsEnabled" xml:space="preserve">
+    <value>Этот параметр требует, чтобы была включена загрузка внешних версий</value>
+  </data>
+  <data name="ForgetLastPlayedVersion" xml:space="preserve">
+    <value>Забыть последнюю воспроизведенную версию</value>
+  </data>
+  <data name="ForgetLastPlayedVersionToolTip" xml:space="preserve">
+    <value>Очищает запоминание последнего выбора, сделанного в селекторе версий Thrive. Может помочь восстановить работу бесшовного режима, если он отказывается работать.</value>
+  </data>
+  <data name="AutoUpdateRetryFailed" xml:space="preserve">
+    <value>Повторная попытка автообновления не удалась. Можно проигнорировать неудачу, чтобы очистить существующие файлы автообновления и заставить программу запуска повторить попытку при следующем перезапуске.</value>
+  </data>
+  <data name="AutoUpdateSucceededMessage" xml:space="preserve">
+    <value>Должна запуститься программа автоматического обновления. Сейчас или через несколько секунд у вас должно открыться новое окно программы обновления. Для завершения обновления необходимо закрыть программу запуска. Вы можете закрыть программу запуска вручную или дождаться автоматического закрытия в</value>
+  </data>
+  <data name="CrashDumpsDetectedAdvice" xml:space="preserve">
+    <value>Были обнаружены аварийные дампы, но они могут относиться к предыдущему запуску Thrive (пожалуйста, проверьте, прежде чем сообщать об этом). Чтобы перестать получать уведомления об аварийных дампах, откройте репортер и очистите аварийные дампы.</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
+  <data name="SubmittingReportMessage" xml:space="preserve">
+    <value>Идет подтверждение отчета. Пожалуйста, подождите, загрузка может занять пару минут...</value>
+  </data>
+  <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
+    <value>Описание сборки:
+{0}</value>
+  </data>
+  <data name="ContinueReportingButton" xml:space="preserve">
+    <value>Продолжить отчет</value>
+  </data>
+  <data name="ClearAllCrashesButton" xml:space="preserve">
+    <value>Удалить ВСЮ информацию об ошибках</value>
+  </data>
+  <data name="CancelCreatingReportTitle" xml:space="preserve">
+    <value>Отменить создание отчета?</value>
+  </data>
+  <data name="ErrorSubmittingReport" xml:space="preserve">
+    <value>При попытке отправить отчет об ошибке произошел сбой. Пожалуйста, проверьте правильность данных или повторите попытку позже, если проблема связана с сервером. Тип сбоя:</value>
   </data>
 </root>
