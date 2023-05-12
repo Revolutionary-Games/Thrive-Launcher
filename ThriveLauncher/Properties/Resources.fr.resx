@@ -514,4 +514,10 @@ Les logs du launcher contiendront plus d'informations.</value>
   <data name="ReportDeleteInfo" xml:space="preserve">
     <value>Si vous souhaitez supprimer votre rapport, vous pouvez le faire ici :</value>
   </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>Le launcher n'a pu trouver aucune version de Thrive compatible avec la plateforme actuelle. Si vous utilisez un système d'exploitation inhabituel, c'est normal. Dans le cas contraire, veuillez signaler ce problème.</value>
+  </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>Activer le débogage du launcher (avant de faire un rapport de bogue, veillez activer ceci et et relancer le launcher)</value>
+  </data>
 </root>
