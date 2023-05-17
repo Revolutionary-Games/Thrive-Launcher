@@ -43,9 +43,9 @@
     <PackageReference Include="NLog.Extensions.Logging" Version="5.2.3" />
     <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
     <!-- Needed due to avalonia requiring a really old Microsoft CodeAnalysis module-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.CSharp" Version="4.5.0" />
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.5.0" />
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.Common" Version="4.5.0" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.CSharp" Version="4.6.0" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.6.0" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.Common" Version="4.6.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LauncherBackend\LauncherBackend.csproj" />
