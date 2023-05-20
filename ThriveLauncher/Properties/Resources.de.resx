@@ -215,7 +215,7 @@
     <value>Aktiviere Launcher Debug-Aufzeichnung( bevor du einen Problem oder Bug Report über den Launcher erstellst aktiviere diese Aufzeichnung und starte den Launcher neu)</value>
   </data>
   <data name="ConnectedDeveloperGreeting" xml:space="preserve">
-    <value>Howdy,</value>
+    <value>Hallo,</value>
   </data>
   <data name="ConnectedSupporterGreeting" xml:space="preserve">
     <value>Danke,</value>
@@ -285,5 +285,8 @@
   </data>
   <data name="BuildTypeSelectionBOTD" xml:space="preserve">
     <value>Build des Tage (BDT), empfohlen</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+    <value>ThriveDevCenter Verbindung</value>
   </data>
 </root>
