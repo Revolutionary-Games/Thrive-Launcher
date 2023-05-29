@@ -163,10 +163,10 @@ public class ProgressDisplayer : IDisposable, IObserver<FilePrepareProgress>
         {
             textualProgress!.IsVisible = true;
 
-            var maxValue = progress.FinishedProgress?.BytesToMiB(2, false) ?? Resources.UnknownNumber;
+            var maxValue = ((double?)progress.FinishedProgress)?.BytesToMiB(2, false) ?? Resources.UnknownNumber;
 
             textualProgress!.Text = string.Format(Resources.DownloadProgressDisplay,
-                progress.CurrentProgress.Value.BytesToMiB(2, false, true), maxValue);
+                ((double)progress.CurrentProgress.Value).BytesToMiB(2, false, true), maxValue);
         }
         else if (progress.CurrentStep == FilePrepareStep.Processing && progress.CurrentProgress != null)
         {
