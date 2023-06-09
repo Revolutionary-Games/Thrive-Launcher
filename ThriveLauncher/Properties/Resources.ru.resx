@@ -254,13 +254,13 @@
     <value>Импорт провалился</value>
   </data>
   <data name="ImportFailedMessage" xml:space="preserve">
-    <value>Не получилось импортировать настройки. Убедитесь, что лаунчер имеет права на чтение и запись к нужным файлам, затем перезапустите лаунчер и попробуйте снова.</value>
+    <value>Не получилось импортировать настройки. Пожалуйста, убедитесь, что лаунчер имеет права на чтение и редактирование нужных файлов, затем перезапустите лаунчер и попробуйте снова.</value>
   </data>
   <data name="ImportSucceededMessage" xml:space="preserve">
     <value>Предыдущие настройки успешно импортированы.</value>
   </data>
   <data name="ConnectToDevCenterPrompt" xml:space="preserve">
-    <value>Подключиться к Центру Разработчиков</value>
+    <value>Подключиться к Центру Разработчиков Thrive</value>
   </data>
   <data name="LinksPopupTitle" xml:space="preserve">
     <value>Ссылки Revolutionary Games</value>
