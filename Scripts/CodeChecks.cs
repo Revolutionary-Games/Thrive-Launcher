@@ -31,7 +31,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
             "UnknownProperty",
         };
 
-    protected override IEnumerable<string> ExtraIgnoredJetbrainsInspectWildcards => new[] { "*.Designer.cs" };
+    protected override IEnumerable<string> ExtraIgnoredJetbrainsInspectWildcards => new[] { "**.Designer.cs" };
 
     protected override string MainSolutionFile => "ThriveLauncher.sln";
 }
