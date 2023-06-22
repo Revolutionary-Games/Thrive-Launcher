@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -58,4 +58,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SettingsImportOldTitle" xml:space="preserve">
+    <value>¿Importar ajustes anteriores?</value>
+  </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>Se han encontrado ajustes de una versión anterior del lanzador. Puedes importar estos ajustes existentes</value>
+  </data>
+  <data name="SkipAction" xml:space="preserve">
+    <value>Saltar</value>
+  </data>
+  <data name="PerformImport" xml:space="preserve">
+    <value>Importar</value>
+  </data>
+  <data name="ImportFailedTitle" xml:space="preserve">
+    <value>Fallo al importar</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>Fallo al importar ajustes</value>
+  </data>
 </root>
