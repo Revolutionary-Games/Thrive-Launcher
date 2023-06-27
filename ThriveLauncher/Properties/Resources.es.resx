@@ -62,7 +62,7 @@
     <value>¿Importar ajustes anteriores?</value>
   </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
-    <value>Se han encontrado ajustes de una versión anterior del lanzador. Puedes importar estos ajustes existentes</value>
+    <value>Se han encontrado ajustes de una versión anterior del lanzador. Puedes importar estos ajustes existentes para mantener tus versiones instaladas de Thrive y otras personalizaciones intactas. Si no importas las versiones antiguas de Thrives y sus cachés, serán olvidadas e ignoradas por este lanzador. Se recomienda importar los ajustes.</value>
   </data>
   <data name="SkipAction" xml:space="preserve">
     <value>Saltar</value>
@@ -74,6 +74,108 @@
     <value>Fallo al importar</value>
   </data>
   <data name="ImportFailedMessage" xml:space="preserve">
-    <value>Fallo al importar ajustes</value>
+    <value>Fallo al importar ajustes. Por favor, asegúrate que las rutas de archivos relevantes para los ajustes son legibles y escribibles por el lanzador, luego reinicia el lanzador para probar de nuevo.</value>
+  </data>
+  <data name="ImportSucceededTitle" xml:space="preserve">
+    <value>Se ha importado con éxito</value>
+  </data>
+  <data name="ImportSucceededMessage" xml:space="preserve">
+    <value>Los anteriores ajustes se han importado con éxito.</value>
+  </data>
+  <data name="LauncherSelectedLanguage" xml:space="preserve">
+    <value>Idioma del lanzador:</value>
+  </data>
+  <data name="LinksButton" xml:space="preserve">
+    <value>Enlaces</value>
+  </data>
+  <data name="PlayButton" xml:space="preserve">
+    <value>Jugar</value>
+  </data>
+  <data name="ConnectToDevCenterPrompt" xml:space="preserve">
+    <value>Conectarse a ThriveDevCenter</value>
+  </data>
+  <data name="ConnectedDeveloperGreeting" xml:space="preserve">
+    <value>Hola,</value>
+  </data>
+  <data name="ConnectedSupporterGreeting" xml:space="preserve">
+    <value>Gracias,</value>
+  </data>
+  <data name="DevelopmentFeedTitle" xml:space="preserve">
+    <value>FOROS DE DESARROLLO</value>
+  </data>
+  <data name="WebContentIsDisabled" xml:space="preserve">
+    <value>Contenido web deshabilitado</value>
+  </data>
+  <data name="NewsFeedTitle" xml:space="preserve">
+    <value>NOVEDADES</value>
+  </data>
+  <data name="LinksPopupTitle" xml:space="preserve">
+    <value>Enlaces de Revolutionary Games</value>
+  </data>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+    <value>Sitio web principal</value>
+  </data>
+  <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
+    <value>Foros de desarrollo</value>
+  </data>
+  <data name="ExternalLinkCommunityForums" xml:space="preserve">
+    <value>Foros comunitarios</value>
+  </data>
+  <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
+    <value>Wiki de desarrolladores</value>
+  </data>
+  <data name="ExternalLinkPatreon" xml:space="preserve">
+    <value>Patreon</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+    <value>Donar</value>
+  </data>
+  <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
+    <value>ThriveDevCenter</value>
+  </data>
+  <data name="ExternalLinkThriveSteam" xml:space="preserve">
+    <value>Thrive en Steam</value>
+  </data>
+  <data name="ExternalLinkThriveItch" xml:space="preserve">
+    <value>Thrive en itch.io</value>
+  </data>
+  <data name="ExternalLinkThriveGithub" xml:space="preserve">
+    <value>Thrive en Github</value>
+  </data>
+  <data name="ExternalLinkLauncherGithub" xml:space="preserve">
+    <value>Lanzador en Github</value>
+  </data>
+  <data name="ExternalLinkFanWiki" xml:space="preserve">
+    <value>Wiki de fans</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+    <value>Servidor de Discord</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+    <value>Subreddit</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+    <value>Canal de YouTube</value>
+  </data>
+  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
+    <value>Fuente de Twitter</value>
+  </data>
+  <data name="ExternalLinkFacebookPage" xml:space="preserve">
+    <value>Página de Facebook</value>
+  </data>
+  <data name="ThriveOptions" xml:space="preserve">
+    <value>Opciones de Thrive</value>
+  </data>
+  <data name="LauncherOptions" xml:space="preserve">
+    <value>Opciones del lanzador</value>
+  </data>
+  <data name="InstalledVersions" xml:space="preserve">
+    <value>Versiones instaladas</value>
+  </data>
+  <data name="CacheConfigurationTab" xml:space="preserve">
+    <value>Caché</value>
+  </data>
+  <data name="LaunchOptionsTitle" xml:space="preserve">
+    <value>Opciones del lanzador</value>
   </data>
 </root>
