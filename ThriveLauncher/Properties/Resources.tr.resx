@@ -754,7 +754,7 @@ Başlatıcı logları bununla ilgili daha fazla bilgi içermekte.</value>
     <value>Toplam {1} MiB arasından {0} indirildi</value>
   </data>
   <data name="ExtractingStateItemProgress" xml:space="preserve">
-    <value>{0} ayıklanıyor. Büyük dosyalar için bu birkaç dakika sürebilir. Bu yüzden, lütfen sabırlı ol.</value>
+    <value>{0} dosya ayıklanıyor. Büyük dosyalar için bu birkaç dakika sürebilir. Bu yüzden, lütfen sabırlı ol.</value>
   </data>
   <data name="ThriveIsStarting" xml:space="preserve">
     <value>Thrive başlatılıyor. Log çıktısı (arabellekten dolayı bu muhtemelen eş zamanlı değil):</value>
