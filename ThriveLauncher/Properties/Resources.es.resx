@@ -178,4 +178,46 @@
   <data name="LaunchOptionsTitle" xml:space="preserve">
     <value>Opciones del lanzador</value>
   </data>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+    <value>Versión del lanzador:</value>
+  </data>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+    <value>Habilitar novedades de la web</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>Oculta versiones de 32 bits si existe una versión equivalente de 64 bits</value>
+  </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>Ocultar el lanzador durante el juego</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>Cerrar lanzador después de jugar (si no hay error)</value>
+  </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>Cerrar el lanzador después de comenzar el juego</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>Actualizar automáticamente el lanzador</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>Restablecer todos los ajustes</value>
+  </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>Seleccionar ubicación de instalación</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>Restablecer ubicación de instalación</value>
+  </data>
+  <data name="FolderPathDisplay" xml:space="preserve">
+    <value>Directorio:</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+    <value>Carpeta temporal de descargas:</value>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+    <value>Contenido:</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+    <value>La carpeta está vacía</value>
+  </data>
 </root>
