@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -58,4 +58,725 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SkipAction" xml:space="preserve">
+    <value>跳過</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>無法匯入設定。請確保啟動器可以讀取和寫入設定檔案的相關檔案路徑，然後重新啟動啟動器再試一次。</value>
+  </data>
+  <data name="PerformImport" xml:space="preserve">
+    <value>匯入</value>
+  </data>
+  <data name="ImportFailedTitle" xml:space="preserve">
+    <value>匯入失敗</value>
+  </data>
+  <data name="ImportSucceededTitle" xml:space="preserve">
+    <value>匯入成功</value>
+  </data>
+  <data name="ImportSucceededMessage" xml:space="preserve">
+    <value>成功匯入先前的設定。</value>
+  </data>
+  <data name="LauncherSelectedLanguage" xml:space="preserve">
+    <value>啟動器語言：</value>
+  </data>
+  <data name="LinksButton" xml:space="preserve">
+    <value>相關連結</value>
+  </data>
+  <data name="ConnectToDevCenterPrompt" xml:space="preserve">
+    <value>連接到 ThriveDevCenter</value>
+  </data>
+  <data name="ConnectedDeveloperGreeting" xml:space="preserve">
+    <value>你好，</value>
+  </data>
+  <data name="ConnectedSupporterGreeting" xml:space="preserve">
+    <value>感謝，</value>
+  </data>
+  <data name="DevelopmentFeedTitle" xml:space="preserve">
+    <value>開發論壇</value>
+  </data>
+  <data name="WebContentIsDisabled" xml:space="preserve">
+    <value>已禁用網頁內容</value>
+  </data>
+  <data name="NewsFeedTitle" xml:space="preserve">
+    <value>新聞</value>
+  </data>
+  <data name="LinksPopupTitle" xml:space="preserve">
+    <value>Revolutionary Games 連結</value>
+  </data>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+    <value>官方網站</value>
+  </data>
+  <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
+    <value>開發論壇</value>
+  </data>
+  <data name="ExternalLinkCommunityForums" xml:space="preserve">
+    <value>討論區</value>
+  </data>
+  <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
+    <value>開發者 Wiki</value>
+  </data>
+  <data name="ExternalLinkPatreon" xml:space="preserve">
+    <value>Patreon</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+    <value>贊助</value>
+  </data>
+  <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
+    <value>ThriveDevCenter</value>
+  </data>
+  <data name="ExternalLinkThriveSteam" xml:space="preserve">
+    <value>Steam 上的 Thrive</value>
+  </data>
+  <data name="ExternalLinkThriveGithub" xml:space="preserve">
+    <value>Github 上的 Thrive</value>
+  </data>
+  <data name="ExternalLinkLauncherGithub" xml:space="preserve">
+    <value>Github 上的啟動器</value>
+  </data>
+  <data name="PlayButton" xml:space="preserve">
+    <value>開始遊戲</value>
+  </data>
+  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
+    <value>官方 Twitter</value>
+  </data>
+  <data name="ExternalLinkFacebookPage" xml:space="preserve">
+    <value>官方 Facebook</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+    <value>官方 Reddit</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+    <value>官方 YouTube</value>
+  </data>
+  <data name="ThriveOptions" xml:space="preserve">
+    <value>Thrive 設定</value>
+  </data>
+  <data name="LauncherOptions" xml:space="preserve">
+    <value>啟動器設定</value>
+  </data>
+  <data name="InstalledVersions" xml:space="preserve">
+    <value>已安裝版本</value>
+  </data>
+  <data name="CacheConfigurationTab" xml:space="preserve">
+    <value>快取</value>
+  </data>
+  <data name="LaunchOptionsTitle" xml:space="preserve">
+    <value>啟動設定</value>
+  </data>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+    <value>啟動器版本：</value>
+  </data>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+    <value>啟用 Web 源</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>如果存在等效的 64 位版本，則隱藏 32 位版本</value>
+  </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>在遊玩時隱藏啟動器</value>
+  </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>開始遊戲後關閉啟動器</value>
+  </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+    <value>允許無縫啟動模式（啟動器在啟動 Thrive 前不會顯示）</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>自動更新啟動器</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>重置所有設定</value>
+  </data>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+    <value>瀏覽已安裝檔案</value>
+  </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>選擇安裝位置</value>
+  </data>
+  <data name="FolderPathDisplay" xml:space="preserve">
+    <value>目錄：</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+    <value>臨時下載資料夾：</value>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+    <value>內容：</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+    <value>資料夾為空</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>注意：更改臨時目錄不會移動或刪除現有檔案，以防止意外操作與 Thrive 無關的檔案</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>選擇臨時檔案位置</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>重設臨時檔案位置</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>重設安裝位置</value>
+  </data>
+  <data name="LaunchOptionForceGLES2" xml:space="preserve">
+    <value>強制使用 GLES2 渲染模式（可能可以啟動 Thrive，但會造成輕微的圖形問題）</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+    <value>DevBuilds 檔案快取：</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+    <value>選擇快取位置</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+    <value>重設快取位置</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+    <value>快取大小：</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+    <value>連接到 ThriveDevCenter</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+    <value>資訊</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>你是一位開發者</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>感謝您的支持！</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+    <value>Build of the day (BOTD) 模式，開發者推薦</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+    <value>Wiki 上的說明</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>獲取連結程式碼</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+    <value>連結程式碼</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+    <value>連接</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>登錄</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+    <value>特定版本</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+    <value>輸入版本雜湊值 (commit)</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+    <value>選擇</value>
+  </data>
+  <data name="FetchLatestBuildsButton" xml:space="preserve">
+    <value>獲取最新版本</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>設定儲存失敗</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>保存設定到設定檔案失敗。請確保啟動器具有寫入權限，然後重試。
+啟動器日誌提供更多資訊。</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>您可以將啟動器連結到 ThriveDevCenter，以便訪問 DevBuilds 和其他功能</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>手動選擇「特定版本」</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>找不到資料夾</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>Thrive 版本安裝資料夾不存在。</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>啟動器原始碼</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>檢視啟動器授權條款</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Thrive 啟動器</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>啟動器中使用 Roboto 字體，Roboto 授權：</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>無法顯示訂閱。{0}</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>由 {0} 在 {1} 發布</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>點擊此處</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>閱讀全文。</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>無法建立日誌資料夾（{0}）：{1}</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>檢視日誌</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>所有憑證均已過期</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>{0} 版本</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} 對 {1}</value>
+  </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>獲取可用 Thrive 版本時發生錯誤</value>
+  </data>
+  <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
+    <value>下載的 Thrive 啟動器資訊無效。請稍後重試，如果問題仍然存在，請聯絡我們。</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>重試</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>載入中…</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>未知錯誤</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0}（最新版本）</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>移動已存在版本？</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>移動已存在檔案？</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>內部錯誤</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>啟動器發生內部錯誤。請報告此問題並提供啟動器記錄檔以及您遇到此問題的詳細資訊。</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>移動</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>跳過</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>刪除</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>刪除失敗</value>
+  </data>
+  <data name="DeleteErrorExplanation" xml:space="preserve">
+    <value>無法刪除以下路徑中的數據："{0}"，原因：{1}</value>
+  </data>
+  <data name="DeleteErrorDoesNotExist" xml:space="preserve">
+    <value>刪除失敗，目標路徑不存在</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>未知資料夾：</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>刪除臨時檔案？</value>
+  </data>
+  <data name="ClearTemporaryFilesCount" xml:space="preserve">
+    <value>您即將刪除 {0} 個檔案／資料夾</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
+    <value>您即將刪除位於 "{0}" 的臨時資料夾中的所有檔案，即使其中存在非 Thrive 檔案，也將被刪除。該資料夾本身也將被刪除。確定要刪除臨時資料夾嗎？</value>
+  </data>
+  <data name="ClearDehydratedFilesCount" xml:space="preserve">
+    <value>您即將刪除 {0} 個檔案</value>
+  </data>
+  <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
+    <value>如果遊戲未正確啟動，請嘗試在啟動器設定的「Thrive 選項」中使用可用的 Thrive 啟動解決方法</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>這個版本是最新版本</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>當前使用中的 Thrive 啟動器版本為 {0}，而最新版本為 {1}</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>訪問下載頁面</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>啟動器版本已過時</value>
+  </data>
+  <data name="OutdatedLauncherExplanation" xml:space="preserve">
+    <value>此版本的啟動器已過時，需要更新。當您看到此訊息時，自動更新尚未開始，因此您需要手動下載並安裝更新。您可以嘗試跳過更新，使用當前的啟動器版本，但是由於只有最新的啟動器版本能夠與啟動器所互動的遠端系統保證正常運作，因此可能會遇到意外問題。</value>
+  </data>
+  <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
+    <value>您使用的啟動器類型無法自動更新。如果您希望將來使用自動更新，請安裝具有自動更新功能的啟動器。</value>
+  </data>
+  <data name="OutdatedLauncherUpdateDisabledByUser" xml:space="preserve">
+    <value>您正在使用的啟動器類型支援自動更新，但是自動更新功能目前已被啟動器設定或命令列引數禁用。</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>ThriveDevCenter 連接失敗</value>
+  </data>
+  <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
+    <value>連線到 ThriveDevCenter 失敗。伺服器回覆了一個未知的錯誤，或者我們在處理回應時遇到了錯誤。請稍後再試，如果問題仍然存在，請回報問題。您可以使用下方連結檢查 ThriveDevCenter 的狀態是否正常。</value>
+  </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>中斷連線</value>
+  </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>在 ThriveDevCenter 上檢查連線權杖</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>重試現有連線</value>
+  </data>
+  <data name="EnterDevCenterConnectionCode" xml:space="preserve">
+    <value>請在輸入框中輸入 ThriveDevCenter 的連接碼</value>
+  </data>
+  <data name="DevCenterConnectAttemptError" xml:space="preserve">
+    <value>檢查 ThriveDevCenter 的連結代碼時出現錯誤。請確認您輸入的代碼正確無誤且尚未過期。額外資訊：{0}</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>代碼有效。請確認連結到以下帳戶：</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>使用者名稱：</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>電子郵件：</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>連結失敗，請重新檢查代碼</value>
+  </data>
+  <data name="LoginToSeeThisContent" xml:space="preserve">
+    <value>登錄 ThriveDevCenter 查看此內容</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>不安全</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>描述：</value>
+  </data>
+  <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
+    <value>BOTD（開發人員推薦的搶先體驗版本）</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thrive 已啟動，請關閉後再試</value>
+  </data>
+  <data name="PlayingTitle" xml:space="preserve">
+    <value>正在遊玩 {0}</value>
+  </data>
+  <data name="GettingDevBuildInfoMessage" xml:space="preserve">
+    <value>正在檢索所選的 DevBuild 類型 {0} 的相關資訊以進行遊戲…</value>
+  </data>
+  <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
+    <value>在不安全的版本上遊玩已被取消</value>
+  </data>
+  <data name="ThriveRunCanceled" xml:space="preserve">
+    <value>Thrive 運行已被取消</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="NoBuildToPlayFound" xml:space="preserve">
+    <value>未找到與所需類型和當前平台匹配的 DevBuild</value>
+  </data>
+  <data name="DownloadingItem" xml:space="preserve">
+    <value>正在下載 {0}</value>
+  </data>
+  <data name="DownloadError" xml:space="preserve">
+    <value>下載失敗，原因為 {0}</value>
+  </data>
+  <data name="ExtractError" xml:space="preserve">
+    <value>解壓縮檔案時發生錯誤：{0}</value>
+  </data>
+  <data name="ThriveRunError" xml:space="preserve">
+    <value>Thrive 無法運行，發生以下錯誤：{0}</value>
+  </data>
+  <data name="MissingThriveFolderError" xml:space="preserve">
+    <value>Thrive 資料夾應存在於 {0}，但實際不存在</value>
+  </data>
+  <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
+    <value>版本安裝或檢查已安裝版本失敗，詳細信息如下。</value>
+  </data>
+  <data name="ThriveFolderPrepareFailed" xml:space="preserve">
+    <value>準備 Thrive 資料夾失敗並發生錯誤：{0}</value>
+  </data>
+  <data name="DownloadProgressDisplay" xml:space="preserve">
+    <value>已下載 {0} MiB，總共 {1} MiB</value>
+  </data>
+  <data name="ItemProgressDisplay" xml:space="preserve">
+    <value>已處理 {0}（總共 {1}）</value>
+  </data>
+  <data name="UnknownNumber" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="DownloadingStateItemProgress" xml:space="preserve">
+    <value>正在從 {1} 下載 {0}</value>
+  </data>
+  <data name="VerifyingStateItemProgress" xml:space="preserve">
+    <value>正在驗證 {0} 的完整性</value>
+  </data>
+  <data name="ExtractingStateItemProgress" xml:space="preserve">
+    <value>正在解壓縮 {0}。對於大檔案，這可能需要幾分鐘，請耐心等待。</value>
+  </data>
+  <data name="ProcessingStateItemProgress" xml:space="preserve">
+    <value>正在處理 {0}</value>
+  </data>
+  <data name="TruncatedGameOutputWarning" xml:space="preserve">
+    <value>輸出過長，已被截斷！請檢視 Thrive 記錄檔以獲取完整輸出。</value>
+  </data>
+  <data name="ThriveIsStarting" xml:space="preserve">
+    <value>Thrive 正在啟動。記錄檔輸出（由於緩衝區更新，這可能不是實時的）：</value>
+  </data>
+  <data name="ReportCrashButton" xml:space="preserve">
+    <value>崩潰回報</value>
+  </data>
+  <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
+    <value>要遊玩的 DevBuild 類型（選擇遊玩 DevBuild 版本時）</value>
+  </data>
+  <data name="PlayUnsafeBuildTitle" xml:space="preserve">
+    <value>確定遊玩不安全的 Devbuild？</value>
+  </data>
+  <data name="AcceptUnsafeBuildButton" xml:space="preserve">
+    <value>我已了解風險，繼續進行遊戲</value>
+  </data>
+  <data name="FoundDevBuildToPlayInfo" xml:space="preserve">
+    <value>發現可用的 DevBuild：{0}，雜湊值：{1}，是否爲 BOTD：{2}，分支：{3}</value>
+  </data>
+  <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
+    <value>版本描述：
+{0}</value>
+  </data>
+  <data name="RehydrationFailed" xml:space="preserve">
+    <value>解壓縮檔案失敗，原因為：{0}</value>
+  </data>
+  <data name="RehydrationStarting" xml:space="preserve">
+    <value>這是一個已壓縮的版本。開始解壓中。</value>
+  </data>
+  <data name="CrashReporterWindowTitle" xml:space="preserve">
+    <value>Thrive 崩潰回報器</value>
+  </data>
+  <data name="ContinueReportingButton" xml:space="preserve">
+    <value>繼續回報</value>
+  </data>
+  <data name="ClearAllCrashesButton" xml:space="preserve">
+    <value>刪除所有崩潰轉儲檔案</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="SubmittingReportMessage" xml:space="preserve">
+    <value>正在提交您的報告。請耐心等待，上傳可能需要幾分鐘時間…</value>
+  </data>
+  <data name="ErrorSubmittingReport" xml:space="preserve">
+    <value>嘗試提交崩潰報告時發生錯誤。請確認資料是否正確，或者如果問題是伺服器問題，請稍後再試。錯誤類型：</value>
+  </data>
+  <data name="CopyLogWindowToClipboardToolTip" xml:space="preserve">
+    <value>複製遊戲輸出到剪貼簿</value>
+  </data>
+  <data name="CancelCreatingReportTitle" xml:space="preserve">
+    <value>取消建立報告？</value>
+  </data>
+  <data name="CancelCreatingReportExplanation" xml:space="preserve">
+    <value>您確定要取消建立崩潰報告嗎？如果沒有提交關於某些特定錯誤的報告，Thrive 的開發人員可能無法瞭解這個問題，因此無法修復它。</value>
+  </data>
+  <data name="SubmittingReportExtraInfo" xml:space="preserve">
+    <value>遇到的錯誤附加資訊：</value>
+  </data>
+  <data name="SubmitRetryButton" xml:space="preserve">
+    <value>重試</value>
+  </data>
+  <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
+    <value>您的報告已成功提交。感謝您的報告。</value>
+  </data>
+  <data name="ReportViewingPublicInfo" xml:space="preserve">
+    <value>您可以在以下地址檢視您的報告（如果是公開的）：</value>
+  </data>
+  <data name="ReportDeleteInfo" xml:space="preserve">
+    <value>如果您想刪除您的報告，您可以在這裡進行操作：</value>
+  </data>
+  <data name="ReportDeleteCaveat" xml:space="preserve">
+    <value>重要提示：如果您遺失了刪除連結，將無法刪除您的報告。請妥善保存！您可以點選右側的複製按鈕將其複製。</value>
+  </data>
+  <data name="SecondsDisplayPlural" xml:space="preserve">
+    <value>{0} 秒</value>
+  </data>
+  <data name="SecondsDisplaySingular" xml:space="preserve">
+    <value>1 秒</value>
+  </data>
+  <data name="StopAutoClose" xml:space="preserve">
+    <value>取消關閉</value>
+  </data>
+  <data name="AutoCloseStopped" xml:space="preserve">
+    <value>自動關閉已取消</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>複製到剪貼簿</value>
+  </data>
+  <data name="TimeMomentRightNow" xml:space="preserve">
+    <value>現在</value>
+  </data>
+  <data name="AtTime" xml:space="preserve">
+    <value>於 {0}</value>
+  </data>
+  <data name="ViewFile" xml:space="preserve">
+    <value>檢視</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>開啟資料夾</value>
+  </data>
+  <data name="IncludeInReport" xml:space="preserve">
+    <value>包括：</value>
+  </data>
+  <data name="CrashReportLogsSection" xml:space="preserve">
+    <value>要包含的記錄檔</value>
+  </data>
+  <data name="SettingsImportOldTitle" xml:space="preserve">
+    <value>導入先前的設定？</value>
+  </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>發現了先前版本的啟動器設定。您可以導入這些現有的設定，以保留已安裝的 Thrive 版本和其他自定義設置。如果您不導入舊的 Thrive 版本和快取，它們將被遺棄，並且此啟動器將不會知道它們。建議導入這些設定。</value>
+  </data>
+  <data name="ExternalLinkThriveItch" xml:space="preserve">
+    <value>itch.io 上的 Thrive</value>
+  </data>
+  <data name="ExternalLinkFanWiki" xml:space="preserve">
+    <value>百科</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+    <value>官方 Discord</value>
+  </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+    <value>禁用所有遊戲影片（如果 Thrive 在顯示載入標誌後，開場影片播放之前崩潰，這可能有助於讓遊戲正常運行）</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>啟動後關閉啟動器（如果沒有錯誤）</value>
+  </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>啟用啟動器調試日誌記錄（在報告問題或錯誤之前，請啟用此功能並重新啟動啟動器）</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>刪除臨時資料夾中的所有檔案。可能刪除與 Thrive 無關的檔案！</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+    <value>刪除 DevBuild 中的壓縮快取資料夾中的所有檔案。如果該資料夾不在預設位置，可能會存在非 Thrive 檔案，這些檔案也將被刪除。</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+    <value>連接方式：</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+    <value>最新版（隨機變化很多，因為這是根據最新的程式碼提交建立的）</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+    <value>手動輸入雜湊值：</value>
+  </data>
+  <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+    <value>在遊玩 DevBuild 時選擇手動輸入雜湊值作為選定的 DevBuild</value>
+  </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0} MiB</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>（大小：{0}）</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Thrive 啟動器授權條款</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf（版權所有 (c) 2010-2011 由 tyPoland Lukasz Dziedzic 建立，保留字體名稱 "Lato"），OFL 授權：</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>此啟動器隨附的所有簽署驗證憑證均已過期。這意味著這個版本的啟動器已經相當過時。請下載並安裝更新的版本。</value>
+  </data>
+  <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
+    <value>Thrive 啟動器無法從網路上載入可用的 Thrive 版本資訊，導致無法確定目前有哪些版本可用。以下是載入資訊時出現的錯誤訊息。您可以嘗試重新下載這些資訊，或者如果啟動器先前能夠下載這些資訊，您可以載入快取的副本。如果快取的副本非常舊，可能無法顯示所有可用的 Thrive 版本。請注意，如果您的啟動器版本非常舊，可能無法與新的資料格式相容，必須在載入資料之前手動更新。</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>使用已快取的版本資訊</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>未找到兼容的 Thrive 版本</value>
+  </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>啟動器無法找到與目前平台相容的 Thrive 版本。如果您使用的是小眾的作業系統，這是預料之中的。否則，請將此問題回報。</value>
+  </data>
+  <data name="MoveVersionsExplanation" xml:space="preserve">
+    <value>偵測到先前路徑上已安裝的 Thrive 版本。這些檔案可以自動移至新位置。如果不移動，這些檔案將被遺留在原處，直到再次選擇先前的路徑作為安裝位置，啟動器將無法辨識這些檔案。您是否希望自動將這些檔案移至新位置？</value>
+  </data>
+  <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
+    <value>已檢測到快取中存在現有的項目。這些檔案可以自動移至新位置。如果不移動，這些檔案將被遺留在原處，直到再次選擇先前的路徑作為位置，啟動器將無法辨識這些檔案。您是否要將 {0} 個文件自動移動到新位置？請注意，如果快取文件夾中存在與 Thrive 無關的文件，它們也將被一併移動。</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>刪除 DevBuild 快取？</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>你將刪除位於 "{0}" 的壓縮快取資料夾中的所有檔案。即使其中存在非 Thrive 檔案，也將被刪除。確定要刪除該資料夾的內容嗎？</value>
+  </data>
+  <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
+    <value>退出代碼可能意味著您缺少所需的 DLL 檔案。可能是 Visual C++ Redistributable 2019，您可以從以下網址：https://aka.ms/vs/17/release/vc_redist.x64.exe 下載安裝程式，以安裝／修復它。您也可以嘗試手動執行 Thrive.exe，因為這可能會顯示一個帶有缺少的 DLL 檔名的錯誤對話方塊。請確保您已安裝所有 Windows 更新。如果這些方法都無法解決問題，請聯絡我們以獲得進一步的協助。</value>
+  </data>
+  <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
+    <value>您正在使用的啟動器類型應該能夠自動更新，但由於某些原因它並未生效，最新版本的啟動器已經可用一段時間了。請檢查一下您是否已經停用了讓 Thrive 保持最新狀態的功能。</value>
+  </data>
+  <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
+    <value>錯誤：找不到此類型啟動器的更新檔案。這不應該發生。請稍後再試，如果問題仍然存在，請告知我們。</value>
+  </data>
+  <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
+    <value>連線到 ThriveDevCenter 失敗。伺服器回覆了一個禁止的回應。這表示我們的連線金鑰不再有效。這可能是由於通過網頁介面連線中斷，或者您的帳戶可能被停用所致。請參閱下方連結檢查您帳戶的連線狀態。</value>
+  </data>
+  <data name="DevCenterConnectFailureConnection" xml:space="preserve">
+    <value>連線到 ThriveDevCenter 失敗。請再試一次，因為 ThriveDevCenter 可能只是暫時無法使用。您還應該檢查您的網際網路連線。您可以使用下方連結訪問 DevCenter，檢查您的瀏覽器是否能夠連線。請稍後再試，如果問題持續超過幾分鐘，請回報問題。</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>無法啟動 Thrive</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>請從開始遊戲按鈕邊的下拉選單中選擇 Thrive 版本，然後重試</value>
+  </data>
+  <data name="ErrorGettingDevBuild" xml:space="preserve">
+    <value>錯誤：找不到當前平台指定類型的 DevBuild。請選擇其他版本，例如推薦的 BOTD，然後重試。失敗原因：{0}</value>
+  </data>
+  <data name="MissingThriveExecutableError" xml:space="preserve">
+    <value>在 {0} 資料夾中找不到 Thrive 可執行檔案，請驗證遊戲檔案或刪除當前版本以重新下載。</value>
+  </data>
+  <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
+    <value>錯誤：子程序已經結束，啟動器視窗將不會關閉</value>
+  </data>
+  <data name="ExtraThriveStartFlags" xml:space="preserve">
+    <value>Thrive 啟動時包含額外的命令列引數設定，這可能會導致 Thrive 以意想不到的方式運作：{0}</value>
+  </data>
+  <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
+    <value>這個標籤頁列出了外部安裝的版本。這是一個包含捆綁（最新）遊戲版本的 Thrive 商店版本。您可以在啟動器選項中啟用顯示可用的外部版本，一旦下載完成，這些版本會出現在這裡。</value>
+  </data>
+  <data name="PlayUnsafeBuildExplanation" xml:space="preserve">
+    <value>正常的 DevBuilds 是由 CI 伺服器使用驗證過的金鑰自動上傳的。這些建置只能由 Thrive 儲存庫的成員觸發。除非這些人的帳戶遭到入侵（或者他們有惡意行為），否則這些建置與官方發行版本一樣安全可玩。DevBuilds 也可以從拉取請求（PR）中接受，但在這種情況下，它們會被明確標記為不安全（例如，當前選定的建置），因為拉取請求可能包含各種惡意內容。
+
+如果 Thrive 團隊成員驗證了這個 PR 是安全的，這個警告就會消失。或者，如果您相信這個建置是安全的，您可以繼續。在這之前，您應該在 Github 上檢查這個 PR，確保最新的提交雜湊值相符，並且 ThriveDevCenter 的建置工作顯示它已經上傳了具有該雜湊值的 DevBuild。此外，還應檢查該 PR 是否更改了任何建置指令碼。經過這樣的檢查後，繼續進行應該是相對安全的，這與 Thrive 團隊成員用來驗證 PR 的過程相同。</value>
+  </data>
+  <data name="ReporterEndMessage" xml:space="preserve">
+    <value>您現在可以安全地關閉這個回報器。或者等到這個視窗自動關閉</value>
+  </data>
+  <data name="ActiveReportingInfo" xml:space="preserve">
+    <value>回報崩潰 {0} 發生於 {1}</value>
+  </data>
 </root>
