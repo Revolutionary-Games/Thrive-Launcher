@@ -342,7 +342,7 @@
     <value>{0} 版本</value>
   </data>
   <data name="VersionWithPlatform" xml:space="preserve">
-    <value>{0} 對 {1}</value>
+    <value>{1} 平臺 {0} 版本</value>
   </data>
   <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
     <value>獲取可用 Thrive 版本時發生錯誤</value>
@@ -498,7 +498,7 @@
     <value>關閉</value>
   </data>
   <data name="NoBuildToPlayFound" xml:space="preserve">
-    <value>未找到與所需類型和當前平台匹配的 DevBuild</value>
+    <value>未找到與所需類型和當前平臺匹配的 DevBuild</value>
   </data>
   <data name="DownloadingItem" xml:space="preserve">
     <value>正在下載 {0}</value>
@@ -580,7 +580,7 @@
     <value>繼續回報</value>
   </data>
   <data name="ClearAllCrashesButton" xml:space="preserve">
-    <value>刪除所有崩潰轉儲檔案</value>
+    <value>刪除所有崩潰傾印檔</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>提交</value>
@@ -718,7 +718,7 @@
     <value>未找到兼容的 Thrive 版本</value>
   </data>
   <data name="NoCompatibleVersionsFound" xml:space="preserve">
-    <value>啟動器無法找到與目前平台相容的 Thrive 版本。如果您使用的是小眾的作業系統，這是預料之中的。否則，請將此問題回報。</value>
+    <value>啟動器無法找到與目前平臺相容的 Thrive 版本。如果您使用的是小眾的作業系統，這是預料之中的。否則，請將此問題回報。</value>
   </data>
   <data name="MoveVersionsExplanation" xml:space="preserve">
     <value>偵測到先前路徑上已安裝的 Thrive 版本。這些檔案可以自動移至新位置。如果不移動，這些檔案將被遺留在原處，直到再次選擇先前的路徑作為安裝位置，啟動器將無法辨識這些檔案。您是否希望自動將這些檔案移至新位置？</value>
@@ -754,7 +754,7 @@
     <value>請從開始遊戲按鈕邊的下拉選單中選擇 Thrive 版本，然後重試</value>
   </data>
   <data name="ErrorGettingDevBuild" xml:space="preserve">
-    <value>錯誤：找不到當前平台指定類型的 DevBuild。請選擇其他版本，例如推薦的 BOTD，然後重試。失敗原因：{0}</value>
+    <value>錯誤：找不到當前平臺指定類型的 DevBuild。請選擇其他版本，例如推薦的 BOTD，然後重試。失敗原因：{0}</value>
   </data>
   <data name="MissingThriveExecutableError" xml:space="preserve">
     <value>在 {0} 資料夾中找不到 Thrive 可執行檔案，請驗證遊戲檔案或刪除當前版本以重新下載。</value>
@@ -778,5 +778,144 @@
   </data>
   <data name="ActiveReportingInfo" xml:space="preserve">
     <value>回報崩潰 {0} 發生於 {1}</value>
+  </data>
+  <data name="CrashReportDescriptionField" xml:space="preserve">
+    <value>描述崩潰發生時您正在做什麼（可選）</value>
+  </data>
+  <data name="CrashReportDescriptionFieldPlaceholder" xml:space="preserve">
+    <value>崩潰描述（可選）</value>
+  </data>
+  <data name="CrashReportEmailField" xml:space="preserve">
+    <value>您的電子郵件，如果您想接收有關此次回報的後續（可選）</value>
+  </data>
+  <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
+    <value>電子郵件（可選）</value>
+  </data>
+  <data name="CrashReportEmailFieldNotice" xml:space="preserve">
+    <value>您的電子郵件僅對 ThriveDevCenter 管理員可見。</value>
+  </data>
+  <data name="CrashReportIsPublic" xml:space="preserve">
+    <value>是否公開？公開報告的崩潰呼叫堆疊和描述是公開可見的。私人報告僅對 Thrive 開發人員可見。</value>
+  </data>
+  <data name="CrashReportSubmitAcceptConfirmation" xml:space="preserve">
+    <value>我同意將此表格中列出的所有資訊，包括任何附加的檔案和崩潰傾印，以及我的 IP 地址，儲存在 Thrive 崩潰資料庫中。如果此報告是公開的，任何人都可以閱讀崩潰堆疊和描述。</value>
+  </data>
+  <data name="SelectCrashToReport" xml:space="preserve">
+    <value>單擊名稱選擇要報告的崩潰</value>
+  </data>
+  <data name="CrashReportDeleteAfterSubmitting" xml:space="preserve">
+    <value>回報後刪除此崩潰傾印檔（推薦）</value>
+  </data>
+  <data name="CrashReportIncludeLauncherOutput" xml:space="preserve">
+    <value>包含顯示在啟動器彈出視窗的當前正在遊玩的遊戲輸出內容（建議在報告最新一次遊戲崩潰時使用）</value>
+  </data>
+  <data name="ReportSubmitErrorTooManyRequests" xml:space="preserve">
+    <value>由於來自您的 IP 地址最近的請求過多，提交報告失敗，請等待一個小時後再嘗試</value>
+  </data>
+  <data name="ReportSubmitErrorNetworkError" xml:space="preserve">
+    <value>由於網路問題，提交報告失敗，請檢查您的網路連線，等待幾分鐘後再試一次</value>
+  </data>
+  <data name="ReportSubmitErrorUnknown" xml:space="preserve">
+    <value>由於未知的錯誤，提交報告失敗，請稍後再試</value>
+  </data>
+  <data name="LauncherOptionShowExternalVersions" xml:space="preserve">
+    <value>顯示需要單獨下載才能遊玩的外部 Thrive 版本</value>
+  </data>
+  <data name="PerformingAutoUpdateTitle" xml:space="preserve">
+    <value>更新啟動器</value>
+  </data>
+  <data name="QuitLauncherButton" xml:space="preserve">
+    <value>立即退出啟動器</value>
+  </data>
+  <data name="LauncherVersionUpdateDescription" xml:space="preserve">
+    <value>正在將啟動器更新至版本 {0}（當前版本：{1}）</value>
+  </data>
+  <data name="AutoUpdateError" xml:space="preserve">
+    <value>自動更新錯誤</value>
+  </data>
+  <data name="AutoUpdateMissingChannel" xml:space="preserve">
+    <value>無法重試更新，因為此啟動器類型沒有相應的更新通道類型</value>
+  </data>
+  <data name="RetryingAutoUpdate" xml:space="preserve">
+    <value>正在重試自動更新…</value>
+  </data>
+  <data name="AutoUpdateRetryFailed" xml:space="preserve">
+    <value>再次嘗試自動更新失敗。您可以忽略此次失敗以清除現有的自動更新檔案，以便在下次啟動時讓啟動器再次嘗試。</value>
+  </data>
+  <data name="IgnoreFailure" xml:space="preserve">
+    <value>忽略失敗</value>
+  </data>
+  <data name="ViewFirstAutoUpdaterFolder" xml:space="preserve">
+    <value>開啟第一個更新程式所在的資料夾</value>
+  </data>
+  <data name="AutoUpdateFailedTitle" xml:space="preserve">
+    <value>啟動器更新失敗</value>
+  </data>
+  <data name="CannotSubmitExceptionReportYet" xml:space="preserve">
+    <value>當前的錯誤回報器尚不支援報告因未處理異常而導致的崩潰。請使用下方的複製按鈕將報告複製到剪貼簿，然後手動將報告傳送給我們。</value>
+  </data>
+  <data name="ThriveRunRetryStarting" xml:space="preserve">
+    <value>未檢測到 Thrive 正確啟動。將嘗試重新啟動 Thrive，嘗試次數：{0}</value>
+  </data>
+  <data name="LauncherOptionShowLatestBetaVersion" xml:space="preserve">
+    <value>在版本選擇器中顯示 Thrive 的最新可用測試版（如果有）</value>
+  </data>
+  <data name="LauncherOptionShowAllBetaVersions" xml:space="preserve">
+    <value>顯示 Thrive 的所有現有測試版本</value>
+  </data>
+  <data name="Embedded7ZipLicenseTitle" xml:space="preserve">
+    <value>啟動器包含一些捆綁的工具。這些工具是獨立的可執行檔案，啟動器會作為命令列程式來呼叫它們。7-Zip 授權條款：</value>
+  </data>
+  <data name="EmbeddedPckToolLicenseTitle" xml:space="preserve">
+    <value>捆綁的 godotpcktool 授權條款及其使用的程式庫授權條款：</value>
+  </data>
+  <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
+    <value>如果啟動失敗，自動重新啟動 Thrive</value>
+  </data>
+  <data name="RequiresLatestBetaShowingEnabled" xml:space="preserve">
+    <value>僅當啟用顯示最新測試版本選項時，才能啟用此選項</value>
+  </data>
+  <data name="RequiresExternalVersionsEnabled" xml:space="preserve">
+    <value>此選項需要啟用外部版本下載</value>
+  </data>
+  <data name="ForgetLastPlayedVersion" xml:space="preserve">
+    <value>遺忘上次遊玩的版本</value>
+  </data>
+  <data name="ForgetLastPlayedVersionToolTip" xml:space="preserve">
+    <value>清除在 Thrive 版本選擇器中記憶的上次選擇。如果無縫模式無法正常工作，可以幫助使其再次運作。</value>
+  </data>
+  <data name="InvalidVersionInfoLoadedTitle" xml:space="preserve">
+    <value>載入的版本資訊無效</value>
+  </data>
+  <data name="LatestVersionParsingFailed" xml:space="preserve">
+    <value>解析最新可用的啟動器版本資訊失敗。新的啟動器版本可用性通知和自動更新將無法正常工作。</value>
+  </data>
+  <data name="CrashDumpsDetectedAdvice" xml:space="preserve">
+    <value>已檢測到崩潰傾印，但可能是之前的 Thrive 執行所導致的（請在回報之前檢查）。要停止收到有關崩潰傾印的通知，請開啟回報器並清除崩潰傾印。</value>
+  </data>
+  <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
+    <value>所選的崩潰事件發生在一段時間前。因此，它可能與最新的記錄檔或啟動器儲存的遊戲輸出無關。請仔細檢查，確保您正在報告正確的崩潰事件和相關記錄檔。</value>
+  </data>
+  <data name="CrashReportLogsSectionExplanation" xml:space="preserve">
+    <value>請保留與遊戲崩潰相關的記錄檔，因為這些記錄檔可能有助於識別和修復問題。您可以點選檔名開啟它，或點選按鈕檢視所在的資料夾，來檢視和編輯它以刪除任何您希望刪除的任何個人資料。記錄檔始終只對 Thrive 開發人員可見，只有在需要追蹤或修復回報的問題時，才會與其他人共享。</value>
+  </data>
+  <data name="ReportSubmitErrorServerError" xml:space="preserve">
+    <value>由於伺服器問題，提交報告失敗，請稍待片刻後再試一次。如果問題仍然存在，請告知我們。</value>
+  </data>
+  <data name="ReportSubmitErrorBadRequest" xml:space="preserve">
+    <value>由於在崩潰報告表單中輸入了錯誤的資訊，提交報告失敗。請仔細檢查您要提交的資訊，然後再試一次</value>
+  </data>
+  <data name="StartedAutoUpdateExplanation" xml:space="preserve">
+    <value>啟動器正在下載並安裝更新，請稍候。下載的更新程式可能會開啟一個新視窗，需要使用者進行操作以完成更新。</value>
+  </data>
+  <data name="AutoUpdateSucceededMessage" xml:space="preserve">
+    <value>自動更新程式應該已經啟動了。現在或幾秒鐘後，您應該會看到一個新的視窗開啟以進行更新。啟動器需要關閉以完成更新。您可以手動關閉啟動器，或者等待自動關閉</value>
+  </data>
+  <data name="AutoUpdatingFailedExplanation" xml:space="preserve">
+    <value>啟動器自動更新失敗。問題可能是更新安裝程式未能正確執行。您可以點選下方的名稱重新嘗試執行更新程式。或者您可以按下方的按鈕開啟第一個更新程式所在的資料夾，這樣您就可以手動執行安裝程式（如果這對您有幫助，請讓我們知道）。
+
+您可以忽略此失敗，以便刪除已下載的更新程式檔案，並在下次啟動程式時重試更新。
+
+如果下方未列出任何檔案，表示下載更新失敗，必須重新啟動程式才能重試。</value>
   </data>
 </root>
