@@ -86,7 +86,7 @@
     <value>Graj</value>
   </data>
   <data name="ConnectToDevCenterPrompt" xml:space="preserve">
-    <value>Połącz się z DevCenter</value>
+    <value>Połącz się z ThriveDevCenter</value>
   </data>
   <data name="ConnectedDeveloperGreeting" xml:space="preserve">
     <value>Hejka,</value>
@@ -206,7 +206,7 @@
     <value>Wielkość pamięci podręcznej:</value>
   </data>
   <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
-    <value>Połączenie Centrum Deweloperskiego</value>
+    <value>Połączenie ThriveDevCenter</value>
   </data>
   <data name="DialogOk" xml:space="preserve">
     <value>OK</value>
@@ -459,7 +459,7 @@ Logi launchera nie mają więcej informacji.</value>
     <value>Wczytywanie...</value>
   </data>
   <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
-    <value>Launcher Thrive ładuje dostępne wersje Thrive z internetu by wiedzieć co jest dostępne. Wczytywanie tej informacji nie powiodło się (zobacz błąd poniżej). Możesz spróbować pobrać tę informację ponownie, a jeśli laucher wcześniej był w stanie pobrać tę informację, możesz załadować jej kopię z pamięci podręcznej. Jeśli kopia z pamięci podręcznej jest bardzo stara, może nie pokazywać wszystkich dostępnych wersji Thrive. Zauważ, że jeśli wersja twojego launchera jest zbyt stara, może być niekompatybilna z nowszym formatem danych i musi zostać uaktualniona nim dane mogą być wczytane.</value>
+    <value>Launcher Thrive ładuje dostępne wersje Thrive z internetu by wiedzieć co jest dostępne. Wczytywanie tej informacji nie powiodło się (zobacz błąd poniżej). Możesz spróbować pobrać tę informację ponownie, a jeśli laucher wcześniej był w stanie pobrać tę informację, możesz załadować jej kopię z pamięci podręcznej. Jeśli kopia z pamięci podręcznej jest bardzo stara, może nie pokazywać wszystkich dostępnych wersji Thrive. Zauważ, że jeśli wersja twojego launchera jest zbyt stara, może być niekompatybilna z nowszym formatem danych i musi zostać manualnie uaktualniona nim dane mogą być wczytane.</value>
   </data>
   <data name="UnknownError" xml:space="preserve">
     <value>Nieznany błąd</value>
@@ -501,7 +501,7 @@ Logi launchera nie mają więcej informacji.</value>
     <value>Folder pobrań tymczasowych:</value>
   </data>
   <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
-    <value>Uwaga: by uniknąć kontaktu z plikami nie[zapomnialemslowa] z Thrive, przeniesienie lokalizacji tymczasowej nie usunie bądź przeniesie istniejących plików.</value>
+    <value>Uwaga: by uniknąć przypadkowego kontaktu z plikami niezwiązanymi z Thrive, przeniesienie lokalizacji tymczasowej NIE przeniesie bądź usunie istniejących plików.</value>
   </data>
   <data name="BuildTypeSelectionManual" xml:space="preserve">
     <value>Manualnie wybrane w zakładce "Specyficzny Build"</value>
@@ -510,6 +510,18 @@ Logi launchera nie mają więcej informacji.</value>
     <value>Używasz niezdolnego do auto-aktualizacji rodzaju launchera. Jeśli chciałbyś je w przyszłości wykorzystywać, prosimy zainstalować zdolną to tego wersję launchera.</value>
   </data>
   <data name="OutdatedLauncherExplanation" xml:space="preserve">
-    <value>Ta wersja launchera jest przestarzała więc powinna zostać zaktualizowana. Jeśli widzisz tą wiadomość, oznacza to, że auto-aktualizacje nie zostały włączone więc będziesz musiał manualnie pobrać i zainstalować aktualizację. Możesz spróbować użyć obecnej wersji, pomijając aktualizację, lecz możesz spotkać się z nieoczekiwanymi problemami jako iż tylko najnowsza wersja launcher ma gwarancję działania z delikatnymi systemami z jakimi launcher wchodzi w intrerakcje.</value>
+    <value>Ta wersja launchera jest przestarzała więc powinna zostać zaktualizowana. Jeśli widzisz tą wiadomość, oznacza to, że auto-aktualizacje nie zostały włączone więc będziesz musiał/a manualnie pobrać i zainstalować aktualizację. Możesz spróbować użyć obecnej wersji, pomijając aktualizację, lecz możesz spotkać się z nieoczekiwanymi problemami jako iż tylko najnowsza wersja launcher ma gwarancję działania z delikatnymi systemami z jakimi launcher wchodzi w interakcje.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
+    <value>Typ launchera jakiego używasz powinien mieć możliwość auto-aktualizacji. Z nieznanej przyczyny auto-aktualizowanie nie zadziałało a najnowsza wersja launchera jest dostępna od dłuższego czasu. Prosimy sprawdzić czy przypadkiem nie wyłączyłeś/aś auto-aktualizacji.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateDisabledByUser" xml:space="preserve">
+    <value>Typ launchera jakiego używasz ma możliwość auto-aktualizacji, jednakże funkcje auto-aktualizacji są obecnie wyłączone przez ustawienia bądź poprzez flagę wiersza poleceń.</value>
+  </data>
+  <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
+    <value>Błąd: nie znaleziono pliku aktualizacji dla tego typu launchera. To nie powinno się wydarzyć. Prosimy spróbować ponownie a jeśli błąd dalej występuje, prosimy nas powiadomić.</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>Połączenie z ThriveDevCenter Nieudane</value>
   </data>
 </root>

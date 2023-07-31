@@ -322,4 +322,55 @@
   <data name="ReportDeleteCaveat" xml:space="preserve">
     <value>IMPORTANTE se perdi il tuo link per rimuovere non sarai in grado di cancellare il tuo report. Quindi salvalo! Puoi premere il pulsante Copia sulla destra per copiarlo.</value>
   </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>Qui poi collegare il launcher al ThriveDevCenter per avere accesso a DevBuilds e ad altre funzionalità</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+    <value>Istruzioni nella Wiki</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+    <value>Hash inserita manualmente:</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>Importazione delle impostazioni fallita. Assicurati che i percorsi dei file delle impostazioni siano leggibili e modificabili dal launcher, quindi riavvia il launcher per provare di nuovo.</value>
+  </data>
+  <data name="ExternalLinkCommunityForums" xml:space="preserve">
+    <value>Forum della Community</value>
+  </data>
+  <data name="ExternalLinkPatreon" xml:space="preserve">
+    <value>Patreon</value>
+  </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+    <value>Cache di DevBuilds:</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+    <value>Seleziona la posizione della Cache</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+    <value>Reimposta la posizione della Cache</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+    <value>Dimensione della Cache:</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>Ottini un codice di collegamento</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+    <value>Codice di collegamento</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+    <value>Build specifica</value>
+  </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>Sono state individuate delle impostazioni personalizzate in una precedente versione del launcher. Puoi importare queste impostazioni per mantenere intatta la tua versione di Thrive e qualsiasi altra modifica applicata. Se non importi la vecchia versione di Thrive e le caches, queste saranno definitivamente cancellate e il launcher non le considererà. Importare le impostazioni è raccomandato.</value>
+  </data>
+  <data name="LaunchOptionsTitle" xml:space="preserve">
+    <value>Opzioni di avvio</value>
+  </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+    <value>Attiva la modalità Seamless del launcher (Il launcher non viene mostrato prima dell'avvio di Thrive)</value>
+  </data>
 </root>
