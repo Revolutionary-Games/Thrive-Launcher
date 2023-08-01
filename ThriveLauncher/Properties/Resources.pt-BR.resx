@@ -86,7 +86,7 @@
     <value>As configurações anteriores foram importadas com sucesso.</value>
   </data>
   <data name="LauncherSelectedLanguage" xml:space="preserve">
-    <value>Idioma do lançador:</value>
+    <value>Idioma do Inicializador:</value>
   </data>
   <data name="LinksButton" xml:space="preserve">
     <value>Links</value>
@@ -321,5 +321,89 @@
   </data>
   <data name="ExternalLinkFanWiki" xml:space="preserve">
     <value>Fã Wiki</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} para {1}</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>Visualizar Logs</value>
+  </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>Habilitar Log de Depuração do Inicializador (antes de reportar um problema ou bug com o Inicializador, por favor habilite essa opção e reinicie o Inicializador)</value>
+  </data>
+  <data name="TimeMomentRightNow" xml:space="preserve">
+    <value>Agora</value>
+  </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>Ocultar o Inicializador durante o jogo</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>Fechar o Inicializador após jogar (se não houverem erros)</value>
+  </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>Fechar o Inicializador após iniciar o jogo</value>
+  </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+    <value>Permitir o Modo de Inicializador Seamless (Inicializador não aparece antes de iniciar o Thrive)</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>Atualizar o Inicializador automaticamente</value>
+  </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+    <value>Arquivos de cache de DevBuilds:</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+    <value>Tamanho do cache:</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+    <value>Build Específica</value>
+  </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>Desconectar</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>Nome de usuário:</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="PlayingTitle" xml:space="preserve">
+    <value>Executando {0}</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="UnknownNumber" xml:space="preserve">
+    <value>desconhecido</value>
+  </data>
+  <data name="ProcessingStateItemProgress" xml:space="preserve">
+    <value>Processando {0}</value>
+  </data>
+  <data name="ContinueReportingButton" xml:space="preserve">
+    <value>Continue Reportando</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="SubmittingReportExtraInfo" xml:space="preserve">
+    <value>Informações adicionais sobre o erro encontrado:</value>
+  </data>
+  <data name="ViewFile" xml:space="preserve">
+    <value>Visualizar</value>
+  </data>
+  <data name="IncludeInReport" xml:space="preserve">
+    <value>Incluir:</value>
+  </data>
+  <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
+    <value>Email (opcional)</value>
+  </data>
+  <data name="CrashReportLogsSection" xml:space="preserve">
+    <value>Logs a serem incluídos</value>
+  </data>
+  <data name="CrashReportEmailFieldNotice" xml:space="preserve">
+    <value>Seu email ficará visível apenas para os administradores do ThriveDevCenter.</value>
   </data>
 </root>
