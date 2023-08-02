@@ -406,4 +406,28 @@
   <data name="CrashReportEmailFieldNotice" xml:space="preserve">
     <value>Seu email ficará visível apenas para os administradores do ThriveDevCenter.</value>
   </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>Versão {0}</value>
+  </data>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+    <value>Navegar pelos Arquivos Instalados</value>
+  </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>Definir Local de Instalação</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+    <value>Pasta de downloads temporários:</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>Nota: mover o local temporário não moverá nem removerá os arquivos existentes a fim de evitar modificar arquivos não relacionados ao Thrive por acidente</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>Erro ao Salvar as Configurações</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>A pasta de instalação da versão do Thrive não existe.</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Tentar Novamente</value>
+  </data>
 </root>
