@@ -62,7 +62,7 @@
     <value>Importar as configurações anteriores?</value>
   </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
-    <value>Configurações de uma versão anterior do lançador foram encontradas. Você pode importá-las para manter as versões de Thrive e outras customizações intactas. Se não fizer isso, as versões do jogo antigas e os caches não serão reconhecidos pelo lançador. Importar as configurações é recomendado.</value>
+    <value>Configurações de uma versão anterior do inicializador foram encontradas. Você pode importá-las para manter as versões de Thrive e outras customizações intactas. Se não fizer isso, as versões do jogo antigas e os caches não serão reconhecidos pelo inicializador. Importar as configurações é recomendado.</value>
   </data>
   <data name="SkipAction" xml:space="preserve">
     <value>Pular</value>
@@ -77,7 +77,7 @@
     <value>Obrigado,</value>
   </data>
   <data name="ImportFailedMessage" xml:space="preserve">
-    <value>Houve um erro ao importar configurações. Tenha certeza de que os locais dos arquivos de configurações possam ser lidos e escritos pelo lançador e reinicie o programa logo após.</value>
+    <value>Houve um erro ao importar configurações. Tenha certeza de que os locais dos arquivos de configurações possam ser lidos e escritos pelo inicializador e reinicie o programa logo após.</value>
   </data>
   <data name="ImportSucceededTitle" xml:space="preserve">
     <value>Importação concluída</value>
@@ -110,7 +110,7 @@
     <value>Obrigado pelo apoio!</value>
   </data>
   <data name="MainWindowTitle" xml:space="preserve">
-    <value>Lançador Thrive</value>
+    <value>Inicializador Thrive</value>
   </data>
   <data name="NewsFeedTitle" xml:space="preserve">
     <value>NOVIDADES</value>
@@ -293,10 +293,10 @@
     <value>ThriveDevCenter</value>
   </data>
   <data name="ExternalLinkLauncherGithub" xml:space="preserve">
-    <value>Lançador no Github</value>
+    <value>Inicializador no Github</value>
   </data>
   <data name="LauncherOptions" xml:space="preserve">
-    <value>Opções do Lançador</value>
+    <value>Opções do Inicializador</value>
   </data>
   <data name="CacheConfigurationTab" xml:space="preserve">
     <value>Cache</value>
@@ -305,7 +305,7 @@
     <value>Opções de Lançamento</value>
   </data>
   <data name="LauncherVersionDisplay" xml:space="preserve">
-    <value>Versão do lançador:</value>
+    <value>Versão do inicializador:</value>
   </data>
   <data name="LauncherOptionWebFeeds" xml:space="preserve">
     <value>Ativar Feeds da Web</value>
@@ -429,5 +429,111 @@
   </data>
   <data name="Retry" xml:space="preserve">
     <value>Tentar Novamente</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>Aqui você pode fazer o link entre o inicializador e o ThriveDevCenter para acessar DevBuilds e outras funcionalidades</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+    <value>Remover todos os arquivos da pasta compactada de cache do DevBuild. Se o caminho da pasta não for o padrão, é possível que existam arquivos não relacionados ao Thrive que também serão removidos.</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>Falha ao criar a pasta de logs ({0}): {1}</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>Todos os Certificados Expiraram</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>Todos os certificados de verificação de assinaturas com os quais este Inicializador é fornecido expiraram. Isso significa que esta versão do Inicializador está extremamente desatualizada. Por favor, baixe e instale uma versão mais recente.</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+    <value>Definir Local do Cache</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+    <value>Redefinir Local do Cache</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+    <value>Conexão ao ThriveDevCenter</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>Selecionado manualmente na aba "Build Específica"</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>Sair</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+    <value>Última (sofre mudanças frequentes e aleatórias, porque é literalmente uma build do commit de código mais recente)</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>Obtenha um código de link</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+    <value>Código de link</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>Entrar</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+    <value>Hash inserido manualmente:</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+    <value>Insira o hash da build (commit)</value>
+  </data>
+  <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+    <value>Selecione o valor do hash inserido manualmente a ser usado pela caixa de texto como o DevBuild selecionado para reprodução quando jogar um DevBuild</value>
+  </data>
+  <data name="FetchLatestBuildsButton" xml:space="preserve">
+    <value>Buscar Builds Mais Recentes</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>Falha ao salvar as configurações no arquivo de configurações. Por favor, certifique-se de que o Inicializador tenha permissão de escrita e tente novamente.
+Logs do Inicializador fornecerão informações mais detalhadas.</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>Código Fonte do Inicializador</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>Visualizar Licenças do Inicializador</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Licenças do Inicializador do Thrive</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>A fonte Roboto é usada no Inicializador, licença da Roboto:</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf (Copyright (c) 2010-2011 por tyPoland Lukasz Dziedzic com o Nome da Fonte Reservado "Lato"), OFL license:</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>Não foi possível exibir o Feed. {0}</value>
+  </data>
+  <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
+    <value>O Inicializador do Thrive carrega as versões do Thrive da internet para verificar o que está disponível. O carregamento dessas informações falhou (observe o erro abaixo). Você pode tentar baixar essas informações novamente ou, se o inicializador conseguiu baixar estas informações anteriormente, carregar uma cópia em cache. Se a cópia em cache for muito antiga, é possível que ela não mostre todas as versões disponíveis do Thrive. Note que se a sua versão do inicializador for muito antiga, ela pode não ser mais compatível com um formato de dados mais recente e precisará ser atualizada manualmente antes que os dados possam ser carregados.</value>
+  </data>
+  <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
+    <value>As informações baixadas do Inicializador do Thrive são inválidas. Por favor, tente novamente em breve e, se o problema persistir, entre em contato conosco.</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>Usar Informações da Versão em Cache</value>
+  </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>O Inicializador não encontrou nenhuma versão do Thrive compatível com a plataforma atual. Se você está usando um sistema operacional estranho, isso é esperado. Caso contrário, por favor, reporte isso como um problema.</value>
+  </data>
+  <data name="MoveVersionsExplanation" xml:space="preserve">
+    <value>Foram detectadas versões do Thrive instaladas no caminho anterior. Estes arquivos podem ser movidos automaticamente para o novo local. Caso não sejam movidos, serão deixados para trás e o Inicializador não terá conhecimento deles até que o caminho anterior seja selecionado como local de instalação novamente. Gostaria de mover automaticamente esses arquivos para o novo local?</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>desc:</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>Não é Possível Reproduzir o Thrive</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thrive já está em execução, por favor feche-o e tente novamente</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>Por favor selecione uma versão do Thrive da lista suspensa próxima ao botão de jogar e tente novamente</value>
   </data>
 </root>
