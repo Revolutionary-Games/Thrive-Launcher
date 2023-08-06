@@ -373,4 +373,22 @@
   <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
     <value>Attiva la modalità Seamless del launcher (Il launcher non viene mostrato prima dell'avvio di Thrive)</value>
   </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>Cartella non trovata</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>Salvataggio delle impostazioni fallito</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Clicca qui</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>per leggere il post completo.</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>Tutti i certificati sono scaduti</value>
+  </data>
 </root>
