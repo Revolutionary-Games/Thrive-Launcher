@@ -1,6 +1,7 @@
 namespace Scripts;
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading;
@@ -37,10 +38,10 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
 
     protected override string ImagesAndConfigsFolder => Path.Join("Scripts", "podman");
 
-    protected override string DefaultImageToBuild => options.Image switch
+    protected override (string BuildRelativeFolder, string? TargetToStopAt) DefaultImageToBuild => options.Image switch
     {
-        ImageType.CI => "ci",
-        ImageType.ReleaseBuilder => "release_builder",
+        ImageType.CI => ("ci", null),
+        ImageType.ReleaseBuilder => ("release_builder", null),
         _ => throw new InvalidOperationException("Unknown image type"),
     };
 
@@ -49,8 +50,13 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
     private string PathToPackageFile =>
         Path.Join(ImagesAndConfigsFolder, "release_builder", "packages-microsoft-prod.deb");
 
-    protected override async Task<string?> Build(string buildType, string? tag, string? extraTag,
-        CancellationToken cancellationToken)
+    protected override IEnumerable<string> ImagesToPullIfTheyAreOld()
+    {
+        yield break;
+    }
+
+    protected override async Task<string?> Build(string buildType, string? targetToStopAt, string? tag,
+        string? extraTag, CancellationToken cancellationToken)
     {
         if (options.Image == ImageType.ReleaseBuilder)
         {
@@ -80,7 +86,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
             ColourConsole.WriteNormalLine("Downloaded repo file");
         }
 
-        return await base.Build(buildType, tag, extraTag, cancellationToken);
+        return await base.Build(buildType, targetToStopAt, tag, extraTag, cancellationToken);
     }
 
     protected override Task<bool> PostCheckBuild(string tagOrId)
