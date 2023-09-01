@@ -524,4 +524,40 @@ Logi launchera nie mają więcej informacji.</value>
   <data name="DevCenterConnectFailureTitle" xml:space="preserve">
     <value>Połączenie z ThriveDevCenter Nieudane</value>
   </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>Włącz rejestrowanie debugowania programu uruchamiającego (przed zgłoszeniem problemu lub błędu z programem uruchamiającym, proszę włącz tę opcję i uruchom ponownie program uruchamiający.)</value>
+  </data>
+  <data name="DevCenterConnectFailureConnection" xml:space="preserve">
+    <value>Łączenie z ThriveDevCenter nie powiodło się. Proszę spróbuj później , ponieważ ThriveDevCenter mogło być czasowo nie dostępne. Powinieneś sprawdzić również swoje połączenie internetowe. Możesz użyć linku poniżej aby odwiedzić DevCenter aby zobaczyć czy twoja przeglądarka może się łączyć. Proszę spróbować później, oraz jeśli problem pozostaje poprzez więcej niż kilka minut, proszę to zgłosić.</value>
+  </data>
+  <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
+    <value>Łączenie z ThriveDevCenter nie powiodło się. Serwer odpowiedział odpowiedzią zakazującą. To znaczy, że nasz klucz łączenia nie jest prawidłowy. Może być to spowodowane poprzez rozłączenie połączenia poprzez sieć UI lub twoje konto może być zawieszone. Zobacz link poniżej aby sprawdzić status połączenia twojego konta.</value>
+  </data>
+  <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
+    <value>Połączenie z ThriveDevCenter nie powiodło się. Serwer odpowiedział nieznanym błędem lub wystąpił błąd podczas obsługi odpowiedzi. Proszę próbuj ponownie później, a jeśli problem będzie się powtarzał, zgłoś go. Możesz sprawdzić, klikając poniższy link, czy po stronie ThriveDevCenter wszystko wygląda dobrze.</value>
+  </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>Rozłącz</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>Odśwież egzystujące połączenie</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>E-mail:</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>Nie udało się stworzyć linku, sprawdź kod jeszcze raz</value>
+  </data>
+  <data name="LoginToSeeThisContent" xml:space="preserve">
+    <value>Zaloguj się do ThriveDevCenter aby zobaczyć tę treść</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thrive zostało uruchomione, proszę zamknij je i spróbuj ponownie później</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>Proszę wybierz wersję Thrive z rozwijanej listy obok przycisku odtwarzania i spróbuj ponownie później</value>
+  </data>
+  <data name="PlayingTitle" xml:space="preserve">
+    <value>Grane {0}</value>
+  </data>
 </root>
