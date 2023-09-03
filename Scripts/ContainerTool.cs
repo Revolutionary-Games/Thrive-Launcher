@@ -46,6 +46,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
     };
 
     protected override string ImageNameBase => $"thrive/{ExportFileNameBase}";
+    protected override bool SaveByDefault => options.Image != ImageType.ReleaseBuilder;
 
     private string PathToPackageFile =>
         Path.Join(ImagesAndConfigsFolder, "release_builder", "packages-microsoft-prod.deb");
@@ -56,7 +57,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
     }
 
     protected override async Task<string?> Build(string buildType, string? targetToStopAt, string? tag,
-        string? extraTag, CancellationToken cancellationToken)
+        string? extraTag, bool skipCache, CancellationToken cancellationToken)
     {
         if (options.Image == ImageType.ReleaseBuilder)
         {
@@ -72,7 +73,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
 
                 response.EnsureSuccessStatusCode();
 
-                await using var writer = File.OpenWrite(PathToPackageFile);
+                await using var writer = File.Open(PathToPackageFile, FileMode.Create);
                 var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
 
                 await stream.CopyToAsync(writer, cancellationToken);
@@ -86,7 +87,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
             ColourConsole.WriteNormalLine("Downloaded repo file");
         }
 
-        return await base.Build(buildType, targetToStopAt, tag, extraTag, cancellationToken);
+        return await base.Build(buildType, targetToStopAt, tag, extraTag, skipCache, cancellationToken);
     }
 
     protected override Task<bool> PostCheckBuild(string tagOrId)

@@ -208,7 +208,7 @@ public class ThriveAndLauncherInfoRetriever : IThriveAndLauncherInfoRetriever
         Directory.CreateDirectory(Path.GetDirectoryName(path) ??
             throw new Exception("Unknown folder to write info file to"));
 
-        await using var writer = File.OpenWrite(path);
+        await using var writer = File.Open(path, FileMode.Create);
 
         using var dataStream = new MemoryStream(data, false);
 

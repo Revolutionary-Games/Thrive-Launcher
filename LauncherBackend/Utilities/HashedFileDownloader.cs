@@ -28,7 +28,7 @@ public static class HashedFileDownloader
 
         cancellationToken.ThrowIfCancellationRequested();
 
-        var writer = File.OpenWrite(fileToWriteTo);
+        var writer = File.Open(fileToWriteTo, FileMode.Create);
 
         string hash;
         try

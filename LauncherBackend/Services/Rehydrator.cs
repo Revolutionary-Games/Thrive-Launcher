@@ -315,7 +315,7 @@ public class Rehydrator : IRehydrator
 
                 response.EnsureSuccessStatusCode();
 
-                await using var writer = File.OpenWrite(tempZipped);
+                await using var writer = File.Open(tempZipped, FileMode.Create);
 
                 await (await response.Content.ReadAsStreamAsync(cancellationToken)).CopyToAsync(writer,
                     cancellationToken);
@@ -370,7 +370,7 @@ public class Rehydrator : IRehydrator
         await using var reader = File.OpenRead(gzipFile);
         await using var gzReader = new GZipStream(reader, CompressionMode.Decompress);
 
-        await using var fileWriter = File.OpenWrite(writeResultTo);
+        await using var fileWriter = File.Open(writeResultTo, FileMode.Create);
 
         await gzReader.CopyToAsync(fileWriter, cancellationToken);
     }
