@@ -3,7 +3,7 @@ namespace Tests.Utilities;
 using LauncherBackend.Models;
 using LauncherBackend.Services;
 using Microsoft.Extensions.Logging;
-using Moq;
+using NSubstitute;
 using ThriveLauncher.Models;
 using ThriveLauncher.Services;
 using ThriveLauncher.Utilities;
@@ -19,39 +19,41 @@ public class MainWindowViewModelFactory
     public MainWindowViewModelFactory(ILogger<MainWindowViewModel> logger)
     {
         Logger = logger;
-        SettingsMock.SetupGet(settings => settings.Settings).Returns(new LauncherSettings());
+        SettingsMock.Settings.Returns(new LauncherSettings());
     }
 
-    public Mock<ILauncherFeeds> FeedsMock { get; set; } = new();
-    public Mock<IStoreVersionDetector> StoreMock { get; set; } = new();
+    public ILauncherFeeds FeedsMock { get; set; } = Substitute.For<ILauncherFeeds>();
+    public IStoreVersionDetector StoreMock { get; set; } = Substitute.For<IStoreVersionDetector>();
 
-    public Mock<ILauncherPaths> PathsMock { get; set; } = new();
+    public ILauncherPaths PathsMock { get; set; } = Substitute.For<ILauncherPaths>();
 
-    public Mock<ILauncherSettingsManager> SettingsMock { get; set; } = new();
+    public ILauncherSettingsManager SettingsMock { get; set; } = Substitute.For<ILauncherSettingsManager>();
 
-    public Mock<IThriveAndLauncherInfoRetriever> InfoRetrieveMock { get; set; } = new();
+    public IThriveAndLauncherInfoRetriever InfoRetrieveMock { get; set; } =
+        Substitute.For<IThriveAndLauncherInfoRetriever>();
 
-    public Mock<IThriveInstaller> InstallerMock { get; set; } = new();
+    public IThriveInstaller InstallerMock { get; set; } = Substitute.For<IThriveInstaller>();
 
-    public Mock<IDevCenterClient> DevCenterMock { get; set; } = new();
+    public IDevCenterClient DevCenterMock { get; set; } = Substitute.For<IDevCenterClient>();
 
-    public Mock<IThriveRunner> ThriveRunnerMock { get; } = new();
+    public IThriveRunner ThriveRunnerMock { get; } = Substitute.For<IThriveRunner>();
 
     public Options LauncherOptions { get; set; } = new();
 
-    public Mock<IAutoUpdater> AutoUpdaterMock { get; set; } = new();
+    public IAutoUpdater AutoUpdaterMock { get; set; } = Substitute.For<IAutoUpdater>();
 
-    public Mock<IBackgroundExceptionNoticeDisplayer> BackgroundExceptionNoticeDisplayer { get; set; } = new();
+    public IBackgroundExceptionNoticeDisplayer BackgroundExceptionNoticeDisplayer { get; set; } =
+        Substitute.For<IBackgroundExceptionNoticeDisplayer>();
 
-    public Mock<ILoggingManager> LoggingManagerMock { get; set; } = new();
+    public ILoggingManager LoggingManagerMock { get; set; } = Substitute.For<ILoggingManager>();
 
     public ILogger<MainWindowViewModel> Logger { get; }
 
     public MainWindowViewModel Create()
     {
-        return new MainWindowViewModel(Logger, FeedsMock.Object, StoreMock.Object, SettingsMock.Object,
-            new VersionUtilities(), PathsMock.Object, InfoRetrieveMock.Object, InstallerMock.Object,
-            DevCenterMock.Object, ThriveRunnerMock.Object, LauncherOptions, AutoUpdaterMock.Object,
-            BackgroundExceptionNoticeDisplayer.Object, LoggingManagerMock.Object, false);
+        return new MainWindowViewModel(Logger, FeedsMock, StoreMock, SettingsMock,
+            new VersionUtilities(), PathsMock, InfoRetrieveMock, InstallerMock,
+            DevCenterMock, ThriveRunnerMock, LauncherOptions, AutoUpdaterMock,
+            BackgroundExceptionNoticeDisplayer, LoggingManagerMock, false);
     }
 }
