@@ -921,4 +921,7 @@ If no files are listed below, downloading the update has failed and it cannot be
   <data name="CrashDumpsDetectedAdvice" xml:space="preserve">
     <value>Crash dumps have been detected but they may be from a previous Thrive run (please check before reporting). To stop being notified about the crash dumps, please open the reporter and clear the crash dumps.</value>
   </data>
+  <data name="FileSystemErrorTitle" xml:space="preserve">
+    <value>File Access Error</value>
+  </data>
 </root>

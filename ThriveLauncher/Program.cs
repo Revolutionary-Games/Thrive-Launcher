@@ -316,7 +316,7 @@ internal class Program
             ShutdownMode = ShutdownMode.OnLastWindowClose,
         };
         avaloniaBuilder.SetupWithLifetime(lifetime);
-        var applicationInstance = (App)avaloniaBuilder.Instance;
+        var applicationInstance = (App?)avaloniaBuilder.Instance ?? throw new Exception("Application not found");
 
         // This loop is here so that we can restart the avalonia GUI to show Thrive run errors and provide crash
         // reporting

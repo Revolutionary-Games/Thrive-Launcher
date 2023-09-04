@@ -10,14 +10,15 @@
         x:Class="ThriveLauncher.Views.LicensesWindow"
         Icon="/Assets/Icons/icon.ico"
         Title="{i18n:Localize LicensesWindowTitle}"
-        FontFamily="{StaticResource Lato}">
+        FontFamily="{StaticResource Lato}"
+        RequestedThemeVariant="Default">
 
     <Design.DataContext>
         <viewModels:LicensesWindowViewModel />
     </Design.DataContext>
 
     <Window.Styles>
-        <FluentTheme Mode="Light" />
+        <FluentTheme />
     </Window.Styles>
 
     <DockPanel LastChildFill="True">

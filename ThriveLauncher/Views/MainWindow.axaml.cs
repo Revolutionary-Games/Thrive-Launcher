@@ -12,6 +12,7 @@ using Avalonia.Data;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
+using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using DevCenterCommunication.Models;
 using LauncherBackend.Models;
@@ -36,7 +37,7 @@ public partial class MainWindow : Window
     ///   Priority to use for the game log output view update tasks. For now this is set lower as this seems like a
     ///   good enough idea as there'll be a ton of log message update tasks.
     /// </summary>
-    private const DispatcherPriority LogViewUpdatePriority = DispatcherPriority.Background;
+    private static readonly DispatcherPriority LogViewUpdatePriority = DispatcherPriority.Background;
 
     private readonly List<ComboBoxItem> languageItems = new();
     private readonly List<(IPlayableVersion Version, ComboBoxItem Item)> versionItems = new();
@@ -98,7 +99,7 @@ public partial class MainWindow : Window
 
         languageItems.AddRange(dataContext.GetAvailableLanguages().Select(l => new ComboBoxItem { Content = l }));
 
-        LanguageComboBox.Items = languageItems;
+        LanguageComboBox.ItemsSource = languageItems;
 
         installer = this.GetServiceProvider().GetRequiredService<IThriveInstaller>();
 
@@ -148,7 +149,8 @@ public partial class MainWindow : Window
 
         if (e.AddedItems.Count > 0 && e.AddedItems[0] != null)
         {
-            selected = (string)((ComboBoxItem)e.AddedItems[0]!).Content;
+            selected = (string?)((ComboBoxItem)e.AddedItems[0]!).Content ??
+                throw new Exception("Bad version item content");
         }
 
         DerivedDataContext.VersionSelected(selected);
@@ -162,7 +164,7 @@ public partial class MainWindow : Window
             return;
         }
 
-        var selected = versionItems.First(i => (string)i.Item.Content == selectedVersion);
+        var selected = versionItems.First(i => selectedVersion == (string?)i.Item.Content);
 
         usChangingSelectedVersion = true;
         VersionComboBox.SelectedItem = selected.Item;
@@ -185,7 +187,7 @@ public partial class MainWindow : Window
             }
         }
 
-        VersionComboBox.Items = versionItems.Select(i => i.Item);
+        VersionComboBox.ItemsSource = versionItems.Select(i => i.Item);
     }
 
     private void LanguageSelectionChanged(object? sender, SelectionChangedEventArgs e)
@@ -197,12 +199,13 @@ public partial class MainWindow : Window
 
         var selected = (ComboBoxItem)e.AddedItems[0]!;
 
-        DerivedDataContext.SelectedLauncherLanguage = (string)selected.Content;
+        DerivedDataContext.SelectedLauncherLanguage =
+            (string?)selected.Content ?? throw new Exception("Language item has empty content");
     }
 
     private void OnLanguageChanged(string selectedLanguage)
     {
-        var selected = languageItems.First(i => (string)i.Content == selectedLanguage);
+        var selected = languageItems.First(i => selectedLanguage == (string?)i.Content);
 
         LanguageComboBox.SelectedItem = selected;
     }
@@ -247,17 +250,16 @@ public partial class MainWindow : Window
         _ = sender;
         _ = routedEventArgs;
 
-        var dialog = new OpenFolderDialog
+        var result = await StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
         {
-            Directory = DerivedDataContext.ThriveInstallationPath,
-        };
+            AllowMultiple = false,
+            SuggestedStartLocation = await GetInitialFolderBrowserLocation(DerivedDataContext.ThriveInstallationPath),
+        });
 
-        var result = await dialog.ShowAsync(this);
-
-        if (string.IsNullOrWhiteSpace(result))
+        if (result.Count < 1)
             return;
 
-        DerivedDataContext.SetInstallPathTo(result);
+        DerivedDataContext.SetInstallPathTo(result[0].Path.ToString());
     }
 
     private async void SelectNewTemporaryLocation(object? sender, RoutedEventArgs routedEventArgs)
@@ -265,17 +267,16 @@ public partial class MainWindow : Window
         _ = sender;
         _ = routedEventArgs;
 
-        var dialog = new OpenFolderDialog
+        var result = await StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
         {
-            Directory = DerivedDataContext.TemporaryDownloadsFolder,
-        };
+            AllowMultiple = false,
+            SuggestedStartLocation = await GetInitialFolderBrowserLocation(DerivedDataContext.TemporaryDownloadsFolder),
+        });
 
-        var result = await dialog.ShowAsync(this);
-
-        if (string.IsNullOrWhiteSpace(result))
+        if (result.Count < 1)
             return;
 
-        DerivedDataContext.SetTemporaryLocationTo(result);
+        DerivedDataContext.SetTemporaryLocationTo(result[0].Path.ToString());
     }
 
     private async void SelectDevBuildCacheLocation(object? sender, RoutedEventArgs routedEventArgs)
@@ -283,17 +284,36 @@ public partial class MainWindow : Window
         _ = sender;
         _ = routedEventArgs;
 
-        var dialog = new OpenFolderDialog
+        var result = await StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
         {
-            Directory = DerivedDataContext.DehydratedCacheFolder,
-        };
+            AllowMultiple = false,
+            SuggestedStartLocation = await GetInitialFolderBrowserLocation(DerivedDataContext.DehydratedCacheFolder),
+        });
 
-        var result = await dialog.ShowAsync(this);
-
-        if (string.IsNullOrWhiteSpace(result))
+        if (result.Count < 1)
             return;
 
-        DerivedDataContext.SetDehydrateCachePathTo(result);
+        DerivedDataContext.SetDehydrateCachePathTo(result[0].Path.ToString());
+    }
+
+    private async Task<IStorageFolder?> GetInitialFolderBrowserLocation(string potentialPath)
+    {
+        IStorageFolder? startFolder = null;
+
+        if (Directory.Exists(potentialPath))
+        {
+            try
+            {
+                startFolder =
+                    await StorageProvider.TryGetFolderFromPathAsync(potentialPath);
+            }
+            catch (Exception e)
+            {
+                DerivedDataContext.ShowNotice(Properties.Resources.FileSystemErrorTitle, e.Message);
+            }
+        }
+
+        return startFolder;
     }
 
     private async Task UpdateFeedItemsWhenRetrieved()
@@ -303,19 +323,19 @@ public partial class MainWindow : Window
 
         Dispatcher.UIThread.Post(() =>
         {
-            PopulateFeed(this.FindControl<StackPanel>("DevelopmentFeedItems"), devForum);
-            PopulateFeed(this.FindControl<StackPanel>("MainSiteFeedItems"), mainSite);
+            PopulateFeed(DevelopmentFeedItems, devForum);
+            PopulateFeed(MainSiteFeedItems, mainSite);
         });
     }
 
-    private void PopulateFeed(IPanel targetContainer, List<ParsedLauncherFeedItem> items)
+    private void PopulateFeed(Panel targetContainer, List<ParsedLauncherFeedItem> items)
     {
         foreach (var child in targetContainer.Children.ToList())
         {
             targetContainer.Children.Remove(child);
         }
 
-        var linkClasses = new Classes("TextLink");
+        var linkClass = "TextLink";
 
         var lightGrey = new SolidColorBrush((Color?)Application.Current?.Resources["LightGrey"] ??
             throw new Exception("missing brush"));
@@ -330,7 +350,7 @@ public partial class MainWindow : Window
 
             var title = new Button
             {
-                Classes = linkClasses,
+                Classes = { linkClass },
                 Content = new TextBlock
                 {
                     Text = feedItem.Title,
@@ -387,7 +407,7 @@ public partial class MainWindow : Window
                 {
                     var linkButton = new Button
                     {
-                        Classes = linkClasses,
+                        Classes = { linkClass },
                         Content = new TextBlock
                         {
                             Text = link.Text,
@@ -413,7 +433,7 @@ public partial class MainWindow : Window
 
                 var truncatedLink = new Button
                 {
-                    Classes = linkClasses,
+                    Classes = { linkClass },
                     Content = Properties.Resources.ClickHereLink,
                     Margin = bottomMargin,
                 };
@@ -502,7 +522,7 @@ public partial class MainWindow : Window
 
                 var deleteButton = new Button
                 {
-                    Classes = new Classes("Danger"),
+                    Classes = { "Danger" },
                     [!ContentProperty] = deleteBinding,
                 };
 
@@ -591,7 +611,7 @@ public partial class MainWindow : Window
 
             var visitButton = new Button
             {
-                Classes = new Classes("TextLink"),
+                Classes = { "TextLink" },
                 Content = build.BuildHash,
             };
 
@@ -989,10 +1009,10 @@ public partial class MainWindow : Window
 
         var text = DerivedDataContext.GetFullOutputForClipboard();
 
-        var clipboard = Application.Current?.Clipboard;
+        var clipboard = GetTopLevel(this)?.Clipboard;
 
         if (clipboard == null)
-            throw new InvalidOperationException("Clipboard doesn't exist");
+            throw new InvalidOperationException("Clipboard doesn't exist or can't access");
 
         await clipboard.SetTextAsync(text);
     }
@@ -1062,7 +1082,7 @@ public partial class MainWindow : Window
 
             var retryButton = new Button
             {
-                Classes = new Classes("TextLink"),
+                Classes = { "TextLink" },
                 Content = new TextBlock
                 {
                     TextWrapping = TextWrapping.Wrap,

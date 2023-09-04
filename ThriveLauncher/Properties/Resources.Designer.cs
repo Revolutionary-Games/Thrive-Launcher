@@ -1748,5 +1748,11 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("CrashDumpsDetectedAdvice", resourceCulture);
             }
         }
+        
+        public static string FileSystemErrorTitle {
+            get {
+                return ResourceManager.GetString("FileSystemErrorTitle", resourceCulture);
+            }
+        }
     }
 }

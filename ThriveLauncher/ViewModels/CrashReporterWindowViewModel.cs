@@ -315,6 +315,8 @@ public class CrashReporterWindowViewModel : ViewModelBase
 
     public void ToggleLogInclusion(string logFile, bool shouldBeIncluded)
     {
+        logger.LogDebug("Log inclusion set to {ShouldBeIncluded}", shouldBeIncluded);
+
         if (!AvailableLogFilesToAttach.Contains(logFile))
             throw new ArgumentException("Unknown log file");
 

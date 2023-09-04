@@ -542,6 +542,6 @@ public partial class MainWindowViewModel
         // Reverse is used here to hopefully get the latest files first
         var data = autoUpdater.GetPathsToAlreadyDownloadedUpdateFiles().Reverse().ToList();
 
-        return Dispatcher.UIThread.InvokeAsync(() => { AvailableUpdaterFiles = data; });
+        return Dispatcher.UIThread.InvokeAsync(() => { AvailableUpdaterFiles = data; }).GetTask();
     }
 }

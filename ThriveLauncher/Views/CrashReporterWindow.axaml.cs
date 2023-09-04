@@ -2,7 +2,6 @@ namespace ThriveLauncher.Views;
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using Avalonia;
 using Avalonia.Controls;
@@ -36,7 +35,7 @@ public partial class CrashReporterWindow : Window
     private CrashReporterWindowViewModel DerivedDataContext =>
         (CrashReporterWindowViewModel?)DataContext ?? throw new Exception("DataContext not initialized");
 
-    protected override void OnClosing(CancelEventArgs e)
+    protected override void OnClosing(WindowClosingEventArgs e)
     {
         base.OnClosing(e);
 
@@ -91,10 +90,10 @@ public partial class CrashReporterWindow : Window
         _ = sender;
         _ = e;
 
-        var clipboard = Application.Current?.Clipboard;
+        var clipboard = GetTopLevel(this)?.Clipboard;
 
         if (clipboard == null)
-            throw new InvalidOperationException("Clipboard doesn't exist");
+            throw new InvalidOperationException("Clipboard doesn't exist or can't access");
 
         await clipboard.SetTextAsync(DerivedDataContext.CreatedReportDeleteUrl);
     }
@@ -104,10 +103,10 @@ public partial class CrashReporterWindow : Window
         _ = sender;
         _ = e;
 
-        var clipboard = Application.Current?.Clipboard;
+        var clipboard = GetTopLevel(this)?.Clipboard;
 
         if (clipboard == null)
-            throw new InvalidOperationException("Clipboard doesn't exist");
+            throw new InvalidOperationException("Clipboard doesn't exist or can't access");
 
         await clipboard.SetTextAsync(DerivedDataContext.GetReportToCopyToClipboard());
     }
@@ -118,8 +117,6 @@ public partial class CrashReporterWindow : Window
 
         var now = Properties.Resources.TimeMomentRightNow;
         var atTemplate = Properties.Resources.AtTime;
-
-        var linkClasses = new Classes("TextLink");
 
         foreach (var crash in crashes)
         {
@@ -134,7 +131,7 @@ public partial class CrashReporterWindow : Window
 
             var nameLink = new Button
             {
-                Classes = linkClasses,
+                Classes = { "TextLink" },
                 Content = new TextBlock
                 {
                     Text = crash.Name,
@@ -156,8 +153,6 @@ public partial class CrashReporterWindow : Window
     {
         LogFilesToIncludeContainer.Children.Clear();
         fileSelectionCheckBoxes.Clear();
-
-        var linkClasses = new Classes("TextLink");
 
         // See LocalizeExtension
         var openFolderBinding = new Binding($"[{nameof(Properties.Resources.OpenFolder)}]")
@@ -183,15 +178,10 @@ public partial class CrashReporterWindow : Window
                 Margin = new Thickness(0, 0, 5, 0),
             };
 
-            checkBox.Checked += (_, _) =>
+            checkBox.IsCheckedChanged += (_, _) =>
             {
                 if (!autoChangingCheckBoxes)
-                    DerivedDataContext.ToggleLogInclusion(logFile, true);
-            };
-            checkBox.Unchecked += (_, _) =>
-            {
-                if (!autoChangingCheckBoxes)
-                    DerivedDataContext.ToggleLogInclusion(logFile, false);
+                    DerivedDataContext.ToggleLogInclusion(logFile, checkBox.IsChecked == true);
             };
 
             container.Children.Add(checkBox);
@@ -199,7 +189,7 @@ public partial class CrashReporterWindow : Window
 
             var nameLink = new Button
             {
-                Classes = linkClasses,
+                Classes = { "TextLink" },
                 Content = new TextBlock
                 {
                     Text = Path.GetFileName(logFile),

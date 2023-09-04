@@ -1,7 +1,8 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:services="clr-namespace:ThriveLauncher.Services"
-             x:Class="ThriveLauncher.App">
+             x:Class="ThriveLauncher.App"
+             RequestedThemeVariant="Dark">
     <!-- This is configured in the code behind
     <Application.DataTemplates>
         <local:ViewLocator />
@@ -80,7 +81,7 @@
     </Application.Resources>
 
     <Application.Styles>
-        <FluentTheme Mode="Dark" />
+        <FluentTheme />
         <StyleInclude Source="/Controls/PopupDialog.axaml" />
 
         <Style Selector="Button.PlayButton">

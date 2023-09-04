@@ -106,7 +106,9 @@ public class ProgressDisplayer : IDisposable, IObserver<FilePrepareProgress>
 
             if (parent != null)
             {
-                parent.Children.Remove(container);
+                if (container != null)
+                    parent.Children.Remove(container);
+
                 parent = null;
             }
 
