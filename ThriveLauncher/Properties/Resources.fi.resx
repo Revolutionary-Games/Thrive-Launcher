@@ -346,7 +346,7 @@ Laukaisijan lokeissa on lisätietoa.</value>
     <value>Kaikki varmenteet ovat vanhentuneet</value>
   </data>
   <data name="VersionWithPlatform" xml:space="preserve">
-    <value>{0} {1} alustalle</value>
+    <value>{0} {1} alustalla</value>
   </data>
   <data name="LoadingDotDotDot" xml:space="preserve">
     <value>Ladataan...</value>
