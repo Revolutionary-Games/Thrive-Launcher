@@ -918,4 +918,7 @@
 
 如果Thrive团队成员验证了PR是安全的，这个警告就会消失。如果你相信这个构建是安全的，你可以继续。在这样做之前，你应该检查Github上的PR，看看最新的提交哈希值是否匹配，以及ThriveDevCenter的构建工作是否显示它已经上传了具有该哈希值的DevBuild。此外，应该检查PR没有改变任何构建脚本。做完这些后，应该可以继续进行，这与Thrive团队成员用来验证PR的过程相同。</value>
   </data>
+  <data name="FileSystemErrorTitle" xml:space="preserve">
+    <value>文件加载错误</value>
+  </data>
 </root>
