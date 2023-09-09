@@ -65,7 +65,7 @@
     <value>İçe Aktar</value>
   </data>
   <data name="ImportFailedMessage" xml:space="preserve">
-    <value>Ayarlar içe aktarılamadı. Lütfen ayarlara ilişkin dosya yollarının başlatıcı tarafından okunabilir ve yazılabilir olduğundan emin olun, ardından yeniden denemek için başlatıcıyı yeniden başlatın.</value>
+    <value>Ayarlar içe aktarılamadı. Lütfen bu ayarlara ilişkin dosya yollarının başlatıcı tarafından okunabilir ve yazılabilir olduğundan emin olun. Ardından, yeniden denemek için başlatıcıyı yeniden başlatın.</value>
   </data>
   <data name="ImportFailedTitle" xml:space="preserve">
     <value>İçe Aktarma Başarısız</value>
@@ -86,7 +86,7 @@
     <value>N'aber,</value>
   </data>
   <data name="ConnectedSupporterGreeting" xml:space="preserve">
-    <value>Teşekkürler,</value>
+    <value>Teşekkür ederiz,</value>
   </data>
   <data name="DevelopmentFeedTitle" xml:space="preserve">
     <value>GELİŞTİRME FORUMLARI</value>
@@ -170,7 +170,7 @@
     <value>Başlatıcıyı Oynadıktan Sonra Kapat (eğer hata yoksa)</value>
   </data>
   <data name="LauncherOptionHideOnPlay" xml:space="preserve">
-    <value>Başlatıcıyı Oyun Esnasında Gizle</value>
+    <value>Başlatıcıyı Oynama Esnasında Gizle</value>
   </data>
   <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
     <value>Kesintisiz Başlatıcı Moduna İzin Ver (başlatıcı, Thrive başlamadan önce gösterilmez)</value>
@@ -221,13 +221,13 @@
     <value>Sen bir geliştiricisin</value>
   </data>
   <data name="YouAreASupporter" xml:space="preserve">
-    <value>Desteğin için teşekkürler!</value>
+    <value>Desteğin için teşekkür ederiz!</value>
   </data>
   <data name="BuildTypeSelectionBOTD" xml:space="preserve">
     <value>Günün sürümü (GS), önerilen</value>
   </data>
   <data name="BuildTypeSelectionLatest" xml:space="preserve">
-    <value>En son (bu, doğrudan en son kod işlemesinden gelen bir sürümü aldığı için, çok sık ve rastgele değişir)</value>
+    <value>En son (bu seçenek, doğrudan en son kod işlemesinden gelen bir sürümü seçtiği için, çok rastgele bir şekilde değişir)</value>
   </data>
   <data name="BuildTypeSelectionManual" xml:space="preserve">
     <value>"Belirli Sürüm" sekmesinden manuel olarak seçildi</value>
@@ -284,7 +284,7 @@
     <value>Başlatıcıda, Roboto yazı tipi kullanılmaktadır. Roboto lisansı:</value>
   </data>
   <data name="LatoLicenseTitle" xml:space="preserve">
-    <value>Lato.ttf (Telif Hakkı (c) 2010-2011 tyPoland Lukasz Dziedzic tarafından "Lato" Yazı Tipi Adı ile Saklanmaktadır). OFL lisansı:</value>
+    <value>Lato.ttf (Telif Hakkı (c) 2010-2011 tyPoland Lukasz Dziedzic tarafından "Lato" Yazı Tipi Olarak Saklanmaktadır). OFL lisansı:</value>
   </data>
   <data name="FeedFetchError" xml:space="preserve">
     <value>Yayın görüntülenememekte. {0}</value>
@@ -353,7 +353,7 @@
     <value>Silme İşlemi Başarısız</value>
   </data>
   <data name="DeleteErrorExplanation" xml:space="preserve">
-    <value>Belirtilen yolda veri silinemedi: "{0}" Nedeni: {1}</value>
+    <value>Belirtilen yoldaki veri silinemedi: "{0}" Nedeni: {1}</value>
   </data>
   <data name="UnknownFolder" xml:space="preserve">
     <value>Bilinmeyen klasör:</value>
@@ -371,7 +371,7 @@
     <value>Bu sürüm güncel</value>
   </data>
   <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
-    <value>Thrive Başlatıcısı'nın {0} sürümünü kullanmaktasınız. Ancak en son sürüm {1}</value>
+    <value>Thrive Başlatıcısı'nın {0} sürümünü kullanmaktasınız. Ancak en son sürüm {1} sürümüdür</value>
   </data>
   <data name="LauncherDownloadsPageButton" xml:space="preserve">
     <value>İndirilenler Sayfasını Ziyaret Et</value>
@@ -386,7 +386,7 @@
     <value>Kullandığınız başlatıcı türünün otomatik olarak güncelleme imkanı var ancak otomatik güncelleme özelliği şu anda, başlatıcı ayarları ya da komut satırı bayrağı üzerinden, devre dışı bırakıldı.</value>
   </data>
   <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
-    <value>ThriveDevCenter'a bağlanma işlemi başarısız oldu. Sunucu, bilinmeyen bir hata verdi ya da biz yanıtı işlerken hata ile karşılaştık. Lütfen daha sonra tekrar deneyin ve eğer sorun devam ederse, lütfen bunu bildirin. ThriveDevCenter tarafında her şeyin yolunda olup olmadığını görmek için aşağıdaki bağlantıyı inceleyebilirsiniz.</value>
+    <value>ThriveDevCenter'a bağlanma işlemi başarısız oldu. Sunucu, bilinmeyen bir hata verdi ya da yanıt işlenirken hata ile karşılaşıldı. Lütfen daha sonra tekrar deneyin ve eğer sorun devam ederse, lütfen bunu bildirin. ThriveDevCenter tarafında her şeyin yolunda olup olmadığını görmek için aşağıdaki bağlantıyı inceleyebilirsiniz.</value>
   </data>
   <data name="RetryExistingConnection" xml:space="preserve">
     <value>Mevcut Bağlantıyı Tekrar Dene</value>
@@ -407,25 +407,25 @@
     <value>GS</value>
   </data>
   <data name="BuildDescriptionLabelShort" xml:space="preserve">
-    <value>tanım:</value>
+    <value>açıkl:</value>
   </data>
   <data name="CannotPlayThriveTitle" xml:space="preserve">
-    <value>Thrive Oynatılamadı</value>
+    <value>Thrive Başlatılamadı</value>
   </data>
   <data name="ThriveCurrentlyRunning" xml:space="preserve">
-    <value>Thrive zaten başlatıldı, lütfen kapatın ve daha sonra tekrar deneyin</value>
+    <value>Thrive zaten başlatıldı, lütfen Thrive'ı kapatın ve daha sonra tekrar deneyin</value>
   </data>
   <data name="NoVersionSelected" xml:space="preserve">
-    <value>Lütfen oyna butonunun yanındaki açılır menüden bir Thrive sürümü seçin ve tekrar deneyin</value>
+    <value>Lütfen başlatma butonunun yanındaki açılır menüden bir Thrive sürümü seçin ve tekrar deneyin</value>
   </data>
   <data name="ThriveRunCanceled" xml:space="preserve">
-    <value>Thrive'ı çalıştırma işlemi iptal edildi</value>
+    <value>Thrive'ı başlatma işlemi iptal edildi</value>
   </data>
   <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
-    <value>Güvenli olmayan bir sürümü oynama işlemi iptal edildi</value>
+    <value>Güvenli olmayan bir sürümü başlatma işlemi iptal edildi</value>
   </data>
   <data name="ThriveRunError" xml:space="preserve">
-    <value>Belirtilen hatadan dolayı Thrive çalıştırılamadı: {0}</value>
+    <value>Belirtilen hatadan dolayı Thrive başlatılamadı: {0}</value>
   </data>
   <data name="CloseButton" xml:space="preserve">
     <value>Kapat</value>
@@ -434,7 +434,7 @@
     <value>{0} indiriliyor</value>
   </data>
   <data name="PlayingTitle" xml:space="preserve">
-    <value>{0} oynatılıyor</value>
+    <value>{0} başlatılıyor</value>
   </data>
   <data name="DownloadError" xml:space="preserve">
     <value>İndirme işlemi başarısız çünkü {0}</value>
@@ -443,13 +443,13 @@
     <value>Hatadan dolayı bir arşiv ayıklanamadı: {0}</value>
   </data>
   <data name="MissingThriveFolderError" xml:space="preserve">
-    <value>Thrive klasörü {0} konumunda olmalı ancak orada bulunmamakta</value>
+    <value>Thrive klasörü {0} konumunda olmalı ancak burada bulunmamakta</value>
   </data>
   <data name="MissingThriveExecutableError" xml:space="preserve">
     <value>Thrive uygulaması, {0} konumundaki klasörde bulunamadı. Lütfen ya oyun dosyalarını doğrulayın ya da sürümü silip tekrar indirin.</value>
   </data>
   <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
-    <value>Sürüm kurulumu veya yüklü sürümü denetleme işlemi başarısız, detaylar için aşağıya bakın.</value>
+    <value>Sürüm kurulumu veya yüklü sürümü denetleme işlemi başarısız, detaylar için aşağıyı inceleyin.</value>
   </data>
   <data name="ThriveFolderPrepareFailed" xml:space="preserve">
     <value>Thrive klasörü hazırlama işlemi hatayla sonuçlandı: {0}</value>
@@ -479,10 +479,10 @@
     <value>Çökme Raporu</value>
   </data>
   <data name="PlayUnsafeBuildTitle" xml:space="preserve">
-    <value>Güvenli Olmayan Geliştirme Sürümü Oynatılsın Mı?</value>
+    <value>Güvenli Olmayan Geliştirme Sürümü Başlatılsın mı?</value>
   </data>
   <data name="FoundDevBuildToPlayInfo" xml:space="preserve">
-    <value>Oynatılacak Geliştirme Sürümü Bulundu: {0}, anahtar: {1}, GS: {2}, dal: {3}</value>
+    <value>Başlatılacak bir Geliştirme Sürümü bulundu: {0}, anahtar: {1}, GS: {2}, dal: {3}</value>
   </data>
   <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
     <value>Sürüm açıklaması:
@@ -510,7 +510,7 @@
     <value>Gönder</value>
   </data>
   <data name="SubmittingReportMessage" xml:space="preserve">
-    <value>Raporun gönderiliyor. Karşıya yüklemek birkaç dakika sürebilir, lütfen sabırlı olun.</value>
+    <value>Raporunuz gönderiliyor. Bu raporu karşıya yüklemek birkaç dakika sürebilir, lütfen sabırlı olun.</value>
   </data>
   <data name="SubmittingReportExtraInfo" xml:space="preserve">
     <value>Karşılaşılan hataya ilişkin ek bilgi:</value>
@@ -519,7 +519,7 @@
     <value>Tekrar Dene</value>
   </data>
   <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
-    <value>Raporunuz başarılı bir şekilde gönderildi. Raporunuz için teşekkür ederiz.</value>
+    <value>Raporunuz başarılı bir şekilde gönderildi. Gönderdiğiniz için teşekkür ederiz.</value>
   </data>
   <data name="ReportViewingPublicInfo" xml:space="preserve">
     <value>Eğer genele açıksa, raporunuzu belirtilen adreste inceleyebilirsiniz:</value>
@@ -528,13 +528,13 @@
     <value>Raporunuzu silmek isterseniz, buradan yapabilirsiniz:</value>
   </data>
   <data name="ReporterEndMessage" xml:space="preserve">
-    <value>Şu anda, bu pencereyi güvenli bir şekilde kapatabilirsiniz ya da bu pencerenin otomatik olarak kapanmasını bekleyebilirsiniz</value>
+    <value>Şu anda, bu pencereyi güvenli bir şekilde kapatabilirsiniz ya da bu pencere otomatik olarak kapatılacak</value>
   </data>
   <data name="SecondsDisplaySingular" xml:space="preserve">
     <value>1 saniye</value>
   </data>
   <data name="AutoCloseStopped" xml:space="preserve">
-    <value>otomatik kapanma iptal edildi</value>
+    <value>otomatik kapatma iptal edildi</value>
   </data>
   <data name="CopyToClipboard" xml:space="preserve">
     <value>Panoya kopyala</value>
@@ -570,7 +570,7 @@
     <value>E-posta (isteğe bağlı)</value>
   </data>
   <data name="LauncherVersionUpdateDescription" xml:space="preserve">
-    <value>Başlatıcı, {0} sürümüne güncelleniyor (şu anki sürüm: {1})</value>
+    <value>Başlatıcı, {0} sürümüne güncelleniyor (mevcut sürüm: {1})</value>
   </data>
   <data name="ReportSubmitErrorServerError" xml:space="preserve">
     <value>Sunucu kaynaklı bir sorundan dolayı rapor gönderme işlemi başarısız oldu. Lütfen biraz bekleyin ve daha sonra tekrar deneyin. Eğer sorun devam ederse, lütfen bize bildirin.</value>
@@ -582,7 +582,7 @@
     <value>Bilinmeyen bir hatadan dolayı rapor gönderme işlemi başarısız oldu. Lütfen daha sonra tekrar deneyin</value>
   </data>
   <data name="LauncherOptionShowExternalVersions" xml:space="preserve">
-    <value>Oynamak için ayrı şekilde indirmeyi gerektiren, dışarıdan gelen Thrive sürümlerini göster</value>
+    <value>Dışarıdan gelen (başlatıcıdan ayrı olarak indirilen) Thrive sürümlerini göster</value>
   </data>
   <data name="QuitLauncherButton" xml:space="preserve">
     <value>Başlatıcıdan Şimdi Çık</value>
@@ -591,7 +591,7 @@
     <value>Otomatik Güncelleme Hatası</value>
   </data>
   <data name="CrashReportIncludeLauncherOutput" xml:space="preserve">
-    <value>Oyun çıktısını başlatıcının şu anki oyun açılır penceresinde gösterildiği gibi dahil et. (oyunun son oturumundan gelen bir çökme bildirilirken önerilir)</value>
+    <value>Oyun çıktısını, şu an başlatıcının mevcut oyun açılır penceresinden olduğu gibi dahil et (oyunun son oturumundan gelen bir çökme bildirilirken önerilir)</value>
   </data>
   <data name="IgnoreFailure" xml:space="preserve">
     <value>Hatayı Yoksay</value>
@@ -618,7 +618,7 @@
     <value>Önceki Ayarlar İçe Aktarılsın mı?</value>
   </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
-    <value>Önceki sürüme ait başlatıcı ayarları bulundu. Yüklü Thrive sürümlerinizi ve diğer özelleştirmelerinizi olduğu gibi tutmak için mevcut ayarları içe aktarabilirsiniz. Eğer eski Thrive sürümlerini ve önbellekleri içe aktarmazsanız, bu ayarlar geride bırakılacak ve bu başlatıcı onları kullanmayacak. Ayarların içe aktarılması önerilir.</value>
+    <value>Önceki sürüme ait başlatıcı ayarları bulundu. Yüklü Thrive sürümlerinizi ve diğer özelleştirmelerinizi olduğu gibi tutmak için mevcut ayarları içe aktarabilirsiniz. Eğer eski Thrive sürümlerini ve önbellekleri içe aktarmazsanız, bu ayarlar geride bırakılacak ve mevcut başlatıcı bu ayarları kullanmayacak. Ayarların içe aktarılması önerilir.</value>
   </data>
   <data name="ImportSucceededTitle" xml:space="preserve">
     <value>İçe Aktarma Başarılı</value>
@@ -633,10 +633,10 @@
     <value>Thrive itch.io'da</value>
   </data>
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
-    <value>Bütün oyun videolarını devre dışı bırak (Eğer ki Thrive, yükleme logosu gösterildikten sonra ve giriş videosu oynatılmadan önce çökerse, bu ayar oyunun çalışmasına yardımcı olabilir)</value>
+    <value>Bütün oyun videolarını devre dışı bırak (eğer ki Thrive; yüklenme logosu gösterildikten sonra ve giriş videosu oynatılmadan önce çökerse, bu ayar oyunun çalışmasına yardımcı olabilir)</value>
   </data>
   <data name="LaunchOptionForceGLES2" xml:space="preserve">
-    <value>GLES2 işleme moduna zorla (Thrive'ı başlatabilir, ancak hafif grafik sorunlarına neden olabilir.)</value>
+    <value>GLES2 işleme moduna zorla (Thrive'ı başlatabilir, ancak hafif grafik sorunlarına neden olabilir)</value>
   </data>
   <data name="LauncherOptionHide32Bit" xml:space="preserve">
     <value>Eşdeğer bir 64-bit sürüm mevcutsa, 32-bit sürümleri gizle</value>
@@ -654,7 +654,7 @@
     <value>İçerik:</value>
   </data>
   <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
-    <value>Not: Geçici konumu taşımak, Thrive ile ilgili olmayan dosyalara yanlışlıkla dokunulmasını önlemek amacıyla, mevcut dosyaları taşımaz veya silmez</value>
+    <value>Not: Geçici konumu taşımak, bu konumdaki Thrive ile ilgili olmayan dosyalara yanlışlıkla dokunulmasını önlemek amacıyla, mevcut dosyaları taşımaz veya silmez</value>
   </data>
   <data name="ClearTemporaryLocation" xml:space="preserve">
     <value>Geçici klasördeki TÜM dosyaları sil. Varsa, Thrive ile ilgili olmayan dosyaları bile silebilir!</value>
@@ -678,7 +678,7 @@
     <value>Belirli Sürüm</value>
   </data>
   <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
-    <value>Geliştirme Sürümü oynandığında; giriş kutusundan da kullanılmak üzere, manuel olarak girilen anahtar değerini seçili Geliştirme Sürümü olarak seç</value>
+    <value>Bir Geliştirme Sürümü oynandığında; giriş kutusundan da kullanılmak üzere, manuel olarak girilen anahtar değerini Geliştirme Sürümü olarak seç</value>
   </data>
   <data name="FetchLatestBuildsButton" xml:space="preserve">
     <value>En Son Sürümleri Al</value>
@@ -709,7 +709,7 @@ Başlatıcı logları bununla ilgili daha fazla bilgi içermektedir.</value>
     <value>ThriveDevCenter'daki jetonları incele</value>
   </data>
   <data name="EnterDevCenterConnectionCode" xml:space="preserve">
-    <value>Lütfen önce giriş kutusuna bir ThriveDevCenter bağlantı kodu girin</value>
+    <value>Öncesinde, lütfen giriş kutusuna bir ThriveDevCenter bağlantı kodu girin</value>
   </data>
   <data name="DevCenterConnectAttemptError" xml:space="preserve">
     <value>ThriveDevCenter için bağlanma kodu incelenirken hata oluştu. Lütfen kodu doğru bir şekilde girdiğinizden ve kodun süresinin dolmadığından emin olun. Ek bilgi: {0}</value>
@@ -718,13 +718,13 @@ Başlatıcı logları bununla ilgili daha fazla bilgi içermektedir.</value>
     <value>Bu içeriği görmek için ThriveDevCenter'a giriş yapın</value>
   </data>
   <data name="GettingDevBuildInfoMessage" xml:space="preserve">
-    <value>Oynamak için seçili Geliştirme Sürümü {0} türü ile ilgili bilgi alınıyor...</value>
+    <value>Başlatmak için seçili Geliştirme Sürümü {0} türü ile ilgili bilgi alınıyor...</value>
   </data>
   <data name="NoBuildToPlayFound" xml:space="preserve">
-    <value>Gerekli tür ve mevcut platform ile eşleşen bir Geliştirme Sürümü bulunamadı</value>
+    <value>Gerekli türde ve geçerli platformda eşleşen bir Geliştirme Sürümü bulunamadı</value>
   </data>
   <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
-    <value>Oynatılacak Geliştirme Sürümü türü (oynarken seçilen Geliştirme Sürümü)</value>
+    <value>Başlatılacak Geliştirme Sürümü türü (oynarken seçilen Geliştirme Sürümü)</value>
   </data>
   <data name="LoadingDotDotDot" xml:space="preserve">
     <value>Yükleniyor...</value>
@@ -733,19 +733,19 @@ Başlatıcı logları bununla ilgili daha fazla bilgi içermektedir.</value>
     <value>Yüklenen Thrive başlatıcı bilgisi geçersiz. Lütfen kısa bir süre sonra tekrar deneyin ve sorun devam ederse lütfen bizimle iletişime geçin.</value>
   </data>
   <data name="NoCompatibleVersionsFound" xml:space="preserve">
-    <value>Başlatıcı, mevcut platform için herhangi bir uyumlu Thrive sürümü bulamadı. Garip bir işletim sistemi kullanıyorsanız, bu beklenen bir durumdur. Aksi takdirde, lütfen bunu bir sorun olarak bildirin.</value>
+    <value>Başlatıcı, mevcut platform için herhangi bir uyumlu Thrive sürümü bulamadı. Eğer farklı bir işletim sistemi kullanıyorsanız, bu beklenen bir durumdur. Aksi takdirde, lütfen bunu bir sorun olarak bildirin.</value>
   </data>
   <data name="InternalErrorExplanation" xml:space="preserve">
-    <value>Başlatıcıda bir iç hata oluştu. Lütfen bu sorunu bildirin ve başlatıcı log dosyalarını, bu sorunla nasıl karşılaştığını anlatan bir raporunuz ile beraber temin edin.</value>
+    <value>Başlatıcıda bir iç hata oluştu. Lütfen bu sorunu bildirin ve oluşan başlatıcı log dosyalarını, bu sorunla nasıl karşılaştığınızı anlatan bir rapor ile birlikte gönderin.</value>
   </data>
   <data name="DeleteErrorDoesNotExist" xml:space="preserve">
     <value>Silme işlemi başarısız çünkü hedef yol mevcut değil</value>
   </data>
   <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
-    <value>Eğer oyun düzgün bir şekilde başlamadıysa, lütfen başlatıcı ayarlarında, "Thrive Ayarları" altındaki Thrive başlatma çözüm yollarını deneyin</value>
+    <value>Eğer oyun düzgün bir şekilde başlamadıysa; lütfen başlatıcı ayarlarında, "Thrive Ayarları" altında bulunan, Thrive'ı başlatmaya yardımcı olabilecek çözüm yollarını deneyin</value>
   </data>
   <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
-    <value>Hata: Bu tür başlatıcı için güncelleme dosyası bulunamadı. Bu olmaması gereken bir şey. Lütfen daha sonra tekrar deneyin. Eğer sorun devam ederse, lütfen bize bildirin.</value>
+    <value>Hata: Bu tür başlatıcı için güncelleme dosyası bulunamadı. Normal koşullarda bunun olmaması gerekirdi. Lütfen daha sonra tekrar deneyin. Eğer sorun devam ederse, lütfen bize bildirin.</value>
   </data>
   <data name="LinkFormingFailedError" xml:space="preserve">
     <value>Bağlantı oluşturulamadı, lütfen kodu tekrar inceleyin</value>
@@ -757,20 +757,20 @@ Başlatıcı logları bununla ilgili daha fazla bilgi içermektedir.</value>
     <value>{0} dosya ayıklanıyor. Büyük dosyalar için bu birkaç dakika sürebilir. Bu yüzden, lütfen sabırlı olun.</value>
   </data>
   <data name="ThriveIsStarting" xml:space="preserve">
-    <value>Thrive başlatılıyor. Log çıktısı (arabellekten dolayı bu muhtemelen eş zamanlı değil):</value>
+    <value>Thrive başlatılıyor. Log çıktısı (arabellekten dolayı gösterilen içerik muhtemelen gerçek içerik ile eş zamanlı değil):</value>
   </data>
   <data name="AllSigningKeysExpired" xml:space="preserve">
     <value>Bu başlatıcının birlikte gönderildiği tüm imza doğrulama sertifikalarının süresi doldu. Bu, başlatıcının mevcut sürümünün son derece eski olduğu anlamına gelir. Lütfen daha yeni bir sürümü indirip yükleyin.</value>
   </data>
   <data name="CrashReportLogsSectionExplanation" xml:space="preserve">
-    <value>Loglar; sorunu tanımlamada ve düzeltmede yardımcı olabileceği için, eğer loglar çökme esnasında oluşursa, lütfen bu logları dahil edin. İstediğiniz herhangi bir kişisel detayı kaldırmak için görüntülemek ve düzenlemek isterseniz, ilgili dosyanın ismine tıklayarak ya da bulunduğu klasörü görüntüleyen butona basarak o dosyayı açabilirsiniz. Log dosyaları yalnızca Thrive geliştiricilerine görünür ve sadece bildirilen sorunu izlemenin veya düzeltmenin gerekli olduğu durumlarda diğer kişilerle paylaşılır.</value>
+    <value>Loglar; sorunu tanımlamada ve düzeltmede yardımcı olabileceği için; eğer çökme esnasında yeni loglar oluşursa, lütfen bu logları dahil edin. İstediğiniz herhangi bir kişisel detayı kaldırmak amacıyla logları görüntülemek ve düzenlemek isterseniz, ilgili dosyanın ismine tıklayarak ya da bulunduğu klasörü görüntüleyen butona basarak bu dosyayı açabilirsiniz. Log dosyaları yalnızca Thrive geliştiricilerine görünür ve yalnızca bildirilen sorunu izlemenin veya düzeltmenin gerekli olduğu durumlarda başka kişilerle paylaşılır.</value>
   </data>
   <data name="AutoUpdatingFailedExplanation" xml:space="preserve">
-    <value>Başlatıcıyı otomatik olarak güncelleme işlemi başarısız oldu. Sorun muhtemelen güncelleme yükleyicinin düzgün çalışmamasından kaynaklı. Güncelleyiciyi, aşağıda bulunan ismine tıklayarak tekrar çalıştırmayı deneyebilirsiniz. Alternatif olarak; eğer yükleyiciyi manuel olarak çalıştırmak isterseniz, ilk güncelleyicinin bulunduğu klasörü açmak için aşağıdaki butona basabilirsiniz (eğer bu sorununuza yardımcı olursa, lütfen bize bildirin).
+    <value>Başlatıcıyı otomatik olarak güncelleme işlemi başarısız oldu. Sorun muhtemelen güncelleme yükleyicinin düzgün çalışmamasından kaynaklı. Güncelleyiciyi, aşağıdaki ismine tıklayarak tekrar çalıştırmayı deneyebilirsiniz. Alternatif olarak; eğer yükleyiciyi manuel olarak çalıştırmak isterseniz, ilk güncelleyicinin bulunduğu klasörü açmak için aşağıdaki butona basabilirsiniz (eğer bu sorununuza yardımcı olursa, lütfen bize bildirin).
 
 İndirilen güncelleyici dosyalarını silmek için hatayı yoksayabilir ve başlatıcı bir sonraki sefere yeniden başlatıldığında güncellemeyi tekrar deneyebilirsiniz.
 
-Eğer aşağıda hiçbir dosya listelenmiyorsa, güncellemeyi indirme işlemi başarısız olmuş demektir. Bu işlem, başlatıcıyı yeniden başlatmadan tekrar denenemez.</value>
+Eğer aşağıda herhangi bir dosya listelenmiyorsa, güncellemeyi indirme işlemi başarısız olmuş demektir. Bu işlem, başlatıcıyı yeniden başlatmadan tekrar denenemez.</value>
   </data>
   <data name="ClearDehydratedLocation" xml:space="preserve">
     <value>Geliştirme Sürümü'nün sıkıştırılmış önbellek klasöründeki bütün dosyaları sil. Eğer mevcut klasör, varsayılan konum değilse, bu klasördeki Thrive'a ait olmayan dosyalar da silinecek.</value>
@@ -782,16 +782,16 @@ Eğer aşağıda hiçbir dosya listelenmiyorsa, güncellemeyi indirme işlemi ba
     <value>Önbellekte mevcut olan öğeler bulundu. Bu öğeler yeni konuma otomatik olarak taşınabilir. Eğer taşınmazlarsa, önceki konum kurulum yeri olarak seçilmediği sürece, bu dosyalar geride bırakılacak ve başlatıcı bunları kullanmayacak. {0} dosyayı yeni konuma otomatik olarak taşımak ister misiniz? Dikkat; önbellek klasöründe Thrive'a ait olmayan dosyalar varsa, onlar da taşınacak.</value>
   </data>
   <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
-    <value>"{0}" konumundaki geçici klasörde bulunan bütün dosyaları silmek üzeresiniz. Eğer bu klasörde olan başka dosyalar varsa, Thrive'a ait olmayan bu dosyalar da silinecek. Ayrıca klasörün kendisi de silinecek. Geçici klasör silinsin mi?</value>
+    <value>"{0}" konumundaki geçici klasörde bulunan bütün dosyaları silmek üzeresiniz. Eğer bu klasörde bulunan başka dosyalar varsa, buradaki Thrive'a ait olmayan dosyalar da silinecek. Bununla birlikte, klasörün kendisi de silinecek. Geçici klasör silinsin mi?</value>
   </data>
   <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
-    <value>"{0}" konumundaki sıkıştırılmış önbellek klasöründe bulunan bütün dosyaları silmek üzeresiniz. Eğer bu klasörde olan başka dosyalar varsa, Thrive'a ait olmayan bu dosyalar da silinecek. Klasör içeriği silinsin mi?</value>
+    <value>"{0}" konumundaki sıkıştırılmış önbellek klasöründe bulunan bütün dosyaları silmek üzeresiniz. Eğer bu klasörde bulunan başka dosyalar varsa, buradaki Thrive'a ait olmayan dosyalar da silinecek. Klasör içeriği silinsin mi?</value>
   </data>
   <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
-    <value>Çıkış kodu, gerekli bir DLL dosyasına sahip olmadığın anlamına gelebilir. Eğer bu dosya Visual C++ Redistributable 2019 yazılımına aitse, dosyayı yüklemek/düzeltmek için, bu dosyaya ait yükleyiciyi aşağıdaki bağlantıdan indirebilirsiniz: https://aka.ms/vs/17/release/vc_redist.x64.exe. Ayrıca, Thrive.exe uygulamasını manuel olarak çalıştırmayı deneyebilirsiniz. Böylece uygulama, eksik DLL dosya ismini içeren bir hata iletisi gösterebilir. Bütün Windows güncelleştirmelerini yükleyip yüklemediğini kontrol etmelisin. Eğer bunlar yardımcı olmazsa, daha fazla destek için lütfen bize ulaşın.</value>
+    <value>Çıkış kodu, gerekli bir DLL dosyasına sahip olmadığınız anlamına gelebilir. Eğer bu dosya Visual C++ Redistributable 2019 yazılımına aitse; bu DLL dosyasını yüklemek veya düzeltmek için, bu dosyaya ait yükleyiciyi aşağıdaki bağlantıdan indirebilirsiniz: https://aka.ms/vs/17/release/vc_redist.x64.exe. Ayrıca, Thrive.exe uygulamasını manuel olarak çalıştırmayı deneyebilirsiniz. Böylece; uygulama, eksik DLL dosyasının ismini içeren bir hata iletisi gösterebilir. Bütün Windows güncelleştirmelerini yükleyip yüklemediğinizi kontrol etmelisiniz. Eğer bütün bunlar işe yaramazsa, daha fazla destek için lütfen bize ulaşın.</value>
   </data>
   <data name="OutdatedLauncherExplanation" xml:space="preserve">
-    <value>Başlatıcının bu sürümü güncel değil ve güncellenmesi gerekli. Bu mesajı görüyorsan, otomatik güncelleme başlatılmadı. Bu yüzden, güncellemeyi manuel olarak indirmeniz ve yüklemeniz gerekecek. Güncellemeyi atlayarak, başlatıcının mevcut sürümünü kullanmayı deneyebilirsiniz. Ancak başlatıcının yalnızca en son sürümünün, uzak sistemlerle etkileşim kurarak çalışmasına garanti verildiği için beklenmeyen sorunlarla karşılabilirsiniz.</value>
+    <value>Başlatıcının bu sürümü güncel değil ve güncellenmesi gerekli. Eğer bu mesajı görüyorsanız, otomatik güncelleme henüz başlatılmadı. Bu yüzden, güncellemeyi manuel olarak indirmeniz ve yüklemeniz gerekecek. Güncellemeyi atlayarak, başlatıcının mevcut sürümünü kullanmayı deneyebilirsiniz. Ancak başlatıcıda yalnızca en son sürümün uzak sistemlerle etkileşim kurarak çalışmasına garanti verildiği için beklenmeyen sorunlarla karşılabilirsiniz.</value>
   </data>
   <data name="CrashReportEmailField" xml:space="preserve">
     <value>E-postanız, eğer bu rapor ile ilgili güncellemeler almak isterseniz (isteğe bağlı)</value>
@@ -803,16 +803,16 @@ Eğer aşağıda hiçbir dosya listelenmiyorsa, güncellemeyi indirme işlemi ba
     <value>Başlatıcı, şu anda bir güncellemeyi indiriyor ve kuruyor, lütfen bekleyin. İndirilen güncelleyici, güncellemeyi tamamlamak için kullanıcı etkileşimi gerektiren yeni bir pencere açabilir.</value>
   </data>
   <data name="AutoUpdateMissingChannel" xml:space="preserve">
-    <value>Bu başlatıcı türü, ilişkili bir güncelleme kanal tipine sahip olmadığı için bir güncelleme tekrar denenemiyor</value>
+    <value>Bu başlatıcı türü, kendiyle ilişkili bir güncelleme kanal tipine sahip olmadığı için güncelleme işlemi yapılamıyor</value>
   </data>
   <data name="ViewFirstAutoUpdaterFolder" xml:space="preserve">
     <value>İlk Güncelleyicinin Bulunduğu Klasörü Aç</value>
   </data>
   <data name="AcceptUnsafeBuildButton" xml:space="preserve">
-    <value>Tehlikenin farkındayım, yine de oyna</value>
+    <value>Tehlikenin farkındayım, yine de başlat</value>
   </data>
   <data name="RehydrationStarting" xml:space="preserve">
-    <value>Bu sıkıştırılmış bir sürüm. Çıkarma işlemi başlatılıyor.</value>
+    <value>Bu sürüm, sıkıştırılmış bir sürüm. Çıkarma işlemi başlatılıyor.</value>
   </data>
   <data name="CancelCreatingReportExplanation" xml:space="preserve">
     <value>Bir çökme raporu oluşturmayı iptal etmek istediğinize emin misiniz? Eğer belirli bir hata için hiçbir rapor gönderilmezse, Thrive'ın geliştiricileri bu hatayı farketmeyebilir ve bu yüzden hatayı düzeltemeyebilir.</value>
@@ -833,10 +833,10 @@ Eğer aşağıda hiçbir dosya listelenmiyorsa, güncellemeyi indirme işlemi ba
     <value>Çökme meydana gelirken ne yaptığını açıkla (isteğe bağlı)</value>
   </data>
   <data name="CrashReportIsPublic" xml:space="preserve">
-    <value>Rapor, genele gösterilsin mi? Genel raporlar, halka açık olarak görülen çökme çağrı yığını ve açıklamaya sahiptir. Özel raporlar ise yalnızca Thrive geliştiricilerine görünür.</value>
+    <value>Rapor, genel kesime gösterilsin mi? Genel raporlar, halka açık olarak gösterilen çökme çağrı yığını ve açıklamaya sahiptir. Özel raporlar ise yalnızca Thrive geliştiricilerine görünür.</value>
   </data>
   <data name="SelectCrashToReport" xml:space="preserve">
-    <value>İsmine tıklayarak, rapor edilecek bir çökme türü seç</value>
+    <value>Rapor edilecek çökme türünü ismine tıklayarak seç</value>
   </data>
   <data name="CrashReportDeleteAfterSubmitting" xml:space="preserve">
     <value>Bildirdikten sonra bu çökme dökümü dosyasını sil (önerilen)</value>
@@ -851,19 +851,19 @@ Eğer aşağıda hiçbir dosya listelenmiyorsa, güncellemeyi indirme işlemi ba
     <value>Thrive'ın doğru şekilde başlatılmadığı tespit edildi. Thrive tekrar başlatılmaya çalışılacak. Deneme sayısı: {0}</value>
   </data>
   <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
-    <value>Kullandığınız başlatıcı türünün otomatik olarak güncelleme yapabilmesi lazım ancak bazı nedenlerden dolayı çalışamadı. Ayrıca, en son başlatıcı sürümü de uzun süredir mevcut. Lütfen Thrive'ı güncel tutma özelliğini devre dışı bırakıp bırakmadığınızı kontrol edin.</value>
+    <value>Kullandığınız başlatıcı türünün otomatik olarak güncelleme yapabilmesi lazım ancak bazı nedenlerden dolayı işe yaramadı. Bununla birlikte, en son başlatıcı sürümü uzun süredir indirmek için mevcut. Lütfen Thrive'ı güncel tutma özelliğini devre dışı bırakıp bırakmadığınızı kontrol edin.</value>
   </data>
   <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
-    <value>ThriveDevCenter'a bağlanma işlemi başarısız oldu. Sunucu, bir engel ile yanıt verdi. Bu, bağlantı anahtarımızın artık iyi olmadığı anlamına gelir. Bu sorun, web arayüzü aracılığıyla bağlantının kopması veya hesabının askıya alınması nedeniyle meydana gelmiş olabilir. Hesabınızın bağlantı durumunu incelemek için aşağıdaki bağlantıya bakabilirsiniz.</value>
+    <value>ThriveDevCenter'a bağlanma işlemi başarısız oldu. Sunucu, bir kısıtlama ile yanıt verdi. Bu, bağlantı anahtarının artık geçerli olmadığı anlamına gelir. Bu sorun ayrıca, web arayüzü aracılığıyla bağlantının kopması veya hesabınızın askıya alınması nedeniyle meydana gelmiş olabilir. Hesabınızın bağlantı durumunu incelemek için aşağıdaki bağlantıya bakabilirsiniz.</value>
   </data>
   <data name="DevCenterConnectFailureConnection" xml:space="preserve">
     <value>ThriveDevCenter'a bağlanma işlemi başarısız oldu. ThriveDevCenter, geçici olarak müsait olmayabileceği için lütfen tekrar deneyin. Ayrıca, internet bağlantınızı da kontrol etmeniz gerekir. Tarayıcınızın bağlanıp bağlanmadığını görmek için aşağıdaki bağlantıyı kullanıp DevCenter'ı ziyaret edebilirsiniz. Lütfen daha sonra tekrar deneyin. Eğer sorun birkaç dakikadan daha uzun süre devam ederse, lütfen bunu bildirin.</value>
   </data>
   <data name="ErrorGettingDevBuild" xml:space="preserve">
-    <value>Hata: Mevcut platform için belirtilen türde Geliştirme Sürümü bulma işlemi başarısız. Lütfen başka bir sürüm seçin, örneğin önerilen GS, ve tekrar deneyin. Hata nedeni: {0}</value>
+    <value>Hata: Mevcut platform için belirtilen türde bir Geliştirme Sürümü bulunamadı. Lütfen başka bir sürüm seçin, örneğin önerilen GS, ve tekrar deneyin. Hata nedeni: {0}</value>
   </data>
   <data name="ExtraThriveStartFlags" xml:space="preserve">
-    <value>Thrive, başlatıcıya komut satırı argümanları olarak geçirilen ek bayraklar ile başlatılıyor. Bunlar Thrive'ın beklenmeyen şekilde davranmasına neden olabilir: {0}</value>
+    <value>Thrive, ek bayraklar (başlatıcıdaki komut satırı argümanları) ile başlatılıyor. Bunlar Thrive'ın beklenmeyen şekilde davranmasına neden olabilir: {0}</value>
   </data>
   <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
     <value>Bu sekme, dışarıdan yüklenmiş sürümleri listeler. Bu sürüm, paketlenmiş (en son) oyun sürümünü içeren, Thrive'ın mağaza sürümüdür. Başlatıcı ayarlarında, sürüm seçici açılır menüsünden dışarıdan gelen mevcut sürümlerin gösterilmesini etkinleştirebilirsiniz. İndirildiğinde, bu sürümler burada görünür.</value>
@@ -872,30 +872,30 @@ Eğer aşağıda hiçbir dosya listelenmiyorsa, güncellemeyi indirme işlemi ba
     <value>Bu formda listelenmiş bilgilerin, herhangi bir dosya ve çökme dökümü dahil, IP adresim ile birlikte Thrive çökme veritabanında saklanmasını kabul ediyorum. Eğer bu rapor herkese açıksa, herhangi bir kişi çökme çağrı yığını ve açıklamayı okuyabilecek.</value>
   </data>
   <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
-    <value>Seçilen çökme uzun bir zaman önce meydana geldi. Bu bakımdan, bu çökme başlatıcı tarafından saklanan en son log dosyaları veya oyun çıktısı ile ilişkili olmayabilir. Doğru çökmeyi ve ilgili log dosyalarını bildirip bildirmediğinizi lütfen dikkatlice inceleyin.</value>
+    <value>Seçilen çökme uzun bir zaman önce meydana geldi. Bu bakımdan; seçilen çökme, başlatıcı tarafından saklanan en son log dosyaları veya oyun çıktısı ile ilişkili olmayabilir. Doğru çökmeyi ve ilgili log dosyalarını bildirip bildirmediğinizi lütfen dikkatlice inceleyin.</value>
   </data>
   <data name="AutoUpdateSucceededMessage" xml:space="preserve">
-    <value>Otomatik güncelleme başlıyor. Birazdan güncelleyiciye ait yeni bir pencerenin açıldığını göreceksiniz. Güncellemenin bitmesi için başlatıcının kapatılması gerekir. Başlatıcıyı manuel olarak kapatabilir veya otomatik olarak kapanmasını bekleyebilirsiniz</value>
+    <value>Otomatik güncelleme başlıyor. Birazdan güncelleyiciye ait yeni bir pencerenin açıldığını göreceksiniz. Güncellemenin bitmesi için başlatıcının kapatılması gerekir. Başlatıcıyı manuel olarak kapatabilir veya otomatik olarak kapatılmasını bekleyebilirsiniz</value>
   </data>
   <data name="CannotSubmitExceptionReportYet" xml:space="preserve">
     <value>Çökme bildirici, beklenmeyen hatalardan kaynaklı çökme raporlarını henüz desteklemiyor. Lütfen raporu kopyalamak için aşağıdaki kopyala butonunu kullanın ve sonra raporu bize manuel olarak gönderin.</value>
   </data>
   <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
-    <value>Thrive başlatıcısı, neyin mevcut olduğunu öğrenmek için internetten mevcut Thrive sürümlerini yükler. Bu bilgilerin yüklenmesi başarısız oldu (aşağıdaki hataya bakın). Bu bilgileri indirmeyi yeniden deneyebilir veya başlatıcı daha önce bu bilgileri indirebildiyse, önbelleğe alınmış bir kopyayı yükleyebilirsiniz. Önbelleğe alınan kopya çok eskiyse, mevcut tüm Thrive sürümlerini göstermeyebilir. Başlatıcı sürümünüz çok eskiyse, artık daha yeni bir veri formatıyla uyumlu olmayabileceğini ve verilerin yüklenebilmesi için manuel olarak güncellenmesi gerektiğini unutmayın.</value>
+    <value>Thrive başlatıcısı, hangi sürümlerin mevcut olduğunu öğrenmek için internetten mevcut Thrive sürümlerini yükler. Bu bilginin alınma işlemi başarısız oldu (aşağıdaki hatayı inceleyin). Bu bilgiyi almayı yeniden deneyebilir veya önbelleğe alınmış bir kopyayı, başlatıcının daha önce aldığı bir bilgiyi, yükleyebilirsiniz. Önbelleğe alınan kopya çok eskiyse, mevcut bütün Thrive sürümlerini göstermeyebilir. Eğer başlatıcı sürümünüz çok eskiyse, bu sürümün yeni bir veri formatıyla uyumlu olmayabileceğini ve verilerin yüklenebilmesi için başlatıcının manuel olarak güncellenmesi gerektiğini unutmayın.</value>
   </data>
   <data name="AutoUpdateRetryFailed" xml:space="preserve">
-    <value>Otomatik güncellemeyi tekrar deneme işlemi başarısız oldu. Mevcut otomatik güncelleme dosyalarını temizlemek için bu hatayı yoksayabilirsiniz. Böylece başlatıcı bir dahaki sefer başlatıldığında bu işlem tekrar denenebilir.</value>
+    <value>Otomatik güncellemeyi tekrar deneme işlemi başarısız oldu. Mevcut otomatik güncelleme dosyalarını temizlemek için bu hatayı yoksayabilirsiniz. Böylece; başlatıcı bir dahaki sefer başlatıldığında, bu işlem tekrar denenebilir.</value>
   </data>
   <data name="PlayUnsafeBuildExplanation" xml:space="preserve">
-    <value>Normal Geliştirme Sürümleri, onaylı bir anahtar ile CI sunucusuna otomatik olarak karşıdan yüklenir. Bu sürümler yalnızca Thrive veri havuzu üyeleri tarafından başlatılabilir. Bir kişinin hesabı tehlikeli (ya da kötü niyetli) olmadığı sürece bu sürümlerin oynanması resmi sürümler kadar güvenlidir. Geliştirme Sürümleri, çekme istekleri (PR) üzerinden de kabul edilir. Ancak bu durumda, çekme istekleri her türlü ağır şeyi içerebileceği için, özellikle, güvensiz olarak işaretlenir.
+    <value>Normal Geliştirme Sürümleri, onaylı bir anahtar ile CI sunucusuna otomatik olarak karşıdan yüklenir. Bu sürümler yalnızca Thrive veri havuzu üyeleri tarafından başlatılabilir. Bir kişinin hesabı tehlikeli (ya da kötü niyetli) olmadığı sürece bu sürümlerin oynanması resmi sürümler kadar güvenlidir. Geliştirme Sürümleri, çekme istekleri (PR) üzerinden de kabul edilir. Ancak bu durumda, çekme istekleri her türlü ağır şeyi içerebileceği için, özellikle güvensiz olarak işaretlenir.
 
-Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı gider. Eğer bu sürümün güvenli olduğuna inanırsanız, alternatif olarak, devam edebilirsiniz. Bunu yapmadan önce, son işleme anahtarının eşleşip eşleşmediğini ve ThriveDevCenter sürüm durumunda bu anahtar ile bir Geliştirme Sürümü'nün karşıya yüklenip yüklenmediğini belirttiğini görmek için Github'da bu PR'yi incelemelisiniz. Ayrıca, PR'nin herhangi bir sürümün kodunu değiştirip değiştirmediği incelenmeli. Bunu yaptıktan sonra, devam etmek oldukça güvenlidir. Bu yöntem, Thrive ekibi üyelerinin PR'leri doğrulamak için kullandığı yöntemin aynısıdır.</value>
+Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı kaybolur. Eğer bu sürümün güvenli olduğuna inanıyorsanız, oynamaya devam edebilirsiniz. Bunu yapmadan önce, son işleme anahtarının eşleşip eşleşmediğini ve ThriveDevCenter sürüm notlarında bu anahtar ile bir Geliştirme Sürümü'nün karşıya yüklenip yüklenmediğinin belirtildiğini görmek için Github'da bu PR'yi incelemelisiniz. Ayrıca, PR'nin herhangi bir sürümün kodunu değiştirip değiştirmediği de incelenmeli. Bunu yaptıktan sonra, sürüme devam etmek oldukça güvenlidir. Bu yöntem, Thrive ekibi üyelerinin PR'leri doğrulamak için kullandığı yöntemin aynısıdır.</value>
   </data>
   <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
     <value>Başlatma gerçekleşmezse, Thrive'ı otomatik olarak tekrar başlat</value>
   </data>
   <data name="RequiresLatestBetaShowingEnabled" xml:space="preserve">
-    <value>Bu seçenek, yalnızca en son beta sürümü gösterme seçeneği aktifken etkinleştirilebilir</value>
+    <value>Bu seçenek yalnızca, en son beta sürümünü gösterme seçeneği aktifken etkinleştirilebilir</value>
   </data>
   <data name="RequiresExternalVersionsEnabled" xml:space="preserve">
     <value>Bu seçenek, dışarıdan gelen sürümlerin indirilmesini etkinleştirmeyi gerektirir</value>
@@ -904,7 +904,7 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı g
     <value>Son Oynanan Sürümü Unut</value>
   </data>
   <data name="ForgetLastPlayedVersionToolTip" xml:space="preserve">
-    <value>Thrive sürüm seçicisinde yapılan son seçimi kaldırır. Kesintisiz modun çalışmayı reddettiği zamanlarda onun tekrar çalışmasına yardımcı olabilir.</value>
+    <value>Thrive sürüm seçicisinde yapılan son seçimi kaldırır. Kesintisiz modun çalışmayı reddettiği zamanlarda bu seçenek modun tekrar çalışmasına yardımcı olabilir.</value>
   </data>
   <data name="InvalidVersionInfoLoadedTitle" xml:space="preserve">
     <value>Yüklü Sürüm Bilgisi Geçersiz</value>
@@ -913,7 +913,7 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı g
     <value>Başlatıcı hata ayıklama günlüğünü etkinleştir (başlatıcıyla ilgili bir sorunu veya hatayı bildirmeden önce lütfen bunu etkinleştirin ve başlatıcıyı yeniden başlatın)</value>
   </data>
   <data name="LatestVersionParsingFailed" xml:space="preserve">
-    <value>Mevcut olan en son başlatıcı sürümündeki bilgileri ayrıştırma işlemi başarısız oldu. Yeni başlatıcı sürümü mevcudiyeti ile ilgili hatırlatmalar ve otomatik güncelleme artık çalışmayacak.</value>
+    <value>Mevcut olan en son başlatıcı sürümündeki bilgileri ayrıştırma işlemi başarısız oldu. Bu nedenle, yeni başlatıcı sürümü mevcudiyeti ile ilgili hatırlatmalar ve otomatik güncelleme çalışmayacak.</value>
   </data>
   <data name="CrashDumpsDetectedAdvice" xml:space="preserve">
     <value>Çökme dökümleri algılandı ancak bu dökümler bir önceki Thrive oturumundan olabilir (bildirmeden önce lütfen kontrol edin). Çökme dökümleri ile ilgili bildirim almayı durdurmak için lütfen bildiriciyi açın ve çökme dökümlerini temizleyin.</value>
