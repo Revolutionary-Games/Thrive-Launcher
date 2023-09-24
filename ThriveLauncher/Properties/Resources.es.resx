@@ -220,4 +220,106 @@
   <data name="FolderIsEmpty" xml:space="preserve">
     <value>La carpeta está vacía</value>
   </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+    <value>Deshabilita todos los videos del juego (si Thrive se bloquea después de mostrar el logotipo de carga y antes de que se reproduzca el video de introducción, esto puede ayudar a que el juego funcione)</value>
+  </data>
+  <data name="LaunchOptionForceGLES2" xml:space="preserve">
+    <value>Forzar el modo de renderizado GLES2 (puede hacer que Thrive se inicie, pero provoca pequeños problemas gráficos)</value>
+  </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+    <value>Permitir el Modo de Inicio sin Costuras (el lanzador no se muestra antes de iniciar Thrive)</value>
+  </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>Habilitar el registro de depuración del lanzador (antes de informar un problema o un error con el lanzador, por favor, habilita esto y reinicia el lanzador)</value>
+  </data>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+    <value>Explorar archivos instalados</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>Nota: mover la ubicación temporal no moverá ni eliminará archivos existentes para evitar tocar accidentalmente archivos no relacionados con Thrive</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>Seleccionar la ubicación de archivos temporales</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>Restablecer la ubicación de archivos temporales</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>Eliminar TODOS los archivos en la carpeta temporal. ¡Puede eliminar incluso archivos no relacionados con Thrive si existen!</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+    <value>Borra todos los archivos en la carpeta de caché comprimida de DevBuild. Si la ubicación no es la predeterminada, es posible que también existan archivos que no pertenezcan a Thrive en la carpeta y que también se eliminarán.</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>claro</value>
+  </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+    <value>Archivos cache de DevBuilds:</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+    <value>Seleccionar la ubicación del caché</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+    <value>Restablecer la ubicación del caché</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+    <value>Tamaño del cache:</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+    <value>Conexión al ThriveDevCenter</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+    <value>Conectado como:</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>Eres un desarrollador</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>¡Gracias por tu apoyo!</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+    <value>Construcción del día (CDL), recomendado</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+    <value>Último (cambia mucho, ya que es literalmente una construcción a partir de la última confirmación de código)</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>Seleccionado manualmente en la pestaña "Construcción Específica"</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>Aquí puedes enlazar el lanzador con el ThriveDevCenter para acceder a DevBuilds y otras funciones</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>Cerrar sesión</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+    <value>Instrucciones en nuestra Wiki</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>Obtener un código de enlace</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+    <value>Código de enlace</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+    <value>Conectar</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>Iniciar sesión</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+    <value>Construcción Especifica</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+    <value>Hash introducido manualmente:</value>
+  </data>
 </root>
