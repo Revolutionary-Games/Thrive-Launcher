@@ -227,7 +227,7 @@
     <value>Forzar el modo de renderizado GLES2 (puede hacer que Thrive se inicie, pero provoca pequeños problemas gráficos)</value>
   </data>
   <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
-    <value>Permitir el Modo de Inicio sin Costuras (el lanzador no se muestra antes de iniciar Thrive)</value>
+    <value>Permitir el Modo de Inicio sin cortes (el lanzador no se muestra antes de iniciar Thrive)</value>
   </data>
   <data name="LauncherOptionVerboseLogging" xml:space="preserve">
     <value>Habilitar el registro de depuración del lanzador (antes de informar un problema o un error con el lanzador, por favor, habilita esto y reinicia el lanzador)</value>
@@ -321,5 +321,59 @@
   </data>
   <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
     <value>Hash introducido manualmente:</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+    <value>Ingresa el hash de construcción (con compromiso)</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+    <value>seleccionar</value>
+  </data>
+  <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+    <value>Selecciona el valor del hash ingresado manualmente que se utilizará desde el cuadro de entrada como el DevBuild seleccionado para reproducir cuando juegues una DevBuild</value>
+  </data>
+  <data name="FetchLatestBuildsButton" xml:space="preserve">
+    <value>Obtener las últimas versiones</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>Error al guardar la configuración</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>Guardar la configuración en el archivo de configuración ha fallado. Por favor, asegúrate de que el lanzador tenga acceso de escritura e inténtalo nuevamente. Los registros del lanzador tendrán más información.</value>
+  </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0} MiB</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>(tamaño: {0})</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>Carpeta no encontrada</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>La carpeta de instalación de la versión de Thrive no existe.</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>Código fuente del lanzador</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>Ver licencias del lanzador</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Lanzador de Thrive</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Licencias del Lanzador de Thrive</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>La fuente Roboto se utiliza en el lanzador, Licencia:</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Archivo Lato.ttf (Copyright (c) 2010-2011 por tyPoland Lukasz Dziedzic con el Nombre de Fuente Reservado "Lato"), Licencia OFL:</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>No se puede mostrar el feed. {0}</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>Publicado por {0} a las {1}</value>
   </data>
 </root>
