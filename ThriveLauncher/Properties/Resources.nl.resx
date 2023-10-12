@@ -918,4 +918,7 @@ Als hieronder geen bestanden worden weergegeven, dan kon de update niet gedownlo
 
 Als een teamlid van Thrive de PR als veilig heeft geverifieerd, dan verdwijnt deze waarschuwing. Het is in elk geval mogelijk om door te gaan als je er zeker van bent dat deze build veilig is. Voordat je dit doet, is het aangeraden om dePR op Github te controleren en te verifiëren dat de hash van die commit klopt. Ook is het aangeraden om te controleren dat de ThriveDevCenter buildtaak een DevBuild heeft geupload met deze specifieke hash. Daarbij dient ook gecontroleerd te worden dat de PR geen buildscripts heeft veranderd. Zodra dit alles gedaan is, zou het relatief veilig moeten zijn om door te gaan. Dit is hetzelfde proces als dat Thrive teamleden gebruiken om PRs te verifiëren.</value>
   </data>
+  <data name="FileSystemErrorTitle" xml:space="preserve">
+    <value>Bestandstoegangsfout</value>
+  </data>
 </root>
