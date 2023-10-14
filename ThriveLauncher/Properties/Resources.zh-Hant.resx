@@ -245,7 +245,7 @@
     <value>資訊</value>
   </data>
   <data name="YouAreDeveloperInfo" xml:space="preserve">
-    <value>你是一位開發者</value>
+    <value>您是一位開發者</value>
   </data>
   <data name="YouAreASupporter" xml:space="preserve">
     <value>感謝您的支持！</value>
@@ -917,5 +917,8 @@
 您可以忽略此失敗，以便刪除已下載的更新程式檔案，並在下次啟動程式時重試更新。
 
 如果下方未列出任何檔案，表示下載更新失敗，必須重新啟動程式才能重試。</value>
+  </data>
+  <data name="FileSystemErrorTitle" xml:space="preserve">
+    <value>檔案存取錯誤</value>
   </data>
 </root>
