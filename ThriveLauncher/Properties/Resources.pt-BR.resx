@@ -536,4 +536,16 @@ Logs do Inicializador fornecerão informações mais detalhadas.</value>
   <data name="NoVersionSelected" xml:space="preserve">
     <value>Por favor selecione uma versão do Thrive da lista suspensa próxima ao botão de jogar e tente novamente</value>
   </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0} MiB</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>Visitar a Página de Downloads</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>Você está usando a versão {0} do Inicializador do Thrive, mas a versão mais recente é {1}</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>Versão do Inicializador Desatualizada</value>
+  </data>
 </root>
