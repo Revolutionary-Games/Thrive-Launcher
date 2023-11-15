@@ -40,7 +40,7 @@
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.5" />
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
     <PackageReference Include="NLog" Version="5.2.5" />
     <PackageReference Include="NLog.Extensions.Logging" Version="5.3.5" />
     <!-- Needed due to avalonia requiring a really old Microsoft CodeAnalysis module-->
