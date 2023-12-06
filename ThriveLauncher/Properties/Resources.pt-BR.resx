@@ -549,7 +549,7 @@ Logs do Inicializador fornecerão informações mais detalhadas.</value>
     <value>Versão do Inicializador Desatualizada</value>
   </data>
   <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
-    <value>Você está usando um tipo de inicializador que não pode atualizar automaticamente. Se você gostaria de usar atualizações automáticas no futuro, por favor instale uma variante do inicializador que tenha a capacidade de atualização automática.</value>
+    <value>Você está usando um tipo de inicializador que não pode atualizar automaticamente. Se quiser atualizações automáticas no futuro, por gentileza, instale uma variante do inicializador com essa capacidade.</value>
   </data>
   <data name="InternalErrorExplanation" xml:space="preserve">
     <value>Ocorreu um erro interno no inicializador. Por favor, reporte esse problema e forneça os arquivos de log do inicializador juntamente com seu relato de como você encontrou esse problema.</value>
@@ -570,6 +570,9 @@ Logs do Inicializador fornecerão informações mais detalhadas.</value>
     <value>Foram detectados itens existentes no cache. Eles podem ser movidos para a nova localização automaticamente. Se não forem movidos, os arquivos serão deixados para trás e o inicializador não terá conhecimento deles até que o caminho anterior seja selecionado como a localização novamente. Gostaria de mover automaticamente {0} arquivo(s) para a nova localização? Note que, se existirem arquivos não relacionados ao Thrive na pasta de cache, eles também serão movidos.</value>
   </data>
   <data name="OutdatedLauncherExplanation" xml:space="preserve">
-    <value>Essa versão do inicializador está atrasada e deve ser atualizada. Como você está vendo esta mensagem, a atualização automática não foi iniciada, então você precisará baixar manualmente a atualização e instalá-la. Você pode tentar usar a versão atual do inicializador ignorando a atualização, mas é possível que você encontre problemas inesperados já que apenas a versão mais recente do inicializador é garantida para funcionar com os sistemas remotos com os quais o inicializador interage.</value>
+    <value>Esta versão do inicializador é obsoleta e deve ser atualizada. Se estiver vendo esta mensagem, significa que a atualização automática não iniciou e você deverá baixar e instalar a atualização manualmente. Você pode tentar usar a versão atual do inicializador e ignorar a atualização, mas erros imprevistos podem ocorrer já que apenas a versão mais recente tem garantia de funcionar com os sistemas remotos que interagem com o inicializador.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
+    <value>O tipo de inicializador que você está usando deveria ser capaz de atualizar automaticamente, mas não pôde por alguma razão e a versão mais recente do inicializador já está disponível. Por gentileza, verifique se não desabilitou a opção de manter o Thrive atualizado.</value>
   </data>
 </root>
