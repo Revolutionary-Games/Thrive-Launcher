@@ -329,7 +329,7 @@
     <value>Visualizar Logs</value>
   </data>
   <data name="LauncherOptionVerboseLogging" xml:space="preserve">
-    <value>Habilitar Log de Depuração do Inicializador (antes de reportar um problema ou bug com o Inicializador, por favor habilite essa opção e reinicie o Inicializador)</value>
+    <value>Habilitar Log de Depuração do Inicializador (antes de relatar um problema ou bug com o Inicializador, por favor habilite essa opção e reinicie o Inicializador)</value>
   </data>
   <data name="TimeMomentRightNow" xml:space="preserve">
     <value>Agora</value>
@@ -519,7 +519,7 @@ Logs do Inicializador fornecerão informações mais detalhadas.</value>
     <value>Usar Informações da Versão em Cache</value>
   </data>
   <data name="NoCompatibleVersionsFound" xml:space="preserve">
-    <value>O Inicializador não encontrou nenhuma versão do Thrive compatível com a plataforma atual. Se você está usando um sistema operacional estranho, isso é esperado. Caso contrário, por favor, reporte isso como um problema.</value>
+    <value>O Inicializador não encontrou nenhuma versão do Thrive compatível com a plataforma atual. Se você está usando um sistema operacional estranho, isso é esperado. Caso contrário, por favor, relate isso como um problema.</value>
   </data>
   <data name="MoveVersionsExplanation" xml:space="preserve">
     <value>Foram detectadas versões do Thrive instaladas no caminho anterior. Estes arquivos podem ser movidos automaticamente para o novo local. Caso não sejam movidos, serão deixados para trás e o Inicializador não terá conhecimento deles até que o caminho anterior seja selecionado como local de instalação novamente. Gostaria de mover automaticamente esses arquivos para o novo local?</value>
@@ -552,7 +552,7 @@ Logs do Inicializador fornecerão informações mais detalhadas.</value>
     <value>Você está usando um tipo de inicializador que não pode atualizar automaticamente. Se quiser atualizações automáticas no futuro, por gentileza, instale uma variante do inicializador com essa capacidade.</value>
   </data>
   <data name="InternalErrorExplanation" xml:space="preserve">
-    <value>Ocorreu um erro interno no inicializador. Por favor, reporte esse problema e forneça os arquivos de log do inicializador juntamente com seu relato de como você encontrou esse problema.</value>
+    <value>Ocorreu um erro interno no inicializador. Por favor, relate esse problema e forneça os arquivos de log do inicializador juntamente com seu relato de como você encontrou esse problema.</value>
   </data>
   <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
     <value>Deletar o Cache do DevBuild?</value>
@@ -574,5 +574,14 @@ Logs do Inicializador fornecerão informações mais detalhadas.</value>
   </data>
   <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
     <value>O tipo de inicializador que você está usando deveria ser capaz de atualizar automaticamente, mas não pôde por alguma razão e a versão mais recente do inicializador já está disponível. Por gentileza, verifique se não desabilitou a opção de manter o Thrive atualizado.</value>
+  </data>
+  <data name="DownloadingItem" xml:space="preserve">
+    <value>Fazendo o download de {0}</value>
+  </data>
+  <data name="ReportCrashButton" xml:space="preserve">
+    <value>Relatar erro</value>
+  </data>
+  <data name="CrashReporterWindowTitle" xml:space="preserve">
+    <value>Relator de Falhas do Thrive</value>
   </data>
 </root>
