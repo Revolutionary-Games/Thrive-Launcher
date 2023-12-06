@@ -548,4 +548,28 @@ Logs do Inicializador fornecerão informações mais detalhadas.</value>
   <data name="OutdatedLauncherTitle" xml:space="preserve">
     <value>Versão do Inicializador Desatualizada</value>
   </data>
+  <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
+    <value>Você está usando um tipo de inicializador que não pode atualizar automaticamente. Se você gostaria de usar atualizações automáticas no futuro, por favor instale uma variante do inicializador que tenha a capacidade de atualização automática.</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>Ocorreu um erro interno no inicializador. Por favor, reporte esse problema e forneça os arquivos de log do inicializador juntamente com seu relato de como você encontrou esse problema.</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>Deletar o Cache do DevBuild?</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>Você está prestes a excluir todos os arquivos contidos na pasta de cache desidratada em "{0}". Até mesmo arquivos não relacionados ao Thrive serão excluídos se estiverem nessa pasta. Deseja excluir o conteúdo da pasta?</value>
+  </data>
+  <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
+    <value>Se o jogo não iniciou corretamente, por favor tente as soluções alternativas de inicialização do Thrive disponíveis em "Opções do Thrive" nas configurações do inicializador</value>
+  </data>
+  <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
+    <value>O código de saída pode significar que está faltando um arquivo DLL necessário. Pode ser o Visual C++ Redistributable 2019, para o qual você pode baixar um instalador em: https://aka.ms/vs/17/release/vc_redist.x64.exe para instalar/reparar. Você também pode tentar executar o Thrive.exe manualmente, pois isso pode exibir um diálogo de erro com o nome do arquivo DLL que está faltando. Certifique-se de ter todas as atualizações do Windows instaladas. Se nada disso ajudar, por favor entre em contato conosco para assistência adicional.</value>
+  </data>
+  <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
+    <value>Foram detectados itens existentes no cache. Eles podem ser movidos para a nova localização automaticamente. Se não forem movidos, os arquivos serão deixados para trás e o inicializador não terá conhecimento deles até que o caminho anterior seja selecionado como a localização novamente. Gostaria de mover automaticamente {0} arquivo(s) para a nova localização? Note que, se existirem arquivos não relacionados ao Thrive na pasta de cache, eles também serão movidos.</value>
+  </data>
+  <data name="OutdatedLauncherExplanation" xml:space="preserve">
+    <value>Essa versão do inicializador está atrasada e deve ser atualizada. Como você está vendo esta mensagem, a atualização automática não foi iniciada, então você precisará baixar manualmente a atualização e instalá-la. Você pode tentar usar a versão atual do inicializador ignorando a atualização, mas é possível que você encontre problemas inesperados já que apenas a versão mais recente do inicializador é garantida para funcionar com os sistemas remotos com os quais o inicializador interage.</value>
+  </data>
 </root>
