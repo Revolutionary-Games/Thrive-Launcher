@@ -12,7 +12,8 @@
         Icon="/Assets/Icons/icon.ico"
         Title="{i18n:Localize MainWindowTitle}"
         FontFamily="{StaticResource Lato}"
-        Background="{DynamicResource MainWindowBackground}">
+        Background="{DynamicResource MainWindowBackground}"
+        RenderOptions.BitmapInterpolationMode="HighQuality">
 
     <Design.DataContext>
         <vm:MainWindowViewModel />

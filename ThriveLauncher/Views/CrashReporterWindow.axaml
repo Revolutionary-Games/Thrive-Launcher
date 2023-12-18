@@ -14,7 +14,8 @@
         Title="{i18n:Localize CrashReporterWindowTitle}"
         FontFamily="{StaticResource Lato}"
         Background="{DynamicResource MainWindowBackground}"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        RenderOptions.BitmapInterpolationMode="HighQuality">
 
     <Design.DataContext>
         <vm:CrashReporterWindowViewModel />
