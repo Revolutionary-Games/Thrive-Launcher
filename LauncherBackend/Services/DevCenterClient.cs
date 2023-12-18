@@ -107,7 +107,8 @@ public sealed class DevCenterClient : IDevCenterClient, IDisposable
 
             response.EnsureSuccessStatusCode();
 
-            var result = await JsonSerializer.DeserializeAsync<DevBuildLauncherDTO>(
+            var result =
+                await JsonSerializer.DeserializeAsync<DevBuildLauncherDTO>(
                     await response.Content.ReadAsStreamAsync()) ??
                 throw new NullDecodedJsonException();
 
@@ -137,7 +138,8 @@ public sealed class DevCenterClient : IDevCenterClient, IDisposable
 
             response.EnsureSuccessStatusCode();
 
-            var result = await JsonSerializer.DeserializeAsync<DevBuildSearchResults>(
+            var result =
+                await JsonSerializer.DeserializeAsync<DevBuildSearchResults>(
                     await response.Content.ReadAsStreamAsync()) ??
                 throw new NullDecodedJsonException();
 
@@ -224,7 +226,8 @@ public sealed class DevCenterClient : IDevCenterClient, IDisposable
 
             response.EnsureSuccessStatusCode();
 
-            var result = await JsonSerializer.DeserializeAsync<DehydratedObjectDownloads>(
+            var result =
+                await JsonSerializer.DeserializeAsync<DehydratedObjectDownloads>(
                     await response.Content.ReadAsStreamAsync()) ??
                 throw new NullDecodedJsonException();
 
@@ -256,7 +259,8 @@ public sealed class DevCenterClient : IDevCenterClient, IDisposable
 
             response.EnsureSuccessStatusCode();
 
-            var result = await JsonSerializer.DeserializeAsync<DevBuildSearchResults>(
+            var result =
+                await JsonSerializer.DeserializeAsync<DevBuildSearchResults>(
                     await response.Content.ReadAsStreamAsync()) ??
                 throw new NullDecodedJsonException();
 

@@ -459,8 +459,7 @@ public sealed class ThriveInstaller : IThriveInstaller, IDisposable
 
                 if (existingInstalledInfo.Id != devBuildVersion.ExactBuild!.Id)
                 {
-                    logger.LogInformation(
-                        "We have installed DevBuild {Id1} but we want to play {Id2}, " +
+                    logger.LogInformation("We have installed DevBuild {Id1} but we want to play {Id2}, " +
                         "deleting existing and downloading the right build",
                         existingInstalledInfo.Id, devBuildVersion.ExactBuild.Id);
                     delete = true;

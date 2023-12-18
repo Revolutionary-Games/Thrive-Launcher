@@ -498,8 +498,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         {
             if (platform == PackagePlatform.Windows32)
             {
-                throw new NotImplementedException(
-                    "Windows32 installer needs a suffix or something to not conflict");
+                throw new NotImplementedException("Windows32 installer needs a suffix or something to not conflict");
             }
 
             var nsisSource = ConvertArchiveNameToFolderName(platform, folderOrArchive);
@@ -662,12 +661,10 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                     case PackagePlatform.Linux:
                         // This is just here to make things work and copy the flatpak reference file instead of
                         // making an actual installer
-                        startInfo.ArgumentList.Add(
-                            "-p:MyConstants=\"LAUNCHER_DELAYED_UPDATE_NOTICE\"");
+                        startInfo.ArgumentList.Add("-p:MyConstants=\"LAUNCHER_DELAYED_UPDATE_NOTICE\"");
                         break;
                     case PackagePlatform.Windows:
-                        startInfo.ArgumentList.Add(
-                            "-p:MyConstants=\"LAUNCHER_UPDATER_WINDOWS\"");
+                        startInfo.ArgumentList.Add("-p:MyConstants=\"LAUNCHER_UPDATER_WINDOWS\"");
                         break;
                     case PackagePlatform.Windows32:
                         throw new NotImplementedException("Windows 32-bit auto update is not done");
@@ -684,12 +681,10 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 startInfo.ArgumentList.Add("-p:MyConstants=\"LAUNCHER_STEAM;LAUNCHER_NO_OUTDATED_NOTICE\"");
                 break;
             case LauncherExportType.Itch:
-                startInfo.ArgumentList.Add(
-                    "-p:MyConstants=\"LAUNCHER_ITCH;LAUNCHER_DELAYED_UPDATE_NOTICE\"");
+                startInfo.ArgumentList.Add("-p:MyConstants=\"LAUNCHER_ITCH;LAUNCHER_DELAYED_UPDATE_NOTICE\"");
                 break;
             case LauncherExportType.Flatpak:
-                startInfo.ArgumentList.Add(
-                    "-p:MyConstants=\"LAUNCHER_DELAYED_UPDATE_NOTICE\"");
+                startInfo.ArgumentList.Add("-p:MyConstants=\"LAUNCHER_DELAYED_UPDATE_NOTICE\"");
                 break;
         }
 
@@ -838,8 +833,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         if (result.ExitCode != 0)
         {
-            ColourConsole.WriteErrorLine(
-                $"Running codesign on '{filePath}' failed. " +
+            ColourConsole.WriteErrorLine($"Running codesign on '{filePath}' failed. " +
                 "Are xcode tools installed and do you have the right certificates installed / " +
                 "self-signed certificate created?");
             return false;

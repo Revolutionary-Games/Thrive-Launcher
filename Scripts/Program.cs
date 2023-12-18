@@ -24,8 +24,7 @@ public class Program
         var result = CommandLineHelpers.CreateParser()
             .ParseArguments<CheckOptions, TestOptions, ChangesOptions, IconsOptions, ContainerOptions,
                 PackageOptions, CleanOptions>(args)
-            .MapResult(
-                (CheckOptions opts) => RunChecks(opts),
+            .MapResult((CheckOptions opts) => RunChecks(opts),
                 (TestOptions opts) => RunTests(opts),
                 (ChangesOptions opts) => RunChangesFinding(opts),
                 (IconsOptions opts) => RunIcons(opts),

@@ -259,9 +259,8 @@ public class Rehydrator : IRehydrator
             }
 
             // Setup parallel download tasks
-            foreach (var downloadsChunk in downloads.Chunk(
-                         (int)Math.Ceiling(downloads.Count /
-                             (float)LauncherConstants.SimultaneousRehydrationDownloads)))
+            foreach (var downloadsChunk in downloads.Chunk((int)Math.Ceiling(downloads.Count /
+                         (float)LauncherConstants.SimultaneousRehydrationDownloads)))
             {
                 downloadTasks.Add(DownloadChunkOfDehydratedObjects(downloadsChunk, ReportOverallProgress,
                     inProgressOperations, cancellationToken));

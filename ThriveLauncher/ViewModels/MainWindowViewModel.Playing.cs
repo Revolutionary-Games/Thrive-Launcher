@@ -709,8 +709,7 @@ public partial class MainWindowViewModel
 
     private async Task CloseLauncherAfterStart()
     {
-        logger.LogInformation(
-            "Closing the launcher window as launcher options specify to close after game start");
+        logger.LogInformation("Closing the launcher window as launcher options specify to close after game start");
 
         // We have no relevant cancellation token here
         // ReSharper disable once MethodSupportsCancellation
@@ -784,8 +783,7 @@ public partial class MainWindowViewModel
             // Restore the playing title to not leave it awkwardly blank
             if (thriveRunner.PlayedThriveVersion == null)
             {
-                logger.LogWarning(
-                    "Could not detect played version from Thrive runner, play popup title will be blank");
+                logger.LogWarning("Could not detect played version from Thrive runner, play popup title will be blank");
             }
             else
             {

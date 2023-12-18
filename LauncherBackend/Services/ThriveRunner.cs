@@ -652,8 +652,7 @@ public class ThriveRunner : IThriveRunner
                 DetectedFullLogFileLocation = $"{match.Groups[1].Value}/{match.Groups[2].Value}";
                 DetectedThriveDataFolder = Path.GetDirectoryName(match.Groups[1].Value);
 
-                logger.LogDebug(
-                    "Detected Thrive log location as: {DetectedFullLogFileLocation}, and data folder: " +
+                logger.LogDebug("Detected Thrive log location as: {DetectedFullLogFileLocation}, and data folder: " +
                     "{DetectedThriveDataFolder}",
                     DetectedFullLogFileLocation, DetectedThriveDataFolder);
             }

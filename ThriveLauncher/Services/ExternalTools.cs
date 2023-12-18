@@ -86,8 +86,7 @@ public class ExternalTools : IExternalTools
         logger.LogDebug("godotpcktool exited with code: {ExitCode}", result.ExitCode);
         if (result.ExitCode != 0)
         {
-            throw new Exception(
-                $"Godotpcktool .pck modification failed to run, exit code: {result.ExitCode}, " +
+            throw new Exception($"Godotpcktool .pck modification failed to run, exit code: {result.ExitCode}, " +
                 $"output: {output.ToString().Truncate(300)}");
         }
     }

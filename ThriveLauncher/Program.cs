@@ -114,8 +114,8 @@ internal class Program
             .AddSingleton<ViewLocator>()
             .AddSingleton<ILauncherTranslations, LauncherTranslationProxy>()
             .AddSingleton<IBackgroundExceptionNoticeDisplayer, BackgroundExceptionHandler>()
-            .AddSingleton<IBackgroundExceptionHandler>(
-                sp => sp.GetRequiredService<IBackgroundExceptionNoticeDisplayer>())
+            .AddSingleton<IBackgroundExceptionHandler>(sp =>
+                sp.GetRequiredService<IBackgroundExceptionNoticeDisplayer>())
             .AddScoped<IExternalTools, ExternalTools>();
 
         bool verboseState = options.Verbose == true;
