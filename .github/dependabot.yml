@@ -7,3 +7,9 @@ updates:
     labels:
       - "review"
       - "dependencies"
+  - package-ecosystem: gitsubmodule
+    directory: "/"
+    schedule:
+        interval: "daily"
+    labels:
+      - "review"
