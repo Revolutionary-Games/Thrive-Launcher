@@ -5,8 +5,8 @@ jobs:
     image: thrive/launcher:v5
     cache:
       loadFrom:
-        - v4-{Branch}-build
-      writeTo: v4-{Branch}-build
+        - v5-{Branch}-build
+      writeTo: v5-{Branch}-build
       system:
         /root/.nuget: v3-nuget
     steps:
@@ -19,11 +19,11 @@ jobs:
           name: Test
           command: dotnet test
   lint:
-    image: thrive/launcher:v4
+    image: thrive/launcher:v5
     cache:
       loadFrom:
-        - v4-{Branch}-build
-      writeTo: v4-{Branch}-build
+        - v5-{Branch}-build
+      writeTo: v5-{Branch}-build
       system:
         /root/.nuget: v3-nuget
     steps:
