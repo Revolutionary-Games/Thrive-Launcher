@@ -1,5 +1,3 @@
 namespace LauncherBackend.Models;
 
-public abstract class ParsedFeedContent
-{
-}
+public abstract class ParsedFeedContent;

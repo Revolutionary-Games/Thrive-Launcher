@@ -149,14 +149,10 @@ public class Program
         }
     }
 
-    public class CheckOptions : CheckOptionsBase
-    {
-    }
+    public class CheckOptions : CheckOptionsBase;
 
     [Verb("test", HelpText = "Run tests using 'dotnet' command")]
-    public class TestOptions : ScriptOptionsBase
-    {
-    }
+    public class TestOptions : ScriptOptionsBase;
 
     public class ChangesOptions : ChangesOptionsBase
     {
@@ -165,9 +161,7 @@ public class Program
     }
 
     [Verb("icons", HelpText = "Generate icons needed by the launcher from source files")]
-    public class IconsOptions : ScriptOptionsBase
-    {
-    }
+    public class IconsOptions : ScriptOptionsBase;
 
     public class ContainerOptions : ContainerOptionsBase
     {
@@ -221,7 +215,5 @@ public class Program
     }
 
     [Verb("clean", HelpText = "Clean binaries (package upgrades can break deploy and this fixes that)")]
-    public class CleanOptions : ScriptOptionsBase
-    {
-    }
+    public class CleanOptions : ScriptOptionsBase;
 }
