@@ -594,8 +594,20 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
         }
 
         // Otherwise just select the latest version
-        SelectedVersionToPlay = availableThings.Where(t => t.VersionObject is PlayableVersion)
-            .First(t => ((PlayableVersion)t.VersionObject).IsLatest).VersionObject.VersionName;
+        try
+        {
+            SelectedVersionToPlay = availableThings.Where(t => t.VersionObject is PlayableVersion)
+                .First(t => ((PlayableVersion)t.VersionObject).IsLatest).VersionObject.VersionName;
+        }
+        catch (InvalidOperationException e)
+        {
+            logger.LogDebug(e, "Cannot select latest version as it is probably not available for this platform");
+
+            // Instead select latest version that is available
+            // TODO: add smarter version based sorting if necessary
+            SelectedVersionToPlay = availableThings.Where(t => t.VersionObject is PlayableVersion)
+                .Reverse().Select(t => (PlayableVersion)t.VersionObject).First().VersionName;
+        }
     }
 
     private void NotifyChangesToAvailableVersions()
