@@ -20,22 +20,22 @@
     </Design.DataContext>
 
     <Window.KeyBindings>
-        <KeyBinding Gesture="Alt+D" Command="{Binding DevCenterViewActivation}">
+        <KeyBinding Gesture="Alt+D" Command="{Binding DevCenterKeyCommand, Mode=OneWay}">
             <KeyBinding.CommandParameter>
                 <x:Int32>0</x:Int32>
             </KeyBinding.CommandParameter>
         </KeyBinding>
-        <KeyBinding Gesture="Alt+E" Command="{Binding DevCenterViewActivation}">
+        <KeyBinding Gesture="Alt+E" Command="{Binding DevCenterKeyCommand, Mode=OneWay}">
             <KeyBinding.CommandParameter>
                 <x:Int32>1</x:Int32>
             </KeyBinding.CommandParameter>
         </KeyBinding>
-        <KeyBinding Gesture="Alt+V" Command="{Binding DevCenterViewActivation}">
+        <KeyBinding Gesture="Alt+V" Command="{Binding DevCenterKeyCommand, Mode=OneWay}">
             <KeyBinding.CommandParameter>
                 <x:Int32>2</x:Int32>
             </KeyBinding.CommandParameter>
         </KeyBinding>
-        <KeyBinding Gesture="Alt+C" Command="{Binding DevCenterViewActivation}">
+        <KeyBinding Gesture="Alt+C" Command="{Binding DevCenterKeyCommand, Mode=OneWay}">
             <KeyBinding.CommandParameter>
                 <x:Int32>3</x:Int32>
             </KeyBinding.CommandParameter>

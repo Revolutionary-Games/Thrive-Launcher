@@ -91,6 +91,8 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
         this.backgroundExceptionNoticeDisplayer = backgroundExceptionNoticeDisplayer;
         this.loggingManager = loggingManager;
 
+        DevCenterKeyCommand = ReactiveCommand.Create<int>(DevCenterViewActivation);
+
         availableLanguages = Languages.GetAvailableLanguages();
 
         languagePlaceHolderIfNotSelected = Languages
@@ -167,6 +169,7 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
         DesignTimeServices.Services.GetRequiredService<ILoggingManager>(), false)
     {
         languagePlaceHolderIfNotSelected = string.Empty;
+        DevCenterKeyCommand = null!;
     }
 
     public bool HasNoticeMessage =>

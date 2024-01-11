@@ -2,6 +2,7 @@ namespace ThriveLauncher.ViewModels;
 
 using System;
 using System.Collections.Generic;
+using System.Reactive;
 using System.Threading.Tasks;
 using Avalonia.Threading;
 using DevCenterCommunication.Models;
@@ -192,6 +193,8 @@ public partial class MainWindowViewModel
     }
 
     public DevCenterConnection? DevCenterConnection => devCenterClient.DevCenterConnection;
+
+    public ReactiveCommand<int, Unit> DevCenterKeyCommand { get; }
 
     public void OpenDevCenterConnectionMenu()
     {
