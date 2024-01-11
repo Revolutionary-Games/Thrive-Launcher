@@ -41,7 +41,8 @@ public partial class MainWindowViewModel
     private string fileMoveOfferTitle = string.Empty;
     private string fileMoveOfferContent = string.Empty;
     private string fileMoveOfferError = string.Empty;
-    private float? fileMoveProgress;
+    private bool hasFileMoveProgress;
+    private float fileMoveProgress;
     private bool canAnswerFileMovePrompt;
 
     // Internal move variables, not exposed to the GUI
@@ -148,10 +149,20 @@ public partial class MainWindowViewModel
         private set => this.RaiseAndSetIfChanged(ref fileMoveOfferError, value);
     }
 
-    public float? FileMoveProgress
+    public float FileMoveProgress
     {
         get => fileMoveProgress;
-        private set => this.RaiseAndSetIfChanged(ref fileMoveProgress, value);
+        private set
+        {
+            HasFileMoveProgress = true;
+            this.RaiseAndSetIfChanged(ref fileMoveProgress, value);
+        }
+    }
+
+    public bool HasFileMoveProgress
+    {
+        get => hasFileMoveProgress;
+        private set => this.RaiseAndSetIfChanged(ref hasFileMoveProgress, value);
     }
 
     public Task<string> DehydrateCacheSize =>
@@ -607,7 +618,7 @@ public partial class MainWindowViewModel
         HasPendingFileMoveOffer = true;
         CanAnswerFileMovePrompt = true;
         FileMoveOfferError = string.Empty;
-        FileMoveProgress = null;
+        HasFileMoveProgress = false;
 
         fileMoveOfferFiles = filesToMove;
         fileMoveOfferTarget = newFolder;

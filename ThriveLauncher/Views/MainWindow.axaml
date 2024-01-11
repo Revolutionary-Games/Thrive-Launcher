@@ -656,7 +656,7 @@
 
                 <ProgressBar DockPanel.Dock="Top" Minimum="0" Maximum="1"
                              Value="{Binding FileMoveProgress,Mode=OneWay}"
-                             IsVisible="{Binding FileMoveProgress,Converter={x:Static ObjectConverters.IsNotNull}}" />
+                             IsVisible="{Binding HasFileMoveProgress}" />
             </DockPanel>
         </controls:PopupDialog>
 
