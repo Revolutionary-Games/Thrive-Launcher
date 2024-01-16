@@ -544,6 +544,10 @@ internal class Program
         foreach (var cultureInfo in Languages.GetLanguagesEnumerable()
                      .OrderBy(l => l.NativeName, StringComparer.Create(sortingLocale, true)))
         {
+            // Skip the default language not meant to be in the list
+            if (cultureInfo.Equals(sortingLocale))
+                continue;
+
             message.Append($"\"{cultureInfo.Name}\",\n");
         }
 

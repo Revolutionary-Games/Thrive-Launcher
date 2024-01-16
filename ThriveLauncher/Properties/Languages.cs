@@ -26,9 +26,11 @@ public static class Languages
     /// </summary>
     private static readonly string[] AdditionalAvailableLanguages =
     {
+        "cs-CZ",
         "de-DE",
         "fr-FR",
         "it-IT",
+        "lt-LT",
         "nl-NL",
         "pl-PL",
         "pt-BR",
@@ -37,6 +39,7 @@ public static class Languages
         "sv-SE",
         "tr-TR",
         "bg-BG",
+        "mk-MK",
         "ru-RU",
         "uk-UA",
 
