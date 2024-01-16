@@ -558,4 +558,124 @@ Laukaisijan lokeissa on lisätietoa.</value>
   <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
     <value>Jos peli ei käynnistynyt oikein, ole hyvä ja kokeile Thriven käynnistämisongelmien kiertämisasetuksia, jotka löytyvät laukaisijan asetuksista "Thriven asetukset" -kohdasta</value>
   </data>
+  <data name="AcceptUnsafeBuildButton" xml:space="preserve">
+    <value>Ymmärrän riskin, pelaa kuitenkin</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>Kaikki allekirjoitusten vahvistussertifikaatit, jotka tämä laukaisijan versio sisältää, ovat vanhentuneet. Tämä tarkoittaa, että tämä laukaisijan versio on erittäin vanhentunut. Uuden version lataaminen ja asentaminen on erittäin suositeltavaa.</value>
+  </data>
+  <data name="AutoCloseStopped" xml:space="preserve">
+    <value>automaattinen sulkeutuminen peruttu</value>
+  </data>
+  <data name="AutoUpdateError" xml:space="preserve">
+    <value>Automaattisen päivityksen virhe</value>
+  </data>
+  <data name="AutoUpdateFailedTitle" xml:space="preserve">
+    <value>Laukaisijan päivitys epäonnistui</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+    <value>Poista kaikki tiedostot dehydratoitujen tiedostojen välimuistissa. Jos sijainti ei ole oletus, siellä voi olla muita kuin Thriveen liittyviä tiedostoja, jotka myös poistetaan.</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>Poista kehitysversiovälimuisti?</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>Olet poistamassa kaikki tiedostot, jotka ovat dehydratoitujen tiedostojen välimuistissa sijainnissa "{0}". Myös Thriveen liittymättömät tiedostot poistetaan, jotka ovat tässä kansiossa. Poista tämän kansion sisältö?</value>
+  </data>
+  <data name="AutoUpdateMissingChannel" xml:space="preserve">
+    <value>Päivitystä ei voida yrittää uudelleen sillä tämä laukaisijan tyyppiin ei liity päivityskanavaa</value>
+  </data>
+  <data name="StopAutoClose" xml:space="preserve">
+    <value>Peruuta sulkeminen</value>
+  </data>
+  <data name="RetryingAutoUpdate" xml:space="preserve">
+    <value>Yritetään automaattista päivitystä uudelleen...</value>
+  </data>
+  <data name="SecondsDisplayPlural" xml:space="preserve">
+    <value>{0} sekuntia</value>
+  </data>
+  <data name="SecondsDisplaySingular" xml:space="preserve">
+    <value>1 sekunti</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Lähetä</value>
+  </data>
+  <data name="SubmitRetryButton" xml:space="preserve">
+    <value>Yritä uudelleen</value>
+  </data>
+  <data name="TimeMomentRightNow" xml:space="preserve">
+    <value>Juuri nyt</value>
+  </data>
+  <data name="UnknownNumber" xml:space="preserve">
+    <value>tuntematon</value>
+  </data>
+  <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
+    <value>Ladattu laukaisijan info on virheellinen. Ole hyvä ja yritä uudelleen hetken päästä, ja jos ongelma jatkuu, ota meihin yhteyttä.</value>
+  </data>
+  <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
+    <value>Version asennus tai asennetun version tarkistus epäonnistui, alla on lisää tietoa tästä virheestä.</value>
+  </data>
+  <data name="ViewFile" xml:space="preserve">
+    <value>Katsele</value>
+  </data>
+  <data name="ViewFirstAutoUpdaterFolder" xml:space="preserve">
+    <value>Avaa kansio, joka sisältää ensimmäisen päivittäjän</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>Katso laukaisijan lisenssit</value>
+  </data>
+  <data name="ThriveRunRetryStarting" xml:space="preserve">
+    <value>Thriveä ei tunnistettu käynnistyneeksi okein. Yritetään käynnistää Thrive uudelleen, yrityksen numero: {0}</value>
+  </data>
+  <data name="ThriveRunError" xml:space="preserve">
+    <value>Thriven suoritus kohtasi virheen: {0}</value>
+  </data>
+  <data name="ThriveFolderPrepareFailed" xml:space="preserve">
+    <value>Thriven kansion valmistelu epännostui virheellä: {0}</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thrive on jo käynnistetty, ole hyvä ja sulje se ja yritä sitten uudelleen</value>
+  </data>
+  <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
+    <value>Raporttisi on onnistuneesti lähetetty. Kiitos raportistasi.</value>
+  </data>
+  <data name="SubmittingReportMessage" xml:space="preserve">
+    <value>Lähetetään raporttia. Ole hyvä ja odota, raportin lähetys voi kestää jopa pari minuuttia...</value>
+  </data>
+  <data name="SubmittingReportExtraInfo" xml:space="preserve">
+    <value>Lisätietoja ongelmaan liittyen:</value>
+  </data>
+  <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
+    <value>Tämä välilehti listaa ulkoisesti asennetut versiot. Tämä on kaupan versio Thrivestä, joka sisältää matkassa (viimeisimmän) pelin version. Ulkoiset versioit voidaan ottaa käyttöön laukaisijan asetuksista, jonka jälkeen ne näkyvät pelin version valitsimessa. Kun sellainen versio on ladattu, se tulee näkyviin tänne.</value>
+  </data>
+  <data name="StartedAutoUpdateExplanation" xml:space="preserve">
+    <value>Laukaisija lataa ja asentaa päivitystä, ole hyvä ja odota. Ladattu asennusohjelma voi avata uuden ikkunan, joka vaatii käyttäjän interaktiota, jotta päivityksen asennus saadaan valmiiksi.</value>
+  </data>
+  <data name="SelectCrashToReport" xml:space="preserve">
+    <value>Valitse kaatuminen raportoitavaksi klikkaamalla sen nimeä</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>Roboto-fonttia käytetään laukaisijassa, Roboto-fontin lisenssi:</value>
+  </data>
+  <data name="RehydrationStarting" xml:space="preserve">
+    <value>Tämä on dehydratoitu koontiversio. Aloitetaan rehydraatio.</value>
+  </data>
+  <data name="RehydrationFailed" xml:space="preserve">
+    <value>Rehydraatio epäonnistui virheen vuoksi: {0}</value>
+  </data>
+  <data name="QuitLauncherButton" xml:space="preserve">
+    <value>Sulje laukaisija nyt</value>
+  </data>
+  <data name="PlayUnsafeBuildTitle" xml:space="preserve">
+    <value>Pelataanko epäturvallista koontiversiota?</value>
+  </data>
+  <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
+    <value>Epäturvallisen koontiversion pelaaminen peruttiin</value>
+  </data>
+  <data name="PerformingAutoUpdateTitle" xml:space="preserve">
+    <value>Päivitetään laukaisijaa</value>
+  </data>
+  <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
+    <value>DevBuildin pelattava tyyppi (kun DevBuild versio on valittu pelattavaksi)</value>
+  </data>
 </root>
