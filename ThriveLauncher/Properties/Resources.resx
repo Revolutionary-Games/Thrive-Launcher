@@ -815,6 +815,9 @@ If a Thrive team member verifies that the PR is safe this warning goes away. Alt
   <data name="SelectCrashToReport" xml:space="preserve">
     <value>Select a crash to report by clicking its name</value>
   </data>
+  <data name="NoAvailableCrashesToReport" xml:space="preserve">
+    <value>No crashes detected that could be reported</value>
+  </data>
   <data name="CrashReportDeleteAfterSubmitting" xml:space="preserve">
     <value>Delete this crash dump file after reporting (recommended)</value>
   </data>

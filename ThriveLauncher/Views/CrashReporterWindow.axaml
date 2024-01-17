@@ -38,6 +38,9 @@
                 <StackPanel Spacing="5" Name="AvailableCrashesToReportList" />
             </ScrollViewer>
 
+            <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Text="{i18n:Localize NoAvailableCrashesToReport}"
+                       IsVisible="{Binding HasNoCrashesAvailable}" />
+
         </DockPanel>
 
         <!-- reporting a crash -->

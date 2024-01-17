@@ -105,8 +105,14 @@ public class CrashReporterWindowViewModel : ViewModelBase
     public List<ReportableCrash> AvailableCrashesToPick
     {
         get => availableCrashesToPick;
-        set => this.RaiseAndSetIfChanged(ref availableCrashesToPick, value);
+        set
+        {
+            this.RaiseAndSetIfChanged(ref availableCrashesToPick, value);
+            this.RaisePropertyChanged(nameof(HasNoCrashesAvailable));
+        }
     }
+
+    public bool HasNoCrashesAvailable => AvailableCrashesToPick.Count < 1;
 
     public List<string> AvailableLogFilesToAttach
     {

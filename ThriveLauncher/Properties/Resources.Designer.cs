@@ -1545,6 +1545,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string NoAvailableCrashesToReport {
+            get {
+                return ResourceManager.GetString("NoAvailableCrashesToReport", resourceCulture);
+            }
+        }
+        
         public static string CrashReportDeleteAfterSubmitting {
             get {
                 return ResourceManager.GetString("CrashReportDeleteAfterSubmitting", resourceCulture);
