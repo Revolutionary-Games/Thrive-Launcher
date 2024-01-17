@@ -179,126 +179,25 @@ internal class Program
         var options = services.GetRequiredService<Options>();
         var runner = services.GetRequiredService<IThriveRunner>();
 
-        if (options.Verbose == true)
-            programLogger.LogDebug("Verbose logging is enabled");
+        var settingsManager = LoadAndApplySettings(services, programLogger, options, out var settings);
 
-        programLogger.LogDebug("Current process culture (language) is: {CurrentCulture}", CultureInfo.CurrentCulture);
+        ApplyLoggingSettings(services, programLogger, settings);
 
-        var uiCulture = CultureInfo.DefaultThreadCurrentUICulture ?? CultureInfo.CurrentUICulture;
+        ApplyWantedLocale(programLogger, settings, options);
 
-        if (!Equals(uiCulture, CultureInfo.CurrentCulture))
-        {
-            programLogger.LogWarning("Startup current culture doesn't match UI culture ({UICulture})", uiCulture);
-        }
+        var temporaryFilesHandler = services.GetRequiredService<TemporaryFilesCleaner>();
 
-        programLogger.LogDebug("Startup launcher language is: {StartupLanguage}", Languages.GetStartupLanguage());
-
-        programLogger.LogDebug("Loading settings");
-        var settingsManager = services.GetRequiredService<ILauncherSettingsManager>();
-        var settings = settingsManager.Settings;
-        programLogger.LogDebug("Settings loaded");
-
-        var logManager = services.GetRequiredService<ILoggingManager>();
-
-        if (settings.VerboseLogging)
-        {
-            programLogger.LogInformation(
-                "Enabling verbose logging based on saved launcher settings, note that to get all startup logging " +
-                "in verbose mode a command line flag is required");
-            logManager.ApplyVerbosityOption(true);
-        }
-        else
-        {
-            // The verbosity apply will log the new settings so that ends with two prints if we did this anyway, that's
-            // why this is inside an if
-            logManager.LogLoggingOptions();
-        }
-
-        if (!string.IsNullOrEmpty(settings.SelectedLauncherLanguage) || !string.IsNullOrEmpty(options.Language))
-        {
-            var language = settings.SelectedLauncherLanguage;
-
-            // Command line language overrides launcher configured language
-            if (string.IsNullOrEmpty(language) || !string.IsNullOrEmpty(options.Language))
-            {
-                programLogger.LogInformation("Using command line defined language: {Language}", options.Language);
-
-                try
-                {
-                    language = new CultureInfo(options.Language!).NativeName;
-                }
-                catch (Exception e)
-                {
-                    programLogger.LogError(e, "Command line specified language is incorrect (format example: en-GB)");
-                }
-            }
-
-            programLogger.LogInformation("Applying configured language: {Language}", language);
-
-            try
-            {
-                Languages.SetLanguage(language!);
-            }
-            catch (Exception e)
-            {
-                programLogger.LogError(e, "Failed to apply configured language, using default");
-                programLogger.LogInformation("Available languages: {Languages}",
-                    Languages.GetLanguagesEnumerable().Select(l => l.Name));
-            }
-        }
-        else
-        {
-            var availableCultures = Languages.GetAvailableLanguages();
-            var currentlyUsed = Languages.GetCurrentlyUsedCulture(availableCultures);
-
-            programLogger.LogInformation(
-                "No language selected, making sure default is applied. Detected default language: {Name}",
-                currentlyUsed.Name);
-
-            Languages.SetLanguage(currentlyUsed);
-        }
-
-        programLogger.LogInformation("Launcher language (culture) is: {CurrentCulture}", CultureInfo.CurrentCulture);
+        // This is fine to allow just run in the background
+        services.GetRequiredService<IBackgroundExceptionHandler>().HandleTask(temporaryFilesHandler.Perform());
 
         var storeVersionInfo = services.GetRequiredService<IStoreVersionDetector>().Detect();
         var isStore = storeVersionInfo.IsStoreVersion;
 
-        if (isStore)
+        // Store version can run Thrive in seamless mode after which the launcher wants to quit
+        if (HandleStoreVersionLogic(programLogger, isStore, settings, options, settingsManager, storeVersionInfo,
+                runner))
         {
-            programLogger.LogInformation("This is the store version of the launcher");
-
-            if (settings.EnableStoreVersionSeamlessMode)
-            {
-                if (!options.AllowSeamlessMode || options.DisableSeamlessMode)
-                {
-                    programLogger.LogInformation("Seamless launcher mode is disabled by command line options");
-                }
-                else
-                {
-                    programLogger.LogInformation(
-                        "Using seamless launcher mode, will attempt to launch before initializing GUI");
-
-                    // If we failed to start, then fallback to normal launcher operation (so only check running status
-                    // if we actually got to start Thrive)
-                    if (TryStartSeamlessMode(programLogger, settingsManager, storeVersionInfo, runner))
-                    {
-                        if (WaitForRunningThriveToExit(runner, programLogger))
-                        {
-                            programLogger.LogInformation("Exiting directly after playing Thrive in seamless mode, " +
-                                "as launcher doesn't want to be shown");
-                            return;
-                        }
-
-                        programLogger.LogInformation("Launcher wants to be shown after Thrive run in seamless mode");
-                        runner.LaunchedInSeamlessMode = false;
-                    }
-                }
-            }
-            else
-            {
-                programLogger.LogInformation(
-                    "Seamless launcher mode is disabled due to the launcher options being turned off by the user");
-            }
+            return;
         }
 
         programLogger.LogInformation("Launcher starting GUI");
@@ -348,7 +247,146 @@ internal class Program
         }
         while (keepShowingLauncher);
 
+        temporaryFilesHandler.OnShutdown();
+
         programLogger.LogInformation("Launcher process exiting normally");
+    }
+
+    private static ILauncherSettingsManager LoadAndApplySettings(ServiceProvider services, ILogger programLogger,
+        Options options, out LauncherSettings settings)
+    {
+        if (options.Verbose == true)
+            programLogger.LogDebug("Verbose logging is enabled");
+
+        programLogger.LogDebug("Current process culture (language) is: {CurrentCulture}", CultureInfo.CurrentCulture);
+
+        var uiCulture = CultureInfo.DefaultThreadCurrentUICulture ?? CultureInfo.CurrentUICulture;
+
+        if (!Equals(uiCulture, CultureInfo.CurrentCulture))
+        {
+            programLogger.LogWarning("Startup current culture doesn't match UI culture ({UICulture})", uiCulture);
+        }
+
+        programLogger.LogDebug("Startup launcher language is: {StartupLanguage}", Languages.GetStartupLanguage());
+
+        programLogger.LogDebug("Loading settings");
+        var settingsManager = services.GetRequiredService<ILauncherSettingsManager>();
+        settings = settingsManager.Settings;
+        programLogger.LogDebug("Settings loaded");
+        return settingsManager;
+    }
+
+    private static void ApplyWantedLocale(ILogger programLogger, LauncherSettings settings, Options options)
+    {
+        if (!string.IsNullOrEmpty(settings.SelectedLauncherLanguage) || !string.IsNullOrEmpty(options.Language))
+        {
+            var language = settings.SelectedLauncherLanguage;
+
+            // Command line language overrides launcher configured language
+            if (string.IsNullOrEmpty(language) || !string.IsNullOrEmpty(options.Language))
+            {
+                programLogger.LogInformation("Using command line defined language: {Language}", options.Language);
+
+                try
+                {
+                    language = new CultureInfo(options.Language!).NativeName;
+                }
+                catch (Exception e)
+                {
+                    programLogger.LogError(e, "Command line specified language is incorrect (format example: en-GB)");
+                }
+            }
+
+            programLogger.LogInformation("Applying configured language: {Language}", language);
+
+            try
+            {
+                Languages.SetLanguage(language!);
+            }
+            catch (Exception e)
+            {
+                programLogger.LogError(e, "Failed to apply configured language, using default");
+                programLogger.LogInformation("Available languages: {Languages}",
+                    Languages.GetLanguagesEnumerable().Select(l => l.Name));
+            }
+        }
+        else
+        {
+            var availableCultures = Languages.GetAvailableLanguages();
+            var currentlyUsed = Languages.GetCurrentlyUsedCulture(availableCultures);
+
+            programLogger.LogInformation(
+                "No language selected, making sure default is applied. Detected default language: {Name}",
+                currentlyUsed.Name);
+
+            Languages.SetLanguage(currentlyUsed);
+        }
+
+        programLogger.LogInformation("Launcher language (culture) is: {CurrentCulture}", CultureInfo.CurrentCulture);
+    }
+
+    private static void ApplyLoggingSettings(ServiceProvider services, ILogger programLogger, LauncherSettings settings)
+    {
+        var logManager = services.GetRequiredService<ILoggingManager>();
+
+        if (settings.VerboseLogging)
+        {
+            programLogger.LogInformation(
+                "Enabling verbose logging based on saved launcher settings, note that to get all startup logging " +
+                "in verbose mode a command line flag is required");
+            logManager.ApplyVerbosityOption(true);
+        }
+        else
+        {
+            // The verbosity apply will log the new settings so that ends with two prints if we did this anyway, that's
+            // why this is inside an if
+            logManager.LogLoggingOptions();
+        }
+    }
+
+    private static bool HandleStoreVersionLogic(ILogger programLogger, bool isStore, LauncherSettings settings,
+        Options options, ILauncherSettingsManager settingsManager, StoreVersionInfo storeVersionInfo,
+        IThriveRunner runner)
+    {
+        if (isStore)
+        {
+            programLogger.LogInformation("This is the store version of the launcher");
+
+            if (settings.EnableStoreVersionSeamlessMode)
+            {
+                if (!options.AllowSeamlessMode || options.DisableSeamlessMode)
+                {
+                    programLogger.LogInformation("Seamless launcher mode is disabled by command line options");
+                }
+                else
+                {
+                    programLogger.LogInformation(
+                        "Using seamless launcher mode, will attempt to launch before initializing GUI");
+
+                    // If we failed to start, then fallback to normal launcher operation (so only check running status
+                    // if we actually got to start Thrive)
+                    if (TryStartSeamlessMode(programLogger, settingsManager, storeVersionInfo, runner))
+                    {
+                        if (WaitForRunningThriveToExit(runner, programLogger))
+                        {
+                            programLogger.LogInformation("Exiting directly after playing Thrive in seamless mode, " +
+                                "as launcher doesn't want to be shown");
+                            return true;
+                        }
+
+                        programLogger.LogInformation("Launcher wants to be shown after Thrive run in seamless mode");
+                        runner.LaunchedInSeamlessMode = false;
+                    }
+                }
+            }
+            else
+            {
+                programLogger.LogInformation(
+                    "Seamless launcher mode is disabled due to the launcher options being turned off by the user");
+            }
+        }
+
+        return false;
     }
 
     private static AppBuilder BuildAvaloniaAppWithServices(IServiceProvider serviceProvider)
