@@ -346,6 +346,16 @@ public class Rehydrator : IRehydrator
             if (hash != download.Sha3)
             {
                 logger.LogError("Downloaded dehydrated object hash doesn't match what it should be");
+
+                try
+                {
+                    File.Delete(tempTarget);
+                }
+                catch (Exception e)
+                {
+                    logger.LogError(e, "Failed to delete incorrectly downloaded dehydrated object");
+                }
+
                 throw new Exception("Downloaded dehydrated object doesn't have the correct hash");
             }
 
