@@ -201,8 +201,20 @@ public partial class MainWindowViewModel
             if (Settings.TemporaryDownloadsFolder == value)
                 return;
 
+            SetTemporaryLocationTo(value);
+        }
+    }
+
+    public bool AutoCleanTemporaryFolder
+    {
+        get => Settings.AutoCleanTemporaryFolder;
+        set
+        {
+            if (Settings.AutoCleanTemporaryFolder == value)
+                return;
+
             this.RaisePropertyChanging();
-            Settings.TemporaryDownloadsFolder = value;
+            Settings.AutoCleanTemporaryFolder = value;
             this.RaisePropertyChanged();
         }
     }

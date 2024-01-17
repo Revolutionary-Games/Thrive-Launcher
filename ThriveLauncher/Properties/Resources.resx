@@ -214,6 +214,9 @@
   <data name="LauncherOptionVerboseLogging" xml:space="preserve">
       <value>Enable launcher debug logging (before reporting an issue or bug with the launcher please enable this and restart the launcher)</value>
   </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+      <value>Automatically delete old files in the temporary folder</value>
+  </data>
   <data name="ResetAllSettings" xml:space="preserve">
       <value>Reset All Settings</value>
   </data>
@@ -240,6 +243,9 @@
   </data>
   <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
       <value>Note: moving temporary location won't move or delete existing files to prevent accidentally touching files unrelated to Thrive</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>Any old files will be automatically deleted from the temporary folder on launcher restart. As a result the temporary files folder should not be shared with other uses than Thrive to avoid accidental unrelated file deletion.</value>
   </data>
   <data name="SelectTemporaryFilesLocation" xml:space="preserve">
       <value>Select Temporary Files Location</value>

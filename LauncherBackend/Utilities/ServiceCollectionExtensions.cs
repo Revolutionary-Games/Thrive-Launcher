@@ -18,6 +18,7 @@ public static class ServiceCollectionExtensions
             .AddSingleton<IThriveInstaller, ThriveInstaller>()
             .AddSingleton<IDevCenterClient, DevCenterClient>()
             .AddSingleton<IThriveRunner, ThriveRunner>()
-            .AddSingleton<IAutoUpdater, AutoUpdater>();
+            .AddSingleton<IAutoUpdater, AutoUpdater>()
+            .AddSingleton<TemporaryFilesCleaner>();
     }
 }

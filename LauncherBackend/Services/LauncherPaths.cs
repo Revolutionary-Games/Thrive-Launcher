@@ -7,16 +7,16 @@ using Microsoft.Extensions.Logging;
 /// </summary>
 public class LauncherPaths : ILauncherPaths
 {
-    public const string InstalledDevBuildFolderName = "devbuild";
+    private const string LauncherConfigFolderName = "Thrive-Launcher";
+    private const string LauncherTemporaryFolderName = "temp";
+    private const string ThriveUserDataFolderName = "Thrive";
 
-    public const string LauncherConfigFolderName = "Thrive-Launcher";
-    public const string LauncherTemporaryFolderName = "Revolutionary-Games-Launcher";
-    public const string ThriveUserDataFolderName = "Thrive";
+    private static readonly string SettingsFileName = $"launcher_settings{LauncherConstants.ModeSuffix}.json";
 
-    public static readonly string SettingsFileName = $"launcher_settings{LauncherConstants.ModeSuffix}.json";
-    public static readonly string RememberedVersionFileName = $"selected_version_v2{LauncherConstants.ModeSuffix}.json";
+    private static readonly string RememberedVersionFileName =
+        $"selected_version_v2{LauncherConstants.ModeSuffix}.json";
 
-    public static readonly string LauncherV1SettingsFileName = "launcher_settings.json";
+    private static readonly string LauncherV1SettingsFileName = "launcher_settings.json";
 
     private static readonly string AutoUpdateFileName = "attempted_auto_update.json";
 
@@ -223,7 +223,7 @@ public class LauncherPaths : ILauncherPaths
 
     private string GetTemporaryPath()
     {
-        var path = Path.Combine(Path.GetTempPath(), LauncherTemporaryFolderName);
+        var path = Path.Combine(PathToLauncherInstallBaseFolder, LauncherTemporaryFolderName);
 
         logger.LogInformation("Temporary folder is: {Path}", path);
         return path;

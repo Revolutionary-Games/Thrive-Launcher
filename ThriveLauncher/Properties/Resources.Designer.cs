@@ -351,6 +351,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string LauncherOptionCleanTemporaryFiles {
+            get {
+                return ResourceManager.GetString("LauncherOptionCleanTemporaryFiles", resourceCulture);
+            }
+        }
+        
         public static string ResetAllSettings {
             get {
                 return ResourceManager.GetString("ResetAllSettings", resourceCulture);
@@ -402,6 +408,12 @@ namespace ThriveLauncher.Properties {
         public static string TemporaryFolderNoFilesMoveNotice {
             get {
                 return ResourceManager.GetString("TemporaryFolderNoFilesMoveNotice", resourceCulture);
+            }
+        }
+        
+        public static string TemporaryFolderAutoClearNotice {
+            get {
+                return ResourceManager.GetString("TemporaryFolderAutoClearNotice", resourceCulture);
             }
         }
         

@@ -291,6 +291,9 @@
                                               IsVisible="{Binding CanAutoUpdate}"
                                               Content="{i18n:Localize LauncherOptionAutoUpdate}" />
 
+                                    <CheckBox IsChecked="{Binding AutoCleanTemporaryFolder}"
+                                              Content="{i18n:Localize LauncherOptionCleanTemporaryFiles}" />
+
                                     <CheckBox IsChecked="{Binding VerboseLogging}">
                                         <TextBlock TextWrapping="Wrap"
                                                    Text="{i18n:Localize LauncherOptionVerboseLogging}" />
@@ -352,22 +355,27 @@
                         </DockPanel>
                     </TabItem>
                     <TabItem Header="{i18n:Localize CacheConfigurationTab}">
-                        <Grid RowDefinitions="Auto,Auto,*,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+                        <Grid RowDefinitions="Auto,Auto,Auto,*,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
                             <WrapPanel Grid.Row="0" Orientation="Horizontal" Margin="0 0 0 5">
                                 <TextBlock Margin="0 0 2 0" Text="{i18n:Localize TemporaryDownloadsPathDisplay}" />
-                                <TextBlock Text="{Binding TemporaryDownloadsFolder}" />
+                                <TextBlock Text="{Binding TemporaryDownloadsFolder, Mode=OneWay}" />
                             </WrapPanel>
 
-                            <TextBlock Grid.Row="1" Text="{i18n:Localize FolderContentsLabel}" />
+                            <TextBlock Grid.Row="1" Margin="0 1 0 3" TextWrapping="Wrap" FontSize="11"
+                                       IsVisible="{Binding AutoCleanTemporaryFolder}"
+                                       Foreground="{DynamicResource LightGrey}"
+                                       Text="{i18n:Localize TemporaryFolderAutoClearNotice}" />
 
-                            <ScrollViewer Grid.Row="2">
+                            <TextBlock Grid.Row="2" Text="{i18n:Localize FolderContentsLabel}" />
+
+                            <ScrollViewer Grid.Row="3">
                                 <StackPanel Spacing="5" Name="TemporaryFilesList" Margin="15 0 0 0" />
                             </ScrollViewer>
 
-                            <TextBlock Grid.Row="3" Margin="0 5" TextWrapping="Wrap" FontSize="12"
+                            <TextBlock Grid.Row="4" Margin="0 5" TextWrapping="Wrap" FontSize="12"
                                        Text="{i18n:Localize TemporaryFolderNoFilesMoveNotice}" />
 
-                            <StackPanel Grid.Row="4" Orientation="Horizontal" Spacing="2">
+                            <StackPanel Grid.Row="5" Orientation="Horizontal" Spacing="2">
                                 <Button Classes="DialogButton" Content="{i18n:Localize SelectTemporaryFilesLocation}"
                                         Click="SelectNewTemporaryLocation" />
                                 <Button Classes="DialogButton" Command="{Binding ResetTemporaryLocation}"
@@ -380,14 +388,14 @@
                             </StackPanel>
 
                             <!-- TODO: launcher 1.0 hid these options in the Steam store mode, should we still hide these? -->
-                            <Border Grid.Row="5" Margin="0 3" Padding="0" BorderThickness="1"
+                            <Border Grid.Row="6" Margin="0 3" Padding="0" BorderThickness="1"
                                     BorderBrush="{DynamicResource BlueElement}" />
-                            <WrapPanel Grid.Row="6" Orientation="Horizontal" Margin="0 0 0 5">
+                            <WrapPanel Grid.Row="7" Orientation="Horizontal" Margin="0 0 0 5">
                                 <TextBlock Margin="0 0 2 0" Text="{i18n:Localize DevBuildsCachePathDisplay}" />
                                 <TextBlock Text="{Binding DehydratedCacheFolder}" />
                             </WrapPanel>
 
-                            <StackPanel Grid.Row="7" Orientation="Horizontal" Spacing="2">
+                            <StackPanel Grid.Row="8" Orientation="Horizontal" Spacing="2">
                                 <Button Classes="DialogButton" Content="{i18n:Localize SelectDevBuildCacheLocation}"
                                         Click="SelectDevBuildCacheLocation" />
                                 <Button Classes="DialogButton" Command="{Binding ResetDehydratedCacheLocation}"
@@ -396,11 +404,11 @@
                                 </Button>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="8" Orientation="Horizontal" Margin="0 10">
+                            <StackPanel Grid.Row="9" Orientation="Horizontal" Margin="0 10">
                                 <TextBlock Margin="0 0 2 0" Text="{i18n:Localize CacheSizeDisplay}" />
                                 <TextBlock Text="{Binding DehydrateCacheSize^, FallbackValue='...'}" />
                             </StackPanel>
-                            <Button Grid.Row="9" Classes="DialogButton" Content="{i18n:Localize ClearFolder}"
+                            <Button Grid.Row="10" Classes="DialogButton" Content="{i18n:Localize ClearFolder}"
                                     ToolTip.Tip="{i18n:Localize ClearDehydratedLocation}"
                                     Command="{Binding PromptClearDehydratedCacheLocation}" />
                         </Grid>

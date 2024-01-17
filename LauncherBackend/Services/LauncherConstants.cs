@@ -45,6 +45,8 @@ public static class LauncherConstants
     /// </summary>
     public const long MaxCrashLogFileSize = 2 * GlobalConstants.MEBIBYTE;
 
+    public const int DeleteTempFilesAfterHours = 24;
+
     public const int FeedExcerptLength = 450;
 
     public const int DefaultFirstLinesToKeepOfThriveOutput = 100;

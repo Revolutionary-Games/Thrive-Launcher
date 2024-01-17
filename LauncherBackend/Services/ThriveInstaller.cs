@@ -25,12 +25,14 @@ public sealed class ThriveInstaller : IThriveInstaller, IDisposable
     private readonly ILauncherPaths launcherPaths;
     private readonly IExternalTools externalTools;
     private readonly IRehydrator rehydrator;
+    private readonly TemporaryFilesCleaner temporaryFilesCleaner;
     private readonly HttpClient downloadHttpClient;
 
     public ThriveInstaller(ILogger<ThriveInstaller> logger, ILauncherSettingsManager settingsManager,
         IThriveAndLauncherInfoRetriever infoRetriever, IStoreVersionDetector storeVersionDetector,
         ILauncherTranslations launcherTranslations, IDevCenterClient devCenterClient, ILauncherPaths launcherPaths,
-        INetworkDataRetriever networkDataRetriever, IExternalTools externalTools, IRehydrator rehydrator)
+        INetworkDataRetriever networkDataRetriever, IExternalTools externalTools, IRehydrator rehydrator,
+        TemporaryFilesCleaner temporaryFilesCleaner)
     {
         this.logger = logger;
         this.settingsManager = settingsManager;
@@ -41,6 +43,7 @@ public sealed class ThriveInstaller : IThriveInstaller, IDisposable
         this.launcherPaths = launcherPaths;
         this.externalTools = externalTools;
         this.rehydrator = rehydrator;
+        this.temporaryFilesCleaner = temporaryFilesCleaner;
 
         downloadHttpClient = new HttpClient();
         downloadHttpClient.Timeout = TimeSpan.FromMinutes(3);
@@ -509,6 +512,9 @@ public sealed class ThriveInstaller : IThriveInstaller, IDisposable
             return false;
         }
 
+        // Register the file to be deleted on shutdown of the launcher
+        temporaryFilesCleaner.RegisterBigTemporaryFileForDelete(tempFile);
+
         operation.MoveToExtractStep();
 
         logger.LogInformation("Beginning extraction of {TempFile} to {FinalFolder}", tempFile, finalFolder);
@@ -536,13 +542,6 @@ public sealed class ThriveInstaller : IThriveInstaller, IDisposable
                 $"Extraction tool (7-zip) failed to run due to: {e}"));
 
             return false;
-        }
-        finally
-        {
-            // TODO: should we leave the temporary file alone in case the user wants to retry the download?
-            // For now the launcher 2.0 just deletes failed files (and completed files) to keep disk use down
-            logger.LogInformation("Deleting temporary file {TempFile}", tempFile);
-            File.Delete(tempFile);
         }
 
         // Remove one level of folder nesting as a nicer thing compared to the old launcher

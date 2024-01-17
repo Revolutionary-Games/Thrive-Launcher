@@ -125,12 +125,13 @@ public class LauncherSettingsManager : ILauncherSettingsManager
         target.LastKeptGameOutput = old.LastKeptGameOutput;
         target.ThriveInstallationPath = old.ThriveInstallationPath;
         target.DehydratedCacheFolder = old.DehydratedCacheFolder;
-        target.TemporaryDownloadsFolder = old.TemporaryDownloadsFolder;
         target.DevCenterKey = old.DevCenterKey;
         target.SelectedDevBuildType = old.SelectedDevBuildType;
         target.ManuallySelectedBuildHash = old.ManuallySelectedBuildHash;
         target.ForceGles2Mode = old.ForceGles2Mode;
         target.DisableThriveVideos = old.DisableThriveVideos;
+
+        // Temporary downloads removed from here as the setting was updated to mean something else
 
         return Save();
     }

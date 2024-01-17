@@ -44,8 +44,11 @@ public class LauncherSettings
     [JsonPropertyName("cacheFolderPath")]
     public string? DehydratedCacheFolder { get; set; }
 
-    [JsonPropertyName("temporaryFolder")]
+    [JsonPropertyName("temporaryFolder2")]
     public string? TemporaryDownloadsFolder { get; set; }
+
+    [JsonPropertyName("autoCleanTemporaryFolder")]
+    public bool AutoCleanTemporaryFolder { get; set; } = true;
 
     [JsonPropertyName("allowAutoUpdate")]
     public bool AllowAutoUpdate { get; set; } = true;
