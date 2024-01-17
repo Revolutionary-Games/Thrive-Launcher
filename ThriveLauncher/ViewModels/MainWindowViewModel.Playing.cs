@@ -323,8 +323,7 @@ public partial class MainWindowViewModel
         if (LauncherConstants.UsePlatformLineSeparatorsInCopiedLog)
             stringBuilder.MakeLineSeparatorsPlatformSpecific();
 
-        logger.LogInformation("Copying currently in-memory game logs to clipboard (length: {Length})",
-            stringBuilder.Length);
+        logger.LogInformation("Created full game output text (length: {Length})", stringBuilder.Length);
 
         return stringBuilder.ToString();
     }
