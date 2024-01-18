@@ -526,7 +526,7 @@ Laukaisijan lokeissa on lisätietoa.</value>
     <value>Haluatko varmasti peruuttaa kaatumisen raportoimisen? Jos yhtään raporttia ei tehdä tietystä bugista, Thriven kehittäjät eivät välttämättä tiedä siitä ongelmasta ja eivät voi siitä syystä korjata sitä.</value>
   </data>
   <data name="CancelCreatingReportTitle" xml:space="preserve">
-    <value>Peruuta raporting luominen?</value>
+    <value>Peruuta raportin luominen?</value>
   </data>
   <data name="ClearAllCrashesButton" xml:space="preserve">
     <value>Poista KAIKKI kaatumistiedostot</value>
@@ -550,7 +550,7 @@ Laukaisijan lokeissa on lisätietoa.</value>
     <value>Thriven kaatumisen raportoija</value>
   </data>
   <data name="CrashReportIsPublic" xml:space="preserve">
-    <value>Julkinen? Julkisten raporttien kaatumisen pinojöljitykset ja kuvaukset ovat julkisesti näkyviä. Yksityiset raportit ovat näkyvillä pelkästään Thriven kehittäjille.</value>
+    <value>Julkinen? Julkisten raporttien kaatumisen pinojäljitykset ja kuvaukset ovat julkisesti näkyviä. Yksityiset raportit ovat näkyvillä pelkästään Thriven kehittäjille.</value>
   </data>
   <data name="CrashReportLogsSection" xml:space="preserve">
     <value>Sisällytettävät lokit</value>
