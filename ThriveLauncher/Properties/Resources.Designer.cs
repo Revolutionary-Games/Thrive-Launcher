@@ -111,6 +111,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string DevCenterCheckingConnection {
+            get {
+                return ResourceManager.GetString("DevCenterCheckingConnection", resourceCulture);
+            }
+        }
+        
         public static string ConnectToDevCenterPrompt {
             get {
                 return ResourceManager.GetString("ConnectToDevCenterPrompt", resourceCulture);

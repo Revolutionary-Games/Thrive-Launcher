@@ -65,22 +65,35 @@
                     <ComboBox SelectedIndex="0" FontSize="20" VerticalAlignment="Stretch" Classes="VersionSelect"
                               IsVisible="{Binding ThriveVersionInformation,Converter={x:Static ObjectConverters.IsNotNull}}"
                               x:Name="VersionComboBox" SelectionChanged="SelectedVersionComboBoxItemChanged" />
-                    <TextBlock Text="{i18n:Localize LoadingDotDotDot}"
-                               IsVisible="{Binding ThriveVersionInformation,Converter={x:Static ObjectConverters.IsNull}}" />
+
+                    <ComboBox SelectedIndex="0" FontSize="20" VerticalAlignment="Stretch" Classes="VersionSelect"
+                              IsEnabled="False"
+                              IsVisible="{Binding ThriveVersionInformation,Converter={x:Static ObjectConverters.IsNull}}">
+                        <ComboBoxItem Content="{i18n:Localize LoadingDotDotDot}" />
+                    </ComboBox>
+
                     <StackPanel Orientation="Horizontal" IsVisible="{Binding ShowDevCenterStatusArea}"
                                 Margin="2 0 0 0 ">
-                        <Button Classes="TextLink" Command="{Binding OpenDevCenterConnectionMenu}"
-                                IsVisible="{Binding !HasDevCenterConnection}"
-                                Content="{i18n:Localize ConnectToDevCenterPrompt}" />
-                        <StackPanel Orientation="Horizontal" IsVisible="{Binding HasDevCenterConnection}">
-                            <TextBlock IsVisible="{Binding DevCenterConnectionIsDeveloper}" VerticalAlignment="Center"
-                                       Text="{i18n:Localize ConnectedDeveloperGreeting}" />
 
-                            <TextBlock IsVisible="{Binding !DevCenterConnectionIsDeveloper}" VerticalAlignment="Center"
-                                       Text="{i18n:Localize ConnectedSupporterGreeting}" />
-
+                        <StackPanel Orientation="Horizontal" IsVisible="{Binding CheckingDevCenterConnection}">
+                            <TextBlock VerticalAlignment="Center" Text="{i18n:Localize DevCenterCheckingConnection}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" IsVisible="{Binding !CheckingDevCenterConnection}">
                             <Button Classes="TextLink" Command="{Binding OpenDevCenterConnectionMenu}"
-                                    Content="{Binding DevCenterConnectedUser}" />
+                                    IsVisible="{Binding !HasDevCenterConnection}"
+                                    Content="{i18n:Localize ConnectToDevCenterPrompt}" />
+                            <StackPanel Orientation="Horizontal" IsVisible="{Binding HasDevCenterConnection}">
+                                <TextBlock IsVisible="{Binding DevCenterConnectionIsDeveloper}"
+                                           VerticalAlignment="Center"
+                                           Text="{i18n:Localize ConnectedDeveloperGreeting}" />
+
+                                <TextBlock IsVisible="{Binding !DevCenterConnectionIsDeveloper}"
+                                           VerticalAlignment="Center"
+                                           Text="{i18n:Localize ConnectedSupporterGreeting}" />
+
+                                <Button Classes="TextLink" Command="{Binding OpenDevCenterConnectionMenu}"
+                                        Content="{Binding DevCenterConnectedUser}" />
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>

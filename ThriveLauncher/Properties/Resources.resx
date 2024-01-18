@@ -94,6 +94,9 @@
   <data name="PlayButton" xml:space="preserve">
       <value>Play</value>
   </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+      <value>Connecting to ThriveDevCenter...</value>
+  </data>
   <data name="ConnectToDevCenterPrompt" xml:space="preserve">
       <value>Connect to ThriveDevCenter</value>
   </data>
