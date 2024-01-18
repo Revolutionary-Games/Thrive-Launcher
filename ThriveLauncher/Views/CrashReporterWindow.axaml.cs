@@ -123,6 +123,8 @@ public partial class CrashReporterWindow : Window
         var atTemplate = Properties.Resources.AtTime;
         var recentlyTemplate = Properties.Resources.ShortTimeAgo;
 
+        bool first = true;
+
         foreach (var crash in crashes)
         {
             var container = new WrapPanel();
@@ -163,9 +165,13 @@ public partial class CrashReporterWindow : Window
 
             container.Children.Add(nameLink);
 
-            nameLink.Click += (_, _) => DerivedDataContext.OnCrashSelectedToReport(crash);
+            // This is done to have a separate variable passed to the lambda
+            bool latestCrash = first;
+            nameLink.Click += (_, _) => DerivedDataContext.OnCrashSelectedToReport(crash, latestCrash);
 
             AvailableCrashesToReportList.Children.Add(container);
+
+            first = false;
         }
     }
 

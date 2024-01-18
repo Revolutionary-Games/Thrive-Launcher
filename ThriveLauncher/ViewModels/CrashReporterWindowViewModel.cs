@@ -295,21 +295,29 @@ public class CrashReporterWindowViewModel : ViewModelBase
         WantsReporterClosed = true;
     }
 
-    public void OnCrashSelectedToReport(ReportableCrash crash)
+    public void OnCrashSelectedToReport(ReportableCrash crash, bool latest)
     {
         RequireCloseConfirmationIfCloseAttempted = true;
         AcceptedReportCreationTerms = false;
         ShowRetryButton = false;
-        AttachLauncherOutput = true;
         DeleteCrashDumpAfterReporting = true;
         ReportSubmitError = string.Empty;
 
         AvailableLogFilesToAttach = crashReporter.GetAvailableLogFiles().ToList();
 
-        // TODO: if not selecting the latest crash, this shouldn't auto select the logs
+        // Only select logs if reporting latest crash
+        if (latest)
+        {
+            AttachLauncherOutput = true;
 
-        // ToList doesn't need to be called here as the selected logs are not modified
-        SelectedLogFilesToAttach = AvailableLogFilesToAttach;
+            // ToList doesn't need to be called here as the selected logs are not modified
+            SelectedLogFilesToAttach = AvailableLogFilesToAttach;
+        }
+        else
+        {
+            AttachLauncherOutput = false;
+            SelectedLogFilesToAttach = new List<string>();
+        }
 
         UserEnteredReportDescription = string.Empty;
         ReporterEmail = string.Empty;
