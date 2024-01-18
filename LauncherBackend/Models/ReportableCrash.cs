@@ -1,5 +1,6 @@
 namespace LauncherBackend.Models;
 
+using Services;
 using SharedBase.Utilities;
 
 public abstract class ReportableCrash
@@ -15,8 +16,8 @@ public abstract class ReportableCrash
 
     public string FormatTime()
     {
-        // TODO: maybe would be better to use the duration displayer (but it wasn't in the common module yet) here?
-        return RecentTimeString.FormatRecentTimeInLocalTime(CrashTime, true, TimeSpan.FromHours(12));
+        return RecentTimeString.FormatRecentTimeInLocalTime(CrashTime, true,
+            LauncherConstants.CrashShortTimeDisplayCutoff);
     }
 }
 

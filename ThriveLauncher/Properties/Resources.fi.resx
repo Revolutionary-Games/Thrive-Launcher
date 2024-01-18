@@ -678,4 +678,10 @@ Laukaisijan lokeissa on lisätietoa.</value>
   <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
     <value>DevBuildin pelattava tyyppi (kun DevBuild versio on valittu pelattavaksi)</value>
   </data>
+  <data name="ShortTimeAgo" xml:space="preserve">
+    <value>{0} sitten</value>
+  </data>
+  <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
+    <value>Valittu kaatuminen tapahtui jo jonkin aikaa sitten. Tästä syystä se ei välttämättä liity viimeisimpiin lokitiedostoihin tai pelin tulosteeseen, joka on laukaisijan muistissa. Tarkista huolellisesti, että olet raportoimassa oikeaa kaatumista ja siihen liittyviä lokitiedostoja.</value>
+  </data>
 </root>

@@ -188,6 +188,11 @@ public static class LauncherConstants
 
     public static readonly TimeSpan OldCrashReportWarningThreshold = TimeSpan.FromDays(1);
 
+    public static readonly TimeSpan RecentThriveCrash = TimeSpan.FromHours(4);
+
+    public static readonly TimeSpan CrashShortTimeDisplayCutoff = TimeSpan.FromHours(12);
+
+    // Even if this shows up as unused, this is used when LAUNCHER_DELAYED_UPDATE_NOTICE is defined
     public static readonly TimeSpan LauncherNotUpdatingWarningThreshold = TimeSpan.FromDays(7);
 
     public static readonly DateTime DevBuildNewerThanThisSupportStartupDetection =

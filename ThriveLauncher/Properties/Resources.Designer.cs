@@ -1455,6 +1455,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string ShortTimeAgo {
+            get {
+                return ResourceManager.GetString("ShortTimeAgo", resourceCulture);
+            }
+        }
+        
         public static string AtTime {
             get {
                 return ResourceManager.GetString("AtTime", resourceCulture);

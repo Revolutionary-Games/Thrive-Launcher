@@ -770,6 +770,9 @@ If a Thrive team member verifies that the PR is safe this warning goes away. Alt
   <data name="TimeMomentRightNow" xml:space="preserve">
     <value>Now</value>
   </data>
+  <data name="ShortTimeAgo" xml:space="preserve">
+    <value>{0} ago</value>
+  </data>
   <data name="AtTime" xml:space="preserve">
     <value>At {0}</value>
   </data>

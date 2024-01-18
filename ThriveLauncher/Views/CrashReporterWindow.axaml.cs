@@ -10,8 +10,10 @@ using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
 using LauncherBackend.Models;
+using LauncherBackend.Services;
 using ReactiveUI;
 using Services.Localization;
+using SharedBase.Utilities;
 using ViewModels;
 
 /// <summary>
@@ -115,17 +117,35 @@ public partial class CrashReporterWindow : Window
     {
         AvailableCrashesToReportList.Children.Clear();
 
-        var now = Properties.Resources.TimeMomentRightNow;
+        var now = DateTime.UtcNow;
+
+        var nowText = Properties.Resources.TimeMomentRightNow;
         var atTemplate = Properties.Resources.AtTime;
+        var recentlyTemplate = Properties.Resources.ShortTimeAgo;
 
         foreach (var crash in crashes)
         {
             var container = new WrapPanel();
 
+            string time;
+
+            if (crash.HappenedNow)
+            {
+                time = nowText;
+            }
+            else if (crash.CrashTime > now - LauncherConstants.RecentThriveCrash)
+            {
+                time = string.Format(recentlyTemplate, (now - crash.CrashTime).ToShortForm());
+            }
+            else
+            {
+                time = string.Format(atTemplate, crash.FormatTime());
+            }
+
             container.Children.Add(new TextBlock
             {
                 VerticalAlignment = VerticalAlignment.Center,
-                Text = crash.HappenedNow ? now : string.Format(atTemplate, crash.FormatTime()),
+                Text = time,
                 Margin = new Thickness(3, 0, 5, 0),
             });
 
