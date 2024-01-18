@@ -684,4 +684,22 @@ Laukaisijan lokeissa on lisätietoa.</value>
   <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
     <value>Valittu kaatuminen tapahtui jo jonkin aikaa sitten. Tästä syystä se ei välttämättä liity viimeisimpiin lokitiedostoihin tai pelin tulosteeseen, joka on laukaisijan muistissa. Tarkista huolellisesti, että olet raportoimassa oikeaa kaatumista ja siihen liittyviä lokitiedostoja.</value>
   </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>Tarkista koodit ThriveDevCenterissa</value>
+  </data>
+  <data name="CrashReportEmailFieldNotice" xml:space="preserve">
+    <value>Sähköpostisi on näkyvissä vain ThriveDevCenterin admineille.</value>
+  </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+    <value>Yhdistetään ThriveDevCenteriin...</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>Tässä voit liittää tämän laukaisijan ThriveDevCenteriin jolloin tämä laukaisija pääsee käsiksi DevBuildeihin ja muihin ominaisuuksiin</value>
+  </data>
+  <data name="EnterDevCenterConnectionCode" xml:space="preserve">
+    <value>Syötä ThriveDevCenter yhdistämiskoodi ensin syötekenttään</value>
+  </data>
+  <data name="LoginToSeeThisContent" xml:space="preserve">
+    <value>Kirjaudu sisään ThriveDevCenteriin nähdäksesi tämän sisällön</value>
+  </data>
 </root>
