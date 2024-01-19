@@ -114,11 +114,19 @@
                         <Border Grid.Row="2"
                                 BorderBrush="{DynamicResource BlueElement}" BorderThickness="1" Margin="0 0 0 3" />
 
-                        <CheckBox Grid.Row="3" Grid.Column="0"
-                                  IsVisible="{Binding ShowCrashDumpDeleteAfterReportCheckBox}"
-                                  IsChecked="{Binding DeleteCrashDumpAfterReporting}" Margin="0 3">
-                            <TextBlock TextWrapping="Wrap" Text="{i18n:Localize CrashReportDeleteAfterSubmitting}" />
-                        </CheckBox>
+                        <StackPanel Grid.Row="3" Grid.Column="0" IsVisible="{Binding CanDeleteCurrentCrashDump}">
+                            <CheckBox
+                                IsVisible="{Binding ShowCrashDumpDeleteAfterReportCheckBox}"
+                                IsChecked="{Binding DeleteCrashDumpAfterReporting}" Margin="0 3">
+                                <TextBlock TextWrapping="Wrap" Text="{i18n:Localize CrashReportDeleteAfterSubmitting}" />
+                            </CheckBox>
+
+                            <!-- Alternative to the checkbox that shows info about the dump being always deleted-->
+                            <StackPanel IsVisible="{Binding !ShowCrashDumpDeleteAfterReportCheckBox}">
+                                <TextBlock TextWrapping="Wrap" IsVisible="{Binding DeleteCrashDumpAfterReporting}"
+                                           Text="{i18n:Localize CrashReportDeleteInfoEnabled}" />
+                            </StackPanel>
+                        </StackPanel>
 
                         <!-- Logs section -->
                         <TextBlock Grid.Row="4" TextWrapping="Wrap" FontSize="22" HorizontalAlignment="Center"

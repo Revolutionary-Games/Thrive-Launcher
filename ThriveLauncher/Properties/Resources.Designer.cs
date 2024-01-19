@@ -1569,6 +1569,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string CrashReportDeleteInfoEnabled {
+            get {
+                return ResourceManager.GetString("CrashReportDeleteInfoEnabled", resourceCulture);
+            }
+        }
+        
         public static string CrashReportWarningAboutOldFile {
             get {
                 return ResourceManager.GetString("CrashReportWarningAboutOldFile", resourceCulture);

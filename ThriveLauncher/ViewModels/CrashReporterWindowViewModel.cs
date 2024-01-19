@@ -49,7 +49,7 @@ public class CrashReporterWindowViewModel : ViewModelBase
     private bool submittingReport;
     private bool showRetryButton;
     private bool reportSubmitted;
-    private bool deleteDumpAfterReporting;
+    private bool deleteDumpAfterReporting = true;
     private string reportSubmitError = string.Empty;
 
     private int? autoCloseDelay;
@@ -186,6 +186,7 @@ public class CrashReporterWindowViewModel : ViewModelBase
             this.RaiseAndSetIfChanged(ref selectedCrashToReport, value);
             this.RaisePropertyChanged(nameof(SelectedCrashName));
             this.RaisePropertyChanged(nameof(ShowCrashDumpDeleteAfterReportCheckBox));
+            this.RaisePropertyChanged(nameof(CanDeleteCurrentCrashDump));
             this.RaisePropertyChanged(nameof(ReportingCrashInfoString));
             this.RaisePropertyChanged(nameof(CrashReportIsOld));
             this.RaisePropertyChanged(nameof(CrashReportIsForException));
@@ -193,7 +194,12 @@ public class CrashReporterWindowViewModel : ViewModelBase
     }
 
     public string? SelectedCrashName => SelectedCrashToReport?.Name;
-    public bool ShowCrashDumpDeleteAfterReportCheckBox => SelectedCrashToReport is ReportableCrashDump;
+
+    // To avoid user error this is now always disabled
+    // See: https://github.com/Revolutionary-Games/Thrive-Launcher/issues/269
+    public bool ShowCrashDumpDeleteAfterReportCheckBox => false;
+
+    public bool CanDeleteCurrentCrashDump => SelectedCrashToReport is ReportableCrashDump;
 
     public bool CrashReportIsForException => SelectedCrashToReport is ReportableCrashException;
 

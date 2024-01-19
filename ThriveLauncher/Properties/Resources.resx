@@ -827,6 +827,9 @@ If a Thrive team member verifies that the PR is safe this warning goes away. Alt
   <data name="CrashReportDeleteAfterSubmitting" xml:space="preserve">
     <value>Delete this crash dump file after reporting (recommended)</value>
   </data>
+  <data name="CrashReportDeleteInfoEnabled" xml:space="preserve">
+    <value>The crash dump file will be automatically deleted when a report is successfully sent</value>
+  </data>
   <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
     <value>The selected crash happened a while ago. As such it may not be related to the latest log files or the game output stored by the launcher. Please check carefully if you are reporting the right crash and related log files.</value>
   </data>
