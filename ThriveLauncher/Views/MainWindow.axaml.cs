@@ -682,9 +682,14 @@ public partial class MainWindow : Window
 
     private void OnPlayMessagesChanged(object? o, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
     {
-        // TODO: check that there isn't possibility of the ToList call here crashing due to list changes happening
-        // at the same time
-        Dispatcher.UIThread.Post(() => HandlePlayMessagesChanged(DerivedDataContext.PlayMessages.ToList()));
+        Dispatcher.UIThread.Post(() =>
+        {
+            // Take a safe copy of the data to avoid really rare errors
+            // https://github.com/Revolutionary-Games/Thrive-Launcher/issues/319
+            var data = DerivedDataContext.PlayMessages.TakeSafeCopy();
+
+            HandlePlayMessagesChanged(data);
+        });
     }
 
     private void HandlePlayMessagesChanged(List<string> playMessages)
@@ -712,7 +717,11 @@ public partial class MainWindow : Window
     private void OnPlayPopupProgressChanged(object? o,
         NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
     {
-        Dispatcher.UIThread.Post(() => HandlePlayProgressChanges(DerivedDataContext.InProgressPlayOperations.ToList()));
+        Dispatcher.UIThread.Post(() =>
+        {
+            var data = DerivedDataContext.InProgressPlayOperations.TakeSafeCopy();
+            HandlePlayProgressChanges(data);
+        });
     }
 
     private void HandlePlayProgressChanges(List<FilePrepareProgress> progress)
@@ -1021,7 +1030,10 @@ public partial class MainWindow : Window
         NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
     {
         Dispatcher.UIThread.Post(() =>
-            HandleAutoUpdateProgressChanges(DerivedDataContext.InProgressAutoUpdateOperations.ToList()));
+        {
+            var data = DerivedDataContext.InProgressAutoUpdateOperations.TakeSafeCopy();
+            HandleAutoUpdateProgressChanges(data);
+        });
     }
 
     private void HandleAutoUpdateProgressChanges(List<FilePrepareProgress> progress)

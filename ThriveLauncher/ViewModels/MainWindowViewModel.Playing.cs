@@ -214,8 +214,15 @@ public partial class MainWindowViewModel
         CurrentlyPlaying = true;
         ShowCloseButtonOnPlayPopup = false;
 
-        PlayMessages.Clear();
-        InProgressPlayOperations.Clear();
+        lock (PlayMessages)
+        {
+            PlayMessages.Clear();
+        }
+
+        lock (InProgressPlayOperations)
+        {
+            InProgressPlayOperations.Clear();
+        }
 
         // Allow canceling the Thrive version setup and download
         CanCancelPlaying = true;
@@ -572,8 +579,11 @@ public partial class MainWindowViewModel
 
         // As this is just a list of strings we save the complicated code for the below collection and just redo
         // this each time
-        PlayMessages.Clear();
-        PlayMessages.AddRange(thriveInstaller.InstallerMessages.Select(FormatPlayMessage));
+        lock (PlayMessages)
+        {
+            PlayMessages.Clear();
+            PlayMessages.AddRange(thriveInstaller.InstallerMessages.Select(FormatPlayMessage));
+        }
     }
 
     private void OnInProgressOperationsChanged(object? sender, NotifyCollectionChangedEventArgs args)
@@ -587,7 +597,10 @@ public partial class MainWindowViewModel
         logger.LogTrace("Installer in progress operation change type: {Action}, new: {NewItems}", args.Action,
             args.NewItems);
 
-        InProgressPlayOperations.ApplyChangeFromAnotherCollection(args);
+        lock (InProgressPlayOperations)
+        {
+            InProgressPlayOperations.ApplyChangeFromAnotherCollection(args);
+        }
     }
 
     private void RegisterThriveRunnerListeners()
@@ -647,8 +660,11 @@ public partial class MainWindowViewModel
 
         logger.LogTrace("Redoing play messages due to changes to runner messages");
 
-        PlayMessages.Clear();
-        PlayMessages.AddRange(thriveRunner.PlayMessages.Select(FormatPlayMessage));
+        lock (PlayMessages)
+        {
+            PlayMessages.Clear();
+            PlayMessages.AddRange(thriveRunner.PlayMessages.Select(FormatPlayMessage));
+        }
     }
 
     private void OnThriveOutputChanged(object? sender, NotifyCollectionChangedEventArgs args)
@@ -791,8 +807,12 @@ public partial class MainWindowViewModel
             }
 
             logger.LogDebug("Restoring play messages from runner");
-            PlayMessages.Clear();
-            PlayMessages.AddRange(thriveRunner.PlayMessages.Select(FormatPlayMessage));
+
+            lock (PlayMessages)
+            {
+                PlayMessages.Clear();
+                PlayMessages.AddRange(thriveRunner.PlayMessages.Select(FormatPlayMessage));
+            }
 
             ThriveOutputFirstPart.Clear();
             ThriveOutputFirstPart.AddRange(thriveRunner.ThriveOutput);

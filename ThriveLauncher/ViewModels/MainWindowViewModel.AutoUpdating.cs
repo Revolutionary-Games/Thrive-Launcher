@@ -297,7 +297,11 @@ public partial class MainWindowViewModel
     private void TryToSTartAutoUpdate(LauncherVersionInfo launcherVersion, string currentVersion)
     {
         RegisterAutoUpdaterCallbacks();
-        InProgressAutoUpdateOperations.Clear();
+
+        lock (InProgressAutoUpdateOperations)
+        {
+            InProgressAutoUpdateOperations.Clear();
+        }
 
         var updateChannel = GetUsedAutoUpdateChannel();
 
@@ -497,7 +501,10 @@ public partial class MainWindowViewModel
         // We don't ignore updates here as the updater popup opening is a bit complicated logic-wise, so we let the
         // updates always through to ensure the data there is up to date when it is shown
 
-        InProgressAutoUpdateOperations.ApplyChangeFromAnotherCollection(args);
+        lock (InProgressAutoUpdateOperations)
+        {
+            InProgressAutoUpdateOperations.ApplyChangeFromAnotherCollection(args);
+        }
     }
 
     private async Task CloseWithDelay()
