@@ -283,7 +283,7 @@ public partial class MainWindowViewModel
 
         if (FormingDevCenterConnection)
         {
-            logger.LogWarning("Already checking DevCenter code, ignoring another attempt");
+            logger.LogWarning("Already forming devcenter connection with code, ignoring another attempt");
             return;
         }
 

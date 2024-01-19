@@ -514,6 +514,9 @@
                                     IsVisible="{Binding !CanFormDevCenterConnection}"
                                     Command="{Binding CheckConnectionCode}" />
 
+                            <TextBlock Text="{i18n:Localize DevCenterCheckingConnection}"
+                                       IsVisible="{Binding CheckingDevCenterConnection}" />
+
                             <!-- Shows details about the link to be made and allows confirming -->
                             <StackPanel Orientation="Vertical" IsVisible="{Binding CanFormDevCenterConnection}">
                                 <TextBlock Text="{i18n:Localize ConfirmValidLink}" />
