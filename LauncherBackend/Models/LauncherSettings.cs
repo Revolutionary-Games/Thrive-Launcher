@@ -10,8 +10,8 @@ public class LauncherSettings
     [JsonPropertyName("fetchNewsFromWeb")]
     public bool ShowWebContent { get; set; } = true;
 
-    [JsonPropertyName("hideLauncherOnPlay")]
-    public bool HideLauncherOnPlay { get; set; } = true;
+    [JsonPropertyName("hideLauncherOnPlay2")]
+    public bool HideLauncherOnPlay { get; set; } = GetDefaultHideOnPlayOption();
 
     [JsonPropertyName("hide32bit")]
     public bool Hide32Bit { get; set; } = true;
@@ -112,5 +112,14 @@ public class LauncherSettings
             default:
                 throw new ArgumentOutOfRangeException(nameof(versionPlatform), versionPlatform, null);
         }
+    }
+
+    private static bool GetDefaultHideOnPlayOption()
+    {
+        // Don't hide by default on mac: https://github.com/Revolutionary-Games/Thrive-Launcher/issues/159
+        if (OperatingSystem.IsMacOS())
+            return false;
+
+        return true;
     }
 }

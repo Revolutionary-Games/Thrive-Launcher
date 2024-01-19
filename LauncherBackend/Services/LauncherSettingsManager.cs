@@ -116,7 +116,6 @@ public class LauncherSettingsManager : ILauncherSettingsManager
 
         // This list doesn't need to be maintained as the old launcher won't gain new settings
         target.ShowWebContent = old.ShowWebContent;
-        target.HideLauncherOnPlay = old.HideLauncherOnPlay;
         target.Hide32Bit = old.Hide32Bit;
         target.CloseLauncherAfterGameExit = old.CloseLauncherAfterGameExit;
         target.CloseLauncherOnGameStart = old.CloseLauncherOnGameStart;
@@ -132,6 +131,7 @@ public class LauncherSettingsManager : ILauncherSettingsManager
         target.DisableThriveVideos = old.DisableThriveVideos;
 
         // Temporary downloads removed from here as the setting was updated to mean something else
+        // Hide on play removed from here as the defaults were changed
 
         return Save();
     }
