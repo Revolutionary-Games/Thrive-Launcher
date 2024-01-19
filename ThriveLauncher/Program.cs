@@ -39,7 +39,7 @@ internal class Program
     // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
     // yet and stuff might break.
     [STAThread]
-    public static void Main(string[] args)
+    public static int Main(string[] args)
     {
         var options = new Options();
 
@@ -51,7 +51,7 @@ internal class Program
             options = parsed.Value;
 
         if (!CheckLogLevelOptionIsFine(options))
-            return;
+            return 1;
 
         // We build services before starting avalonia so that we can use launcher backend services before we decide
         // if we want to fire up ourGUI
@@ -73,7 +73,7 @@ internal class Program
             if (options.PrintAvailableLocales)
                 PrintAvailableLocales(programLogger);
 
-            InnerMain(args, services, programLogger);
+            return InnerMain(args, services, programLogger);
         }
         catch (Exception e)
         {
@@ -171,7 +171,7 @@ internal class Program
     /// <param name="args">The program args</param>
     /// <param name="services">The already configured launcher services</param>
     /// <param name="programLogger">Logger for the main method</param>
-    private static void InnerMain(string[] args, ServiceProvider services, ILogger programLogger)
+    private static int InnerMain(string[] args, ServiceProvider services, ILogger programLogger)
     {
         programLogger.LogInformation("Thrive Launcher version {Version} starting",
             services.GetRequiredService<VersionUtilities>().LauncherVersion);
@@ -197,59 +197,180 @@ internal class Program
         if (HandleStoreVersionLogic(programLogger, isStore, settings, options, settingsManager, storeVersionInfo,
                 runner))
         {
-            return;
+            return 0;
         }
 
         programLogger.LogInformation("Launcher starting GUI");
 
-        // Very important to use our existing services to configure the Avalonia app here, otherwise everything
-        // will break
-        bool keepShowingLauncher;
-
         // We can't use StartWithClassicDesktopLifetime as we need control over the lifetime
         var avaloniaBuilder = BuildAvaloniaAppWithServices(services);
 
-        using var lifetime = new ClassicDesktopStyleApplicationLifetime
+        var shutdownTask = Task.Run(async () =>
         {
-            Args = args,
-            ShutdownMode = ShutdownMode.OnLastWindowClose,
-        };
-        avaloniaBuilder.SetupWithLifetime(lifetime);
-        var applicationInstance = (App?)avaloniaBuilder.Instance ?? throw new Exception("Application not found");
+            try
+            {
+                await RunCustomShutdownWatched(avaloniaBuilder, services);
+            }
+            catch (Exception e)
+            {
+                programLogger.LogError(e, "Error in task watching when the process should quit");
+            }
+        });
 
-        // This loop is here so that we can restart the avalonia GUI to show Thrive run errors and provide crash
-        // reporting
-        do
+        programLogger.LogInformation("Start running Avalonia desktop lifetime");
+        int exitCode = avaloniaBuilder.StartWithClassicDesktopLifetime(args, ShutdownMode.OnExplicitShutdown);
+
+        shutdownTask.Wait(TimeSpan.FromMilliseconds(500));
+
+        if (shutdownTask.IsCompleted)
         {
-            keepShowingLauncher = false;
+            programLogger.LogWarning("Main shutdown watcher task has not exited even after a short wait");
+        }
 
-            programLogger.LogInformation("Start running Avalonia desktop lifetime");
-            lifetime.Start(args);
+        temporaryFilesHandler.OnShutdown();
+
+        if (exitCode == 0)
+        {
+            programLogger.LogInformation("Launcher process exiting normally");
+        }
+        else
+        {
+            programLogger.LogInformation("Launcher process exiting with code {ExitCode}", exitCode);
+        }
+
+        return exitCode;
+    }
+
+    private static async Task RunCustomShutdownWatched(AppBuilder avaloniaBuilder, ServiceProvider services)
+    {
+        var programLogger = services.GetRequiredService<ILogger<Program>>();
+        var runner = services.GetRequiredService<IThriveRunner>();
+
+        int failures = 0;
+
+        App applicationInstance;
+
+        // As this task is started before the main application loop starts, we might not have the app created yet, so
+        // we need to wait for it
+        while (true)
+        {
+            var readAttempt = (App?)avaloniaBuilder.Instance;
+
+            if (readAttempt != null)
+            {
+                applicationInstance = readAttempt;
+                break;
+            }
+
+            await Task.Delay(1);
+
+            ++failures;
+
+            if (failures > 10000)
+            {
+                programLogger.LogError(
+                    "Cannot detect the application instance, shutdown logic will not work correctly");
+                failures = 0;
+            }
+        }
+
+        var lifetime = (ClassicDesktopStyleApplicationLifetime?)applicationInstance.ApplicationLifetime;
+
+        if (lifetime == null)
+        {
+            programLogger.LogError("Lifetime not found, can't detect when this should shutdown");
+            throw new Exception("Lifetime not created");
+        }
+
+        // TODO: mac activation and other callback support here
+
+        // How often to check if the program should quit, this should be pretty low but not too low to consume a bunch
+        // of extra CPU
+        var runInterval = TimeSpan.FromMilliseconds(30);
+
+        failures = 0;
+        bool seenInitialWindow = false;
+        int windowWaitCount = 0;
+
+        while (true)
+        {
+            await Task.Delay(runInterval);
+
+            try
+            {
+                // If there are Avalonia windows open, we don't need to do anything
+                if (lifetime.Windows.Count > 0)
+                {
+                    seenInitialWindow = true;
+
+                    failures = 0;
+                    continue;
+                }
+            }
+            catch (Exception e)
+            {
+                if (failures > 10)
+                {
+                    programLogger.LogError("Exiting due to failing to check open window count too many times");
+                    lifetime.Shutdown(4);
+                    break;
+                }
+
+                programLogger.LogWarning(e, "Couldn't read open window count");
+                ++failures;
+                continue;
+            }
+
+            // Wait for initial window to open and don't just quit immediately
+            if (!seenInitialWindow)
+            {
+                ++windowWaitCount;
+
+                if (windowWaitCount > 1000)
+                {
+                    programLogger.LogError("Main window not detected as opened, will quit the launcher to " +
+                        "avoid being invisible to the user");
+                    lifetime.Shutdown(5);
+                    break;
+                }
+
+                continue;
+            }
+
+            programLogger.LogInformation("Detected no windows open anymore");
+
+            failures = 0;
+
+            bool keepShowingLauncher = false;
 
             if (runner.ThriveRunning)
             {
                 programLogger.LogInformation(
                     "Thrive is currently running, waiting for Thrive to quit before exiting the launcher process");
 
-                if (!WaitForRunningThriveToExit(runner, programLogger))
+                if (!await WaitForRunningThriveToExitAsync(runner, programLogger))
                 {
                     programLogger.LogInformation(
-                        "Thrive didn't quit properly while we waited for it, trying to re-show the launcher");
+                        "Thrive didn't quit properly (or wants us to be shown again) while we waited for it, " +
+                        "trying to re-show the launcher");
                     keepShowingLauncher = true;
                 }
             }
 
             if (keepShowingLauncher)
             {
-                programLogger.LogInformation("Recreating main window to prepare it to be shown again");
+                programLogger.LogInformation("Recreating main window and showing it again");
                 applicationInstance.ReSetupMainWindow();
             }
+            else
+            {
+                programLogger.LogInformation("Time to exit the process");
+                lifetime.Shutdown();
+                break;
+            }
         }
-        while (keepShowingLauncher);
 
-        temporaryFilesHandler.OnShutdown();
-
-        programLogger.LogInformation("Launcher process exiting normally");
+        programLogger.LogDebug("Exiting program quit handler task");
     }
 
     private static ILauncherSettingsManager LoadAndApplySettings(ServiceProvider services, ILogger programLogger,
@@ -417,7 +538,60 @@ internal class Program
         return true;
     }
 
+    private static async Task<bool> WaitForRunningThriveToExitAsync(IThriveRunner runner, ILogger logger)
+    {
+        SetupCancelPressHandler(runner, logger);
+
+        int waitCounter = 0;
+
+        while (runner.ThriveRunning && cancelPressCount < 3)
+        {
+            await Task.Delay(TimeSpan.FromMilliseconds(100));
+            ++waitCounter;
+
+            if (waitCounter > 600)
+            {
+                waitCounter = 0;
+                logger.LogInformation("Still waiting for our child Thrive process to quit...");
+            }
+        }
+
+        return HandlePostThriveWait(runner);
+    }
+
     private static bool WaitForRunningThriveToExit(IThriveRunner runner, ILogger logger)
+    {
+        SetupCancelPressHandler(runner, logger);
+
+        int waitCounter = 0;
+
+        while (runner.ThriveRunning && cancelPressCount < 3)
+        {
+            Thread.Sleep(TimeSpan.FromMilliseconds(100));
+            ++waitCounter;
+
+            if (waitCounter > 600)
+            {
+                waitCounter = 0;
+                logger.LogInformation("Still waiting for our child Thrive process to quit...");
+            }
+        }
+
+        return HandlePostThriveWait(runner);
+    }
+
+    private static bool HandlePostThriveWait(IThriveRunner runner)
+    {
+        // If cancelled we don't want to even think about showing the launcher again
+        if (cancelPressCount > 0)
+            return true;
+
+        // Success when no crashes detected (and no problems the user should be advised on) and the user didn't
+        // explicitly ask to open the launcher
+        return !runner.HasReportableCrash && runner.ActiveErrorSuggestion == null && !runner.ThriveWantsToOpenLauncher;
+    }
+
+    private static void SetupCancelPressHandler(IThriveRunner runner, ILogger logger)
     {
         cancelPressCount = 0;
 
@@ -450,28 +624,6 @@ internal class Program
                 }
             };
         }
-
-        int waitCounter = 0;
-
-        while (runner.ThriveRunning && cancelPressCount < 3)
-        {
-            Thread.Sleep(TimeSpan.FromMilliseconds(100));
-            ++waitCounter;
-
-            if (waitCounter > 600)
-            {
-                waitCounter = 0;
-                logger.LogInformation("Still waiting for our child Thrive process to quit...");
-            }
-        }
-
-        // If cancelled we don't want to even think about showing the launcher again
-        if (cancelPressCount > 0)
-            return true;
-
-        // Success when no crashes detected (and no problems the user should be advised on) and the user didn't
-        // explicitly ask to open the launcher
-        return !runner.HasReportableCrash && runner.ActiveErrorSuggestion == null && !runner.ThriveWantsToOpenLauncher;
     }
 
     private static MemoryMappedFile? CreateOrOpenMemoryMappedFile(ILogger logger)

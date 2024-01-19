@@ -2,6 +2,7 @@ namespace ThriveLauncher;
 
 using System;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,7 +31,7 @@ public class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        CreateMainWindow();
+        SetupMainWindow();
 
         base.OnFrameworkInitializationCompleted();
     }
@@ -40,17 +41,14 @@ public class App : Application
     /// </summary>
     public void ReSetupMainWindow()
     {
-        CreateMainWindow();
+        CreateWindowObject().Show();
     }
 
-    private void CreateMainWindow()
+    private void SetupMainWindow()
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new MainWindow
-            {
-                DataContext = this.CreateInstance<MainWindowViewModel>(),
-            };
+            desktop.MainWindow = CreateWindowObject();
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime)
         {
@@ -61,5 +59,13 @@ public class App : Application
 
             // singleView.MainView = new MainView();
         }
+    }
+
+    private Window CreateWindowObject()
+    {
+        return new MainWindow
+        {
+            DataContext = this.CreateInstance<MainWindowViewModel>(),
+        };
     }
 }
