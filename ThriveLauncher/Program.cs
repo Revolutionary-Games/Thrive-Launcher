@@ -13,6 +13,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.ReactiveUI;
+using Avalonia.Threading;
 using CommandLine;
 using DevCenterCommunication.Models;
 using LauncherBackend.Models;
@@ -360,7 +361,11 @@ internal class Program
             if (keepShowingLauncher)
             {
                 programLogger.LogInformation("Recreating main window and showing it again");
-                applicationInstance.ReSetupMainWindow();
+
+                Dispatcher.UIThread.Post(() => applicationInstance.ReSetupMainWindow());
+
+                seenInitialWindow = false;
+                windowWaitCount = 0;
             }
             else
             {
