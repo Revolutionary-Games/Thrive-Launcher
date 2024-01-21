@@ -23,7 +23,7 @@ public class Program
 
         var result = CommandLineHelpers.CreateParser()
             .ParseArguments<CheckOptions, TestOptions, ChangesOptions, IconsOptions, ContainerOptions,
-                PackageOptions, CleanOptions>(args)
+                PackageOptions, CleanOptions, SourceOptions>(args)
             .MapResult((CheckOptions opts) => RunChecks(opts),
                 (TestOptions opts) => RunTests(opts),
                 (ChangesOptions opts) => RunChangesFinding(opts),
@@ -32,6 +32,7 @@ public class Program
                 (ContainerOptions options) => RunContainer(options),
                 (PackageOptions options) => RunPackage(options),
                 (CleanOptions opts) => RunClean(opts),
+                (SourceOptions opts) => RunSourcePackage(opts),
                 CommandLineHelpers.PrintCommandLineErrors);
 
         ConsoleHelpers.CleanConsoleStateForExit();
@@ -132,6 +133,17 @@ public class Program
         return 0;
     }
 
+    private static int RunSourcePackage(SourceOptions opts)
+    {
+        CommandLineHelpers.HandleDefaultOptions(opts);
+
+        ColourConsole.WriteDebugLine("Running source packaging tool");
+
+        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+
+        return SourceTool.Run(opts, tokenSource.Token).Result ? 0 : 1;
+    }
+
     private static void CleanIfExists(string folder)
     {
         if (!Directory.Exists(folder))
@@ -216,4 +228,12 @@ public class Program
 
     [Verb("clean", HelpText = "Clean binaries (package upgrades can break deploy and this fixes that)")]
     public class CleanOptions : ScriptOptionsBase;
+
+    [Verb("source", HelpText = "Create source zip for use with flatpak builders that cannot deal with Git LFS")]
+    public class SourceOptions : ScriptOptionsBase
+    {
+        [Option("calculate-sha256", Default = null,
+            HelpText = "When specified calculate the hash of the archive")]
+        public bool? CalculateSha256 { get; set; }
+    }
 }

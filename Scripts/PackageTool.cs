@@ -20,8 +20,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     public const string DotnetInstallerName = "windowsdesktop-runtime-6.0.11-win-x64.exe";
     public const string PathToDotnetInstaller = $"DependencyInstallers/{DotnetInstallerName}";
 
+    public const string LauncherCsproj = "ThriveLauncher/ThriveLauncher.csproj";
+
     private const string BuilderImageName = "localhost/thrive/launcher-builder:latest";
-    private const string LauncherCsproj = "ThriveLauncher/ThriveLauncher.csproj";
     private const string LauncherExecutableIconFile = "ThriveLauncher/Assets/Icons/icon.ico";
     private const string LauncherInstallerBannerImageFile = "Scripts/installer_banner.bmp";
     private const string LauncherInstallerLicenseFile = "LICENSE.md";
