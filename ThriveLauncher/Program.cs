@@ -36,6 +36,8 @@ internal class Program
     private static bool registeredCancelPressHandler;
     private static int cancelPressCount;
 
+    private static bool reActivationRequested;
+
     // Initialization code. Don't use any Avalonia, third-party APIs or any
     // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
     // yet and stuff might break.
@@ -210,7 +212,7 @@ internal class Program
         {
             try
             {
-                await RunCustomShutdownWatched(avaloniaBuilder, services);
+                await RunCustomShutdownWatcher(avaloniaBuilder, services);
             }
             catch (Exception e)
             {
@@ -242,7 +244,7 @@ internal class Program
         return exitCode;
     }
 
-    private static async Task RunCustomShutdownWatched(AppBuilder avaloniaBuilder, ServiceProvider services)
+    private static async Task RunCustomShutdownWatcher(AppBuilder avaloniaBuilder, ServiceProvider services)
     {
         var programLogger = services.GetRequiredService<ILogger<Program>>();
         var runner = services.GetRequiredService<IThriveRunner>();
@@ -283,7 +285,27 @@ internal class Program
             throw new Exception("Lifetime not created");
         }
 
-        // TODO: mac activation and other callback support here
+        // Mac activation / background operation when no windows are open
+        bool stayActiveInBackground = false;
+
+        var activatableApplicationLifetime = lifetime as IActivatableApplicationLifetime;
+        if (activatableApplicationLifetime != null)
+        {
+            stayActiveInBackground = true;
+            activatableApplicationLifetime.Activated += OnActivationRequest;
+        }
+
+        if (!stayActiveInBackground && OperatingSystem.IsMacOS())
+        {
+            programLogger.LogWarning("Staying active in background on mac is not working due to no " +
+                "compatible lifetime detected");
+        }
+
+        // Don't stay open without windows when debugging as that's annoying
+#if DEBUG
+        if (Debugger.IsAttached)
+            stayActiveInBackground = false;
+#endif
 
         // How often to check if the program should quit, this should be pretty low but not too low to consume a bunch
         // of extra CPU
@@ -338,8 +360,6 @@ internal class Program
                 continue;
             }
 
-            programLogger.LogInformation("Detected no windows open anymore");
-
             failures = 0;
 
             bool keepShowingLauncher = false;
@@ -357,6 +377,21 @@ internal class Program
                     keepShowingLauncher = true;
                 }
             }
+
+            if (stayActiveInBackground)
+            {
+                if (reActivationRequested)
+                {
+                    keepShowingLauncher = true;
+                }
+                else
+                {
+                    // Wait until an external quit signal (or reactivation signal)
+                    continue;
+                }
+            }
+
+            programLogger.LogInformation("Detected no windows open anymore");
 
             if (keepShowingLauncher)
             {
@@ -376,6 +411,29 @@ internal class Program
         }
 
         programLogger.LogDebug("Exiting program quit handler task");
+
+        if (activatableApplicationLifetime != null)
+        {
+            activatableApplicationLifetime.Activated -= OnActivationRequest;
+        }
+    }
+
+    private static void OnActivationRequest(object? sender, ActivatedEventArgs e)
+    {
+        switch (e.Kind)
+        {
+            case ActivationKind.OpenUri:
+                // TODO: handle this?
+                break;
+            case ActivationKind.Reopen:
+                reActivationRequested = true;
+                break;
+            case ActivationKind.Background:
+                // This seems to be related to program shutdown on mac and not about reopening
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
     private static ILauncherSettingsManager LoadAndApplySettings(ServiceProvider services, ILogger programLogger,
