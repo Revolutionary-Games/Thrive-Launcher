@@ -36,6 +36,30 @@ public static class SourceTool
             await Compression.CombineTar(targetArchiveName, moduleTar, cancellationToken);
         }
 
+        // Include git info
+        ColourConsole.WriteNormalLine("Making a clean copy of the repo to include git info in source");
+        var cleanGitFolder = "clean-git";
+
+        if (Directory.Exists(cleanGitFolder))
+            Directory.Delete(cleanGitFolder, true);
+
+        await GitRunHelpers.CloneLocalRepo(".", cleanGitFolder, cancellationToken);
+
+        // Fudge the directory structure to be correct for adding to the tar
+        var fudgedPath = Path.Join(cleanGitFolder, "Thrive-Launcher");
+
+        if (Directory.Exists(fudgedPath))
+            Directory.Delete(fudgedPath, true);
+
+        Directory.CreateDirectory(fudgedPath);
+
+        Directory.Move(Path.Join(cleanGitFolder, ".git"), Path.Join(fudgedPath, ".git"));
+
+        await Compression.AddFilesToTar(targetArchiveName, cleanGitFolder, new[] { "Thrive-Launcher" },
+            cancellationToken);
+
+        Directory.Delete(cleanGitFolder, true);
+
         ColourConsole.WriteNormalLine("Compressing source archive with xz");
 
         await Compression.XzCompressFile(targetArchiveName, cancellationToken, 9);
