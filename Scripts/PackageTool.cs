@@ -1058,6 +1058,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         MoveReadmeFiles(macFolder, Path.Join(resourcesFolder, "ReadmeFiles"));
 
         // TODO: remove workaround once Avalonia works right on mac
+        // Seems like they don't want to fix this: https://github.com/AvaloniaUI/Avalonia/issues/9009
         // ReSharper disable StringLiteralTypo
         File.Move(Path.Join(macFolder, "libAvaloniaNative.dylib"), Path.Join(macFolder, "liblibAvaloniaNative.dylib"));
 
