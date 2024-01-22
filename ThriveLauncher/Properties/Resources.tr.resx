@@ -299,7 +299,7 @@
     <value>, tam gönderiyi okumak için.</value>
   </data>
   <data name="OpenLogsFolderButton" xml:space="preserve">
-    <value>Logları İncele</value>
+    <value>Günlük Dosyalarını İncele</value>
   </data>
   <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
     <value>Tüm Sertifikaların Süresi Doldu</value>
@@ -473,7 +473,7 @@
     <value>Hata: Alt işlem zaten sonlandı, başlatıcı penceresi kapatılmayacak</value>
   </data>
   <data name="TruncatedGameOutputWarning" xml:space="preserve">
-    <value>Çıktı fazla uzun olduğu için tamamı görüntülenemiyor! Çıktının tamamı için Thrive log dosyasına bakın.</value>
+    <value>Çıktı fazla uzun olduğu için tamamı görüntülenemiyor! Çıktının tamamı için Thrive günlük dosyasına bakın.</value>
   </data>
   <data name="ReportCrashButton" xml:space="preserve">
     <value>Çökme Raporu</value>
@@ -555,7 +555,7 @@
     <value>Dahil Et:</value>
   </data>
   <data name="CrashReportLogsSection" xml:space="preserve">
-    <value>Dahil Edilecek Loglar</value>
+    <value>Dahil Edilecek Günlük Dosyaları</value>
   </data>
   <data name="ActiveReportingInfo" xml:space="preserve">
     <value>{1} satırındaki {0} çökmesi bildiriliyor</value>
@@ -685,7 +685,7 @@
   </data>
   <data name="SettingsSaveFailedMessage" xml:space="preserve">
     <value>Ayarlar dosyasına, yapılan ayarlar kaydedilemedi. Lütfen başlatıcının yazma izninin olduğundan emin olun ve tekrar deneyin.
-Başlatıcı logları bununla ilgili daha fazla bilgi içermektedir.</value>
+Başlatıcı günlük dosyaları bununla ilgili daha fazla bilgi içermektedir.</value>
   </data>
   <data name="LauncherSourceCodeButton" xml:space="preserve">
     <value>Başlatıcı Kaynak Kodu</value>
@@ -694,7 +694,7 @@ Başlatıcı logları bununla ilgili daha fazla bilgi içermektedir.</value>
     <value>Thrive Başlatıcısı Lisansları</value>
   </data>
   <data name="LogFolderCreateFailed" xml:space="preserve">
-    <value>Log klasörü oluşturulamadı ({0}): {1}</value>
+    <value>Günlük dosyaları klasörü oluşturulamadı ({0}): {1}</value>
   </data>
   <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
     <value>Geliştirme Sürümü Önbelleği Silinsin mi?</value>
@@ -736,7 +736,7 @@ Başlatıcı logları bununla ilgili daha fazla bilgi içermektedir.</value>
     <value>Başlatıcı, mevcut platform için herhangi bir uyumlu Thrive sürümü bulamadı. Eğer farklı bir işletim sistemi kullanıyorsanız, bu beklenen bir durumdur. Aksi takdirde, lütfen bunu bir sorun olarak bildirin.</value>
   </data>
   <data name="InternalErrorExplanation" xml:space="preserve">
-    <value>Başlatıcıda bir iç hata oluştu. Lütfen bu sorunu bildirin ve oluşan başlatıcı log dosyalarını, bu sorunla nasıl karşılaştığınızı anlatan bir rapor ile birlikte gönderin.</value>
+    <value>Başlatıcıda bir iç hata oluştu. Lütfen bu sorunu bildirin ve oluşan başlatıcı günlük dosyalarını, bu sorunla nasıl karşılaştığınızı anlatan bir rapor ile birlikte gönderin.</value>
   </data>
   <data name="DeleteErrorDoesNotExist" xml:space="preserve">
     <value>Silme işlemi başarısız çünkü hedef yol mevcut değil</value>
@@ -757,13 +757,13 @@ Başlatıcı logları bununla ilgili daha fazla bilgi içermektedir.</value>
     <value>{0} dosya ayıklanıyor. Büyük dosyalar için bu birkaç dakika sürebilir. Bu yüzden, lütfen sabırlı olun.</value>
   </data>
   <data name="ThriveIsStarting" xml:space="preserve">
-    <value>Thrive başlatılıyor. Log çıktısı (arabellekten dolayı, gösterilen içerik muhtemelen gerçek içerik ile eş zamanlı değil):</value>
+    <value>Thrive başlatılıyor. Günlük dosyası çıktısı (arabellekten dolayı, gösterilen içerik muhtemelen gerçek içerik ile eşzamanlı değil):</value>
   </data>
   <data name="AllSigningKeysExpired" xml:space="preserve">
     <value>Bu başlatıcının birlikte gönderildiği tüm imza doğrulama sertifikalarının süresi doldu. Bu, başlatıcının mevcut sürümünün son derece eski olduğu anlamına gelir. Lütfen daha yeni bir sürümü indirip yükleyin.</value>
   </data>
   <data name="CrashReportLogsSectionExplanation" xml:space="preserve">
-    <value>Loglar; sorunu tanımlamada ve düzeltmede yardımcı olabileceği için; eğer çökme esnasında yeni loglar oluşursa, lütfen bu logları dahil edin. İstediğiniz herhangi bir kişisel detayı kaldırmak amacıyla logları görüntülemek ve düzenlemek isterseniz, ilgili dosyanın ismine tıklayarak ya da bulunduğu klasörü görüntüleyen butona basarak bu dosyayı açabilirsiniz. Log dosyaları yalnızca Thrive geliştiricilerine görünür ve yalnızca bildirilen sorunu izlemenin veya düzeltmenin gerekli olduğu durumlarda başka kişilerle paylaşılır.</value>
+    <value>Günlük dosyaları; sorunu tanımlamada ve düzeltmede yardımcı olabileceği için; eğer çökme esnasında yeni günlük dosyaları oluşursa, lütfen bu dosyaları dahil edin. İstediğiniz herhangi bir kişisel detayı kaldırmak amacıyla günlük dosyalarını görüntülemek ve düzenlemek isterseniz, ilgili dosyanın ismine tıklayarak ya da bulunduğu klasörü görüntüleyen butona basarak bu dosyayı açabilirsiniz. Günlük dosyaları yalnızca Thrive geliştiricilerine görünür ve yalnızca bildirilen sorunu izlemenin veya düzeltmenin gerekli olduğu durumlarda başka kişilerle paylaşılır.</value>
   </data>
   <data name="AutoUpdatingFailedExplanation" xml:space="preserve">
     <value>Başlatıcıyı otomatik olarak güncelleme işlemi başarısız oldu. Sorun muhtemelen güncelleme yükleyicinin düzgün çalışmamasından kaynaklı. Güncelleyiciyi, aşağıdaki ismine tıklayarak tekrar çalıştırmayı deneyebilirsiniz. Alternatif olarak; eğer yükleyiciyi manuel olarak çalıştırmak isterseniz, ilk güncelleyicinin bulunduğu klasörü açmak için aşağıdaki butona basabilirsiniz (eğer bu sorununuza yardımcı olursa, lütfen bize bildirin).
@@ -872,7 +872,7 @@ Eğer aşağıda herhangi bir dosya listelenmiyorsa, güncellemeyi indirme işle
     <value>Bu formda listelenmiş bilgilerin, herhangi bir dosya ve çökme dökümü dahil, IP adresim ile birlikte Thrive çökme veritabanında saklanmasını kabul ediyorum. Eğer bu rapor herkese açıksa, herhangi bir kişi çökme çağrı yığını ve açıklamayı okuyabilecek.</value>
   </data>
   <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
-    <value>Seçilen çökme uzun bir zaman önce meydana geldi. Bu bakımdan; seçilen çökme, başlatıcı tarafından saklanan en son log dosyaları veya oyun çıktısı ile ilişkili olmayabilir. Doğru çökmeyi ve ilgili log dosyalarını bildirip bildirmediğinizi lütfen dikkatlice inceleyin.</value>
+    <value>Seçilen çökme uzun bir zaman önce meydana geldi. Bu bakımdan; seçilen çökme, başlatıcı tarafından saklanan en son günlük dosyaları veya oyun çıktısı ile ilişkili olmayabilir. Doğru çökmeyi ve ilgili günlük dosyalarını bildirip bildirmediğinizi lütfen dikkatlice inceleyin.</value>
   </data>
   <data name="AutoUpdateSucceededMessage" xml:space="preserve">
     <value>Otomatik güncelleme başlıyor. Birazdan güncelleyiciye ait yeni bir pencerenin açıldığını göreceksiniz. Güncellemenin bitmesi için başlatıcının kapatılması gerekir. Başlatıcıyı manuel olarak kapatabilir veya otomatik olarak kapatılmasını bekleyebilirsiniz</value>
