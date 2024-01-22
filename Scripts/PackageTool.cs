@@ -836,7 +836,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         {
             ColourConsole.WriteErrorLine($"Running codesign on '{filePath}' failed. " +
                 "Are xcode tools installed and do you have the right certificates installed / " +
-                "self-signed certificate created?");
+                "self-signed certificate created? A self signed certificate might also be expired.");
             return false;
         }
 
