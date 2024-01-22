@@ -326,6 +326,10 @@ internal class Program
                 {
                     seenInitialWindow = true;
 
+                    // If the user clicks on the icon while there are open windows that causes problems when the user
+                    // does want to close the window, so reset the request here when there is an open window
+                    reActivationRequested = false;
+
                     failures = 0;
                     continue;
                 }
@@ -383,6 +387,7 @@ internal class Program
                 if (reActivationRequested)
                 {
                     keepShowingLauncher = true;
+                    reActivationRequested = false;
                 }
                 else
                 {
