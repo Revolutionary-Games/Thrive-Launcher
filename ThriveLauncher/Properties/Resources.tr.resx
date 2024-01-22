@@ -921,4 +921,22 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı k
   <data name="FileSystemErrorTitle" xml:space="preserve">
     <value>Dosya Erişim Hatası</value>
   </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>Başlatıcı yeniden başladığında, geçici klasördeki her bir dosya otomatik olarak silinecek. Sonuç olarak, alakasız dosyaların yanlışlıkla silinmesini önlemek amacıyla, geçici dosyalar klasörü Thrive'ın dışındaki kullanımlarda paylaşılmamalıdır.</value>
+  </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>Geçici klasördeki eski dosyaları otomatik olarak sil</value>
+  </data>
+  <data name="NoAvailableCrashesToReport" xml:space="preserve">
+    <value>Rapor edilecek herhangi bir çökme bulunamadı</value>
+  </data>
+  <data name="ShortTimeAgo" xml:space="preserve">
+    <value>{0} önce</value>
+  </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+    <value>ThriveDevCenter'a bağlanılıyor...</value>
+  </data>
+  <data name="CrashReportDeleteInfoEnabled" xml:space="preserve">
+    <value>Rapor başarılı bir şekilde gönderilirse, çökme dökümü dosyası otomatik olarak silinecek</value>
+  </data>
 </root>
