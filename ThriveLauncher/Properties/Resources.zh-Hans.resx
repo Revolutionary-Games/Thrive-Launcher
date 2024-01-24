@@ -921,4 +921,22 @@
   <data name="FileSystemErrorTitle" xml:space="preserve">
     <value>文件加载错误</value>
   </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>当启动器重启时一切临时文件夹中的老旧文件都将被自动删除，所以临时文件夹不应该用于Thrive以外的用途以避免意外的无关文件被删除。</value>
+  </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>自动删除临时文件夹中的老文件</value>
+  </data>
+  <data name="NoAvailableCrashesToReport" xml:space="preserve">
+    <value>没有检测到可以被报告的崩溃</value>
+  </data>
+  <data name="ShortTimeAgo" xml:space="preserve">
+    <value>{0}以前</value>
+  </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+    <value>正在连接到Thrive开发中心...</value>
+  </data>
+  <data name="CrashReportDeleteInfoEnabled" xml:space="preserve">
+    <value>崩溃转储文件在成功报告后将被删除</value>
+  </data>
 </root>
