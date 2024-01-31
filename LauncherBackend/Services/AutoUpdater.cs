@@ -86,8 +86,7 @@ public class AutoUpdater : IAutoUpdater
         try
         {
             hash = await HashedFileDownloader.DownloadAndHashFile(downloadHttpClient, downloadUrl, installerFile,
-                Sha3.Sha3256(),
-                operation, logger, cancellationToken);
+                Sha3.Sha3256(), operation, logger, cancellationToken);
         }
         catch (Exception e)
         {
@@ -291,8 +290,14 @@ public class AutoUpdater : IAutoUpdater
                     var startInfo = new ProcessStartInfo(explorer);
                     startInfo.ArgumentList.Add(installerFile);
 
+                    logger.LogInformation("Launching updater through {Explorer}: {InstallerFile}", explorer,
+                        installerFile);
+
                     process = Process.Start(startInfo);
                 }
+
+                if (process == null)
+                    logger.LogWarning("Started updater process is null, updater may not have started");
 
                 await Task.Delay(TimeSpan.FromMilliseconds(350));
 
@@ -311,6 +316,9 @@ public class AutoUpdater : IAutoUpdater
                 startInfo.ArgumentList.Add(installerFile);
 
                 var process = Process.Start(startInfo);
+
+                if (process == null)
+                    logger.LogInformation("Started updater process is null");
 
                 await Task.Delay(TimeSpan.FromMilliseconds(350));
 
