@@ -283,11 +283,23 @@ public class AutoUpdater : IAutoUpdater
                 if (explorer == null)
                 {
                     logger.LogError("Could not find explorer.exe, cannot start process as not our child");
-                    process = Process.Start(installerFile);
+
+                    var startInfo = new ProcessStartInfo(installerFile)
+                    {
+                        RedirectStandardError = true,
+                        RedirectStandardOutput = true,
+                    };
+
+                    process = Process.Start(startInfo);
                 }
                 else
                 {
-                    var startInfo = new ProcessStartInfo(explorer);
+                    var startInfo = new ProcessStartInfo(explorer)
+                    {
+                        RedirectStandardError = true,
+                        RedirectStandardOutput = true,
+                    };
+
                     startInfo.ArgumentList.Add(installerFile);
 
                     logger.LogInformation("Launching updater through {Explorer}: {InstallerFile}", explorer,
@@ -297,13 +309,81 @@ public class AutoUpdater : IAutoUpdater
                 }
 
                 if (process == null)
+                {
                     logger.LogWarning("Started updater process is null, updater may not have started");
+                }
+                else
+                {
+                    try
+                    {
+                        process.BeginErrorReadLine();
+                    }
+                    catch (Exception e)
+                    {
+                        logger.LogWarning(e, "Failed to begin error output read of updater process");
+                    }
+
+                    try
+                    {
+                        process.BeginOutputReadLine();
+                    }
+                    catch (Exception e)
+                    {
+                        logger.LogWarning(e, "Failed to begin output read of updater process");
+                    }
+                }
 
                 await Task.Delay(TimeSpan.FromMilliseconds(350));
 
                 if (process is { HasExited: true })
                 {
                     logger.LogInformation("Updater process already exited with code: {ExitCode}", process.ExitCode);
+
+                    var timedCancellation = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+
+                    try
+                    {
+                        while (!process.StandardError.EndOfStream)
+                        {
+                            var line = await process.StandardError.ReadLineAsync(timedCancellation.Token);
+
+                            if (line == null)
+                                break;
+
+                            logger.LogInformation("Updater process error output: {Line}", line.Trim());
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        logger.LogWarning(e, "Error when reading updater process error output");
+                    }
+
+                    if (!timedCancellation.IsCancellationRequested)
+                    {
+                        try
+                        {
+                            while (!process.StandardOutput.EndOfStream)
+                            {
+                                var line = await process.StandardOutput.ReadLineAsync(timedCancellation.Token);
+
+                                if (line == null)
+                                    break;
+
+                                logger.LogInformation("Updater process standard output: {Line}", line.Trim());
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            logger.LogWarning(e, "Error when reading updater process standard output");
+                        }
+                    }
+
+                    if (process.ExitCode != 0)
+                    {
+                        logger.LogWarning("Updater process may have failed");
+
+                        // TODO: should this throw an exception to signal an error here?
+                    }
                 }
 
                 break;
