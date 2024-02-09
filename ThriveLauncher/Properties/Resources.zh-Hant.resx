@@ -921,4 +921,22 @@
   <data name="FileSystemErrorTitle" xml:space="preserve">
     <value>檔案存取錯誤</value>
   </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>自動刪除臨時資料夾中的舊檔案</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>啟動器重新啟動時，所有舊檔案都會自動從臨時資料夾中刪除。因此，臨時資料夾不應與 Thrive 以外的其他使用者共用，以避免意外刪除不相關的檔案。</value>
+  </data>
+  <data name="NoAvailableCrashesToReport" xml:space="preserve">
+    <value>未偵測到可報告的崩潰</value>
+  </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+    <value>正在連接到 ThriveDevCenter…</value>
+  </data>
+  <data name="CrashReportDeleteInfoEnabled" xml:space="preserve">
+    <value>成功發送報告後，崩潰傾印檔將自動刪除</value>
+  </data>
+  <data name="ShortTimeAgo" xml:space="preserve">
+    <value>{0} 前</value>
+  </data>
 </root>
