@@ -475,4 +475,13 @@
   <data name="ClearDehydratedFilesCount" xml:space="preserve">
     <value>Ще бъдат изтрити {0} файла</value>
   </data>
+  <data name="ShortTimeAgo" xml:space="preserve">
+    <value>Преди {0}</value>
+  </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+    <value>Свързване с Центъра за разработка…</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>от {0} на {1}</value>
+  </data>
 </root>
