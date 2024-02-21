@@ -293,8 +293,7 @@ public class AutoUpdater : IAutoUpdater
 
                     startInfo.ArgumentList.Add(installerFile);
 
-                    logger.LogInformation("Launching updater through {Explorer}: {InstallerFile}", explorer,
-                        installerFile);
+                    logger.LogInformation("Launching updater through {Explorer}", explorer);
 
                     process = Process.Start(startInfo);
                 }
@@ -318,7 +317,7 @@ public class AutoUpdater : IAutoUpdater
 
                     startInfo.ArgumentList.Add(installerFile);
 
-                    logger.LogInformation("Launching updater through 'cmd': {InstallerFile}", installerFile);
+                    logger.LogInformation("Launching updater through 'cmd'");
 
                     process = Process.Start(startInfo);
                 }
