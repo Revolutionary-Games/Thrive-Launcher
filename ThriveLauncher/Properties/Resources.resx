@@ -863,6 +863,9 @@ If a Thrive team member verifies that the PR is safe this warning goes away. Alt
   <data name="QuitLauncherButton" xml:space="preserve">
     <value>Exit Launcher Now</value>
   </data>
+  <data name="ExitTheLauncher" xml:space="preserve">
+    <value>Exit the Launcher</value>
+  </data>
   <data name="StartedAutoUpdateExplanation" xml:space="preserve">
     <value>The launcher is currently downloading and installing an update, please wait. The downloaded updater may open a new window that requires user interaction to complete the update.</value>
   </data>

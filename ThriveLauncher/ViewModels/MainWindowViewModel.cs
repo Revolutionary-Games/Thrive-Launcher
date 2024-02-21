@@ -411,6 +411,12 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
         }
     }
 
+    public void OnUserRequestLauncherClose()
+    {
+        logger.LogInformation("User has requested launcher to quit now");
+        LauncherShouldClose = true;
+    }
+
     public void Dispose()
     {
         Dispose(true);

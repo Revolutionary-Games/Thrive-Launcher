@@ -131,7 +131,7 @@ public partial class MainWindowViewModel
 
     /// <summary>
     ///   When this is set to true the launcher wants itself to be closed (based on non-default selectable options
-    ///   by the user)
+    ///   by the user). Or an explicit user action.
     /// </summary>
     public bool LauncherShouldClose
     {

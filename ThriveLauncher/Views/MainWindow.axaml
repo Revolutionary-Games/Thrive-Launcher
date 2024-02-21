@@ -218,15 +218,23 @@
                             RelativePanel.AlignTopWithPanel="True"
                             RelativePanel.AlignBottomWithPanel="True">
                     <TabItem Header="{i18n:Localize ThriveOptions}">
-                        <StackPanel>
-                            <TextBlock FontSize="16" Text="{i18n:Localize LaunchOptionsTitle}" />
-                            <CheckBox IsChecked="{Binding DisableThriveVideos}">
-                                <TextBlock TextWrapping="Wrap" Text="{i18n:Localize LaunchOptionDisableVideos}" />
-                            </CheckBox>
-                            <CheckBox IsChecked="{Binding ForceGles2Mode}">
-                                <TextBlock TextWrapping="Wrap" Text="{i18n:Localize LaunchOptionForceGLES2}" />
-                            </CheckBox>
-                        </StackPanel>
+                        <DockPanel LastChildFill="True">
+                            <StackPanel DockPanel.Dock="Top">
+                                <TextBlock FontSize="16" Text="{i18n:Localize LaunchOptionsTitle}" />
+                                <CheckBox IsChecked="{Binding DisableThriveVideos}">
+                                    <TextBlock TextWrapping="Wrap" Text="{i18n:Localize LaunchOptionDisableVideos}" />
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding ForceGles2Mode}">
+                                    <TextBlock TextWrapping="Wrap" Text="{i18n:Localize LaunchOptionForceGLES2}" />
+                                </CheckBox>
+                            </StackPanel>
+
+                            <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+                                <Button Classes="DialogButton Danger" Content="{i18n:Localize ExitTheLauncher}"
+                                        Command="{Binding OnUserRequestLauncherClose}" />
+
+                            </StackPanel>
+                        </DockPanel>
                     </TabItem>
                     <TabItem Header="{i18n:Localize LauncherOptions}">
                         <Grid ColumnDefinitions="*" RowDefinitions="Auto,Auto,*,Auto,Auto,Auto">

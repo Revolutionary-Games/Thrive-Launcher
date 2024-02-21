@@ -1641,6 +1641,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string ExitTheLauncher {
+            get {
+                return ResourceManager.GetString("ExitTheLauncher", resourceCulture);
+            }
+        }
+        
         public static string StartedAutoUpdateExplanation {
             get {
                 return ResourceManager.GetString("StartedAutoUpdateExplanation", resourceCulture);
