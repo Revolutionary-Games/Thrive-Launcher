@@ -939,4 +939,10 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı k
   <data name="CrashReportDeleteInfoEnabled" xml:space="preserve">
     <value>Rapor başarılı bir şekilde gönderilirse, çökme dökümü dosyası otomatik olarak silinecek</value>
   </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>Oto güncelleyiciyi çalıştırmak için alternatif yolu kullan (normal otomatik güncelleme başlatma başarısız olursa deneyin)</value>
+  </data>
+  <data name="ExitTheLauncher" xml:space="preserve">
+    <value>Başlatıcıdan çık</value>
+  </data>
 </root>
