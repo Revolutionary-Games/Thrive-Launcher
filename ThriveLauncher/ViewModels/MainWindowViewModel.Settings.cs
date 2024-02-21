@@ -233,6 +233,20 @@ public partial class MainWindowViewModel
         }
     }
 
+    public bool UseAlternateUpdateMethod
+    {
+        get => Settings.UseAlternateUpdateMethod;
+        set
+        {
+            if (Settings.UseAlternateUpdateMethod == value)
+                return;
+
+            this.RaisePropertyChanging();
+            Settings.UseAlternateUpdateMethod = value;
+            this.RaisePropertyChanged();
+        }
+    }
+
     public bool ShowLatestBetaVersion
     {
         get => Settings.ShowLatestBetaVersion;

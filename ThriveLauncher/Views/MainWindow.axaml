@@ -304,6 +304,10 @@
                                               IsVisible="{Binding CanAutoUpdate}"
                                               Content="{i18n:Localize LauncherOptionAutoUpdate}" />
 
+                                    <CheckBox IsChecked="{Binding UseAlternateUpdateMethod}"
+                                              IsVisible="{Binding CanAutoUpdate}"
+                                              Content="{i18n:Localize LauncherOptionAutoUpdateAlternativeMode}" />
+
                                     <CheckBox IsChecked="{Binding AutoCleanTemporaryFolder}"
                                               Content="{i18n:Localize LauncherOptionCleanTemporaryFiles}" />
 

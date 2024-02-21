@@ -117,7 +117,7 @@ public class AutoUpdater : IAutoUpdater
 
         try
         {
-            await StartUpdater(installerFile, updateChannel);
+            await StartUpdater(installerFile, updateChannel, settingsManager.Settings.UseAlternateUpdateMethod);
         }
         catch (Exception e)
         {
@@ -170,7 +170,9 @@ public class AutoUpdater : IAutoUpdater
     {
         try
         {
-            await StartUpdater(downloadedUpdateFile, updateChannelType);
+            // TODO: should this automatically use the alternative way?
+            await StartUpdater(downloadedUpdateFile, updateChannelType,
+                settingsManager.Settings.UseAlternateUpdateMethod);
             return true;
         }
         catch (Exception e)
@@ -267,38 +269,27 @@ public class AutoUpdater : IAutoUpdater
         }
     }
 
-    private async Task StartUpdater(string installerFile, LauncherAutoUpdateChannel updateChannelType)
+    private async Task StartUpdater(string installerFile, LauncherAutoUpdateChannel updateChannelType,
+        bool useAlternateStart)
     {
         if (!File.Exists(installerFile))
             throw new ArgumentException($"The installer file doesn't exist at: {installerFile}");
+
+        logger.LogInformation("Going to use installer file at \"{File}\"", installerFile);
 
         switch (updateChannelType)
         {
             case LauncherAutoUpdateChannel.WindowsInstaller:
             {
-                // For Windows we start running the installer through explorer.exe so that it's not our child process
+                // For Windows we need to do some special stuff to ensure the launcher process is not a child of the
+                // current process
                 var explorer = ExecutableFinder.Which("explorer.exe");
 
                 Process? process;
-                if (explorer == null)
-                {
-                    logger.LogError("Could not find explorer.exe, cannot start process as not our child");
 
-                    var startInfo = new ProcessStartInfo(installerFile)
-                    {
-                        RedirectStandardError = true,
-                        RedirectStandardOutput = true,
-                    };
-
-                    process = Process.Start(startInfo);
-                }
-                else
+                if (useAlternateStart && explorer != null)
                 {
-                    var startInfo = new ProcessStartInfo(explorer)
-                    {
-                        RedirectStandardError = true,
-                        RedirectStandardOutput = true,
-                    };
+                    var startInfo = new ProcessStartInfo(explorer);
 
                     startInfo.ArgumentList.Add(installerFile);
 
@@ -307,76 +298,40 @@ public class AutoUpdater : IAutoUpdater
 
                     process = Process.Start(startInfo);
                 }
+                else
+                {
+                    if (useAlternateStart)
+                        logger.LogWarning("Couldn't find 'explorer.exe' to use alternate start, using normal start");
+
+                    var startInfo = new ProcessStartInfo("cmd")
+                    {
+                        WindowStyle = ProcessWindowStyle.Hidden,
+                        UseShellExecute = true,
+                    };
+
+                    startInfo.ArgumentList.Add("/c");
+                    startInfo.ArgumentList.Add("start");
+
+                    // Title as specified in the format for the "start" command
+                    startInfo.ArgumentList.Add("\"Thrive Launcher Updater\"");
+
+                    startInfo.ArgumentList.Add(installerFile);
+
+                    logger.LogInformation("Launching updater through 'cmd': {InstallerFile}", installerFile);
+
+                    process = Process.Start(startInfo);
+                }
 
                 if (process == null)
                 {
                     logger.LogWarning("Started updater process is null, updater may not have started");
                 }
-                else
-                {
-                    try
-                    {
-                        process.BeginErrorReadLine();
-                    }
-                    catch (Exception e)
-                    {
-                        logger.LogWarning(e, "Failed to begin error output read of updater process");
-                    }
 
-                    try
-                    {
-                        process.BeginOutputReadLine();
-                    }
-                    catch (Exception e)
-                    {
-                        logger.LogWarning(e, "Failed to begin output read of updater process");
-                    }
-                }
-
-                await Task.Delay(TimeSpan.FromMilliseconds(350));
+                await Task.Delay(TimeSpan.FromMilliseconds(450));
 
                 if (process is { HasExited: true })
                 {
                     logger.LogInformation("Updater process already exited with code: {ExitCode}", process.ExitCode);
-
-                    var timedCancellation = new CancellationTokenSource(TimeSpan.FromSeconds(5));
-
-                    try
-                    {
-                        while (!process.StandardError.EndOfStream)
-                        {
-                            var line = await process.StandardError.ReadLineAsync(timedCancellation.Token);
-
-                            if (line == null)
-                                break;
-
-                            logger.LogInformation("Updater process error output: {Line}", line.Trim());
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        logger.LogWarning(e, "Error when reading updater process error output");
-                    }
-
-                    if (!timedCancellation.IsCancellationRequested)
-                    {
-                        try
-                        {
-                            while (!process.StandardOutput.EndOfStream)
-                            {
-                                var line = await process.StandardOutput.ReadLineAsync(timedCancellation.Token);
-
-                                if (line == null)
-                                    break;
-
-                                logger.LogInformation("Updater process standard output: {Line}", line.Trim());
-                            }
-                        }
-                        catch (Exception e)
-                        {
-                            logger.LogWarning(e, "Error when reading updater process standard output");
-                        }
-                    }
 
                     if (process.ExitCode != 0)
                     {

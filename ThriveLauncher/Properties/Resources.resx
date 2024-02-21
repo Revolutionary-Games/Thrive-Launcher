@@ -214,6 +214,9 @@
   <data name="LauncherOptionAutoUpdate" xml:space="preserve">
       <value>Automatically update the launcher</value>
   </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+      <value>Use alternative way to run auto updater (try if normal auto update start fails)</value>
+  </data>
   <data name="LauncherOptionVerboseLogging" xml:space="preserve">
       <value>Enable launcher debug logging (before reporting an issue or bug with the launcher please enable this and restart the launcher)</value>
   </data>

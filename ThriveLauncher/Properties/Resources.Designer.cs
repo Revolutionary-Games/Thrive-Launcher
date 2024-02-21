@@ -351,6 +351,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string LauncherOptionAutoUpdateAlternativeMode {
+            get {
+                return ResourceManager.GetString("LauncherOptionAutoUpdateAlternativeMode", resourceCulture);
+            }
+        }
+        
         public static string LauncherOptionVerboseLogging {
             get {
                 return ResourceManager.GetString("LauncherOptionVerboseLogging", resourceCulture);

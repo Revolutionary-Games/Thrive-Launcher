@@ -53,6 +53,9 @@ public class LauncherSettings
     [JsonPropertyName("allowAutoUpdate")]
     public bool AllowAutoUpdate { get; set; } = true;
 
+    [JsonPropertyName("useAlternateUpdateMethod")]
+    public bool UseAlternateUpdateMethod { get; set; }
+
     [JsonPropertyName("showLatestBetaVersion")]
     public bool ShowLatestBetaVersion { get; set; }
 
