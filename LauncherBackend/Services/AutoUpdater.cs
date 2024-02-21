@@ -312,8 +312,9 @@ public class AutoUpdater : IAutoUpdater
                     startInfo.ArgumentList.Add("/c");
                     startInfo.ArgumentList.Add("start");
 
-                    // Title as specified in the format for the "start" command
-                    startInfo.ArgumentList.Add("\"Thrive Launcher Updater\"");
+                    // Title as specified in the format for the "start" command. This is "optional" but the start
+                    // command may confuse the executable to start and flags otherwise.
+                    startInfo.ArgumentList.Add("Thrive Launcher Updater");
 
                     startInfo.ArgumentList.Add(installerFile);
 
