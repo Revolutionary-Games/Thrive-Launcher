@@ -376,4 +376,64 @@
   <data name="FeedItemPostedByAndTime" xml:space="preserve">
     <value>Publicado por {0} a las {1}</value>
   </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>Usa un modo alternativo de ejecutar el actualizador automático (prueba si el actualizador autonático falla al iniciarse)</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>Todos los certificados que fueron enviados con este lanzador han expirado. Esto significa que está versión del lanzador está extremadamente desactualizada. Por favor descarga una versión nueva.</value>
+  </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>Borrar automáticamente archivos viejos in la carpeta temporal</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>Hubo un fallo al intentar crear una carpeta de logs ({0}):{1}</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Haz click aqui</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>Ver Logs</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>Todos los certificados han expirado</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>{0}versión</value>
+  </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+    <value>Conectando a ThriveDevCenter...</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0}para{1}</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>Cargando...</value>
+  </data>
+  <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
+    <value>El lanzador de Thrive carga las versiones de Thrive disponibles desde el internet para saber cuales están disponibles. Un error ha ocurrido mientras se cargaba esta información (puedes ver el error más abajo). Puedes intentar volver a cargar esta información, o si en el pasado el lanzador fue capaz de descargar esta información puedes cargar una copy del cache. Si la copia del cache es muy vieja puede que no muestre todas las versiones de Thrive disponibles. Puede que si tu version del lanzador es muy vieja, no sea compatible que formatos de datos nuevos, si este es el caso, debera ser actualizado manualmente antes de que se puedan descargar los datos.</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Volver a intentarlo.</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>Usar información de versión guardada en el cache</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Error desconocido</value>
+  </data>
+  <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
+    <value>La información del lanzador de Thrive es invalida. Por favor vuelve a intentarlo in unos minutos, y si el problema persiste, por favor contactanos.</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>No se han encotrado versiones de Thrive compatibles</value>
+  </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>El lanzador no pudo encontrar ninguna version de Thrive compatible con la plataforma actual. Si estás usando un sistema operativo inusual, esto es de esperar. Por lo contrario, por favor informa de este problema.</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0}(Ultimo)</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>Mover versiones existentes?</value>
+  </data>
 </root>

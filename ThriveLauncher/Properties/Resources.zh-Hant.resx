@@ -939,4 +939,10 @@
   <data name="ShortTimeAgo" xml:space="preserve">
     <value>{0} 前</value>
   </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>使用替代方式執行自動更新程式（如果正常自動更新啟動失敗，請嘗試）</value>
+  </data>
+  <data name="ExitTheLauncher" xml:space="preserve">
+    <value>退出啟動器</value>
+  </data>
 </root>
