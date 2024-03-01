@@ -535,4 +535,10 @@ Les logs du launcher contiendront plus d'informations.</value>
   <data name="DevCenterCheckingConnection" xml:space="preserve">
     <value>Connection à ThriveDevCenter...</value>
   </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>Supprimer automatiquement les anciens fichiers du dossier temporaire</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>Tous les anciens fichiers seront automatiquement supprimés du dossier temporaire au redémarage du launcher. De ce faites les fichiers temporaires ne devront pas être partager avec d'autres utilisateur que Thrive pour éviter les suppression de fichier involontairement</value>
+  </data>
 </root>
