@@ -921,4 +921,7 @@
   <data name="StopAutoClose" xml:space="preserve">
     <value>Отменить закрытие</value>
   </data>
+  <data name="CrashReportDescriptionField" xml:space="preserve">
+    <value>Опишите, что вы делали, когда произошла ошибка (необязательно)</value>
+  </data>
 </root>
