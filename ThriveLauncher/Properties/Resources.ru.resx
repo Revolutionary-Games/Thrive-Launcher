@@ -675,10 +675,10 @@
     <value>Теперь вы можете спокойно закрыть это окно отчета. Или подождите, пока это окно автоматически не закроется через</value>
   </data>
   <data name="SubmitRetryButton" xml:space="preserve">
-    <value>Повторить</value>
+    <value>Повторная попытка</value>
   </data>
   <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
-    <value>Ваш отчёт успешно отправлен на усмотрение. Спасибо за Ваш отчёт.</value>
+    <value>Ваш отчет успешно отправлен. Спасибо за ваш отчет.</value>
   </data>
   <data name="SecondsDisplayPlural" xml:space="preserve">
     <value>{0} секунд</value>
@@ -875,5 +875,14 @@
   </data>
   <data name="ErrorSubmittingReport" xml:space="preserve">
     <value>При попытке отправить отчет об ошибке произошел сбой. Пожалуйста, проверьте правильность данных или повторите попытку позже, если проблема связана с сервером. Тип сбоя:</value>
+  </data>
+  <data name="ReportDeleteInfo" xml:space="preserve">
+    <value>Если вы хотите удалить свой отчет, вы можете сделать это здесь:</value>
+  </data>
+  <data name="ReportViewingPublicInfo" xml:space="preserve">
+    <value>Вы можете просмотреть свой отчет, если он находится в открытом доступе, по следующему адресу:</value>
+  </data>
+  <data name="SubmittingReportExtraInfo" xml:space="preserve">
+    <value>Дополнительная информация о возникшей ошибке:</value>
   </data>
 </root>
