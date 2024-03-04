@@ -927,4 +927,7 @@
   <data name="CrashReportDescriptionFieldPlaceholder" xml:space="preserve">
     <value>Описание ошибки (необязательно)</value>
   </data>
+  <data name="CrashReportEmailField" xml:space="preserve">
+    <value>Ваш e-mail, если вы хотите получать обновления об этом отчете (необязательно)</value>
+  </data>
 </root>
