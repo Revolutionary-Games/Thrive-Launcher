@@ -922,6 +922,6 @@
     <value>Отменить закрытие</value>
   </data>
   <data name="CrashReportDescriptionField" xml:space="preserve">
-    <value>Опишите, что вы делали, когда произошла ошибка (необязательно)</value>
+    <value>Опишите, что вы делали, когда произошел вылет (необязательно)</value>
   </data>
 </root>
