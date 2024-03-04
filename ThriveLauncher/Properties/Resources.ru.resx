@@ -260,7 +260,7 @@
     <value>Предыдущие настройки успешно импортированы.</value>
   </data>
   <data name="ConnectToDevCenterPrompt" xml:space="preserve">
-    <value>Подключиться к Центру Разработчиков Thrive</value>
+    <value>Подключиться к Центру Разработки Thrive</value>
   </data>
   <data name="LinksPopupTitle" xml:space="preserve">
     <value>Ссылки Revolutionary Games</value>
@@ -782,7 +782,7 @@
     <value>Разбор информации о последней доступной версии пусковой установки не удался. Уведомления о доступности новой версии пусковой установки и автообновление не будут работать.</value>
   </data>
   <data name="AcceptUnsafeBuildButton" xml:space="preserve">
-    <value>Я понимаю риск, все равно играйте</value>
+    <value>Я осознаю риск, все равно запустить игру</value>
   </data>
   <data name="CrashReportIsPublic" xml:space="preserve">
     <value>Публичные? В публичных отчетах стек вызовов и описание сбоя находятся в открытом доступе. Приватные отчеты видны только разработчикам Thrive.</value>
@@ -884,5 +884,17 @@
   </data>
   <data name="SubmittingReportExtraInfo" xml:space="preserve">
     <value>Дополнительная информация о возникшей ошибке:</value>
+  </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>Автоматически удалять старые файлы из временной папки</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>Все старые файлы будут автоматически удалены из временной папки при перезапуске лаунчера. По этой причине, папка временных файлов не должна содержать ничего, что не относится к Thrive, чтобы избежать случайного удаления сторонних файлов.</value>
+  </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+    <value>Подключение к Центру Разработки Thrive...</value>
+  </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>Запустить автоматические обновления другим способом (попробуйте, если обычный запуск автом. обновлений не работает)</value>
   </data>
 </root>
