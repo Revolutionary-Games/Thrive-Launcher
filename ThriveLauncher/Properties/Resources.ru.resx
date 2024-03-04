@@ -681,7 +681,7 @@
     <value>Ваш отчет успешно отправлен. Спасибо за ваш отчет.</value>
   </data>
   <data name="SecondsDisplayPlural" xml:space="preserve">
-    <value>{0} секунд</value>
+    <value>{0} секунд(-а, -ы)</value>
   </data>
   <data name="RetryingAutoUpdate" xml:space="preserve">
     <value>Повторяем автообновление...</value>
@@ -896,5 +896,23 @@
   </data>
   <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
     <value>Запустить автоматические обновления другим способом (попробуйте, если обычный запуск автом. обновлений не работает)</value>
+  </data>
+  <data name="SecondsDisplaySingular" xml:space="preserve">
+    <value>1 секунда</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Копировать в буфер обмена</value>
+  </data>
+  <data name="TimeMomentRightNow" xml:space="preserve">
+    <value>Сейчас</value>
+  </data>
+  <data name="AutoCloseStopped" xml:space="preserve">
+    <value>Автоматическое закрытие отменено</value>
+  </data>
+  <data name="IncludeInReport" xml:space="preserve">
+    <value>Включить:</value>
+  </data>
+  <data name="CrashReportLogsSectionExplanation" xml:space="preserve">
+    <value>Пожалуйста, сохраните файлы об ошибках, вы можете нажать на имя файла, чтобы открыть его, или на кнопку для просмотра папки, в которой он находится, чтобы просмотреть и отредактировать его, удалив любые личные данные, которые вы хотите. Файлы ошибок всегда видны только разработчикам Thrive и передаются другим сторонам только в том случае, если это необходимо для отслеживания или устранения сообщенной проблемы.</value>
   </data>
 </root>
