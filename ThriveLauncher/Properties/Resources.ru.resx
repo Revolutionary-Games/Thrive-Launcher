@@ -924,4 +924,7 @@
   <data name="CrashReportDescriptionField" xml:space="preserve">
     <value>Опишите, что вы делали, когда произошел вылет (необязательно)</value>
   </data>
+  <data name="CrashReportDescriptionFieldPlaceholder" xml:space="preserve">
+    <value>Описание ошибки (необязательно)</value>
+  </data>
 </root>
