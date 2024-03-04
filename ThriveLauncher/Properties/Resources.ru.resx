@@ -752,13 +752,13 @@
     <value>E-mail (необязательно)</value>
   </data>
   <data name="CrashReportEmailFieldNotice" xml:space="preserve">
-    <value>Ваш e-mail будет виден только администраторам центра разработки Thrive.</value>
+    <value>Ваш E-mail будет виден только администраторам Центра Разработки Thrive.</value>
   </data>
   <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
     <value>Выбранный сбой произошел некоторое время назад. Поэтому он может быть не связан с последними лог-файлами или результатами игры, сохраненными программой запуска. Пожалуйста, внимательно проверьте, правильно ли вы сообщаете о сбое и соответствующих файлах журнала.</value>
   </data>
   <data name="CrashReportDeleteAfterSubmitting" xml:space="preserve">
-    <value>Удалите этот файл дампа аварии после создания отчета (рекомендуется)</value>
+    <value>Удалить этот файл с информацией о сбое после создания отчета (рекомендуется)</value>
   </data>
   <data name="CrashReportIncludeLauncherOutput" xml:space="preserve">
     <value>Включите вывод игры, отображаемый во всплывающем окне текущей игры в пусковой установке (рекомендуется при сообщении о сбое после последнего запуска игры)</value>
@@ -928,6 +928,15 @@
     <value>Описание ошибки (необязательно)</value>
   </data>
   <data name="CrashReportEmailField" xml:space="preserve">
-    <value>Ваш e-mail, если вы хотите получать обновления об этом отчете (необязательно)</value>
+    <value>Ваш E-mail, если вы хотите получать новости об этом отчете (необязательно)</value>
+  </data>
+  <data name="ExitTheLauncher" xml:space="preserve">
+    <value>Выйти из лаунчера</value>
+  </data>
+  <data name="NoAvailableCrashesToReport" xml:space="preserve">
+    <value>Не найдено сбоев для составления отчета</value>
+  </data>
+  <data name="CrashReportDeleteInfoEnabled" xml:space="preserve">
+    <value>Файл с информацией о сбое будет автоматически удален после успешной отправки отчета</value>
   </data>
 </root>
