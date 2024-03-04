@@ -918,4 +918,7 @@
   <data name="ViewFile" xml:space="preserve">
     <value>Просмотреть</value>
   </data>
+  <data name="StopAutoClose" xml:space="preserve">
+    <value>Отменить закрытие</value>
+  </data>
 </root>
