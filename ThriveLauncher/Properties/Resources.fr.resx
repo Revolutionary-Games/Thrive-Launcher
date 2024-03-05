@@ -347,7 +347,7 @@
     <value>Licences du launcher Thrive</value>
   </data>
   <data name="RobotoLicenseTitle" xml:space="preserve">
-    <value>La police Roboto est utilisée dans le lanceur, licence Roboto :</value>
+    <value>La fonte Roboto est utilisée dans le launcher, licence Roboto :</value>
   </data>
   <data name="FeedFetchError" xml:space="preserve">
     <value>Le flux ne peux pas être affiché. {0}</value>
@@ -439,7 +439,7 @@
 Si un membre de l'équipe Thrive vérifie que la PR est sûre, cet avertissement disparaît. Sinon, vous pouvez continuer si vous pensez que cette version est sûre. Avant de le faire, vous devez vérifier la PR sur Github pour voir si le dernier hash de commit correspond et si la compilation de ThriveDevCenter indique qu'elle a téléchargé une versions de développement avec le hash. En outre, il faut vérifier que la PR ne modifie pas les scripts de compilation. Après avoir fait cela, ce devrait être relativement sûr de continuer, car c'est le même processus que les membres de l'équipe Thrive utilisent pour vérifier les PRs.</value>
   </data>
   <data name="DevCenterConnectionExplanation" xml:space="preserve">
-    <value>Ici, vous pouvez lier le lanceur au ThriveDevCenter pour accéder aux versions de développement et à d'autres fonctionnalités</value>
+    <value>Ici, vous pouvez lier le launcher au ThriveDevCenter pour accéder aux versions de développement et à d'autres fonctionnalités</value>
   </data>
   <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
     <value>Entrez le hash manuellement :</value>
@@ -479,7 +479,7 @@ Les logs du launcher contiendront plus d'informations.</value>
     <value>Fermer</value>
   </data>
   <data name="AllSigningKeysExpired" xml:space="preserve">
-    <value>Tous les certificats de vérification de signature avec lesquels ce launcher est livré ont expiré. Cela signifie que cette version du lanceur est extrêmement obsolète. Veuillez télécharger et installer une version plus récente.</value>
+    <value>Tous les certificats de vérification de signature avec lesquels ce launcher est livré ont expiré. Cela signifie que cette version du launcher est extrêmement obsolète. Veuillez télécharger et installer une version plus récente.</value>
   </data>
   <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
     <value>Erreur en essayant d'obtenir les versions disponibles de Thrive</value>
@@ -564,5 +564,8 @@ Les logs du launcher contiendront plus d'informations.</value>
   </data>
   <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
     <value>Utilisez une autre méthode pour exécuter le programme de mise à jour automatique (essayez si le démarrage normal de la mise à jour automatique échoue)</value>
+  </data>
+  <data name="ExitTheLauncher" xml:space="preserve">
+    <value>Quitter le launcher</value>
   </data>
 </root>
