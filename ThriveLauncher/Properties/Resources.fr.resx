@@ -230,7 +230,7 @@
     <value>Taille du cache :</value>
   </data>
   <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
-    <value>Connection au DevCenter</value>
+    <value>Connection au ThriveDevCenter</value>
   </data>
   <data name="DialogOk" xml:space="preserve">
     <value>Ok</value>
@@ -561,5 +561,8 @@ Les logs du launcher contiendront plus d'informations.</value>
   </data>
   <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
     <value>Le code de sortie peut signifier qu'il vous manque un fichier DLL nécessaire. Il peut s'agir de Visual C++ Redistributable 2019, pour lequel vous pouvez télécharger un programme d'installation à partir de : https://aka.ms/vs/17/release/vc_redist.x64.exe afin de l'installer / le réparer. Vous pouvez également essayer d'exécuter Thrive.exe manuellement, car cela peut afficher une boîte de dialogue d'erreur avec le nom du fichier DLL manquant. Vous devriez vérifier que toutes les mises à jour de Windows sont installées. Si cela ne vous aide pas, veuillez nous contacter pour obtenir de l'aide supplémentaire.</value>
+  </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>Utilisez une autre méthode pour exécuter le programme de mise à jour automatique (essayez si le démarrage normal de la mise à jour automatique échoue)</value>
   </data>
 </root>
