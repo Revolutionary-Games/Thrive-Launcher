@@ -260,7 +260,7 @@
     <value>Предыдущие настройки успешно импортированы.</value>
   </data>
   <data name="ConnectToDevCenterPrompt" xml:space="preserve">
-    <value>Подключиться к Центру Разработчиков Thrive</value>
+    <value>Подключиться к Центру Разработки Thrive</value>
   </data>
   <data name="LinksPopupTitle" xml:space="preserve">
     <value>Ссылки Revolutionary Games</value>
@@ -669,19 +669,19 @@
     <value>Вы уверены, что хотите отменить создание отчета об ошибке? Если на определенную ошибку не подано ни одного отчета, разработчики Thrive могут не знать о ней и, следовательно, не смогут ее исправить.</value>
   </data>
   <data name="ReportDeleteCaveat" xml:space="preserve">
-    <value>ВАЖНО, если вы потеряете ссылку на удаление, вы не сможете удалить свой отчет. Поэтому сохраните его! Вы можете нажать кнопку копирования справа от него, чтобы скопировать его.</value>
+    <value>ВАЖНО! Если вы потеряете ссылку на удаление, вы не сможете удалить свой отчет. Поэтому сохраните её! Вы можете нажать кнопку копирования справа от неё, чтобы скопировать.</value>
   </data>
   <data name="ReporterEndMessage" xml:space="preserve">
-    <value>Теперь вы можете спокойно закрыть это окно отчета. Или подождите, пока это окно автоматически не закроется через</value>
+    <value>Теперь вы можете спокойно закрыть окно отчета. Или подождите, пока это окно закроется автоматически через</value>
   </data>
   <data name="SubmitRetryButton" xml:space="preserve">
-    <value>Повторить</value>
+    <value>Повторная попытка</value>
   </data>
   <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
-    <value>Ваш отчёт успешно отправлен на усмотрение. Спасибо за Ваш отчёт.</value>
+    <value>Ваш отчет успешно отправлен. Спасибо за ваш отчет.</value>
   </data>
   <data name="SecondsDisplayPlural" xml:space="preserve">
-    <value>{0} секунд</value>
+    <value>{0} секунд(-а, -ы)</value>
   </data>
   <data name="RetryingAutoUpdate" xml:space="preserve">
     <value>Повторяем автообновление...</value>
@@ -699,7 +699,7 @@
     <value>Скопировано в игровой буфер обмена</value>
   </data>
   <data name="AtTime" xml:space="preserve">
-    <value>Около {0}</value>
+    <value>Примерно в {0}</value>
   </data>
   <data name="OpenFolder" xml:space="preserve">
     <value>Открыть папку</value>
@@ -752,13 +752,13 @@
     <value>E-mail (необязательно)</value>
   </data>
   <data name="CrashReportEmailFieldNotice" xml:space="preserve">
-    <value>Ваш e-mail будет виден только администраторам центра разработки Thrive.</value>
+    <value>Ваш E-mail будет виден только администраторам Центра Разработки Thrive.</value>
   </data>
   <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
     <value>Выбранный сбой произошел некоторое время назад. Поэтому он может быть не связан с последними лог-файлами или результатами игры, сохраненными программой запуска. Пожалуйста, внимательно проверьте, правильно ли вы сообщаете о сбое и соответствующих файлах журнала.</value>
   </data>
   <data name="CrashReportDeleteAfterSubmitting" xml:space="preserve">
-    <value>Удалите этот файл дампа аварии после создания отчета (рекомендуется)</value>
+    <value>Удалить этот файл с информацией о сбое после создания отчета (рекомендуется)</value>
   </data>
   <data name="CrashReportIncludeLauncherOutput" xml:space="preserve">
     <value>Включите вывод игры, отображаемый во всплывающем окне текущей игры в пусковой установке (рекомендуется при сообщении о сбое после последнего запуска игры)</value>
@@ -782,7 +782,7 @@
     <value>Разбор информации о последней доступной версии пусковой установки не удался. Уведомления о доступности новой версии пусковой установки и автообновление не будут работать.</value>
   </data>
   <data name="AcceptUnsafeBuildButton" xml:space="preserve">
-    <value>Я понимаю риск, все равно играйте</value>
+    <value>Я осознаю риск, все равно запустить игру</value>
   </data>
   <data name="CrashReportIsPublic" xml:space="preserve">
     <value>Публичные? В публичных отчетах стек вызовов и описание сбоя находятся в открытом доступе. Приватные отчеты видны только разработчикам Thrive.</value>
@@ -875,5 +875,68 @@
   </data>
   <data name="ErrorSubmittingReport" xml:space="preserve">
     <value>При попытке отправить отчет об ошибке произошел сбой. Пожалуйста, проверьте правильность данных или повторите попытку позже, если проблема связана с сервером. Тип сбоя:</value>
+  </data>
+  <data name="ReportDeleteInfo" xml:space="preserve">
+    <value>Если вы хотите удалить свой отчет, вы можете сделать это здесь:</value>
+  </data>
+  <data name="ReportViewingPublicInfo" xml:space="preserve">
+    <value>Вы можете просмотреть свой отчет, если он находится в открытом доступе, по следующему адресу:</value>
+  </data>
+  <data name="SubmittingReportExtraInfo" xml:space="preserve">
+    <value>Дополнительная информация о возникшей ошибке:</value>
+  </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>Автоматически удалять старые файлы из временной папки</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>Все старые файлы будут автоматически удалены из временной папки при перезапуске лаунчера. По этой причине, папка временных файлов не должна содержать ничего, что не относится к Thrive, чтобы избежать случайного удаления сторонних файлов.</value>
+  </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+    <value>Подключение к Центру Разработки Thrive...</value>
+  </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>Запустить автоматические обновления другим способом (попробуйте, если обычный запуск автом. обновлений не работает)</value>
+  </data>
+  <data name="SecondsDisplaySingular" xml:space="preserve">
+    <value>1 секунда</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Копировать в буфер обмена</value>
+  </data>
+  <data name="TimeMomentRightNow" xml:space="preserve">
+    <value>Сейчас</value>
+  </data>
+  <data name="AutoCloseStopped" xml:space="preserve">
+    <value>Автоматическое закрытие отменено</value>
+  </data>
+  <data name="IncludeInReport" xml:space="preserve">
+    <value>Включить:</value>
+  </data>
+  <data name="CrashReportLogsSectionExplanation" xml:space="preserve">
+    <value>Пожалуйста, включите файлы активности, если они относятся к той сессии игры, в которой произошел вылет, так как журналы активности могут помочь в нахождении и устранении проблемы. Вы можете нажать на название файла, чтобы открыть его, или кнопку для просмотра папки, в которой он находится, чтобы просмотреть и удалить из него личную информацию. Файлы журнала активности всегда видны только разработчикам Thrive, и передаются другим сторонам только в том случае, если это необходимо для нахождения или устранения соответствующей проблемы.</value>
+  </data>
+  <data name="ViewFile" xml:space="preserve">
+    <value>Просмотреть</value>
+  </data>
+  <data name="StopAutoClose" xml:space="preserve">
+    <value>Отменить закрытие</value>
+  </data>
+  <data name="CrashReportDescriptionField" xml:space="preserve">
+    <value>Опишите, что вы делали, когда произошел вылет (необязательно)</value>
+  </data>
+  <data name="CrashReportDescriptionFieldPlaceholder" xml:space="preserve">
+    <value>Описание ошибки (необязательно)</value>
+  </data>
+  <data name="CrashReportEmailField" xml:space="preserve">
+    <value>Ваш E-mail, если вы хотите получать новости об этом отчете (необязательно)</value>
+  </data>
+  <data name="ExitTheLauncher" xml:space="preserve">
+    <value>Выйти из лаунчера</value>
+  </data>
+  <data name="NoAvailableCrashesToReport" xml:space="preserve">
+    <value>Не найдено сбоев для составления отчета</value>
+  </data>
+  <data name="CrashReportDeleteInfoEnabled" xml:space="preserve">
+    <value>Файл с информацией о сбое будет автоматически удален после успешной отправки отчета</value>
   </data>
 </root>

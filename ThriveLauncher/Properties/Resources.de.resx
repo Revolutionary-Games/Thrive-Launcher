@@ -89,7 +89,7 @@
     <value>Leeren</value>
   </data>
   <data name="LauncherSelectedLanguage" xml:space="preserve">
-    <value>Launcher Sprache:</value>
+    <value>Launcher-Sprache:</value>
   </data>
   <data name="LauncherVersionDisplay" xml:space="preserve">
     <value>Launcher-Version:</value>
@@ -143,7 +143,7 @@
     <value>ThriveDevCenter</value>
   </data>
   <data name="ExternalLinkThriveSteam" xml:space="preserve">
-    <value>Thrive bei Steam</value>
+    <value>Thrive auf Steam</value>
   </data>
   <data name="ExternalLinkDiscordServer" xml:space="preserve">
     <value>Discord-Server</value>
@@ -221,13 +221,13 @@
     <value>Danke,</value>
   </data>
   <data name="ConnectToDevCenterPrompt" xml:space="preserve">
-    <value>Verbinde zu ThriveDevCenter</value>
+    <value>Verbinde mit dem ThriveDevCenter</value>
   </data>
   <data name="DevelopmentFeedTitle" xml:space="preserve">
-    <value>ENTWICKLER FOREN</value>
+    <value>ENTWICKLERFOREN</value>
   </data>
   <data name="WebContentIsDisabled" xml:space="preserve">
-    <value>Web Inhalte deaktiviert</value>
+    <value>Web-Inhalte deaktiviert</value>
   </data>
   <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
     <value>Entwickler-Foren</value>
@@ -242,7 +242,7 @@
     <value>Fan-Wiki</value>
   </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
-    <value>Es wurden Einstellungen von einer älteren Version des Launchers gefunden. Du kannst diese Einstellungen importieren, um installierte Thrive Versionen und andere Anpassungen zu behalten. Wenn du diese alten Thrive Versionen und Caches nicht importierst, werden sie in Zukunft vom Launcher ignoriert. Es wird empfohlen, die Einstellungen zu importieren.</value>
+    <value>Es wurden Einstellungen von einer älteren Version des Launchers gefunden. Du kannst diese Einstellungen importieren, um installierte Thrive-Versionen und andere Anpassungen zu behalten. Wenn du diese alten Thrive-Versionen und -Caches nicht importierst, werden sie in Zukunft vom Launcher ignoriert. Es wird empfohlen, die Einstellungen zu importieren.</value>
   </data>
   <data name="NewsFeedTitle" xml:space="preserve">
     <value>NEUIGKEITEN</value>
