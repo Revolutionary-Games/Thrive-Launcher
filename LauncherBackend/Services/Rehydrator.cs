@@ -20,6 +20,8 @@ public class Rehydrator : IRehydrator
     private readonly INetworkDataRetriever networkDataRetriever;
     private readonly IExternalTools externalTools;
 
+    private readonly DateTime newBuildTypeCutoff = new(2024, 3, 20);
+
     /// <summary>
     ///   Used to show the downloaded dehydrated objects in a more user friendly way
     /// </summary>
@@ -28,8 +30,8 @@ public class Rehydrator : IRehydrator
     private readonly Stack<HttpClient> availableDownloadClients = new();
 
     public Rehydrator(ILogger<Rehydrator> logger, ILauncherSettingsManager settingsManager,
-        ILauncherPaths launcherPaths,
-        IDevCenterClient devCenterClient, INetworkDataRetriever networkDataRetriever, IExternalTools externalTools)
+        ILauncherPaths launcherPaths, IDevCenterClient devCenterClient, INetworkDataRetriever networkDataRetriever,
+        IExternalTools externalTools)
     {
         this.logger = logger;
         this.settingsManager = settingsManager;
@@ -48,9 +50,11 @@ public class Rehydrator : IRehydrator
     private string TemporaryFolder => settingsManager.Settings.TemporaryDownloadsFolder ??
         launcherPaths.PathToTemporaryFolder;
 
-    public async Task Rehydrate(string dehydratedCacheFile,
+    public async Task Rehydrate(string dehydratedCacheFile, DateTime buildTime,
         ObservableCollection<FilePrepareProgress> inProgressOperations, CancellationToken cancellationToken)
     {
+        bool isOldType = buildTime < newBuildTypeCutoff;
+
         var folder = Path.GetDirectoryName(dehydratedCacheFile) ??
             throw new ArgumentException("Couldn't get dehydrated folder");
 
@@ -64,13 +68,25 @@ public class Rehydrator : IRehydrator
             new FilePrepareProgress(Path.GetFileName(dehydratedCacheFile), FilePrepareStep.Processing);
         inProgressOperations.Add(operation);
 
-        DehydrateCache dehydrated;
+        IDehydrateCache dehydrated;
         try
         {
             await using var reader = File.OpenRead(dehydratedCacheFile);
-            dehydrated = await JsonSerializer.DeserializeAsync<DehydrateCache>(reader,
-                    new JsonSerializerOptions(JsonSerializerDefaults.Web), cancellationToken) ??
-                throw new NullDecodedJsonException();
+
+            if (!isOldType)
+            {
+                logger.LogDebug("Using new dehydrated format");
+                dehydrated = await JsonSerializer.DeserializeAsync<DehydrateCacheV2>(reader,
+                        new JsonSerializerOptions(JsonSerializerDefaults.General), cancellationToken) ??
+                    throw new NullDecodedJsonException();
+            }
+            else
+            {
+                logger.LogInformation("Using legacy dehydrated cache reader");
+                dehydrated = await JsonSerializer.DeserializeAsync<DehydrateCacheV1>(reader,
+                        new JsonSerializerOptions(JsonSerializerDefaults.Web), cancellationToken) ??
+                    throw new NullDecodedJsonException();
+            }
         }
         catch (Exception e)
         {
@@ -87,7 +103,7 @@ public class Rehydrator : IRehydrator
         knownFinalFilePathsForDehydrated.Clear();
     }
 
-    private async Task ProcessDehydratedFile(string dehydratedFolder, DehydrateCache dehydrated,
+    private async Task ProcessDehydratedFile(string dehydratedFolder, IDehydrateCache dehydrated,
         FilePrepareProgress overallProgress, ObservableCollection<FilePrepareProgress> inProgressOperations,
         CancellationToken cancellationToken)
     {
@@ -112,19 +128,19 @@ public class Rehydrator : IRehydrator
         int processed = 0;
 
         // Then process the items now that we should have all of the dehydrated objects we need
-        foreach (var (fileName, data) in dehydrated.Files)
+        foreach (var (fileName, data) in dehydrated.FileItems)
         {
-            if (data.Type == "pck")
+            if (data.SpecialType == "pck")
             {
                 // Pck files have sub items, this is checked earlier in FindMissingDehydratedObjects but here as well
                 // for null checker to be happy
-                if (data.Data == null)
+                if (data.DataGeneric == null)
                     throw new Exception("Pck type should have sub item data");
 
                 // Run pck tool to repack it
                 var operations = new List<PckOperation>();
 
-                foreach (var (pckEntry, pckEntryData) in data.Data.Files)
+                foreach (var (pckEntry, pckEntryData) in data.DataGeneric.FileItems)
                 {
                     var identifier = pckEntryData.GetDehydratedObjectIdentifier();
 
@@ -143,10 +159,17 @@ public class Rehydrator : IRehydrator
                 await externalTools.RunGodotPckTool(Path.Join(dehydratedFolder, fileName), operations,
                     cancellationToken);
 
-                processed += data.Data.Files.Count;
+                processed += data.DataGeneric.FileItems.Count();
             }
             else
             {
+                if (!string.IsNullOrEmpty(data.SpecialType) && data.SpecialType != "file")
+                {
+                    logger.LogError("Unhandled special type in rehydrator: {Name} ({SpecialType})", fileName,
+                        data.SpecialType);
+                    continue;
+                }
+
                 // Just a single file. Copy it to the target folder
                 var targetPath = Path.Join(dehydratedFolder, fileName);
 
@@ -164,21 +187,21 @@ public class Rehydrator : IRehydrator
         }
     }
 
-    private HashSet<DehydratedObjectIdentification> FindMissingDehydratedObjects(DehydrateCache dehydrated,
+    private HashSet<DehydratedObjectIdentification> FindMissingDehydratedObjects(IDehydrateCache dehydrated,
         out int total)
     {
         total = 0;
         var missingHashes = new HashSet<DehydratedObjectIdentification>();
 
-        foreach (var (fileName, data) in dehydrated.Files)
+        foreach (var (fileName, data) in dehydrated.FileItems)
         {
-            if (data.Type == "pck")
+            if (data.SpecialType == "pck")
             {
-                if (data.Data == null)
+                if (data.DataGeneric == null)
                     throw new Exception("Pck type should have sub item data");
 
                 // Pck files have sub items
-                foreach (var (pckEntry, pckEntryData) in data.Data.Files)
+                foreach (var (pckEntry, pckEntryData) in data.DataGeneric.FileItems)
                 {
                     var identifier = pckEntryData.GetDehydratedObjectIdentifier();
 
@@ -191,6 +214,13 @@ public class Rehydrator : IRehydrator
             }
             else
             {
+                if (!string.IsNullOrEmpty(data.SpecialType) && data.SpecialType != "file")
+                {
+                    logger.LogError("Unhandled special type in rehydrator: {Name} ({SpecialType})", fileName,
+                        data.SpecialType);
+                    continue;
+                }
+
                 // Just a single file
                 var identifier = data.GetDehydratedObjectIdentifier();
 

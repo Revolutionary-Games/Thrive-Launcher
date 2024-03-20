@@ -20,7 +20,7 @@ public static class LauncherConstants
     /// </summary>
     public const string DevBuildCacheFileName = "devbuild_cache.json";
 
-    public const string DehydratedCacheFileName = DehydrateCache.CacheFileName;
+    public const string DehydratedCacheFileName = IDehydrateCache.CacheFileName;
 
     public const string DevBuildFileName = "devbuild.7z";
 

@@ -359,9 +359,25 @@ public sealed class ThriveInstaller : IThriveInstaller, IDisposable
 
             InstallerMessages.Add(new ThrivePlayMessage(ThrivePlayMessage.Type.Rehydrating));
 
+            DateTime? buildTime = null;
+
             try
             {
-                await rehydrator.Rehydrate(dehydratedFile, InProgressOperations, cancellationToken);
+                if (playableVersion is DevBuildVersion devBuildVersion3)
+                {
+                    buildTime = devBuildVersion3.ExactBuild?.CreatedAt;
+
+                    logger.LogDebug("Build to rehydrate is from time: {Time}", buildTime);
+                }
+
+                if (buildTime == null)
+                {
+                    buildTime = DateTime.UtcNow;
+                    logger.LogWarning(
+                        "Could not determine time a devbuild is from, might use incorrect dehydrate cache format");
+                }
+
+                await rehydrator.Rehydrate(dehydratedFile, buildTime.Value, InProgressOperations, cancellationToken);
             }
             catch (Exception e)
             {
