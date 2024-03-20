@@ -1,11 +1,7 @@
-# TODO: switch to almalinux:9
-FROM ubuntu:20.04
-
-ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=Etc/UTC
+FROM almalinux:9
 
 # This is downloaded by ../ContainerTool.cs so that needs to be updated if the base image above is updated
-COPY packages-microsoft-prod.deb /packages-microsoft-prod.deb
+COPY packages-microsoft-prod.rpm /packages-microsoft-prod.rpm
 
-RUN apt-get update && apt-get install -y ca-certificates && dpkg -i /packages-microsoft-prod.deb && \
-    apt-get update && apt-get install -y dotnet-sdk-8.0 p7zip git rsync imagemagick && apt-get clean
+RUN dnf update -y && dnf install epel-release -y && rpm -Uvh /packages-microsoft-prod.rpm  && \
+    dnf install -y dotnet-sdk-8.0 p7zip git rsync ImageMagick && dnf clean all

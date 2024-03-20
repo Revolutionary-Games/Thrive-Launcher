@@ -13,13 +13,19 @@ For more information, visit [Revolutionary Games' Website](http://revolutionaryg
 
 ### Requirements on Linux
 
-On Linux a new enough OS is needed to include new enough system
-libraries. Ubuntu 20.04 LTS is the oldest guaranteed distro to work.
+On Linux it is recommended to use the [Flatpak
+version](https://flathub.org/apps/com.revolutionarygamesstudio.ThriveLauncher)
+of the launcher.
+
+For the manually installable version a distro that is as new as
+AlmaLinux 9 is required.
 
 
 ### Required Windows version
 
-Due to the used framework at least Windows 7 or newer is required.
+Due to the used framework at least Windows 10 or newer is
+required. Windows 7 may still work for some time before new .NET
+versions no longer run on it.
 
 Releases
 --------
@@ -78,20 +84,15 @@ Creating releases
 This section details what to do to create Launcher packages and
 installers. Note that due to various limitations you need to make the
 packages for each platform on that respective platform, which means
-you need a Windows, Linux, and mac systems.
-
-Packaging is currently done on Linux for Linux and Windows, and mac
-packages need to be made on a mac with development tools installed.
+you need a Windows, Linux, and Mac systems.
 
 The following extra tools are needed for creating packages on Linux:
 ```sh
-wine mingw32-nsis rcedit flatpak-builder
+podman
 ```
 
-Rcedit can be downloaded from
-[here](https://github.com/electron/rcedit/releases). On different
-distros the `nsis` package may be named differently and there may be
-separate packages that contain plugins.
+If required on Linux, Rcedit can be downloaded from
+[here](https://github.com/electron/rcedit/releases).
 
 
 On Windows creating packages requires:
@@ -151,6 +152,6 @@ When updating the copyright year it needs to be updated in
 
 ### Updating dotnet version
 
-Currently version 6 is used. If updated the installer files in
+Currently version 8 is used. If updated the installer files in
 `DependencyInstallers` need to be updated and `PackageTool` as well as
 `Scripts/launcher.nsi.template` need to be updated to refer to the new version.

@@ -15,8 +15,8 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
     ///   Where the installer for the container is downloaded. This is done here to save us from having to install
     ///   curl in the container. This has to be updated when the base image is updated.
     /// </summary>
-    private const string UbuntuDotnetInstallerDownload =
-        "https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb";
+    private const string CentOsDotnetInstallerDownload =
+        "https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm";
 
     public ContainerTool(Program.ContainerOptions options) : base(options)
     {
@@ -49,11 +49,12 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
     protected override bool SaveByDefault => options.Image != ImageType.ReleaseBuilder;
 
     private string PathToPackageFile =>
-        Path.Join(ImagesAndConfigsFolder, "release_builder", "packages-microsoft-prod.deb");
+        Path.Join(ImagesAndConfigsFolder, "release_builder", "packages-microsoft-prod.rpm");
 
     protected override IEnumerable<string> ImagesToPullIfTheyAreOld()
     {
-        yield break;
+        if (options.Image == ImageType.ReleaseBuilder)
+            yield return "almalinux:9";
     }
 
     protected override async Task<string?> Build(string buildType, string? targetToStopAt, string? tag,
@@ -68,7 +69,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
 
             try
             {
-                var response = await client.GetAsync(UbuntuDotnetInstallerDownload,
+                var response = await client.GetAsync(CentOsDotnetInstallerDownload,
                     HttpCompletionOption.ResponseHeadersRead, cancellationToken);
 
                 response.EnsureSuccessStatusCode();
