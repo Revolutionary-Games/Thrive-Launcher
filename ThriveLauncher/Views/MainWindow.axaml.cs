@@ -1007,10 +1007,13 @@ public partial class MainWindow : Window
 
     private void OnLauncherWantsToClose(bool close)
     {
-        // TODO: should this close all windows always (or signal to the main loop that quit is wanted)?
-        // Especially on mac: https://github.com/Revolutionary-Games/Thrive-Launcher/issues/503
         if (close)
+        {
             Close();
+
+            // Signal main loop to also quit immediately to not hang around on mac or if there are other windows open
+            Program.OnLauncherWantsToCloseNow();
+        }
     }
 
     private async void CopyLogsToClipboard(object? sender, RoutedEventArgs e)

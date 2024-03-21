@@ -38,6 +38,8 @@ internal class Program
 
     private static bool reActivationRequested;
 
+    private static bool launcherQuitRequested;
+
     // Initialization code. Don't use any Avalonia, third-party APIs or any
     // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
     // yet and stuff might break.
@@ -93,6 +95,14 @@ internal class Program
         {
             globalMemory?.Dispose();
         }
+    }
+
+    /// <summary>
+    ///   Signals the main loop that the launcher should quit now
+    /// </summary>
+    public static void OnLauncherWantsToCloseNow()
+    {
+        launcherQuitRequested = true;
     }
 
     // Avalonia configuration, don't remove; also used by visual designer.
@@ -318,6 +328,13 @@ internal class Program
         while (true)
         {
             await Task.Delay(runInterval);
+
+            if (launcherQuitRequested)
+            {
+                programLogger.LogInformation("Launcher quit requested, exiting shutdown watcher loop");
+                lifetime.Shutdown();
+                break;
+            }
 
             try
             {
