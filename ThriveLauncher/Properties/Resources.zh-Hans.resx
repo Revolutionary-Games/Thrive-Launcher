@@ -939,4 +939,10 @@
   <data name="CrashReportDeleteInfoEnabled" xml:space="preserve">
     <value>崩溃转储文件在成功报告后将被删除</value>
   </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>使用替代方式执行自动更新程序（如果无法正常自动更新，请尝试）</value>
+  </data>
+  <data name="ExitTheLauncher" xml:space="preserve">
+    <value>退出启动器</value>
+  </data>
 </root>
