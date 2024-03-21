@@ -233,7 +233,15 @@ internal class Program
         programLogger.LogInformation("Start running Avalonia desktop lifetime");
         int exitCode = avaloniaBuilder.StartWithClassicDesktopLifetime(args, ShutdownMode.OnExplicitShutdown);
 
-        shutdownTask.Wait(TimeSpan.FromMilliseconds(500));
+        if (!launcherQuitRequested)
+        {
+            shutdownTask.Wait(TimeSpan.FromMilliseconds(700));
+        }
+        else
+        {
+            // If the task has likely commanded the lifetime to just quit, give a bit more wait time
+            shutdownTask.Wait(TimeSpan.FromMilliseconds(1500));
+        }
 
         if (shutdownTask.IsCompleted)
         {
