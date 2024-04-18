@@ -223,9 +223,6 @@
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
     <value>Deshabilita todos los videos del juego (si Thrive se bloquea después de mostrar el logotipo de carga y antes de que se reproduzca el video de introducción, esto puede ayudar a que el juego funcione)</value>
   </data>
-  <data name="LaunchOptionForceGLES2" xml:space="preserve">
-    <value>Forzar el modo de renderizado GLES2 (puede hacer que Thrive se inicie, pero provoca pequeños problemas gráficos)</value>
-  </data>
   <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
     <value>Permitir el Modo de Inicio sin cortes (el lanzador no se muestra antes de iniciar Thrive)</value>
   </data>

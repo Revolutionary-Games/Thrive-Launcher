@@ -358,16 +358,16 @@ public partial class MainWindowViewModel
         }
     }
 
-    public bool ForceGles2Mode
+    public bool ForceOpenGlMode
     {
-        get => Settings.ForceGles2Mode;
+        get => Settings.ForceOpenGlMode;
         set
         {
-            if (Settings.ForceGles2Mode == value)
+            if (Settings.ForceOpenGlMode == value)
                 return;
 
             this.RaisePropertyChanging();
-            Settings.ForceGles2Mode = value;
+            Settings.ForceOpenGlMode = value;
             this.RaisePropertyChanged();
         }
     }

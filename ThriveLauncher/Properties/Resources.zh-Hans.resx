@@ -226,9 +226,6 @@
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
     <value>禁用所有游戏视频（如果Thrive在显示加载徽标后和播放介绍视频之前崩溃，这可能有助于游戏正常运行）</value>
   </data>
-  <data name="LaunchOptionForceGLES2" xml:space="preserve">
-    <value>强制GLES2渲染模式（可能启动Thrive，但会导致轻微的图形问题）</value>
-  </data>
   <data name="BrowseInstalledFiles" xml:space="preserve">
     <value>浏览已安装的文件</value>
   </data>

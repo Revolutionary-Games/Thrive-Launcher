@@ -601,7 +601,7 @@ public partial class MainWindowViewModel
         this.RaisePropertyChanged(nameof(DevCenterKey));
         this.RaisePropertyChanged(nameof(SelectedDevBuildType));
         this.RaisePropertyChanged(nameof(ManuallySelectedBuildHash));
-        this.RaisePropertyChanged(nameof(ForceGles2Mode));
+        this.RaisePropertyChanged(nameof(ForceOpenGlMode));
         this.RaisePropertyChanged(nameof(DisableThriveVideos));
 
         // Reset some extra stuff

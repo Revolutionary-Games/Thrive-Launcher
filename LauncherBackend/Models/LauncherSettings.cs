@@ -82,8 +82,8 @@ public class LauncherSettings
     public string? ManuallySelectedBuildHash { get; set; }
 
     // Thrive start options
-    [JsonPropertyName("forceGLES2Mode")]
-    public bool ForceGles2Mode { get; set; }
+    [JsonPropertyName("forceOpenGLMode")]
+    public bool ForceOpenGlMode { get; set; }
 
     [JsonPropertyName("disableThriveVideos")]
     public bool DisableThriveVideos { get; set; }

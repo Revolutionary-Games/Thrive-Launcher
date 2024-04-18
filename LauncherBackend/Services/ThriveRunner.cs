@@ -378,7 +378,7 @@ public class ThriveRunner : IThriveRunner
         if (settings.DisableThriveVideos)
             runInfo.ArgumentList.Add("--thrive-disable-videos");
 
-        if (settings.ForceGles2Mode)
+        if (settings.ForceOpenGlMode)
         {
             runInfo.ArgumentList.Add("--video-driver");
             runInfo.ArgumentList.Add("GLES2");

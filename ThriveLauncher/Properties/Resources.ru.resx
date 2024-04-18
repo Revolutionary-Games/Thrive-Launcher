@@ -277,9 +277,6 @@
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
     <value>Выключить все видео в игре (если Thrive падает после логотипа загрузки и перед вступительным видео, это может помочь запустить игру)</value>
   </data>
-  <data name="LaunchOptionForceGLES2" xml:space="preserve">
-    <value>Использовать рендеринг GLES2 (может помочь запустить Thrive, но вызывает проблемы с графикой)</value>
-  </data>
   <data name="LauncherOptionHide32Bit" xml:space="preserve">
     <value>Скрыть 32-битные версии если существуют соответствующие 64-битные версии</value>
   </data>

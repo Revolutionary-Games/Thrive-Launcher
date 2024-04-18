@@ -187,9 +187,6 @@
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
     <value>Disabilita tutti i video del gioco (se Thrive crasha dopo di aver mostrato il logo di caricamento e prima del video di introduzione, questo potrebbe far funzionare il gioco)</value>
   </data>
-  <data name="LaunchOptionForceGLES2" xml:space="preserve">
-    <value>Forza modalità di rendering GLES2 (potrebbe far partire Thrive, ma causa alcuni piccoli problemi di grafica)</value>
-  </data>
   <data name="LauncherVersionDisplay" xml:space="preserve">
     <value>Versione del launcher:</value>
   </data>

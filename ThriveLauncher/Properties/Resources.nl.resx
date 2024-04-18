@@ -166,9 +166,6 @@
   <data name="CacheConfigurationTab" xml:space="preserve">
     <value>Cache</value>
   </data>
-  <data name="LaunchOptionForceGLES2" xml:space="preserve">
-    <value>Dwing GLES2 tekenmodus af (kan helpen Thrive te starten, maar kan kleine grafische problemen veroorzaken)</value>
-  </data>
   <data name="LauncherVersionDisplay" xml:space="preserve">
     <value>Opstarthulpporgramma versie:</value>
   </data>

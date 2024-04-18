@@ -217,9 +217,6 @@
   <data name="ResetInstallLocationToolTip" xml:space="preserve">
     <value>重設安裝位置</value>
   </data>
-  <data name="LaunchOptionForceGLES2" xml:space="preserve">
-    <value>強制使用 GLES2 渲染模式（可能可以啟動 Thrive，但會造成輕微的圖形問題）</value>
-  </data>
   <data name="ClearFolder" xml:space="preserve">
     <value>清除</value>
   </data>

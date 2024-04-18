@@ -224,8 +224,8 @@
                                 <CheckBox IsChecked="{Binding DisableThriveVideos}">
                                     <TextBlock TextWrapping="Wrap" Text="{i18n:Localize LaunchOptionDisableVideos}" />
                                 </CheckBox>
-                                <CheckBox IsChecked="{Binding ForceGles2Mode}">
-                                    <TextBlock TextWrapping="Wrap" Text="{i18n:Localize LaunchOptionForceGLES2}" />
+                                <CheckBox IsChecked="{Binding ForceOpenGlMode}">
+                                    <TextBlock TextWrapping="Wrap" Text="{i18n:Localize LaunchOptionForceOpenGL}" />
                                 </CheckBox>
                             </StackPanel>
 

@@ -172,9 +172,6 @@
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
     <value>Alle Spielvideos deaktivieren (Wenn Thrive abstürzt nachdem das Ladelogo angezeigt wurde und bevor des Einführungsvideo abgespielt wird, kann diese Einstellung dazu beitragen, dass das Spiel funktioniert.)</value>
   </data>
-  <data name="LaunchOptionForceGLES2" xml:space="preserve">
-    <value>Erzwinge GLES2-Rendering (Kann Thrive zum Starten bringen, aber führt zu leichten Grafikproblemen.)</value>
-  </data>
   <data name="LauncherOptionAutoUpdate" xml:space="preserve">
     <value>Automatisches Aktualisieren des Launchers</value>
   </data>

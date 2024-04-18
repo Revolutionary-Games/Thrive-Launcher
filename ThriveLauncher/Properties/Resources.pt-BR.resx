@@ -154,9 +154,6 @@
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
     <value>Desabilitar todos os vídeos do jogo (se o Thrive fecha após a logo de "carregando" aparecer e antes do vídeo de introdução tocar, isso pode ajudar a fazer o jogo funcionar)</value>
   </data>
-  <data name="LaunchOptionForceGLES2" xml:space="preserve">
-    <value>Forçar modo de renderização GLES2 (pode fazer o Thrive iniciar, mas causa leves problemas gráficos)</value>
-  </data>
   <data name="ResetAllSettings" xml:space="preserve">
     <value>Redefinir Todas as Configurações</value>
   </data>

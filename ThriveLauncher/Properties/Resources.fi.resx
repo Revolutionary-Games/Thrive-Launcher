@@ -260,8 +260,8 @@
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
     <value>Poista käytöstä kaikki pelin videot (jos Thrive kaatuu näytettyään latauksen aikana näkyvän logon ja ennen intro videon näyttämistä, tämä asetus voi auttaa peliä toimimaan)</value>
   </data>
-  <data name="LaunchOptionForceGLES2" xml:space="preserve">
-    <value>Pakota GLES2 renderöintimoodi (voi saada Thriven käynnistymään, mutta aiheuttaa pieniä visuaalisia ongelmia)</value>
+  <data name="LaunchOptionForceOpenGL" xml:space="preserve">
+      <value>Pakota OpenGL-renderöintimoodi (voi saada Thriven käynnistymään, mutta aiheuttaa pieniä visuaalisia ongelmia)</value>
   </data>
   <data name="LogoutButton" xml:space="preserve">
     <value>Kirjaudu ulos</value>

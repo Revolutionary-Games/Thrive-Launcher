@@ -256,9 +256,6 @@
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
     <value>Вимкнути усі ігрові відео (якщо Thrive вилітає після показу логотипу завантаження та після програвання початкового відео, це може допомогти грі запрацювати)</value>
   </data>
-  <data name="LaunchOptionForceGLES2" xml:space="preserve">
-    <value>Примусовий режим рендеру GLES2 (може призвести до запуску Thrive, але спричинить великі проблеми з графікою)</value>
-  </data>
   <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
     <value>Дозволити безперебійний режим лаунчеру (лаунчер не показується перед запуском Thrive)</value>
   </data>

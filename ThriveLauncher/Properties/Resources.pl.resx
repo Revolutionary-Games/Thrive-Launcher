@@ -382,9 +382,6 @@
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
     <value>Wyłącz wszystkie filmiki w grze (jeśli Thrive crashuje się po pokazaniu loga wczytywania i po filmikach intra, to może pomóc w doprowadzeniu gry do działania)</value>
   </data>
-  <data name="LaunchOptionForceGLES2" xml:space="preserve">
-    <value>Wymuś tryb renderowania GLES2 (może doprowadzić Thrive do uruchomienia, lecz powoduje lekkie problemy graficzne)</value>
-  </data>
   <data name="LauncherOptionHide32Bit" xml:space="preserve">
     <value>Ukryj wersje 32-bitowe jeśli porównywalne 64-bitowe wersje istnieją</value>
   </data>

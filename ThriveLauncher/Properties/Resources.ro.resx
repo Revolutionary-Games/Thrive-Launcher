@@ -175,9 +175,6 @@
   <data name="LaunchOptionsTitle" xml:space="preserve">
     <value>Opțiuni De Launch</value>
   </data>
-  <data name="LaunchOptionForceGLES2" xml:space="preserve">
-    <value>Forțează mod de rendare GLES2 (poate face ca Thrive să funcționeze, dar poate cauza probleme grafice)</value>
-  </data>
   <data name="LauncherOptionHide32Bit" xml:space="preserve">
     <value>Ascunde versiuni 32-bit dacă o versiune corespunzătoare 64-bit există</value>
   </data>

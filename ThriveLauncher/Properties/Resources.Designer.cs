@@ -297,9 +297,9 @@ namespace ThriveLauncher.Properties {
             }
         }
         
-        public static string LaunchOptionForceGLES2 {
+        public static string LaunchOptionForceOpenGL {
             get {
-                return ResourceManager.GetString("LaunchOptionForceGLES2", resourceCulture);
+                return ResourceManager.GetString("LaunchOptionForceOpenGL", resourceCulture);
             }
         }
         

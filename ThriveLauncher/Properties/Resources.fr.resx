@@ -172,9 +172,6 @@
   <data name="LaunchOptionsTitle" xml:space="preserve">
     <value>Options de démarrage</value>
   </data>
-  <data name="LaunchOptionForceGLES2" xml:space="preserve">
-    <value>Forcer le mode de rendu GLES2 (peut faire démarrer Thrive, mais cause de légers problèmes graphiques)</value>
-  </data>
   <data name="LauncherVersionDisplay" xml:space="preserve">
     <value>Version du launcher :</value>
   </data>
