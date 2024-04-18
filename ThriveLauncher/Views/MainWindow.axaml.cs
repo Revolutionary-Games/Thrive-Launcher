@@ -988,7 +988,8 @@ public partial class MainWindow : Window
             bulkOutputRemoveCount = 0;
         }
 
-        LastGameOutputContainer.Children.RemoveRange(0, removeCount);
+        // Requesting removal of more items than there are is rewritten to mean just delete everything
+        LastGameOutputContainer.Children.RemoveRange(0, Math.Min(removeCount, LastGameOutputContainer.Children.Count));
     }
 
     private void OnThriveRunningChanged(bool running)
