@@ -95,7 +95,7 @@ public class LauncherSettings
     ///   The value to set audio override to, only applies when <see cref="OverrideAudioLatency"/>
     /// </summary>
     [JsonPropertyName("overrideAudioLatencyMilliseconds")]
-    public int AudioLatencyMilliseconds { get; set; } = 50;
+    public int AudioLatencyMilliseconds { get; set; } = 30;
 
     public bool ShouldShowVersionWithPlatform(PackagePlatform versionPlatform,
         IEnumerable<PackagePlatform> allPlatformsForSameVersion)
