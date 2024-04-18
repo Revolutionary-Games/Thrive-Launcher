@@ -942,4 +942,7 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı k
   <data name="ExitTheLauncher" xml:space="preserve">
     <value>Başlatıcıdan çık</value>
   </data>
+  <data name="LaunchOptionForceOpenGL" xml:space="preserve">
+    <value>OpenGL görüntüleme moduna zorla (Thrive'ı başlatabilir ancak hafif grafik sorunlarına neden olur)</value>
+  </data>
 </root>
