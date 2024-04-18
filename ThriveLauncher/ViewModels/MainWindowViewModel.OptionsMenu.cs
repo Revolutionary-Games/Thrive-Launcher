@@ -12,7 +12,6 @@ using LauncherBackend.Models;
 using Microsoft.Extensions.Logging;
 using Properties;
 using ReactiveUI;
-using ScriptsBase.Utilities;
 using SharedBase.Utilities;
 
 /// <summary>

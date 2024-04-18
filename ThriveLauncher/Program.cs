@@ -24,7 +24,6 @@ using Microsoft.Extensions.Logging;
 using Models;
 using NLog.Extensions.Logging;
 using Properties;
-using ScriptsBase.Utilities;
 using Services;
 using SharedBase.Utilities;
 using Utilities;
@@ -48,9 +47,17 @@ internal class Program
     {
         var options = new Options();
 
-        var parsed = CommandLineHelpers.CreateParser()
-            .ParseArguments<Options>(args)
-            .WithNotParsed(CommandLineHelpers.ErrorOnUnparsed);
+        var parsed = new Parser(config =>
+            {
+                config.AllowMultiInstance = true;
+                config.AutoHelp = true;
+                config.AutoVersion = true;
+                config.EnableDashDash = true;
+                config.IgnoreUnknownArguments = false;
+                config.MaximumDisplayWidth = 80;
+                config.HelpWriter = Console.Error;
+            }).ParseArguments<Options>(args)
+            .WithNotParsed(ErrorOnUnparsed);
 
         if (parsed.Value != null)
             options = parsed.Value;
@@ -603,6 +610,33 @@ internal class Program
         return false;
     }
 
+    private static void ErrorOnUnparsed(IEnumerable<Error> errors)
+    {
+        // Duplicated code from ScriptsBase as this doesn't want to depend on that as that causes a publishing failure
+        var errorList = errors.ToList();
+
+        if (errorList.Count < 1)
+            return;
+
+        var firstError = errorList.First();
+
+        if (firstError.Tag is ErrorType.HelpRequestedError or ErrorType.VersionRequestedError
+            or ErrorType.HelpVerbRequestedError)
+        {
+            Environment.Exit(0);
+        }
+
+        Console.Out.WriteLine("Incorrect command line arguments");
+        Console.Error.WriteLine("Unknown command line arguments specified: ");
+
+        foreach (var error in errorList)
+            Console.Error.WriteLine(error.Tag);
+
+        Console.Error.WriteLine();
+
+        Environment.Exit(1);
+    }
+
     private static AppBuilder BuildAvaloniaAppWithServices(IServiceProvider serviceProvider)
     {
         return AppBuilder.Configure(() => new App(serviceProvider))
@@ -619,11 +653,11 @@ internal class Program
         }
         catch (ArgumentException)
         {
-            ColourConsole.WriteErrorLine("Invalid log level specified");
+            Console.Out.WriteLine("Invalid log level specified");
 
             var logLevels = string.Join(", ", LogLevel.AllLevels.Select(l => l.Name));
 
-            ColourConsole.WriteNormalLine($"Available log levels: {logLevels}");
+            Console.Out.WriteLine($"Available log levels: {logLevels}");
             Environment.Exit(1);
             return false;
         }
