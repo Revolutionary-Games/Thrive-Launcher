@@ -679,9 +679,10 @@ internal class Program
         if (cancelPressCount > 0)
             return true;
 
-        // Success when no crashes detected (and no problems the user should be advised on) and the user didn't
-        // explicitly ask to open the launcher
-        return !runner.HasReportableCrash && runner.ActiveErrorSuggestion == null && !runner.ThriveWantsToOpenLauncher;
+        // Success when no crashes detected (and no problems the user should be advised on), the user didn't
+        // explicitly ask to open the launcher, and Thrive started correctly
+        return !runner.HasReportableCrash && runner.ActiveErrorSuggestion == null &&
+            !runner.ThriveWantsToOpenLauncher && runner.ThriveStartedCorrectly;
     }
 
     private static void SetupCancelPressHandler(IThriveRunner runner, ILogger logger)

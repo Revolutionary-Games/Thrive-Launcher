@@ -25,6 +25,11 @@ public interface IThriveRunner
     public bool ThriveRunning { get; }
 
     /// <summary>
+    ///   True when the previously started Thrive instance has been detected as having reached the main menu correctly
+    /// </summary>
+    public bool ThriveStartedCorrectly { get; }
+
+    /// <summary>
     ///   True when there's so much game output that it wasn't kept entirely in <see cref="ThriveOutput"/> and
     ///   <see cref="ThriveOutputTrailing"/>
     /// </summary>
@@ -41,7 +46,16 @@ public interface IThriveRunner
 
     public string? DetectedFullLogFileLocation { get; }
 
+    /// <summary>
+    ///   Thrive has exited with a problem that can be reported (or there's crash dumps that weren't cleared from a
+    ///   previous run that can technically be reported now).
+    /// </summary>
     public bool HasReportableCrash { get; }
+
+    /// <summary>
+    ///   If Thrive exited with an error but there's no crash dumps that could be reported
+    /// </summary>
+    public bool HasNonReportableExit { get; }
 
     public bool ThriveWantsToOpenLauncher { get; }
 

@@ -66,11 +66,14 @@ public class ThriveRunner : IThriveRunner
 
     public bool ThriveRunning => runningObservable.Value;
 
+    public bool ThriveStartedCorrectly => thriveProperlyStarted;
+
     public string? DetectedThriveDataFolder { get; private set; }
 
     public string? DetectedFullLogFileLocation { get; private set; }
 
     public bool HasReportableCrash { get; private set; }
+    public bool HasNonReportableExit { get; private set; }
     public bool ThriveWantsToOpenLauncher { get; private set; }
 
     public string? LDPreload { get; set; }
@@ -145,13 +148,13 @@ public class ThriveRunner : IThriveRunner
 
         if (version is StoreVersion)
         {
-            // Store versions are related to the launcher folder and not the usual install folder
+            // Store versions are related to the launcher folder and not the usual installation folder
             thriveFolder = Path.GetFullPath(Path.Join(AppDomain.CurrentDomain.BaseDirectory, version.FolderName));
             currentStoreVersionInfo = storeVersionDetector.Detect();
 
             if (!currentStoreVersionInfo.IsStoreVersion)
             {
-                // This is reset just in case here as otherwise the launcher starting can get into a really bad state
+                // This is reset just in case here as otherwise the launcher starting can get into a terrible state
                 runningObservable.Value = false;
                 throw new Exception("We are playing a store version but we haven't detected the store");
             }
@@ -238,6 +241,7 @@ public class ThriveRunner : IThriveRunner
     public void ClearDetectedCrashes()
     {
         HasReportableCrash = false;
+        HasNonReportableExit = false;
         readingUnhandledException = false;
         unhandledExceptionIsInErrorOut = false;
         unhandledException = null;
@@ -271,7 +275,7 @@ public class ThriveRunner : IThriveRunner
         if (string.IsNullOrEmpty(folder) || !Directory.Exists(folder))
             folder = launcherPaths.ThriveDefaultCrashesFolder;
 
-        // These are already in sorted order so we don't need to sort here
+        // These are already in sorted order, so we don't need to sort here
         foreach (var (dumpFile, time) in GetCrashDumpsInFolder(folder))
         {
             // Skip duplicates, as this was already output above
@@ -519,6 +523,10 @@ public class ThriveRunner : IThriveRunner
             {
                 OnErrorOutput($"Running Thrive has failed with exception: {runFailException.Message}");
                 logger.LogInformation(runFailException, "Thrive failed to run due to an exception");
+                HasNonReportableExit = true;
+
+                // As this is a core launcher issue, this is set to true here to show the launcher in seamless mode
+                HasReportableCrash = true;
             }
             else if (unhandledException != null)
             {
