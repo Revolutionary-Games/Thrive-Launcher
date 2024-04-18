@@ -528,8 +528,19 @@ public class ThriveRunner : IThriveRunner
             }
             else
             {
-                // Detected crash dumps that should be reportable
-                HasReportableCrash = true;
+                if (crashDumpsExist)
+                {
+                    // Detected crash dumps that should be reportable
+                    HasReportableCrash = true;
+                }
+                else
+                {
+                    // Marking there to be reportable crashes here, would show the launcher in seamless mode even if
+                    // there's nothing useful to do in the launcher (and with 0.6.6 Thrive always crashes on shutdown
+                    // so the launcher would show a bunch when not needed).
+                    logger.LogInformation("Thrive exited non-successfully but no crash dumps exist");
+                    HasNonReportableExit = true;
+                }
             }
         }
 

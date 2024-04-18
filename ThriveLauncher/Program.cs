@@ -562,42 +562,42 @@ internal class Program
         Options options, ILauncherSettingsManager settingsManager, StoreVersionInfo storeVersionInfo,
         IThriveRunner runner)
     {
-        if (isStore)
+        if (!isStore)
+            return false;
+
+        programLogger.LogInformation("This is the store version of the launcher");
+
+        if (settings.EnableStoreVersionSeamlessMode)
         {
-            programLogger.LogInformation("This is the store version of the launcher");
-
-            if (settings.EnableStoreVersionSeamlessMode)
+            if (!options.AllowSeamlessMode || options.DisableSeamlessMode)
             {
-                if (!options.AllowSeamlessMode || options.DisableSeamlessMode)
-                {
-                    programLogger.LogInformation("Seamless launcher mode is disabled by command line options");
-                }
-                else
-                {
-                    programLogger.LogInformation(
-                        "Using seamless launcher mode, will attempt to launch before initializing GUI");
-
-                    // If we failed to start, then fallback to normal launcher operation (so only check running status
-                    // if we actually got to start Thrive)
-                    if (TryStartSeamlessMode(programLogger, settingsManager, storeVersionInfo, runner))
-                    {
-                        if (WaitForRunningThriveToExit(runner, programLogger))
-                        {
-                            programLogger.LogInformation("Exiting directly after playing Thrive in seamless mode, " +
-                                "as launcher doesn't want to be shown");
-                            return true;
-                        }
-
-                        programLogger.LogInformation("Launcher wants to be shown after Thrive run in seamless mode");
-                        runner.LaunchedInSeamlessMode = false;
-                    }
-                }
+                programLogger.LogInformation("Seamless launcher mode is disabled by command line options");
             }
             else
             {
                 programLogger.LogInformation(
-                    "Seamless launcher mode is disabled due to the launcher options being turned off by the user");
+                    "Using seamless launcher mode, will attempt to launch before initializing GUI");
+
+                // If we failed to start, then fallback to normal launcher operation (so only check running status
+                // if we actually got to start Thrive)
+                if (TryStartSeamlessMode(programLogger, settingsManager, storeVersionInfo, runner))
+                {
+                    if (WaitForRunningThriveToExit(runner, programLogger))
+                    {
+                        programLogger.LogInformation("Exiting directly after playing Thrive in seamless mode, " +
+                            "as launcher doesn't want to be shown");
+                        return true;
+                    }
+
+                    programLogger.LogInformation("Launcher wants to be shown after Thrive run in seamless mode");
+                    runner.LaunchedInSeamlessMode = false;
+                }
             }
+        }
+        else
+        {
+            programLogger.LogInformation(
+                "Seamless launcher mode is disabled due to the launcher options being turned off by the user");
         }
 
         return false;
