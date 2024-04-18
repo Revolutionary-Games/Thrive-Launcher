@@ -22,7 +22,6 @@
   <ItemGroup>
     <ProjectReference Include="..\RevolutionaryGamesCommon\DevCenterCommunication\DevCenterCommunication.csproj" />
     <ProjectReference Include="..\RevolutionaryGamesCommon\FeedParser\FeedParser.csproj" />
-    <ProjectReference Include="..\RevolutionaryGamesCommon\ScriptsBase\ScriptsBase.csproj" />
     <ProjectReference Include="..\RevolutionaryGamesCommon\SharedBase\SharedBase.csproj" />
   </ItemGroup>
   
