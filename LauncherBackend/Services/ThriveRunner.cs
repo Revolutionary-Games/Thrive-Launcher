@@ -380,8 +380,10 @@ public class ThriveRunner : IThriveRunner
 
         if (settings.ForceOpenGlMode)
         {
-            runInfo.ArgumentList.Add("--video-driver");
-            runInfo.ArgumentList.Add("GLES2");
+            runInfo.ArgumentList.Add("--rendering-driver");
+            runInfo.ArgumentList.Add("opengl3");
+
+            // Could also allow "opengl3_es" option
         }
 
         if (currentStoreVersionInfo != null)
