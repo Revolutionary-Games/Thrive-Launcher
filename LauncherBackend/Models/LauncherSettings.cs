@@ -88,6 +88,15 @@ public class LauncherSettings
     [JsonPropertyName("disableThriveVideos")]
     public bool DisableThriveVideos { get; set; }
 
+    [JsonPropertyName("overrideAudioLatency")]
+    public bool OverrideAudioLatency { get; set; }
+
+    /// <summary>
+    ///   The value to set audio override to, only applies when <see cref="OverrideAudioLatency"/>
+    /// </summary>
+    [JsonPropertyName("overrideAudioLatencyMilliseconds")]
+    public int AudioLatencyMilliseconds { get; set; } = 50;
+
     public bool ShouldShowVersionWithPlatform(PackagePlatform versionPlatform,
         IEnumerable<PackagePlatform> allPlatformsForSameVersion)
     {

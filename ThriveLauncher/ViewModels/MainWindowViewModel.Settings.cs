@@ -386,6 +386,34 @@ public partial class MainWindowViewModel
         }
     }
 
+    public bool OverrideThriveAudioLatency
+    {
+        get => Settings.OverrideAudioLatency;
+        set
+        {
+            if (Settings.OverrideAudioLatency == value)
+                return;
+
+            this.RaisePropertyChanging();
+            Settings.OverrideAudioLatency = value;
+            this.RaisePropertyChanged();
+        }
+    }
+
+    public int ThriveAudioLatencyMilliseconds
+    {
+        get => Settings.AudioLatencyMilliseconds;
+        set
+        {
+            if (Settings.AudioLatencyMilliseconds == value)
+                return;
+
+            this.RaisePropertyChanging();
+            Settings.AudioLatencyMilliseconds = value;
+            this.RaisePropertyChanged();
+        }
+    }
+
     // Derived setting values
 
     public bool SelectedDevBuildTypeIsBuildOfTheDay

@@ -2,6 +2,7 @@ namespace LauncherBackend.Services;
 
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Globalization;
 using Microsoft.Extensions.Logging;
 using Models;
 using SharedBase.Models;
@@ -384,6 +385,14 @@ public class ThriveRunner : IThriveRunner
             runInfo.ArgumentList.Add("opengl3");
 
             // Could also allow "opengl3_es" option
+        }
+
+        if (settings.OverrideAudioLatency)
+        {
+            logger.LogInformation("Setting Godot audio latency to: {Latency}", settings.AudioLatencyMilliseconds);
+
+            runInfo.ArgumentList.Add("--audio-output-latency");
+            runInfo.ArgumentList.Add(settings.AudioLatencyMilliseconds.ToString(CultureInfo.InvariantCulture));
         }
 
         if (currentStoreVersionInfo != null)

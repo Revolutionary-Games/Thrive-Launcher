@@ -103,6 +103,8 @@ public partial class MainWindow : Window
 
         installer = this.GetServiceProvider().GetRequiredService<IThriveInstaller>();
 
+        UpdateAudioLatencySelection();
+
         dataContext.WhenAnyValue(d => d.SelectedLauncherLanguage).Subscribe(OnLanguageChanged);
 
         dataContext.WhenAnyValue(d => d.SelectedVersionToPlay).Subscribe(OnSelectedVersionChanged);
@@ -120,6 +122,8 @@ public partial class MainWindow : Window
         dataContext.WhenAnyValue(d => d.LauncherShouldClose).Subscribe(OnLauncherWantsToClose);
 
         dataContext.WhenAnyValue(d => d.AvailableUpdaterFiles).Subscribe(OnAvailableAutoUpdatersForRetryUpdated);
+
+        dataContext.WhenAnyValue(d => d.ThriveAudioLatencyMilliseconds).Subscribe(_ => UpdateAudioLatencySelection());
 
         dataContext.PlayMessages.CollectionChanged += OnPlayMessagesChanged;
 
@@ -154,6 +158,61 @@ public partial class MainWindow : Window
         }
 
         DerivedDataContext.VersionSelected(selected);
+    }
+
+    private void AudioLatencyComboBoxItemChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        _ = sender;
+
+        // Ignore while initializing
+        if (DataContext == null)
+            return;
+
+        string? selected;
+
+        if (e.AddedItems.Count > 0 && e.AddedItems[0] != null)
+        {
+            selected = (string?)((ComboBoxItem)e.AddedItems[0]!).Content ??
+                throw new Exception("Bad audio item content");
+        }
+        else
+        {
+            return;
+        }
+
+        // Parse value and set it, this isn't in a try-catch as this doesn't have access to a logger
+        DerivedDataContext.ThriveAudioLatencyMilliseconds = int.Parse(selected.Split(' ', 2).First());
+    }
+
+    private void UpdateAudioLatencySelection()
+    {
+        if (DataContext == null)
+            return;
+
+        AudioLatencyComboBox.SelectedIndex = AudioLatencyToIndex(DerivedDataContext.ThriveAudioLatencyMilliseconds);
+    }
+
+    /// <summary>
+    ///   Converts latency values to an index. Needs to match what is set in the axaml file.
+    /// </summary>
+    /// <returns>Index of the selection (or closest value)</returns>
+    private int AudioLatencyToIndex(int latency)
+    {
+        return latency switch
+        {
+            <= 20 => 0,
+            <= 25 => 1,
+            <= 30 => 2,
+            <= 50 => 3,
+            <= 80 => 4,
+            <= 100 => 5,
+            <= 150 => 6,
+            <= 200 => 7,
+            <= 250 => 8,
+            <= 300 => 9,
+            <= 400 => 10,
+            _ => 11,
+        };
     }
 
     private void OnSelectedVersionChanged(string? selectedVersion)

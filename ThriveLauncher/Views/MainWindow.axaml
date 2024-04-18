@@ -227,6 +227,28 @@
                                 <CheckBox IsChecked="{Binding ForceOpenGlMode}">
                                     <TextBlock TextWrapping="Wrap" Text="{i18n:Localize LaunchOptionForceOpenGL}" />
                                 </CheckBox>
+                                <CheckBox IsChecked="{Binding OverrideThriveAudioLatency}">
+                                    <TextBlock TextWrapping="Wrap"
+                                               Text="{i18n:Localize LaunchOptionOverrideAudioLatency}" />
+                                </CheckBox>
+                                <ComboBox IsEnabled="{Binding OverrideThriveAudioLatency}"
+                                          x:Name="AudioLatencyComboBox"
+                                          SelectionChanged="AudioLatencyComboBoxItemChanged">
+                                    <!-- Needs to match MainWindow.AudioLatencyToIndex -->
+                                    <ComboBoxItem Content="20 ms" />
+                                    <ComboBoxItem Content="25 ms" />
+                                    <ComboBoxItem Content="30 ms" />
+                                    <ComboBoxItem Content="50 ms" />
+                                    <ComboBoxItem Content="80 ms" />
+                                    <ComboBoxItem Content="100 ms" />
+                                    <ComboBoxItem Content="150 ms" />
+                                    <ComboBoxItem Content="200 ms" />
+                                    <ComboBoxItem Content="250 ms" />
+                                    <ComboBoxItem Content="300 ms" />
+                                    <ComboBoxItem Content="400 ms" />
+                                    <ComboBoxItem Content="500 ms" />
+                                </ComboBox>
+
                             </StackPanel>
 
                             <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">

@@ -190,6 +190,9 @@
   <data name="LaunchOptionForceOpenGL" xml:space="preserve">
       <value>Force OpenGL rendering mode (may make Thrive start, but causes slight graphical problems)</value>
   </data>
+  <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
+      <value>Increase game audio latency (can fix audio crackling issues when the latency is set high enough)</value>
+  </data>
   <data name="LauncherVersionDisplay" xml:space="preserve">
       <value>Launcher version:</value>
   </data>

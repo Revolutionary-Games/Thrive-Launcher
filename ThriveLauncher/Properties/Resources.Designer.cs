@@ -303,6 +303,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string LaunchOptionOverrideAudioLatency {
+            get {
+                return ResourceManager.GetString("LaunchOptionOverrideAudioLatency", resourceCulture);
+            }
+        }
+        
         public static string LauncherVersionDisplay {
             get {
                 return ResourceManager.GetString("LauncherVersionDisplay", resourceCulture);
