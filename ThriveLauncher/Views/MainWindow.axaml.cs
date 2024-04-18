@@ -318,7 +318,7 @@ public partial class MainWindow : Window
         if (result.Count < 1)
             return;
 
-        DerivedDataContext.SetInstallPathTo(result[0].Path.ToString());
+        DerivedDataContext.SetInstallPathTo(result[0].Path.LocalPath);
     }
 
     private async void SelectNewTemporaryLocation(object? sender, RoutedEventArgs routedEventArgs)
@@ -335,7 +335,7 @@ public partial class MainWindow : Window
         if (result.Count < 1)
             return;
 
-        DerivedDataContext.SetTemporaryLocationTo(result[0].Path.ToString());
+        DerivedDataContext.SetTemporaryLocationTo(result[0].Path.LocalPath);
     }
 
     private async void SelectDevBuildCacheLocation(object? sender, RoutedEventArgs routedEventArgs)
@@ -352,7 +352,7 @@ public partial class MainWindow : Window
         if (result.Count < 1)
             return;
 
-        DerivedDataContext.SetDehydrateCachePathTo(result[0].Path.ToString());
+        DerivedDataContext.SetDehydrateCachePathTo(result[0].Path.LocalPath);
     }
 
     private async Task<IStorageFolder?> GetInitialFolderBrowserLocation(string potentialPath)

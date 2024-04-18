@@ -208,6 +208,12 @@ public partial class MainWindowViewModel
         if (Settings.ThriveInstallationPath == folder)
             return;
 
+        if (string.IsNullOrWhiteSpace(folder))
+        {
+            logger.LogError("Cannot set install path to empty");
+            return;
+        }
+
         logger.LogInformation("Setting Thrive install path to {Folder}", folder);
 
         var rawFiles = thriveInstaller.DetectInstalledThriveFolders();
@@ -261,6 +267,12 @@ public partial class MainWindowViewModel
 
         if (Settings.TemporaryDownloadsFolder == folder)
             return;
+
+        if (string.IsNullOrWhiteSpace(folder))
+        {
+            logger.LogError("Cannot set temporary folder to empty path");
+            return;
+        }
 
         logger.LogInformation("Setting temporary downloads folder to {Folder}", folder);
 
@@ -349,6 +361,12 @@ public partial class MainWindowViewModel
 
         if (Settings.DehydratedCacheFolder == folder)
             return;
+
+        if (string.IsNullOrWhiteSpace(folder))
+        {
+            logger.LogError("Cannot set dehydrate folder to empty");
+            return;
+        }
 
         logger.LogInformation("Setting dehydrated cache path to {Folder}", folder);
 
