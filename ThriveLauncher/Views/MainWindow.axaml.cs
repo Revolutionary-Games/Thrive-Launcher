@@ -958,7 +958,10 @@ public partial class MainWindow : Window
                     if (message.IsError)
                         textBlock.Foreground = errorBrush;
 
-                    children.Insert(index++, textBlock);
+                    // Ensure that in rare cases this doesn't insert outside the valid range
+                    // TODO: find out the root cause why the data is incorrectly formed sometimes with the lengths
+                    // going outside the valid range
+                    children.Insert(Math.Min(index++, children.Count), textBlock);
                 }
 
                 // TODO: see the TODO in HandleFirstPartOfOutputChanged
