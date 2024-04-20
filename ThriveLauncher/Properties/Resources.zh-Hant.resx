@@ -942,4 +942,10 @@
   <data name="ExitTheLauncher" xml:space="preserve">
     <value>退出啟動器</value>
   </data>
+  <data name="LaunchOptionForceOpenGL" xml:space="preserve">
+    <value>強制 OpenGL 渲染模式（可能能夠啟動 Thrive ，但會導致輕微的圖形問題）</value>
+  </data>
+  <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
+    <value>增加遊戲音訊延遲（當延遲設定足夠高時可以修復音訊爆裂問題）</value>
+  </data>
 </root>
