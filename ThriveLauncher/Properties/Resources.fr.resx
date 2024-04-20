@@ -565,4 +565,22 @@ Les logs du launcher contiendront plus d'informations.</value>
   <data name="ExitTheLauncher" xml:space="preserve">
     <value>Quitter le launcher</value>
   </data>
+  <data name="LaunchOptionForceOpenGL" xml:space="preserve">
+    <value>Forcer le mode de rendu OpenGL (peut faire démarrer Thrive mais provoque de légers problèmes graphiques)</value>
+  </data>
+  <data name="LauncherOptionShowAllBetaVersions" xml:space="preserve">
+    <value>Afficher toutes les versions beta de Thrive existantes</value>
+  </data>
+  <data name="LauncherOptionShowLatestBetaVersion" xml:space="preserve">
+    <value>Afficher la dernière version beta de Thrive disponible dans le sélecteur de version (si disponible)</value>
+  </data>
+  <data name="RequiresLatestBetaShowingEnabled" xml:space="preserve">
+    <value>Cette option est seulement disponible en activant d'abord l'option d'affichage de la dernière version beta</value>
+  </data>
+  <data name="ForgetLastPlayedVersionToolTip" xml:space="preserve">
+    <value>Efface l'enregistrement de la dernière sélection faite dans le sélecteur de version de Thrive. Peut aider le mode seamless a fonctionner à nouveau si il refuse de marcher.</value>
+  </data>
+  <data name="ForgetLastPlayedVersion" xml:space="preserve">
+    <value>Oublier la dernière version jouée</value>
+  </data>
 </root>
