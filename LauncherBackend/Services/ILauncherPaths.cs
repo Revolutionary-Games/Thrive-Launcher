@@ -20,6 +20,7 @@ public interface ILauncherPaths
 
     public string ThriveDefaultLogsFolder { get; }
     public string ThriveDefaultCrashesFolder { get; }
+    public string ThriveDefaultStartUpFile { get; }
 
     // Launcher 1.x version folder paths
 

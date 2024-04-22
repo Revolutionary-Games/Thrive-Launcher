@@ -3,6 +3,7 @@ namespace LauncherBackend.Services;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.Text.Json;
 using LauncherThriveShared;
 using Microsoft.Extensions.Logging;
 using Models;
@@ -38,6 +39,11 @@ public class ThriveRunner : IThriveRunner
     private bool unhandledExceptionIsInErrorOut;
 
     private bool thriveProperlyStarted;
+
+    /// <summary>
+    ///   Used to match start info file with
+    /// </summary>
+    private Guid? thriveStartId;
 
     private StoreVersionInfo? currentStoreVersionInfo;
 
@@ -414,6 +420,12 @@ public class ThriveRunner : IThriveRunner
             runInfo.ArgumentList.Add(ThriveLauncherSharedConstants.OPENING_LAUNCHER_IS_HIDDEN);
         }
 
+        // Generate a new launch ID to make sure they are all unique. This is an alternative to detecting Thrive
+        // startup from the output
+        thriveStartId = Guid.NewGuid();
+
+        runInfo.ArgumentList.Add($"{ThriveLauncherSharedConstants.THRIVE_LAUNCH_ID_PREFIX}{thriveStartId}");
+
         if (ExtraThriveStartFlags is { Count: > 0 })
         {
             var extraFlagsString = string.Join(" ", ExtraThriveStartFlags);
@@ -439,6 +451,16 @@ public class ThriveRunner : IThriveRunner
 
         if (DetectedFullLogFileLocation == null || DetectedThriveDataFolder == null)
             logger.LogWarning("No log file (or data folder) location could be detected from game output");
+
+        if (!thriveProperlyStarted)
+        {
+            // Check if Thrive startup file can be read and determine based on that if Thrive did in fact start
+            var file = DetectedThriveDataFolder == null ?
+                launcherPaths.ThriveDefaultStartUpFile :
+                Path.Join(DetectedThriveDataFolder, ThriveLauncherSharedConstants.LATEST_START_INFO_FILE_NAME);
+
+            thriveProperlyStarted = CheckThriveStartupFile(file);
+        }
 
         ThriveWantsToOpenLauncher =
             AllGameOutput().Any(m => m.Contains(ThriveLauncherSharedConstants.REQUEST_LAUNCHER_OPEN));
@@ -719,6 +741,43 @@ public class ThriveRunner : IThriveRunner
             readingUnhandledException = true;
             unhandledExceptionIsInErrorOut = isErrorOut;
         }
+    }
+
+    private bool CheckThriveStartupFile(string file)
+    {
+        if (!File.Exists(file))
+        {
+            logger.LogInformation("Thrive startup info file doesn't exist at: {File}", file);
+            return false;
+        }
+
+        try
+        {
+            using var stream = File.OpenRead(file);
+
+            var info = JsonSerializer.Deserialize<ThriveStartInfo>(stream) ?? throw new NullDecodedJsonException();
+
+            // The comparison shouldn't matter, but for extra bulletproofing this compares in a case-insensitive way
+            if (thriveStartId != null &&
+                info.StartId.ToLowerInvariant() == thriveStartId.ToString()!.ToLowerInvariant())
+            {
+                logger.LogInformation(
+                    "Detected Thrive as correctly started at {Time} due to matching startup info file id: {StartId}",
+                    info.StartedAt.ToString("G"), info.StartId);
+                return true;
+            }
+
+            logger.LogDebug(
+                "Read startup info file doesn't match what we expected, it was from: {Time} with id: {StartId}",
+                info.StartedAt.ToString("G"), info.StartId);
+        }
+        catch (Exception e)
+        {
+            logger.LogWarning(e, "Couldn't read Thrive startup file info from file: {File}", file);
+            return false;
+        }
+
+        return false;
     }
 
     /// <summary>

@@ -60,6 +60,9 @@ public class LauncherPaths : ILauncherPaths
     public string ThriveDefaultLogsFolder =>
         Path.Combine(ExpectedDefaultThriveUserFolder, ThriveLauncherSharedConstants.LOGS_FOLDER_NAME);
 
+    public string ThriveDefaultStartUpFile => Path.Combine(ExpectedDefaultThriveUserFolder,
+        ThriveLauncherSharedConstants.LATEST_START_INFO_FILE_NAME);
+
     public string ThriveDefaultCrashesFolder =>
         Path.Combine(ExpectedDefaultThriveUserFolder, LauncherConstants.ThriveCrashesFolderName);
 
