@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptsBase", "Revolutionar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevCenterCommunication", "RevolutionaryGamesCommon\DevCenterCommunication\DevCenterCommunication.csproj", "{E1659279-D7C2-4F2E-BAAD-876B49EEA791}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LauncherThriveShared", "RevolutionaryGamesCommon\LauncherThriveShared\LauncherThriveShared.csproj", "{368110A4-2AEC-43EF-A17E-5BB07CDB2AC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,5 +74,9 @@ Global
 		{E1659279-D7C2-4F2E-BAAD-876B49EEA791}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1659279-D7C2-4F2E-BAAD-876B49EEA791}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1659279-D7C2-4F2E-BAAD-876B49EEA791}.Release|Any CPU.Build.0 = Release|Any CPU
+		{368110A4-2AEC-43EF-A17E-5BB07CDB2AC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{368110A4-2AEC-43EF-A17E-5BB07CDB2AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{368110A4-2AEC-43EF-A17E-5BB07CDB2AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{368110A4-2AEC-43EF-A17E-5BB07CDB2AC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

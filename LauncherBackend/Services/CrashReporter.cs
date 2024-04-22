@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.Json;
 using DevCenterCommunication.Forms;
 using DevCenterCommunication.Models;
+using LauncherThriveShared;
 using Microsoft.Extensions.Logging;
 using Models;
 using SharedBase.Utilities;
@@ -57,7 +58,7 @@ public sealed class CrashReporter : ICrashReporter, IDisposable
         var folder = thriveRunner.DetectedThriveDataFolder;
 
         if (folder != null)
-            folder = Path.Join(folder, LauncherConstants.ThriveLogsFolderName);
+            folder = Path.Join(folder, ThriveLauncherSharedConstants.LOGS_FOLDER_NAME);
 
         if (string.IsNullOrEmpty(folder) || !Directory.Exists(folder))
             folder = launcherPaths.ThriveDefaultLogsFolder;

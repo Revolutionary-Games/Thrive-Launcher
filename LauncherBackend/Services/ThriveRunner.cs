@@ -3,6 +3,7 @@ namespace LauncherBackend.Services;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
+using LauncherThriveShared;
 using Microsoft.Extensions.Logging;
 using Models;
 using SharedBase.Models;
@@ -400,17 +401,17 @@ public class ThriveRunner : IThriveRunner
             // Pass arguments about the store version to Thrive for it to show correct information
             // This is needed because itch builds don't have anything special on the Thrive side to them
             runInfo.ArgumentList.Add(
-                $"{LauncherConstants.THRIVE_LAUNCHER_STORE_PREFIX}{currentStoreVersionInfo.StoreName}");
+                $"{ThriveLauncherSharedConstants.THRIVE_LAUNCHER_STORE_PREFIX}{currentStoreVersionInfo.StoreName}");
         }
 
-        runInfo.ArgumentList.Add(LauncherConstants.OPENED_THROUGH_LAUNCHER_OPTION);
+        runInfo.ArgumentList.Add(ThriveLauncherSharedConstants.OPENED_THROUGH_LAUNCHER_OPTION);
 
         // If we are going to close our window, tell that to Thrive
         // Or if we launched in seamless mode
         if (settings.CloseLauncherOnGameStart || settings.CloseLauncherAfterGameExit || LaunchedInSeamlessMode)
         {
             logger.LogDebug("Passing the launcher is hidden flag to Thrive");
-            runInfo.ArgumentList.Add(LauncherConstants.OPENING_LAUNCHER_IS_HIDDEN);
+            runInfo.ArgumentList.Add(ThriveLauncherSharedConstants.OPENING_LAUNCHER_IS_HIDDEN);
         }
 
         if (ExtraThriveStartFlags is { Count: > 0 })
@@ -439,8 +440,9 @@ public class ThriveRunner : IThriveRunner
         if (DetectedFullLogFileLocation == null || DetectedThriveDataFolder == null)
             logger.LogWarning("No log file (or data folder) location could be detected from game output");
 
-        ThriveWantsToOpenLauncher = AllGameOutput().Any(m => m.Contains(LauncherConstants.REQUEST_LAUNCHER_OPEN));
-        var userRequestedQuit = AllGameOutput().Any(m => m.Contains(LauncherConstants.USER_REQUESTED_QUIT));
+        ThriveWantsToOpenLauncher =
+            AllGameOutput().Any(m => m.Contains(ThriveLauncherSharedConstants.REQUEST_LAUNCHER_OPEN));
+        var userRequestedQuit = AllGameOutput().Any(m => m.Contains(ThriveLauncherSharedConstants.USER_REQUESTED_QUIT));
 
         // TODO: detection for restart request
 
@@ -626,7 +628,7 @@ public class ThriveRunner : IThriveRunner
                 // Should be fine to only detect this from the first log lines
                 DetectThriveDataFoldersFromOutput(line);
 
-                if (!thriveProperlyStarted && line.Contains(LauncherConstants.STARTUP_SUCCEEDED_MESSAGE))
+                if (!thriveProperlyStarted && line.Contains(ThriveLauncherSharedConstants.STARTUP_SUCCEEDED_MESSAGE))
                 {
                     logger.LogInformation("Thrive detected as properly started");
                     thriveProperlyStarted = true;

@@ -1,5 +1,6 @@
 namespace LauncherBackend.Services;
 
+using LauncherThriveShared;
 using Microsoft.Extensions.Logging;
 
 /// <summary>
@@ -57,7 +58,7 @@ public class LauncherPaths : ILauncherPaths
     public string ExpectedDefaultThriveUserFolder => thriveUserFolder ??= GetPlatformExpectedThriveUserFolder();
 
     public string ThriveDefaultLogsFolder =>
-        Path.Combine(ExpectedDefaultThriveUserFolder, LauncherConstants.ThriveLogsFolderName);
+        Path.Combine(ExpectedDefaultThriveUserFolder, ThriveLauncherSharedConstants.LOGS_FOLDER_NAME);
 
     public string ThriveDefaultCrashesFolder =>
         Path.Combine(ExpectedDefaultThriveUserFolder, LauncherConstants.ThriveCrashesFolderName);
