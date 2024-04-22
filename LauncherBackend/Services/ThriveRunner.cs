@@ -767,9 +767,9 @@ public class ThriveRunner : IThriveRunner
                 return true;
             }
 
-            logger.LogDebug(
-                "Read startup info file doesn't match what we expected, it was from: {Time} with id: {StartId}",
-                info.StartedAt.ToString("G"), info.StartId);
+            logger.LogInformation(
+                "Read startup info file doesn't match what we expected, it was from: {Time} with id: {StartId} " +
+                "(should be: {ExpectedId})", info.StartedAt.ToString("G"), info.StartId, thriveStartId);
         }
         catch (Exception e)
         {
