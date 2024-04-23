@@ -83,7 +83,7 @@
     <value>Jouer</value>
   </data>
   <data name="ConnectToDevCenterPrompt" xml:space="preserve">
-    <value>Se connecter au DevCenter</value>
+    <value>Se connecter au ThriveDevCenter</value>
   </data>
   <data name="ConnectedSupporterGreeting" xml:space="preserve">
     <value>Merci,</value>
@@ -95,7 +95,7 @@
     <value>Contenu web désactivé</value>
   </data>
   <data name="NewsFeedTitle" xml:space="preserve">
-    <value>NEWS</value>
+    <value>ACTUALITÉS</value>
   </data>
   <data name="SettingsImportOldTitle" xml:space="preserve">
     <value>Importer les paramètres précédents ?</value>
@@ -122,7 +122,7 @@
     <value>Patreon</value>
   </data>
   <data name="ExternalLinkDonate" xml:space="preserve">
-    <value>Faire une donation</value>
+    <value>Faire un don</value>
   </data>
   <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
     <value>ThriveDevCenter</value>
@@ -158,7 +158,7 @@
     <value>Page Facebook</value>
   </data>
   <data name="ThriveOptions" xml:space="preserve">
-    <value>Options Thrive</value>
+    <value>Options de Thrive</value>
   </data>
   <data name="LauncherOptions" xml:space="preserve">
     <value>Options du launcher</value>
@@ -227,7 +227,7 @@
     <value>Taille du cache :</value>
   </data>
   <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
-    <value>Connection au ThriveDevCenter</value>
+    <value>Connexion au ThriveDevCenter</value>
   </data>
   <data name="DialogOk" xml:space="preserve">
     <value>Ok</value>
@@ -269,7 +269,7 @@
     <value>Réinitialiser l'emplacement d'installation</value>
   </data>
   <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
-    <value>Remarque : le changement de l'emplacement temporaire ne déplace ni ne supprime les fichiers existants afin d'éviter de toucher accidentellement des fichiers sans rapport avec le Thrive</value>
+    <value>Remarque : le changement de l'emplacement temporaire ne déplace ni ne supprime les fichiers existants afin d'éviter de toucher accidentellement des fichiers sans rapport avec Thrive</value>
   </data>
   <data name="ClearTemporaryLocation" xml:space="preserve">
     <value>Supprimez TOUS les fichiers dans le dossier temporaire. Pourrait supprimer des fichiers sans lien avec Thrive s'il y en a !</value>
@@ -350,7 +350,7 @@
     <value>Le flux ne peux pas être affiché. {0}</value>
   </data>
   <data name="FeedItemPostedByAndTime" xml:space="preserve">
-    <value>posté par {0} à {1}</value>
+    <value>posté par {0} le {1}</value>
   </data>
   <data name="ClickHereLink" xml:space="preserve">
     <value>Cliquez ici</value>
@@ -365,7 +365,7 @@
     <value>Voir les logs</value>
   </data>
   <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
-    <value>Tous les certificats sont expirés</value>
+    <value>Tous les certificats ont expiré</value>
   </data>
   <data name="StoreVersionName" xml:space="preserve">
     <value>Version {0}</value>
@@ -428,12 +428,12 @@
     <value>inconnu</value>
   </data>
   <data name="SpecificBuildTab" xml:space="preserve">
-    <value>Versions spécifiques</value>
+    <value>Version spécifique</value>
   </data>
   <data name="PlayUnsafeBuildExplanation" xml:space="preserve">
     <value>Les versions de développement normales sont téléchargées automatiquement par un serveur CI avec une clé vérifiée. Ces versions ne peuvent être déclenchés que par les membres du repository Thrive. À moins que le compte d'une telle personne ne soit compromis (ou qu'elle agisse de manière malveillante), les versions sont aussi sûres que les versions officielles. Les versions de développement sont également acceptés à partir de pull requests (PR), mais dans ce cas, elles sont spécifiquement marquées comme non sûres (comme la version actuellement sélectionnée), car la pull request pourrait contenir toutes sortes de choses désagréables.
 
-Si un membre de l'équipe Thrive vérifie que la PR est sûre, cet avertissement disparaît. Sinon, vous pouvez continuer si vous pensez que cette version est sûre. Avant de le faire, vous devez vérifier la PR sur Github pour voir si le dernier hash de commit correspond et si la compilation de ThriveDevCenter indique qu'elle a téléchargé une versions de développement avec le hash. En outre, il faut vérifier que la PR ne modifie pas les scripts de compilation. Après avoir fait cela, ce devrait être relativement sûr de continuer, car c'est le même processus que les membres de l'équipe Thrive utilisent pour vérifier les PRs.</value>
+Si un membre de l'équipe Thrive vérifie que la PR est sûre, cet avertissement disparaît. Sinon, vous pouvez continuer si vous pensez que cette version est sûre. Avant de le faire, vous devez vérifier la PR sur Github pour voir si le dernier hash de commit correspond et si la compilation de ThriveDevCenter indique qu'elle a téléchargé une version de développement avec le hash. En outre, il faut vérifier que la PR ne modifie pas les scripts de compilation. Après avoir fait cela, ce devrait être relativement sûr de continuer, car c'est le même processus que les membres de l'équipe Thrive utilisent pour vérifier les PR.</value>
   </data>
   <data name="DevCenterConnectionExplanation" xml:space="preserve">
     <value>Ici, vous pouvez lier le launcher au ThriveDevCenter pour accéder aux versions de développement et à d'autres fonctionnalités</value>
@@ -442,14 +442,14 @@ Si un membre de l'équipe Thrive vérifie que la PR est sûre, cet avertissement
     <value>Entrez le hash manuellement :</value>
   </data>
   <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
-    <value>Sélectionner le hash entré manuellement en tant que version de développement quand une version de développement est utilisée pour jouer</value>
+    <value>Sélectionner la valeur du hash entré manuellement pour être utilisée dans la boite de saisie comme version de développement quand une version de développement est utilisée pour jouer</value>
   </data>
   <data name="SettingsSaveFailedMessage" xml:space="preserve">
     <value>L'enregistrement des paramètres dans le fichier de paramètres a échoué. Veuillez vous assurer que le launcher a un accès en écriture et réessayez.
 Les logs du launcher contiendront plus d'informations.</value>
   </data>
   <data name="LatoLicenseTitle" xml:space="preserve">
-    <value>Lato.ttf (Copyright (c) 2010-2011 par tyPoland Lukasz Dziedzic avec nom de police résérvé "Lato"), licence OFL :</value>
+    <value>Lato.ttf (Copyright (c) 2010-2011 par tyPoland Lukasz Dziedzic avec nom de fonte réservé "Lato"), licence OFL :</value>
   </data>
   <data name="UnknownError" xml:space="preserve">
     <value>Erreur inconnue</value>
@@ -503,7 +503,7 @@ Les logs du launcher contiendront plus d'informations.</value>
     <value>Aucune version compatible de Thrive n'a été trouvée</value>
   </data>
   <data name="OutdatedLauncherExplanation" xml:space="preserve">
-    <value>Cette version du launcher est obsolète et devrait être mise à jour. Comme vous voyez ce message, la mise à jour automatique n'a pas débuté, vous devrez donc télécharger manuellement la mise à jour et l'installer. Vous pouvez essayer d'utiliser la version actuelle du launcher en ignorant la mise à jour, mais cela pourrait causer des problèmes inattendus car seule la dernière version du launcher est certaine de fonctionner avec les systèmes avec lesquels le launcher interagit.</value>
+    <value>Cette version du launcher est obsolète et devrait être mise à jour. Comme vous voyez ce message, la mise à jour automatique n'a pas débuté, vous devrez donc télécharger manuellement la mise à jour et l'installer. Vous pouvez essayer d'utiliser la version actuelle du launcher en ignorant la mise à jour, mais cela pourrait causer des problèmes inattendus car seule la dernière version du launcher est certaine de fonctionner avec les systèmes distants avec lesquels le launcher interagit.</value>
   </data>
   <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
     <value>Erreur  : le processus enfant a déjà terminé son exécution, la fenêtre du launcher ne sera pas fermée</value>
@@ -518,7 +518,7 @@ Les logs du launcher contiendront plus d'informations.</value>
     <value>Activer le débogage du launcher (avant de faire un rapport de bogue, veillez activer ceci et et relancer le launcher)</value>
   </data>
   <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
-    <value>Le launcher Thrive vérifie la version actuelle de Thrive depuis internet afin de savoir si une nouvelle version est disponible. Le chargements de l'information a échoué (voir erreur si-dessous). Vous pouvez réessayer le téléchargement de cet information ou si le launcher avait déjà téléchargé l'information, vous pouvez charger la copie en mémoire cache. Si la copie en mémoire cache est très ancienne, il peut être affiché indisponible. Notait que si la version de votre launcher est très vieille, il se peut qu'il ne soit plus compatible et qu'il doivent être mise à jour manuellement avant que les données sois chargées.</value>
+    <value>Le launcher Thrive charge les version de Thrive disponibles depuis internet afin de savoir si une nouvelle version est disponible. Le chargement de l'information a échoué (voir l'erreur ci-dessous). Vous pouvez réessayer de télécharger cette information ou si le launcher avait déjà téléchargé l'information, vous pouvez charger la copie en cache. Si la copie en cache est très ancienne, elle peut ne pas afficher toutes les versions de Thrive disponibles. Notez que si votre version du launcher est très vieille, il se peut qu'il ne soit plus compatible avec un nouveau format de données et qu'il doive être mis à jour manuellement avant que les données puissent être chargées.</value>
   </data>
   <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
     <value>Les informations téléchargées du Launcher Thrive sont invalides. Veuillez réessayer dans quelques instants et si le problème persiste, veuillez nous contacter.</value>
@@ -536,13 +536,13 @@ Les logs du launcher contiendront plus d'informations.</value>
     <value>Supprimer automatiquement les anciens fichiers du dossier temporaire</value>
   </data>
   <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
-    <value>Tous les anciens fichiers seront automatiquement supprimés du dossier temporaire au redémarage du launcher. Par conséquent, le dossier des fichiers temporaires ne doit pas être utilisé pour d'autres usages que Thrive afin d'éviter la suppression accidentelle de fichiers non liés.</value>
+    <value>Tous les anciens fichiers seront automatiquement supprimés du dossier temporaire au redémarrage du launcher. Par conséquent, le dossier des fichiers temporaires ne doit pas être utilisé pour d'autres usages que Thrive afin d'éviter la suppression accidentelle de fichiers non liés.</value>
   </data>
   <data name="DeleteErrorExplanation" xml:space="preserve">
     <value>Échec de la suppression des données au chemin d'accès suivant : "{0}" en raison de : {1}</value>
   </data>
   <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
-    <value>Vous êtes sur le point de supprimer tous les fichiers contenus dans le dossier temporaire "{0}". Même les fichiers externes à Thrive seront supprimés s'il se trouve dans ce dossier. Le dossier lui-même sera également supprimé. Supprimer le dossier temporaire ?</value>
+    <value>Vous êtes sur le point de supprimer tous les fichiers contenus dans le dossier temporaire "{0}". Même les fichiers externes à Thrive seront supprimés s'ils se trouvent dans ce dossier. Le dossier lui-même sera également supprimé. Supprimer le dossier temporaire ?</value>
   </data>
   <data name="ClearTemporaryFilesCount" xml:space="preserve">
     <value>Vous êtes sur le point de supprimer les fichiers / dossiers {0}</value>
@@ -582,5 +582,50 @@ Les logs du launcher contiendront plus d'informations.</value>
   </data>
   <data name="ForgetLastPlayedVersion" xml:space="preserve">
     <value>Oublier la dernière version jouée</value>
+  </data>
+  <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
+    <value>Augmenter la latence audio du jeu (peut corriger les problèmes de grésillement audio lorsque la latence est réglée suffisamment haut)</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Copier dans le presse-papier</value>
+  </data>
+  <data name="TimeMomentRightNow" xml:space="preserve">
+    <value>Maintenant</value>
+  </data>
+  <data name="ViewFile" xml:space="preserve">
+    <value>Voir</value>
+  </data>
+  <data name="DownloadingStateItemProgress" xml:space="preserve">
+    <value>Téléchargement de {0} depuis {1}</value>
+  </data>
+  <data name="VerifyingStateItemProgress" xml:space="preserve">
+    <value>Vérification de l'intégrité de {0}</value>
+  </data>
+  <data name="ReportCrashButton" xml:space="preserve">
+    <value>Rapport de plantage</value>
+  </data>
+  <data name="SecondsDisplaySingular" xml:space="preserve">
+    <value>1 seconde</value>
+  </data>
+  <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
+    <value>Si le jeu n'a pas démarré correctement, veuillez essayer les solutions de contournement disponibles dans "Options de Thrive" dans les paramètres du launcher</value>
+  </data>
+  <data name="EnterDevCenterConnectionCode" xml:space="preserve">
+    <value>Veuillez d'abord saisir un code de connexion à ThriveDevCenter dans la boite de saisie</value>
+  </data>
+  <data name="AcceptUnsafeBuildButton" xml:space="preserve">
+    <value>Je comprends le risque, jouer quand même</value>
+  </data>
+  <data name="CopyLogWindowToClipboardToolTip" xml:space="preserve">
+    <value>Copier la sortie du jeu dans le presse-papier</value>
+  </data>
+  <data name="EmbeddedPckToolLicenseTitle" xml:space="preserve">
+    <value>Licence de godotpcktool inclus et licences de ces bibliothèques utilisées :</value>
+  </data>
+  <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
+    <value>Redémarrer automatiquement Thrive si le démarrage échoue</value>
+  </data>
+  <data name="Embedded7ZipLicenseTitle" xml:space="preserve">
+    <value>Le launcher comprend certains outils inclus avec lui. Ce sont des exécutables séparés que le launcher invoque comme des programmes en ligne de commande. Licence de 7-Zip :</value>
   </data>
 </root>
