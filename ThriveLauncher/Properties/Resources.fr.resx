@@ -230,7 +230,7 @@
     <value>Connexion au ThriveDevCenter</value>
   </data>
   <data name="DialogOk" xml:space="preserve">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="ConnectionInfoTab" xml:space="preserve">
     <value>Info</value>
