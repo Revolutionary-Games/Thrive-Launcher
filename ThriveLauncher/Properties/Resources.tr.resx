@@ -945,4 +945,7 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı k
   <data name="LaunchOptionForceOpenGL" xml:space="preserve">
     <value>OpenGL görüntüleme moduna zorla (Thrive'ı başlatabilir ancak hafif grafik sorunlarına neden olur)</value>
   </data>
+  <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
+    <value>Oyun sesi gecikmesini arttır (gecikme yeterince yükseğe ayarlandığında, ses çatırdama sorunlarını düzeltebilir)</value>
+  </data>
 </root>
