@@ -530,7 +530,7 @@ Les logs du launcher contiendront plus d'informations.</value>
     <value>Utiliser les informations de version mises en cache</value>
   </data>
   <data name="DevCenterCheckingConnection" xml:space="preserve">
-    <value>Connection à ThriveDevCenter...</value>
+    <value>Connection au ThriveDevCenter...</value>
   </data>
   <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
     <value>Supprimer automatiquement les anciens fichiers du dossier temporaire</value>
@@ -611,7 +611,7 @@ Les logs du launcher contiendront plus d'informations.</value>
     <value>Si le jeu n'a pas démarré correctement, veuillez essayer les solutions de contournement disponibles dans "Options de Thrive" dans les paramètres du launcher</value>
   </data>
   <data name="EnterDevCenterConnectionCode" xml:space="preserve">
-    <value>Veuillez d'abord saisir un code de connexion à ThriveDevCenter dans la boite de saisie</value>
+    <value>Veuillez d'abord saisir un code de connexion au ThriveDevCenter dans la boite de saisie</value>
   </data>
   <data name="AcceptUnsafeBuildButton" xml:space="preserve">
     <value>Je comprends le risque, jouer quand même</value>
