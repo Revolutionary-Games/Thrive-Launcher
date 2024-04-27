@@ -431,7 +431,7 @@
     <value>Version spécifique</value>
   </data>
   <data name="PlayUnsafeBuildExplanation" xml:space="preserve">
-    <value>Les versions de développement normales sont téléchargées automatiquement par un serveur CI avec une clé vérifiée. Ces versions ne peuvent être déclenchés que par les membres du repository Thrive. À moins que le compte d'une telle personne ne soit compromis (ou qu'elle agisse de manière malveillante), les versions sont aussi sûres que les versions officielles. Les versions de développement sont également acceptés à partir de pull requests (PR), mais dans ce cas, elles sont spécifiquement marquées comme non sûres (comme la version actuellement sélectionnée), car la pull request pourrait contenir toutes sortes de choses désagréables.
+    <value>Les versions de développement normales sont téléchargées automatiquement par un serveur CI avec une clé vérifiée. Ces versions ne peuvent être déclenchées que par les membres du dépôt Thrive. À moins que le compte d'une telle personne ne soit compromis (ou qu'elle agisse de manière malveillante), les versions sont aussi sûres que les versions officielles. Les versions de développement sont également acceptés à partir de pull requests (PR), mais dans ce cas, elles sont spécifiquement marquées comme non sûres (comme la version actuellement sélectionnée), car la pull request pourrait contenir toutes sortes de choses désagréables.
 
 Si un membre de l'équipe Thrive vérifie que la PR est sûre, cet avertissement disparaît. Sinon, vous pouvez continuer si vous pensez que cette version est sûre. Avant de le faire, vous devez vérifier la PR sur Github pour voir si le dernier hash de commit correspond et si la compilation de ThriveDevCenter indique qu'elle a téléchargé une version de développement avec le hash. En outre, il faut vérifier que la PR ne modifie pas les scripts de compilation. Après avoir fait cela, ce devrait être relativement sûr de continuer, car c'est le même processus que les membres de l'équipe Thrive utilisent pour vérifier les PR.</value>
   </data>
@@ -627,5 +627,8 @@ Les logs du launcher contiendront plus d'informations.</value>
   </data>
   <data name="Embedded7ZipLicenseTitle" xml:space="preserve">
     <value>Le launcher comprend certains outils inclus avec lui. Ce sont des exécutables séparés que le launcher invoque comme des programmes en ligne de commande. Licence de 7-Zip :</value>
+  </data>
+  <data name="ExtractingStateItemProgress" xml:space="preserve">
+    <value>Extraction de {0}. Cela peut prendre plusieurs minutes pour des fichiers volumineux, merci de patienter.</value>
   </data>
 </root>
