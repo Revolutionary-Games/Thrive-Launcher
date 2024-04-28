@@ -751,7 +751,7 @@ Başlatıcı günlük dosyaları bununla ilgili daha fazla bilgi içermektedir.<
     <value>Toplam {1} MiB arasından {0} indirildi</value>
   </data>
   <data name="ExtractingStateItemProgress" xml:space="preserve">
-    <value>{0} dosya ayıklanıyor. Büyük dosyalar için bu birkaç dakika sürebilir. Bu yüzden, lütfen sabırlı olun.</value>
+    <value>{0} dosyası ayıklanıyor. Büyük dosyalar için bu birkaç dakika sürebilir. Bu yüzden, lütfen sabırlı olun.</value>
   </data>
   <data name="ThriveIsStarting" xml:space="preserve">
     <value>Thrive başlatılıyor. Günlük dosyası çıktısı (arabellekten dolayı, gösterilen içerik muhtemelen gerçek içerik ile eşzamanlı değil):</value>
