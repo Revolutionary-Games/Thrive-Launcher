@@ -2,6 +2,4 @@
 
 using ReactiveUI;
 
-public class ViewModelBase : ReactiveObject
-{
-}
+public class ViewModelBase : ReactiveObject;
