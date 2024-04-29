@@ -30,6 +30,14 @@ public class CPUFeatureCheck : ICPUFeatureCheck
 
     private bool CheckFeatures()
     {
+        // m1 chips don't show up with SSE supported so for now just skip this check on Mac until we have Thrive
+        // working there and know the real requirements
+        if (OperatingSystem.IsMacOS())
+        {
+            logger.LogInformation("CPU check is skipped on mac for now");
+            return true;
+        }
+
         if (!Sse41.IsSupported)
         {
             logger.LogWarning("CPU is detected as not having SSE 4.1 support");
