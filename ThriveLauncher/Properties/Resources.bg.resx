@@ -263,7 +263,7 @@
     <value>Принудително изключване на видеоклиповете</value>
   </data>
   <data name="LauncherOptionWebFeeds" xml:space="preserve">
-    <value>Включване на уеб съдържанието</value>
+    <value>Включване на уеб емисиите</value>
   </data>
   <data name="ResetAllSettings" xml:space="preserve">
     <value>Нулиране на всичко</value>
@@ -480,5 +480,11 @@
   </data>
   <data name="FeedItemPostedByAndTime" xml:space="preserve">
     <value>от {0} на {1}</value>
+  </data>
+  <data name="LaunchOptionForceOpenGL" xml:space="preserve">
+    <value>Принудително използване на OpenGL</value>
+  </data>
+  <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
+    <value>Увеличаване на звуковото забавяне</value>
   </data>
 </root>
