@@ -272,10 +272,10 @@
     <value>Нулиране на местоположението</value>
   </data>
   <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
-    <value>Скриване на стартиращата програма след започване на играта</value>
+    <value>Затваряне на стартиращата програма след започване на играта</value>
   </data>
   <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
-    <value>Скриване на стартиращата програма след излизане от играта (ако няма грешки)</value>
+    <value>Затваряне на стартиращата програма след излизане от играта (ако няма грешки)</value>
   </data>
   <data name="LauncherOptionHideOnPlay" xml:space="preserve">
     <value>Скриване на стартиращата програма след натискане на бутона „Старт“</value>
@@ -486,5 +486,27 @@
   </data>
   <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
     <value>Увеличаване на звуковото забавяне</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>Версията на стартиращата програма е остаряла</value>
+  </data>
+  <data name="InvalidVersionInfoLoadedTitle" xml:space="preserve">
+    <value>Заредената информация за версията е невалидна</value>
+  </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>Автоматично изтриване на старите файлове в папката за временни файлове</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+    <value>Папка за временни изтегляния:</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>Получаване на код за връзка</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>Използвате версия {0} на стартиращата програма, но последната версия е {1}</value>
+  </data>
+  <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
+    <value>Описание на версията:
+{0}</value>
   </data>
 </root>
