@@ -951,4 +951,14 @@ If no files are listed below, downloading the update has failed and it cannot be
   <data name="FileSystemErrorTitle" xml:space="preserve">
     <value>File Access Error</value>
   </data>
+  <data name="CPUFeatureWarningTitle" xml:space="preserve">
+    <value>CPU Detected as Missing Required Features</value>
+  </data>
+  <data name="CPUFeatureWarning" xml:space="preserve">
+    <value>Thrive requires at a minimum a CPU with SSE 4.2 and 4.1 to run. This is a much lower requirement than our official minimum system requirements. For an optimal experience we recommend a CPU with AVX 2 instructions available.
+
+      Your CPU has been detected as not having these required SSE instruction set extensions available. Due to this the game is unlikely to work. However, you can dismiss this warning and try to play anyway, but please do not report any resulting crashes or failures to start the game as it is extremely likely to be an issue caused by a too old CPU.
+
+      If you see this warning in error, your CPU meets the minimum requirements, and can play Thrive anyway, please let us know which CPU you have so that we can improve this feature detection.</value>
+  </data>
 </root>

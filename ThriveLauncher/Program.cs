@@ -213,11 +213,21 @@ internal class Program
         var storeVersionInfo = services.GetRequiredService<IStoreVersionDetector>().Detect();
         var isStore = storeVersionInfo.IsStoreVersion;
 
-        // Store version can run Thrive in seamless mode after which the launcher wants to quit
-        if (HandleStoreVersionLogic(programLogger, isStore, settings, options, settingsManager, storeVersionInfo,
-                runner))
+        bool cpuIsSupported = services.GetRequiredService<ICPUFeatureCheck>().IsBasicThriveLibrarySupported();
+
+        if (!cpuIsSupported)
         {
-            return 0;
+            programLogger.LogInformation("Current CPU is likely not capable of running Thrive");
+        }
+        else
+        {
+            // Store version can run Thrive in seamless mode after which the launcher wants to quit
+            // For simplicity this only works if CPU check warning doesn't need to be shown
+            if (HandleStoreVersionLogic(programLogger, isStore, settings, options, settingsManager, storeVersionInfo,
+                    runner))
+            {
+                return 0;
+            }
         }
 
         programLogger.LogInformation("Launcher starting GUI");

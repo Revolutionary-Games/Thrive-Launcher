@@ -1808,5 +1808,17 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("FileSystemErrorTitle", resourceCulture);
             }
         }
+        
+        public static string CPUFeatureWarningTitle {
+            get {
+                return ResourceManager.GetString("CPUFeatureWarningTitle", resourceCulture);
+            }
+        }
+        
+        public static string CPUFeatureWarning {
+            get {
+                return ResourceManager.GetString("CPUFeatureWarning", resourceCulture);
+            }
+        }
     }
 }

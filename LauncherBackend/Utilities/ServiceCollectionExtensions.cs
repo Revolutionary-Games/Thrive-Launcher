@@ -19,6 +19,7 @@ public static class ServiceCollectionExtensions
             .AddSingleton<IDevCenterClient, DevCenterClient>()
             .AddSingleton<IThriveRunner, ThriveRunner>()
             .AddSingleton<IAutoUpdater, AutoUpdater>()
+            .AddSingleton<ICPUFeatureCheck, CPUFeatureCheck>()
             .AddSingleton<TemporaryFilesCleaner>();
     }
 }

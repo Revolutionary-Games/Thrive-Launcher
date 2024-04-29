@@ -5,7 +5,9 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using LauncherBackend.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Utilities;
 using ViewModels;
 using Views;
@@ -34,6 +36,8 @@ public class App : Application
         SetupMainWindow();
 
         base.OnFrameworkInitializationCompleted();
+
+        ShowCPUWarningWindowIfRequired();
     }
 
     /// <summary>
@@ -58,6 +62,35 @@ public class App : Application
             throw new NotImplementedException();
 
             // singleView.MainView = new MainView();
+        }
+    }
+
+    private void ShowCPUWarningWindowIfRequired()
+    {
+        if (serviceCollection.GetRequiredService<ICPUFeatureCheck>().IsBasicThriveLibrarySupported())
+            return;
+
+        var logger = serviceCollection.GetRequiredService<ILogger<App>>();
+
+        logger.LogInformation("Creating and showing CPU warning window");
+
+        var window = new CPUFeatureWarning();
+
+        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime { MainWindow: not null } desktop)
+        {
+            // Force the main window visible immediately if not already to make the dialog popup work
+            if (!desktop.MainWindow.IsVisible)
+            {
+                logger.LogInformation("Showing main window early for CPU check warning");
+                desktop.MainWindow.Show();
+            }
+
+            window.ShowDialog(desktop.MainWindow);
+        }
+        else
+        {
+            logger.LogWarning("Cannot show CPU warning as a dialog");
+            window.Show();
         }
     }
 
