@@ -509,4 +509,64 @@
     <value>Описание на версията:
 {0}</value>
   </data>
+  <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
+    <value>Автоматично рестартиране на „Thrive“, ако стартирането е неуспешно</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+    <value>Изтриване на всички файлове в папката за кеша на тестовите версии.</value>
+  </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+    <value>Кеш на тестовите версии:</value>
+  </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>Използване на алтернативен начин за стартиране на автоматичното обновяване (ако стандартния начин е неуспешен)</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>Всички стари файлове ще бъдат изтрити от папката за временни файлове след рестартиране на стартиращата програма.</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>Изтриване на всички файлове от папката за временни файлове. Цялото съдържание на папката ще бъде изтрито!</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+    <value>Въведете хеш на версията</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>Потребителско име:</value>
+  </data>
+  <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+    <value>Въведете ръчно въведената стойност на хеша на тестовата версия, която ще използвате</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>Важно: Промяната на местоположението няма да премести или изтрие съществуващите файлове</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf (Авторско право (c) 2010-2011, tyPoland Lukasz Dziedzic с запазено наименование на шрифта „Lato“) с лиценз на OFL:</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>Стартиращата програма използва шрифта „Roboto“ с лиценз:</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>Всички сертификати на стартиращата програма са изтекли. Това означава, че версията, която използвате, е остаряла. Моля, изтеглете и инсталирайте последната версия.</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>Версия {0}</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>Използване на кешираната информация за версията</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>Изтриване на кеша на тестовите версии?</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>Кодът е валиден. Моля, потвърдете свързването със следния профил:</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>Електронна поща:</value>
+  </data>
+  <data name="MissingThriveFolderError" xml:space="preserve">
+    <value>Папката на „Thrive“ трябва да е в „{0}“, но не съществува</value>
+  </data>
+  <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
+    <value>Електронна поща (незадължително)</value>
+  </data>
 </root>
