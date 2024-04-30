@@ -398,7 +398,7 @@
     <value>Изпращане</value>
   </data>
   <data name="SubmitRetryButton" xml:space="preserve">
-    <value>Повтаряне</value>
+    <value>Повторен опит</value>
   </data>
   <data name="CopyToClipboard" xml:space="preserve">
     <value>Копиране в клипборда</value>
@@ -568,5 +568,29 @@
   </data>
   <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
     <value>Електронна поща (незадължително)</value>
+  </data>
+  <data name="RetryingAutoUpdate" xml:space="preserve">
+    <value>Повторен опит на автоматичното обновяване...</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>Емисията не може да бъде показана. {0}</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Повторен опит</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>Няма намерени съвместими версии на „Thrive“</value>
+  </data>
+  <data name="DeleteErrorExplanation" xml:space="preserve">
+    <value>Изтриването на данните в „{0}“ е неуспешно поради: {1}</value>
+  </data>
+  <data name="DeleteErrorDoesNotExist" xml:space="preserve">
+    <value>Изтриването е неуспешно, защото местоположението не съществува</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>Повторен опит на съществуващата връзка</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>Създаването на връзката е неуспешно, моля, проверете отново кода</value>
   </data>
 </root>
