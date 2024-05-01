@@ -641,4 +641,10 @@
   <data name="Embedded7ZipLicenseTitle" xml:space="preserve">
     <value>Стартиращата програма включва вградени инструменти. Това са отделни изпълними файлове, които се използват в командния ред. „7-Zip“ е лицензиран с:</value>
   </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>Проверяване на жетоните в Центъра за разработка</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>„Thrive“ не може да бъде стартирана</value>
+  </data>
 </root>
