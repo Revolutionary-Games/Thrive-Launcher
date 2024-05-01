@@ -176,7 +176,7 @@
     <value>Забравяне на последната стартирана версия</value>
   </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
-    <value>Намерени са настройки от по-стара версия на стартиращата програма. Препоръчително е да ги импортирате. Ако не го направите, настройките, старите версии на „Thrive“ и запазеният кеш ще бъдат изтрити.</value>
+    <value>Намерени са настройки от предишна версия на стартиращата програма. Препоръчително е да ги импортирате. Ако не го направите, настройките, старите версии на „Thrive“ и запазеният кеш ще бъдат изтрити.</value>
   </data>
   <data name="SettingsImportOldTitle" xml:space="preserve">
     <value>Импортиране на предишните настройки?</value>
@@ -188,7 +188,7 @@
     <value>Импортирането е успешно</value>
   </data>
   <data name="ImportSucceededMessage" xml:space="preserve">
-    <value>Импортирането на старите настройки е успешно.</value>
+    <value>Импортирането на предишните настройки е успешно.</value>
   </data>
   <data name="PlayButton" xml:space="preserve">
     <value>Старт</value>
@@ -266,7 +266,7 @@
     <value>Включване на уеб емисиите</value>
   </data>
   <data name="ResetAllSettings" xml:space="preserve">
-    <value>Нулиране на всичко</value>
+    <value>Нулиране</value>
   </data>
   <data name="ResetInstallLocationToolTip" xml:space="preserve">
     <value>Нулиране на местоположението</value>
@@ -513,7 +513,7 @@
     <value>Автоматично рестартиране на „Thrive“, ако стартирането е неуспешно</value>
   </data>
   <data name="ClearDehydratedLocation" xml:space="preserve">
-    <value>Изтриване на всички файлове в папката за кеша на тестовите версии.</value>
+    <value>Изтриване на всички файлове в папката за компресирания кеш на тестовите версии.</value>
   </data>
   <data name="DevBuildsCachePathDisplay" xml:space="preserve">
     <value>Кеш на тестовите версии:</value>
@@ -540,10 +540,10 @@
     <value>Важно: Промяната на местоположението няма да премести или изтрие съществуващите файлове</value>
   </data>
   <data name="LatoLicenseTitle" xml:space="preserve">
-    <value>Lato.ttf (Авторско право (c) 2010-2011, tyPoland Lukasz Dziedzic с запазено наименование на шрифта „Lato“) с лиценз на OFL:</value>
+    <value>Lato.ttf (Авторско право (c) 2010-2011, tyPoland Lukasz Dziedzic с запазено наименование на шрифта „Lato“), лицензиран с OFL:</value>
   </data>
   <data name="RobotoLicenseTitle" xml:space="preserve">
-    <value>Стартиращата програма използва шрифта „Roboto“ с лиценз:</value>
+    <value>Стартиращата програма използва шрифта „Roboto“, лицензиран с:</value>
   </data>
   <data name="AllSigningKeysExpired" xml:space="preserve">
     <value>Всички сертификати на стартиращата програма са изтекли. Това означава, че версията, която използвате, е остаряла. Моля, изтеглете и инсталирайте последната версия.</value>
@@ -592,5 +592,53 @@
   </data>
   <data name="LinkFormingFailedError" xml:space="preserve">
     <value>Създаването на връзката е неуспешно, моля, проверете отново кода</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>Тук може да свържете стартиращата програма към Центъра за разработка</value>
+  </data>
+  <data name="ExitTheLauncher" xml:space="preserve">
+    <value>Изход</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+    <value>Инструкции в нашата Уикипедия</value>
+  </data>
+  <data name="RequiresLatestBetaShowingEnabled" xml:space="preserve">
+    <value>Първо, трябва да включите опцията по-горе</value>
+  </data>
+  <data name="ForgetLastPlayedVersionToolTip" xml:space="preserve">
+    <value>Тази опция може да възстанови плавния режим, ако имате проблеми.</value>
+  </data>
+  <data name="EnterDevCenterConnectionCode" xml:space="preserve">
+    <value>Моля, първо, въведете кода за връзка</value>
+  </data>
+  <data name="PlayingTitle" xml:space="preserve">
+    <value>Стартиране на версия {0}</value>
+  </data>
+  <data name="ExtractingStateItemProgress" xml:space="preserve">
+    <value>Разархивиране на {0}. Процесът може да отнеме известно време, моля, изчакайте.</value>
+  </data>
+  <data name="ThriveIsStarting" xml:space="preserve">
+    <value>Стартиране на „Thrive“. Изходни данни от дневника (не са в реално време):</value>
+  </data>
+  <data name="CopyLogWindowToClipboardToolTip" xml:space="preserve">
+    <value>Копиране на изходните данни в клипборда</value>
+  </data>
+  <data name="RehydrationStarting" xml:space="preserve">
+    <value>Това е компресирана версия. Начало на декомпресирането.</value>
+  </data>
+  <data name="QuitLauncherButton" xml:space="preserve">
+    <value>Изход сега</value>
+  </data>
+  <data name="LauncherOptionShowLatestBetaVersion" xml:space="preserve">
+    <value>Показване на последните бета версии на „Thrive“ (ако са налични)</value>
+  </data>
+  <data name="LauncherOptionShowAllBetaVersions" xml:space="preserve">
+    <value>Показване на всички съществуващи бета версии на „Thrive“</value>
+  </data>
+  <data name="EmbeddedPckToolLicenseTitle" xml:space="preserve">
+    <value>„godotpcktool“ и неговите библиотечни файлове са лицензирани с:</value>
+  </data>
+  <data name="Embedded7ZipLicenseTitle" xml:space="preserve">
+    <value>Стартиращата програма включва вградени инструменти. Това са отделни изпълними файлове, които се използват в командния ред. „7-Zip“ е лицензиран с:</value>
   </data>
 </root>
