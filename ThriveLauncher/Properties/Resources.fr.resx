@@ -515,7 +515,7 @@ Les logs du launcher contiendront plus d'informations.</value>
     <value>Le launcher n'a pu trouver aucune version de Thrive compatible avec la plateforme actuelle. Si vous utilisez un système d'exploitation inhabituel, c'est normal. Dans le cas contraire, veuillez signaler ce problème.</value>
   </data>
   <data name="LauncherOptionVerboseLogging" xml:space="preserve">
-    <value>Activer le débogage du launcher (avant de faire un rapport de bogue, veillez activer ceci et et relancer le launcher)</value>
+    <value>Activer le débogage du launcher (avant de faire un rapport de bogue, veillez activer ceci et relancer le launcher)</value>
   </data>
   <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
     <value>Le launcher Thrive charge les version de Thrive disponibles depuis internet afin de savoir si une nouvelle version est disponible. Le chargement de l'information a échoué (voir l'erreur ci-dessous). Vous pouvez réessayer de télécharger cette information ou si le launcher avait déjà téléchargé l'information, vous pouvez charger la copie en cache. Si la copie en cache est très ancienne, elle peut ne pas afficher toutes les versions de Thrive disponibles. Notez que si votre version du launcher est très vieille, il se peut qu'il ne soit plus compatible avec un nouveau format de données et qu'il doive être mis à jour manuellement avant que les données puissent être chargées.</value>
@@ -545,13 +545,13 @@ Les logs du launcher contiendront plus d'informations.</value>
     <value>Vous êtes sur le point de supprimer tous les fichiers contenus dans le dossier temporaire "{0}". Même les fichiers externes à Thrive seront supprimés s'ils se trouvent dans ce dossier. Le dossier lui-même sera également supprimé. Supprimer le dossier temporaire ?</value>
   </data>
   <data name="ClearTemporaryFilesCount" xml:space="preserve">
-    <value>Vous êtes sur le point de supprimer les fichiers / dossiers {0}</value>
+    <value>Vous êtes sur le point de supprimer {0} fichiers / dossiers</value>
   </data>
   <data name="ClearDehydratedFilesCount" xml:space="preserve">
-    <value>Vous êtes sur le point de supprimer les fichiers {0}</value>
+    <value>Vous êtes sur le point de supprimer {0} fichiers</value>
   </data>
   <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
-    <value>Vous utilisez la version {0} du Launcher de Thrive, mais la dernière version est {1}</value>
+    <value>Vous utilisez la version {0} du launcher de Thrive, mais la dernière version est la {1}</value>
   </data>
   <data name="DeleteErrorDoesNotExist" xml:space="preserve">
     <value>Échec de la suppression car le chemin cible n'existe pas</value>
@@ -630,5 +630,11 @@ Les logs du launcher contiendront plus d'informations.</value>
   </data>
   <data name="ExtractingStateItemProgress" xml:space="preserve">
     <value>Extraction de {0}. Cela peut prendre plusieurs minutes pour des fichiers volumineux, merci de patienter.</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>Le code est valide. Veuillez confirmer la liaison avec le compte suivant :</value>
+  </data>
+  <data name="DevCenterConnectAttemptError" xml:space="preserve">
+    <value>Erreur de vérification du code de liaison pour le ThriveDevCenter. Veuillez vérifier que vous avez tapé le code correctement et qu'il n'a pas expiré. Informations supplémentaires : {0}</value>
   </data>
 </root>
