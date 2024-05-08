@@ -948,4 +948,14 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı k
   <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
     <value>Oyun sesi gecikmesini arttır (gecikme yeterince yükseğe ayarlandığında, ses çatırdama sorunlarını düzeltebilir)</value>
   </data>
+  <data name="CPUFeatureWarningTitle" xml:space="preserve">
+    <value>Gerekli Özelliklere Sahip Olmayan bir CPU Algılandı</value>
+  </data>
+  <data name="CPUFeatureWarning" xml:space="preserve">
+    <value>Thrive, çalışmak için minimum SSE 4.2 ve 4.1'li bir CPU gerektirir. Bu, resmi olan minimum sistem gereksinimlerimizden daha düşüktür. En uygun deneyim için AVX 2 komutlarına sahip bir CPU öneriyoruz.
+
+      CPU'nuzun, bu gerekli SSE komut seti uzantılarına sahip olmadığı algılandı. Bu yüzden, oyunun çalışması pek mümkün değil. Ama bu uyarıyı yoksayabilir ve yine de oynamayı deneyebilirsiniz. Ancak lütfen oyunu başlatırken oluşan çökmeleri veya hataları bildirmeyin. Çünkü bunun çok eski bir CPU'dan kaynaklanan bir sorun olması son derece muhtemeldir.
+
+      Eğer bu uyarıyı yanlışlıkla görüyorsanız; CPU'nuz minimum gereksinimleri karşılıyor ve Thrive'ı yine de başlatabiliyorsa, lütfen hangi CPU'ya sahip olduğunuzu bize bildirin. Böylece, bu özellik algılama aracını geliştirebiliriz.</value>
+  </data>
 </root>
