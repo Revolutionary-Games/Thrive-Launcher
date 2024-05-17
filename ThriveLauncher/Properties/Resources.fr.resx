@@ -68,13 +68,13 @@
     <value>Échec de l'importation</value>
   </data>
   <data name="ImportFailedMessage" xml:space="preserve">
-    <value>Échec de l'importation des paramètres. Veuillez vous assurer que les chemins d'accès aux fichiers de paramètres peuvent être lus et modifiés par le launcher, puis redémarrez-le pour réessayer.</value>
+    <value>Échec de l'importation des paramètres. Veuillez vous assurer que les chemins d'accès aux fichiers de paramètres peuvent être lus et modifiés par le lanceur, puis redémarrez-le pour réessayer.</value>
   </data>
   <data name="ImportSucceededMessage" xml:space="preserve">
     <value>Les paramètres précédents ont été importés avec succès.</value>
   </data>
   <data name="LauncherSelectedLanguage" xml:space="preserve">
-    <value>Langue du launcher :</value>
+    <value>Langue du lanceur :</value>
   </data>
   <data name="LinksButton" xml:space="preserve">
     <value>Liens</value>
@@ -101,7 +101,7 @@
     <value>Importer les paramètres précédents ?</value>
   </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
-    <value>Des paramètres d'une version précédente du launcher ont été trouvés. Vous pouvez importer ces paramètres existants pour conserver intactes vos versions Thrive installées et vos autres personnalisations. Si vous n'importez pas les anciennes versions de Thrive et les caches, ils seront abandonnés et ce launcher n'en saura rien. Il est recommandé d'importer les paramètres.</value>
+    <value>Des paramètres d'une version précédente du lanceur ont été trouvés. Vous pouvez importer ces paramètres existants pour conserver intactes vos versions Thrive installées et vos autres personnalisations. Si vous n'importez pas les anciennes versions de Thrive et les caches, ils seront abandonnés et ce lanceur n'en saura rien. Il est recommandé d'importer les paramètres.</value>
   </data>
   <data name="ImportSucceededTitle" xml:space="preserve">
     <value>Importation réussie</value>
@@ -137,7 +137,7 @@
     <value>Thrive sur Github</value>
   </data>
   <data name="ExternalLinkLauncherGithub" xml:space="preserve">
-    <value>Launcher sur Github</value>
+    <value>Lanceur sur Github</value>
   </data>
   <data name="ExternalLinkFanWiki" xml:space="preserve">
     <value>Wiki des supporteurs</value>
@@ -161,7 +161,7 @@
     <value>Options de Thrive</value>
   </data>
   <data name="LauncherOptions" xml:space="preserve">
-    <value>Options du launcher</value>
+    <value>Options du lanceur</value>
   </data>
   <data name="InstalledVersions" xml:space="preserve">
     <value>Versions installées</value>
@@ -173,16 +173,16 @@
     <value>Options de démarrage</value>
   </data>
   <data name="LauncherVersionDisplay" xml:space="preserve">
-    <value>Version du launcher :</value>
+    <value>Version du lanceur :</value>
   </data>
   <data name="LauncherOptionHideOnPlay" xml:space="preserve">
-    <value>Masquer le launcher pendant la partie</value>
+    <value>Masquer le lanceur pendant la partie</value>
   </data>
   <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
-    <value>Fermer le launcher après avoir joué (si aucune erreur ne survient)</value>
+    <value>Fermer le lanceur après avoir joué (si aucune erreur ne survient)</value>
   </data>
   <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
-    <value>Fermer le launcher après avoir lancé la partie</value>
+    <value>Fermer le lanceur après avoir démarré le jeu</value>
   </data>
   <data name="ResetAllSettings" xml:space="preserve">
     <value>Réinitialiser tous les paramètres</value>
@@ -260,10 +260,10 @@
     <value>Masquer les versions 32 bits si une version 64 bits équivalente existe</value>
   </data>
   <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
-    <value>Autoriser le mode seamless (le launcher ne s'affiche pas avant le démarrage de Thrive)</value>
+    <value>Autoriser le mode seamless (le lanceur ne s'affiche pas avant le démarrage de Thrive)</value>
   </data>
   <data name="LauncherOptionAutoUpdate" xml:space="preserve">
-    <value>Mettre à jour le launcher automatiquement</value>
+    <value>Mettre à jour le lanceur automatiquement</value>
   </data>
   <data name="ResetInstallLocationToolTip" xml:space="preserve">
     <value>Réinitialiser l'emplacement d'installation</value>
@@ -332,19 +332,19 @@
     <value>Le dossier d'installation de la version de Thrive n'existe pas.</value>
   </data>
   <data name="LauncherSourceCodeButton" xml:space="preserve">
-    <value>Code source du launcher</value>
+    <value>Code source du lanceur</value>
   </data>
   <data name="ViewLicensesButton" xml:space="preserve">
-    <value>Voir les licences du launcher</value>
+    <value>Voir les licences du lanceur</value>
   </data>
   <data name="MainWindowTitle" xml:space="preserve">
-    <value>Launcher Thrive</value>
+    <value>Lanceur Thrive</value>
   </data>
   <data name="LicensesWindowTitle" xml:space="preserve">
-    <value>Licences du launcher Thrive</value>
+    <value>Licences du lanceur Thrive</value>
   </data>
   <data name="RobotoLicenseTitle" xml:space="preserve">
-    <value>La fonte Roboto est utilisée dans le launcher, licence Roboto :</value>
+    <value>La fonte Roboto est utilisée dans le lanceur, licence Roboto :</value>
   </data>
   <data name="FeedFetchError" xml:space="preserve">
     <value>Le flux ne peux pas être affiché. {0}</value>
@@ -359,10 +359,10 @@
     <value>pour lire le post entier.</value>
   </data>
   <data name="LogFolderCreateFailed" xml:space="preserve">
-    <value>Échec de la création du dossier des logs ({0}) : {1}</value>
+    <value>Échec de la création du dossier des journaux ({0}) : {1}</value>
   </data>
   <data name="OpenLogsFolderButton" xml:space="preserve">
-    <value>Voir les logs</value>
+    <value>Voir les journaux</value>
   </data>
   <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
     <value>Tous les certificats ont expiré</value>
@@ -436,7 +436,7 @@
 Si un membre de l'équipe Thrive vérifie que la PR est sûre, cet avertissement disparaît. Sinon, vous pouvez continuer si vous pensez que cette version est sûre. Avant de le faire, vous devez vérifier la PR sur Github pour voir si le dernier hash de commit correspond et si la compilation de ThriveDevCenter indique qu'elle a téléchargé une version de développement avec le hash. En outre, il faut vérifier que la PR ne modifie pas les scripts de compilation. Après avoir fait cela, ce devrait être relativement sûr de continuer, car c'est le même processus que les membres de l'équipe Thrive utilisent pour vérifier les PR.</value>
   </data>
   <data name="DevCenterConnectionExplanation" xml:space="preserve">
-    <value>Ici, vous pouvez lier le launcher au ThriveDevCenter pour accéder aux versions de développement et à d'autres fonctionnalités</value>
+    <value>Ici, vous pouvez lier le lanceur au ThriveDevCenter pour accéder aux versions de développement et à d'autres fonctionnalités</value>
   </data>
   <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
     <value>Entrez le hash manuellement :</value>
@@ -445,8 +445,8 @@ Si un membre de l'équipe Thrive vérifie que la PR est sûre, cet avertissement
     <value>Sélectionner la valeur du hash entré manuellement pour être utilisée dans la boite de saisie comme version de développement quand une version de développement est utilisée pour jouer</value>
   </data>
   <data name="SettingsSaveFailedMessage" xml:space="preserve">
-    <value>L'enregistrement des paramètres dans le fichier de paramètres a échoué. Veuillez vous assurer que le launcher a un accès en écriture et réessayez.
-Les logs du launcher contiendront plus d'informations.</value>
+    <value>L'enregistrement des paramètres dans le fichier de paramètres a échoué. Veuillez vous assurer que le lanceur a un accès en écriture et réessayez.
+Les journaux du lanceur contiendront plus d'informations.</value>
   </data>
   <data name="LatoLicenseTitle" xml:space="preserve">
     <value>Lato.ttf (Copyright (c) 2010-2011 par tyPoland Lukasz Dziedzic avec nom de fonte réservé "Lato"), licence OFL :</value>
@@ -476,7 +476,7 @@ Les logs du launcher contiendront plus d'informations.</value>
     <value>Fermer</value>
   </data>
   <data name="AllSigningKeysExpired" xml:space="preserve">
-    <value>Tous les certificats de vérification de signature avec lesquels ce launcher est livré ont expiré. Cela signifie que cette version du launcher est extrêmement obsolète. Veuillez télécharger et installer une version plus récente.</value>
+    <value>Tous les certificats de vérification de signature avec lesquels ce lanceur est livré ont expiré. Cela signifie que cette version du lanceur est extrêmement obsolète. Veuillez télécharger et installer une version plus récente.</value>
   </data>
   <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
     <value>Erreur en essayant d'obtenir les versions disponibles de Thrive</value>
@@ -491,7 +491,7 @@ Les logs du launcher contiendront plus d'informations.</value>
     <value>{0} secondes</value>
   </data>
   <data name="OutdatedLauncherTitle" xml:space="preserve">
-    <value>La version actuelle du launcher est obsolète</value>
+    <value>La version actuelle du lanceur est obsolète</value>
   </data>
   <data name="DownloadError" xml:space="preserve">
     <value>Le téléchargement a échoué en raison de {0}</value>
@@ -503,25 +503,25 @@ Les logs du launcher contiendront plus d'informations.</value>
     <value>Aucune version compatible de Thrive n'a été trouvée</value>
   </data>
   <data name="OutdatedLauncherExplanation" xml:space="preserve">
-    <value>Cette version du launcher est obsolète et devrait être mise à jour. Comme vous voyez ce message, la mise à jour automatique n'a pas débuté, vous devrez donc télécharger manuellement la mise à jour et l'installer. Vous pouvez essayer d'utiliser la version actuelle du launcher en ignorant la mise à jour, mais cela pourrait causer des problèmes inattendus car seule la dernière version du launcher est certaine de fonctionner avec les systèmes distants avec lesquels le launcher interagit.</value>
+    <value>Cette version du lanceur est obsolète et devrait être mise à jour. Comme vous voyez ce message, la mise à jour automatique n'a pas débuté, vous devrez donc télécharger manuellement la mise à jour et l'installer. Vous pouvez essayer d'utiliser la version actuelle du lanceur en ignorant la mise à jour, mais cela pourrait causer des problèmes inattendus car seule la dernière version du lanceur est certaine de fonctionner avec les systèmes distants avec lesquels le lanceur interagit.</value>
   </data>
   <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
-    <value>Erreur  : le processus enfant a déjà terminé son exécution, la fenêtre du launcher ne sera pas fermée</value>
+    <value>Erreur  : le processus enfant a déjà terminé son exécution, la fenêtre du lanceur ne sera pas fermée</value>
   </data>
   <data name="ReportDeleteInfo" xml:space="preserve">
     <value>Si vous souhaitez supprimer votre rapport, vous pouvez le faire ici :</value>
   </data>
   <data name="NoCompatibleVersionsFound" xml:space="preserve">
-    <value>Le launcher n'a pu trouver aucune version de Thrive compatible avec la plateforme actuelle. Si vous utilisez un système d'exploitation inhabituel, c'est normal. Dans le cas contraire, veuillez signaler ce problème.</value>
+    <value>Le lanceur n'a pu trouver aucune version de Thrive compatible avec la plateforme actuelle. Si vous utilisez un système d'exploitation inhabituel, c'est normal. Dans le cas contraire, veuillez signaler ce problème.</value>
   </data>
   <data name="LauncherOptionVerboseLogging" xml:space="preserve">
-    <value>Activer le débogage du launcher (avant de faire un rapport de bogue, veillez activer ceci et et relancer le launcher)</value>
+    <value>Activer le débogage du lanceur (avant de faire un rapport de bogue, veillez activer ceci et relancer le lanceur)</value>
   </data>
   <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
-    <value>Le launcher Thrive charge les version de Thrive disponibles depuis internet afin de savoir si une nouvelle version est disponible. Le chargement de l'information a échoué (voir l'erreur ci-dessous). Vous pouvez réessayer de télécharger cette information ou si le launcher avait déjà téléchargé l'information, vous pouvez charger la copie en cache. Si la copie en cache est très ancienne, elle peut ne pas afficher toutes les versions de Thrive disponibles. Notez que si votre version du launcher est très vieille, il se peut qu'il ne soit plus compatible avec un nouveau format de données et qu'il doive être mis à jour manuellement avant que les données puissent être chargées.</value>
+    <value>Le lanceur Thrive charge les version de Thrive disponibles depuis internet afin de savoir si une nouvelle version est disponible. Le chargement de l'information a échoué (voir l'erreur ci-dessous). Vous pouvez réessayer de télécharger cette information ou si le lanceur avait déjà téléchargé l'information, vous pouvez charger la copie en cache. Si la copie en cache est très ancienne, elle peut ne pas afficher toutes les versions de Thrive disponibles. Notez que si votre version du lanceur est très vieille, il se peut qu'il ne soit plus compatible avec un nouveau format de données et qu'il doive être mis à jour manuellement avant que les données puissent être chargées.</value>
   </data>
   <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
-    <value>Les informations téléchargées du Launcher Thrive sont invalides. Veuillez réessayer dans quelques instants et si le problème persiste, veuillez nous contacter.</value>
+    <value>Les informations téléchargées du lanceur Thrive sont invalides. Veuillez réessayer dans quelques instants et si le problème persiste, veuillez nous contacter.</value>
   </data>
   <data name="MoveVersionsTitle" xml:space="preserve">
     <value>Déplacer les versions existantes ?</value>
@@ -536,7 +536,7 @@ Les logs du launcher contiendront plus d'informations.</value>
     <value>Supprimer automatiquement les anciens fichiers du dossier temporaire</value>
   </data>
   <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
-    <value>Tous les anciens fichiers seront automatiquement supprimés du dossier temporaire au redémarrage du launcher. Par conséquent, le dossier des fichiers temporaires ne doit pas être utilisé pour d'autres usages que Thrive afin d'éviter la suppression accidentelle de fichiers non liés.</value>
+    <value>Tous les anciens fichiers seront automatiquement supprimés du dossier temporaire au redémarrage du lanceur. Par conséquent, le dossier des fichiers temporaires ne doit pas être utilisé pour d'autres usages que Thrive afin d'éviter la suppression accidentelle de fichiers non liés.</value>
   </data>
   <data name="DeleteErrorExplanation" xml:space="preserve">
     <value>Échec de la suppression des données au chemin d'accès suivant : "{0}" en raison de : {1}</value>
@@ -545,13 +545,13 @@ Les logs du launcher contiendront plus d'informations.</value>
     <value>Vous êtes sur le point de supprimer tous les fichiers contenus dans le dossier temporaire "{0}". Même les fichiers externes à Thrive seront supprimés s'ils se trouvent dans ce dossier. Le dossier lui-même sera également supprimé. Supprimer le dossier temporaire ?</value>
   </data>
   <data name="ClearTemporaryFilesCount" xml:space="preserve">
-    <value>Vous êtes sur le point de supprimer les fichiers / dossiers {0}</value>
+    <value>Vous êtes sur le point de supprimer {0} fichiers / dossiers</value>
   </data>
   <data name="ClearDehydratedFilesCount" xml:space="preserve">
-    <value>Vous êtes sur le point de supprimer les fichiers {0}</value>
+    <value>Vous êtes sur le point de supprimer {0} fichiers</value>
   </data>
   <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
-    <value>Vous utilisez la version {0} du Launcher de Thrive, mais la dernière version est {1}</value>
+    <value>Vous utilisez la version {0} du lanceur de Thrive, mais la dernière version est la {1}</value>
   </data>
   <data name="DeleteErrorDoesNotExist" xml:space="preserve">
     <value>Échec de la suppression car le chemin cible n'existe pas</value>
@@ -563,7 +563,7 @@ Les logs du launcher contiendront plus d'informations.</value>
     <value>Utilisez une autre méthode pour exécuter le programme de mise à jour automatique (essayez si le démarrage normal de la mise à jour automatique échoue)</value>
   </data>
   <data name="ExitTheLauncher" xml:space="preserve">
-    <value>Quitter le launcher</value>
+    <value>Quitter le lanceur</value>
   </data>
   <data name="LaunchOptionForceOpenGL" xml:space="preserve">
     <value>Forcer le mode de rendu OpenGL (peut faire démarrer Thrive mais provoque de légers problèmes graphiques)</value>
@@ -608,7 +608,7 @@ Les logs du launcher contiendront plus d'informations.</value>
     <value>1 seconde</value>
   </data>
   <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
-    <value>Si le jeu n'a pas démarré correctement, veuillez essayer les solutions de contournement disponibles dans "Options de Thrive" dans les paramètres du launcher</value>
+    <value>Si le jeu n'a pas démarré correctement, veuillez essayer les solutions de contournement disponibles dans "Options de Thrive" dans les paramètres du lanceur</value>
   </data>
   <data name="EnterDevCenterConnectionCode" xml:space="preserve">
     <value>Veuillez d'abord saisir un code de connexion au ThriveDevCenter dans la boite de saisie</value>
@@ -626,9 +626,24 @@ Les logs du launcher contiendront plus d'informations.</value>
     <value>Redémarrer automatiquement Thrive si le démarrage échoue</value>
   </data>
   <data name="Embedded7ZipLicenseTitle" xml:space="preserve">
-    <value>Le launcher comprend certains outils inclus avec lui. Ce sont des exécutables séparés que le launcher invoque comme des programmes en ligne de commande. Licence de 7-Zip :</value>
+    <value>Le lanceur comprend certains outils inclus avec lui. Ce sont des exécutables séparés que le lanceur invoque comme des programmes en ligne de commande. Licence de 7-Zip :</value>
   </data>
   <data name="ExtractingStateItemProgress" xml:space="preserve">
     <value>Extraction de {0}. Cela peut prendre plusieurs minutes pour des fichiers volumineux, merci de patienter.</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>Le code est valide. Veuillez confirmer la liaison avec le compte suivant :</value>
+  </data>
+  <data name="DevCenterConnectAttemptError" xml:space="preserve">
+    <value>Erreur de vérification du code de liaison pour le ThriveDevCenter. Veuillez vérifier que vous avez tapé le code correctement et qu'il n'a pas expiré. Informations supplémentaires : {0}</value>
+  </data>
+  <data name="ThriveIsStarting" xml:space="preserve">
+    <value>Thrive démarre. Sortie du journal (en raison de la mise en mémoire tampon, ce n'est probablement pas en temps réel) :</value>
+  </data>
+  <data name="CrashReportLogsSection" xml:space="preserve">
+    <value>Journaux à inclure</value>
+  </data>
+  <data name="QuitLauncherButton" xml:space="preserve">
+    <value>Quitter le lanceur maintenant</value>
   </data>
 </root>
