@@ -948,4 +948,14 @@
   <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
     <value>增加遊戲音訊延遲（當延遲設定足夠高時可以修復音訊爆裂問題）</value>
   </data>
+  <data name="CPUFeatureWarningTitle" xml:space="preserve">
+    <value>檢測到 CPU 缺少所需的功能</value>
+  </data>
+  <data name="CPUFeatureWarning" xml:space="preserve">
+    <value>Thrive 至少需要具有 SSE 4.2 和 4.1 指令集的 CPU 才能運作。這比我們官方的最低系統要求低得多。為了獲得最佳體驗，我們建議使用具有 AVX 2 指令集的 CPU。
+
+      已檢測到您的 CPU 不具備這些所需的 SSE 指令集擴充。因此遊戲可能無法運行。不過，您可以忽略此警告並嘗試進行遊戲，但請不要報告任何因此導致的遊戲崩潰或無法啟動，因為這極有可能是由太舊的 CPU 引起的問題。
+
+      如果您看到此錯誤警告，但您的 CPU 滿足最低要求，並且能正常遊玩 Thrive，請告訴我們您的 CPU 型號，以便我們改進此檢測功能。</value>
+  </data>
 </root>
