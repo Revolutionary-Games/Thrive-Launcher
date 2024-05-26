@@ -693,7 +693,7 @@
     <value>Играть в нестабильную сборку Разработчиков?</value>
   </data>
   <data name="CopyLogWindowToClipboardToolTip" xml:space="preserve">
-    <value>Скопировано в игровой буфер обмена</value>
+    <value>Скопировано в буфер обмена</value>
   </data>
   <data name="AtTime" xml:space="preserve">
     <value>Примерно в {0}</value>
