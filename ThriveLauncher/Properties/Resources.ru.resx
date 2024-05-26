@@ -275,10 +275,10 @@
     <value>Настройки лаунчера</value>
   </data>
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
-    <value>Выключить все видео в игре (если Thrive падает после логотипа загрузки и перед вступительным видео, это может помочь запустить игру)</value>
+    <value>Выключить все видео в игре (если Thrive вылетает после логотипа загрузки и перед вступительным видео, это может помочь запустить игру)</value>
   </data>
   <data name="LauncherOptionHide32Bit" xml:space="preserve">
-    <value>Скрыть 32-битные версии если существуют соответствующие 64-битные версии</value>
+    <value>Скрыть 32-битные версии, если существует эквивалентная 64-разрядная версия</value>
   </data>
   <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
     <value>Закрыть лаунчер после игры</value>
@@ -858,7 +858,8 @@
     <value>Отправка вашего отчета. Пожалуйста, будьте терпеливы, так как загрузка может занять несколько минут...</value>
   </data>
   <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
-    <value>Описание версии:{0}</value>
+    <value>Описание версии:
+{0}</value>
   </data>
   <data name="ContinueReportingButton" xml:space="preserve">
     <value>Продолжить отчет</value>
