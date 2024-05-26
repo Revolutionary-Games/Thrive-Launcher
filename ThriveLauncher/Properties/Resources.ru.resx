@@ -852,14 +852,13 @@
     <value>Были обнаружены аварийные дампы, но они могут относиться к предыдущему запуску Thrive (пожалуйста, проверьте, прежде чем сообщать об этом). Чтобы перестать получать уведомления об аварийных дампах, откройте репортер и очистите аварийные дампы.</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>Подтвердить</value>
+    <value>Отправить</value>
   </data>
   <data name="SubmittingReportMessage" xml:space="preserve">
-    <value>Идет подтверждение отчета. Пожалуйста, подождите, загрузка может занять пару минут...</value>
+    <value>Отправка вашего отчета. Пожалуйста, будьте терпеливы, так как загрузка может занять несколько минут...</value>
   </data>
   <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
-    <value>Описание сборки:
-{0}</value>
+    <value>Описание версии:{0}</value>
   </data>
   <data name="ContinueReportingButton" xml:space="preserve">
     <value>Продолжить отчет</value>
