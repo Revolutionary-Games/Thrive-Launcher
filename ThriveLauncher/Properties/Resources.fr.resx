@@ -140,7 +140,7 @@
     <value>Lanceur sur Github</value>
   </data>
   <data name="ExternalLinkFanWiki" xml:space="preserve">
-    <value>Wiki des supporteurs</value>
+    <value>Wiki de la communauté</value>
   </data>
   <data name="ExternalLinkDiscordServer" xml:space="preserve">
     <value>Serveur Discord</value>
@@ -149,10 +149,10 @@
     <value>Subreddit</value>
   </data>
   <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
-    <value>Chaîne YouTube</value>
+    <value>Chaine YouTube</value>
   </data>
   <data name="ExternalLinkTwitterFeed" xml:space="preserve">
-    <value>Flux Twitter</value>
+    <value>Compte X</value>
   </data>
   <data name="ExternalLinkFacebookPage" xml:space="preserve">
     <value>Page Facebook</value>
@@ -179,7 +179,7 @@
     <value>Masquer le lanceur pendant la partie</value>
   </data>
   <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
-    <value>Fermer le lanceur après avoir joué (si aucune erreur ne survient)</value>
+    <value>Fermer le lanceur à la fermeture du jeu (si aucune erreur ne survient)</value>
   </data>
   <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
     <value>Fermer le lanceur après avoir démarré le jeu</value>
@@ -194,13 +194,13 @@
     <value>Sélectionner l'emplacement d'installation</value>
   </data>
   <data name="FolderPathDisplay" xml:space="preserve">
-    <value>Dossier :</value>
+    <value>Dossier :</value>
   </data>
   <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
-    <value>Dossier de téléchargement temporaire :</value>
+    <value>Dossier de téléchargement temporaire :</value>
   </data>
   <data name="FolderContentsLabel" xml:space="preserve">
-    <value>Contenus :</value>
+    <value>Contenus :</value>
   </data>
   <data name="FolderIsEmpty" xml:space="preserve">
     <value>Le dossier est vide</value>
@@ -248,7 +248,7 @@
     <value>Forums de développement</value>
   </data>
   <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
-    <value>Wiki développeur</value>
+    <value>Wiki des développeurs</value>
   </data>
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
     <value>Désactivez toutes les vidéos du jeu (si Thrive se bloque après l'affichage du logo de chargement et avant la lecture de la vidéo d'introduction, cela peut résoudre le problème)</value>
