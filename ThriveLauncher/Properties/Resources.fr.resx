@@ -212,7 +212,7 @@
     <value>Réinitialiser l'emplacement des fichiers temporaires</value>
   </data>
   <data name="ClearFolder" xml:space="preserve">
-    <value>Effacer</value>
+    <value>Nettoyer</value>
   </data>
   <data name="DevBuildsCachePathDisplay" xml:space="preserve">
     <value>Cache des fichiers des versions de développement :</value>
@@ -272,19 +272,19 @@
     <value>Remarque : le changement de l'emplacement temporaire ne déplace ni ne supprime les fichiers existants afin d'éviter de toucher accidentellement des fichiers sans rapport avec Thrive</value>
   </data>
   <data name="ClearTemporaryLocation" xml:space="preserve">
-    <value>Supprimez TOUS les fichiers dans le dossier temporaire. Pourrait supprimer des fichiers sans lien avec Thrive s'il y en a !</value>
+    <value>Supprime TOUS les fichiers dans le dossier temporaire. Peut supprimer des fichiers sans lien avec Thrive s'il y en a !</value>
   </data>
   <data name="ClearDehydratedLocation" xml:space="preserve">
-    <value>Supprimez tous les fichiers dans le dossier de cache déshydratée des versions de développement. Si l'emplacement n'est pas celui par défaut, il peut exister des fichiers n'appartenant pas à Thrive dans le dossier qui seront également supprimés.</value>
+    <value>Supprimez tous les fichiers dans le dossier de cache compressé des versions de développement. Si l'emplacement n'est pas celui par défaut, il peut exister des fichiers n'appartenant pas à Thrive dans le dossier qui seront également supprimés.</value>
   </data>
   <data name="ConnectedAsUserDisplay" xml:space="preserve">
-    <value>Connecté en tant que :</value>
+    <value>Connecté en tant que :</value>
   </data>
   <data name="BuildTypeSelectionLatest" xml:space="preserve">
     <value>La plus récente (change beaucoup aléatoirement, car il s'agit littéralement d'une compilation à partir du dernier commit du code)</value>
   </data>
   <data name="BuildTypeSelectionManual" xml:space="preserve">
-    <value>Sélectionné manuellement dans l'onglet "Version spécifique"</value>
+    <value>Choisi manuellement dans l'onglet "Version spécifique"</value>
   </data>
   <data name="LogoutButton" xml:space="preserve">
     <value>Se déconnecter</value>
@@ -320,7 +320,7 @@
     <value>Échec de la sauvegarde des paramètres</value>
   </data>
   <data name="SizeInMiB" xml:space="preserve">
-    <value>{0} MiO</value>
+    <value>{0} MiB</value>
   </data>
   <data name="InstalledFolderSize" xml:space="preserve">
     <value>(taille : {0})</value>
@@ -374,7 +374,7 @@
     <value>{0} pour {1}</value>
   </data>
   <data name="LoadingDotDotDot" xml:space="preserve">
-    <value>Chargement...</value>
+    <value>Chargement…</value>
   </data>
   <data name="Retry" xml:space="preserve">
     <value>Ressayer</value>
@@ -398,7 +398,7 @@
     <value>Annuler</value>
   </data>
   <data name="UnknownFolder" xml:space="preserve">
-    <value>Dossier inconnu :</value>
+    <value>Dossier inconnu :</value>
   </data>
   <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
     <value>Effacer les fichiers temporaires ?</value>
@@ -439,7 +439,7 @@ Si un membre de l'équipe Thrive vérifie que la PR est sûre, cet avertissement
     <value>Ici, vous pouvez lier le lanceur au ThriveDevCenter pour accéder aux versions de développement et à d'autres fonctionnalités</value>
   </data>
   <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
-    <value>Entrez le hash manuellement :</value>
+    <value>Hash entré manuellement :</value>
   </data>
   <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
     <value>Sélectionner la valeur du hash entré manuellement pour être utilisée dans la boite de saisie comme version de développement quand une version de développement est utilisée pour jouer</value>
@@ -518,7 +518,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Activer le débogage du lanceur (avant de faire un rapport de bogue, veillez activer ceci et relancer le lanceur)</value>
   </data>
   <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
-    <value>Le lanceur Thrive charge les version de Thrive disponibles depuis internet afin de savoir si une nouvelle version est disponible. Le chargement de l'information a échoué (voir l'erreur ci-dessous). Vous pouvez réessayer de télécharger cette information ou si le lanceur avait déjà téléchargé l'information, vous pouvez charger la copie en cache. Si la copie en cache est très ancienne, elle peut ne pas afficher toutes les versions de Thrive disponibles. Notez que si votre version du lanceur est très vieille, il se peut qu'il ne soit plus compatible avec un nouveau format de données et qu'il doive être mis à jour manuellement avant que les données puissent être chargées.</value>
+    <value>Le lanceur Thrive charge les version de Thrive disponibles depuis internet afin de savoir si une nouvelle version est disponible. Le chargement de l'information a échoué (voir l'erreur ci-dessous). Vous pouvez réessayer de télécharger cette information ou si le lanceur avait déjà téléchargé l'information, vous pouvez charger la copie en cache. Si la copie en cache est très ancienne, elle peut ne pas afficher toutes les versions de Thrive disponibles. Notez que si votre version du lanceur est très ancienne, il se peut qu'il ne soit plus compatible avec un nouveau format de données et qu'il doive être mis à jour manuellement avant que les données puissent être chargées.</value>
   </data>
   <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
     <value>Les informations téléchargées du lanceur Thrive sont invalides. Veuillez réessayer dans quelques instants et si le problème persiste, veuillez nous contacter.</value>
@@ -527,7 +527,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Déplacer les versions existantes ?</value>
   </data>
   <data name="UseCached" xml:space="preserve">
-    <value>Utiliser les informations de version mises en cache</value>
+    <value>Utiliser les informations de version en cache</value>
   </data>
   <data name="DevCenterCheckingConnection" xml:space="preserve">
     <value>Connection au ThriveDevCenter...</value>
@@ -539,10 +539,10 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Tous les anciens fichiers seront automatiquement supprimés du dossier temporaire au redémarrage du lanceur. Par conséquent, le dossier des fichiers temporaires ne doit pas être utilisé pour d'autres usages que Thrive afin d'éviter la suppression accidentelle de fichiers non liés.</value>
   </data>
   <data name="DeleteErrorExplanation" xml:space="preserve">
-    <value>Échec de la suppression des données au chemin d'accès suivant : "{0}" en raison de : {1}</value>
+    <value>Échec de la suppression des données a l'emplacement suivant : "{0}" en raison de : {1}</value>
   </data>
   <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
-    <value>Vous êtes sur le point de supprimer tous les fichiers contenus dans le dossier temporaire "{0}". Même les fichiers externes à Thrive seront supprimés s'ils se trouvent dans ce dossier. Le dossier lui-même sera également supprimé. Supprimer le dossier temporaire ?</value>
+    <value>Vous êtes sur le point de supprimer tous les fichiers contenus dans le dossier temporaire "{0}". Même les fichiers externes à Thrive seront supprimés s'ils se trouvent dans ce dossier. Le dossier lui-même sera également supprimé. Supprimer le dossier temporaire ?</value>
   </data>
   <data name="ClearTemporaryFilesCount" xml:space="preserve">
     <value>Vous êtes sur le point de supprimer {0} fichiers / dossiers</value>
@@ -554,7 +554,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Vous utilisez la version {0} du lanceur de Thrive, mais la dernière version est la {1}</value>
   </data>
   <data name="DeleteErrorDoesNotExist" xml:space="preserve">
-    <value>Échec de la suppression car le chemin cible n'existe pas</value>
+    <value>Échec de la suppression car l'emplacement cible n'existe pas</value>
   </data>
   <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
     <value>Le code de sortie peut signifier qu'il vous manque un fichier DLL nécessaire. Il peut s'agir de Visual C++ Redistributable 2019, pour lequel vous pouvez télécharger un programme d'installation à partir de : https://aka.ms/vs/17/release/vc_redist.x64.exe afin de l'installer / le réparer. Vous pouvez également essayer d'exécuter Thrive.exe manuellement, car cela peut afficher une boîte de dialogue d'erreur avec le nom du fichier DLL manquant. Vous devriez vérifier que toutes les mises à jour de Windows sont installées. Si cela ne vous aide pas, veuillez nous contacter pour obtenir de l'aide supplémentaire.</value>
@@ -645,5 +645,20 @@ Les journaux du lanceur contiendront plus d'informations.</value>
   </data>
   <data name="QuitLauncherButton" xml:space="preserve">
     <value>Quitter le lanceur maintenant</value>
+  </data>
+  <data name="MoveVersionsExplanation" xml:space="preserve">
+    <value>Des versions installées de Thrives ont été détectées à l'emplacement précédent. Elles peuvent être déplacées automatiquement au nouvel emplacement. Si elles ne le sont pas, les fichiers seron laissés tel quel et le lanceur n'en saura rien sauf si l'emplacement d'instalation précédent est choisi a nouveau. Voulez-vous déplacer ces fichiers automatiquement au nouvel emplacement ?</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>Une erreur interne es survenue dans le lanceur. Veuillez signaler ce problème et fournir le journal du lanceur avec votre rapport et la façon dont vous avez rencontré ce problème.</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>Supprimer le cache des versions de développement ?</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>Vous êtes sur le point de supprimer tous les fichiers contenus dans le dossier de cache compressé "{0}". Même les fichiers externes à Thrive seront supprimés s'ils se trouvent dans ce dossier. Supprimer le contenu du dossier ?</value>
+  </data>
+  <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
+    <value>Des fichiers ont été détectés dans le cache. Ils peuvent être déplacés automatiquement au nouvel emplacement. Sinon, les fichiers seron laissés tel quel et le lanceur n'en saura rien sauf si l'emplacement précédent est choisi a nouveau. Voulez-vous déplacer {0} fichier(s) automatiquement au nouvel emplacement ? Remarquez que si des fichiers non liés a Thrive existent dans le cache, ils seront aussi déplacés.</value>
   </data>
 </root>
