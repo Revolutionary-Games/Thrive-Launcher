@@ -212,7 +212,7 @@
     <value>Réinitialiser l'emplacement des fichiers temporaires</value>
   </data>
   <data name="ClearFolder" xml:space="preserve">
-    <value>Nettoyer</value>
+    <value>Vider</value>
   </data>
   <data name="DevBuildsCachePathDisplay" xml:space="preserve">
     <value>Cache des fichiers des versions de développement :</value>
@@ -251,7 +251,7 @@
     <value>Wiki des développeurs</value>
   </data>
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
-    <value>Désactivez toutes les vidéos du jeu (si Thrive se bloque après l'affichage du logo de chargement et avant la lecture de la vidéo d'introduction, cela peut résoudre le problème)</value>
+    <value>Désactiver toutes les vidéos du jeu (si Thrive se bloque après l'affichage du logo de chargement et avant la lecture de la vidéo d'introduction, cela peut résoudre le problème)</value>
   </data>
   <data name="LauncherOptionWebFeeds" xml:space="preserve">
     <value>Activer les flux web</value>
@@ -275,7 +275,7 @@
     <value>Supprime TOUS les fichiers dans le dossier temporaire. Peut supprimer des fichiers sans lien avec Thrive s'il y en a !</value>
   </data>
   <data name="ClearDehydratedLocation" xml:space="preserve">
-    <value>Supprimez tous les fichiers dans le dossier de cache compressé des versions de développement. Si l'emplacement n'est pas celui par défaut, il peut exister des fichiers n'appartenant pas à Thrive dans le dossier qui seront également supprimés.</value>
+    <value>Supprime tous les fichiers dans le dossier de cache compressé des versions de développement. Si l'emplacement n'est pas celui par défaut, il peut exister des fichiers n'appartenant pas à Thrive dans le dossier qui seront également supprimés.</value>
   </data>
   <data name="ConnectedAsUserDisplay" xml:space="preserve">
     <value>Connecté en tant que :</value>
@@ -539,7 +539,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Tous les anciens fichiers seront automatiquement supprimés du dossier temporaire au redémarrage du lanceur. Par conséquent, le dossier des fichiers temporaires ne doit pas être utilisé pour d'autres usages que Thrive afin d'éviter la suppression accidentelle de fichiers non liés.</value>
   </data>
   <data name="DeleteErrorExplanation" xml:space="preserve">
-    <value>Échec de la suppression des données a l'emplacement suivant : "{0}" en raison de : {1}</value>
+    <value>Échec de la suppression des données à l'emplacement suivant : "{0}" en raison de : {1}</value>
   </data>
   <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
     <value>Vous êtes sur le point de supprimer tous les fichiers contenus dans le dossier temporaire "{0}". Même les fichiers externes à Thrive seront supprimés s'ils se trouvent dans ce dossier. Le dossier lui-même sera également supprimé. Supprimer le dossier temporaire ?</value>
@@ -650,7 +650,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Des versions installées de Thrives ont été détectées à l'emplacement précédent. Elles peuvent être déplacées automatiquement au nouvel emplacement. Si elles ne le sont pas, les fichiers seron laissés tel quel et le lanceur n'en saura rien sauf si l'emplacement d'instalation précédent est choisi a nouveau. Voulez-vous déplacer ces fichiers automatiquement au nouvel emplacement ?</value>
   </data>
   <data name="InternalErrorExplanation" xml:space="preserve">
-    <value>Une erreur interne es survenue dans le lanceur. Veuillez signaler ce problème et fournir le journal du lanceur avec votre rapport et la façon dont vous avez rencontré ce problème.</value>
+    <value>Une erreur interne est survenue dans le lanceur. Veuillez signaler ce problème et fournir le journal du lanceur avec votre rapport et la façon dont vous avez rencontré ce problème.</value>
   </data>
   <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
     <value>Supprimer le cache des versions de développement ?</value>
