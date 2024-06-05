@@ -530,7 +530,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Utiliser les informations de version en cache</value>
   </data>
   <data name="DevCenterCheckingConnection" xml:space="preserve">
-    <value>Connection au ThriveDevCenter...</value>
+    <value>Connexion au ThriveDevCenter...</value>
   </data>
   <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
     <value>Supprimer automatiquement les anciens fichiers du dossier temporaire</value>
@@ -701,7 +701,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Annuler la création d'un rapport ?</value>
   </data>
   <data name="SubmittingReportExtraInfo" xml:space="preserve">
-    <value>Information additionnelle a propos de l'erreur rencontrée :</value>
+    <value>Information additionnelle à propos de l'erreur rencontrée :</value>
   </data>
   <data name="ErrorSubmittingReport" xml:space="preserve">
     <value>Une erreur est survenue en essayant de soumettre votre rapport de plantage. Veuillez vérifier si les données sont correctes ou réessayez plus tard si le preoblème vient du serveur. Type d'échec :</value>
