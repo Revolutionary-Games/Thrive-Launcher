@@ -557,7 +557,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Échec de la suppression car l'emplacement cible n'existe pas</value>
   </data>
   <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
-    <value>Le code de sortie peut signifier qu'il vous manque un fichier DLL nécessaire. Il peut s'agir de Visual C++ Redistributable 2019, pour lequel vous pouvez télécharger un programme d'installation depuis : https://aka.ms/vs/17/release/vc_redist.x64.exe afin de l'installer / le réparer. Vous pouvez également essayer d'exécuter Thrive.exe manuellement, car cela peut afficher une boîte de dialogue d'erreur avec le nom du fichier DLL manquant. Vous devriez vérifier que toutes les mises à jour de Windows sont installées. Si cela ne vous aide pas, veuillez nous contacter pour obtenir de l'aide supplémentaire.</value>
+    <value>Le code de sortie peut signifier qu'il vous manque un fichier DLL nécessaire. Il peut s'agir de Visual C++ Redistributable 2019, pour lequel vous pouvez télécharger un programme d'installation depuis : https://aka.ms/vs/17/release/vc_redist.x64.exe afin de l'installer / le réparer. Vous pouvez également essayer d'exécuter Thrive.exe manuellement, car cela peut afficher une boîte de dialogue d'erreur avec le nom du fichier DLL manquant. Vous devriez vérifier que toutes les mises à jour de Windows sont installées. Si cela ne vous aide pas, veuillez nous contacter pour obtenir de l'aide supplémentaire.</value>
   </data>
   <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
     <value>Utilisez une autre méthode pour exécuter le programme de mise à jour automatique (essayez si le démarrage normal de la mise à jour automatique échoue)</value>
@@ -662,7 +662,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Des fichiers ont été détectés dans le cache. Ils peuvent être déplacés automatiquement au nouvel emplacement. Sinon, les fichiers seron laissés tel quel et le lanceur n'en saura rien sauf si l'emplacement précédent est choisi a nouveau. Voulez-vous déplacer {0} fichier(s) automatiquement au nouvel emplacement ? Remarquez que si des fichiers non liés a Thrive existent dans le cache, ils seront aussi déplacés.</value>
   </data>
   <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
-    <value>La connexion au ThiveDevCenter a échoué. Le serveur a répondu avec une clé interdite. Ça signifie que la clé de connection est invalide. Cela peut être causé par la déconnection a travers l'interface web ou par la suspension de votre compte. Utilisez le lien ci-dessous pour vérifier le statut de votre compte.</value>
+    <value>La connexion au ThiveDevCenter a échoué. Le serveur a répondu par une interdiction. Ça signifie que notre clé de connexion n'est plus valide. Cela peut être causé par la déconnexion à travers l'interface web ou par la suspension de votre compte. Utilisez le lien ci-dessous pour vérifier le statut de votre compte.</value>
   </data>
   <data name="OutdatedLauncherUpdateDisabledByUser" xml:space="preserve">
     <value>Le lanceur que vous utilisez devrait pouvoir se pettre à jour automatiquement, mais les mises à jour automatiques sont désactivées par les paramètres du lanceur ou par une option en ligne de commande.</value>
@@ -674,7 +674,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Erreur : aucun fichier de mise à jour pour ce lanceur. Veuillez réessayer plus tard et si le problème persiste, faites le nous savoir.</value>
   </data>
   <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
-    <value>Le lanceur que vous utilisez devrait pouvoir se pettre à jour automatiquement, mais pour une raison ou une autre, ça n'a pas marché et la dernière version du lanceur est disponible, Veuillez vérifier que vous n'avez pas désactivé les mises à jour automatiques.</value>
+    <value>Le type de lanceur que vous utilisez devrait pouvoir se mettre à jour automatiquement, mais pour une raison ou une autre, ça n'a pas marché et la dernière version du lanceur est disponible depuis un certain temps déjà. Veuillez vérifier que vous n'avez pas désactivé les mises à jour automatiques.</value>
   </data>
   <data name="NoBuildToPlayFound" xml:space="preserve">
     <value>Aucune version de développement approprié pour le type demandé et la pateforme actuelle trouvé</value>
