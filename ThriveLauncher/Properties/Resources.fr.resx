@@ -794,4 +794,10 @@ Les journaux du lanceur contiendront plus d'informations.</value>
   <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
     <value>La connection au ThriveDevCenter a échoué. Le serveur a répondu aver une erreur inconnue ou nous avons recontré une erreur en traitant la réponse. Veuillez réessayer plus tartd et si le problème persiste, signalez le. Vous pouvez utiliser le lien ci-dessous pour vérifier que le ThriveDevCenter fonctionne.</value>
   </data>
+  <data name="ReportViewingPublicInfo" xml:space="preserve">
+    <value>Vous pouver voir votre rapport, si il est public, à l'adresse suivante :</value>
+  </data>
+  <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
+    <value>Votre rapport a été soumis avec succès. Merci pour votre rapport.</value>
+  </data>
 </root>
