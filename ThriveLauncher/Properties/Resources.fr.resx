@@ -410,13 +410,13 @@
     <value>Adresse e-mail :</value>
   </data>
   <data name="UnsafeBuild" xml:space="preserve">
-    <value>pas sûre</value>
+    <value>non sécurisé</value>
   </data>
   <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
     <value>VDJ</value>
   </data>
   <data name="BuildDescriptionLabelShort" xml:space="preserve">
-    <value>desc :</value>
+    <value>desc :</value>
   </data>
   <data name="PlayingTitle" xml:space="preserve">
     <value>Joue à {0}</value>
@@ -431,7 +431,7 @@
     <value>Version spécifique</value>
   </data>
   <data name="PlayUnsafeBuildExplanation" xml:space="preserve">
-    <value>Les versions de développement normales sont téléchargées automatiquement par un serveur CI avec une clé vérifiée. Ces versions ne peuvent être déclenchées que par les membres du dépôt Thrive. À moins que le compte d'une telle personne ne soit compromis (ou qu'elle agisse de manière malveillante), les versions sont aussi sûres que les versions officielles. Les versions de développement sont également acceptés à partir de pull requests (PR), mais dans ce cas, elles sont spécifiquement marquées comme non sûres (comme la version actuellement sélectionnée), car la pull request pourrait contenir toutes sortes de choses désagréables.
+    <value>Les versions de développement normales sont téléchargées automatiquement par un serveur d'intégration continue avec une clé vérifiée. Ces versions ne peuvent être déclenchées que par les membres du dépôt Thrive. À moins que le compte d'une telle personne ne soit compromis (ou qu'elle agisse de manière malveillante), les versions sont aussi sûres que les versions officielles. Les versions de développement sont également acceptés à partir de pull requests (PR), mais dans ce cas, elles sont spécifiquement marquées comme non sécurisées (comme la version actuellement sélectionnée), car la pull request pourrait contenir toutes sortes de choses désagréables.
 
 Si un membre de l'équipe Thrive vérifie que la PR est sûre, cet avertissement disparaît. Sinon, vous pouvez continuer si vous pensez que cette version est sûre. Avant de le faire, vous devez vérifier la PR sur Github pour voir si le dernier hash de commit correspond et si la compilation de ThriveDevCenter indique qu'elle a téléchargé une version de développement avec le hash. En outre, il faut vérifier que la PR ne modifie pas les scripts de compilation. Après avoir fait cela, ce devrait être relativement sûr de continuer, car c'est le même processus que les membres de l'équipe Thrive utilisent pour vérifier les PR.</value>
   </data>
@@ -482,7 +482,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Erreur en essayant d'obtenir les versions disponibles de Thrive</value>
   </data>
   <data name="DownloadProgressDisplay" xml:space="preserve">
-    <value>{0} de {1} MiO téléchargés</value>
+    <value>{0} sur {1} MiB téléchargés</value>
   </data>
   <data name="SubmitRetryButton" xml:space="preserve">
     <value>Réessayer</value>
@@ -506,7 +506,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Cette version du lanceur est obsolète et devrait être mise à jour. Comme vous voyez ce message, la mise à jour automatique n'a pas débuté, vous devrez donc télécharger manuellement la mise à jour et l'installer. Vous pouvez essayer d'utiliser la version actuelle du lanceur en ignorant la mise à jour, mais cela pourrait causer des problèmes inattendus car seule la dernière version du lanceur est certaine de fonctionner avec les systèmes distants avec lesquels le lanceur interagit.</value>
   </data>
   <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
-    <value>Erreur  : le processus enfant a déjà terminé son exécution, la fenêtre du lanceur ne sera pas fermée</value>
+    <value>Erreur : le processus enfant a déjà terminé son exécution, la fenêtre du lanceur ne sera pas fermée</value>
   </data>
   <data name="ReportDeleteInfo" xml:space="preserve">
     <value>Si vous souhaitez supprimer votre rapport, vous pouvez le faire ici :</value>
@@ -602,7 +602,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Vérification de l'intégrité de {0}</value>
   </data>
   <data name="ReportCrashButton" xml:space="preserve">
-    <value>Rapport de plantage</value>
+    <value>Signaler le plantage</value>
   </data>
   <data name="SecondsDisplaySingular" xml:space="preserve">
     <value>1 seconde</value>
@@ -617,7 +617,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Je comprends le risque, jouer quand même</value>
   </data>
   <data name="CopyLogWindowToClipboardToolTip" xml:space="preserve">
-    <value>Copier la sortie du jeu dans le presse-papier</value>
+    <value>Copier l'output du jeu dans le presse-papier</value>
   </data>
   <data name="EmbeddedPckToolLicenseTitle" xml:space="preserve">
     <value>Licence de godotpcktool inclus et licences de ces bibliothèques utilisées :</value>
@@ -638,7 +638,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Erreur de vérification du code de liaison pour le ThriveDevCenter. Veuillez vérifier que vous avez tapé le code correctement et qu'il n'a pas expiré. Informations supplémentaires : {0}</value>
   </data>
   <data name="ThriveIsStarting" xml:space="preserve">
-    <value>Thrive démarre. Sortie du journal (en raison de la mise en mémoire tampon, ce n'est probablement pas en temps réel) :</value>
+    <value>Thrive démarre. Output du journal (en raison de la mise en mémoire tampon, ce n'est probablement pas en temps réel) :</value>
   </data>
   <data name="CrashReportLogsSection" xml:space="preserve">
     <value>Journaux à inclure</value>
@@ -675,5 +675,123 @@ Les journaux du lanceur contiendront plus d'informations.</value>
   </data>
   <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
     <value>Le lanceur que vous utilisez devrait pouvoir se pettre à jour automatiquement, mais pour une raison ou une autre, ça n'a pas marché et la dernière version du lanceur est disponible, Veuillez vérifier que vous n'avez pas désactivé les mises à jour automatiques.</value>
+  </data>
+  <data name="NoBuildToPlayFound" xml:space="preserve">
+    <value>Aucune version de développement approprié pour le type demandé et la pateforme actuelle trouvé</value>
+  </data>
+  <data name="ThriveFolderPrepareFailed" xml:space="preserve">
+    <value>Echec de la préparation du dossier Thrive avec l'erreur : {0}</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>Echec de l'établissement du lien, veuillez vérifier le code à nouveau.</value>
+  </data>
+  <data name="ProcessingStateItemProgress" xml:space="preserve">
+    <value>Traitement de {0}</value>
+  </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>Vérifier les clés sur le ThriveDevCenter</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>Relancer la connection existante</value>
+  </data>
+  <data name="ExtractError" xml:space="preserve">
+    <value>Echec de l'extraction d'une archive a cause d'une erreur : {0}</value>
+  </data>
+  <data name="CancelCreatingReportTitle" xml:space="preserve">
+    <value>Annuler la création d'un rapport ?</value>
+  </data>
+  <data name="SubmittingReportExtraInfo" xml:space="preserve">
+    <value>Information additionnelle a propos de l'erreur rencontrée :</value>
+  </data>
+  <data name="ErrorSubmittingReport" xml:space="preserve">
+    <value>Une erreur est survenue en essayant de soumettre votre rapport de plantage. Veuillez vérifier si les données sont correctes ou réessayez plus tard si le preoblème vient du serveur. Type d'échec :</value>
+  </data>
+  <data name="LoginToSeeThisContent" xml:space="preserve">
+    <value>Connectez-vous au ThriveDevCenter pour voir ce contenu</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>Impossible de lancer Thrive</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thrive est déja lancé, veuillez le fermer puis réessayer</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>Veuillez choisir un version de Thrive depuis le menu déroulant à coté du bouton Jouer et réessayer</value>
+  </data>
+  <data name="GettingDevBuildInfoMessage" xml:space="preserve">
+    <value>Récupération de l'information à propos de la version de développement de type {0} à lancer…</value>
+  </data>
+  <data name="ThriveRunCanceled" xml:space="preserve">
+    <value>Le lancement de Thrive a été annulé</value>
+  </data>
+  <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
+    <value>Le lancement d'une version non sécurisé a été annulé</value>
+  </data>
+  <data name="ErrorGettingDevBuild" xml:space="preserve">
+    <value>Erreur : échec de la recherche d'une version de développement du type spécifié pour cette plateforme. Veuillez choisir une autre version et réessayer. Cause de l'échec : {0}</value>
+  </data>
+  <data name="ThriveRunError" xml:space="preserve">
+    <value>Thrive a échoué a se lancer a cause de l'erreur suivante : {0}</value>
+  </data>
+  <data name="MissingThriveFolderError" xml:space="preserve">
+    <value>Un dossier Thrive devrait exister à {0} mais ce n'est pas le cas</value>
+  </data>
+  <data name="MissingThriveExecutableError" xml:space="preserve">
+    <value>Impossible de trouver l'éxecutable Thrive dans le dossier {0}, veuillez vérifier les fichiers du jeu ou désintaller puis réinstaller la version.</value>
+  </data>
+  <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
+    <value>Echec de l'installation ou de la vérification de la version installée, voir les détails ci-dessous.</value>
+  </data>
+  <data name="ItemProgressDisplay" xml:space="preserve">
+    <value>{0} traités sur {1}</value>
+  </data>
+  <data name="ExtraThriveStartFlags" xml:space="preserve">
+    <value>Thrive a été lancé avec des options en ligne de commande depuis le lanceur, cela peut faire se comporter Thrive d'une manière inattendue : {0}</value>
+  </data>
+  <data name="TruncatedGameOutputWarning" xml:space="preserve">
+    <value>L'output est trop long, il a été tronqué. Voir le journal de Thrive pour l'output complet.</value>
+  </data>
+  <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
+    <value>Version de développement a lancer (lorsque le lancement d'une version de développement est choisi)</value>
+  </data>
+  <data name="PlayUnsafeBuildTitle" xml:space="preserve">
+    <value>Lancer une version de développement non sécurisé ?</value>
+  </data>
+  <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
+    <value>Cet onglet liste les versions installées extérieurement. C'est un entrepot pour les versions de Thrive qui inclut une version empaquetée. Vous pouvez activer l'affichage des versions externes dans le menu déroulant dans les options du lanceur. Une fois téléchargées, ces versions sont affichées ici.</value>
+  </data>
+  <data name="FoundDevBuildToPlayInfo" xml:space="preserve">
+    <value>Version de développement a lancer trouvée : {0}, hash : {1} VDJ : {2}, branche : {3}</value>
+  </data>
+  <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
+    <value>Description de la version :
+{0}</value>
+  </data>
+  <data name="RehydrationFailed" xml:space="preserve">
+    <value>Echec de la décompression due à une erreur : {0}</value>
+  </data>
+  <data name="CrashReporterWindowTitle" xml:space="preserve">
+    <value>Rapporteur de plantage Thrive</value>
+  </data>
+  <data name="ContinueReportingButton" xml:space="preserve">
+    <value>Continuer à rapporter</value>
+  </data>
+  <data name="RehydrationStarting" xml:space="preserve">
+    <value>C'est une version compressée. Début de la décompression.</value>
+  </data>
+  <data name="CancelCreatingReportExplanation" xml:space="preserve">
+    <value>Êtes-vous sûr(e) de vouloir annuler la création d'un rapport de plantage ? Si un bogue n'est pas signalé du tout, les développeurs ne pourront pas le réparer.</value>
+  </data>
+  <data name="ClearAllCrashesButton" xml:space="preserve">
+    <value>Supprimer TOUS les dépots de plantage</value>
+  </data>
+  <data name="DevCenterConnectFailureConnection" xml:space="preserve">
+    <value>La connection au ThriveDevCenter a échoué. Veuillez réessayer, le ThriveDevCenter peut avoir été indisponible temoprairement. Vous devriez aussi vérifier votre connection internet. Vous pouvez utilisez le lien ci-dessous pour voir si votre navigateur arrive a se connecter. Réessayez plus tard, et si le problème persiste plus longtemps que quelques minutes, veuillez le signaler.</value>
+  </data>
+  <data name="SubmittingReportMessage" xml:space="preserve">
+    <value>Soumission de votre rapport, Veuillez pationter, ça peut prendre quelques minutes.</value>
+  </data>
+  <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
+    <value>La connection au ThriveDevCenter a échoué. Le serveur a répondu aver une erreur inconnue ou nous avons recontré une erreur en traitant la réponse. Veuillez réessayer plus tartd et si le problème persiste, signalez le. Vous pouvez utiliser le lien ci-dessous pour vérifier que le ThriveDevCenter fonctionne.</value>
   </data>
 </root>
