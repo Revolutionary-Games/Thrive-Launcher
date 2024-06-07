@@ -140,7 +140,7 @@
     <value>Lanceur sur Github</value>
   </data>
   <data name="ExternalLinkFanWiki" xml:space="preserve">
-    <value>Wiki des supporteurs</value>
+    <value>Wiki de la communauté</value>
   </data>
   <data name="ExternalLinkDiscordServer" xml:space="preserve">
     <value>Serveur Discord</value>
@@ -149,10 +149,10 @@
     <value>Subreddit</value>
   </data>
   <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
-    <value>Chaîne YouTube</value>
+    <value>Chaine YouTube</value>
   </data>
   <data name="ExternalLinkTwitterFeed" xml:space="preserve">
-    <value>Flux Twitter</value>
+    <value>Compte X</value>
   </data>
   <data name="ExternalLinkFacebookPage" xml:space="preserve">
     <value>Page Facebook</value>
@@ -179,7 +179,7 @@
     <value>Masquer le lanceur pendant la partie</value>
   </data>
   <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
-    <value>Fermer le lanceur après avoir joué (si aucune erreur ne survient)</value>
+    <value>Fermer le lanceur à la fermeture du jeu (si aucune erreur ne survient)</value>
   </data>
   <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
     <value>Fermer le lanceur après avoir démarré le jeu</value>
@@ -194,13 +194,13 @@
     <value>Sélectionner l'emplacement d'installation</value>
   </data>
   <data name="FolderPathDisplay" xml:space="preserve">
-    <value>Dossier :</value>
+    <value>Dossier :</value>
   </data>
   <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
-    <value>Dossier de téléchargement temporaire :</value>
+    <value>Dossier de téléchargement temporaire :</value>
   </data>
   <data name="FolderContentsLabel" xml:space="preserve">
-    <value>Contenus :</value>
+    <value>Contenus :</value>
   </data>
   <data name="FolderIsEmpty" xml:space="preserve">
     <value>Le dossier est vide</value>
@@ -212,7 +212,7 @@
     <value>Réinitialiser l'emplacement des fichiers temporaires</value>
   </data>
   <data name="ClearFolder" xml:space="preserve">
-    <value>Effacer</value>
+    <value>Vider</value>
   </data>
   <data name="DevBuildsCachePathDisplay" xml:space="preserve">
     <value>Cache des fichiers des versions de développement :</value>
@@ -248,10 +248,10 @@
     <value>Forums de développement</value>
   </data>
   <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
-    <value>Wiki développeur</value>
+    <value>Wiki des développeurs</value>
   </data>
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
-    <value>Désactivez toutes les vidéos du jeu (si Thrive se bloque après l'affichage du logo de chargement et avant la lecture de la vidéo d'introduction, cela peut résoudre le problème)</value>
+    <value>Désactiver toutes les vidéos du jeu (si Thrive se bloque après l'affichage du logo de chargement et avant la lecture de la vidéo d'introduction, cela peut résoudre le problème)</value>
   </data>
   <data name="LauncherOptionWebFeeds" xml:space="preserve">
     <value>Activer les flux web</value>
@@ -272,19 +272,19 @@
     <value>Remarque : le changement de l'emplacement temporaire ne déplace ni ne supprime les fichiers existants afin d'éviter de toucher accidentellement des fichiers sans rapport avec Thrive</value>
   </data>
   <data name="ClearTemporaryLocation" xml:space="preserve">
-    <value>Supprimez TOUS les fichiers dans le dossier temporaire. Pourrait supprimer des fichiers sans lien avec Thrive s'il y en a !</value>
+    <value>Supprime TOUS les fichiers dans le dossier temporaire. Peut supprimer des fichiers sans lien avec Thrive s'il y en a !</value>
   </data>
   <data name="ClearDehydratedLocation" xml:space="preserve">
-    <value>Supprimez tous les fichiers dans le dossier de cache déshydratée des versions de développement. Si l'emplacement n'est pas celui par défaut, il peut exister des fichiers n'appartenant pas à Thrive dans le dossier qui seront également supprimés.</value>
+    <value>Supprime tous les fichiers dans le dossier de cache compressé des versions de développement. Si l'emplacement n'est pas celui par défaut, il peut exister des fichiers n'appartenant pas à Thrive dans le dossier qui seront également supprimés.</value>
   </data>
   <data name="ConnectedAsUserDisplay" xml:space="preserve">
-    <value>Connecté en tant que :</value>
+    <value>Connecté en tant que :</value>
   </data>
   <data name="BuildTypeSelectionLatest" xml:space="preserve">
     <value>La plus récente (change beaucoup aléatoirement, car il s'agit littéralement d'une compilation à partir du dernier commit du code)</value>
   </data>
   <data name="BuildTypeSelectionManual" xml:space="preserve">
-    <value>Sélectionné manuellement dans l'onglet "Version spécifique"</value>
+    <value>Choisi manuellement dans l'onglet "Version spécifique"</value>
   </data>
   <data name="LogoutButton" xml:space="preserve">
     <value>Se déconnecter</value>
@@ -320,7 +320,7 @@
     <value>Échec de la sauvegarde des paramètres</value>
   </data>
   <data name="SizeInMiB" xml:space="preserve">
-    <value>{0} MiO</value>
+    <value>{0} MiB</value>
   </data>
   <data name="InstalledFolderSize" xml:space="preserve">
     <value>(taille : {0})</value>
@@ -374,7 +374,7 @@
     <value>{0} pour {1}</value>
   </data>
   <data name="LoadingDotDotDot" xml:space="preserve">
-    <value>Chargement...</value>
+    <value>Chargement…</value>
   </data>
   <data name="Retry" xml:space="preserve">
     <value>Ressayer</value>
@@ -398,7 +398,7 @@
     <value>Annuler</value>
   </data>
   <data name="UnknownFolder" xml:space="preserve">
-    <value>Dossier inconnu :</value>
+    <value>Dossier inconnu :</value>
   </data>
   <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
     <value>Effacer les fichiers temporaires ?</value>
@@ -410,13 +410,13 @@
     <value>Adresse e-mail :</value>
   </data>
   <data name="UnsafeBuild" xml:space="preserve">
-    <value>pas sûre</value>
+    <value>non sécurisé</value>
   </data>
   <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
     <value>VDJ</value>
   </data>
   <data name="BuildDescriptionLabelShort" xml:space="preserve">
-    <value>desc :</value>
+    <value>desc :</value>
   </data>
   <data name="PlayingTitle" xml:space="preserve">
     <value>Joue à {0}</value>
@@ -431,7 +431,7 @@
     <value>Version spécifique</value>
   </data>
   <data name="PlayUnsafeBuildExplanation" xml:space="preserve">
-    <value>Les versions de développement normales sont téléchargées automatiquement par un serveur CI avec une clé vérifiée. Ces versions ne peuvent être déclenchées que par les membres du dépôt Thrive. À moins que le compte d'une telle personne ne soit compromis (ou qu'elle agisse de manière malveillante), les versions sont aussi sûres que les versions officielles. Les versions de développement sont également acceptés à partir de pull requests (PR), mais dans ce cas, elles sont spécifiquement marquées comme non sûres (comme la version actuellement sélectionnée), car la pull request pourrait contenir toutes sortes de choses désagréables.
+    <value>Les versions de développement normales sont téléchargées automatiquement par un serveur d'intégration continue avec une clé vérifiée. Ces versions ne peuvent être déclenchées que par les membres du dépôt Thrive. À moins que le compte d'une telle personne ne soit compromis (ou qu'elle agisse de manière malveillante), les versions sont aussi sûres que les versions officielles. Les versions de développement sont également acceptés à partir de pull requests (PR), mais dans ce cas, elles sont spécifiquement marquées comme non sécurisées (comme la version actuellement sélectionnée), car la pull request pourrait contenir toutes sortes de choses désagréables.
 
 Si un membre de l'équipe Thrive vérifie que la PR est sûre, cet avertissement disparaît. Sinon, vous pouvez continuer si vous pensez que cette version est sûre. Avant de le faire, vous devez vérifier la PR sur Github pour voir si le dernier hash de commit correspond et si la compilation de ThriveDevCenter indique qu'elle a téléchargé une version de développement avec le hash. En outre, il faut vérifier que la PR ne modifie pas les scripts de compilation. Après avoir fait cela, ce devrait être relativement sûr de continuer, car c'est le même processus que les membres de l'équipe Thrive utilisent pour vérifier les PR.</value>
   </data>
@@ -439,7 +439,7 @@ Si un membre de l'équipe Thrive vérifie que la PR est sûre, cet avertissement
     <value>Ici, vous pouvez lier le lanceur au ThriveDevCenter pour accéder aux versions de développement et à d'autres fonctionnalités</value>
   </data>
   <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
-    <value>Entrez le hash manuellement :</value>
+    <value>Hash entré manuellement :</value>
   </data>
   <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
     <value>Sélectionner la valeur du hash entré manuellement pour être utilisée dans la boite de saisie comme version de développement quand une version de développement est utilisée pour jouer</value>
@@ -482,7 +482,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Erreur en essayant d'obtenir les versions disponibles de Thrive</value>
   </data>
   <data name="DownloadProgressDisplay" xml:space="preserve">
-    <value>{0} de {1} MiO téléchargés</value>
+    <value>{0} sur {1} MiB téléchargés</value>
   </data>
   <data name="SubmitRetryButton" xml:space="preserve">
     <value>Réessayer</value>
@@ -506,7 +506,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Cette version du lanceur est obsolète et devrait être mise à jour. Comme vous voyez ce message, la mise à jour automatique n'a pas débuté, vous devrez donc télécharger manuellement la mise à jour et l'installer. Vous pouvez essayer d'utiliser la version actuelle du lanceur en ignorant la mise à jour, mais cela pourrait causer des problèmes inattendus car seule la dernière version du lanceur est certaine de fonctionner avec les systèmes distants avec lesquels le lanceur interagit.</value>
   </data>
   <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
-    <value>Erreur  : le processus enfant a déjà terminé son exécution, la fenêtre du lanceur ne sera pas fermée</value>
+    <value>Erreur : le processus enfant a déjà terminé son exécution, la fenêtre du lanceur ne sera pas fermée</value>
   </data>
   <data name="ReportDeleteInfo" xml:space="preserve">
     <value>Si vous souhaitez supprimer votre rapport, vous pouvez le faire ici :</value>
@@ -518,7 +518,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Activer le débogage du lanceur (avant de faire un rapport de bogue, veillez activer ceci et relancer le lanceur)</value>
   </data>
   <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
-    <value>Le lanceur Thrive charge les version de Thrive disponibles depuis internet afin de savoir si une nouvelle version est disponible. Le chargement de l'information a échoué (voir l'erreur ci-dessous). Vous pouvez réessayer de télécharger cette information ou si le lanceur avait déjà téléchargé l'information, vous pouvez charger la copie en cache. Si la copie en cache est très ancienne, elle peut ne pas afficher toutes les versions de Thrive disponibles. Notez que si votre version du lanceur est très vieille, il se peut qu'il ne soit plus compatible avec un nouveau format de données et qu'il doive être mis à jour manuellement avant que les données puissent être chargées.</value>
+    <value>Le lanceur Thrive charge les version de Thrive disponibles depuis internet afin de savoir si une nouvelle version est disponible. Le chargement de l'information a échoué (voir l'erreur ci-dessous). Vous pouvez réessayer de télécharger cette information ou si le lanceur avait déjà téléchargé l'information, vous pouvez charger la copie en cache. Si la copie en cache est très ancienne, elle peut ne pas afficher toutes les versions de Thrive disponibles. Notez que si votre version du lanceur est très ancienne, il se peut qu'il ne soit plus compatible avec un nouveau format de données et qu'il doive être mis à jour manuellement avant que les données puissent être chargées.</value>
   </data>
   <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
     <value>Les informations téléchargées du lanceur Thrive sont invalides. Veuillez réessayer dans quelques instants et si le problème persiste, veuillez nous contacter.</value>
@@ -527,10 +527,10 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Déplacer les versions existantes ?</value>
   </data>
   <data name="UseCached" xml:space="preserve">
-    <value>Utiliser les informations de version mises en cache</value>
+    <value>Utiliser les informations de version en cache</value>
   </data>
   <data name="DevCenterCheckingConnection" xml:space="preserve">
-    <value>Connection au ThriveDevCenter...</value>
+    <value>Connexion au ThriveDevCenter...</value>
   </data>
   <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
     <value>Supprimer automatiquement les anciens fichiers du dossier temporaire</value>
@@ -539,10 +539,10 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Tous les anciens fichiers seront automatiquement supprimés du dossier temporaire au redémarrage du lanceur. Par conséquent, le dossier des fichiers temporaires ne doit pas être utilisé pour d'autres usages que Thrive afin d'éviter la suppression accidentelle de fichiers non liés.</value>
   </data>
   <data name="DeleteErrorExplanation" xml:space="preserve">
-    <value>Échec de la suppression des données au chemin d'accès suivant : "{0}" en raison de : {1}</value>
+    <value>Échec de la suppression des données à l'emplacement suivant : "{0}" en raison de : {1}</value>
   </data>
   <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
-    <value>Vous êtes sur le point de supprimer tous les fichiers contenus dans le dossier temporaire "{0}". Même les fichiers externes à Thrive seront supprimés s'ils se trouvent dans ce dossier. Le dossier lui-même sera également supprimé. Supprimer le dossier temporaire ?</value>
+    <value>Vous êtes sur le point de supprimer tous les fichiers contenus dans le dossier temporaire "{0}". Même les fichiers externes à Thrive seront supprimés s'ils se trouvent dans ce dossier. Le dossier lui-même sera également supprimé. Supprimer le dossier temporaire ?</value>
   </data>
   <data name="ClearTemporaryFilesCount" xml:space="preserve">
     <value>Vous êtes sur le point de supprimer {0} fichiers / dossiers</value>
@@ -554,10 +554,10 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Vous utilisez la version {0} du lanceur de Thrive, mais la dernière version est la {1}</value>
   </data>
   <data name="DeleteErrorDoesNotExist" xml:space="preserve">
-    <value>Échec de la suppression car le chemin cible n'existe pas</value>
+    <value>Échec de la suppression car l'emplacement cible n'existe pas</value>
   </data>
   <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
-    <value>Le code de sortie peut signifier qu'il vous manque un fichier DLL nécessaire. Il peut s'agir de Visual C++ Redistributable 2019, pour lequel vous pouvez télécharger un programme d'installation à partir de : https://aka.ms/vs/17/release/vc_redist.x64.exe afin de l'installer / le réparer. Vous pouvez également essayer d'exécuter Thrive.exe manuellement, car cela peut afficher une boîte de dialogue d'erreur avec le nom du fichier DLL manquant. Vous devriez vérifier que toutes les mises à jour de Windows sont installées. Si cela ne vous aide pas, veuillez nous contacter pour obtenir de l'aide supplémentaire.</value>
+    <value>Le code de sortie peut signifier qu'il vous manque un fichier DLL nécessaire. Il peut s'agir de Visual C++ Redistributable 2019, pour lequel vous pouvez télécharger un programme d'installation depuis : https://aka.ms/vs/17/release/vc_redist.x64.exe afin de l'installer / le réparer. Vous pouvez également essayer d'exécuter Thrive.exe manuellement, car cela peut afficher une boîte de dialogue d'erreur avec le nom du fichier DLL manquant. Vous devriez vérifier que toutes les mises à jour de Windows sont installées. Si cela ne vous aide pas, veuillez nous contacter pour obtenir de l'aide supplémentaire.</value>
   </data>
   <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
     <value>Utilisez une autre méthode pour exécuter le programme de mise à jour automatique (essayez si le démarrage normal de la mise à jour automatique échoue)</value>
@@ -602,7 +602,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Vérification de l'intégrité de {0}</value>
   </data>
   <data name="ReportCrashButton" xml:space="preserve">
-    <value>Rapport de plantage</value>
+    <value>Signaler le plantage</value>
   </data>
   <data name="SecondsDisplaySingular" xml:space="preserve">
     <value>1 seconde</value>
@@ -645,5 +645,159 @@ Les journaux du lanceur contiendront plus d'informations.</value>
   </data>
   <data name="QuitLauncherButton" xml:space="preserve">
     <value>Quitter le lanceur maintenant</value>
+  </data>
+  <data name="MoveVersionsExplanation" xml:space="preserve">
+    <value>Des versions installées de Thrives ont été détectées à l'emplacement précédent. Elles peuvent être déplacées automatiquement au nouvel emplacement. Si elles ne le sont pas, les fichiers seron laissés tel quel et le lanceur n'en saura rien sauf si l'emplacement d'instalation précédent est choisi a nouveau. Voulez-vous déplacer ces fichiers automatiquement au nouvel emplacement ?</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>Une erreur interne est survenue dans le lanceur. Veuillez signaler ce problème et fournir le journal du lanceur avec votre rapport et la façon dont vous avez rencontré ce problème.</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>Supprimer le cache des versions de développement ?</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>Vous êtes sur le point de supprimer tous les fichiers contenus dans le dossier de cache compressé "{0}". Même les fichiers externes à Thrive seront supprimés s'ils se trouvent dans ce dossier. Supprimer le contenu du dossier ?</value>
+  </data>
+  <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
+    <value>Des fichiers ont été détectés dans le cache. Ils peuvent être déplacés automatiquement au nouvel emplacement. Sinon, les fichiers seron laissés tel quel et le lanceur n'en saura rien sauf si l'emplacement précédent est choisi a nouveau. Voulez-vous déplacer {0} fichier(s) automatiquement au nouvel emplacement ? Remarquez que si des fichiers non liés a Thrive existent dans le cache, ils seront aussi déplacés.</value>
+  </data>
+  <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
+    <value>La connexion au ThiveDevCenter a échoué. Le serveur a répondu par une interdiction. Ça signifie que notre clé de connexion n'est plus valide. Cela peut être causé par la déconnexion à travers l'interface web ou par la suspension de votre compte. Utilisez le lien ci-dessous pour vérifier le statut de votre compte.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateDisabledByUser" xml:space="preserve">
+    <value>Le lanceur que vous utilisez devrait pouvoir se pettre à jour automatiquement, mais les mises à jour automatiques sont désactivées par les paramètres du lanceur ou par une option en ligne de commande.</value>
+  </data>
+  <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
+    <value>Vous utilisez un laceur qui ne peut pas se mettre à jour automatiquement. Si vous souhaitez utiliser les mises a jour automatiques, veuillez installer un lanceur qui les supporte.</value>
+  </data>
+  <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
+    <value>Erreur : aucun fichier de mise à jour pour ce lanceur. Veuillez réessayer plus tard et si le problème persiste, faites le nous savoir.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
+    <value>Le type de lanceur que vous utilisez devrait pouvoir se mettre à jour automatiquement, mais pour une raison ou une autre, ça n'a pas marché et la dernière version du lanceur est disponible depuis un certain temps déjà. Veuillez vérifier que vous n'avez pas désactivé les mises à jour automatiques.</value>
+  </data>
+  <data name="NoBuildToPlayFound" xml:space="preserve">
+    <value>Aucune version de développement trouvée pour le type demandé et la plateforme actuelle</value>
+  </data>
+  <data name="ThriveFolderPrepareFailed" xml:space="preserve">
+    <value>Echec de la préparation du dossier Thrive avec l'erreur : {0}</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>Échec de l'établissement du lien, veuillez vérifier le code à nouveau</value>
+  </data>
+  <data name="ProcessingStateItemProgress" xml:space="preserve">
+    <value>Traitement de {0}</value>
+  </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>Vérifier les jetons sur le ThriveDevCenter</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>Relancer la connection existante</value>
+  </data>
+  <data name="ExtractError" xml:space="preserve">
+    <value>Échec de l'extraction d'une archive a cause d'une erreur : {0}</value>
+  </data>
+  <data name="CancelCreatingReportTitle" xml:space="preserve">
+    <value>Annuler la création d'un rapport ?</value>
+  </data>
+  <data name="SubmittingReportExtraInfo" xml:space="preserve">
+    <value>Information additionnelle à propos de l'erreur rencontrée :</value>
+  </data>
+  <data name="ErrorSubmittingReport" xml:space="preserve">
+    <value>Une erreur est survenue en essayant de soumettre votre rapport de plantage. Veuillez vérifier si les données sont correctes ou réessayer plus tard si le problème vient du serveur. Type d'échec :</value>
+  </data>
+  <data name="LoginToSeeThisContent" xml:space="preserve">
+    <value>Connectez-vous au ThriveDevCenter pour voir ce contenu</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>Impossible de lancer Thrive</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thrive est déja lancé, veuillez le fermer puis réessayer</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>Veuillez choisir une version de Thrive depuis le menu déroulant à coté du bouton Jouer et réessayer</value>
+  </data>
+  <data name="GettingDevBuildInfoMessage" xml:space="preserve">
+    <value>Récupération de l'information à propos de la version de développement de type {0} à lancer…</value>
+  </data>
+  <data name="ThriveRunCanceled" xml:space="preserve">
+    <value>Le lancement de Thrive a été annulé</value>
+  </data>
+  <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
+    <value>Le lancement d'une version non sécurisée a été annulé</value>
+  </data>
+  <data name="ErrorGettingDevBuild" xml:space="preserve">
+    <value>Erreur : échec de la recherche d'une version de développement du type spécifié pour cette plateforme. Veuillez choisir une autre version et réessayer. Cause de l'échec : {0}</value>
+  </data>
+  <data name="ThriveRunError" xml:space="preserve">
+    <value>Thrive a échoué à se lancer à cause de l'erreur suivante : {0}</value>
+  </data>
+  <data name="MissingThriveFolderError" xml:space="preserve">
+    <value>Un dossier Thrive devrait exister à {0} mais ce n'est pas le cas</value>
+  </data>
+  <data name="MissingThriveExecutableError" xml:space="preserve">
+    <value>Impossible de trouver l'exécutable Thrive dans le dossier {0}, veuillez vérifier les fichiers du jeu ou désinstaller puis réinstaller la version.</value>
+  </data>
+  <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
+    <value>Échec de l'installation ou de la vérification de la version installée, voir les détails ci-dessous.</value>
+  </data>
+  <data name="ItemProgressDisplay" xml:space="preserve">
+    <value>{0} traités sur {1}</value>
+  </data>
+  <data name="ExtraThriveStartFlags" xml:space="preserve">
+    <value>Thrive a été lancé avec des options en ligne de commande depuis le lanceur, cela peut faire se comporter Thrive d'une manière inattendue : {0}</value>
+  </data>
+  <data name="TruncatedGameOutputWarning" xml:space="preserve">
+    <value>La sortie est trop longue, elle a été tronquée ! Voir le journal de Thrive pour la sortie complète.</value>
+  </data>
+  <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
+    <value>Version de développement à lancer (lorsque le lancement d'une version de développement est choisi)</value>
+  </data>
+  <data name="PlayUnsafeBuildTitle" xml:space="preserve">
+    <value>Lancer une version de développement non sécurisé ?</value>
+  </data>
+  <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
+    <value>Cet onglet liste les versions installées extérieurement. C'est un entrepôt pour les versions de Thrive qui inclut une version empaquetée. Vous pouvez activer l'affichage des versions externes dans le menu déroulant dans les options du lanceur. Une fois téléchargées, ces versions sont affichées ici.</value>
+  </data>
+  <data name="FoundDevBuildToPlayInfo" xml:space="preserve">
+    <value>Version de développement à lancer trouvée : {0}, hash : {1} VDJ : {2}, branche : {3}</value>
+  </data>
+  <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
+    <value>Description de la version :
+{0}</value>
+  </data>
+  <data name="RehydrationFailed" xml:space="preserve">
+    <value>Échec de la décompression due à une erreur : {0}</value>
+  </data>
+  <data name="CrashReporterWindowTitle" xml:space="preserve">
+    <value>Signaleur de plantage Thrive</value>
+  </data>
+  <data name="ContinueReportingButton" xml:space="preserve">
+    <value>Continuer à signaler</value>
+  </data>
+  <data name="RehydrationStarting" xml:space="preserve">
+    <value>C'est une version compressée. Début de la décompression.</value>
+  </data>
+  <data name="CancelCreatingReportExplanation" xml:space="preserve">
+    <value>Êtes-vous sûr(e) de vouloir annuler la création d'un rapport de plantage ? Si un bogue n'est pas signalé du tout, les développeurs ne pourront pas le réparer.</value>
+  </data>
+  <data name="ClearAllCrashesButton" xml:space="preserve">
+    <value>Supprimer TOUS les dépots de plantage</value>
+  </data>
+  <data name="DevCenterConnectFailureConnection" xml:space="preserve">
+    <value>La connexion au ThriveDevCenter a échoué. Veuillez réessayer, le ThriveDevCenter peut avoir été indisponible temporairement. Vous devriez aussi vérifier votre connexion internet. Vous pouvez utiliser le lien ci-dessous pour voir si votre navigateur arrive a se connecter. Réessayez plus tard, et si le problème persiste plus longtemps que quelques minutes, veuillez le signaler.</value>
+  </data>
+  <data name="SubmittingReportMessage" xml:space="preserve">
+    <value>Soumission de votre rapport. Veuillez patienter, ça peut prendre quelques minutes...</value>
+  </data>
+  <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
+    <value>La connexion au ThriveDevCenter a échoué. Le serveur a répondu avec une erreur inconnue ou nous avons rencontré une erreur en traitant la réponse. Veuillez réessayer plus tard et si le problème persiste, signalez le. Vous pouvez utiliser le lien ci-dessous pour vérifier que tout fonctionne du côté du ThriveDevCenter.</value>
+  </data>
+  <data name="ReportViewingPublicInfo" xml:space="preserve">
+    <value>Vous pouvez voir votre rapport, si il est public, à l'adresse suivante :</value>
+  </data>
+  <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
+    <value>Votre rapport a été soumis avec succès. Merci pour votre signalement.</value>
   </data>
 </root>
