@@ -711,4 +711,10 @@
   <data name="ProcessingStateItemProgress" xml:space="preserve">
     <value>Оброблення {0}</value>
   </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>Будь-які застарілі файли будуть видалені з тимчасових каталогів по перезапуску лаунчера. Через це каталог тимчасових файлів не повинен містити щось окрім файлів Thrive, аби уникнути небажаного видалення файлів.</value>
+  </data>
+  <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
+    <value>Автоматично перезапустити Thrive у випадку невдалого запуску</value>
+  </data>
 </root>
