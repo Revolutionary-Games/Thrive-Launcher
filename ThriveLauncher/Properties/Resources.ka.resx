@@ -388,4 +388,143 @@
   <data name="SelectDevBuildCacheLocation" xml:space="preserve">
     <value>აირჩეთ კეშის მდებარეობა</value>
   </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>გამშვების დამალვა თამაშისას</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>გამშვების ავტომატური განახლება</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>აირჩიეთ დროებითი ფაილის მდებარეობა</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>დროებითი ფაილების მდებარეობის ჩამოყრა</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>თქვენ პროგრამისტი ბრძანდებით</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+    <value>ინსტრუქციები ჩვენს ვიკიზე</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>მიბმის კოდის მიღება</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>პარამეტრების შენახვა ჩავარდა</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>საქაღალდე ვერ ვიპოვე</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+    <value>შეიყვანეთ აგების ჰეში (commit)</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>გამშვების საწყისი კოდი</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Thrive-ის გამშვების ლიცენზიები</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>ყველა სერტიფიკატის ვადა ამოიწურა</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} {1}-სთვის</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>გადავიტანო არსებული ვერსიები?</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>დაკეშილი ვერსიის ინფორმაციის გამოყენება</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>წაშლა ჩავარდა</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>წავშალო დროებითი ფაილები?</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>წავშალო სატესტო ვერსიების კეში?</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>ThriveDevCenter-თან მიერთება ჩავარდა</value>
+  </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>კოდების შემოწმება ThriveDevCenter-ზე</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>Thrive-ის გაშვება შეუძლებელია</value>
+  </data>
+  <data name="ItemProgressDisplay" xml:space="preserve">
+    <value>პროცესი {0} {1}-დან</value>
+  </data>
+  <data name="DownloadingStateItemProgress" xml:space="preserve">
+    <value>{0}-ის გადმოწერა {1}-დან</value>
+  </data>
+  <data name="PlayUnsafeBuildTitle" xml:space="preserve">
+    <value>ითამაშებთ არასტაბილურ სატესტო ვერსიას?</value>
+  </data>
+  <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
+    <value>აგების აღწერა:
+{0}</value>
+  </data>
+  <data name="CrashReporterWindowTitle" xml:space="preserve">
+    <value>Thrive-ის ავარიული დასრულების ანგარიში</value>
+  </data>
+  <data name="CancelCreatingReportTitle" xml:space="preserve">
+    <value>გავაუქმო ანგარიშის შედგენა?</value>
+  </data>
+  <data name="ClearAllCrashesButton" xml:space="preserve">
+    <value>ყველა ავარიის დამპის წაშლა</value>
+  </data>
+  <data name="AutoCloseStopped" xml:space="preserve">
+    <value>ავტოდახურვა გაუქმდა</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>კოპირება ბუფერში</value>
+  </data>
+  <data name="CrashReportLogsSection" xml:space="preserve">
+    <value>ჩასასმელი ჟურნალები</value>
+  </data>
+  <data name="PerformingAutoUpdateTitle" xml:space="preserve">
+    <value>მიმდინარეობს გამშვების განახლება</value>
+  </data>
+  <data name="QuitLauncherButton" xml:space="preserve">
+    <value>გამშვებიდან გასვლა ახლავე</value>
+  </data>
+  <data name="ExitTheLauncher" xml:space="preserve">
+    <value>გამშვებიდან გასვლა</value>
+  </data>
+  <data name="FileSystemErrorTitle" xml:space="preserve">
+    <value>ფაილთან წვდომის შეცდომა</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>გადავიტანო არსებული ფაილები?</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>არსებული მიერთების თავიდან ცდა</value>
+  </data>
+  <data name="CrashReportDescriptionFieldPlaceholder" xml:space="preserve">
+    <value>ავარიის აღწერა (არასავალდებულო)</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>გამშვების ლიცენზიების ნახვა</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>გადასვლა გადმოწერების გვერდზე</value>
+  </data>
+  <data name="AutoUpdateFailedTitle" xml:space="preserve">
+    <value>გამშვების განახლება ჩავარდა</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>გამშვების ვერსია მოძველებულია</value>
+  </data>
+  <data name="ForgetLastPlayedVersion" xml:space="preserve">
+    <value>ბოლოს ნათამაშევი ვერსიის დავიწყება</value>
+  </data>
+  <data name="VerifyingStateItemProgress" xml:space="preserve">
+    <value>{0}-ის მთლიანობის გადამოწმება</value>
+  </data>
+  <data name="ThriveRunCanceled" xml:space="preserve">
+    <value>Thrive-ის გაშვება გაუქმდა</value>
+  </data>
 </root>
