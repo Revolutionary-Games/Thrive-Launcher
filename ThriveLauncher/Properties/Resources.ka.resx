@@ -527,4 +527,34 @@
   <data name="ThriveRunCanceled" xml:space="preserve">
     <value>Thrive-ის გაშვება გაუქმდა</value>
   </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>მადლობა მხარდაჭერისთვის!</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>ლენტის ჩვენება შეუძლებელია. {0}</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>პოსტის ავტორი: {0}. დრო: {1}</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>სრული პოსტის წასაკითხად.</value>
+  </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>Thrive-ის ხელმისაწვდომი ვერსიების მიღების შეცდომა</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>Thrive-ის თავსებადი ვერსიები აღმოჩენილი არაა</value>
+  </data>
+  <data name="DownloadError" xml:space="preserve">
+    <value>გადმოწერა ჩავარდა. მიზეზი: {0}</value>
+  </data>
+  <data name="DownloadProgressDisplay" xml:space="preserve">
+    <value>გადმოწერილია {0} მიბ {1}-დან</value>
+  </data>
+  <data name="ActiveReportingInfo" xml:space="preserve">
+    <value>ავარიის ანგარიში {0} მისამართზე {1}</value>
+  </data>
+  <data name="InvalidVersionInfoLoadedTitle" xml:space="preserve">
+    <value>ჩატვირთული ვერსიის ინფორმაცია არასწორია</value>
+  </data>
 </root>
