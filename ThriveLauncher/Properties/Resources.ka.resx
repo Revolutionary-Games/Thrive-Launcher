@@ -557,4 +557,16 @@
   <data name="InvalidVersionInfoLoadedTitle" xml:space="preserve">
     <value>ჩატვირთული ვერსიის ინფორმაცია არასწორია</value>
   </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>აღმოჩენილია პარამეტრები გამშვების წინა ვერსიიდან. შეგიძლიათ, ეს არსებული პარამეტრები შემოიტანოთ, რომ შეინარჩუნოთ დაყენებული Thrive-ის ვერსიები და თქვენი ცვლილებები მასში. თუ ძველი Thrive-ის ვერსიებს და კეშებს არ შემოიტანთ, ისინი უცვლელად დარჩენა და ამ გამშვებს მათ შესახებ არ ეცოდინება. პარამეტრების შემოტანა რეკომენდებულია.</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>პარამეტრების შემოტანა ჩავარდა. დარწმუნდით, რომ შესაბამისი ფაილის ბილიკები პარამეტრებისთვის კითხვადი და ჩაწერადია გამშვებისთვის, შემდეგ თავიდან გაუშვით გამშვები და კიდევ სცადეთ.</value>
+  </data>
+  <data name="ImportSucceededMessage" xml:space="preserve">
+    <value>წინა პარამეტრების შემოტანა წარმატებით დასრულდა.</value>
+  </data>
+  <data name="LaunchOptionForceOpenGL" xml:space="preserve">
+    <value>OpenGL-ით რენდერის რეჟიმი (შეიძლება, Thrive გაეშვას, მაგრამ პატარა პრობლემები ჰქონდეს)</value>
+  </data>
 </root>
