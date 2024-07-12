@@ -569,4 +569,58 @@
   <data name="LaunchOptionForceOpenGL" xml:space="preserve">
     <value>OpenGL-ით რენდერის რეჟიმი (შეიძლება, Thrive გაეშვას, მაგრამ პატარა პრობლემები ჰქონდეს)</value>
   </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>გამშვების დახურვა თამაშის გაშვების შემდეგ</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>გამშვების დახურვა თამაშის დასრულების შემდეგ (თუ შეცდომები არაა)</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+    <value>დღის აგება (BOTD). რეკომენდებულია</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>ხელით არჩეული "მითითებული აგების" ჩანართში</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>ჟურნალის საქაღალდის შექმნა ჩავარდა ({0}): {1}</value>
+  </data>
+  <data name="ClearDehydratedFilesCount" xml:space="preserve">
+    <value>აპირებთ, წაშალოთ {0} ფაილი</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>ეს ვერსია უახლესია</value>
+  </data>
+  <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
+    <value>სახიფათო აგების თამაში გაუქმდა</value>
+  </data>
+  <data name="ThriveFolderPrepareFailed" xml:space="preserve">
+    <value>Thrive-ის საქაღალდის მომზადება ჩავარდა შეცდომით: {0}</value>
+  </data>
+  <data name="AcceptUnsafeBuildButton" xml:space="preserve">
+    <value>ვიცი, რას ვაკეთებ. მაინც ვითამაშებ</value>
+  </data>
+  <data name="RehydrationFailed" xml:space="preserve">
+    <value>რეჰიდრატაცია ჩავარდა შეცდომის გამო: {0}</value>
+  </data>
+  <data name="SubmittingReportExtraInfo" xml:space="preserve">
+    <value>დამატებითი ინფორმაცია აღმოჩენილი შეცდომის შესახებ:</value>
+  </data>
+  <data name="CPUFeatureWarningTitle" xml:space="preserve">
+    <value>აღმოჩნდა, რომ CPU-ს აკლია შემდეგი ფუნქციები</value>
+  </data>
+  <data name="LauncherOptionShowAllBetaVersions" xml:space="preserve">
+    <value>Thive-ის ყველა არსებული ბეტა ვერსიების ჩვენება</value>
+  </data>
+  <data name="RehydrationStarting" xml:space="preserve">
+    <value>ეს დეჰიდრირებული აგებაა. რეჰიდრატაციის დასაწყისი.</value>
+  </data>
+  <data name="CopyLogWindowToClipboardToolTip" xml:space="preserve">
+    <value>თამაშის გამოტანის კოპირება ბუფერში</value>
+  </data>
+  <data name="ViewFirstAutoUpdaterFolder" xml:space="preserve">
+    <value>საქაღალდის, რომელშიც პირველი განახლების პროგრამაა, გახსნა</value>
+  </data>
+  <data name="NoAvailableCrashesToReport" xml:space="preserve">
+    <value>გადასაცემი ავარიები აღმოსაჩენ არააა</value>
+  </data>
 </root>
