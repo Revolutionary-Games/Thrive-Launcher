@@ -62,7 +62,7 @@
     <value>Importować Poprzednie Ustawienia?</value>
   </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
-    <value>Ustawienia z poprzedniej wersji launchera zostały wykryte. Możesz zaimportować te istniejące ustawienia by utrzymać twoje zainstalowane wersje Thrive i inne dostosowania nienaruszone. Jeśli nie zaimportujesz starych wersji oraz pamięci podręcznej Thrive, zostaną zapomniane i ten launcher nie będzie ich znał. Zaimportowanie ustawień jest zalecane.</value>
+    <value>Ustawienia z poprzedniej wersji launchera zostały wykryte. Możesz zaimportować te istniejące ustawienia by utrzymać twoje zainstalowane wersje Thrive i inne dostosowania nienaruszone. Jeśli nie zaimportujesz starych wersji oraz pamięci podręcznej Thrive, zostaną zapomniane i ten launcher nie będzie o nich wiedział. Zaimportowanie ustawień jest zalecane.</value>
   </data>
   <data name="SkipAction" xml:space="preserve">
     <value>Pomiń</value>
@@ -71,10 +71,10 @@
     <value>Importuj</value>
   </data>
   <data name="ImportFailedTitle" xml:space="preserve">
-    <value>Import Nieudany</value>
+    <value>Importowanie nie powiodło się</value>
   </data>
   <data name="ImportFailedMessage" xml:space="preserve">
-    <value>Nie udało się zaimportować ustawień. Prosimy upewnić się że ścieżki plików dla ustawień są możliwe do odczytu i zapisu przez launchera, potem zrestartuj go by spróbować ponownie.</value>
+    <value>Nie udało się zaimportować ustawień. Prosimy upewnić się, że ścieżki plików dla ustawień są możliwe do odczytu i zapisu przez launcher, potem uruchomić go ponownie by spróbować jeszcze raz.</value>
   </data>
   <data name="LauncherSelectedLanguage" xml:space="preserve">
     <value>Język Launchera:</value>
@@ -95,22 +95,22 @@
     <value>Dziękujemy Ci,</value>
   </data>
   <data name="DevelopmentFeedTitle" xml:space="preserve">
-    <value>FORA DEWELOPERÓW</value>
+    <value>FORUM DEWELOPERSKIE</value>
   </data>
   <data name="WebContentIsDisabled" xml:space="preserve">
     <value>Zawartość sieciowa wyłączona</value>
   </data>
   <data name="NewsFeedTitle" xml:space="preserve">
-    <value>NOWINY</value>
+    <value>NOWOŚCI</value>
   </data>
   <data name="LinksPopupTitle" xml:space="preserve">
     <value>Linki Revolutionary Games</value>
   </data>
   <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
-    <value>Fora deweloperów</value>
+    <value>Forum deweloperskie</value>
   </data>
   <data name="ExternalLinkCommunityForums" xml:space="preserve">
-    <value>Fora społeczności</value>
+    <value>Forum społeczności</value>
   </data>
   <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
     <value>Developerska Wiki</value>
@@ -167,16 +167,16 @@
     <value>Włącz Kanały Sieciowe</value>
   </data>
   <data name="LauncherOptionHideOnPlay" xml:space="preserve">
-    <value>Ukryj Launcher podczas Rozgrywki</value>
+    <value>Ukrywaj Launcher podczas Rozgrywki</value>
   </data>
   <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
     <value>Zamykaj Launcher Po Uruchomieniu Gry</value>
   </data>
   <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
-    <value>Włącz Gładki Launcher (launcher nie pokazuje się przed uruchomienim Thrive)</value>
+    <value>Włącz Tryb Płynnego Launchera (launcher nie pokazuje się przed uruchomienim Thrive)</value>
   </data>
   <data name="LauncherOptionAutoUpdate" xml:space="preserve">
-    <value>Automatyczne aktualizuj launchera</value>
+    <value>Automatyczne aktualizuj launcher</value>
   </data>
   <data name="BrowseInstalledFiles" xml:space="preserve">
     <value>Przeglądaj Zainstalowane Pliki</value>
@@ -197,16 +197,16 @@
     <value>Wyczyść</value>
   </data>
   <data name="DevBuildsCachePathDisplay" xml:space="preserve">
-    <value>Pamięć podręczna plików DevBuilda:</value>
+    <value>Pamięć podręczna plików Wersji Deweloperskiej:</value>
   </data>
   <data name="SelectDevBuildCacheLocation" xml:space="preserve">
-    <value>Wybierz Lokację Pamięci Podręcznej</value>
+    <value>Wybierz Lokalizację Pamięci Podręcznej</value>
   </data>
   <data name="CacheSizeDisplay" xml:space="preserve">
     <value>Wielkość pamięci podręcznej:</value>
   </data>
   <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
-    <value>Połączenie ThriveDevCenter</value>
+    <value>Połączenie z ThriveDevCenter</value>
   </data>
   <data name="DialogOk" xml:space="preserve">
     <value>OK</value>
@@ -215,16 +215,16 @@
     <value>Informacje</value>
   </data>
   <data name="ConnectedAsUserDisplay" xml:space="preserve">
-    <value>Połączone jako:</value>
+    <value>Połączony(a/e) jako:</value>
   </data>
   <data name="YouAreDeveloperInfo" xml:space="preserve">
-    <value>Jesteś Deweloperem</value>
+    <value>Jesteś deweloperem</value>
   </data>
   <data name="LogoutButton" xml:space="preserve">
     <value>Wyloguj się</value>
   </data>
   <data name="ConnectionKeyPlaceholder" xml:space="preserve">
-    <value>Kod do linku</value>
+    <value>Kod do podpięcia</value>
   </data>
   <data name="ConnectButton" xml:space="preserve">
     <value>Połącz</value>
@@ -236,22 +236,22 @@
     <value>Potwierdź</value>
   </data>
   <data name="SpecificBuildTab" xml:space="preserve">
-    <value>Specyficzny Build</value>
+    <value>Specyficzna Wersja</value>
   </data>
   <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
     <value>Manualnie wprowadzono hash:</value>
   </data>
   <data name="EnterBuildHashPlaceholder" xml:space="preserve">
-    <value>Wprowadź hash builda (zatwierdzenie)</value>
+    <value>Wprowadź hash wersji (zatwierdzenie)</value>
   </data>
   <data name="SelectButton" xml:space="preserve">
     <value>Wybierz</value>
   </data>
   <data name="FetchLatestBuildsButton" xml:space="preserve">
-    <value>Pobierz Najnowsze Buildy</value>
+    <value>Pobierz Najnowsze Wersje</value>
   </data>
   <data name="SettingsSaveFailedTitle" xml:space="preserve">
-    <value>Zapisywanie Ustawień Nieudane</value>
+    <value>Zapisywanie Ustawień nie powiodło się</value>
   </data>
   <data name="SizeInMiB" xml:space="preserve">
     <value>{0} MiB</value>
@@ -263,7 +263,7 @@
     <value>Folder Nie Znaleziony</value>
   </data>
   <data name="ThriveInstallFolderNotFound" xml:space="preserve">
-    <value>Folder instalacyjny Thrive nie istnieje.</value>
+    <value>Folder instalacji wersji Thrive nie istnieje.</value>
   </data>
   <data name="ViewLicensesButton" xml:space="preserve">
     <value>Zobacz Licencje Launchera</value>
@@ -278,7 +278,7 @@
     <value>Kanał nie może zostać wyświetlony. {0}</value>
   </data>
   <data name="FeedItemPostedByAndTime" xml:space="preserve">
-    <value>Zapostowane przez {0} o {1}</value>
+    <value>post autorstwa użytkownika {0}; czas zamieszczenia: {1}</value>
   </data>
   <data name="ClickHereLink" xml:space="preserve">
     <value>Kliknij tutaj</value>
@@ -287,7 +287,7 @@
     <value>by przeczytać pełen post.</value>
   </data>
   <data name="LogFolderCreateFailed" xml:space="preserve">
-    <value>Utworzenie folderu logów nieudane ({0}): {1}</value>
+    <value>Utworzenie folderu logów nie powiodło się ({0}): {1}</value>
   </data>
   <data name="OpenLogsFolderButton" xml:space="preserve">
     <value>Przeglądaj Logi</value>
@@ -302,7 +302,7 @@
     <value>Błąd Uzyskiwania Dostępnych Wersji Thrive</value>
   </data>
   <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
-    <value>Pobrana informacja Lanchera Thrive jest niepoprawna. Prosimy spróbować ponownie wkrótce, a jeśli problem dalej trwa, skontaktuj się z nami.</value>
+    <value>Pobrana informacja Lanchera Thrive jest niepoprawna. Prosimy wkrótce spróbować ponownie, a jeśli problem dalej trwa, skontaktować się z nami.</value>
   </data>
   <data name="Retry" xml:space="preserve">
     <value>Spróbuj ponownie</value>
@@ -326,7 +326,7 @@
     <value>Błąd Wewnętrzny</value>
   </data>
   <data name="InternalErrorExplanation" xml:space="preserve">
-    <value>W launcherze wydarzył się błąd wewnętrzny. Prosimy zgłosić ten błąd i dostarczyć pliki logów launchera wraz z twoim raportem jak natrafiłeś na ten problem.</value>
+    <value>W launcherze wystąpił błąd wewnętrzny. Prosimy go zgłosić i dostarczyć pliki logów launchera wraz z opisem natrafienia na ten problem.</value>
   </data>
   <data name="Move" xml:space="preserve">
     <value>Przenieś</value>
@@ -347,13 +347,13 @@
     <value>Planujesz usunąć {0} plik(i/ów) / folder(y/ów)</value>
   </data>
   <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
-    <value>Usunąć Pamięć Podręczną DevBuilda?</value>
+    <value>Usunąć Pamięć Podręczną Wersji Deweloperskiej?</value>
   </data>
   <data name="ClearDehydratedFilesCount" xml:space="preserve">
     <value>Planujesz usunąć {0} plik(i/ów)</value>
   </data>
   <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
-    <value>Jeśli gra nie uruchomiła się poprawnie, prosimy spróbować obejść uruchomienia Thrive dostępnych Opcjach Thrive w ustawieniach launchera</value>
+    <value>Jeśli gra nie uruchomiła się poprawnie, prosimy wypróbować obejścia uruchamiania Thrive, dostępne w "Opcjach Thrive" w ustawieniach launchera</value>
   </data>
   <data name="LauncherIsLatestVersion" xml:space="preserve">
     <value>Ta wersja jest aktualna</value>
@@ -362,25 +362,25 @@
     <value>Odwiedź Stronę z Wersjami do Pobrania</value>
   </data>
   <data name="ImportSucceededTitle" xml:space="preserve">
-    <value>Import Udany</value>
+    <value>Importowanie powiodło się</value>
   </data>
   <data name="ImportSucceededMessage" xml:space="preserve">
-    <value>Poprzednie ustawienia zostały sukcesywnie zaimportowanie.</value>
+    <value>Poprzednie ustawienia zostały pomyślnie zaimportowanie.</value>
   </data>
   <data name="ExternalLinkMainWebsite" xml:space="preserve">
-    <value>Główna strona</value>
+    <value>Strona główna</value>
   </data>
   <data name="ExternalLinkDonate" xml:space="preserve">
     <value>Donejtuj</value>
   </data>
   <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
-    <value>Centrum Deweloperskie Thrive</value>
+    <value>ThriveDevCenter</value>
   </data>
   <data name="ExternalLinkDiscordServer" xml:space="preserve">
     <value>Serwer Discord</value>
   </data>
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
-    <value>Wyłącz wszystkie filmiki w grze (jeśli Thrive crashuje się po pokazaniu loga wczytywania i po filmikach intra, to może pomóc w doprowadzeniu gry do działania)</value>
+    <value>Wyłącz wszystkie sekwencje filmowe w grze (jeśli Thrive crashuje się po pokazaniu loga wczytywania, ale przed odtworzeniem sekwencji filmowej wstępu, to może pomóc w doprowadzeniu gry do działania)</value>
   </data>
   <data name="LauncherOptionHide32Bit" xml:space="preserve">
     <value>Ukryj wersje 32-bitowe jeśli porównywalne 64-bitowe wersje istnieją</value>
@@ -398,65 +398,65 @@
     <value>Folder jest pusty</value>
   </data>
   <data name="OutdatedLauncherTitle" xml:space="preserve">
-    <value>Przestarzała Wersja Launchera</value>
+    <value>Wersja Launchera jest Przestarzała</value>
   </data>
   <data name="ResetTemporaryLocation" xml:space="preserve">
     <value>Resetuj Lokalizację Plików Tymczasowych</value>
   </data>
   <data name="ClearTemporaryLocation" xml:space="preserve">
-    <value>Usuń WSZYSTKIE pliki w folderze tymczasowym. (Może usunąć nawet pliki niezwiązanie z Thrive jeśli takie istnieją!)</value>
+    <value>Usuń WSZYSTKIE pliki w folderze tymczasowym. Może usunąć nawet pliki niezwiązanie z Thrive jeśli takie istnieją!</value>
   </data>
   <data name="ClearDehydratedLocation" xml:space="preserve">
-    <value>Usuń wszystkie pliki w folderze skompresowanej pamięci podręcznej Wersji Developerskiej. Jeśli lokacja jest niestandardowa, w folderze mogą być pliki niezwiązane z Thrive które również zostaną usunięte.</value>
+    <value>Usuń wszystkie pliki w skompresowanym folderze pamięci podręcznej Wersji Developerskiej. Jeśli lokacja jest niestandardowa, w folderze mogą być pliki niezwiązane z Thrive które również zostaną usunięte.</value>
   </data>
   <data name="ResetCacheLocation" xml:space="preserve">
-    <value>Resetuj Lokację Pamięci Podręcznej</value>
+    <value>Resetuj Lokalizację Pamięci Podręcznej</value>
   </data>
   <data name="YouAreASupporter" xml:space="preserve">
     <value>Dziękujemy Ci za twoje wsparcie!</value>
   </data>
   <data name="BuildTypeSelectionBOTD" xml:space="preserve">
-    <value>Build dnia (BD), zalecany</value>
+    <value>Wersja dnia (WD), zalecana</value>
   </data>
   <data name="BuildTypeSelectionLatest" xml:space="preserve">
-    <value>Ostatnie (często i losowo się zmienia jako iż to dosłownie build z najnowszego zatwierdzenia kodu)</value>
+    <value>Najnowsza (często i losowo się zmienia, jako iż to dosłownie wersja z najnowszego zatwierdzenia kodu)</value>
   </data>
   <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
     <value>Instrukcje na naszej Wiki</value>
   </data>
   <data name="DevCenterConnectionExplanation" xml:space="preserve">
-    <value>Tutaj możesz podlinkować launcher do Centrum Deweloperskiego Thrive by otrzymać dostęp do DevBuildów i innych funkcji</value>
+    <value>Tutaj możesz podpiąć launcher do ThriveDevCenter by otrzymać dostęp do Wersji Deweloperskich i innych funkcji</value>
   </data>
   <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
-    <value>Zdobądź kod linkowy</value>
+    <value>Zdobądź kod do podpięcia</value>
   </data>
   <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
-    <value>Wybierz manualnie wprowadzoną wartość hasha do użycia z ramki wejścia jako wybrany DevBuild to uruchomienia gdy grasz w DevBuildy</value>
+    <value>Wybierz manualnie wprowadzoną wartość hasha do użycia z ramki wejścia jako wybraną Wersję Deweloperską do uruchomienia gdy Wersja Deweloperska jest uruchamiana</value>
   </data>
   <data name="SettingsSaveFailedMessage" xml:space="preserve">
-    <value>Zapisywanie ustawień do pliku ustawień nie powiodło się. Prosimy upewnić się że launcher ma dostęp do zapisu i spróbuj ponownie.
+    <value>Zapisywanie ustawień do pliku ustawień nie powiodło się. Prosimy upewnić się że launcher ma dostęp do zapisu i spróbować ponownie.
 Logi launchera nie mają więcej informacji.</value>
   </data>
   <data name="LauncherSourceCodeButton" xml:space="preserve">
     <value>Kod Źródłowy Launchera</value>
   </data>
   <data name="RobotoLicenseTitle" xml:space="preserve">
-    <value>W launcherze jest używany font Roboto, licencja Roboto:</value>
+    <value>W launcherze używany jest font Roboto, licencja Roboto:</value>
   </data>
   <data name="LatoLicenseTitle" xml:space="preserve">
-    <value>Lato.ttf (Prawa autorskie © 2010-1011 przez tyPoland Łukasz Dziedzic z Zarezerwowaną Nazwą Fonta "Lato"), licencja OFL:</value>
+    <value>Lato.ttf (Prawa autorskie © 2010-2011 przez tyPoland Łukasz Dziedzic z Zarezerwowaną Nazwą Fonta "Lato"), licencja OFL:</value>
   </data>
   <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
     <value>Wszystkie Certyfikaty Wygasły</value>
   </data>
   <data name="AllSigningKeysExpired" xml:space="preserve">
-    <value>Wszystkie z certyfikatów weryfikujących logowanie, w które zaopatrzony jest ten launcher, wygasły. To oznacza iż ta wersja launchera jest niesamowicie przestarzała. Prosimy pobrać i zainstalować nowszą wersję.</value>
+    <value>Wszystkie z certyfikatów weryfikujących logowanie, w które zaopatrzony jest ten launcher, wygasły. To oznacza, iż ta wersja launchera jest ekstremalnie przestarzała. Prosimy pobrać i zainstalować nowszą wersję.</value>
   </data>
   <data name="LoadingDotDotDot" xml:space="preserve">
     <value>Wczytywanie...</value>
   </data>
   <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
-    <value>Launcher Thrive ładuje dostępne wersje Thrive z internetu by wiedzieć co jest dostępne. Wczytywanie tej informacji nie powiodło się (zobacz błąd poniżej). Możesz spróbować pobrać tę informację ponownie, a jeśli laucher wcześniej był w stanie pobrać tę informację, możesz załadować jej kopię z pamięci podręcznej. Jeśli kopia z pamięci podręcznej jest bardzo stara, może nie pokazywać wszystkich dostępnych wersji Thrive. Zauważ, że jeśli wersja twojego launchera jest zbyt stara, może być niekompatybilna z nowszym formatem danych i musi zostać manualnie uaktualniona nim dane mogą być wczytane.</value>
+    <value>Launcher Thrive ładuje dostępne wersje Thrive z internetu by wiedzieć, co jest dostępne. Wczytywanie tej informacji nie powiodło się (zobacz błąd poniżej). Możesz spróbować pobrać tę informację ponownie, a jeśli laucher wcześniej był w stanie pobrać tę informację, możesz załadować jej kopię z pamięci podręcznej. Jeśli kopia z pamięci podręcznej jest bardzo stara, może nie pokazywać wszystkich dostępnych wersji Thrive. Zauważ, że jeśli wersja twojego launchera jest zbyt stara, może być niekompatybilna z nowszym formatem danych i musi zostać manualnie uaktualniona, nim dane mogą być wczytane.</value>
   </data>
   <data name="UnknownError" xml:space="preserve">
     <value>Nieznany błąd</value>
@@ -465,16 +465,16 @@ Logi launchera nie mają więcej informacji.</value>
     <value>Launcher nie mógł znaleźć jakichkolwiek wersji Thrive kompatybilnych z tym systemem. Jeśli używasz nietypowego systemu operacyjnego, to jest oczekiwane. W innym przypadku prosimy zgłosić to jako błąd.</value>
   </data>
   <data name="MoveVersionsExplanation" xml:space="preserve">
-    <value>Zainstalowane wersje Thrive zostały wykryte na poprzedniej ścieżce. Mogą zostać automatycznie przeniesione do nowej lokacji. Nie przeniesione, pliki zostaną zapomnie przez launcher i nie będzie on o nich wiedział puki poprzednia ścieżka nie zostanie ponownie wybrana jako lokacja instalacji. Czy chciałbyś automatycznie przenieść te pliki do nowej lokacji?</value>
+    <value>Zainstalowane wersje Thrive zostały wykryte na poprzedniej ścieżce. Mogą zostać automatycznie przeniesione do nowej lokalizacji. Nie przeniesione, pliki zostaną zapomnie przez launcher i nie będzie on o nich wiedział puki poprzednia ścieżka nie zostanie ponownie wybrana jako lokalizacja instalacji. Czy chciałbyś automatycznie przenieść te pliki do nowej lokacji?</value>
   </data>
   <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
-    <value>Istniejące przedmioty zostały wykryte w pamięci podręcznej. Mogą one zostać automatycznie przeniesione do nowej lokacji. Nie przeniesione, pliki zostaną zapomnie przez launcher i nie będzie on o nich wiedział puki poprzednia ścieżka nie zostanie ponownie wybrana jako lokacja instalacji. Czy chciałbyś automatycznie przenieść {0} plik(i/ów) do nowej lokacji? Zauważ że jeśli niezwiązane z Thrive pliki znajdują się w folderze pamięci podręcznej, również zostaną przeniesione.</value>
+    <value>Istniejące przedmioty zostały wykryte w pamięci podręcznej. Mogą one zostać automatycznie przeniesione do nowej lokalizacji. Nie przeniesione, pliki zostaną zapomnie przez launcher i nie będzie on o nich wiedział puki poprzednia ścieżka nie zostanie ponownie wybrana jako lokalizacja instalacji. Czy chciałbyś automatycznie przenieść {0} plik(i/ów) do nowej lokalizacji? Zauważ, że jeśli niezwiązane z Thrive pliki znajdują się w folderze pamięci podręcznej, również zostaną przeniesione.</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Odrzuć</value>
   </data>
   <data name="DeleteErrorTitle" xml:space="preserve">
-    <value>Usunięcie Nieudane</value>
+    <value>Usunięcie nie powiodło się</value>
   </data>
   <data name="DeleteErrorExplanation" xml:space="preserve">
     <value>Nie udało się usunąć danych z następującej ścieżki: "{0}" ponieważ: {1}</value>
@@ -489,7 +489,7 @@ Logi launchera nie mają więcej informacji.</value>
     <value>Planujesz usunąć wszystkie pliki przechowywane w skompresowanym folderze pamięci podręcznej w "{0}". Nawet pliki niezwiązane z Thrive zostaną usunięte, jeśli w nim się znajdują. Usunąć zawartość foldera?</value>
   </data>
   <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
-    <value>Kod wyjściowy może oznaczać brak wymaganego pliku DLL. Może to być Visual C++ Redistributable 2019, który możesz pobrać jako installer z: https://aka.ms/vs/17/release/vc_redist.x64.exe by go zainstalować / naprawić. Możesz również spróbować odpalić Thrive.exe manualne jako iż to może pokazać błąd wraz z nazwą brakującego pliku w oknie dialogowym. Powinieneś sprawdzić czy masz wszystkie aktualizacje Windowsa zainstalowane. Jeśli te metody nie pomagają, skontaktuj się z nami dla dodatkowej pomocy.</value>
+    <value>Kod wyjściowy może oznaczać brak wymaganego pliku DLL. Może to być Visual C++ Redistributable 2019, który możesz pobrać jako installer z: https://aka.ms/vs/17/release/vc_redist.x64.exe by go zainstalować / naprawić. Możesz również spróbować odpalić Thrive.exe manualnie, jako iż to może pokazać błąd wraz z nazwą brakującego pliku w oknie dialogowym. Powinieneś sprawdzić, czy masz wszystkie aktualizacje Windowsa zainstalowane. Jeśli te metody nie pomagają, skontaktuj się z nami dla dodatkowej pomocy.</value>
   </data>
   <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
     <value>Używasz wersji {0} Launchera Thrive, ale najnowszą jest {1}</value>
@@ -498,63 +498,135 @@ Logi launchera nie mają więcej informacji.</value>
     <value>Folder pobrań tymczasowych:</value>
   </data>
   <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
-    <value>Uwaga: by uniknąć przypadkowego kontaktu z plikami niezwiązanymi z Thrive, przeniesienie lokalizacji tymczasowej NIE przeniesie bądź usunie istniejących plików.</value>
+    <value>Uwaga: by uniknąć przypadkowego kontaktu z plikami niezwiązanymi z Thrive, przeniesienie lokalizacji tymczasowej NIE przeniesie bądź usunie istniejących plików</value>
   </data>
   <data name="BuildTypeSelectionManual" xml:space="preserve">
-    <value>Manualnie wybrane w zakładce "Specyficzny Build"</value>
+    <value>Manualnie wybrana w zakładce "Specyficzna Wersja"</value>
   </data>
   <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
-    <value>Używasz niezdolnego do auto-aktualizacji rodzaju launchera. Jeśli chciałbyś je w przyszłości wykorzystywać, prosimy zainstalować zdolną to tego wersję launchera.</value>
+    <value>Używasz niezdolnego do auto-aktualizacji rodzaju launchera. Jeśli chciał(a/o)byś w przyszłości wykorzystywać auto-aktualizacje, prosimy zainstalować zdolną to tego wersję launchera.</value>
   </data>
   <data name="OutdatedLauncherExplanation" xml:space="preserve">
-    <value>Ta wersja launchera jest przestarzała więc powinna zostać zaktualizowana. Jeśli widzisz tą wiadomość, oznacza to, że auto-aktualizacje nie zostały włączone więc będziesz musiał/a manualnie pobrać i zainstalować aktualizację. Możesz spróbować użyć obecnej wersji, pomijając aktualizację, lecz możesz spotkać się z nieoczekiwanymi problemami jako iż tylko najnowsza wersja launcher ma gwarancję działania z delikatnymi systemami z jakimi launcher wchodzi w interakcje.</value>
+    <value>Ta wersja launchera jest przestarzała, więc powinna zostać zaktualizowana. Jeśli widzisz tę wiadomość, oznacza to, że auto-aktualizacje nie zostały włączone, przez co będziesz musiał(a/o) manualnie pobrać i zainstalować aktualizację. Możesz spróbować użyć obecnej wersji, pomijając aktualizację, lecz możesz spotkać się z nieoczekiwanymi problemami, jako iż tylko najnowsza wersja launcher ma gwarancję działania z delikatnymi systemami, z jakimi launcher wchodzi w interakcje.</value>
   </data>
   <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
-    <value>Typ launchera jakiego używasz powinien mieć możliwość auto-aktualizacji. Z nieznanej przyczyny auto-aktualizowanie nie zadziałało a najnowsza wersja launchera jest dostępna od dłuższego czasu. Prosimy sprawdzić czy przypadkiem nie wyłączyłeś/aś auto-aktualizacji.</value>
+    <value>Rodzaj launchera, jakiego używasz, powinien mieć możliwość auto-aktualizacji. Z nieznanej przyczyny auto-aktualizowanie nie zadziałało, a najnowsza wersja launchera jest dostępna od dłuższego czasu. Prosimy sprawdzić, czy przypadkiem nie wyłączyłeś(aś/oś) auto-aktualizacji.</value>
   </data>
   <data name="OutdatedLauncherUpdateDisabledByUser" xml:space="preserve">
-    <value>Typ launchera jakiego używasz ma możliwość auto-aktualizacji, jednakże funkcje auto-aktualizacji są obecnie wyłączone przez ustawienia bądź poprzez flagę wiersza poleceń.</value>
+    <value>Rodzaj launchera, jakiego używasz, ma możliwość auto-aktualizacji, jednakże funkcje auto-aktualizacji są obecnie wyłączone przez ustawienia bądź poprzez flagę wiersza poleceń.</value>
   </data>
   <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
-    <value>Błąd: nie znaleziono pliku aktualizacji dla tego typu launchera. To nie powinno się wydarzyć. Prosimy spróbować ponownie a jeśli błąd dalej występuje, prosimy nas powiadomić.</value>
+    <value>Błąd: nie znaleziono pliku aktualizacji dla tego rodzaju launchera. To nie powinno się wydarzyć. Prosimy spróbować ponownie, a jeśli błąd dalej występuje, prosimy nas powiadomić.</value>
   </data>
   <data name="DevCenterConnectFailureTitle" xml:space="preserve">
-    <value>Połączenie z ThriveDevCenter Nieudane</value>
+    <value>Połączenie z ThriveDevCenter nie powiodło się</value>
   </data>
   <data name="LauncherOptionVerboseLogging" xml:space="preserve">
-    <value>Włącz rejestrowanie debugowania programu uruchamiającego (przed zgłoszeniem problemu lub błędu z programem uruchamiającym, proszę włącz tę opcję i uruchom ponownie program uruchamiający.)</value>
+    <value>Włącz rejestrowanie debugowania launchera (przed zgłoszeniem problemu lub błędu z launcherem, prosimy włączyć tę opcję i uruchomić go ponownie)</value>
   </data>
   <data name="DevCenterConnectFailureConnection" xml:space="preserve">
-    <value>Łączenie z ThriveDevCenter nie powiodło się. Proszę spróbuj później , ponieważ ThriveDevCenter mogło być czasowo nie dostępne. Powinieneś sprawdzić również swoje połączenie internetowe. Możesz użyć linku poniżej aby odwiedzić DevCenter aby zobaczyć czy twoja przeglądarka może się łączyć. Proszę spróbować później, oraz jeśli problem pozostaje poprzez więcej niż kilka minut, proszę to zgłosić.</value>
+    <value>Łączenie z ThriveDevCenter nie powiodło się. Prosimy spróbować później, ponieważ ThriveDevCenter mogło być czasowo nie dostępne. Powinieneś(nnaś/nnoś) sprawdzić również swoje połączenie internetowe. Możesz użyć linku poniżej, by odwiedzić DevCenter aby zobaczyć, czy twoja przeglądarka może się łączyć. Prosimy spróbować później, a jeśli problem utrzymuje się przez więcej niż kilka minut, prosimy to zgłosić.</value>
   </data>
   <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
-    <value>Łączenie z ThriveDevCenter nie powiodło się. Serwer odpowiedział odpowiedzią zakazującą. To znaczy, że nasz klucz łączenia nie jest prawidłowy. Może być to spowodowane poprzez rozłączenie połączenia poprzez sieć UI lub twoje konto może być zawieszone. Zobacz link poniżej aby sprawdzić status połączenia twojego konta.</value>
+    <value>Łączenie z ThriveDevCenter nie powiodło się. Serwer podał odpowiedź zakazującą. To znaczy, że nasz klucz łączenia nie jest prawidłowy. Może być to spowodowane poprzez rozłączenie połączenia poprzez UI sieci lub twoje konto może być zawieszone. Zobacz link poniżej aby sprawdzić status połączenia twojego konta.</value>
   </data>
   <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
-    <value>Połączenie z ThriveDevCenter nie powiodło się. Serwer odpowiedział nieznanym błędem lub wystąpił błąd podczas obsługi odpowiedzi. Proszę próbuj ponownie później, a jeśli problem będzie się powtarzał, zgłoś go. Możesz sprawdzić, klikając poniższy link, czy po stronie ThriveDevCenter wszystko wygląda dobrze.</value>
+    <value>Połączenie z ThriveDevCenter nie powiodło się. Serwer odpowiedział nieznanym błędem lub wystąpił błąd podczas obsługi odpowiedzi. Prosimy spróbować ponownie później, a jeśli problem będzie się utrzymywał, zgłosić go. Możesz sprawdzić, klikając poniższy link, czy po stronie ThriveDevCenter wszystko wygląda dobrze.</value>
   </data>
   <data name="DisconnectDevCenter" xml:space="preserve">
     <value>Rozłącz</value>
   </data>
   <data name="RetryExistingConnection" xml:space="preserve">
-    <value>Odśwież egzystujące połączenie</value>
+    <value>Wypróbuj Ponownie Istniejące Połączenie</value>
   </data>
   <data name="NewLinkEmail" xml:space="preserve">
     <value>E-mail:</value>
   </data>
   <data name="LinkFormingFailedError" xml:space="preserve">
-    <value>Nie udało się stworzyć linku, sprawdź kod jeszcze raz</value>
+    <value>Nie udało się stworzyć linku, prosimy sprawdzić kod jeszcze raz</value>
   </data>
   <data name="LoginToSeeThisContent" xml:space="preserve">
-    <value>Zaloguj się do ThriveDevCenter aby zobaczyć tę treść</value>
+    <value>Zaloguj się do ThriveDevCenter by zobaczyć tę treść</value>
   </data>
   <data name="ThriveCurrentlyRunning" xml:space="preserve">
-    <value>Thrive zostało uruchomione, proszę zamknij je i spróbuj ponownie później</value>
+    <value>Thrive zostało już uruchomione, prosimy je zamknąć i spróbować ponownie</value>
   </data>
   <data name="NoVersionSelected" xml:space="preserve">
-    <value>Proszę wybierz wersję Thrive z rozwijanej listy obok przycisku odtwarzania i spróbuj ponownie później</value>
+    <value>Prosimy wybierać wersję Thrive z rozwijanej listy obok przycisku odtwarzania i spróbować ponownie</value>
   </data>
   <data name="PlayingTitle" xml:space="preserve">
     <value>Grane {0}</value>
+  </data>
+  <data name="LaunchOptionForceOpenGL" xml:space="preserve">
+    <value>Wymuś tryb renderowania OpenGL (może doprowadzić Thrive do uruchomienia, ale powoduje lekkie problemy graficzne)</value>
+  </data>
+  <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
+    <value>Zwiększ latencję audio gry (może naprawić problem trzaskania dźwięku, jeśli latencja jest odpowiednio wysoka)</value>
+  </data>
+  <data name="EnterDevCenterConnectionCode" xml:space="preserve">
+    <value>Prosimy najpierw wprowadzić kod połączenia ThriveDevCenter w ramkę wejścia</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>niebezpieczna</value>
+  </data>
+  <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
+    <value>WD</value>
+  </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>Używaj alternatywnego sposobu by uruchamiać autoaktualizator (wypróbuj jeśli normalny sposób nie działa)</value>
+  </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>Automatycznie usuwaj stare pliki w folderze tymczasowym</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>Jakiekolwiek stare pliki będą automatycznie usuwane z folderu tymczasowego przy ponownym uruchamianiu launchera. By uniknąć przypadkowego usunięcia plików niezwiązanych z Thrive, folder tymczasowy powinien być wykorzystywany jedynie przez tę grę.</value>
+  </data>
+  <data name="DevCenterConnectAttemptError" xml:space="preserve">
+    <value>Podczas sprawdzania kodu linkowania ThriveDevCenter wystąpił błąd. Prosimy zweryfikować poprawność wprowadzonego kodu oraz to, czy jego ważność nie przeminęła. Dodatkowe informacje: {0}</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>Kod jest poprawny. Prosimy potwierdzić łączenie do następującego konta:</value>
+  </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+    <value>Łączenie się z ThriveDevCenter...</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>Nazwa użytkownika:</value>
+  </data>
+  <data name="ErrorGettingDevBuild" xml:space="preserve">
+    <value>Błąd: nie udało się znaleźć Wersji Deweloperskiej określonego rodzaju dla obecnej platformy. Prosimy wybrać inną wersję, np. zalecaną WD, i spróbować ponownie. Przyczyna błędu: {0}</value>
+  </data>
+  <data name="GettingDevBuildInfoMessage" xml:space="preserve">
+    <value>Uzyskiwanie informacji odnośnie wybranej Wersji deweloperskiej rodzaju {0} do uruchomienia...</value>
+  </data>
+  <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
+    <value>Uruchamianie niebezpiecznej wersji zostało anulowane</value>
+  </data>
+  <data name="NoBuildToPlayFound" xml:space="preserve">
+    <value>Nie znaleziono jakiejkolwiek Wersji Deweloperskiej pasującej do wymaganego rodzaju oraz obecnej platformy</value>
+  </data>
+  <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
+    <value>Rodzaj Wersji Deweloperskiej do uruchomienia (gdy uruchamianie Wersji Deweloperskiej zostało wybrane)</value>
+  </data>
+  <data name="PlayUnsafeBuildTitle" xml:space="preserve">
+    <value>Uruchomić Niebezpieczną Wersję Deweloperską?</value>
+  </data>
+  <data name="PlayUnsafeBuildExplanation" xml:space="preserve">
+    <value>Zwykłe Wersje Deweloperskie są przesyłane automatycznie przez serwer CI ze zweryfikowanym kluczem. Te wersje mogą zostać wywołane jedynie przez członków repozytorium Thrive. Są one tak samo bezpieczne jak wersje oficjalne, chyba że konto członka zostało naruszone (bądź zachował się on niewłaściwie). Wersje Deweloperskie są również akceptowane z pull requestów (PR), lecz w tym wypadku są one specyficznie określane jako niebezpieczne (tak jak obecnie wybrana wersja), ponieważ pull request może zawierać w sobie rozmaite paskudztwa.
+
+Jeśli członek team Thrive potwierdza bezpieczeństwo PRu, to ostrzeżenie znika. Alternatywnie, jeśli wierzysz, że ta wersja jest bezpieczna, możesz kontynuować. Nim to uczynisz, powinieneś(naś/noś) sprawdzić PR na Githubie by zobaczyć czy hash najnowszego zatwierdzenia się zgadza oraz czy 'job' wersji ThriveDevCenter potwierdza wstawienie Wersji Deweloperskiej z tym hashem. Dodatkowo należy upewnić się, czy PR nie zmienia żadnych skryptów wersji. Po wykonaniu tych czynności kontynuacja powinna być relatywnie bezpieczna. To jest ten sam proces jaki wykorzystują członkowie team Thrive do weryfikacji PRów.</value>
+  </data>
+  <data name="AcceptUnsafeBuildButton" xml:space="preserve">
+    <value>Rozumiem ryzyko, uruchom mimo wszystko</value>
+  </data>
+  <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
+    <value>Opis wersji:
+{0}</value>
+  </data>
+  <data name="FoundDevBuildToPlayInfo" xml:space="preserve">
+    <value>Znaleziono Wersję Deweloperską do uruchomienia: {0}, hash: {1}, jest WD: {2}, gałąź: {3}</value>
+  </data>
+  <data name="RehydrationStarting" xml:space="preserve">
+    <value>To jest skompresowana wersja. Rozpoczynanie dekompresji.</value>
   </data>
 </root>
