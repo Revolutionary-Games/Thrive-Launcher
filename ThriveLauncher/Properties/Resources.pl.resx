@@ -629,4 +629,13 @@ Jeśli członek team Thrive potwierdza bezpieczeństwo PRu, to ostrzeżenie znik
   <data name="RehydrationStarting" xml:space="preserve">
     <value>To jest skompresowana wersja. Rozpoczynanie dekompresji.</value>
   </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>Sprawdź tokeny na ThriveDevCenter</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>opis:</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>Nie można odtworzyć Thrive</value>
+  </data>
 </root>
