@@ -555,7 +555,7 @@ Logi launchera nie mają więcej informacji.</value>
     <value>Prosimy wybierać wersję Thrive z rozwijanej listy obok przycisku odtwarzania i spróbować ponownie</value>
   </data>
   <data name="PlayingTitle" xml:space="preserve">
-    <value>Grane {0}</value>
+    <value>Granie {0}</value>
   </data>
   <data name="LaunchOptionForceOpenGL" xml:space="preserve">
     <value>Wymuś tryb renderowania OpenGL (może doprowadzić Thrive do uruchomienia, ale powoduje lekkie problemy graficzne)</value>
@@ -636,6 +636,246 @@ Jeśli członek team Thrive potwierdza bezpieczeństwo PRu, to ostrzeżenie znik
     <value>opis:</value>
   </data>
   <data name="CannotPlayThriveTitle" xml:space="preserve">
-    <value>Nie można odtworzyć Thrive</value>
+    <value>Nie Można Uruchomić Thrive</value>
+  </data>
+  <data name="SubmitRetryButton" xml:space="preserve">
+    <value>Spróbuj ponownie</value>
+  </data>
+  <data name="SubmittingReportExtraInfo" xml:space="preserve">
+    <value>Dodatkowe informacje odnośnie napotkanego błędu:</value>
+  </data>
+  <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
+    <value>Twój raport został pomyślnie wysłany. Dziękujemy Ci za twój raport.</value>
+  </data>
+  <data name="ReportViewingPublicInfo" xml:space="preserve">
+    <value>Jeśli jest publiczny, twój raport jest widoczny na następującym adresie:</value>
+  </data>
+  <data name="StopAutoClose" xml:space="preserve">
+    <value>Anuluj Zamykanie</value>
+  </data>
+  <data name="AtTime" xml:space="preserve">
+    <value>O {0}</value>
+  </data>
+  <data name="ViewFile" xml:space="preserve">
+    <value>Zobacz</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Otwórz Folder</value>
+  </data>
+  <data name="IncludeInReport" xml:space="preserve">
+    <value>Umieść:</value>
+  </data>
+  <data name="CrashReportIncludeLauncherOutput" xml:space="preserve">
+    <value>Umieść informacje wyjściowe gry tak jak pokazane w pop-upie obecnie granej gry w launcherze (zalecane gdy zgłaszany jest crash z najnowszego uruchomienia gry)</value>
+  </data>
+  <data name="ReportSubmitErrorTooManyRequests" xml:space="preserve">
+    <value>Wysyłanie raportu nie powiodło się ze względu na zbyt wiele żądań z twojego adresu IP, prosimy poczekać, nawet do godziny, i spróbować ponownie</value>
+  </data>
+  <data name="ReportSubmitErrorUnknown" xml:space="preserve">
+    <value>Wysyłanie raportu nie powiodło się ze względu na nieznany błąd, prosimy spróbować ponownie później</value>
+  </data>
+  <data name="LauncherOptionShowExternalVersions" xml:space="preserve">
+    <value>Pokaż zewnętrzne wersje Thrive które wymagają oddzielnych pobrań do uruchomienia</value>
+  </data>
+  <data name="PerformingAutoUpdateTitle" xml:space="preserve">
+    <value>Aktualizowanie Launchera</value>
+  </data>
+  <data name="QuitLauncherButton" xml:space="preserve">
+    <value>Opuść Launcher Teraz</value>
+  </data>
+  <data name="RetryingAutoUpdate" xml:space="preserve">
+    <value>Ponawianie próby autoaktualizacji...</value>
+  </data>
+  <data name="ExitTheLauncher" xml:space="preserve">
+    <value>Opuść Launcher</value>
+  </data>
+  <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
+    <value>Błąd: proces podrzędny został już zakończony, okno launchera nie będzie zamknięte</value>
+  </data>
+  <data name="ExtraThriveStartFlags" xml:space="preserve">
+    <value>Thrive jest rozpoczynane z dodatkowymi flagami przekazywanymi jako argumenty w lini komend launcherowi, te zaś mogą wywołać nieoczekiwane zachowania u programu: {0}</value>
+  </data>
+  <data name="NoAvailableCrashesToReport" xml:space="preserve">
+    <value>Nie znaleziono crashów do zgłoszenia</value>
+  </data>
+  <data name="ShortTimeAgo" xml:space="preserve">
+    <value>{0} temu</value>
+  </data>
+  <data name="CrashReportDeleteInfoEnabled" xml:space="preserve">
+    <value>Plik zrzutu crasha zostanie automatycznie usunięty po udanym wysłaniu raportu</value>
+  </data>
+  <data name="ThriveRunCanceled" xml:space="preserve">
+    <value>Uruchamianie Thrive zostało anulowane</value>
+  </data>
+  <data name="ExtractError" xml:space="preserve">
+    <value>Nie udało się wydobyć archiwum ze względu na błąd: {0}</value>
+  </data>
+  <data name="MissingThriveFolderError" xml:space="preserve">
+    <value>Folder Thrive powinien się znajdować w {0}, lecz go tam nie ma</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>Zamknij</value>
+  </data>
+  <data name="ThriveRunError" xml:space="preserve">
+    <value>Uruchamianie thrive nie powiodło się ze względu na następujący błąd: {0}</value>
+  </data>
+  <data name="DownloadingItem" xml:space="preserve">
+    <value>Pobieranie {0}</value>
+  </data>
+  <data name="DownloadError" xml:space="preserve">
+    <value>Pobieranie nie powiodło się ponieważ {0}</value>
+  </data>
+  <data name="MissingThriveExecutableError" xml:space="preserve">
+    <value>Nie można znaleźć pliku wykonywalnego Thrive w folderze w {0}, prosimy zweryfikować pliki gry bądź usunąć wersję i ponownie ją pobrać.</value>
+  </data>
+  <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
+    <value>Instalacja wersji bądź sprawdzanie zainstalowanej wersji nie powiodło się, więcej informacji poniżej.</value>
+  </data>
+  <data name="ThriveFolderPrepareFailed" xml:space="preserve">
+    <value>Przygotowywanie folderu Thrive nie powiodło się z błędem: {0}</value>
+  </data>
+  <data name="DownloadProgressDisplay" xml:space="preserve">
+    <value>Pobrano {0} z {1} MiB</value>
+  </data>
+  <data name="ItemProgressDisplay" xml:space="preserve">
+    <value>Przetworzono {0} z {1}</value>
+  </data>
+  <data name="UnknownNumber" xml:space="preserve">
+    <value>nieznany</value>
+  </data>
+  <data name="DownloadingStateItemProgress" xml:space="preserve">
+    <value>Pobieranie {0} z {1}</value>
+  </data>
+  <data name="VerifyingStateItemProgress" xml:space="preserve">
+    <value>Weryfikowanie integralności {0}</value>
+  </data>
+  <data name="ExtractingStateItemProgress" xml:space="preserve">
+    <value>Wydobywanie {0}. Dla dużych plików czynność ta może zająć wiele minut, więc prosimy o cierpliwość.</value>
+  </data>
+  <data name="ProcessingStateItemProgress" xml:space="preserve">
+    <value>Przetwarzanie {0}</value>
+  </data>
+  <data name="TruncatedGameOutputWarning" xml:space="preserve">
+    <value>Informacje wyjściowy są za długie, więc zostały skrócone! W całości informacje są zawarte w pliku logu Thrive.</value>
+  </data>
+  <data name="ThriveIsStarting" xml:space="preserve">
+    <value>Thrive jest uruchamiane. Dane wyjściowe logu (ze względu na obciążenia prawdopodobnie NIE w czasie rzeczywistym):</value>
+  </data>
+  <data name="ReportCrashButton" xml:space="preserve">
+    <value>Zgłoś Crasha</value>
+  </data>
+  <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
+    <value>Ta zakładka pokazuje zewnętrznie zainstalowane wersje. To jest sklepowa wersja Thrive która zawiera dołączoną (najnowszą) wersję gry. Możesz włączyć pokazywanie dostępnych zewnętrznych wersji w menu wyboru wersji w opcjach launchera. Pobrane, wersje pokażą się tutaj.</value>
+  </data>
+  <data name="RehydrationFailed" xml:space="preserve">
+    <value>Dekompresja nie powiodła się ze względu na błąd: {0}</value>
+  </data>
+  <data name="CrashReporterWindowTitle" xml:space="preserve">
+    <value>Zgłaszanie Crashów Thrive</value>
+  </data>
+  <data name="ContinueReportingButton" xml:space="preserve">
+    <value>Kontynuuj Raportowanie</value>
+  </data>
+  <data name="CancelCreatingReportTitle" xml:space="preserve">
+    <value>Anulować Stworzenie Raportu?</value>
+  </data>
+  <data name="CopyLogWindowToClipboardToolTip" xml:space="preserve">
+    <value>Kopiuj informacje wyjściowe gry do schowka</value>
+  </data>
+  <data name="CancelCreatingReportExplanation" xml:space="preserve">
+    <value>Czy jesteś pewien(na/ne), że chcesz anulować tworzenie raportu cracha? Jeśli nie ma raportów odnośnie specyficznego buga, deweloperzy Thrive mogą o nim nie wiedzieć, przez co nie będą w stanie go naprawić.</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Wyślij</value>
+  </data>
+  <data name="ClearAllCrashesButton" xml:space="preserve">
+    <value>Usuń WSZYSTKIE Zrzuty Crashów</value>
+  </data>
+  <data name="SubmittingReportMessage" xml:space="preserve">
+    <value>Wysyłanie twojego raportu. Może to potrwać kilka minut więc prosimy o cierpliwość...</value>
+  </data>
+  <data name="ErrorSubmittingReport" xml:space="preserve">
+    <value>Podczas próby wysłania twojego raportu wystąpił błąd. Prosimy zweryfikować czy dane są poprawne bądź spróbować później, jeśli problem jest po stronie serwera. Typ błędu:</value>
+  </data>
+  <data name="ReportDeleteInfo" xml:space="preserve">
+    <value>Jeśli chcesz usunąć swój raport, możesz to uczynić tutaj:</value>
+  </data>
+  <data name="ReportDeleteCaveat" xml:space="preserve">
+    <value>WAŻNE: Jeśli zgubisz swój link usunięcia, nie będziesz w stanie usunąć swojego raportu. Więc go zapisz! Możesz nacisnąć przycisk kopiowania na prawo od linku by go skopiować.</value>
+  </data>
+  <data name="ReporterEndMessage" xml:space="preserve">
+    <value>Teraz możesz bezpiecznie zamknąć ten raporter. Możesz też poczekać aż to okno samo się zamknie</value>
+  </data>
+  <data name="SecondsDisplayPlural" xml:space="preserve">
+    <value>{0} sekund(y)</value>
+  </data>
+  <data name="SecondsDisplaySingular" xml:space="preserve">
+    <value>1 sekunda</value>
+  </data>
+  <data name="AutoCloseStopped" xml:space="preserve">
+    <value>autozamykanie anulowane</value>
+  </data>
+  <data name="TimeMomentRightNow" xml:space="preserve">
+    <value>Teraz</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Kopiuj do schowka</value>
+  </data>
+  <data name="ActiveReportingInfo" xml:space="preserve">
+    <value>Raportowanie crasha {0} o {1}</value>
+  </data>
+  <data name="CrashReportLogsSection" xml:space="preserve">
+    <value>Logi do Zawarcia</value>
+  </data>
+  <data name="CrashReportDescriptionField" xml:space="preserve">
+    <value>Opisz, co robiłeś(aś/oś) gdy crash się wydarzył (opcjonalne)</value>
+  </data>
+  <data name="CrashReportDescriptionFieldPlaceholder" xml:space="preserve">
+    <value>Opis crasha (opcjonalny)</value>
+  </data>
+  <data name="CrashReportEmailField" xml:space="preserve">
+    <value>Twój e-mail, jeśli chcesz otrzymywać aktualizacje odnośnie tego raportu (opcjonalne)</value>
+  </data>
+  <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
+    <value>E-mail (opcjonalny)</value>
+  </data>
+  <data name="CrashReportEmailFieldNotice" xml:space="preserve">
+    <value>Twój e-mail będzie widoczny jedynie dla administratorów ThriveDevCenter.</value>
+  </data>
+  <data name="CrashReportIsPublic" xml:space="preserve">
+    <value>Publiczny? Publiczne raporty mają swoje stosy wywołań crashów oraz opisy widoczne publicznie. Prywatne raporty są widoczne jedynie dla deweloperów Thrive.</value>
+  </data>
+  <data name="CrashReportSubmitAcceptConfirmation" xml:space="preserve">
+    <value>Wyrażam zgodę na to, by informacje przedstawione w tym podaniu, w tym jakiekolwiek zamieszczone pliki i zrzuty crashów, jak i mój adres IP, były przechowywane w bazie danych crashów Thrive. A jeśli ten raport jest publiczny, każdy może przeczytać stos wywołać crasha oraz opis.</value>
+  </data>
+  <data name="SelectCrashToReport" xml:space="preserve">
+    <value>Wybierz crash do zgłoszenia klikając jego nazwę</value>
+  </data>
+  <data name="CrashReportDeleteAfterSubmitting" xml:space="preserve">
+    <value>Usuń ten plik zrzutu crasha po zgłoszeniu (zalecane)</value>
+  </data>
+  <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
+    <value>Wybrany crash wydarzył się jakiś czas temu. Z tej przyczyny może nie mieć powiązania z najnowszymi plikami logu bądź danymi wyjściowymi przechowywanymi przez launcher. Prosimy uważnie sprawdzić, czy aby napewno raportowany jest poprawny crash i pliki logu.</value>
+  </data>
+  <data name="ReportSubmitErrorBadRequest" xml:space="preserve">
+    <value>Wysyłanie raportu nie powiodło się ze względu na nieprawidłowe informacje wprowadzone do formularzu raportu crasha, prosimy zweryfikować poprawność informacji, które usiłujesz przesłać, a następnie spróbować ponownie</value>
+  </data>
+  <data name="ReportSubmitErrorNetworkError" xml:space="preserve">
+    <value>Wysyłanie raportu nie powiodło się ze względu na problem z siecią, prosimy sprawdzić swoje łącze internetowe i spróbować ponownie za kilka minut</value>
+  </data>
+  <data name="ReportSubmitErrorServerError" xml:space="preserve">
+    <value>Wysyłanie raportu nie powiodło się ze względu na błąd serwera, prosimy poczekać jakiś czas, a następnie spróbować ponownie. Jeśli problem się utrzymuje, prosimy nas poinformować.</value>
+  </data>
+  <data name="StartedAutoUpdateExplanation" xml:space="preserve">
+    <value>Launcher teraz pobiera i instaluje aktualizację, prosimy poczekać. Pobrany aktualizator może otworzyć nowe okno, wymagające interakcji użytkownika by zakończyć aktualizację.</value>
+  </data>
+  <data name="LauncherVersionUpdateDescription" xml:space="preserve">
+    <value>Aktualizowanie launchera do wersji {0} (obecna wersja: {1})</value>
+  </data>
+  <data name="AutoUpdateError" xml:space="preserve">
+    <value>Błąd Autoaktualizacji</value>
+  </data>
+  <data name="AutoUpdateMissingChannel" xml:space="preserve">
+    <value>Nie można ponowić próby aktualizacji, ponieważ ten typ launchera nie posiada powiązanego typu kanału aktualizacji</value>
   </data>
 </root>
