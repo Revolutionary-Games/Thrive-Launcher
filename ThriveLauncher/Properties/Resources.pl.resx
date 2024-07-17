@@ -834,7 +834,7 @@ Jeśli członek team Thrive potwierdza bezpieczeństwo PRu, to ostrzeżenie znik
     <value>Opis crasha (opcjonalny)</value>
   </data>
   <data name="CrashReportEmailField" xml:space="preserve">
-    <value>Twój e-mail, jeśli chcesz otrzymywać aktualizacje odnośnie tego raportu (opcjonalne)</value>
+    <value>Twój e-mail, jeśli chcesz otrzymywać powiadomienia odnośnie tego raportu (opcjonalne)</value>
   </data>
   <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
     <value>E-mail (opcjonalny)</value>
@@ -877,5 +877,72 @@ Jeśli członek team Thrive potwierdza bezpieczeństwo PRu, to ostrzeżenie znik
   </data>
   <data name="AutoUpdateMissingChannel" xml:space="preserve">
     <value>Nie można ponowić próby aktualizacji, ponieważ ten typ launchera nie posiada powiązanego typu kanału aktualizacji</value>
+  </data>
+  <data name="InvalidVersionInfoLoadedTitle" xml:space="preserve">
+    <value>Załadowane Informacje Wersji Są Nieprawidłowe</value>
+  </data>
+  <data name="AutoUpdatingFailedExplanation" xml:space="preserve">
+    <value>Automatyczna aktualizacja launchera nie powiodła się. Problem prawdopodobnie leży w niepoprawnym przebiegu procesu instalatora. Możesz spróbować uruchomić aktualizator ponownie klikając jego nazwę poniżej. Alternatywnie, możesz nacisnąć przycisk poniżej by otworzyć folder z pierwszym aktualizatorem, co powinno pozwolić na manualne uruchomienie instalatora (prosimy nas poinformować, czy to pomogło w twoim przypadku).
+
+Możesz zignorować to niepowodzenie by usunąć pobrane pliki aktualizatora i ponowić próbę aktualizacji przy ponownym uruchomieniu launchera.
+
+Jeśli poniżej nie ma żadnych plików, pobieranie aktualizacji nie powiodło się i nie może zostać wypróbowane ponownie bez ponownego uruchomienia launchera.</value>
+  </data>
+  <data name="LatestVersionParsingFailed" xml:space="preserve">
+    <value>Analiza informacji o najnowszej dostępnej wersji launchera nie powiodła się. Powiadomienia o dostępności nowych wersji launchera oraz autoaktualizowanie nie będą działać.</value>
+  </data>
+  <data name="FileSystemErrorTitle" xml:space="preserve">
+    <value>Błąd Dostępu do Pliku</value>
+  </data>
+  <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
+    <value>Automatycznie rozpoczynaj ponownie Thrive, jeśli jego rozpoczęcie się nie powiedzie</value>
+  </data>
+  <data name="ViewFirstAutoUpdaterFolder" xml:space="preserve">
+    <value>Otwórz Folder Z Pierwszym Aktualizatorem</value>
+  </data>
+  <data name="AutoUpdateFailedTitle" xml:space="preserve">
+    <value>Aktualizacja Launchera Nie Powiodła Się</value>
+  </data>
+  <data name="RequiresLatestBetaShowingEnabled" xml:space="preserve">
+    <value>Ta opcja może zostać włączona jedynie po włączeniu opcji pokazywania najnowszej bety</value>
+  </data>
+  <data name="RequiresExternalVersionsEnabled" xml:space="preserve">
+    <value>Ta opcja wymaga włączenia pobrań zewnętrznych wersji</value>
+  </data>
+  <data name="IgnoreFailure" xml:space="preserve">
+    <value>Ignoruj Niepowodzenie</value>
+  </data>
+  <data name="CannotSubmitExceptionReportYet" xml:space="preserve">
+    <value>Raporter crashów jeszcze nie wspiera zgłaszania crashów spowodowanych przez nieobsługiwane wyjątki. Prosimy skorzystać z przycisku poniżej by skopiować raport do twojego schowka, a następnie manualnie wysłać go do nas.</value>
+  </data>
+  <data name="ThriveRunRetryStarting" xml:space="preserve">
+    <value>Nieprawidłowe rozpoczęcie Thrive zostało wykryte. Nastąpi próba ponownego rozpoczęcia Thrive, numer próby: {0}</value>
+  </data>
+  <data name="CPUFeatureWarningTitle" xml:space="preserve">
+    <value>Uwaga: Nie Wykryto Wymaganych Funkcji Procesora</value>
+  </data>
+  <data name="ForgetLastPlayedVersionToolTip" xml:space="preserve">
+    <value>Czyści ostatnią zapamiętaną selekcję dokonaną w menu wyboru wersji. Może pomóc w doprowadzeniu do poprawnego działania trybu płynnego.</value>
+  </data>
+  <data name="ForgetLastPlayedVersion" xml:space="preserve">
+    <value>Zapomnij Ostatnią Uruchomioną Wersję</value>
+  </data>
+  <data name="AutoUpdateSucceededMessage" xml:space="preserve">
+    <value>Autoaktualizator powinien już się rozpocząć. Za kilka sekund powinno pojawić się nowe okno dla aktualizatora. By aktualizacja mogła być przeprowadzona w pełni, launcher musi zostać zamknięty. Możesz dokonać tego manualnie bądź poczekać na zamknięcie automatyczne</value>
+  </data>
+  <data name="AutoUpdateRetryFailed" xml:space="preserve">
+    <value>Ponawianie próby autoaktualizacji nie powiodło się. Możesz zignorować to niepowodzenie by wyczyścić istniejące pliki autoaktualizacji by zmusić launcher do spróbowania jeszcze raz przy okazji kolejnego uruchomienia ponownego.</value>
+  </data>
+  <data name="LauncherOptionShowLatestBetaVersion" xml:space="preserve">
+    <value>Pokazuj najnowszą betę Thrive w menu wyboru wersji (jeśli dostępna)</value>
+  </data>
+  <data name="LauncherOptionShowAllBetaVersions" xml:space="preserve">
+    <value>Pokazuj wszystkie istniejące bety Thrive</value>
+  </data>
+  <data name="EmbeddedPckToolLicenseTitle" xml:space="preserve">
+    <value>Licencja godotpcktool w pakiecie oraz licencje jego użytych bibliotek:</value>
+  </data>
+  <data name="Embedded7ZipLicenseTitle" xml:space="preserve">
+    <value>W pakiecie z launcherem przychodzą pewne dodatkowe narzędzia. Są one oddzielnymi plikami wykonywalnymi, które launcher wywołuje jako programy lini komend. Licencja 7-Zip:</value>
   </data>
 </root>
