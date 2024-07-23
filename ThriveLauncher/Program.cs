@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Platform;
 using Avalonia.ReactiveUI;
 using Avalonia.Threading;
 using CommandLine;
@@ -323,7 +324,8 @@ internal class Program
         // Mac activation / background operation when no windows are open
         bool stayActiveInBackground = false;
 
-        var activatableApplicationLifetime = lifetime as IActivatableApplicationLifetime;
+        // TODO: check that this still works on mac
+        var activatableApplicationLifetime = applicationInstance.TryGetFeature<IActivatableLifetime>();
         if (activatableApplicationLifetime != null)
         {
             stayActiveInBackground = true;
