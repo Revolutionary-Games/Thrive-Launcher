@@ -623,4 +623,7 @@
   <data name="NoAvailableCrashesToReport" xml:space="preserve">
     <value>გადასაცემი ავარიები აღმოსაჩენ არააა</value>
   </data>
+  <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
+    <value>Thrive-ის ავტომატური გადატვირთვა, თუ გაშვება ჩავარდება</value>
+  </data>
 </root>
