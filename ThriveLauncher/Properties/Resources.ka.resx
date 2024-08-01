@@ -626,4 +626,25 @@
   <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
     <value>Thrive-ის ავტომატური გადატვირთვა, თუ გაშვება ჩავარდება</value>
   </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>ძველი ფაილების ავტომატური წაშლა დროებით საქაღალდეში</value>
+  </data>
+  <data name="LauncherVersionUpdateDescription" xml:space="preserve">
+    <value>გამშვების განახლება ვერსიამდე {0} (მიმდინარე ვერსიაა: {1})</value>
+  </data>
+  <data name="MissingThriveFolderError" xml:space="preserve">
+    <value>Thrive-ის საქაღალდე უნდა არსებობდეს მისამართზე {0}, მაგრამ არ არსებობს</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>Thrive-ის ვერსიის დაყენების საქაღალდე არ არსებობს.</value>
+  </data>
+  <data name="LoginToSeeThisContent" xml:space="preserve">
+    <value>შედით ThriveDevCenter-ში, რომ ეს შემცველობა დაინახოთ</value>
+  </data>
+  <data name="CrashReportDeleteAfterSubmitting" xml:space="preserve">
+    <value>ამ ავარიის დამპის ფაილის წაშლა ანგარიშის გაგზავნის შემდეგ (რეკომენდებულია)</value>
+  </data>
+  <data name="EmbeddedPckToolLicenseTitle" xml:space="preserve">
+    <value>მოყოლებული godotpcktool-ის ლიცენზიები და მის მიერ გამოყენებული ბიბლიოთეკების ლიცენზია:</value>
+  </data>
 </root>
