@@ -433,4 +433,7 @@
   <data name="MoveVersionsTitle" xml:space="preserve">
     <value>Mover versiones existentes?</value>
   </data>
+  <data name="LaunchOptionForceOpenGL" xml:space="preserve">
+    <value>Forzar el modo de renderizado de OpenGL (puede que logre que Thrive inicie, pero causa pequeños errores en los gráficos)</value>
+  </data>
 </root>
