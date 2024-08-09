@@ -647,4 +647,28 @@
   <data name="EmbeddedPckToolLicenseTitle" xml:space="preserve">
     <value>მოყოლებული godotpcktool-ის ლიცენზიები და მის მიერ გამოყენებული ბიბლიოთეკების ლიცენზია:</value>
   </data>
+  <data name="RequiresExternalVersionsEnabled" xml:space="preserve">
+    <value>ამ პარამეტრს გარე ვერსიის გადმოწერის ჩართვა სჭირდება</value>
+  </data>
+  <data name="DeleteErrorDoesNotExist" xml:space="preserve">
+    <value>წაშლა ჩავარდა, რადგან სამიზნე ბილიკი არ არსებობს</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>32-ბიტიანი ვერსიების დამალვა, თუ აღმოჩენილია ეკვივალენტური 64-ბიტიანი ვერსია</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>გამშვებში გამოყენებულია ფონტი Roboto. Roboto-ი ლიცენზია:</value>
+  </data>
+  <data name="ClearTemporaryFilesCount" xml:space="preserve">
+    <value>აპირებთ, {0} ფაილი/საქაღალდე წაშალოთ</value>
+  </data>
+  <data name="ExtractError" xml:space="preserve">
+    <value>არქივის გაშლა ჩავარდა შემდეგი შეცდომის გამო: {0}</value>
+  </data>
+  <data name="CrashReportEmailFieldNotice" xml:space="preserve">
+    <value>თქვენი ელფოსტა, მხოლოდ, ThriveDevCenter-ის ადმინისტრატორებისთვის იქნება ხილული.</value>
+  </data>
+  <data name="SelectCrashToReport" xml:space="preserve">
+    <value>აირჩიეთ ავარიის ანგარიში მის სახელზე დაწკაპუნებით</value>
+  </data>
 </root>
