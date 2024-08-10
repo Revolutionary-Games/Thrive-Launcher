@@ -671,4 +671,25 @@
   <data name="SelectCrashToReport" xml:space="preserve">
     <value>აირჩიეთ ავარიის ანგარიში მის სახელზე დაწკაპუნებით</value>
   </data>
+  <data name="ThriveRunError" xml:space="preserve">
+    <value>Thrive-ის გაშვება ჩავარდა შემდეგი შეცდომით: {0}</value>
+  </data>
+  <data name="NoBuildToPlayFound" xml:space="preserve">
+    <value>DevBuild მოთხოვნილი ტიპით მიმდინარე პლატფორმისთვის აღმოჩენილი არაა</value>
+  </data>
+  <data name="CrashReportDescriptionField" xml:space="preserve">
+    <value>აღწერეთ, რას აკეთებდით, როცა ავარია მოხდა (არასავალდებულო)</value>
+  </data>
+  <data name="LauncherOptionShowExternalVersions" xml:space="preserve">
+    <value>Thrive-ის გარე ვერსიების ჩვენება, რომლებსაც სათამაშოდ ცალკე გადმოწერა სჭირდება</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>კოდი სწორია. დაადასტურეთ მიბმა შემდეგ ანგარიშზე:</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>ბმულის ჩამოყალიბება ჩავარდა. კოდი კიდევ ერთხელ შეამოწმეთ</value>
+  </data>
+  <data name="GettingDevBuildInfoMessage" xml:space="preserve">
+    <value>ინფორმაციის მიღება არჩეული {0} ტიპის DevBuild-ის შესახებ მის სათამაშოდ...</value>
+  </data>
 </root>
