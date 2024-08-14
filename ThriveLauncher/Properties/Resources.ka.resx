@@ -692,4 +692,19 @@
   <data name="GettingDevBuildInfoMessage" xml:space="preserve">
     <value>ინფორმაციის მიღება არჩეული {0} ტიპის DevBuild-ის შესახებ მის სათამაშოდ...</value>
   </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+    <value>შეუმჩნეველი გამშვების რეჟიმის აშვება (გამშვები არ გამოჩნდება Thrive-ის გაშვებამდე)</value>
+  </data>
+  <data name="EnterDevCenterConnectionCode" xml:space="preserve">
+    <value>ჯერ შეყვანის ველში ThriveDevCenter-ის მიერთების კოდი შეიყვანეთ</value>
+  </data>
+  <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
+    <value>დაყენებული თამაშის ვერსიის შემოწმება ჩავარდა. დეტალები იხილეთ ქვემოთ.</value>
+  </data>
+  <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
+    <value>DevBuild-ის ტიპი, რომლის თამაშიც გნებავთ (როცა ჩართულია DevBuild-ით თამაში)</value>
+  </data>
+  <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
+    <value>თქვენი ანგარიში წარმატებით გადაიცა. მადლობა ანგარიშისთვის.</value>
+  </data>
 </root>
