@@ -471,7 +471,7 @@ Logi launchera nie mają więcej informacji.</value>
     <value>Istniejące przedmioty zostały wykryte w pamięci podręcznej. Mogą one zostać automatycznie przeniesione do nowej lokalizacji. Nie przeniesione, pliki zostaną zapomnie przez launcher i nie będzie on o nich wiedział puki poprzednia ścieżka nie zostanie ponownie wybrana jako lokalizacja instalacji. Czy chciałbyś automatycznie przenieść {0} plik(i/ów) do nowej lokalizacji? Zauważ, że jeśli niezwiązane z Thrive pliki znajdują się w folderze pamięci podręcznej, również zostaną przeniesione.</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Odrzuć</value>
+    <value>Anuluj</value>
   </data>
   <data name="DeleteErrorTitle" xml:space="preserve">
     <value>Usunięcie nie powiodło się</value>
@@ -783,7 +783,7 @@ Jeśli członek team Thrive potwierdza bezpieczeństwo PRu, to ostrzeżenie znik
     <value>Kopiuj informacje wyjściowe gry do schowka</value>
   </data>
   <data name="CancelCreatingReportExplanation" xml:space="preserve">
-    <value>Czy jesteś pewien(na/ne), że chcesz anulować tworzenie raportu cracha? Jeśli nie ma raportów odnośnie specyficznego buga, deweloperzy Thrive mogą o nim nie wiedzieć, przez co nie będą w stanie go naprawić.</value>
+    <value>Czy jesteś pewien(na/ne), że chcesz anulować tworzenie raportu crasha? Jeśli nie ma raportów odnośnie specyficznego buga, deweloperzy Thrive mogą o nim nie wiedzieć, przez co nie będą w stanie go naprawić.</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Wyślij</value>
