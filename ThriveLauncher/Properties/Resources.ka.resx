@@ -707,4 +707,43 @@
   <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
     <value>თქვენი ანგარიში წარმატებით გადაიცა. მადლობა ანგარიშისთვის.</value>
   </data>
+  <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
+    <value>შეცდომა: შვილი პროცესი უკვე დასრულდა. გამშვების ფანჯარა არ დასრულდება</value>
+  </data>
+  <data name="DeleteErrorExplanation" xml:space="preserve">
+    <value>ჩავარდა მონაცემების წაშლა შემდეგ ბილიკზე: "{0}" მიზეზი: {1}</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thrive უკვე გაშვებულია. დახურეთ ის და თავიდან სცადეთ</value>
+  </data>
+  <data name="FoundDevBuildToPlayInfo" xml:space="preserve">
+    <value>აღმოჩენილია DevBuild: {0}, ჰეში: {1}, არის BOTD: {2}, ბრენჩი: {3}</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>იყენებთ Thrive-ის გამშვების ვერსიას {0}, მაგრამ ბოლო ვერსიაა {1}</value>
+  </data>
+  <data name="ExtractingStateItemProgress" xml:space="preserve">
+    <value>მიმდინარეობს {0}-ის გაშლა. ამას რამდენიმე წუთი შეიძლება, დასჭირდეს დიდი ფაილებისთვის. მოითმინეთ, გეთაყვა.</value>
+  </data>
+  <data name="ReportDeleteInfo" xml:space="preserve">
+    <value>თუ გნებავთ, წაშალოთ თქვენი ანგარიში, ეს შეგიძლიათ, გააკეთოთ აქ:</value>
+  </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>ავტოგანახლების გაშვების ალტერნატიული გზის გამოყენება (სცადეთ, თუ ნორმალური ავტოგანახლების დაწყება ჩავარდება)</value>
+  </data>
+  <data name="ReportViewingPublicInfo" xml:space="preserve">
+    <value>თქვენი ანგარიშის ნახვა საჯაროდ შემდეგ მისამართზე შეგიძლიათ:</value>
+  </data>
+  <data name="CrashReportEmailField" xml:space="preserve">
+    <value>თქვენი ელფოსტა, თუ ამ ანგარიშის შესახებ განახლებების მიღება გნებავთ (არასავალდებულო)</value>
+  </data>
+  <data name="CrashReportDeleteInfoEnabled" xml:space="preserve">
+    <value>ავარიის დამპის ფაილი ავტომატურად წაიშლება, როცა ანგარიში წარმატებით იქნება გაგზავნილი</value>
+  </data>
+  <data name="ReportSubmitErrorUnknown" xml:space="preserve">
+    <value>ანგარიშის გადაცემა ჩავარდა უცნობი მიზეზით. მოგვიანებით სცადეთ</value>
+  </data>
+  <data name="LauncherOptionShowLatestBetaVersion" xml:space="preserve">
+    <value>ვერსიის ამრჩევში Thrive-ის უახლესი ბეტა ვერსიის ჩვენება (თუ ხელმისაწვდომია)</value>
+  </data>
 </root>
