@@ -749,4 +749,19 @@
   <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
     <value>თამაშის ხმის დაყოვნების გაზრდა (შეიძლება, ხმის წყვეტის პრობლემები გადაჭრას, როცა დაყოვნება საკმარისად დიდია)</value>
   </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>შენიშვნა: დროებითი საქაღალდის გადაადგილება მასში არსებულ ფაილებს არ გადაიტანს, რომ თავიდან აიცილოს ფაილების შეცვლა, რომლებიც Thrive-ს არ მიეკუთვნებიან</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>ძველი ფაილები ავტომატურად წაიშლება დროებითი საქაღალდიდან გამშვების გადატვირთვისას. შედეგად დროებითი ფაილების საქაღალდე სხვა მომხმარებლებთან გაზიარებული არ უნდა იყოს, რომ Thrive არ შეეხოს ფაილებს, რომლებიც მას არ ეკუთვნის.</value>
+  </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+    <value>თამაშის ყველა ვიდეოს გამორთვა (თუ Thrive ავარიულად სრულდება ჩატვირთვის ლოგოს ჩვენების შემდეგ და შესავალი ვიდეოს დაკვრის დაწყებამდე, შეიძლება, ამ პარამეტრმა გიშველოთ)</value>
+  </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>გამშვების გამართვის ჟურნალის ჩართვა (შეცდომის ანგარიშის გადმოცემამდე ჩართეთ ეს პარამეტრი და გადატვირთეთ გამშვები)</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>ყველა ფაილის წაშლა დროებით საქაღალდეში. შეიძლება წაშალო ფაილები, რომლებიც Thrive-ს არ ეკუთვნის!</value>
+  </data>
 </root>
