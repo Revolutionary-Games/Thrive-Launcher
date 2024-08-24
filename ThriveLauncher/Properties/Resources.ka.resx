@@ -764,4 +764,65 @@
   <data name="ClearTemporaryLocation" xml:space="preserve">
     <value>ყველა ფაილის წაშლა დროებით საქაღალდეში. შეიძლება წაშალო ფაილები, რომლებიც Thrive-ს არ ეკუთვნის!</value>
   </data>
+  <data name="CrashReportIsPublic" xml:space="preserve">
+    <value>საჯაროდ? საჯარო ანგარიშებს აღწერა და დეტალები საჯაროდ აქვთ. კონფიდენციალურ ანგარიშებს, მხოლოდ, Thrive-ის პროგრამისტები ხედავენ.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateDisabledByUser" xml:space="preserve">
+    <value>გამშვების ტიპს, რომელსაც იყენებთ, ავტოგანახლებაც შუძლია, მაგრამ ის ამჟამად გათიშულია ან გამშვების პარამეტრებიდან, ან ბრძანების სტრიქონის ალმით.</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>აქ შეგიძლიათ, გამშვები ThriveDevCenter-ს მიაბათ სატესტო აგებებისა და სხვა ფუნქციების მისაღებად</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+    <value>უახლესი (იცვლება შემთხვევითად, რადგან ეს პირდაპირი გაგებით უახლესი კოდითაა აგებული)</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>პარამეტრების შენახვა ჩავარდა. დარწმუნდით, რომ გამშვებს ჩაწერის უფლება გააჩნია და თავიდან სცადეთ.
+მეტი ინფორმაციის პოვნა გამშვების ჟურნალში შეგიძლიათ.</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf (საავტორო უფლებები (c) 2010-2011 Poland Lukasz Dziedzic with Reserved Font Name "Lato"), OFL ლიცენზია:</value>
+  </data>
+  <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
+    <value>გადმოწერილი Thrive-ის გამშვების ინფორმაცია არასწორია. სცადეთ თავიდან ცოტა ხანში და თუ პრობლემა არ გაქრება, დაგვიკავშირდით.</value>
+  </data>
+  <data name="DevCenterConnectAttemptError" xml:space="preserve">
+    <value>კოდის ThriveDevCenter-ში შემოწმების შეცდომა. დარწმუნდით, რომ კოდი სწორად აკრიფეთ და რომ მისი ვადა ამოწურული არაა. დამატებითი ინფორმაცია: {0}</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>აირჩიეთ Thrive-ის ვერსია დაკვრის ღილაკთან არსებული ჩამოსაშლელი სიიდან და თავიდან სცადეთ</value>
+  </data>
+  <data name="MissingThriveExecutableError" xml:space="preserve">
+    <value>Thrive-ის გამშვები ფაილი საქაღალდეში {0} აღმოჩენილი არაა. შეამოწმეთ თამაშის ფაილები ან წაშალეთ ეს ვერსია და თავიდან გადმოწერეთ.</value>
+  </data>
+  <data name="TruncatedGameOutputWarning" xml:space="preserve">
+    <value>გამოტანილი ინფორმაცია მეტისმეტად გრძელი იყო და მოიკვეცა! სრული ინფორმაციის ნახვა Thrive-ის ჟურნალის ფაილში შეგიძლიათ.</value>
+  </data>
+  <data name="ThriveIsStarting" xml:space="preserve">
+    <value>მიმდინარეობს Thrive-ის გაშვება. ჟურნალის გამოტანა (ბუფერის გამო, ალბათ, რეალურ დროში არა):</value>
+  </data>
+  <data name="SubmittingReportMessage" xml:space="preserve">
+    <value>თქვენი ანგარიშის გადაცემა. მოითმინეთ, რადგან ატვირთვას რამდენიმე წამი შეიძლება, დასჭირდეს...</value>
+  </data>
+  <data name="ReporterEndMessage" xml:space="preserve">
+    <value>ახლა შეგიძლიათ, ეს ფანჯარა უსაფრთხოდ დახუროთ. ან მოითმინეთ, სანამ ის თვითონ დაიხურება</value>
+  </data>
+  <data name="ReportSubmitErrorTooManyRequests" xml:space="preserve">
+    <value>ანგარიშის გადაცემა ჩავარდა, რადგან თქვენი IP მისამართიდან მეტისმეტად ბევრი მოთხოვნაა. მოითმინეთ საათი ან მეტი და თავიდან სცადეთ</value>
+  </data>
+  <data name="ReportSubmitErrorServerError" xml:space="preserve">
+    <value>ანგარიშის გადაცემა ჩავარდა სერვერის პრობლემის გამო. მოითმინეთ გარკვეული დრო და თავიდან სცადეთ. თუ პრობლემა არ გაქრება, შეგვატყობინეთ.</value>
+  </data>
+  <data name="AutoUpdateMissingChannel" xml:space="preserve">
+    <value>განახლების თავიდან ცდა შეუძლებელია, რადგან ამ გამშვების ტიპს მინიჭებული განახლების არხის ტიპი არ გააჩნია</value>
+  </data>
+  <data name="ThriveRunRetryStarting" xml:space="preserve">
+    <value>Thrive-ის სწორი გაშვება აღმოჩენილი არაა. ვეცდები, Thrive თავიდან გავუშვა. მცდელობის ნომერი: {0}</value>
+  </data>
+  <data name="Embedded7ZipLicenseTitle" xml:space="preserve">
+    <value>გამშვები რამდენიმე პროგრამას შეიცავს. ისინი ცალკე გამშვები ფაილებია, რომლებსაც გამშვები ბრძანების სტრიქონის პროგრამებად უშვებს. 7-Zip-ის ლიცენზია:</value>
+  </data>
+  <data name="RequiresLatestBetaShowingEnabled" xml:space="preserve">
+    <value>ეს პარამეტრი, მხოლოდ, მაშინ შეგიძლიათ ჩართოთ, თუ ჯერ უკანასკნელი ბეტა ვერსიის ჩვენების პარამეტრს ჩართავთ</value>
+  </data>
 </root>
