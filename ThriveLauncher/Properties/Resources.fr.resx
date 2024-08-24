@@ -206,7 +206,7 @@
     <value>Le dossier est vide</value>
   </data>
   <data name="SelectTemporaryFilesLocation" xml:space="preserve">
-    <value>Sélectionnez l'emplacement des fichiers temporaires</value>
+    <value>Sélectionner l'emplacement des fichiers temporaires</value>
   </data>
   <data name="ResetTemporaryLocation" xml:space="preserve">
     <value>Réinitialiser l'emplacement des fichiers temporaires</value>
@@ -239,7 +239,7 @@
     <value>Vous êtes un développeur</value>
   </data>
   <data name="YouAreASupporter" xml:space="preserve">
-    <value>Merci de votre soutien !</value>
+    <value>Merci pour votre soutien !</value>
   </data>
   <data name="BuildTypeSelectionBOTD" xml:space="preserve">
     <value>Version du jour (VDJ), recommandée</value>
@@ -284,7 +284,7 @@
     <value>La plus récente (change beaucoup aléatoirement, car il s'agit littéralement d'une compilation à partir du dernier commit du code)</value>
   </data>
   <data name="BuildTypeSelectionManual" xml:space="preserve">
-    <value>Choisi manuellement dans l'onglet "Version spécifique"</value>
+    <value>Choisie manuellement dans l'onglet "Version spécifique"</value>
   </data>
   <data name="LogoutButton" xml:space="preserve">
     <value>Se déconnecter</value>
@@ -311,7 +311,7 @@
     <value>Insérez le hash de version (commit)</value>
   </data>
   <data name="SelectButton" xml:space="preserve">
-    <value>Sélectionner</value>
+    <value>Choisir</value>
   </data>
   <data name="FetchLatestBuildsButton" xml:space="preserve">
     <value>Récupérer les dernières versions</value>
@@ -377,7 +377,7 @@
     <value>Chargement…</value>
   </data>
   <data name="Retry" xml:space="preserve">
-    <value>Ressayer</value>
+    <value>Réessayer</value>
   </data>
   <data name="LatestVersionTag" xml:space="preserve">
     <value>{0} (dernière version)</value>
@@ -410,7 +410,7 @@
     <value>Adresse e-mail :</value>
   </data>
   <data name="UnsafeBuild" xml:space="preserve">
-    <value>non sécurisé</value>
+    <value>non sûre</value>
   </data>
   <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
     <value>VDJ</value>
@@ -431,7 +431,7 @@
     <value>Version spécifique</value>
   </data>
   <data name="PlayUnsafeBuildExplanation" xml:space="preserve">
-    <value>Les versions de développement normales sont téléchargées automatiquement par un serveur d'intégration continue avec une clé vérifiée. Ces versions ne peuvent être déclenchées que par les membres du dépôt Thrive. À moins que le compte d'une telle personne ne soit compromis (ou qu'elle agisse de manière malveillante), les versions sont aussi sûres que les versions officielles. Les versions de développement sont également acceptés à partir de pull requests (PR), mais dans ce cas, elles sont spécifiquement marquées comme non sécurisées (comme la version actuellement sélectionnée), car la pull request pourrait contenir toutes sortes de choses désagréables.
+    <value>Les versions de développement normales sont téléchargées automatiquement par un serveur d'intégration continue avec une clé vérifiée. Ces versions ne peuvent être déclenchées que par les membres du dépôt Thrive. À moins que le compte d'une telle personne ne soit compromis (ou qu'elle agisse de manière malveillante), les versions sont aussi sûres que les versions officielles. Les versions de développement sont également acceptés à partir de pull requests (PR), mais dans ce cas, elles sont spécifiquement marquées comme non sûre (comme la version actuellement sélectionnée), car la pull request pourrait contenir toutes sortes de choses désagréables.
 
 Si un membre de l'équipe Thrive vérifie que la PR est sûre, cet avertissement disparaît. Sinon, vous pouvez continuer si vous pensez que cette version est sûre. Avant de le faire, vous devez vérifier la PR sur Github pour voir si le dernier hash de commit correspond et si la compilation de ThriveDevCenter indique qu'elle a téléchargé une version de développement avec le hash. En outre, il faut vérifier que la PR ne modifie pas les scripts de compilation. Après avoir fait cela, ce devrait être relativement sûr de continuer, car c'est le même processus que les membres de l'équipe Thrive utilisent pour vérifier les PR.</value>
   </data>
@@ -439,10 +439,10 @@ Si un membre de l'équipe Thrive vérifie que la PR est sûre, cet avertissement
     <value>Ici, vous pouvez lier le lanceur au ThriveDevCenter pour accéder aux versions de développement et à d'autres fonctionnalités</value>
   </data>
   <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
-    <value>Hash entré manuellement :</value>
+    <value>Hash entré manuellement :</value>
   </data>
   <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
-    <value>Sélectionner la valeur du hash entré manuellement pour être utilisée dans la boite de saisie comme version de développement quand une version de développement est utilisée pour jouer</value>
+    <value>Choisir la valeur du hash entré manuellement pour être utilisée dans la boite de saisie comme version de développement quand une version de développement est utilisée pour jouer</value>
   </data>
   <data name="SettingsSaveFailedMessage" xml:space="preserve">
     <value>L'enregistrement des paramètres dans le fichier de paramètres a échoué. Veuillez vous assurer que le lanceur a un accès en écriture et réessayez.
@@ -647,7 +647,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Quitter le lanceur maintenant</value>
   </data>
   <data name="MoveVersionsExplanation" xml:space="preserve">
-    <value>Des versions installées de Thrives ont été détectées à l'emplacement précédent. Elles peuvent être déplacées automatiquement au nouvel emplacement. Si elles ne le sont pas, les fichiers seron laissés tel quel et le lanceur n'en saura rien sauf si l'emplacement d'instalation précédent est choisi a nouveau. Voulez-vous déplacer ces fichiers automatiquement au nouvel emplacement ?</value>
+    <value>Des versions installées de Thrives ont été détectées à l'emplacement précédent. Elles peuvent être déplacées automatiquement au nouvel emplacement. Si elles ne le sont pas, les fichiers seront laissés tel quel et le lanceur n'en saura rien sauf si l'emplacement d'installation précédent est choisi a nouveau. Voulez-vous déplacer ces fichiers automatiquement au nouvel emplacement ?</value>
   </data>
   <data name="InternalErrorExplanation" xml:space="preserve">
     <value>Une erreur interne est survenue dans le lanceur. Veuillez signaler ce problème et fournir le journal du lanceur avec votre rapport et la façon dont vous avez rencontré ce problème.</value>
@@ -659,7 +659,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Vous êtes sur le point de supprimer tous les fichiers contenus dans le dossier de cache compressé "{0}". Même les fichiers externes à Thrive seront supprimés s'ils se trouvent dans ce dossier. Supprimer le contenu du dossier ?</value>
   </data>
   <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
-    <value>Des fichiers ont été détectés dans le cache. Ils peuvent être déplacés automatiquement au nouvel emplacement. Sinon, les fichiers seron laissés tel quel et le lanceur n'en saura rien sauf si l'emplacement précédent est choisi a nouveau. Voulez-vous déplacer {0} fichier(s) automatiquement au nouvel emplacement ? Remarquez que si des fichiers non liés a Thrive existent dans le cache, ils seront aussi déplacés.</value>
+    <value>Des fichiers ont été détectés dans le cache. Ils peuvent être déplacés automatiquement au nouvel emplacement. Sinon, les fichiers seront laissés tel quel et le lanceur n'en saura rien sauf si l'emplacement précédent est choisi a nouveau. Voulez-vous déplacer {0} fichier(s) automatiquement au nouvel emplacement ? Remarquez que si des fichiers non liés a Thrive existent dans le cache, ils seront aussi déplacés.</value>
   </data>
   <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
     <value>La connexion au ThiveDevCenter a échoué. Le serveur a répondu par une interdiction. Ça signifie que notre clé de connexion n'est plus valide. Cela peut être causé par la déconnexion à travers l'interface web ou par la suspension de votre compte. Utilisez le lien ci-dessous pour vérifier le statut de votre compte.</value>
@@ -725,7 +725,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Le lancement de Thrive a été annulé</value>
   </data>
   <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
-    <value>Le lancement d'une version non sécurisée a été annulé</value>
+    <value>Le lancement d'une version non sûre a été annulé</value>
   </data>
   <data name="ErrorGettingDevBuild" xml:space="preserve">
     <value>Erreur : échec de la recherche d'une version de développement du type spécifié pour cette plateforme. Veuillez choisir une autre version et réessayer. Cause de l'échec : {0}</value>
@@ -755,7 +755,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Version de développement à lancer (lorsque le lancement d'une version de développement est choisi)</value>
   </data>
   <data name="PlayUnsafeBuildTitle" xml:space="preserve">
-    <value>Lancer une version de développement non sécurisé ?</value>
+    <value>Lancer une version de développement non sûre ?</value>
   </data>
   <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
     <value>Cet onglet liste les versions installées extérieurement. C'est un entrepôt pour les versions de Thrive qui inclut une version empaquetée. Vous pouvez activer l'affichage des versions externes dans le menu déroulant dans les options du lanceur. Une fois téléchargées, ces versions sont affichées ici.</value>
@@ -799,5 +799,8 @@ Les journaux du lanceur contiendront plus d'informations.</value>
   </data>
   <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
     <value>Votre rapport a été soumis avec succès. Merci pour votre signalement.</value>
+  </data>
+  <data name="PerformingAutoUpdateTitle" xml:space="preserve">
+    <value>Mise à jour du lanceur</value>
   </data>
 </root>
