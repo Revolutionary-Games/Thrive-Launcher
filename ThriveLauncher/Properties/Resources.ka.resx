@@ -825,4 +825,7 @@
   <data name="RequiresLatestBetaShowingEnabled" xml:space="preserve">
     <value>ეს პარამეტრი, მხოლოდ, მაშინ შეგიძლიათ ჩართოთ, თუ ჯერ უკანასკნელი ბეტა ვერსიის ჩვენების პარამეტრს ჩართავთ</value>
   </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+    <value>ყველა ფაილის წაშლა DevBuild-ის გაუწყლოებული კეშის საქაღალდეში. თუ მდებარეობა არანაგულისხმევია, შეძლება, არა-Thrive-ის ფაილებიც იყოს და ისინიც წაიშლება.</value>
+  </data>
 </root>
