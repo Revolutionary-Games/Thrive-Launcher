@@ -436,4 +436,13 @@
   <data name="LaunchOptionForceOpenGL" xml:space="preserve">
     <value>Forzar el modo de renderizado de OpenGL (puede que logre que Thrive inicie, pero causa pequeños errores en los gráficos)</value>
   </data>
+  <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
+    <value>Aumentar la latencia del audio del juego (puede ayudar con problemas de audio crepitante cuando la latencia se sube lo suficiente)</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>Todos los archivos antiguos se borrarán automáticamente de la carpeta temporal cuando se reinicie el lanzador. Así pues, no se le debe dar otros usos aparte de Thrive a la carpeta de archivos temporales para evitar un borrado accidental de un archivo no relacionado.</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>para leer la publicación completa.</value>
+  </data>
 </root>
