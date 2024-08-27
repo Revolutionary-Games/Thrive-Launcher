@@ -828,4 +828,22 @@
   <data name="ClearDehydratedLocation" xml:space="preserve">
     <value>ყველა ფაილის წაშლა DevBuild-ის გაუწყლოებული კეშის საქაღალდეში. თუ მდებარეობა არანაგულისხმევია, შეძლება, არა-Thrive-ის ფაილებიც იყოს და ისინიც წაიშლება.</value>
   </data>
+  <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+    <value>აირჩიეეთ ხელით შეყვანილი ჰეშის მნიშვნელობა, რომელიც გამოყენებული იქნება მონიშნული DevBuild-ის შეყვანის ველში, როცა DevBuild-ით ითამაშებთ</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>აღმოჩენილია გამშვების შიდა შეცდომა. მოგვწერეთ მის შესახებ და მოაყოლეთ გამშვების ჟურნალის ფაილები თქვენს რეპორტს, როგორ მოახერხეთ, ეს პრობლემა შეგქმნოდათ.</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
+    <value>აპირებთ წაშალოთ ყველა ფაილი, რომელიც მოთავსებულია დროებით საქაღალდეში ბილიკით "{0}". წაიშლება არა-Thrive-ის ფაილებიც კი, თუ ისინი არსებობს. ასევე წაიშლება საქაღლდეც. წავშალო დროებითი საქაღალდე?</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>ყველა ხელმოწერის გადამოწმების სერტიფიკატის, რომელიც ამ გამშვებს მოჰყვებოდა, ვადა ამოიწურა. ეს ნიშნავს, რომ გამშვების ეს ვერსია ძალიან ძველია. გადმოწერეთ და დააყენეთ უფრო ახალი ვერსია.</value>
+  </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>გამშვებმა მიმდინარე პლატფორმისთვის თავსებადი Thrive-ის ვერსიები ვერ იპოვა. თუ უცნაურ ოპერაციულ სისტემას იყენებთ, ეს მოსალოდნელიც იყო. წინააღმდეგ შემთხვევაში მოგვწერეთ ამ პრობლემის შესახებ.</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>აპირებთ წაშალოთ ყველა ფაილი, რომელიც ინახება გაუწყლოვნებულ კეშის საქაღალდეში მისამართზე "{0}". წაიშლება არა-Thrive-ის ფაილებიც კი, რომლებიც იგივე საქაღალდეში აღმოჩნდნენ რაღაც მიზეზით. წავშალო საქაღალდის შემცველობა?</value>
+  </data>
 </root>
