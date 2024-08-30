@@ -380,7 +380,7 @@
     <value>Todos los certificados que fueron enviados con este lanzador han expirado. Esto significa que está versión del lanzador está extremadamente desactualizada. Por favor descarga una versión nueva.</value>
   </data>
   <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
-    <value>Borrar automáticamente archivos viejos in la carpeta temporal</value>
+    <value>Borrar automáticamente archivos viejos en la carpeta temporal</value>
   </data>
   <data name="LogFolderCreateFailed" xml:space="preserve">
     <value>Hubo un fallo al intentar crear una carpeta de logs ({0}):{1}</value>
@@ -401,19 +401,19 @@
     <value>Conectando a ThriveDevCenter...</value>
   </data>
   <data name="VersionWithPlatform" xml:space="preserve">
-    <value>{0}para{1}</value>
+    <value>{0} para {1}</value>
   </data>
   <data name="LoadingDotDotDot" xml:space="preserve">
     <value>Cargando...</value>
   </data>
   <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
-    <value>El lanzador de Thrive carga las versiones de Thrive disponibles desde el internet para saber cuales están disponibles. Un error ha ocurrido mientras se cargaba esta información (puedes ver el error más abajo). Puedes intentar volver a cargar esta información, o si en el pasado el lanzador fue capaz de descargar esta información puedes cargar una copy del cache. Si la copia del cache es muy vieja puede que no muestre todas las versiones de Thrive disponibles. Puede que si tu version del lanzador es muy vieja, no sea compatible que formatos de datos nuevos, si este es el caso, debera ser actualizado manualmente antes de que se puedan descargar los datos.</value>
+    <value>El lanzador de Thrive carga las versiones de Thrive disponibles de Internet para saber lo que está disponible. Un error ha ocurrido mientras se cargaba esta información (puedes ver el error más abajo). Puedes intentar descargar esta información o, si en el pasado el lanzador fue capaz de descargar esta información, puedes cargar una copia del cache. Si la copia del cache es muy vieja puede que no muestre todas las versiones de Thrive disponibles. Ten en cuenta que si tu versión del lanzador es muy vieja, puede que no sea compatible con formatos de datos nuevos y deba ser actualizado manualmente antes de que se puedan descargar los datos.</value>
   </data>
   <data name="Retry" xml:space="preserve">
-    <value>Volver a intentarlo.</value>
+    <value>Volver a intentarlo</value>
   </data>
   <data name="UseCached" xml:space="preserve">
-    <value>Usar información de versión guardada en el cache</value>
+    <value>Usar información de versión guardada en el caché</value>
   </data>
   <data name="UnknownError" xml:space="preserve">
     <value>Error desconocido</value>
@@ -425,15 +425,78 @@
     <value>No se han encotrado versiones de Thrive compatibles</value>
   </data>
   <data name="NoCompatibleVersionsFound" xml:space="preserve">
-    <value>El lanzador no pudo encontrar ninguna version de Thrive compatible con la plataforma actual. Si estás usando un sistema operativo inusual, esto es de esperar. Por lo contrario, por favor informa de este problema.</value>
+    <value>El lanzador no pudo encontrar ninguna versión de Thrive compatible con la plataforma actual. Si estás usando un sistema operativo inusual, esto es de esperar. De lo contrario, por favor informa de este problema.</value>
   </data>
   <data name="LatestVersionTag" xml:space="preserve">
-    <value>{0}(Ultimo)</value>
+    <value>{0} (Última)</value>
   </data>
   <data name="MoveVersionsTitle" xml:space="preserve">
     <value>Mover versiones existentes?</value>
   </data>
   <data name="LaunchOptionForceOpenGL" xml:space="preserve">
-    <value>Forzar el modo de renderizado de OpenGL (puede que logre que Thrive inicie, pero causa pequeños errores en los gráficos)</value>
+    <value>Forzar el modo de renderizado de OpenGL (puede hacer que Thrive inicie, pero causa pequeños problemas gráficos)</value>
+  </data>
+  <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
+    <value>Aumentar la latencia del audio del juego (puede ayudar con problemas de audio crepitante cuando la latencia se sube lo suficiente)</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>Todos los archivos antiguos se borrarán automáticamente de la carpeta temporal cuando se reinicie el lanzador. Así pues, no se le debe dar otros usos aparte de Thrive a la carpeta de archivos temporales para evitar un borrado accidental de un archivo no relacionado.</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>para leer la publicación completa.</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>Carpeta desconocida:</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>¿Borrar archivos temporales?</value>
+  </data>
+  <data name="DeleteErrorDoesNotExist" xml:space="preserve">
+    <value>Fallo al eliminar porque la ruta de destino no existe</value>
+  </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>Error obteniendo las versiones de Thrive disponibles</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>Error interno</value>
+  </data>
+  <data name="MoveVersionsExplanation" xml:space="preserve">
+    <value>Se han detectado versiones de Thrive en la anterior ruta. Estas pueden moverse automáticamente a la nueva ubicación. Si no se mueven, los archivos se quedarán atrás y el lanzador no sabrá de ellos hasta que la anterior ruta se seleccione de nuevo como la ubicación de instalación. ¿Te gustaría mover automáticamente estos archivos a la nueva ubicación?</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>Ha ocurrido en un error interno en el lanzador. Por favor, informa de este fallo y proporciona los archivos de log del lanzador junto a tu informe de cómo encontraste este problema.</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>¿Mover archivos existentes?</value>
+  </data>
+  <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
+    <value>Se han detectado elementos existentes en el caché. Estos pueden moverse automáticamente a la nueva ubicación. Si no se mueven, los archivos se quedarán atrás y el lanzador no sabrá de su existencia hasta que se seleccione la ruta anterior como la ubicación de nuevo. ¿Te gustaría mover automáticamente {0} archivo(s) a la nueva ubicación? Ten en cuenta que si hay archivos no relacionados con Thrive en la carpeta de caché, estos se moverán también.</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Mover</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Saltar</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Borrar</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>Falló eliminar</value>
+  </data>
+  <data name="DeleteErrorExplanation" xml:space="preserve">
+    <value>Fallo al eliminar datos en la siguiente ruta: «{0}» debido a: {1}</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>¿Borrar la caché del Build de Desarrollo?</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
+    <value>Estás a punto de borrar todos los archivos contenidos en la carpeta temporal en «{0}». Incluso archivos que no son de Thrive se borrarán si existen en esa carpeta. La carpeta en sí también será borrada. ¿Borrar la carpeta temporal?</value>
+  </data>
+  <data name="ClearTemporaryFilesCount" xml:space="preserve">
+    <value>Estás a punto de borrar {0} archivos / carpetas</value>
   </data>
 </root>
