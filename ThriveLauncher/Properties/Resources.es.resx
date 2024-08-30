@@ -499,4 +499,22 @@
   <data name="ClearTemporaryFilesCount" xml:space="preserve">
     <value>Estás a punto de borrar {0} archivos / carpetas</value>
   </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>Esta versión está actualizada</value>
+  </data>
+  <data name="ClearDehydratedFilesCount" xml:space="preserve">
+    <value>Estás a punto de borrar {0} archivos</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>Estás usando la versión del Lanzador de Thrive {0}, pero la última versión es {1}</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>Visitar página de descargas</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>La versión del lanzador está desactualizada</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>Estás a punto de borrar todos los archivos contenidos en la carpeta de caché deshidratada en «{0}». Se borrarán incluso archivos no relacionados con Thrive si se encuentran en esa carpeta. ¿Borrar el contenido de la carpeta?</value>
+  </data>
 </root>
