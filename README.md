@@ -69,8 +69,8 @@ manually.
 ### Running
 
 Now you should have everything set up. You can run Thrive launcher
-with `dotnet run` in the Thrive-Launcher directory. Or use a C# IDE to
-open the project files to run.
+with `dotnet run` in the `Thrive-Launcher/ThriveLauncher`
+subdirectory. Or use a C# IDE to open the project files to run.
 
 ### Issues
 
@@ -99,24 +99,25 @@ On Windows creating packages requires:
 - Icons being generated (see above)
 - NSIS, needs to be added to PATH
 
+To create build containers for Linux:
 
 ```sh
 dotnet run --project Scripts -- container --export false --image ReleaseBuilder latest
 ```
 
-With the build containers created, then just run:
-
-```sh
-dotnet run --project Scripts -- package
-```
-
-On mac you need the xcode tools installed as well as allowing
+On Mac you need the xcode tools installed as well as allowing
 terminal / your IDE to automate Finder.
 
-On a mac the build containers are not needed, so just run:
+### Packaging
+
+With the build containers created on Linux or on other platforms with
+their requirements fullfilled, run the following:
+
 ```sh
 dotnet run --project Scripts -- package
 ```
+
+### After packaging
 
 Before publishing test that the created builds didn't have broken
 packages. If they did a clean needs to be run and then the packaging
