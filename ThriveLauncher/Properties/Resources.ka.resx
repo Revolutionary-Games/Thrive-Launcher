@@ -846,4 +846,13 @@
   <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
     <value>აპირებთ წაშალოთ ყველა ფაილი, რომელიც ინახება გაუწყლოვნებულ კეშის საქაღალდეში მისამართზე "{0}". წაიშლება არა-Thrive-ის ფაილებიც კი, რომლებიც იგივე საქაღალდეში აღმოჩნდნენ რაღაც მიზეზით. წავშალო საქაღალდის შემცველობა?</value>
   </data>
+  <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
+    <value>თუ თამაში სწორად არ გაეშვა, სცადეთ Thrive-ის გაშვების სხვა პარამეტრები, რომლებიც ხელმისაწვდომია გამშვების მორგების "Thrive-ის მორგების" ჩანართში</value>
+  </data>
+  <data name="ReportSubmitErrorNetworkError" xml:space="preserve">
+    <value>ანგარიშის გადაცემა ჩავარდა ქსელის პრობლემის გამო. შეამოწმეთ თქვენი ინტერნეტკავშირი და რამდენიმე წამში თავიდან სცადეთ</value>
+  </data>
+  <data name="LatestVersionParsingFailed" xml:space="preserve">
+    <value>უკანასკნელი ხელმისაწვდომი გამშვების ვერსიის ინფორმაციის დამუშავება ჩავარდა. ახალი გამშვების ვერსიის წვდომადობის გაფრთხილებები და ავტოგანახლება არ იმუშავებს.</value>
+  </data>
 </root>
