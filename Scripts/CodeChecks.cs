@@ -8,29 +8,29 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
 {
     public CodeChecks(Program.CheckOptions opts) : base(opts)
     {
+        ValidChecks = new Dictionary<string, CodeCheck>
+        {
+            { "files", new FileChecks() },
+            { "compile", new CompileCheck(!opts.NoExtraRebuild) },
+            { "inspectcode", new InspectCode() },
+            { "cleanupcode", new CleanupCode() },
+            { "rewrite", new RewriteTool() },
+        };
+
         FilePathsToAlwaysIgnore.Add(new Regex(@"\.Designer\.cs"));
     }
 
-    protected override Dictionary<string, CodeCheck> ValidChecks { get; } = new()
-    {
-        { "files", new FileChecks() },
-        { "compile", new CompileCheck() },
-        { "inspectcode", new InspectCode() },
-        { "cleanupcode", new CleanupCode() },
-        { "rewrite", new RewriteTool() },
-    };
+    protected override Dictionary<string, CodeCheck> ValidChecks { get; }
 
+    // This seems to complain about custom constants in ThriveLauncher.csproj (and backend) with no way to
+    // turn off so we need to ignore UnknownProperty
+    // TODO: could perhaps ignore just the few known good names? in case this inspection can find actual problems
     protected override IEnumerable<string> ForceIgnoredJetbrainsInspections =>
-        new[]
-        {
-            // This seems to complain about custom constants in ThriveLauncher.csproj (and backend) with no way to
-            // turn off
-            // TODO: could perhaps ignore just the few known good names? in case this inspection can find actual
-            // problems
-            "UnknownProperty",
-        };
+    [
+        "UnknownProperty",
+    ];
 
-    protected override IEnumerable<string> ExtraIgnoredJetbrainsInspectWildcards => new[] { "**.Designer.cs" };
+    protected override IEnumerable<string> ExtraIgnoredJetbrainsInspectWildcards => ["**.Designer.cs"];
 
     protected override string MainSolutionFile => "ThriveLauncher.sln";
 }
