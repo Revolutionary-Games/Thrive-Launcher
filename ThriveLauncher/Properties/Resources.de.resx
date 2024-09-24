@@ -295,4 +295,40 @@
   <data name="DevCenterCheckingConnection" xml:space="preserve">
     <value>Herstellen einer Verbindung mit ThriveDevCenter...</value>
   </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+    <value>Letzte (ändert sich oft zufällig, da dies buchstäblich ein Build vom letzten Code-Commit ist)</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+    <value>Cacheverzeichnis zurücksetzen</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>Hier kannst Du den Launcher mit dem ThriveDevCenter verbinden, um auf DevBuilds und andere Features zuzugreifen.</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+    <value>Anleitungen auf unserem Wiki</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+    <value>Manuell eingegebener Hash:</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+    <value>Link-Code</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+    <value>Verbinden</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>Hol dir einen Link-Code</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>Anmelden</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>Bestätigen</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+    <value>Build Hash eingeben (commit)</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+    <value>Auswählen</value>
+  </data>
 </root>
