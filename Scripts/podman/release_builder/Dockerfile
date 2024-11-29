@@ -4,4 +4,4 @@ FROM almalinux:9
 COPY packages-microsoft-prod.rpm /packages-microsoft-prod.rpm
 
 RUN dnf update -y && dnf install epel-release -y && rpm -Uvh /packages-microsoft-prod.rpm  && \
-    dnf install -y dotnet-sdk-8.0 p7zip git rsync ImageMagick && dnf clean all
+    dnf install -y dotnet-sdk-9.0 p7zip git rsync ImageMagick && dnf clean all

@@ -2,7 +2,7 @@ version: 1
 
 jobs:
   test:
-    image: thrive/launcher:v5
+    image: thrive/launcher:v6
     cache:
       loadFrom:
         - v5-{Branch}-build
@@ -19,7 +19,7 @@ jobs:
           name: Test
           command: dotnet test
   lint:
-    image: thrive/launcher:v5
+    image: thrive/launcher:v6
     cache:
       loadFrom:
         - v5-{Branch}-build
