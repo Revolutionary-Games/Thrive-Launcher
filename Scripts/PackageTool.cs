@@ -39,7 +39,6 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private const string MacIcon = "ThriveLauncher/Assets/Icons/icon.icns";
     private const string MacInstallerBackground = "Scripts/mac_installer_background.png";
     private const string MacEntitlementsFile = "Scripts/ThriveLauncher.entitlements";
-    private const string AssumedSelfSignedCertificateName = "SelfSigned";
     private const string MacDsStore = ".DS_Store";
     private const int DmgCreationRetries = 5;
 
@@ -800,61 +799,18 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private async Task<bool> SignMacFilesRecursively(string folder, CancellationToken cancellationToken)
     {
-        // Signing the final .app requires us to sign *everything* in the MacOS folder, so that's what we need to do
+        // Signing the final .app requires us to sign *everything* in the macOS folder, so that's what we need to do
         // here
         foreach (var executable in Directory.EnumerateFiles(folder, "*", SearchOption.AllDirectories))
         {
-            if (!await SignFileForMac(executable, cancellationToken))
+            if (!await BinaryHelpers.SignFileForMac(executable, MacEntitlementsFile, options.MacSigningKey,
+                    cancellationToken))
+            {
                 return false;
+            }
         }
 
         return true;
-    }
-
-    private async Task<bool> SignFileForMac(string filePath, CancellationToken cancellationToken)
-    {
-        ColourConsole.WriteNormalLine($"Signing {filePath}");
-
-        var startInfo = new ProcessStartInfo("xcrun");
-        startInfo.ArgumentList.Add("codesign");
-        startInfo.ArgumentList.Add("--force");
-        startInfo.ArgumentList.Add("--verbose");
-        startInfo.ArgumentList.Add("--timestamp");
-
-        startInfo.ArgumentList.Add("--sign");
-
-        AddCodesignName(startInfo);
-
-        startInfo.ArgumentList.Add("--options=runtime");
-        startInfo.ArgumentList.Add("--entitlements");
-        startInfo.ArgumentList.Add(MacEntitlementsFile);
-        startInfo.ArgumentList.Add(filePath);
-
-        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
-
-        if (result.ExitCode != 0)
-        {
-            ColourConsole.WriteErrorLine($"Running codesign on '{filePath}' failed. " +
-                "Are xcode tools installed and do you have the right certificates installed / " +
-                "self-signed certificate created? A self signed certificate might also be expired.");
-            return false;
-        }
-
-        ColourConsole.WriteDebugLine("Codesign succeeded");
-
-        return true;
-    }
-
-    private void AddCodesignName(ProcessStartInfo startInfo)
-    {
-        if (!string.IsNullOrEmpty(options.MacSigningKey))
-        {
-            startInfo.ArgumentList.Add(options.MacSigningKey);
-        }
-        else
-        {
-            startInfo.ArgumentList.Add(AssumedSelfSignedCertificateName);
-        }
     }
 
     private void PrunePdbFiles(string folder)
@@ -1088,9 +1044,12 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         await File.WriteAllTextAsync(Path.Join(contents, "Info.plist"), finalText, new UTF8Encoding(false),
             cancellationToken);
 
-        // The base app file must be signed as well as all of the executables
-        if (!await SignFileForMac(appBase, cancellationToken))
+        // The base app file must be signed as well as all the executables
+        if (!await BinaryHelpers.SignFileForMac(appBase, MacEntitlementsFile, options.MacSigningKey,
+                cancellationToken))
+        {
             throw new Exception("Signing .app file failed");
+        }
 
         ColourConsole.WriteSuccessLine($"App created at {appBase}");
     }
@@ -1176,7 +1135,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             startInfo.ArgumentList.Add("--no-internet-enable");
 
             startInfo.ArgumentList.Add("--codesign");
-            AddCodesignName(startInfo);
+            BinaryHelpers.AddCodesignName(startInfo, options.MacSigningKey);
 
             // TODO: notarization
             // startInfo.ArgumentList.Add("--notarize");
