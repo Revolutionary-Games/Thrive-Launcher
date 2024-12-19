@@ -224,7 +224,7 @@
     <value>Réinitialiser l'emplacement des fichiers de cache</value>
   </data>
   <data name="CacheSizeDisplay" xml:space="preserve">
-    <value>Taille du cache :</value>
+    <value>Taille du cache :</value>
   </data>
   <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
     <value>Connexion au ThriveDevCenter</value>
