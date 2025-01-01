@@ -717,4 +717,13 @@
   <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
     <value>Автоматично перезапустити Thrive у випадку невдалого запуску</value>
   </data>
+  <data name="LaunchOptionForceOpenGL" xml:space="preserve">
+    <value>Примусовий режим візуалізації OpenGL (може запустити Thrive, але спричиняє невеликі проблеми з графікою)</value>
+  </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+    <value>Під'єднання до ThriveDevCenter...</value>
+  </data>
+  <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
+    <value>Збільшити затримку аудіо в грі (може виправити проблеми з потріскуванням аудіо, якщо затримку встановлено достатньо високо)</value>
+  </data>
 </root>
