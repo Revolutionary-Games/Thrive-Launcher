@@ -581,4 +581,7 @@ Logs do Inicializador fornecerão informações mais detalhadas.</value>
   <data name="CrashReporterWindowTitle" xml:space="preserve">
     <value>Relator de Falhas do Thrive</value>
   </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+    <value>Conectando ao ThriveDevCenter...</value>
+  </data>
 </root>
