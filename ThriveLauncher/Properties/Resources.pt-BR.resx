@@ -584,4 +584,16 @@ Logs do Inicializador fornecerão informações mais detalhadas.</value>
   <data name="DevCenterCheckingConnection" xml:space="preserve">
     <value>Conectando ao ThriveDevCenter...</value>
   </data>
+  <data name="LaunchOptionForceOpenGL" xml:space="preserve">
+    <value>Forçar modo de renderização OpenGL (pode fazer Thrive começar, mas causa leves problemas gráficos)</value>
+  </data>
+  <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
+    <value>Aumentar a latência do áudio do jogo (pode consertar problemas de crepitação de áudio quando a latência está suficientemente alta)</value>
+  </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>Usar modo alternativo de executar auto atualizador (tente se o início da auto atualização normal falhar)</value>
+  </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>Apagar automaticamente arquivos antigos na pasta temporária</value>
+  </data>
 </root>
