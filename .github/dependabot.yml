@@ -7,6 +7,13 @@ updates:
     labels:
       - "review"
       - "dependencies"
+    groups:
+      avalonia:
+        patterns:
+          - "Avalonia*"
+      xunit:
+        patterns:
+          - "xunit*"
   - package-ecosystem: gitsubmodule
     directory: "/"
     schedule:
