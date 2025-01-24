@@ -596,4 +596,55 @@ Logs do Inicializador fornecerão informações mais detalhadas.</value>
   <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
     <value>Apagar automaticamente arquivos antigos na pasta temporária</value>
   </data>
+  <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
+    <value>A conexão ao ThriveDevCenter falhou. O servidor respondeu com um erro desconhecido ou nós encontramos um erro lidando com a resposta. Por favor, tente novamente e, se o problema persistir, o relate. Você pode usar o link abaixo para verificar se há algum problema pelo lado do ThriveDevCenter.</value>
+  </data>
+  <data name="LoginToSeeThisContent" xml:space="preserve">
+    <value>Faça login no ThriveDevCenter para ver este conteúdo</value>
+  </data>
+  <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
+    <value>VDD</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>Todos os arquivos antigos serão automaticamente apagados da pasta temporária quando o inicializador for reiniciado. Por causa disso, a pasta de arquivos temporários não deve ser compartilhada com outros usos além do Thrive para evitar o apagamento acidental de arquivos não relacionados.</value>
+  </data>
+  <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
+    <value>A conexão com ThriveDevCenter falhou. O servidor respondeu com uma proibição. Isso significa que a nossa chave de conexão não é mais válida. Isso pode ser causado pela conexão ser desconectada através da interface web ou sua conta pode estar suspensa. Veja o link abaixo para checar o status de conexão da sua conta.</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+    <value>Versão do dia (VDD), recomendada</value>
+  </data>
+  <data name="OutdatedLauncherUpdateDisabledByUser" xml:space="preserve">
+    <value>O inicializador que você está usando é capaz de se atualizar automaticamente, porém a atualização automática está desativada ou pelas configurações do inicializador ou por uma opção de linha de comando.</value>
+  </data>
+  <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
+    <value>Erro: nenhum arquivo de atualização encontrado para este inicializador. Isso não deveria acontecer. Por favor, tente novamente mais tarde e, se o problema persistir, nos avise.</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>Falha de conexão com ThriveDevCenter</value>
+  </data>
+  <data name="DevCenterConnectFailureConnection" xml:space="preserve">
+    <value>A conexão ao ThriveDevCenter falhou. Por favor, tente novamente, pois o ThriveDevCenter pode apenas estar temporariamente indisponível. Você também deveria verificar sua conexão com a internet. Você pode usar o link abaixo para visitar o DevCenter para ver se o seu browser pode se conectar. Por favor, tente novamente mais tarde e, se o problema persistir por mais que alguns minutos, por favor relate-o.</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>O código é válido. Por favor, confirme a ligação com a seguinte conta:</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>Tentar de Novo Conexão Existente</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>Falha na formação do link, favor verificar o código novamente</value>
+  </data>
+  <data name="EnterDevCenterConnectionCode" xml:space="preserve">
+    <value>Por favor, insira primeiro um código de conexão ThriveDevCenter na caixa de entrada</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>não seguro</value>
+  </data>
+  <data name="DevCenterConnectAttemptError" xml:space="preserve">
+    <value>Erro de verificação do código de ligação para o ThriveDevCenter. Por favor, verifique que o código foi digitado corretamente e que ainda não expirou. Mais informações: {0}</value>
+  </data>
+  <data name="GettingDevBuildInfoMessage" xml:space="preserve">
+    <value>Recuperando informação sobre a versão de desenvolvimento de tipo {0} para executar…</value>
+  </data>
 </root>
