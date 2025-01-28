@@ -647,4 +647,28 @@ Logs do Inicializador fornecerão informações mais detalhadas.</value>
   <data name="GettingDevBuildInfoMessage" xml:space="preserve">
     <value>Recuperando informação sobre a versão de desenvolvimento de tipo {0} para executar…</value>
   </data>
+  <data name="NoBuildToPlayFound" xml:space="preserve">
+    <value>Nenhuma versão de desenvolvimento que corresponda ao tipo requerido e à plataforma atual foi encontrada</value>
+  </data>
+  <data name="ErrorGettingDevBuild" xml:space="preserve">
+    <value>Erro: falha em encontrar a versão de desenvolvimento do tipo especificado para esta plataforma. Favor selecionar outra versão, por exemplo a VDD recomendada, e tentar novamente. Causa da falha: {0}</value>
+  </data>
+  <data name="ThriveRunCanceled" xml:space="preserve">
+    <value>A inicialização do Thrive foi cancelada</value>
+  </data>
+  <data name="ThriveRunError" xml:space="preserve">
+    <value>Thrive não conseguiu ser inicializado devido ao seguinte erro: {0}</value>
+  </data>
+  <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
+    <value>A inicialização de uma versão não segura foi cancelada</value>
+  </data>
+  <data name="MissingThriveFolderError" xml:space="preserve">
+    <value>Uma pasta Thrive deveria existir em {0} mas não existe</value>
+  </data>
+  <data name="DownloadError" xml:space="preserve">
+    <value>Download falhou por causa de {0}</value>
+  </data>
+  <data name="ExtractError" xml:space="preserve">
+    <value>Falha na extração de um arquivo devido a um erro: {0}</value>
+  </data>
 </root>
