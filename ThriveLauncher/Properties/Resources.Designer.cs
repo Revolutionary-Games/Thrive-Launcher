@@ -249,15 +249,39 @@ namespace ThriveLauncher.Properties {
             }
         }
         
-        public static string ExternalLinkTwitterFeed {
+        public static string ExternalLinkXFeed {
             get {
-                return ResourceManager.GetString("ExternalLinkTwitterFeed", resourceCulture);
+                return ResourceManager.GetString("ExternalLinkXFeed", resourceCulture);
             }
         }
         
         public static string ExternalLinkFacebookPage {
             get {
                 return ResourceManager.GetString("ExternalLinkFacebookPage", resourceCulture);
+            }
+        }
+        
+        public static string ExternalLinkBluesky {
+            get {
+                return ResourceManager.GetString("ExternalLinkBluesky", resourceCulture);
+            }
+        }
+        
+        public static string ExternalLinkInstagram {
+            get {
+                return ResourceManager.GetString("ExternalLinkInstagram", resourceCulture);
+            }
+        }
+        
+        public static string ExternalLinkMastodon {
+            get {
+                return ResourceManager.GetString("ExternalLinkMastodon", resourceCulture);
+            }
+        }
+        
+        public static string ExternalLinkThreads {
+            get {
+                return ResourceManager.GetString("ExternalLinkThreads", resourceCulture);
             }
         }
         

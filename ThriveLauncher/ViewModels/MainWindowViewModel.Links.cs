@@ -113,6 +113,26 @@ public partial class MainWindowViewModel
         URLUtilities.OpenURLInBrowser(LauncherConstants.TwitterProfileURL);
     }
 
+    public void OpenBlueskyLink()
+    {
+        URLUtilities.OpenURLInBrowser(LauncherConstants.BlueskyProfileURL);
+    }
+
+    public void OpenInstagramLink()
+    {
+        URLUtilities.OpenURLInBrowser(LauncherConstants.InstagramProfileURL);
+    }
+
+    public void OpenMastodonLink()
+    {
+        URLUtilities.OpenURLInBrowser(LauncherConstants.MastodonProfileURL);
+    }
+
+    public void OpenThreadsLink()
+    {
+        URLUtilities.OpenURLInBrowser(LauncherConstants.ThreadsProfileURL);
+    }
+
     public void VisitDownloadsPage()
     {
         URLUtilities.OpenURLInBrowser(LauncherConstants.LauncherDownloadsPageURL);

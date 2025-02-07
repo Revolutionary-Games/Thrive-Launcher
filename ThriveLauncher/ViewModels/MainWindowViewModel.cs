@@ -183,6 +183,9 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
 
     public bool ShowLinksNotInSteamVersion => !detectedStore.IsSteam;
 
+    // Probably fine to always show this and not only when a store is not detected
+    public bool ShowPatreonLink => true;
+
     public bool RetryVersionInfoDownload { get; set; }
 
     public bool LoadCachedVersionInfo { get; set; }

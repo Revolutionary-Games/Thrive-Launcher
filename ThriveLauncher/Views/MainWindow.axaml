@@ -147,7 +147,7 @@
 
         <controls:PopupDialog Title="{i18n:Localize LinksPopupTitle}"
                               CloseCommand="{Binding CloseLinksClicked}" ShowPopup="{Binding ShowLinksPopup}">
-            <Grid ColumnDefinitions="*, *" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+            <Grid ColumnDefinitions="*, *" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
                 <Button Grid.Column="0" Grid.Row="0" Classes="TextLink"
                         Content="{i18n:Localize ExternalLinkMainWebsite}" FontSize="20"
                         Command="{Binding OpenMainSiteLink}" />
@@ -164,18 +164,20 @@
                         Content="{i18n:Localize ExternalLinkThriveSteam}"
                         Command="{Binding OpenThriveSteamLink}" />
                 <Button Grid.Column="0" Grid.Row="5" Classes="TextLink"
-                        IsVisible="{Binding ShowLinksNotInSteamVersion}"
+                        IsVisible="{Binding ShowPatreonLink}"
                         Content="{i18n:Localize ExternalLinkPatreon}"
                         Command="{Binding OpenThrivePatreonLink}" />
-                <Button Grid.Column="0" Grid.Row="6" Classes="TextLink"
+                <Button Grid.Column="0" Grid.Row="6" Classes="TextLink" Content="{i18n:Localize ViewLicensesButton}"
+                        Click="OpenLicensesWindow" />
+                <Button Grid.Column="0" Grid.Row="7" Classes="TextLink"
                         IsVisible="{Binding !IsStoreVersion}"
                         Content="{i18n:Localize ExternalLinkDonate}"
                         Command="{Binding OpenDonateLink}" />
-                <Button Grid.Column="0" Grid.Row="7" Classes="TextLink"
+                <Button Grid.Column="0" Grid.Row="8" Classes="TextLink"
                         IsVisible="{Binding ShowLinksNotInSteamVersion}"
                         Content="{i18n:Localize ExternalLinkThriveDevCenter}"
                         Command="{Binding OpenThriveDevCenterBrowserLink}" />
-                <Button Grid.Column="0" Grid.Row="8" Classes="TextLink"
+                <Button Grid.Column="0" Grid.Row="9" Classes="TextLink"
                         IsVisible="{Binding ShowLinksNotInSteamVersion}"
                         Content="{i18n:Localize ExternalLinkThriveItch}"
                         Command="{Binding OpenThriveItchLink}" />
@@ -199,13 +201,24 @@
                         Content="{i18n:Localize ExternalLinkYouTubeChannel}"
                         Command="{Binding OpenYoutubeChannelLink}" />
                 <Button Grid.Column="1" Grid.Row="6" Classes="TextLink"
-                        Content="{i18n:Localize ExternalLinkTwitterFeed}"
-                        Command="{Binding OpenTwitterProfileLink}" />
+                        Content="{i18n:Localize ExternalLinkBluesky}"
+                        Command="{Binding OpenBlueskyLink}" />
                 <Button Grid.Column="1" Grid.Row="7" Classes="TextLink"
+                        Content="{i18n:Localize ExternalLinkXFeed}"
+                        Command="{Binding OpenTwitterProfileLink}" />
+                <Button Grid.Column="1" Grid.Row="8" Classes="TextLink"
+                        Content="{i18n:Localize ExternalLinkInstagram}"
+                        Command="{Binding OpenInstagramLink}" />
+                <Button Grid.Column="1" Grid.Row="9" Classes="TextLink"
+                        Content="{i18n:Localize ExternalLinkMastodon}"
+                        Command="{Binding OpenMastodonLink}" />
+                <Button Grid.Column="1" Grid.Row="10" Classes="TextLink"
+                        Content="{i18n:Localize ExternalLinkThreads}"
+                        Command="{Binding OpenThreadsLink}" />
+                <!-- This page is inactive as we don't have admin access anymore
+                <Button Grid.Column="1" Grid.Row="10" Classes="TextLink"
                         Content="{i18n:Localize ExternalLinkFacebookPage}"
-                        Command="{Binding OpenFacebookPageLink}" />
-                <Button Grid.Column="1" Grid.Row="8" Classes="TextLink" Content="{i18n:Localize ViewLicensesButton}"
-                        Click="OpenLicensesWindow" />
+                        Command="{Binding OpenFacebookPageLink}" /> -->
             </Grid>
         </controls:PopupDialog>
 

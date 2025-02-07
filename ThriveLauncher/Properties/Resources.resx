@@ -163,11 +163,23 @@
   <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
       <value>YouTube channel</value>
   </data>
-  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
-      <value>Twitter feed</value>
+  <data name="ExternalLinkXFeed" xml:space="preserve">
+      <value>X (formerly Twitter)</value>
   </data>
   <data name="ExternalLinkFacebookPage" xml:space="preserve">
       <value>Facebook page</value>
+  </data>
+  <data name="ExternalLinkBluesky" xml:space="preserve">
+      <value>Bluesky</value>
+  </data>
+  <data name="ExternalLinkInstagram" xml:space="preserve">
+      <value>Instagram</value>
+  </data>
+  <data name="ExternalLinkMastodon" xml:space="preserve">
+      <value>Mastodon</value>
+  </data>
+  <data name="ExternalLinkThreads" xml:space="preserve">
+      <value>Threads</value>
   </data>
   <data name="ThriveOptions" xml:space="preserve">
       <value>Thrive Options</value>

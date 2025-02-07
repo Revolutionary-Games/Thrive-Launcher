@@ -76,6 +76,13 @@ public static class LauncherConstants
     public const string YoutubeChannelURL = "https://www.youtube.com/c/RevolutionaryGames";
     public const string FacebookPageURL = "https://www.facebook.com/Thrive-182887991751358/";
     public const string TwitterProfileURL = "https://twitter.com/thrive_game";
+
+    // public const string TwitterProfileURL = "https://x.com/thrive_game";
+
+    public const string BlueskyProfileURL = "https://bsky.app/profile/revolutionarygamesstudio.com";
+    public const string InstagramProfileURL = "https://www.instagram.com/thrive_game/";
+    public const string MastodonProfileURL = "https://mastodon.social/@Thrive_Game";
+    public const string ThreadsProfileURL = "https://www.threads.net/@thrive_game";
     public const string LauncherDownloadsPageURL = "https://github.com/Revolutionary-Games/Thrive-Launcher/releases";
 
     public const string LauncherLinkingInstructionsURL =
