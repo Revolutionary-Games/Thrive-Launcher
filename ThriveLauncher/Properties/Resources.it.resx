@@ -388,4 +388,143 @@
   <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
     <value>Tutti i certificati sono scaduti</value>
   </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0} MiB</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>(dimensione: {0})</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>pubblicato da {0} alle {1}</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>Impossibile creare la cartella logs ({0}): {1}</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>Visualizza i log</value>
+  </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>Utilizzare un metodo alternativo per eseguire l'aggiornamento automatico (da provare se il normale avvio dell'aggiornamento automatico fallisce)</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>Spostare i file esistenti?</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>Si è verificato un errore operativo nel launcher. Si prega di segnalare questo problema e di fornire i file di log del launcher oltre a comunicare come ha riscontrato il problema.</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>Visualizza le licenze del Launcher</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Licenze del Launcher Thrive</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Il Launcher Thrive</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>Tutti i file vecchi verranno automaticamente eliminati dalla cartella temporanea al riavvio del launcher. Di conseguenza, la cartella dei file temporanei non deve essere condivisa con altri utenti oltre a Thrive, per evitare l'eliminazione accidentale di file non correlati.</value>
+  </data>
+  <data name="MoveVersionsExplanation" xml:space="preserve">
+    <value>Sono state rilevate versioni di Thrive installate nel percorso precedente. Queste possono essere spostate automaticamente nella nuova locazione. Se non vengono trasferiti, i file rimarranno nel percorso precedente e il programma di avvio non li rileverà fino a quando non verrà nuovamente selezionato il percorso precedente come percorso di installazione. Si desidera spostare automaticamente questi file nel nuovo percorso?</value>
+  </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+    <value>Connessione con ThriveDevCenter in corso...</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>La cartella di installazione della versione di Thrive non esiste.</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>Il feed non può essere visualizzato. {0}</value>
+  </data>
+  <data name="LaunchOptionForceOpenGL" xml:space="preserve">
+    <value>Forzare modalità di rendering OpenGL (può aiutare ad avviare Thrive, ma causa lievi problemi grafici)</value>
+  </data>
+  <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
+    <value>Aumenta la latenza dell'audio del gioco (può risolvere i problemi di crepitii dell'audio quando la latenza è impostata abbastanza alta)</value>
+  </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>Eliminazione automatica dei vecchi file nella cartella temporanea</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>Codice sorgente del launcher</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>Tutti i certificati di verifica della firma con cui viene fornito questo launcher sono scaduti. Ciò significa che questa versione del launcher è estremamente obsoleta. Si prega di scaricare e installare una versione più recente.</value>
+  </data>
+  <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
+    <value>Il Launcher Thrive carica le versioni di Thrive disponibili da Internet per verificare la disponibilità. Il caricamento di queste informazioni non è riuscito (vedere l'errore di seguito). È possibile riprovare a scaricare queste informazioni o, se il launcher era precedentemente in grado di scaricarle, è possibile caricarne una copia nella cache. Se la copia nella cache è piuttosto datata, potrebbe non mostrare tutte le versioni di Thrive disponibili. Se la versione del launcher è piuttosto datata, potrebbe non essere più compatibile con un formato di dati più recente e deve essere aggiornata manualmente prima di poter caricare i dati.</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
+    <value>Si stanno per eliminare tutti i file contenuti nella cartella temporanea in “{0}”. Verranno eliminati anche file che non appartengono a Thrive, se presenti in tale cartella. Anche la cartella stessa verrà eliminata. Eliminare la cartella temporanea?</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+    <value>Inserire l'hash della build (commit)</value>
+  </data>
+  <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+    <value>Selezionare il valore hash inserito manualmente dalla casella di immissione come DevBuild selezionato da eseguire quando si riproduce un DevBuild</value>
+  </data>
+  <data name="FetchLatestBuildsButton" xml:space="preserve">
+    <value>Recupera le ultime build</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>Il salvataggio delle impostazioni nel file delle impostazioni non è riuscito. Assicurarsi che il launcher abbia accesso di scrittura e riprovare.
+I log del launcher contengono ulteriori informazioni.</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>Il font utilizzato nel launcher è Roboto, con licenza:</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf (Copyright (c) 2010-2011 di tyPoland Lukasz Dziedzic con nome di font riservato "Lato"), licenza OFL:</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>versione {0}</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} per {1}</value>
+  </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>Errore nell' acquisire le versioni di Thrive disponibili</value>
+  </data>
+  <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
+    <value>Le informazioni del Launcher Thrive non sono valide. Riprovare a breve e, se il problema persiste, contattarci.</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>Usa le informazioni sulla versione in cache</value>
+  </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>Il launcher non è riuscito a trovare versioni di Thrive compatibili con la piattaforma corrente. Se si utilizza un sistema operativo insolito, questo è prevedibile. In caso contrario, si invita a segnalarlo come problema.</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0} (Ultima)</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>Spostare le versioni esistenti?</value>
+  </data>
+  <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
+    <value>Sono stati rilevati elementi presenti nella cache. Questi possono essere spostati automaticamente nella nuova locazione. Se non vengono trasferiti, i file rimarranno nel percorso precedente e il launcher non li rileverà fino a quando non verrà nuovamente selezionato il percorso precedente. Si desidera spostare automaticamente {0} file nel nuovo percorso? Si noti che se nella cartella cache sono presenti file non correlati con Thrive, anche essi verranno spostati.</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>Errore interno</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>Eliminazione fallita</value>
+  </data>
+  <data name="DeleteErrorExplanation" xml:space="preserve">
+    <value>Errore nell'eliminazione dei dati nel seguente percorso: “{0}” a causa di: {1}</value>
+  </data>
+  <data name="DeleteErrorDoesNotExist" xml:space="preserve">
+    <value>Cancellazione fallita perché il percorso non esiste</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>Cartella sconosciuta:</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>Eliminare i file temporanei?</value>
+  </data>
+  <data name="ClearTemporaryFilesCount" xml:space="preserve">
+    <value>Si stanno per eliminare {0} file/cartelle</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>Eliminare la cache di DevBuild?</value>
+  </data>
 </root>
