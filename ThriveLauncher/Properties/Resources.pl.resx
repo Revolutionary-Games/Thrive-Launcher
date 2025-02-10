@@ -702,7 +702,7 @@ Jeśli członek team Thrive potwierdza bezpieczeństwo PRu, to ostrzeżenie znik
     <value>{0} temu</value>
   </data>
   <data name="CrashReportDeleteInfoEnabled" xml:space="preserve">
-    <value>Plik zrzutu crasha zostanie automatycznie usunięty po udanym wysłaniu raportu</value>
+    <value>Plik zrzutu crasha zostanie automatycznie usunięty po udanym wysłaniu zgłoszenia</value>
   </data>
   <data name="ThriveRunCanceled" xml:space="preserve">
     <value>Uruchamianie Thrive zostało anulowane</value>
@@ -795,7 +795,7 @@ Jeśli członek team Thrive potwierdza bezpieczeństwo PRu, to ostrzeżenie znik
     <value>Wysyłanie twojego raportu. Może to potrwać kilka minut więc prosimy o cierpliwość...</value>
   </data>
   <data name="ErrorSubmittingReport" xml:space="preserve">
-    <value>Podczas próby wysłania twojego raportu wystąpił błąd. Prosimy zweryfikować czy dane są poprawne bądź spróbować później, jeśli problem jest po stronie serwera. Typ błędu:</value>
+    <value>Podczas próby wysłania twojego zgłoszenia wystąpił błąd. Prosimy zweryfikować czy dane są poprawne bądź spróbować później, jeśli problem jest po stronie serwera. Typ błędu:</value>
   </data>
   <data name="ReportDeleteInfo" xml:space="preserve">
     <value>Jeśli chcesz usunąć swój raport, możesz to uczynić tutaj:</value>
@@ -828,13 +828,13 @@ Jeśli członek team Thrive potwierdza bezpieczeństwo PRu, to ostrzeżenie znik
     <value>Logi do Zawarcia</value>
   </data>
   <data name="CrashReportDescriptionField" xml:space="preserve">
-    <value>Opisz, co robiłeś(aś/oś) gdy crash się wydarzył (opcjonalne)</value>
+    <value>Opisz, co robiłeś(aś/oś), gdy doszło do crasha (opcjonalne)</value>
   </data>
   <data name="CrashReportDescriptionFieldPlaceholder" xml:space="preserve">
     <value>Opis crasha (opcjonalny)</value>
   </data>
   <data name="CrashReportEmailField" xml:space="preserve">
-    <value>Twój e-mail, jeśli chcesz otrzymywać powiadomienia odnośnie tego raportu (opcjonalne)</value>
+    <value>Twój e-mail, jeśli chcesz otrzymywać powiadomienia odnośnie tego zgłoszenia (opcjonalne)</value>
   </data>
   <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
     <value>E-mail (opcjonalny)</value>
@@ -843,7 +843,7 @@ Jeśli członek team Thrive potwierdza bezpieczeństwo PRu, to ostrzeżenie znik
     <value>Twój e-mail będzie widoczny jedynie dla administratorów ThriveDevCenter.</value>
   </data>
   <data name="CrashReportIsPublic" xml:space="preserve">
-    <value>Publiczny? Publiczne raporty mają swoje stosy wywołań crashów oraz opisy widoczne publicznie. Prywatne raporty są widoczne jedynie dla deweloperów Thrive.</value>
+    <value>Publiczne? Publiczne zgłoszenia mają swoje stosy wywołań crashów oraz opisy widoczne publicznie. Prywatne zgłoszenia są widoczne jedynie dla deweloperów Thrive.</value>
   </data>
   <data name="CrashReportSubmitAcceptConfirmation" xml:space="preserve">
     <value>Wyrażam zgodę na to, by informacje przedstawione w tym podaniu, w tym jakiekolwiek zamieszczone pliki i zrzuty crashów, jak i mój adres IP, były przechowywane w bazie danych crashów Thrive. A jeśli ten raport jest publiczny, każdy może przeczytać stos wywołać crasha oraz opis.</value>
@@ -855,10 +855,10 @@ Jeśli członek team Thrive potwierdza bezpieczeństwo PRu, to ostrzeżenie znik
     <value>Usuń ten plik zrzutu crasha po zgłoszeniu (zalecane)</value>
   </data>
   <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
-    <value>Wybrany crash wydarzył się jakiś czas temu. Z tej przyczyny może nie mieć powiązania z najnowszymi plikami logu bądź danymi wyjściowymi przechowywanymi przez launcher. Prosimy uważnie sprawdzić, czy aby napewno raportowany jest poprawny crash i pliki logu.</value>
+    <value>Wybrany crash wydarzył się jakiś czas temu. Z tej przyczyny może nie mieć powiązania z najnowszymi plikami logu bądź danymi wyjściowymi przechowywanymi przez launcher. Prosimy uważnie sprawdzić, czy aby napewno zgłaszany jest poprawny crash i pliki logu.</value>
   </data>
   <data name="ReportSubmitErrorBadRequest" xml:space="preserve">
-    <value>Wysyłanie raportu nie powiodło się ze względu na nieprawidłowe informacje wprowadzone do formularzu raportu crasha, prosimy zweryfikować poprawność informacji, które usiłujesz przesłać, a następnie spróbować ponownie</value>
+    <value>Wysyłanie raportu nie powiodło się ze względu na nieprawidłowe informacje wprowadzone do formularza zgłoszenia crasha, prosimy zweryfikować poprawność informacji, które usiłujesz przesłać, a następnie spróbować ponownie</value>
   </data>
   <data name="ReportSubmitErrorNetworkError" xml:space="preserve">
     <value>Wysyłanie raportu nie powiodło się ze względu na problem z siecią, prosimy sprawdzić swoje łącze internetowe i spróbować ponownie za kilka minut</value>
@@ -913,7 +913,7 @@ Jeśli poniżej nie ma żadnych plików, pobieranie aktualizacji nie powiodło s
     <value>Ignoruj Niepowodzenie</value>
   </data>
   <data name="CannotSubmitExceptionReportYet" xml:space="preserve">
-    <value>Raporter crashów jeszcze nie wspiera zgłaszania crashów spowodowanych przez nieobsługiwane wyjątki. Prosimy skorzystać z przycisku poniżej by skopiować raport do twojego schowka, a następnie manualnie wysłać go do nas.</value>
+    <value>Raporter crashów jeszcze nie wspiera zgłaszania crashów spowodowanych przez nieobsługiwane wyjątki. Prosimy skorzystać z przycisku poniżej by skopiować zgłoszenie do twojego schowka, a następnie manualnie wysłać je do nas.</value>
   </data>
   <data name="ThriveRunRetryStarting" xml:space="preserve">
     <value>Nieprawidłowe rozpoczęcie Thrive zostało wykryte. Nastąpi próba ponownego rozpoczęcia Thrive, numer próby: {0}</value>
@@ -946,6 +946,6 @@ Jeśli poniżej nie ma żadnych plików, pobieranie aktualizacji nie powiodło s
     <value>W pakiecie z launcherem przychodzą pewne dodatkowe narzędzia. Są one oddzielnymi plikami wykonywalnymi, które launcher wywołuje jako programy lini komend. Licencja 7-Zip:</value>
   </data>
   <data name="CrashReportLogsSectionExplanation" xml:space="preserve">
-    <value>Prosimy zatrzymać umieszczone logi, jeśli one są z tej samej sesji gry co ten crash, ponieważ te logi mogą pomóc w identyfikacji i naprawy problemu. Możesz kliknąć nazwę pliku, żeby go otworzyć albo guzik żeby zobaczyć folder, w którym jest, żeby zobaczyć i usunąć jakiekolwiek prywatne dane jakie chcesz. Pliki log są zawsze tylko widoczne do developerów Thrive i są tylko dzielone z innymi partjami, jeśli to jest potrzebne w znalezieniu czy naprawy raportowanego problemu.</value>
+    <value>Prosimy pozostawić logi, jeśli pochodzą one z tej samej sesji gry, co crash, ponieważ mogą pomóc w identyfikacji i naprawie problemu. Jeśli zależy ci na usunięciu swoich danych osobowych, możesz kliknąć nazwę pliku, żeby go otworzyć (albo przycisk do pokazania folderu, w którym się znajduje) i odpowiednio zedytować. Pliki logów zawsze są widoczne tylko dla developerów Thrive, a dzielone są z innymi podmiotami tylko wtedy, gdy jest to konieczne dla znalezienia, bądź naprawy zgłoszonego problemu.</value>
   </data>
 </root>
