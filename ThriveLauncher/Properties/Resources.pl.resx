@@ -380,7 +380,7 @@
     <value>Serwer Discord</value>
   </data>
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
-    <value>Wyłącz wszystkie sekwencje filmowe w grze (jeśli Thrive crashuje się po pokazaniu loga wczytywania, ale przed odtworzeniem sekwencji filmowej wstępu, to może pomóc w doprowadzeniu gry do działania)</value>
+    <value>Wyłącz wszystkie sekwencje filmowe w grze (jeśli Thrive ulega crashowi po pokazaniu loga wczytywania, ale przed odtworzeniem sekwencji filmowej wstępu, ta czynność może pomóc w doprowadzeniu gry do działania)</value>
   </data>
   <data name="LauncherOptionHide32Bit" xml:space="preserve">
     <value>Ukryj wersje 32-bitowe jeśli porównywalne 64-bitowe wersje istnieją</value>
@@ -762,7 +762,7 @@ Jeśli członek team Thrive potwierdza bezpieczeństwo PRu, to ostrzeżenie znik
     <value>Thrive jest uruchamiane. Dane wyjściowe logu (ze względu na obciążenia prawdopodobnie NIE w czasie rzeczywistym):</value>
   </data>
   <data name="ReportCrashButton" xml:space="preserve">
-    <value>Zgłoś Crasha</value>
+    <value>Zgłoś Crash</value>
   </data>
   <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
     <value>Ta zakładka pokazuje zewnętrznie zainstalowane wersje. To jest sklepowa wersja Thrive która zawiera dołączoną (najnowszą) wersję gry. Możesz włączyć pokazywanie dostępnych zewnętrznych wersji w menu wyboru wersji w opcjach launchera. Pobrane, wersje pokażą się tutaj.</value>
@@ -822,7 +822,7 @@ Jeśli członek team Thrive potwierdza bezpieczeństwo PRu, to ostrzeżenie znik
     <value>Kopiuj do schowka</value>
   </data>
   <data name="ActiveReportingInfo" xml:space="preserve">
-    <value>Raportowanie crasha {0} o {1}</value>
+    <value>Zgłaszanie crasha {0} o {1}</value>
   </data>
   <data name="CrashReportLogsSection" xml:space="preserve">
     <value>Logi do Zawarcia</value>
