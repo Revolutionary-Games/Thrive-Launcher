@@ -945,4 +945,7 @@ Jeśli poniżej nie ma żadnych plików, pobieranie aktualizacji nie powiodło s
   <data name="Embedded7ZipLicenseTitle" xml:space="preserve">
     <value>W pakiecie z launcherem przychodzą pewne dodatkowe narzędzia. Są one oddzielnymi plikami wykonywalnymi, które launcher wywołuje jako programy lini komend. Licencja 7-Zip:</value>
   </data>
+  <data name="CrashReportLogsSectionExplanation" xml:space="preserve">
+    <value>Prosimy zatrzymać umieszczone logi, jeśli one są z tej samej sesji gry co ten crash, ponieważ te logi mogą pomóc w identyfikacji i naprawy problemu. Możesz kliknąć nazwę pliku, żeby go otworzyć albo guzik żeby zobaczyć folder, w którym jest, żeby zobaczyć i usunąć jakiekolwiek prywatne dane jakie chcesz. Pliki log są zawsze tylko widoczne do developerów Thrive i są tylko dzielone z innymi partjami, jeśli to jest potrzebne w znalezieniu czy naprawy raportowanego problemu.</value>
+  </data>
 </root>
