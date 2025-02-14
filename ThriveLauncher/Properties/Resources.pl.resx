@@ -948,4 +948,16 @@ Jeśli poniżej nie ma żadnych plików, pobieranie aktualizacji nie powiodło s
   <data name="CrashReportLogsSectionExplanation" xml:space="preserve">
     <value>Prosimy pozostawić logi, jeśli pochodzą one z tej samej sesji gry, co crash, ponieważ mogą pomóc w identyfikacji i naprawie problemu. Jeśli zależy ci na usunięciu swoich danych osobowych, możesz kliknąć nazwę pliku, żeby go otworzyć (albo przycisk do pokazania folderu, w którym się znajduje) i odpowiednio zedytować. Pliki logów zawsze są widoczne tylko dla developerów Thrive, a dzielone są z innymi podmiotami tylko wtedy, gdy jest to konieczne dla znalezienia, bądź naprawy zgłoszonego problemu.</value>
   </data>
+  <data name="ExternalLinkInstagram" xml:space="preserve">
+    <value>instagram</value>
+  </data>
+  <data name="ExternalLinkXFeed" xml:space="preserve">
+    <value>X (formalnie Twitter)</value>
+  </data>
+  <data name="ExternalLinkBluesky" xml:space="preserve">
+    <value>Bluesky</value>
+  </data>
+  <data name="ExternalLinkMastodon" xml:space="preserve">
+    <value>Mastodon</value>
+  </data>
 </root>
