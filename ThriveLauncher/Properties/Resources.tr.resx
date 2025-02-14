@@ -958,4 +958,19 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı k
 
       Eğer bu uyarıyı yanlışlıkla görüyorsanız; CPU'nuz minimum gereksinimleri karşılıyor ve Thrive'ı yine de başlatabiliyorsa, lütfen hangi CPU'ya sahip olduğunuzu bize bildirin. Böylece, bu özellik algılama aracını geliştirebiliriz.</value>
   </data>
+  <data name="ExternalLinkBluesky" xml:space="preserve">
+    <value>Bluesky</value>
+  </data>
+  <data name="ExternalLinkInstagram" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+  <data name="ExternalLinkMastodon" xml:space="preserve">
+    <value>Mastodon</value>
+  </data>
+  <data name="ExternalLinkThreads" xml:space="preserve">
+    <value>Threads</value>
+  </data>
+  <data name="ExternalLinkXFeed" xml:space="preserve">
+    <value>X (eski adıyla Twitter)</value>
+  </data>
 </root>
