@@ -761,4 +761,22 @@ Logs do Inicializador fornecerão informações mais detalhadas.</value>
   <data name="LauncherOptionShowAllBetaVersions" xml:space="preserve">
     <value>Mostrar todas as versões beta de Thrive existentes</value>
   </data>
+  <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
+    <value>Reiniciar Thrive automaticamente se houver falha na inicialização</value>
+  </data>
+  <data name="StartedAutoUpdateExplanation" xml:space="preserve">
+    <value>O inicializador está baixando e instalando uma atualização, aguarde por favor. O atualizador baixado pode abrir uma nova janela que requer interação do usuário para completar a atualização.</value>
+  </data>
+  <data name="RequiresLatestBetaShowingEnabled" xml:space="preserve">
+    <value>Esta opção só pode ser ativada se primeiro for ativada a opção de mostrar a última versão beta</value>
+  </data>
+  <data name="RequiresExternalVersionsEnabled" xml:space="preserve">
+    <value>Esta opção requer que downloads de versões externas estejam ativados</value>
+  </data>
+  <data name="LauncherOptionShowExternalVersions" xml:space="preserve">
+    <value>Mostrar versões externas de Thrive que requerem downloads separados para jogar</value>
+  </data>
+  <data name="AutoUpdateMissingChannel" xml:space="preserve">
+    <value>Este tipo de inicializador não foi capaz de tentar atualizar novamente, pois não possui um tipo de canal de atualização associado</value>
+  </data>
 </root>
