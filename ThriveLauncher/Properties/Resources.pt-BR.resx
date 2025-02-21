@@ -671,4 +671,112 @@ Logs do Inicializador fornecerão informações mais detalhadas.</value>
   <data name="ExtractError" xml:space="preserve">
     <value>Falha na extração de um arquivo devido a um erro: {0}</value>
   </data>
+  <data name="ShortTimeAgo" xml:space="preserve">
+    <value>{0} atrás</value>
+  </data>
+  <data name="ForgetLastPlayedVersion" xml:space="preserve">
+    <value>Esquecer Última Versão Jogada</value>
+  </data>
+  <data name="ExternalLinkXFeed" xml:space="preserve">
+    <value>X (antigo Twitter)</value>
+  </data>
+  <data name="ExternalLinkBluesky" xml:space="preserve">
+    <value>Bluesky</value>
+  </data>
+  <data name="ExternalLinkInstagram" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+  <data name="ExternalLinkMastodon" xml:space="preserve">
+    <value>Mastodon</value>
+  </data>
+  <data name="ExternalLinkThreads" xml:space="preserve">
+    <value>Threads</value>
+  </data>
+  <data name="DownloadProgressDisplay" xml:space="preserve">
+    <value>{0} de {1} MiB baixado(s)</value>
+  </data>
+  <data name="VerifyingStateItemProgress" xml:space="preserve">
+    <value>Verificando a integridade de {0}</value>
+  </data>
+  <data name="ExtractingStateItemProgress" xml:space="preserve">
+    <value>Extraindo {0}. Isso pode levar vários minutos, então por favor tenha paciência.</value>
+  </data>
+  <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
+    <value>Erro: processo filho já terminou, janela do inicializador não será fechada</value>
+  </data>
+  <data name="SecondsDisplaySingular" xml:space="preserve">
+    <value>1 segundo</value>
+  </data>
+  <data name="LauncherVersionUpdateDescription" xml:space="preserve">
+    <value>Atualizando inicializador para versão {0} (versão atual: {1})</value>
+  </data>
+  <data name="AutoUpdateFailedTitle" xml:space="preserve">
+    <value>Atualização do Inicializador Falhou</value>
+  </data>
+  <data name="AutoUpdateError" xml:space="preserve">
+    <value>Erro na Auto-atualização</value>
+  </data>
+  <data name="DownloadingStateItemProgress" xml:space="preserve">
+    <value>Baixando {0} de {1}</value>
+  </data>
+  <data name="PerformingAutoUpdateTitle" xml:space="preserve">
+    <value>Atualizando o Inicializador</value>
+  </data>
+  <data name="ExitTheLauncher" xml:space="preserve">
+    <value>Sair do Inicializador</value>
+  </data>
+  <data name="AtTime" xml:space="preserve">
+    <value>Em {0}</value>
+  </data>
+  <data name="SecondsDisplayPlural" xml:space="preserve">
+    <value>{0} segundos</value>
+  </data>
+  <data name="FileSystemErrorTitle" xml:space="preserve">
+    <value>Erro de Acesso a Arquivo</value>
+  </data>
+  <data name="TruncatedGameOutputWarning" xml:space="preserve">
+    <value>A saída é muito longa, foi truncada! Ver o arquivo de log do Thrive para a saída completa.</value>
+  </data>
+  <data name="ThriveIsStarting" xml:space="preserve">
+    <value>Thrive está iniciando. Saída do log (devido a buffering, provavelmente isso não é em tempo real):</value>
+  </data>
+  <data name="AcceptUnsafeBuildButton" xml:space="preserve">
+    <value>Eu entendo o risco, jogar mesmo assim</value>
+  </data>
+  <data name="SubmitRetryButton" xml:space="preserve">
+    <value>Tentar novamente</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Abrir Pasta</value>
+  </data>
+  <data name="QuitLauncherButton" xml:space="preserve">
+    <value>Sair do Inicializador Agora</value>
+  </data>
+  <data name="RetryingAutoUpdate" xml:space="preserve">
+    <value>Tentando novamente auto-atualização...</value>
+  </data>
+  <data name="IgnoreFailure" xml:space="preserve">
+    <value>Ignorar Falha</value>
+  </data>
+  <data name="LauncherOptionShowAllBetaVersions" xml:space="preserve">
+    <value>Mostrar todas as versões beta de Thrive existentes</value>
+  </data>
+  <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
+    <value>Reiniciar Thrive automaticamente se houver falha na inicialização</value>
+  </data>
+  <data name="StartedAutoUpdateExplanation" xml:space="preserve">
+    <value>O inicializador está baixando e instalando uma atualização, aguarde por favor. O atualizador baixado pode abrir uma nova janela que requer interação do usuário para completar a atualização.</value>
+  </data>
+  <data name="RequiresLatestBetaShowingEnabled" xml:space="preserve">
+    <value>Esta opção só pode ser ativada se primeiro for ativada a opção de mostrar a última versão beta</value>
+  </data>
+  <data name="RequiresExternalVersionsEnabled" xml:space="preserve">
+    <value>Esta opção requer que downloads de versões externas estejam ativados</value>
+  </data>
+  <data name="LauncherOptionShowExternalVersions" xml:space="preserve">
+    <value>Mostrar versões externas de Thrive que requerem downloads separados para jogar</value>
+  </data>
+  <data name="AutoUpdateMissingChannel" xml:space="preserve">
+    <value>Este tipo de inicializador não foi capaz de tentar atualizar novamente, pois não possui um tipo de canal de atualização associado</value>
+  </data>
 </root>

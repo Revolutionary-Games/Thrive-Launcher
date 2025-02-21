@@ -61,4 +61,254 @@
   <data name="SettingsImportOldTitle" xml:space="preserve">
     <value>Importera tidigare inställningar?</value>
   </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+    <value>Konnektar till ThriveDevCenter...</value>
+  </data>
+  <data name="SkipAction" xml:space="preserve">
+    <value>Hoppa över</value>
+  </data>
+  <data name="PerformImport" xml:space="preserve">
+    <value>Importera</value>
+  </data>
+  <data name="ImportFailedTitle" xml:space="preserve">
+    <value>Importering misslyckades</value>
+  </data>
+  <data name="ImportSucceededTitle" xml:space="preserve">
+    <value>Importering Lyckades</value>
+  </data>
+  <data name="ImportSucceededMessage" xml:space="preserve">
+    <value>Förra inställningar har lyckats importera.</value>
+  </data>
+  <data name="LauncherSelectedLanguage" xml:space="preserve">
+    <value>Språk:</value>
+  </data>
+  <data name="DevelopmentFeedTitle" xml:space="preserve">
+    <value>UTVECKLINGSFORUM</value>
+  </data>
+  <data name="LinksButton" xml:space="preserve">
+    <value>Länkar</value>
+  </data>
+  <data name="PlayButton" xml:space="preserve">
+    <value>Spela</value>
+  </data>
+  <data name="ConnectToDevCenterPrompt" xml:space="preserve">
+    <value>Konnektera till ThriveDevCenter</value>
+  </data>
+  <data name="ConnectedDeveloperGreeting" xml:space="preserve">
+    <value>Hej,</value>
+  </data>
+  <data name="ConnectedSupporterGreeting" xml:space="preserve">
+    <value>Tack,</value>
+  </data>
+  <data name="LinksPopupTitle" xml:space="preserve">
+    <value>Revolutionary Games Länkar</value>
+  </data>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+    <value>Huvudwebbplats</value>
+  </data>
+  <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
+    <value>Utvecklingsforum</value>
+  </data>
+  <data name="WebContentIsDisabled" xml:space="preserve">
+    <value>Webbinnehåll avstängd</value>
+  </data>
+  <data name="NewsFeedTitle" xml:space="preserve">
+    <value>NYHETER</value>
+  </data>
+  <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
+    <value>Utvecklingwiki</value>
+  </data>
+  <data name="ExternalLinkPatreon" xml:space="preserve">
+    <value>Patreon</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+    <value>Donera</value>
+  </data>
+  <data name="ExternalLinkThriveItch" xml:space="preserve">
+    <value>Thrive på itch.io</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+    <value>Discord server</value>
+  </data>
+  <data name="ExternalLinkThriveGithub" xml:space="preserve">
+    <value>Thrive på Github</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+    <value>Youtube kanal</value>
+  </data>
+  <data name="ExternalLinkFacebookPage" xml:space="preserve">
+    <value>Facebook sida</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>Kunde inte importera inställningar. Snälla var säker att det relevanta filvägarna för inställningarna är läsbara och skrivbara, sen starta om laurnchern för att försöka igen.</value>
+  </data>
+  <data name="ExternalLinkThriveSteam" xml:space="preserve">
+    <value>Thrive på Steam</value>
+  </data>
+  <data name="ExternalLinkCommunityForums" xml:space="preserve">
+    <value>Kommunitetsforum</value>
+  </data>
+  <data name="ExternalLinkXFeed" xml:space="preserve">
+    <value>X (förut känd som Twitter)</value>
+  </data>
+  <data name="InstalledVersions" xml:space="preserve">
+    <value>Installerade versioner</value>
+  </data>
+  <data name="ThriveOptions" xml:space="preserve">
+    <value>Thrive alternativ</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>Återställ alla inställningar</value>
+  </data>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+    <value>Bläddra bland installerade filer</value>
+  </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>Välj installeringsplats</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>Återställ installeringsplats</value>
+  </data>
+  <data name="FolderPathDisplay" xml:space="preserve">
+    <value>Katalog:</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>Alla gamla filer kommer bli automatiskt borttagna från det temporära mappen på omstart av startprogrammet.</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+    <value>Välj cacheplats</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+    <value>Återställ cacheplats</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+    <value>Cachestorlek:</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+    <value>ThriveDevCenter Koppling</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>Du är en utvecklare</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>Tack för ditt stöd!</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+    <value>Bygget av dagen (BD), rekommenderad</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>Logga ut</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+    <value>Välj</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+    <value>Mapp är tom</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>Välj temporära filplats</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>Återställ temporära filplats</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+    <value>Instruktioner på vår Wiki</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>Få en länkkod</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+    <value>Linkkod</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+    <value>Koppla</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>Logga in</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>Konfirmera</value>
+  </data>
+  <data name="FetchLatestBuildsButton" xml:space="preserve">
+    <value>Få senaste byggen</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>Misslyckats att spara inställningar</value>
+  </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0}MiB</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>Spelstartarens källkod</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>Rensa</value>
+  </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+    <value>DevBuilds filcache:</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+    <value>Specifikt bygge</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+    <value>Manuellt inskriven hasch:</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>(storlek{0})</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>Mapp inte hittad</value>
+  </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+    <value>Inaktivera alla spelvideor (Om thrive kraschar efter att visat laddningsloggan och före introvideon spelas upp, det kanske hjälper för att få spelet att funka)</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>Göm 32-bit versioner om liknande 64-bit version finns</value>
+  </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>Ta automatiskt bort gamla filer i den temporära mappen</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+    <value>Temporärt nedladdningsmapp:</value>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+    <value>Innehåll:</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>Not: att röra en temporär plats kommer inte att röra eller ta bort existerande filer för att unvika att råka röra filer som är orelaterade till Thrive</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>ta bort ALLA filer i det temeporära mappen. Kan ta bort filer som är orelaterade till Thrive om det finns!</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>Okej</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+    <value>Kopplad som:</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+    <value>Gå in i bygghasch (kommitera)</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+    <value>Senaste (Byts väldigt mycket slumpmässigt för att det här är bokstavligen ett bygge från det senaste kodkommitet)</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>Manuellt vald i "Specifikt bygg" fliken</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>Här kan du länka spelstartaren till ThriveDevCenter för att få tillgång till DevBuilds och andra funktioner</value>
+  </data>
+  <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+    <value>Välj den manuellt inskrivna hasch-valutan som är använd för inskrivningslådan som den valda Devbuild att spela när du kör en Devbuild</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>misslyckades att spara inställningar till inställningfilen. var säker att spelstartaren har skrivtillgång och försök igen.
+Spelstartningsloggen har mer info.</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>Thrive-versionsinstalleringsmappen finns inte.</value>
+  </data>
 </root>
