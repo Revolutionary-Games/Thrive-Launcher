@@ -779,4 +779,14 @@ Logs do Inicializador fornecerão informações mais detalhadas.</value>
   <data name="AutoUpdateMissingChannel" xml:space="preserve">
     <value>Este tipo de inicializador não foi capaz de tentar atualizar novamente, pois não possui um tipo de canal de atualização associado</value>
   </data>
+  <data name="ItemProgressDisplay" xml:space="preserve">
+    <value>{0} de {1} processado(s)</value>
+  </data>
+  <data name="PlayUnsafeBuildTitle" xml:space="preserve">
+    <value>Jogar versão de desenvolvimento não segura?</value>
+  </data>
+  <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
+    <value>Descrição da versão:
+{0}</value>
+  </data>
 </root>
