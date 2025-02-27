@@ -958,4 +958,19 @@
   <data name="ShortTimeAgo" xml:space="preserve">
     <value>{0} назад</value>
   </data>
+  <data name="ExternalLinkXFeed" xml:space="preserve">
+    <value>X (ранее Twitter)</value>
+  </data>
+  <data name="ExternalLinkBluesky" xml:space="preserve">
+    <value>Голубой</value>
+  </data>
+  <data name="ExternalLinkInstagram" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+  <data name="ExternalLinkMastodon" xml:space="preserve">
+    <value>Мастодонт</value>
+  </data>
+  <data name="ExternalLinkThreads" xml:space="preserve">
+    <value>Ветки</value>
+  </data>
 </root>
