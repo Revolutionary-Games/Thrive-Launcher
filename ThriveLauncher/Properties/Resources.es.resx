@@ -383,13 +383,13 @@
     <value>Borrar automáticamente archivos viejos en la carpeta temporal</value>
   </data>
   <data name="LogFolderCreateFailed" xml:space="preserve">
-    <value>Hubo un fallo al intentar crear una carpeta de logs ({0}):{1}</value>
+    <value>Hubo un fallo al intentar crear una carpeta de registros({0}):{1}</value>
   </data>
   <data name="ClickHereLink" xml:space="preserve">
     <value>Haz click aqui</value>
   </data>
   <data name="OpenLogsFolderButton" xml:space="preserve">
-    <value>Ver Logs</value>
+    <value>Ver Registros</value>
   </data>
   <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
     <value>Todos los certificados han expirado</value>
@@ -516,5 +516,11 @@
   </data>
   <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
     <value>Estás a punto de borrar todos los archivos contenidos en la carpeta de caché deshidratada en «{0}». Se borrarán incluso archivos no relacionados con Thrive si se encuentran en esa carpeta. ¿Borrar el contenido de la carpeta?</value>
+  </data>
+  <data name="ExternalLinkXFeed" xml:space="preserve">
+    <value>X (anteriormente Twitter)</value>
+  </data>
+  <data name="ExternalLinkInstagram" xml:space="preserve">
+    <value>Instagram</value>
   </data>
 </root>

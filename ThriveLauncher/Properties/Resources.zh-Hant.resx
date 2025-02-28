@@ -958,4 +958,19 @@
 
       如果您看到此錯誤警告，但您的 CPU 滿足最低要求，並且能正常遊玩 Thrive，請告訴我們您的 CPU 型號，以便我們改進此檢測功能。</value>
   </data>
+  <data name="ExternalLinkBluesky" xml:space="preserve">
+    <value>Bluesky</value>
+  </data>
+  <data name="ExternalLinkInstagram" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+  <data name="ExternalLinkMastodon" xml:space="preserve">
+    <value>Mastodon</value>
+  </data>
+  <data name="ExternalLinkThreads" xml:space="preserve">
+    <value>Threads</value>
+  </data>
+  <data name="ExternalLinkXFeed" xml:space="preserve">
+    <value>X（原 Twitter）</value>
+  </data>
 </root>

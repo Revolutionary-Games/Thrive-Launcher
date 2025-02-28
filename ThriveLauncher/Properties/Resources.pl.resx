@@ -62,7 +62,7 @@
     <value>Importować Poprzednie Ustawienia?</value>
   </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
-    <value>Ustawienia z poprzedniej wersji launchera zostały wykryte. Możesz zaimportować te istniejące ustawienia by utrzymać twoje zainstalowane wersje Thrive i inne dostosowania nienaruszone. Jeśli nie zaimportujesz starych wersji oraz pamięci podręcznej Thrive, zostaną zapomniane i ten launcher nie będzie o nich wiedział. Zaimportowanie ustawień jest zalecane.</value>
+    <value>Ustawienia z poprzedniej wersji launchera zostały wykryte. Możesz zaimportować istniejące ustawienia by utrzymać twoje zainstalowane wersje Thrive i inne dostosowania nienaruszone. Jeśli nie zaimportujesz starych wersji oraz pamięci podręcznej Thrive, zostaną zapomniane i ten launcher nie będzie o nich wiedział. Zaimportowanie ustawień jest zalecane.</value>
   </data>
   <data name="SkipAction" xml:space="preserve">
     <value>Pomiń</value>
@@ -74,7 +74,7 @@
     <value>Importowanie nie powiodło się</value>
   </data>
   <data name="ImportFailedMessage" xml:space="preserve">
-    <value>Nie udało się zaimportować ustawień. Prosimy upewnić się, że ścieżki plików dla ustawień są możliwe do odczytu i zapisu przez launcher, potem uruchomić go ponownie by spróbować jeszcze raz.</value>
+    <value>Nie udało się zaimportować ustawień. Prosimy upewnić się, że ścieżki plików dla ustawień są możliwe do odczytu i zapisu przez launcher, potem uruchomić go ponownie, by spróbować jeszcze raz.</value>
   </data>
   <data name="LauncherSelectedLanguage" xml:space="preserve">
     <value>Język Launchera:</value>
@@ -371,7 +371,7 @@
     <value>Strona główna</value>
   </data>
   <data name="ExternalLinkDonate" xml:space="preserve">
-    <value>Donejtuj</value>
+    <value>Wesprzyj nas</value>
   </data>
   <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
     <value>ThriveDevCenter</value>
@@ -380,7 +380,7 @@
     <value>Serwer Discord</value>
   </data>
   <data name="LaunchOptionDisableVideos" xml:space="preserve">
-    <value>Wyłącz wszystkie sekwencje filmowe w grze (jeśli Thrive ulega crashowi po pokazaniu loga wczytywania, ale przed odtworzeniem sekwencji filmowej wstępu, ta czynność może pomóc w doprowadzeniu gry do działania)</value>
+    <value>Wyłącz wszystkie sekwencje filmowe w grze (jeśli Thrive przestaje działać po pokazaniu loga wczytywania, ale przed odtworzeniem sekwencji filmowej wstępu, ta czynność może pomóc w doprowadzeniu gry do działania)</value>
   </data>
   <data name="LauncherOptionHide32Bit" xml:space="preserve">
     <value>Ukryj wersje 32-bitowe jeśli porównywalne 64-bitowe wersje istnieją</value>
@@ -561,7 +561,7 @@ Logi launchera nie mają więcej informacji.</value>
     <value>Wymuś tryb renderowania OpenGL (może doprowadzić Thrive do uruchomienia, ale powoduje lekkie problemy graficzne)</value>
   </data>
   <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
-    <value>Zwiększ latencję audio gry (może naprawić problem trzaskania dźwięku, jeśli latencja jest odpowiednio wysoka)</value>
+    <value>Zwiększ latencję audio gry (może naprawić problem trzaskania dźwięku jeśli latencja jest odpowiednio wysoka)</value>
   </data>
   <data name="EnterDevCenterConnectionCode" xml:space="preserve">
     <value>Prosimy najpierw wprowadzić kod połączenia ThriveDevCenter w ramkę wejścia</value>
@@ -588,7 +588,7 @@ Logi launchera nie mają więcej informacji.</value>
     <value>Kod jest poprawny. Prosimy potwierdzić łączenie do następującego konta:</value>
   </data>
   <data name="DevCenterCheckingConnection" xml:space="preserve">
-    <value>Łączenie się z ThriveDevCenter...</value>
+    <value>Łączenie z ThriveDevCenter...</value>
   </data>
   <data name="NewLinkUsername" xml:space="preserve">
     <value>Nazwa użytkownika:</value>
@@ -949,10 +949,10 @@ Jeśli poniżej nie ma żadnych plików, pobieranie aktualizacji nie powiodło s
     <value>Prosimy pozostawić logi, jeśli pochodzą one z tej samej sesji gry, co crash, ponieważ mogą pomóc w identyfikacji i naprawie problemu. Jeśli zależy ci na usunięciu swoich danych osobowych, możesz kliknąć nazwę pliku, żeby go otworzyć (albo przycisk do pokazania folderu, w którym się znajduje) i odpowiednio zedytować. Pliki logów zawsze są widoczne tylko dla developerów Thrive, a dzielone są z innymi podmiotami tylko wtedy, gdy jest to konieczne dla znalezienia, bądź naprawy zgłoszonego problemu.</value>
   </data>
   <data name="ExternalLinkInstagram" xml:space="preserve">
-    <value>instagram</value>
+    <value>Instagram</value>
   </data>
   <data name="ExternalLinkXFeed" xml:space="preserve">
-    <value>X (formalnie Twitter)</value>
+    <value>X (dawniej Twitter)</value>
   </data>
   <data name="ExternalLinkBluesky" xml:space="preserve">
     <value>Bluesky</value>

@@ -527,4 +527,40 @@ I log del launcher contengono ulteriori informazioni.</value>
   <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
     <value>Eliminare la cache di DevBuild?</value>
   </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>La versione del launcher è obsoleta</value>
+  </data>
+  <data name="ExternalLinkBluesky" xml:space="preserve">
+    <value>Bluesky</value>
+  </data>
+  <data name="ExternalLinkInstagram" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+  <data name="ExternalLinkMastodon" xml:space="preserve">
+    <value>Mastodon</value>
+  </data>
+  <data name="ExternalLinkThreads" xml:space="preserve">
+    <value>Threads</value>
+  </data>
+  <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
+    <value>Se il gioco non è partito correttamente, prova le soluzioni alternative disponibili in "Opzioni Thrive" nelle impostazioni del launcher</value>
+  </data>
+  <data name="ClearDehydratedFilesCount" xml:space="preserve">
+    <value>Stai per eliminare {0} file</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>Visita la pagina dei download</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>Stai usando Thrive Launcher versione {0}, ma l'ultima versione è {1}</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>Connessione a ThriveDevCenter fallita</value>
+  </data>
+  <data name="ExternalLinkXFeed" xml:space="preserve">
+    <value>X (in precedenza Twitter)</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>Questa versione è aggiornata</value>
+  </data>
 </root>
