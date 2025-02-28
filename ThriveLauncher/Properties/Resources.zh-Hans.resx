@@ -130,9 +130,6 @@
   <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
     <value>官方YouTube</value>
   </data>
-  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
-    <value>官方Twitter</value>
-  </data>
   <data name="ExternalLinkFacebookPage" xml:space="preserve">
     <value>官方Facebook</value>
   </data>

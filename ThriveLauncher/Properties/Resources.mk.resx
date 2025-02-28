@@ -139,9 +139,6 @@
   <data name="ExternalLinkSubreddit" xml:space="preserve">
     <value>Subreddit</value>
   </data>
-  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
-    <value>Twitter feed</value>
-  </data>
   <data name="ExternalLinkFacebookPage" xml:space="preserve">
     <value>Facebook Страна</value>
   </data>

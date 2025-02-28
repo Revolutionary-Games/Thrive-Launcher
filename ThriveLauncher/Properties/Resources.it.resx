@@ -175,9 +175,6 @@
   <data name="ExternalLinkSubreddit" xml:space="preserve">
     <value>Subreddit</value>
   </data>
-  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
-    <value>Feed Twitter</value>
-  </data>
   <data name="LauncherOptions" xml:space="preserve">
     <value>Opzioni del launcher</value>
   </data>

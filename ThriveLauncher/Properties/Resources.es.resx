@@ -157,9 +157,6 @@
   <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
     <value>Canal de YouTube</value>
   </data>
-  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
-    <value>Fuente de Twitter</value>
-  </data>
   <data name="ExternalLinkFacebookPage" xml:space="preserve">
     <value>Página de Facebook</value>
   </data>

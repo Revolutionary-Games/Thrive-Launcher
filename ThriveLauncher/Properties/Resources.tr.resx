@@ -139,9 +139,6 @@
   <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
     <value>YouTube kanalı</value>
   </data>
-  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
-    <value>Twitter yayını</value>
-  </data>
   <data name="ExternalLinkFacebookPage" xml:space="preserve">
     <value>Facebook sayfası</value>
   </data>

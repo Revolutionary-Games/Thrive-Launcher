@@ -136,9 +136,6 @@
   <data name="PlayButton" xml:space="preserve">
     <value>開始遊戲</value>
   </data>
-  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
-    <value>官方 Twitter</value>
-  </data>
   <data name="ExternalLinkFacebookPage" xml:space="preserve">
     <value>官方 Facebook</value>
   </data>

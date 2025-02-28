@@ -172,9 +172,6 @@
   <data name="CacheConfigurationTab" xml:space="preserve">
     <value>بيانات الكاش</value>
   </data>
-  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
-    <value>حساب تويتر</value>
-  </data>
   <data name="LaunchOptionsTitle" xml:space="preserve">
     <value>خيارات التشغيل</value>
   </data>

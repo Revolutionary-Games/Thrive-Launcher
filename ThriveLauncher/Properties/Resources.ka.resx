@@ -130,9 +130,6 @@
   <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
     <value>YouTube არხი</value>
   </data>
-  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
-    <value>Twitter-ის ლენტა</value>
-  </data>
   <data name="ExternalLinkFacebookPage" xml:space="preserve">
     <value>Facebook-ის გვერდი</value>
   </data>

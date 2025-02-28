@@ -130,9 +130,6 @@
   <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
     <value>Канал на YouTube</value>
   </data>
-  <data name="ExternalLinkTwitterFeed" xml:space="preserve">
-    <value>Лента в Twitter</value>
-  </data>
   <data name="ExternalLinkFacebookPage" xml:space="preserve">
     <value>Страница на Facebook</value>
   </data>
