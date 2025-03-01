@@ -786,4 +786,13 @@ Logs do Inicializador fornecerão informações mais detalhadas.</value>
     <value>Descrição da versão:
 {0}</value>
   </data>
+  <data name="MissingThriveExecutableError" xml:space="preserve">
+    <value>Incapaz de encontrar o executável de Thrive na pasta em {0}, favor verificar os arquivos do jogo ou apagar e reinstalar a versão.</value>
+  </data>
+  <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
+    <value>Instalação de versão ou checagem da versão instalada falhou, veja os detalhes abaixo.</value>
+  </data>
+  <data name="ThriveFolderPrepareFailed" xml:space="preserve">
+    <value>Preparando a pasta de Thrive falhou com o erro: {0}</value>
+  </data>
 </root>
