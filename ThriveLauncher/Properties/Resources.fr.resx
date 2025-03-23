@@ -834,7 +834,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Email (optionnel)</value>
   </data>
   <data name="NoAvailableCrashesToReport" xml:space="preserve">
-    <value>Aucun plantage détecté pouvant être rapporter</value>
+    <value>Aucun plantage détecté pouvant être rapporté</value>
   </data>
   <data name="CrashReportIncludeLauncherOutput" xml:space="preserve">
     <value>Inclure les sorties du jeu comme montré dans la fenêtre du lanceur (recommandé quand le plantage est la partie la plus récente)</value>
@@ -849,7 +849,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Vous pouvez maintenant fermer le rapporteur ou attendre que la page se ferme automatiquement dans</value>
   </data>
   <data name="SelectCrashToReport" xml:space="preserve">
-    <value>Selectionner un plantage à rapporter en cliquant sur son nom</value>
+    <value>Sélectionner un plantage à rapporter en cliquant sur son nom</value>
   </data>
   <data name="ShortTimeAgo" xml:space="preserve">
     <value>Il y a {0}</value>
@@ -858,13 +858,13 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Ce fichier de plantage sera automatiquement supprimé au bon envoi du rapport</value>
   </data>
   <data name="CrashReportLogsSectionExplanation" xml:space="preserve">
-    <value>Merci de garder les journaux inclus s'ils proviennent de la meme partie que le plantage, ils peuvent aider à indentifier le problème et à le réparer. Vous pouvez appuyer sur le nom du fichier pour l'ouvrir, ou sur le bouton pour voir le dossier afin de le modifier pour enlever toute information personelle que vous souhaitez. Les fichiers de jounaux ne sont accessibles qu'au dévelopeurs de Thrive, et ne seront partagés avec une tierce partie que pour l'investigation ou la réparation du problème.</value>
+    <value>Merci de garder les journaux inclus s'ils proviennent de la meme partie que le plantage, ils peuvent aider à identifier le problème et à le réparer. Vous pouvez appuyer sur le nom du fichier pour l'ouvrir, ou sur le bouton pour voir le dossier afin de le modifier pour enlever toute information personnelle que vous souhaitez. Les fichiers de journaux ne sont accessibles qu'au développeurs de Thrive, et ne seront partagés avec une tierce partie que pour l'investigation ou la réparation du problème.</value>
   </data>
   <data name="CrashReportSubmitAcceptConfirmation" xml:space="preserve">
     <value>J'accepte que les informations listées dans ce formulaire, incluant tous les fichiers, le fichier de plantage ainsi que mon adresse IP seront stockés dans les base de données de plantage de Thrive. Et si ce rapport est public, tous peuvent lire les piles d'appels et les descriptions du plantage.</value>
   </data>
   <data name="ReportSubmitErrorTooManyRequests" xml:space="preserve">
-    <value>L'envoie du rapport à échouer car trop de demande ont été reçues depuis votre adresse IP, merci d'attendre jusqu'à une heure et de réessayer.</value>
+    <value>L'envoie du rapporta échoué car trop de demande ont été reçues depuis votre adresse IP, merci d'attendre jusqu'à une heure et de réessayer</value>
   </data>
   <data name="CrashReportEmailFieldNotice" xml:space="preserve">
     <value>Votre email ne sera visible que pour les administrateurs de ThriveDevCenter.</value>
@@ -873,7 +873,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Supprimer le fichier de plantage après le rapport (recommandé)</value>
   </data>
   <data name="ReportDeleteCaveat" xml:space="preserve">
-    <value>IMPORTANT si vous perdez le lien de suppresion vous ne pourrez pas supprimer le rapport. Sauvegardez-le ! Vous pouvez le copier en utilisant le bouton à sa droite.</value>
+    <value>IMPORTANT si vous perdez le lien de suppression vous ne pourrez pas supprimer le rapport. Sauvegardez-le ! Vous pouvez le copier en utilisant le bouton à sa droite.</value>
   </data>
   <data name="OpenFolder" xml:space="preserve">
     <value>Ouvrir le dossier</value>
@@ -882,9 +882,92 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Public ? Les descriptions et les piles d'appels de plantage sont visible par tous. Les rapports privés ne sont visibles que par les développeurs de Thrive.</value>
   </data>
   <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
-    <value>Le plantage selectionné s'est produit il y a un certain temps. Ainsi il peut ne pas etre lié aux derniers fichier de jounaux ou aux sorties enregistrées par le lanceur.  Merci de vérifier que vous rapporter le bon plantage et les fichiers liés.</value>
+    <value>Le plantage sélectionné s'est produit il y a un certain temps. Ainsi il peut ne pas être lié aux derniers fichier de journaux ou aux sorties enregistrées par le lanceur. Merci de vérifier que vous rapporter le bon plantage et les fichiers liés.</value>
   </data>
   <data name="ReportSubmitErrorServerError" xml:space="preserve">
     <value>L'envoie du rapport a échoué à cause d'un problème de serveur, veuillez attendre et recommence. Si le problème persiste, merci de nous contacter.</value>
+  </data>
+  <data name="IncludeInReport" xml:space="preserve">
+    <value>Inclure :</value>
+  </data>
+  <data name="ReportSubmitErrorNetworkError" xml:space="preserve">
+    <value>L'envoi du rapport a échoué à cause d'un problème de réseau, merci de vérifiez votre accès à internet et de réessayer dans quelques minutes</value>
+  </data>
+  <data name="ReportSubmitErrorUnknown" xml:space="preserve">
+    <value>L'envoi du rapport a échoué suite à une erreur inconnue, merci de réessayer plus tard</value>
+  </data>
+  <data name="LauncherOptionShowExternalVersions" xml:space="preserve">
+    <value>Montrer les versions externes de Thrives qui demandent un téléchargement séparé</value>
+  </data>
+  <data name="LauncherVersionUpdateDescription" xml:space="preserve">
+    <value>Mise à jour du lanceur à la version {0} (version actuelle : {1})</value>
+  </data>
+  <data name="IgnoreFailure" xml:space="preserve">
+    <value>Ignorer l'échec</value>
+  </data>
+  <data name="CannotSubmitExceptionReportYet" xml:space="preserve">
+    <value>Le rapporteur de plantage ne peut utiliser les plantage issus d'une exception non gérée pour l'instant. Merci d'utiliser le bouton copier ci dessous pour copier le rapport dans votre presse papier et nous l'envoyer manuellement.</value>
+  </data>
+  <data name="ThriveRunRetryStarting" xml:space="preserve">
+    <value>Thrive ne semble pas avoir démarré correctement. Nouvelle tentative de démarrage de Thrive, tentative numéro : {0}</value>
+  </data>
+  <data name="FileSystemErrorTitle" xml:space="preserve">
+    <value>Erreur d'accès au fichier</value>
+  </data>
+  <data name="AutoUpdateError" xml:space="preserve">
+    <value>Erreur de mise à jour automatique</value>
+  </data>
+  <data name="AutoUpdateMissingChannel" xml:space="preserve">
+    <value>Impossible de réessayer une mise à jour car ce type de lanceur n'a pas de canal de mise à jour associé</value>
+  </data>
+  <data name="RetryingAutoUpdate" xml:space="preserve">
+    <value>Nouvelle tentative de mise à jour...</value>
+  </data>
+  <data name="AutoUpdateFailedTitle" xml:space="preserve">
+    <value>La mise à jour du lanceur a échoué</value>
+  </data>
+  <data name="ViewFirstAutoUpdaterFolder" xml:space="preserve">
+    <value>Ouvrir le dossier du premier outil de misse à jour</value>
+  </data>
+  <data name="CPUFeatureWarningTitle" xml:space="preserve">
+    <value>Le processeur a n'a pas les fonctionnalités nécessaires</value>
+  </data>
+  <data name="AutoUpdateRetryFailed" xml:space="preserve">
+    <value>La tentative de mise à jour a échoué. Vous pouvez ignorer l'échec afin de nettoyer les fichier de mise à jour existants et ainsi relancer la mise à jour au prochain démarrage du lanceur.</value>
+  </data>
+  <data name="InvalidVersionInfoLoadedTitle" xml:space="preserve">
+    <value>Les informations de la version chargée sont invalides</value>
+  </data>
+  <data name="CrashDumpsDetectedAdvice" xml:space="preserve">
+    <value>Un fichier de plantage a été détecté mais pourrait provenir d'une partie précédente de Thrive (merci de vérifier avant le rapport). Pour ne plus être notifié à propos des fichiers de plantage, merci d'ouvrir le rapporteur et de nettoyer les fichiers de plantage.</value>
+  </data>
+  <data name="AutoUpdatingFailedExplanation" xml:space="preserve">
+    <value>La mise à jour automatique du lanceur a échoué. Le problème est probablement lié à l'installeur. Vous pouvez essayer de relancer l'outil de mise à jour en cliquant sur son nom ci-dessous. Vous pouvez aussi cliquer sur le bouton en dessous pour ouvrir le dossier ou l'outil est, ce qui vous permettra de le relancer manuellement (merci de nous notifier si cela vous a aidé).
+
+Vous pouvez ignorer l'échec afin de supprimer les fichiers téléchargés et retenter la mise à jour au redémarrage du lanceur.
+
+Si aucun fichier n'est listé en dessous, le téléchargement de la mise à jour a échoué et ne peut pas être relancé sans redémarrer le lanceur.</value>
+  </data>
+  <data name="ReportSubmitErrorBadRequest" xml:space="preserve">
+    <value>L'envoi du rapport a échoué car les informations entrées ne sont pas correctes, merci de vérifier les informations que vous essayez d'envoyer et de réessayer</value>
+  </data>
+  <data name="RequiresExternalVersionsEnabled" xml:space="preserve">
+    <value>Cette option est requiert d'activer les versions externes téléchargées</value>
+  </data>
+  <data name="CPUFeatureWarning" xml:space="preserve">
+    <value>Thrive nécessite un processeur avec SSE 4.2 et 4.2 pour fonctionner. C'est une requête bien en dessous de notre configuration requise minimal officielle. Pour une expérience optimale, nous recommandons un processeur avec un jeu d'instruction AVX 2.
+
+      Votre processeur semble ne pas avoir de jeu d'instruction SSE disponible. De ce fait le jeu a peu de chance de fonctionner. Cependant, vous pouvez ignorer cet avertissement and essayer de jouer malgré tout, mais merci de ne pas envoyer vos fichiers de plantages ou de ne pas rapporter les problèmes étant donnée que ceux ci sont vraisemblablement lié à un processeur trop vieux.
+
+      Si vous voyez cette alerte en erreur, votre processeur a les functionalities requises, et vous pouvez jouer à Thrive malgré tout, merci de nous notifier quel CPU vous utilisez afin que nous puissions améliorer cette fonctionnalité de détection.</value>
+  </data>
+  <data name="StartedAutoUpdateExplanation" xml:space="preserve">
+    <value>Le lanceur télécharge et installe une mise à jour, merci de patienter. L'outil de mise à jour téléchargé peut ouvrir une nouvelle fenêtre nécessitant des actions de l'utilisateur pour terminer la mise à jour.</value>
+  </data>
+  <data name="AutoUpdateSucceededMessage" xml:space="preserve">
+    <value>L'outil de mise à jour automatique a démarré. Une nouvelle fenêtre devrait s'ouvrir d'ici quelques instants. Le lanceur doit être fermé pour que la mise à jour se finisse. Vous pouvez le fermer manuellement ou attendre qu'il se ferme automatiquement dans</value>
+  </data>
+  <data name="LatestVersionParsingFailed" xml:space="preserve">
+    <value>L'analyse des informations de la dernière version disponible du lanceur a échoué. Les notifications de nouvelle versions disponibles et de mise à jour ne marcheront pas.</value>
   </data>
 </root>
