@@ -365,7 +365,7 @@
     <value>Tous les certificats ont expiré</value>
   </data>
   <data name="StoreVersionName" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>version {0}</value>
   </data>
   <data name="VersionWithPlatform" xml:space="preserve">
     <value>{0} pour {1}</value>
