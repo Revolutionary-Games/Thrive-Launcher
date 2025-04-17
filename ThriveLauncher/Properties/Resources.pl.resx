@@ -552,7 +552,7 @@ Logi launchera nie mają więcej informacji.</value>
     <value>Prosimy wybierać wersję Thrive z rozwijanej listy obok przycisku odtwarzania i spróbować ponownie</value>
   </data>
   <data name="PlayingTitle" xml:space="preserve">
-    <value>Granie {0}</value>
+    <value>Uruchamianie {0}</value>
   </data>
   <data name="LaunchOptionForceOpenGL" xml:space="preserve">
     <value>Wymuś tryb renderowania OpenGL (może doprowadzić Thrive do uruchomienia, ale powoduje lekkie problemy graficzne)</value>
