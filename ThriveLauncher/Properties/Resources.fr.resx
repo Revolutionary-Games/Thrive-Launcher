@@ -897,7 +897,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>L'envoi du rapport a échoué suite à une erreur inconnue, merci de réessayer plus tard</value>
   </data>
   <data name="LauncherOptionShowExternalVersions" xml:space="preserve">
-    <value>Montrer les versions externes de Thrives qui demandent un téléchargement séparé</value>
+    <value>Afficher les versions externes de Thrive qui demandent un téléchargement séparé pour jouer</value>
   </data>
   <data name="LauncherVersionUpdateDescription" xml:space="preserve">
     <value>Mise à jour du lanceur à la version {0} (version actuelle : {1})</value>
@@ -952,14 +952,14 @@ Si aucun fichier n'est listé en dessous, le téléchargement de la mise à jour
     <value>L'envoi du rapport a échoué car les informations entrées ne sont pas correctes, merci de vérifier les informations que vous essayez d'envoyer et de réessayer</value>
   </data>
   <data name="RequiresExternalVersionsEnabled" xml:space="preserve">
-    <value>Cette option est requiert d'activer les versions externes téléchargées</value>
+    <value>Cette option requiert d'activer le téléchargement des versions externes</value>
   </data>
   <data name="CPUFeatureWarning" xml:space="preserve">
-    <value>Thrive nécessite un processeur avec SSE 4.2 et 4.2 pour fonctionner. C'est une requête bien en dessous de notre configuration requise minimal officielle. Pour une expérience optimale, nous recommandons un processeur avec un jeu d'instruction AVX 2.
+    <value>Thrive nécessite un processeur avec SSE 4.2 et 4.1 pour fonctionner. C'est une requête bien en dessous de notre configuration requise minimale officielle. Pour une expérience optimale, nous recommandons un processeur avec un jeu d'instruction AVX 2.
 
-      Votre processeur semble ne pas avoir de jeu d'instruction SSE disponible. De ce fait le jeu a peu de chance de fonctionner. Cependant, vous pouvez ignorer cet avertissement and essayer de jouer malgré tout, mais merci de ne pas envoyer vos fichiers de plantages ou de ne pas rapporter les problèmes étant donnée que ceux ci sont vraisemblablement lié à un processeur trop vieux.
+      Votre processeur semble ne pas avoir de jeu d'instruction SSE disponible. De ce fait le jeu a peu de chance de fonctionner. Cependant, vous pouvez ignorer cet avertissement et essayer de jouer malgré tout, mais merci de ne pas envoyer vos fichiers de plantages ou de ne pas signaler les problèmes étant donné que ceux-ci sont vraisemblablement liés à un processeur trop vieux.
 
-      Si vous voyez cette alerte en erreur, votre processeur a les functionalities requises, et vous pouvez jouer à Thrive malgré tout, merci de nous notifier quel CPU vous utilisez afin que nous puissions améliorer cette fonctionnalité de détection.</value>
+      Si vous voyez cette alerte par erreur, votre processeur a les fonctionnalités requises, et vous pouvez jouer à Thrive malgré tout, merci de nous notifier quel processeur vous utilisez afin que nous puissions améliorer cette fonctionnalité de détection.</value>
   </data>
   <data name="StartedAutoUpdateExplanation" xml:space="preserve">
     <value>Le lanceur télécharge et installe une mise à jour, merci de patienter. L'outil de mise à jour téléchargé peut ouvrir une nouvelle fenêtre nécessitant des actions de l'utilisateur pour terminer la mise à jour.</value>
