@@ -960,4 +960,7 @@ Jeśli poniżej nie ma żadnych plików, pobieranie aktualizacji nie powiodło s
   <data name="CrashDumpsDetectedAdvice" xml:space="preserve">
     <value>Pliki zrzutu crash został znaleziony, ale one mogą być z poprzedniej sesji Thrive (prosimy sprawdzić przed raportowaniem). Żeby przestać być notyfikowanym na temat plików zrzutu crash, otwórz reporter i wyczyść pliki zrzutu crash.</value>
   </data>
+  <data name="ExternalLinkThreads" xml:space="preserve">
+    <value>Wątki</value>
+  </data>
 </root>
