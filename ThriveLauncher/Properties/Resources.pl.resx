@@ -293,7 +293,7 @@
     <value>wersja {0}</value>
   </data>
   <data name="VersionWithPlatform" xml:space="preserve">
-    <value>{0} dla platformy {1}</value>
+    <value>{0} na platformę {1}</value>
   </data>
   <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
     <value>Błąd Uzyskiwania Dostępnych Wersji Thrive</value>
