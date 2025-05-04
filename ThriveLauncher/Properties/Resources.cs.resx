@@ -61,4 +61,404 @@
   <data name="SettingsImportOldTitle" xml:space="preserve">
     <value>Importovat předešlé nastavení?</value>
   </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+    <value>Povolit Seamless mode Launcheru (Launcher se během spouštění hry nezobrazí)</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>Automaticky aktualizovat spouštěč</value>
+  </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>Skrýt Launcher při spuštění hry</value>
+  </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>Zavřít spouštěč po spuštění hry</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>Zavřít Launcher po spuštění (pokud se nedostaví chyba)</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>Zobrazit licenci spouštěče</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>Získat odkaz</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Licence Thrive spouštěče</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf (Copyright (c) 2010-2011 by tyPoland Lukasz Dziedzic s vyhrazeným názvem fondu "Lato"), OFL licence:</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Thrive Launcher</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>Všem certifikátům vypršela platnost</value>
+  </data>
+  <data name="ExternalLinkXFeed" xml:space="preserve">
+    <value>X (dříve Twitter)</value>
+  </data>
+  <data name="ExternalLinkBluesky" xml:space="preserve">
+    <value>Bluesky</value>
+  </data>
+  <data name="ExternalLinkInstagram" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+  <data name="ExternalLinkMastodon" xml:space="preserve">
+    <value>Mastodon</value>
+  </data>
+  <data name="ExternalLinkThreads" xml:space="preserve">
+    <value>Threads</value>
+  </data>
+  <data name="LauncherOptions" xml:space="preserve">
+    <value>Možnosti Spouštěče</value>
+  </data>
+  <data name="InstalledVersions" xml:space="preserve">
+    <value>Instalované Verze</value>
+  </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>Povolit debug logging Launcheru (před nahlašováním jakýchkoliv problémů, prosíme, spusťte Launcher v tomto režimu)</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>Resetovat veškeré nastavení</value>
+  </data>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+    <value>Procházet instalační složku</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+    <value>Dočasná složka pro stahování:</value>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+    <value>Obsah:</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+    <value>Složka je prázdná</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>Vyčistit</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+    <value>Velikost mezipaměti:</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+    <value>ThriveDevCenter připojení</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+    <value>Informace</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+    <value>Připojen jako:</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+    <value>Poslední (mění se náhodně, protože se jedná doslova o sestavení z nejnovější revize kódu)</value>
+  </data>
+  <data name="FetchLatestBuildsButton" xml:space="preserve">
+    <value>Získat poslední Buildy</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>Ukládání nastavení selhalo</value>
+  </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0} MiB</value>
+  </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>Použít alternativní spouštění pro automatické aktualizace (zkuste, pokud standartní automatické aktualizace nefungují)</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>Zde můžeš připojit spouštěč k ThriveDevCenter k zpřístupnění DevBuilds a dalším funkcím</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+    <value>Odkaz</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+    <value>Připojit</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0} (nejnovější)</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>Manuálně vybráno ve "Konkrétní Build" záložce</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>Odhlásit se</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>Přesunout existující verzi?</value>
+  </data>
+  <data name="ConnectedDeveloperGreeting" xml:space="preserve">
+    <value>Zdravím,</value>
+  </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>Byla nalezena nastavení z předchozí verze hry. Toto existující nastavení, v četně mezipaměti, můžete importovat do nové nainstalované verze hry Thrive. Pokud staré nastavení verze Thrive a mezipaměti neimportujete, budou ztraceny. Import nastavení se doporučuje.</value>
+  </data>
+  <data name="SkipAction" xml:space="preserve">
+    <value>Přeskočit</value>
+  </data>
+  <data name="PerformImport" xml:space="preserve">
+    <value>Importovat</value>
+  </data>
+  <data name="ImportFailedTitle" xml:space="preserve">
+    <value>Importování selhalo</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>Importování nastavení selhalo. Ujistěte se, že zadaná cesta do adresáře pro importování nastavení je správně zadaná a rozpoznatelná spouštěčem hry. Poté zkuste restartovat spouštěč a zkuste to znovu.</value>
+  </data>
+  <data name="ImportSucceededTitle" xml:space="preserve">
+    <value>Importování bylo úspěšné</value>
+  </data>
+  <data name="ImportSucceededMessage" xml:space="preserve">
+    <value>Předchozí nastavení bylo úspěšně importováno.</value>
+  </data>
+  <data name="LauncherSelectedLanguage" xml:space="preserve">
+    <value>Jazyk spouštěče:</value>
+  </data>
+  <data name="LinksButton" xml:space="preserve">
+    <value>Odkazy</value>
+  </data>
+  <data name="PlayButton" xml:space="preserve">
+    <value>Spustit</value>
+  </data>
+  <data name="ConnectToDevCenterPrompt" xml:space="preserve">
+    <value>Připojeno do ThriveDevCenter</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+    <value>Přispět</value>
+  </data>
+  <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
+    <value>ThriveDevCenter</value>
+  </data>
+  <data name="ExternalLinkThriveItch" xml:space="preserve">
+    <value>Thrive na itch.io</value>
+  </data>
+  <data name="ExternalLinkThriveGithub" xml:space="preserve">
+    <value>Thrive na Github</value>
+  </data>
+  <data name="ExternalLinkLauncherGithub" xml:space="preserve">
+    <value>Spouštěč na Github</value>
+  </data>
+  <data name="ExternalLinkFanWiki" xml:space="preserve">
+    <value>Fanouškovská Wiki</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+    <value>Discord server</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+    <value>Subreddit</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+    <value>YouTube kanál</value>
+  </data>
+  <data name="ExternalLinkThriveSteam" xml:space="preserve">
+    <value>Thrive na Steamu</value>
+  </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+    <value>Vypnout všechna videa ve hře (pokud hra spadne po zobrazení načítací obrazovky nebo před spuštěním úvodního videa, tak toto by mělo pomoci)</value>
+  </data>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+    <value>Verze spouštěče:</value>
+  </data>
+  <data name="LaunchOptionsTitle" xml:space="preserve">
+    <value>Nastavení Spuštění</value>
+  </data>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+    <value>Povolit kanály Webů</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>Vyberte lokaci dočasných souborů</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>Resetovat lokaci dočasných souborů</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>ODSTRANIT VŠECHNY SOUBORY v dočasné složce. Může odstranit i soubory nesouvisející se soubory Thrive!</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+    <value>Vybrat lokaci pro mezipamět</value>
+  </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+    <value>DevBuilds soubor mezipaměti:</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+    <value>Resetovat lokaci mezipaměti</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>Děkujeme za Tvoji podporu!</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>Jste vývojář</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+    <value>Manuálně vložený hash:</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+    <value>Vložit build hash</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+    <value>Vybrat</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>Načítání...</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>Platnost všech certifikátů, se kterými je tento Launcher spojován, vypršela. To znamená, že tato verze spouštěče je zastaralá. Stáhněte si a nainstalujte novější verzi.</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>{0} verze</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} pro {1}</value>
+  </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>Chyba při získávání dostupných verzí Thrive</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Znovu</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>Použít data verze z mezipaměti</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Neznámá chyba</value>
+  </data>
+  <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
+    <value>Stažená data Thrive Launcheru jsou neplatná. Prosíme, zkuste to znovu později. Pokud problém přetrvává, prosím kontaktujte nás.</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>Žádná kompatibilní verze nebyla nalezena</value>
+  </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>Automaticky odstraňovat staré soubory v dočasné složce</value>
+  </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>Vybrat instalační lokaci</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>Resetovat instalační lokaci</value>
+  </data>
+  <data name="FolderPathDisplay" xml:space="preserve">
+    <value>Adresář:</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+    <value>Instrukce k naší Wiki</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>Potvrdit</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>Přihlásit</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>Složka nenalezena</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>Instalační složka verze Thrive neexistuje.</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>Zdrojový kód spouštěče</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>Uvedeno uživatelem {0} v {1}</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Klikněte sem</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>Vytvoření log souboru selhalo ({0}): {1}</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>Zobrazit Logy</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>pro zobrazení celého příspěvku.</value>
+  </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+    <value>Připojování do ThriveDevCenter...</value>
+  </data>
+  <data name="ConnectedSupporterGreeting" xml:space="preserve">
+    <value>Dekujeme,</value>
+  </data>
+  <data name="DevelopmentFeedTitle" xml:space="preserve">
+    <value>VÝVOJÁŘSKÁ FÓRA</value>
+  </data>
+  <data name="WebContentIsDisabled" xml:space="preserve">
+    <value>Webový obsah zakázán</value>
+  </data>
+  <data name="CacheConfigurationTab" xml:space="preserve">
+    <value>Cache</value>
+  </data>
+  <data name="NewsFeedTitle" xml:space="preserve">
+    <value>NOVINKY</value>
+  </data>
+  <data name="LinksPopupTitle" xml:space="preserve">
+    <value>Revolutionary Games Odkazy</value>
+  </data>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+    <value>Hlavní Stánka</value>
+  </data>
+  <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
+    <value>Vývojářská fóra</value>
+  </data>
+  <data name="ExternalLinkCommunityForums" xml:space="preserve">
+    <value>Komunitní Fóra</value>
+  </data>
+  <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
+    <value>Vývojářská Wiki</value>
+  </data>
+  <data name="ExternalLinkPatreon" xml:space="preserve">
+    <value>Patreon</value>
+  </data>
+  <data name="ExternalLinkFacebookPage" xml:space="preserve">
+    <value>Facebook stránka</value>
+  </data>
+  <data name="ThriveOptions" xml:space="preserve">
+    <value>Thrive Možnosti</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>(velikost: {0})</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>V Launcheru je použito písmo Roboto, licence Roboto:</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>Feed nemůže být zobrazen. {0}</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>Všechny dočasné soubory budou automaticky smazány z dočasné složky po restartování spouštěče. Proto by složka s dočasnými soubory neměla být využita k jiným účelům než k tomuto použití ,aby nedošlo k náhodnému odstranění nesouvisejících souborů.</value>
+  </data>
+  <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
+    <value>Upravit prodlení zvuku ve hře (může napravit některé problémy se zvuky, pokud se správně nastaví)</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>Schovat 32-bit verzi pokud je 64-bit verze dostupná</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>Poznámka: přesunutí dočasné lokace nepřesune ani neodstraní existující soubory, aby nedošlo k náhodnému zásahu do souborů nesouvisejících s Thrive</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+    <value>Odstranit všechny soubory ve složce mezipaměti DevBuild. Pokud je umístění jiné než výchozí, mohou v této složce existovat soubory, které nejsou soubory Thrive a které budou také odstraněny.</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+    <value>Build of the day (BOTD), doporučeno</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+    <value>Specifický Build</value>
+  </data>
+  <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+    <value>Vybrat manuálně vložený hash, který se použije ze vstupního pole jako vybraný DevBuild pro přehrávání při hraní DevBuild</value>
+  </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>Launcher nemůže nalézt kompativilní verzi na aktuální platformě. Pokud používáte pochybný operační systém, je toto pochopitelné. V každém případě, nahlaste toto prosím jako chybu.</value>
+  </data>
+  <data name="LaunchOptionForceOpenGL" xml:space="preserve">
+    <value>Vynutit OpenGL renderování (může pomoci pro spuštění hry, ale muže způsobit grafické problémy)</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>Uložení nastavení do souboru nastavení selhalo. Ujistěte se, že má Launcher potřebná práva k přepisování a zkuste to znovu.
+V log záznamech Launcheru bude uvedeno více informací.</value>
+  </data>
+  <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
+    <value>Thrive Launcher běžně načítá dostupné verze Thrive z internetu, aby věděl, která verze je k dispozici. Načtení těchto informací se nezdařila (viz chyba níže). Můžete se pokusit tyto informace stáhnout znovu, nebo pokud Launcher byl dříve schopen tyto informace stáhnout, můžete načíst kopii z mezipaměti. Pokud je kopie v mezipaměti zastaralá, nemusí zobrazovat všechny dostupné verze Thrive. Upozorňujeme, že pokud je vaše verze Launcheru zastaralá, nemusí již být kompatibilní s novějším formátem dat a je nutné ji před načtením ručně aktualizovat.</value>
+  </data>
 </root>
