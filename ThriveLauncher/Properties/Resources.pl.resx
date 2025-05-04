@@ -281,7 +281,7 @@
     <value>Kliknij tutaj</value>
   </data>
   <data name="TruncatedClickSuffix" xml:space="preserve">
-    <value>by przeczytać pełen post.</value>
+    <value>aby przeczytać pełen post.</value>
   </data>
   <data name="LogFolderCreateFailed" xml:space="preserve">
     <value>Utworzenie folderu logów nie powiodło się ({0}): {1}</value>
@@ -293,7 +293,7 @@
     <value>wersja {0}</value>
   </data>
   <data name="VersionWithPlatform" xml:space="preserve">
-    <value>{0} dla {1}</value>
+    <value>{0} na platformę {1}</value>
   </data>
   <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
     <value>Błąd Uzyskiwania Dostępnych Wersji Thrive</value>
@@ -956,5 +956,18 @@ Jeśli poniżej nie ma żadnych plików, pobieranie aktualizacji nie powiodło s
   </data>
   <data name="ExternalLinkMastodon" xml:space="preserve">
     <value>Mastodon</value>
+  </data>
+  <data name="CrashDumpsDetectedAdvice" xml:space="preserve">
+    <value>Pliki zrzutu crash zostały wykryte, lecz mogą one pochodzić z poprzedniej sesji Thrive (prosimy sprawdzić przed raportowaniem). Żeby przestać być notyfikowanym na temat plików zrzutu crash, otwórz raporter i wyczyść pliki zrzutu crash.</value>
+  </data>
+  <data name="ExternalLinkThreads" xml:space="preserve">
+    <value>Wątki</value>
+  </data>
+  <data name="CPUFeatureWarning" xml:space="preserve">
+    <value>Aby funkcjonować, Thrive minimalnie wymaga CPU z SSE 4.2 i 4.1. Te wymagania są o wiele niższe od naszych oficjalnych wymagań systemowych. Dla optymalnego doświadczenia polecamy CPU z dostępnymi instrukcjami AVX 2.
+
+      Wykryliśmy, że twoje CPU nie posiada tych wymaganych rozszerzeń zbioru instrukcji SSE. Z tej przyczyny gra prawdopodobnie nie będzie działać. Możesz zignorować to ostrzeżenie i mimo wszystko spróbować grać, ale w takim wypadku prosimy nie zgłaszać crashów bądź niepowodzeń w uruchomieniu gry, gdyż z ogromnym prawdopodobieństwem są one wywołane problemami związanymi z przestarzałym CPU.
+
+      Jeśli widzisz to ostrzeżenie w wyniku błędu, twoje CPU spełnia minimalne wymagania i możesz grać w Thrive bez większych problemów, prosimy o powiadomienie nas jakie CPU posiadasz, abyśmy mogli ulepszyć to wykrywanie funkcji.</value>
   </data>
 </root>
