@@ -166,6 +166,7 @@ public class ThriveAndLauncherInfoRetriever : IThriveAndLauncherInfoRetriever
                 () => ResourceUtilities.ReadManifestResourceRawAsync(resourceName), resourceName));
         }
 
+        // ReSharper disable once VariableCanBeNotNullable
         string? signedWith;
         try
         {
