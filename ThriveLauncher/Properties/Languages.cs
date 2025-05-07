@@ -29,6 +29,7 @@ public static class Languages
         "cs-CZ",
         "de-DE",
         "fr-FR",
+        "ka-KA",
         "hr-HR",
         "it-IT",
         "lt-LT",
