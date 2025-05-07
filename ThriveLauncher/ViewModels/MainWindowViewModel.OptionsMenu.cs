@@ -594,8 +594,8 @@ public partial class MainWindowViewModel
     public void ResetAllSettings()
     {
         logger.LogInformation("Resetting all settings");
-        logger.LogDebug("Previous settings (note may include DevCenter access token!): {Settings}",
-            JsonSerializer.Serialize(settingsManager.Settings));
+        logger.LogDebug("Previous settings: {Settings}",
+            JsonSerializer.Serialize(settingsManager.Settings.CloneWithoutSensitiveData()));
 
         settingsManager.Reset();
 

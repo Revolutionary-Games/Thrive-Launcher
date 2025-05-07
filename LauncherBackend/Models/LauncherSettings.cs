@@ -111,7 +111,7 @@ public class LauncherSettings
                 if (!OperatingSystem.IsWindows())
                     return false;
 
-                // Show 32-bit when we are on 32-bit platform (or we want to explicitly show)
+                // Show 32-bit when we are on a 32-bit platform (or we want to explicitly show)
                 if (!Environment.Is64BitOperatingSystem || !Hide32Bit)
                     return true;
 
@@ -126,9 +126,43 @@ public class LauncherSettings
         }
     }
 
+    public LauncherSettings CloneWithoutSensitiveData()
+    {
+        // Skip sensitive data like tokens but clone everything else
+        return new LauncherSettings
+        {
+            ShowWebContent = ShowWebContent,
+            HideLauncherOnPlay = HideLauncherOnPlay,
+            Hide32Bit = Hide32Bit,
+            CloseLauncherAfterGameExit = CloseLauncherAfterGameExit,
+            CloseLauncherOnGameStart = CloseLauncherOnGameStart,
+            StoreVersionShowExternalVersions = StoreVersionShowExternalVersions,
+            EnableStoreVersionSeamlessMode = EnableStoreVersionSeamlessMode,
+            BeginningKeptGameOutput = BeginningKeptGameOutput,
+            LastKeptGameOutput = LastKeptGameOutput,
+            SelectedLauncherLanguage = SelectedLauncherLanguage,
+            ThriveInstallationPath = ThriveInstallationPath,
+            DehydratedCacheFolder = DehydratedCacheFolder,
+            TemporaryDownloadsFolder = TemporaryDownloadsFolder,
+            AutoCleanTemporaryFolder = AutoCleanTemporaryFolder,
+            AllowAutoUpdate = AllowAutoUpdate,
+            UseAlternateUpdateMethod = UseAlternateUpdateMethod,
+            ShowLatestBetaVersion = ShowLatestBetaVersion,
+            ShowAllBetaVersions = ShowAllBetaVersions,
+            EnableThriveAutoRestart = EnableThriveAutoRestart,
+            VerboseLogging = VerboseLogging,
+            SelectedDevBuildType = SelectedDevBuildType,
+            ManuallySelectedBuildHash = ManuallySelectedBuildHash,
+            ForceOpenGlMode = ForceOpenGlMode,
+            DisableThriveVideos = DisableThriveVideos,
+            OverrideAudioLatency = OverrideAudioLatency,
+            AudioLatencyMilliseconds = AudioLatencyMilliseconds,
+        };
+    }
+
     private static bool GetDefaultHideOnPlayOption()
     {
-        // Don't hide by default on mac: https://github.com/Revolutionary-Games/Thrive-Launcher/issues/159
+        // Don't hide by default on Mac: https://github.com/Revolutionary-Games/Thrive-Launcher/issues/159
         if (OperatingSystem.IsMacOS())
             return false;
 

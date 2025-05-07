@@ -41,7 +41,7 @@ public static class LauncherConstants
     public const string LauncherGlobalMemoryMapName = "ThriveLauncher-b27a18de-8f7b-48b9-b54c-75ab3a3816e9";
 
     /// <summary>
-    ///   Maximum size in bytes for a file to be included in crash report
+    ///   Maximum size in bytes for a file to be included in a crash report
     /// </summary>
     public const long MaxCrashLogFileSize = 2 * GlobalConstants.MEBIBYTE;
 
