@@ -13,7 +13,7 @@ public static class Languages
 {
     /// <summary>
     ///   The language that the launcher supports and is used by the current user (set to us by the operating system
-    ///   on startup). This is a lazy variable to make sure the other fields are initialized before this is tried to
+    ///   on startup). This is a lazy variable to make sure the other fields are initialised before this is tried to
     ///   be computed.
     /// </summary>
     private static readonly Lazy<CultureInfo> StartUpLanguage = new(DetectCurrentLanguageAtStartup);
@@ -25,7 +25,7 @@ public static class Languages
     ///   Running the launcher with "--list-languages" will give the right sorted order.
     /// </summary>
     private static readonly string[] AdditionalAvailableLanguages =
-    {
+    [
         "cs-CZ",
         "de-DE",
         "fr-FR",
@@ -47,7 +47,7 @@ public static class Languages
 
         // Requires font support, See: https://github.com/Revolutionary-Games/Thrive-Launcher/issues/194
         // "zh-CN",
-    };
+    ];
 
     public delegate void OnCurrentLanguageChanged();
 
@@ -67,7 +67,7 @@ public static class Languages
     }
 
     /// <summary>
-    ///   Detects the culture that should be shown as active (falls back to english)
+    ///   Detects the culture that should be shown as active (falls back to English)
     /// </summary>
     /// <param name="availableCultures">The culture list to get the closest match</param>
     /// <returns>The culture match (or default) that is found in the cultures</returns>
@@ -101,7 +101,7 @@ public static class Languages
 
     public static IEnumerable<CultureInfo> GetLanguagesEnumerable()
     {
-        // Default language needs to be first
+        // The default language needs to be first
         yield return DefaultLanguage;
 
         if (AdditionalAvailableLanguages.Contains("en-BG"))
@@ -127,7 +127,7 @@ public static class Languages
 
     public static void SetLanguage(CultureInfo cultureInfo)
     {
-        // Ensure startup language is detected, this is now needed as the value is a lazy one
+        // Ensure startup language is detected, this is now needed as the value is lazy
         GetStartupLanguage();
 
         CultureInfo.CurrentUICulture = cultureInfo;
