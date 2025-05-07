@@ -336,6 +336,24 @@ public partial class MainWindowViewModel
 
             this.RaisePropertyChanging();
             Settings.SelectedDevBuildType = value;
+
+            // Also change the type of thing to play to devbuild automatically to avoid user errors
+            // But only if connected to the DevCenter to not show a nonsensical value
+            if (DevCenterConnection != null)
+            {
+                const string devbuildName = "DevBuild";
+
+                if (SelectedVersionToPlay != devbuildName)
+                {
+                    logger.LogInformation("Automatically selecting 'DevBuild' to play as DevBuild type was changed");
+
+                    SelectedVersionToPlay = devbuildName;
+
+                    // Remember this change across restarts
+                    settingsManager.RememberedVersion = devbuildName;
+                }
+            }
+
             this.RaisePropertyChanged();
 
             this.RaisePropertyChanged(nameof(SelectedDevBuildTypeIsBuildOfTheDay));
@@ -354,6 +372,13 @@ public partial class MainWindowViewModel
 
             this.RaisePropertyChanging();
             Settings.ManuallySelectedBuildHash = value;
+
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                // Swap the DevBuild type to "manual" automatically to avoid user-errors in playing the wrong thing
+                SelectedDevBuildType = DevBuildType.ManuallySelected;
+            }
+
             this.RaisePropertyChanged();
         }
     }

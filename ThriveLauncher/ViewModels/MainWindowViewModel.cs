@@ -341,7 +341,7 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
             return;
         }
 
-        // Convert the user readable version to a normal version
+        // Convert the user-readable version to a normal version
         var version = AvailableThriveVersions.First(t => t.VersionObject.VersionName == userReadableVersion);
 
         logger.LogInformation("Version to play is now: {SelectedVersion}", userReadableVersion);
@@ -349,7 +349,8 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
         SelectedVersionToPlay = userReadableVersion;
 
         // When selecting the latest version, we want to clear the remembered version so the user always gets the
-        // latest version to play. Or if playing a store version that also clears it
+        // latest version to play.
+        // Or if playing a store version that also clears the remembered version
         if (version.VersionObject is PlayableVersion { IsLatest: true } or StoreVersion)
         {
             logger.LogInformation("Select version to play is latest (or store version), clearing remembered version");

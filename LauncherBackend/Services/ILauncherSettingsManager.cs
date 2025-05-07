@@ -7,7 +7,7 @@ public interface ILauncherSettingsManager
     public LauncherSettings Settings { get; }
 
     /// <summary>
-    ///   Old settings from launcher 1.x versions, used for migrating settings first time launcher 2.x is used.
+    ///   Old settings from launcher 1.x versions, used for migrating settings the first time launcher 2.x is used.
     /// </summary>
     public LauncherSettings? V1Settings { get; }
 
