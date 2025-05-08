@@ -333,6 +333,12 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
         });
     }
 
+    public void ShowAboutPage()
+    {
+        // We don't really have an about page, so show the links popup
+        ShowLinksPopup = true;
+    }
+
     public void VersionSelected(string? userReadableVersion)
     {
         if (string.IsNullOrEmpty(userReadableVersion))

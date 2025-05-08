@@ -172,6 +172,11 @@ public partial class MainWindowViewModel
         ShowSettingsPopup = !ShowSettingsPopup;
     }
 
+    public void OpenSettingsWithoutToggle()
+    {
+        ShowSettingsPopup = true;
+    }
+
     public void CloseSettingsClicked()
     {
         ShowSettingsPopup = !ShowSettingsPopup;

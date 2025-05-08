@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:services="clr-namespace:ThriveLauncher.Services"
              x:Class="ThriveLauncher.App"
+             Name="Thrive Launcher"
              RequestedThemeVariant="Dark">
     <!-- This is configured in the code behind
     <Application.DataTemplates>
@@ -186,8 +187,5 @@
             <Setter Property="Height" Value="0" />
         </Style>
     </Application.Styles>
-    <!-- TODO: implement this: -->
-    <NativeMenu.Menu>
-        <NativeMenu />
-    </NativeMenu.Menu>
+    <!-- Native menu setup is in the code-behind as it requires model access -->
 </Application>
