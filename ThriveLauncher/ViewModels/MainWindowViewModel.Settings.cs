@@ -351,22 +351,7 @@ public partial class MainWindowViewModel
             this.RaisePropertyChanging();
             Settings.SelectedDevBuildType = value;
 
-            // Also change the type of thing to play to devbuild automatically to avoid user errors
-            // But only if connected to the DevCenter to not show a nonsensical value
-            if (DevCenterConnection != null)
-            {
-                const string devbuildName = "DevBuild";
-
-                if (SelectedVersionToPlay != devbuildName)
-                {
-                    logger.LogInformation("Automatically selecting 'DevBuild' to play as DevBuild type was changed");
-
-                    SelectedVersionToPlay = devbuildName;
-
-                    // Remember this change across restarts
-                    settingsManager.RememberedVersion = devbuildName;
-                }
-            }
+            UpdateSelectedVersionForDevBuild();
 
             this.RaisePropertyChanged();
 
@@ -391,6 +376,9 @@ public partial class MainWindowViewModel
             {
                 // Swap the DevBuild type to "manual" automatically to avoid user-errors in playing the wrong thing
                 SelectedDevBuildType = DevBuildType.ManuallySelected;
+
+                // Ensure if we already were manually selected that a DevBuild will be selected to play
+                UpdateSelectedVersionForDevBuild();
             }
 
             this.RaisePropertyChanged();
@@ -512,4 +500,27 @@ public partial class MainWindowViewModel
     public bool CanShowLatestBetaVersion => CanEnableShowingBetaVersions && ShowLatestBetaVersion;
 
     private LauncherSettings Settings => settingsManager.Settings;
+
+    /// <summary>
+    ///   Setting-update helper to set the selected version to "devbuild" when related options are enabled
+    /// </summary>
+    private void UpdateSelectedVersionForDevBuild()
+    {
+        // Change the type of thing to play to devbuild automatically to avoid user errors
+        // But only if connected to the DevCenter to not show a nonsensical value
+        if (DevCenterConnection == null)
+            return;
+
+        const string devbuildName = "DevBuild";
+
+        if (SelectedVersionToPlay != devbuildName)
+        {
+            logger.LogInformation("Automatically selecting 'DevBuild' to play as DevBuild type was changed");
+
+            SelectedVersionToPlay = devbuildName;
+
+            // Remember this change across restarts
+            settingsManager.RememberedVersion = devbuildName;
+        }
+    }
 }

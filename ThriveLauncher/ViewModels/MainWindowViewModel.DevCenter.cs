@@ -337,6 +337,9 @@ public partial class MainWindowViewModel
 
             // Automatically select this to avoid user error where the user doesn't remember to select this
             SelectedDevBuildTypeIsManuallySelected = true;
+
+            // Make the primary thing to play selector also update
+            UpdateSelectedVersionForDevBuild();
         }
         else
         {
@@ -355,6 +358,9 @@ public partial class MainWindowViewModel
         ManuallySelectedBuildHash = buildHash;
         SelectedDevBuildTypeIsManuallySelected = true;
         ManuallyEnteredHashInput = string.Empty;
+
+        // Ensure DevBuild is selected to play after pressing a "select" button even if it was already selected
+        UpdateSelectedVersionForDevBuild();
     }
 
     public void RefreshLatestDevBuildsList()
