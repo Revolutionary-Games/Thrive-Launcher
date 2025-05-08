@@ -17,19 +17,20 @@ public class ExternalTools : IExternalTools
 {
     private const string Unix7ZipExecutableName = "7za";
 
-    // TODO: add system tool checking if we want to support that (probably should be an option to turn on)
-    private static readonly IReadOnlyList<string> Windows7ZipSystemPaths = new[]
-    {
+    private static readonly string[] Windows7ZipSystemPaths =
+    [
         "C:\\Program Files\\7-Zip\\7z.exe",
         "C:\\Program Files (x86)\\7-Zip\\7z.exe",
-    };
+    ];
 
     private readonly ILogger<ExternalTools> logger;
+    private readonly ILauncherSettingsManager settings;
     private readonly Lazy<string> basePathForTools;
 
-    public ExternalTools(ILogger<ExternalTools> logger)
+    public ExternalTools(ILogger<ExternalTools> logger, ILauncherSettingsManager settings)
     {
         this.logger = logger;
+        this.settings = settings;
         basePathForTools = new Lazy<string>(DetermineToolsPath);
     }
 
@@ -112,6 +113,29 @@ public class ExternalTools : IExternalTools
             throw new NotSupportedException("7-zip not configured to work on current platform");
         }
 
+        if (settings.Settings.PreferSystemTools)
+        {
+            var fromPath = ExecutableFinder.Which(executableName);
+
+            if (!string.IsNullOrEmpty(fromPath) && File.Exists(fromPath))
+            {
+                logger.LogInformation("Using 7-zip from PATH: {Path}", fromPath);
+                return new ProcessStartInfo(fromPath);
+            }
+
+            if (OperatingSystem.IsWindows())
+            {
+                foreach (var path in Windows7ZipSystemPaths)
+                {
+                    if (File.Exists(path))
+                    {
+                        logger.LogInformation("Using system-installed 7-zip from: {Path}", path);
+                        return new ProcessStartInfo(path);
+                    }
+                }
+            }
+        }
+
         var executable = Path.Join(BasePathForTools, "7zip", executableName);
 
         if (!File.Exists(executable))
@@ -136,6 +160,20 @@ public class ExternalTools : IExternalTools
         {
             // TODO: mac support
             throw new NotSupportedException("Godotpcktool not configured to work on current platform");
+        }
+
+        if (settings.Settings.PreferSystemTools)
+        {
+            var fromPath = ExecutableFinder.Which(executableName);
+
+            if (!string.IsNullOrEmpty(fromPath) && File.Exists(fromPath))
+            {
+                logger.LogInformation("Using godotpcktool from PATH: {Path}", fromPath);
+
+                // TODO: verify version?
+
+                return new ProcessStartInfo(fromPath);
+            }
         }
 
         var executable = Path.Join(BasePathForTools, "pck", executableName);

@@ -235,6 +235,9 @@
   <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
       <value>Use alternative way to run auto updater (try if normal auto update start fails)</value>
   </data>
+  <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
+      <value>Prefer tools installed on the system instead of using bundled ones (may cause issues if system-installed tools are old)</value>
+  </data>
   <data name="LauncherOptionVerboseLogging" xml:space="preserve">
       <value>Enable launcher debug logging (before reporting an issue or bug with the launcher please enable this and restart the launcher)</value>
   </data>

@@ -295,6 +295,20 @@ public partial class MainWindowViewModel
         }
     }
 
+    public bool PreferSystemTools
+    {
+        get => Settings.PreferSystemTools;
+        set
+        {
+            if (Settings.PreferSystemTools == value)
+                return;
+
+            this.RaisePropertyChanging();
+            Settings.PreferSystemTools = value;
+            this.RaisePropertyChanged();
+        }
+    }
+
     public bool VerboseLogging
     {
         get => Settings.VerboseLogging;

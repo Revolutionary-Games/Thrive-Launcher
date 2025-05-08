@@ -356,6 +356,11 @@
                                     <CheckBox IsChecked="{Binding AutoCleanTemporaryFolder}"
                                               Content="{i18n:Localize LauncherOptionCleanTemporaryFiles}" />
 
+                                    <CheckBox IsChecked="{Binding PreferSystemTools}">
+                                        <TextBlock TextWrapping="Wrap"
+                                                   Text="{i18n:Localize LauncherOptionPreferSystemTools}" />
+                                    </CheckBox>
+
                                     <CheckBox IsChecked="{Binding VerboseLogging}">
                                         <TextBlock TextWrapping="Wrap"
                                                    Text="{i18n:Localize LauncherOptionVerboseLogging}" />

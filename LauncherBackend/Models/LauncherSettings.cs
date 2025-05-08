@@ -68,6 +68,9 @@ public class LauncherSettings
     [JsonPropertyName("enableThriveAutoRestart")]
     public bool EnableThriveAutoRestart { get; set; } = true;
 
+    [JsonPropertyName("preferSystemTools")]
+    public bool PreferSystemTools { get; set; }
+
     [JsonPropertyName("verboseLogging")]
     public bool VerboseLogging { get; set; }
 
@@ -159,6 +162,7 @@ public class LauncherSettings
             ManuallySelectedBuildHash = ManuallySelectedBuildHash,
             ForceOpenGlMode = ForceOpenGlMode,
             DisableThriveVideos = DisableThriveVideos,
+            DisableThriveMods = DisableThriveMods,
             OverrideAudioLatency = OverrideAudioLatency,
             AudioLatencyMilliseconds = AudioLatencyMilliseconds,
         };

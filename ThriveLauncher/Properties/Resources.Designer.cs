@@ -393,6 +393,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string LauncherOptionPreferSystemTools {
+            get {
+                return ResourceManager.GetString("LauncherOptionPreferSystemTools", resourceCulture);
+            }
+        }
+        
         public static string LauncherOptionVerboseLogging {
             get {
                 return ResourceManager.GetString("LauncherOptionVerboseLogging", resourceCulture);
