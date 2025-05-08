@@ -970,4 +970,10 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı k
   <data name="ExternalLinkXFeed" xml:space="preserve">
     <value>X (eski adıyla Twitter)</value>
   </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>Başlangıçta, tüm Thrive modlarını devre dışı bırak (eğer yüklü modlarınız varsa ve Thrive güncellendiyse, deneyin)</value>
+  </data>
+  <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
+    <value>Paketlenmiş araçlar yerine sistemde yüklü olanları tercih et (eğer sistem ile yüklü araçlar eskiyse, sorunlar yaşanabilir)</value>
+  </data>
 </root>
