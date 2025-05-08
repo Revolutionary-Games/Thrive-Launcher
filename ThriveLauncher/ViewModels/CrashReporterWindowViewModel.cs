@@ -460,7 +460,6 @@ public class CrashReporterWindowViewModel : ViewModelBase
                     CrashReporterSubmitResult.ServerError => Resources.ReportSubmitErrorServerError,
                     CrashReporterSubmitResult.BadRequest => Resources.ReportSubmitErrorBadRequest,
                     CrashReporterSubmitResult.NetworkError => Resources.ReportSubmitErrorNetworkError,
-                    CrashReporterSubmitResult.UnknownError => Resources.ReportSubmitErrorUnknown,
                     _ => Resources.ReportSubmitErrorUnknown,
                 };
 
