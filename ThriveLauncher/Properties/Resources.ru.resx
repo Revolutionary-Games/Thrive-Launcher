@@ -970,4 +970,10 @@
   <data name="ExternalLinkThreads" xml:space="preserve">
     <value>Ветки</value>
   </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>Отключите все моды Thrive при запуске (попробуйте, если у вас установлены моды и Thrive был обновлён).</value>
+  </data>
+  <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
+    <value>Предпочтение системным инструментам вместо встроенных (может вызвать проблемы, если системные инструменты устарели).</value>
+  </data>
 </root>
