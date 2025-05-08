@@ -240,6 +240,9 @@
                                 <CheckBox IsChecked="{Binding ForceOpenGlMode}">
                                     <TextBlock TextWrapping="Wrap" Text="{i18n:Localize LaunchOptionForceOpenGL}" />
                                 </CheckBox>
+                                <CheckBox IsChecked="{Binding DisableThriveMods}">
+                                    <TextBlock TextWrapping="Wrap" Text="{i18n:Localize LaunchOptionDisableMods}" />
+                                </CheckBox>
                                 <CheckBox IsChecked="{Binding OverrideThriveAudioLatency}">
                                     <TextBlock TextWrapping="Wrap"
                                                Text="{i18n:Localize LaunchOptionOverrideAudioLatency}" />
@@ -261,7 +264,6 @@
                                     <ComboBoxItem Content="400 ms" />
                                     <ComboBoxItem Content="500 ms" />
                                 </ComboBox>
-
                             </StackPanel>
 
                             <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
@@ -327,7 +329,7 @@
                                     </StackPanel>
 
                                     <StackPanel IsVisible="{Binding !CanEnableShowingBetaVersions}">
-                                        <!-- dummy disabled latest beta checkbox -->
+                                        <!-- fake disabled latest beta checkbox -->
                                         <CheckBox IsChecked="False" IsEnabled="False"
                                                   Content="{i18n:Localize LauncherOptionShowLatestBetaVersion}" />
 

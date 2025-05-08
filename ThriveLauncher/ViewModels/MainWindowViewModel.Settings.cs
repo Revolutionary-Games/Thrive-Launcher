@@ -411,6 +411,20 @@ public partial class MainWindowViewModel
         }
     }
 
+    public bool DisableThriveMods
+    {
+        get => Settings.DisableThriveMods;
+        set
+        {
+            if (Settings.DisableThriveMods == value)
+                return;
+
+            this.RaisePropertyChanging();
+            Settings.DisableThriveMods = value;
+            this.RaisePropertyChanged();
+        }
+    }
+
     public bool OverrideThriveAudioLatency
     {
         get => Settings.OverrideAudioLatency;

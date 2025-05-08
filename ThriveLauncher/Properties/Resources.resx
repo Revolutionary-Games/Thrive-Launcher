@@ -202,6 +202,9 @@
   <data name="LaunchOptionForceOpenGL" xml:space="preserve">
       <value>Force OpenGL rendering mode (may make Thrive start, but causes slight graphical problems)</value>
   </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+      <value>Disable all Thrive mods on start (try if you have installed mods and Thrive has been updated)</value>
+  </data>
   <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
       <value>Increase game audio latency (can fix audio crackling issues when the latency is set high enough)</value>
   </data>

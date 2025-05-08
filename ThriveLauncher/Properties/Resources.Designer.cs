@@ -327,6 +327,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string LaunchOptionDisableMods {
+            get {
+                return ResourceManager.GetString("LaunchOptionDisableMods", resourceCulture);
+            }
+        }
+        
         public static string LaunchOptionOverrideAudioLatency {
             get {
                 return ResourceManager.GetString("LaunchOptionOverrideAudioLatency", resourceCulture);

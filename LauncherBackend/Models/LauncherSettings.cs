@@ -88,6 +88,9 @@ public class LauncherSettings
     [JsonPropertyName("disableThriveVideos")]
     public bool DisableThriveVideos { get; set; }
 
+    [JsonPropertyName("disableThriveMods")]
+    public bool DisableThriveMods { get; set; }
+
     [JsonPropertyName("overrideAudioLatency")]
     public bool OverrideAudioLatency { get; set; }
 
@@ -150,6 +153,7 @@ public class LauncherSettings
             ShowLatestBetaVersion = ShowLatestBetaVersion,
             ShowAllBetaVersions = ShowAllBetaVersions,
             EnableThriveAutoRestart = EnableThriveAutoRestart,
+            PreferSystemTools = PreferSystemTools,
             VerboseLogging = VerboseLogging,
             SelectedDevBuildType = SelectedDevBuildType,
             ManuallySelectedBuildHash = ManuallySelectedBuildHash,

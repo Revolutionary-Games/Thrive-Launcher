@@ -620,6 +620,8 @@ public partial class MainWindowViewModel
         this.RaisePropertyChanged(nameof(ManuallySelectedBuildHash));
         this.RaisePropertyChanged(nameof(ForceOpenGlMode));
         this.RaisePropertyChanged(nameof(DisableThriveVideos));
+        this.RaisePropertyChanged(nameof(DisableThriveMods));
+        this.RaisePropertyChanged(nameof(PreferSystemTools));
 
         // Reset some extra stuff
         RefreshDehydratedCacheSize();

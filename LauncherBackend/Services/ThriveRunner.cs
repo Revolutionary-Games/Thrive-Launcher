@@ -384,14 +384,17 @@ public class ThriveRunner : IThriveRunner
         var settings = settingsManager.Settings;
 
         if (settings.DisableThriveVideos)
-            runInfo.ArgumentList.Add("--thrive-disable-videos");
+            runInfo.ArgumentList.Add(ThriveLauncherSharedConstants.DISABLE_VIDEOS_LAUNCH_OPTION);
+
+        if (settings.DisableThriveMods)
+            runInfo.ArgumentList.Add(ThriveLauncherSharedConstants.DISABLE_ALL_MODS);
 
         if (settings.ForceOpenGlMode)
         {
             runInfo.ArgumentList.Add("--rendering-driver");
             runInfo.ArgumentList.Add("opengl3");
 
-            // Could also allow "opengl3_es" option
+            // Could also allow the "opengl3_es" option (though that's probably even less compatible)
         }
 
         if (settings.OverrideAudioLatency)
