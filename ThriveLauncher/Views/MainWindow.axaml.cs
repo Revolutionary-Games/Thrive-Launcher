@@ -1060,10 +1060,6 @@ public partial class MainWindow : Window
 
         WindowState = wantedState;
 
-        // Bug workaround: https://github.com/AvaloniaUI/Avalonia/issues/9280
-        if (wantedState != WindowState.Minimized)
-            Activate();
-
         // ReSharper restore HeuristicUnreachableCode
 #pragma warning restore CS0162
     }
