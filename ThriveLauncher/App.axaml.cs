@@ -1,6 +1,7 @@
 namespace ThriveLauncher;
 
 using System;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -16,6 +17,8 @@ using Views;
 public class App : Application
 {
     private readonly IServiceProvider serviceCollection;
+
+    private Window? newMainWindow;
 
     public App(IServiceProvider serviceCollection)
     {
@@ -52,7 +55,8 @@ public class App : Application
     /// </summary>
     public void ReSetupMainWindow()
     {
-        CreateWindowObject().Show();
+        newMainWindow = CreateWindowObject();
+        newMainWindow.Show();
     }
 
     private void SetupMainWindow()
@@ -74,6 +78,8 @@ public class App : Application
 
     private void SetupNativeMenu(IClassicDesktopStyleApplicationLifetime lifetime)
     {
+        const int delayAfterActivate = 500;
+
         var menu = new NativeMenu();
 
         // Play thrive item
@@ -82,12 +88,40 @@ public class App : Application
             Gesture = KeyGesture.Parse("Cmd+P"),
         };
         playThriveMenuItem.Click +=
-            (_, _) => (lifetime.MainWindow?.DataContext as MainWindowViewModel)?.TryToPlayThrive();
+            (_, _) =>
+            {
+                // TODO: this technically doesn't require the main window to be visible so we could skip this
+                // But for now that is not done as it has more corner cases to deal with
+                var (window, delay) = MakeSureMainWindowIsVisible(lifetime);
+
+                if (delay)
+                {
+                    RunWithDelay(() => { (window.DataContext as MainWindowViewModel)?.TryToPlayThrive(); },
+                        TimeSpan.FromMilliseconds(delayAfterActivate));
+                }
+                else
+                {
+                    (window.DataContext as MainWindowViewModel)?.TryToPlayThrive();
+                }
+            };
         menu.Add(playThriveMenuItem);
 
         // About menu item
         var aboutMenuItem = new NativeMenuItem("About ThriveLauncher");
-        aboutMenuItem.Click += (_, _) => (lifetime.MainWindow?.DataContext as MainWindowViewModel)?.ShowAboutPage();
+        aboutMenuItem.Click += (_, _) =>
+        {
+            var (window, delay) = MakeSureMainWindowIsVisible(lifetime);
+
+            if (delay)
+            {
+                RunWithDelay(() => { (window.DataContext as MainWindowViewModel)?.ShowAboutPage(); },
+                    TimeSpan.FromMilliseconds(delayAfterActivate));
+            }
+            else
+            {
+                (window.DataContext as MainWindowViewModel)?.ShowAboutPage();
+            }
+        };
         menu.Add(aboutMenuItem);
 
         menu.Add(new NativeMenuItemSeparator());
@@ -98,11 +132,58 @@ public class App : Application
             Gesture = KeyGesture.Parse("Cmd+OemComma"),
         };
         preferencesMenuItem.Click += (_, _) =>
-            (lifetime.MainWindow?.DataContext as MainWindowViewModel)?.OpenSettingsWithoutToggle();
+        {
+            var (window, delay) = MakeSureMainWindowIsVisible(lifetime);
+
+            if (delay)
+            {
+                RunWithDelay(() => { (window.DataContext as MainWindowViewModel)?.OpenSettingsWithoutToggle(); },
+                    TimeSpan.FromMilliseconds(delayAfterActivate));
+            }
+            else
+            {
+                (window.DataContext as MainWindowViewModel)?.OpenSettingsWithoutToggle();
+            }
+        };
         menu.Add(preferencesMenuItem);
 
         // Set the menu
         NativeMenu.SetMenu(this, menu);
+    }
+
+    private async void RunWithDelay(Action action, TimeSpan delay)
+    {
+        try
+        {
+            await Task.Delay(delay);
+            action.Invoke();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+    private (Window Window, bool ReCreated) MakeSureMainWindowIsVisible(
+        IClassicDesktopStyleApplicationLifetime lifetime)
+    {
+        var window = newMainWindow ?? lifetime.MainWindow;
+        bool created = false;
+
+        // Apparently the only way to check if the window can be still opened is if the platform impl still exists
+        if (window?.PlatformImpl == null)
+        {
+            ReSetupMainWindow();
+            window = newMainWindow ?? throw new InvalidOperationException("MainWindow is null");
+            created = true;
+        }
+        else
+        {
+            window.Show();
+        }
+
+        window.Activate();
+        return (window, created);
     }
 
     private void ShowCPUWarningWindowIfRequired()

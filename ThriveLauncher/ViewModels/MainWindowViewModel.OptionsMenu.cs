@@ -15,7 +15,7 @@ using ReactiveUI;
 using SharedBase.Utilities;
 
 /// <summary>
-///   Properties and methods for the options menu portion of the window. Settings properties are in the
+///   Properties and methods for the option menu portion of the window. Settings properties are in the
 ///   MainWindowViewModel.Settings.cs file.
 /// </summary>
 public partial class MainWindowViewModel
