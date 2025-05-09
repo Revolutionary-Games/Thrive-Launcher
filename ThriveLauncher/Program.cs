@@ -40,9 +40,9 @@ internal class Program
 
     private static bool launcherQuitRequested;
 
-    // Initialization code. Don't use any Avalonia, third-party APIs or any
-    // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
-    // yet and stuff might break.
+    // Initialisation code. Don't use any Avalonia, third-party APIs or any
+    // SynchronizationContext-reliant code before AppMain is called: things aren't initialised
+    // yet, and stuff might break.
     [STAThread]
     public static int Main(string[] args)
     {
@@ -72,7 +72,7 @@ internal class Program
 
         var programLogger = services.GetRequiredService<ILogger<Program>>();
 
-        // Hold onto a memory mapped file while we are running to let other programs know we are open
+        // Hold onto a memory-mapped file while we are running to let other programs know we are open
         MemoryMappedFile? globalMemory = null;
 
         if (!options.SkipGlobalMemory)
@@ -223,7 +223,7 @@ internal class Program
         else
         {
             // Store version can run Thrive in seamless mode after which the launcher wants to quit
-            // For simplicity this only works if CPU check warning doesn't need to be shown
+            // For simplicity this only works if the CPU check warning doesn't need to be shown
             if (HandleStoreVersionLogic(programLogger, isStore, settings, options, settingsManager, storeVersionInfo,
                     runner))
             {
@@ -324,7 +324,6 @@ internal class Program
         // Mac activation / background operation when no windows are open
         bool stayActiveInBackground = false;
 
-        // TODO: check that this still works on mac
         var activatableApplicationLifetime = applicationInstance.TryGetFeature<IActivatableLifetime>();
         if (activatableApplicationLifetime != null)
         {
@@ -370,7 +369,7 @@ internal class Program
                 {
                     seenInitialWindow = true;
 
-                    // If the user clicks on the icon while there are open windows that causes problems when the user
+                    // If the user clicks on the icon while there are open windows, that causes problems when the user
                     // does want to close the window, so reset the request here when there is an open window
                     reActivationRequested = false;
 
@@ -392,7 +391,7 @@ internal class Program
                 continue;
             }
 
-            // Wait for initial window to open and don't just quit immediately
+            // Wait for the initial window to open and don't just quit immediately
             if (!seenInitialWindow)
             {
                 ++windowWaitCount;
@@ -478,7 +477,7 @@ internal class Program
                 reActivationRequested = true;
                 break;
             case ActivationKind.Background:
-                // This seems to be related to program shutdown on mac and not about reopening
+                // This seems to be related to the program shutdown on Mac and not about reopening
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
