@@ -76,6 +76,15 @@ public class App : Application
     {
         var menu = new NativeMenu();
 
+        // Play thrive item
+        var playThriveMenuItem = new NativeMenuItem("Play Thrive")
+        {
+            Gesture = KeyGesture.Parse("Cmd+P"),
+        };
+        playThriveMenuItem.Click +=
+            (_, _) => (lifetime.MainWindow?.DataContext as MainWindowViewModel)?.TryToPlayThrive();
+        menu.Add(playThriveMenuItem);
+
         // About menu item
         var aboutMenuItem = new NativeMenuItem("About ThriveLauncher");
         aboutMenuItem.Click += (_, _) => (lifetime.MainWindow?.DataContext as MainWindowViewModel)?.ShowAboutPage();
@@ -91,69 +100,6 @@ public class App : Application
         preferencesMenuItem.Click += (_, _) =>
             (lifetime.MainWindow?.DataContext as MainWindowViewModel)?.OpenSettingsWithoutToggle();
         menu.Add(preferencesMenuItem);
-
-        menu.Add(new NativeMenuItemSeparator());
-
-        // Services submenu
-        var servicesMenu = new NativeMenu();
-        var playThriveMenuItem = new NativeMenuItem("Play Thrive")
-        {
-            Gesture = KeyGesture.Parse("Cmd+P"),
-        };
-        playThriveMenuItem.Click +=
-            (_, _) => (lifetime.MainWindow?.DataContext as MainWindowViewModel)?.TryToPlayThrive();
-        servicesMenu.Add(playThriveMenuItem);
-
-        var servicesMenuItem = new NativeMenuItem("Services")
-        {
-            Menu = servicesMenu,
-        };
-        menu.Add(servicesMenuItem);
-
-        menu.Add(new NativeMenuItemSeparator());
-
-        // Hide app
-        var hideMenuItem = new NativeMenuItem("Hide Thrive Launcher")
-        {
-            Gesture = KeyGesture.Parse("Cmd+H"),
-        };
-
-        hideMenuItem.Click += (_, _) =>
-        {
-            foreach (var window in lifetime.Windows)
-                window.Hide();
-        };
-
-        menu.Add(hideMenuItem);
-
-        // Hide others
-        var hideOthersMenuItem = new NativeMenuItem("Hide Others")
-        {
-            Gesture = KeyGesture.Parse("Alt+Cmd+H"),
-        };
-        menu.Add(hideOthersMenuItem);
-
-        // Show all
-        var showAllItem = new NativeMenuItem("Show All");
-
-        // TODO: test is this needed
-        /*showAllItem.Click += (_, _) =>
-        {
-            foreach (var window in lifetime.Windows)
-                window.Show();
-        };*/
-
-        menu.Add(showAllItem);
-
-        menu.Add(new NativeMenuItemSeparator());
-
-        // Exit
-        var exitMenuItem = new NativeMenuItem("Quit ThriveLauncher")
-        {
-            Gesture = KeyGesture.Parse("Cmd+Q"),
-        };
-        exitMenuItem.Click += (_, _) => lifetime.Shutdown();
-        menu.Add(exitMenuItem);
 
         // Set the menu
         NativeMenu.SetMenu(this, menu);
