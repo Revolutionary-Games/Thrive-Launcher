@@ -255,6 +255,10 @@ public partial class MainWindowViewModel
         logger.LogInformation("Closing play popup due to cancellation");
         CurrentlyPlaying = false;
         CanCancelPlaying = false;
+
+        // Make sure that the playing info popup doesn't open again if activatable lifetime re-creates the main
+        // window
+        thriveRunner.ClearOutput();
     }
 
     public string GetFullOutputForClipboard()

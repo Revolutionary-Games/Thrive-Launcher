@@ -103,7 +103,7 @@ public interface IThriveRunner
     public bool QuitThrive();
 
     /// <summary>
-    ///   Clears the game output. Useful for starting a new install with clean output
+    ///   Clears the game output. Useful for starting a new installation with clean output
     /// </summary>
     public void ClearOutput();
 
