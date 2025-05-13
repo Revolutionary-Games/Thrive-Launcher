@@ -15,6 +15,7 @@ using SharedBase.Utilities;
 
 public class ExternalTools : IExternalTools
 {
+    // TODO: update the Linux version also to the new official 7-zip
     private const string Unix7ZipExecutableName = "7za";
 
     private static readonly string[] Windows7ZipSystemPaths =
@@ -106,7 +107,7 @@ public class ExternalTools : IExternalTools
         }
         else if (OperatingSystem.IsMacOS())
         {
-            executableName = "7za_mac";
+            executableName = "7zz_mac";
         }
         else
         {
@@ -116,6 +117,11 @@ public class ExternalTools : IExternalTools
         if (settings.Settings.PreferSystemTools)
         {
             var fromPath = ExecutableFinder.Which(executableName);
+
+            if (string.IsNullOrEmpty(fromPath) && OperatingSystem.IsMacOS())
+            {
+                fromPath = ExecutableFinder.Which(Unix7ZipExecutableName);
+            }
 
             if (!string.IsNullOrEmpty(fromPath) && File.Exists(fromPath))
             {
