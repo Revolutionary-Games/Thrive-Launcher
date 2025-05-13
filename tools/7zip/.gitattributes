@@ -1,0 +1,2 @@
+7zz filter=lfs diff=lfs merge=lfs -text
+7zz_mac filter=lfs diff=lfs merge=lfs -text
