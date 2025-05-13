@@ -322,6 +322,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 ColourConsole.WriteWarningLine(
                     "Signing without a specific key for mac (this should work but in an optimal case " +
                     "a signing key would be set)");
+                ColourConsole.WriteNormalLine(
+                    "A self-signed key will expire pretty often so make sure you have a valid one created already");
             }
             else
             {
@@ -371,7 +373,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             // startInfo.ArgumentList.Add("--name=test");
             startInfo.ArgumentList.Add("-i");
 
-            // Source mounted in read only way
+            // Source mounted in a read-only way
             startInfo.ArgumentList.Add("--mount");
             startInfo.ArgumentList.Add($"type=bind,source={baseFolder},destination=/source,relabel=shared,ro=true");
 
@@ -433,7 +435,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         {
             DeleteDsStore(folder);
 
-            // We don't need to prune pdb files as the separate mac builds, made sure that no pdb files got copied
+            // We don't need to prune pdb files as the separate Mac builds, made sure that no pdb files got copied
             // anyway
             ColourConsole.WriteInfoLine("Converting built mac folder to an .app");
             try
@@ -446,8 +448,19 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 return false;
             }
 
-            // TODO: notarization
-            ColourConsole.WriteWarningLine("TODO: notarization support");
+            if (!string.IsNullOrEmpty(options.AppleId) || !string.IsNullOrEmpty(options.MacTeamId))
+            {
+                ColourConsole.WriteInfoLine("Notarizing Mac build");
+
+                if (!await NotarizeMacApp(Path.Join(folder, LauncherAppName), cancellationToken))
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                ColourConsole.WriteWarningLine("Notarization not requested, created .app won't run as well");
+            }
 
             return true;
         }
@@ -469,6 +482,28 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         PrunePdbFiles(folder);
 
         return true;
+    }
+
+    protected override async Task<bool> Compress(PackagePlatform platform, string folder, string archiveFile,
+        CancellationToken cancellationToken)
+    {
+        var result = await base.Compress(platform, folder, archiveFile, cancellationToken);
+
+        // Apply a final signature on Mac
+        // We don't want to do this for the dmg as it is notarized
+        if (platform == PackagePlatform.Mac && !string.IsNullOrEmpty(options.MacSigningKey) &&
+            !archiveFile.Contains(".dmg"))
+        {
+            ColourConsole.WriteNormalLine("Applying final signature on Mac (might be unnecessary for the .zip)");
+
+            if (!await BinaryHelpers.SignFileForMac(archiveFile, MacEntitlementsFile, options.MacSigningKey,
+                    cancellationToken))
+            {
+                return false;
+            }
+        }
+
+        return result;
     }
 
     protected override async Task<bool> OnPostFolderHandled(PackagePlatform platform, string folderOrArchive,
@@ -552,8 +587,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 return false;
             }
 
-            // TODO: notarization (also needed for .dmg even when the app inside is notarized already)
-            ColourConsole.WriteWarningLine("TODO: notarization support");
+            // Final dmg may not be signed as that will break it
 
             var hash = FileUtilities.HashToHex(
                 await FileUtilities.CalculateSha3OfFile(ExpectedMacDMGFile, cancellationToken));
@@ -707,7 +741,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     {
         var executable = Path.Join(folder, "ThriveLauncher.exe");
 
-        // The following breaks some signature check or something so we cannot use it
+        // The following breaks some signature check or something, so we cannot use it
         // Even using a different tool breaks the executable when the version or icon is touched
         var message = "Cannot set executable icon or version on Linux. This results in pretty bad Windows builds.";
         ColourConsole.WriteErrorLine(message);
@@ -982,8 +1016,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         CopyHelpers.CopyToFolder(MacIcon, resourcesFolder);
 
-        // Move the created stuff in the build folder to the MacOS folder as that's where the executable needs to be
-        // so we might as move everything (except a few things that are useful for .zip creation) to there
+        // Move the created stuff in the build folder to the macOS folder as that's where the executable needs to be,
+        // so we might as well move everything (except a few things that are useful for .zip creation) to there
         foreach (var entry in Directory.EnumerateFileSystemEntries(folder, "*", SearchOption.TopDirectoryOnly))
         {
             // Ignore some files we may not move
@@ -1020,7 +1054,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         // ReSharper restore StringLiteralTypo
 
-        // Setup the plist
+        // Set up the plist
         ColourConsole.WriteNormalLine("Setting up plist for app");
 
         var templateText = await File.ReadAllTextAsync(LauncherAppPlistTemplate, Encoding.UTF8, cancellationToken);
@@ -1054,6 +1088,73 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         ColourConsole.WriteSuccessLine($"App created at {appBase}");
     }
 
+    private async Task<bool> NotarizeMacApp(string folder, CancellationToken cancellationToken)
+    {
+        ColourConsole.WriteInfoLine($"Notarizing {folder}");
+        ColourConsole.WriteNormalLine("Creating .zip from app for notarizing");
+
+        var baseFolder = Path.GetDirectoryName(folder) ?? throw new ArgumentException("Can't get parent folder");
+
+        var zipName = Path.Join(baseFolder, Path.GetFileName(folder) + ".zip");
+        var fullZipPath = Path.GetFullPath(zipName);
+
+        if (File.Exists(fullZipPath))
+            File.Delete(fullZipPath);
+
+        var startInfo = new ProcessStartInfo("zip")
+        {
+            WorkingDirectory = baseFolder,
+        };
+
+        startInfo.ArgumentList.Add("-6");
+        startInfo.ArgumentList.Add("-r");
+
+        startInfo.ArgumentList.Add(Path.GetFileName(zipName));
+
+        startInfo.ArgumentList.Add(Path.GetFileName(folder));
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
+
+        try
+        {
+            if (result.ExitCode != 0)
+            {
+                ColourConsole.WriteErrorLine("Running zip create failed " +
+                    $"(exit: {result.ExitCode}): {result.FullOutput}");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(options.MacTeamId) || string.IsNullOrEmpty(options.AppleId) ||
+                string.IsNullOrEmpty(options.AppleAppPassword))
+            {
+                ColourConsole.WriteErrorLine("Notarizing Mac build requires Apple developer credentials and team id");
+                return false;
+            }
+
+            if (!await BinaryHelpers.NotarizeFile(fullZipPath, options.MacTeamId,
+                    options.AppleId, options.AppleAppPassword, cancellationToken, false))
+            {
+                ColourConsole.WriteErrorLine("Failed to notarize Mac build (.app)");
+                return false;
+            }
+
+            // We staple things ourselves as we made the temporary zip
+            if (!await BinaryHelpers.StapleFileTicket(folder, cancellationToken))
+            {
+                ColourConsole.WriteErrorLine("Failed to staple ticket to Mac build (.app)");
+                return false;
+            }
+        }
+        finally
+        {
+            // Delete the temporary zip
+            if (File.Exists(fullZipPath))
+                File.Delete(fullZipPath);
+        }
+
+        return true;
+    }
+
     private void MoveReadmeFiles(string fromFolder, string toFolder)
     {
         Directory.CreateDirectory(toFolder);
@@ -1084,6 +1185,13 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         {
             ColourConsole.WriteNormalLine("Deleting existing .dmg before recreating it");
             File.Delete(dmgToCreate);
+        }
+
+        // Make sure the .app that is going to be in the dmg is stapled
+        if (!await BinaryHelpers.StapleFileTicket(Path.Join(folder, LauncherAppName), cancellationToken))
+        {
+            ColourConsole.WriteErrorLine("Failed to staple ticket to Mac build before creating DMG");
+            return false;
         }
 
         // Retry running this a few times as this has a chance to fail spuriously
@@ -1137,10 +1245,6 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             startInfo.ArgumentList.Add("--codesign");
             BinaryHelpers.AddCodesignName(startInfo, options.MacSigningKey);
 
-            // TODO: notarization
-            // startInfo.ArgumentList.Add("--notarize");
-            // startInfo.ArgumentList.Add(notarizationCredentials);
-
             startInfo.ArgumentList.Add(dmgToCreate);
             startInfo.ArgumentList.Add(folder);
 
@@ -1151,12 +1255,35 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             if (result.ExitCode != 0)
             {
                 ColourConsole.WriteWarningLine($"Running dmg creation failed. Exit code: {result.ExitCode}");
+                continue;
+            }
+
+            if (!string.IsNullOrEmpty(options.AppleId) || !string.IsNullOrEmpty(options.MacTeamId))
+            {
+                if (string.IsNullOrEmpty(options.MacTeamId) || string.IsNullOrEmpty(options.AppleId) ||
+                    string.IsNullOrEmpty(options.AppleAppPassword))
+                {
+                    ColourConsole.WriteErrorLine(
+                        "Notarizing Mac build requires Apple developer credentials and team id");
+                    return false;
+                }
+
+                ColourConsole.WriteInfoLine("Notarizing .dmg");
+
+                if (!await BinaryHelpers.NotarizeFile(dmgToCreate, options.MacTeamId, options.AppleId,
+                        options.AppleAppPassword, cancellationToken, true))
+                {
+                    ColourConsole.WriteErrorLine("Failed to notarize .dmg");
+                    return false;
+                }
             }
             else
             {
-                ColourConsole.WriteSuccessLine($"Created {dmgToCreate}");
-                return true;
+                ColourConsole.WriteWarningLine("Not notarizing .dmg file");
             }
+
+            ColourConsole.WriteSuccessLine($"Created {dmgToCreate}");
+            return true;
         }
 
         ColourConsole.WriteErrorLine("dmg creator failed too many times");
