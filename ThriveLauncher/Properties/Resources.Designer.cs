@@ -1856,5 +1856,23 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("CPUFeatureWarning", resourceCulture);
             }
         }
+        
+        public static string NativeMenuPlayThrive {
+            get {
+                return ResourceManager.GetString("NativeMenuPlayThrive", resourceCulture);
+            }
+        }
+        
+        public static string NativeMenuAbout {
+            get {
+                return ResourceManager.GetString("NativeMenuAbout", resourceCulture);
+            }
+        }
+        
+        public static string NativeMenuPreferences {
+            get {
+                return ResourceManager.GetString("NativeMenuPreferences", resourceCulture);
+            }
+        }
     }
 }

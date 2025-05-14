@@ -10,6 +10,7 @@ using Avalonia.Markup.Xaml;
 using LauncherBackend.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Services.Localization;
 using Utilities;
 using ViewModels;
 using Views;
@@ -82,8 +83,13 @@ public class App : Application
 
         var menu = new NativeMenu();
 
+        // TODO: implement reacting to language change
+        // Languages.OnLanguageChanged
+
+        var localizer = Localizer.Instance;
+
         // Play thrive item
-        var playThriveMenuItem = new NativeMenuItem("Play Thrive")
+        var playThriveMenuItem = new NativeMenuItem(localizer["NativeMenuPlayThrive"])
         {
             Gesture = KeyGesture.Parse("Cmd+P"),
         };
@@ -107,7 +113,7 @@ public class App : Application
         menu.Add(playThriveMenuItem);
 
         // About menu item
-        var aboutMenuItem = new NativeMenuItem("About ThriveLauncher");
+        var aboutMenuItem = new NativeMenuItem(localizer["NativeMenuAbout"]);
         aboutMenuItem.Click += (_, _) =>
         {
             var (window, delay) = MakeSureMainWindowIsVisible(lifetime);
@@ -127,7 +133,7 @@ public class App : Application
         menu.Add(new NativeMenuItemSeparator());
 
         // Preferences menu item
-        var preferencesMenuItem = new NativeMenuItem("Preferences...")
+        var preferencesMenuItem = new NativeMenuItem(localizer["NativeMenuPreferences"])
         {
             Gesture = KeyGesture.Parse("Cmd+OemComma"),
         };

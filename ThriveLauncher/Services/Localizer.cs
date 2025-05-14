@@ -38,7 +38,7 @@ public class Localizer : INotifyPropertyChanged
                 return "TEXT NOT FOUND";
             }
 
-            // resx files can natively have new lines so this isn't needed
+            // resx files can natively have new lines, so this isn't needed
             // return result.Replace("\\n", "\n");
 
             return result;

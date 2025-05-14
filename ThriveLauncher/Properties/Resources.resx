@@ -979,4 +979,13 @@ If no files are listed below, downloading the update has failed and it cannot be
 
       If you see this warning in error, your CPU meets the minimum requirements, and can play Thrive anyway, please let us know which CPU you have so that we can improve this feature detection.</value>
   </data>
+  <data name="NativeMenuPlayThrive" xml:space="preserve">
+    <value>Play Thrive</value>
+  </data>
+  <data name="NativeMenuAbout" xml:space="preserve">
+    <value>About Thrive Launcher</value>
+  </data>
+  <data name="NativeMenuPreferences" xml:space="preserve">
+    <value>Preferences...</value>
+  </data>
 </root>
