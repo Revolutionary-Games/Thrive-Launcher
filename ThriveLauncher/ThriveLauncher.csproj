@@ -91,7 +91,7 @@
     </ContentWithTargetPath>
   </ItemGroup>
   <ItemGroup Condition="$(RuntimeIdentifier.StartsWith('linux'))">
-    <ContentWithTargetPath Include="..\tools\7zip\7za">
+    <ContentWithTargetPath Include="..\tools\7zip\7zz">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>tools\7zip\%(Filename)%(Extension)</TargetPath>
     </ContentWithTargetPath>
