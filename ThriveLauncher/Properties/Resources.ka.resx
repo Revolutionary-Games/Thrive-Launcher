@@ -970,4 +970,10 @@
   <data name="ExternalLinkXFeed" xml:space="preserve">
     <value>X (ყოფილი Twitter)</value>
   </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>Thrive-ის ყველა მოდის გამორთვა გაშვებისას (სცადეთ ეს, თუ გაქვთ დაყენებული მოდები და Thrive განახლდა)</value>
+  </data>
+  <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
+    <value>სისტემაში დაყენებულ პროგრამებს მეტი პრიორიტეტი აქვთ თამაშთან მოყოლილ პროგრამებთან შედარებით (შეიძლება, გამოიწვიოს პრობლემები, თუ სისტემაში დაყენებული პროგრამები ძველია)</value>
+  </data>
 </root>
