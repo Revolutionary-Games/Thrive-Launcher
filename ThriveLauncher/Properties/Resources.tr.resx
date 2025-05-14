@@ -976,4 +976,13 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı k
   <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
     <value>Paketlenmiş araçlar yerine sistemde yüklü olanları tercih et (eğer sistem ile yüklü araçlar eskiyse, sorunlar yaşanabilir)</value>
   </data>
+  <data name="NativeMenuAbout" xml:space="preserve">
+    <value>Thrive Başlatıcısı Hakkında</value>
+  </data>
+  <data name="NativeMenuPreferences" xml:space="preserve">
+    <value>Tercihler...</value>
+  </data>
+  <data name="NativeMenuPlayThrive" xml:space="preserve">
+    <value>Thrive'ı Oyna</value>
+  </data>
 </root>
