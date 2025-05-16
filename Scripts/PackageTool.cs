@@ -217,15 +217,19 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     protected override CompressionType GetCompressionType(PackagePlatform platform)
     {
-        if (platform == PackagePlatform.Mac)
+        // Store versions use 7z compression for Mac
+        if (platform == PackagePlatform.Mac &&
+            currentExportType is not (LauncherExportType.Steam or LauncherExportType.Itch))
+        {
             return CompressionType.Zip;
+        }
 
         return base.GetCompressionType(platform);
     }
 
     protected override bool CompressWithoutTopLevelFolder(PackagePlatform platform)
     {
-        // Mac .app files should be directly compressed without extra level of folders
+        // Mac .app files should be directly compressed without an extra level of folders
         return platform == PackagePlatform.Mac;
     }
 
