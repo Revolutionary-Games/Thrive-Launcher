@@ -152,6 +152,7 @@ public class ThriveRunner : IThriveRunner
         playCancellationSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
         playCancellation = playCancellationSource.Token;
 
+        var platform = PlatformUtilities.GetCurrentPlatform();
         string thriveFolder;
 
         if (version is StoreVersion)
@@ -165,6 +166,17 @@ public class ThriveRunner : IThriveRunner
                 // This is reset just in case here as otherwise the launcher starting can get into a terrible state
                 runningObservable.Value = false;
                 throw new Exception("We are playing a store version but we haven't detected the store");
+            }
+
+            if (!thriveInstaller.ThriveExecutableExistsInFolder(thriveFolder, platform) && OperatingSystem.IsMacOS())
+            {
+                // Adjust path if this is a .app
+                if (thriveFolder.Contains(".app/"))
+                {
+                    thriveFolder = Path.GetFullPath(Path.Join(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..",
+                        version.FolderName));
+                    logger.LogDebug("Adjusted Mac App version path to {ThriveFolder}", thriveFolder);
+                }
             }
 
             logger.LogDebug("Playing {StoreName} store version", currentStoreVersionInfo.StoreName);
@@ -184,7 +196,6 @@ public class ThriveRunner : IThriveRunner
             return;
         }
 
-        var platform = PlatformUtilities.GetCurrentPlatform();
         var executableFolder =
             thriveInstaller.FindThriveExecutableFolderInVersion(thriveFolder, platform);
 

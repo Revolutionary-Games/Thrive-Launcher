@@ -56,9 +56,9 @@ public interface IThriveInstaller
     ///   Looks for the bin folder (old releases) or the folder containing the Thrive executable folder
     /// </summary>
     /// <param name="installedThriveFolder">The base folder of the installed version to start looking for</param>
-    /// <param name="platform">Which platform this install is for (used to know the executable name)</param>
+    /// <param name="platform">Which platform this installation is for (used to know the executable name)</param>
     /// <param name="fallback">
-    ///   If true then the last found folder is returned, even if no bin folder is found. Should always be true on the
+    ///   If true, then the last found folder is returned, even if no bin folder is found. Should always be true on the
     ///   top level call to find the folder.
     /// </param>
     /// <returns>The found folder with the Thrive executable or null if not found</returns>
