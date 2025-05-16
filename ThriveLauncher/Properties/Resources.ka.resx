@@ -976,4 +976,13 @@
   <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
     <value>სისტემაში დაყენებულ პროგრამებს მეტი პრიორიტეტი აქვთ თამაშთან მოყოლილ პროგრამებთან შედარებით (შეიძლება, გამოიწვიოს პრობლემები, თუ სისტემაში დაყენებული პროგრამები ძველია)</value>
   </data>
+  <data name="NativeMenuPlayThrive" xml:space="preserve">
+    <value>Thrive-ის თამაში</value>
+  </data>
+  <data name="NativeMenuAbout" xml:space="preserve">
+    <value>Thrive-ის გამშვების შესახებ</value>
+  </data>
+  <data name="NativeMenuPreferences" xml:space="preserve">
+    <value>მორგება...</value>
+  </data>
 </root>

@@ -964,10 +964,22 @@ Jeśli poniżej nie ma żadnych plików, pobieranie aktualizacji nie powiodło s
     <value>Wątki</value>
   </data>
   <data name="CPUFeatureWarning" xml:space="preserve">
-    <value>Aby funkcjonować, Thrive minimalnie wymaga CPU z SSE 4.2 i 4.1. Te wymagania są o wiele niższe od naszych oficjalnych wymagań systemowych. Dla optymalnego doświadczenia polecamy CPU z dostępnymi instrukcjami AVX 2.
+    <value>Aby funkcjonować, Thrive minimalnie wymaga procesora z SSE 4.2 i 4.1. Te wymagania są o wiele niższe od naszych oficjalnych wymagań systemowych. Dla optymalnego doświadczenia polecamy procesor z dostępnymi instrukcjami AVX 2.
 
-      Wykryliśmy, że twoje CPU nie posiada tych wymaganych rozszerzeń zbioru instrukcji SSE. Z tej przyczyny gra prawdopodobnie nie będzie działać. Możesz zignorować to ostrzeżenie i mimo wszystko spróbować grać, ale w takim wypadku prosimy nie zgłaszać crashów bądź niepowodzeń w uruchomieniu gry, gdyż z ogromnym prawdopodobieństwem są one wywołane problemami związanymi z przestarzałym CPU.
+      Wykryliśmy, że twój procesor nie posiada tych wymaganych rozszerzeń zbioru instrukcji SSE. Z tej przyczyny gra prawdopodobnie nie będzie działać. Możesz zignorować to ostrzeżenie i mimo wszystko spróbować grać, ale w takim wypadku prosimy nie zgłaszać crashów bądź niepowodzeń w uruchomieniu gry, gdyż z ogromnym prawdopodobieństwem są one wywołane problemami związanymi z przestarzałym procesorem.
 
-      Jeśli widzisz to ostrzeżenie w wyniku błędu, twoje CPU spełnia minimalne wymagania i możesz grać w Thrive bez większych problemów, prosimy o powiadomienie nas jakie CPU posiadasz, abyśmy mogli ulepszyć to wykrywanie funkcji.</value>
+      Jeśli widzisz to ostrzeżenie w wyniku błędu, twój procesor spełnia minimalne wymagania i możesz grać w Thrive bez większych problemów, prosimy powiadomić nas jaki procesor posiadasz, abyśmy mogli ulepszyć to wykrywanie funkcji.</value>
+  </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>Wyłączaj wszystkie mody na stracie (wypróbuj jeśli masz zainstalowane mody a Thrive zostało zaktualizowane)</value>
+  </data>
+  <data name="NativeMenuAbout" xml:space="preserve">
+    <value>O Launcherze Thrive</value>
+  </data>
+  <data name="NativeMenuPreferences" xml:space="preserve">
+    <value>Ustawienia...</value>
+  </data>
+  <data name="NativeMenuPlayThrive" xml:space="preserve">
+    <value>Odpal Thrive</value>
   </data>
 </root>
