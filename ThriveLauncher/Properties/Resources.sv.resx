@@ -242,7 +242,7 @@
     <value>{0}MiB</value>
   </data>
   <data name="LauncherSourceCodeButton" xml:space="preserve">
-    <value>Spelstartarens källkod</value>
+    <value>Programstartarens källkod</value>
   </data>
   <data name="ClearFolder" xml:space="preserve">
     <value>Rensa</value>
@@ -299,16 +299,184 @@
     <value>Manuellt vald i "Specifikt bygg" fliken</value>
   </data>
   <data name="DevCenterConnectionExplanation" xml:space="preserve">
-    <value>Här kan du länka spelstartaren till ThriveDevCenter för att få tillgång till DevBuilds och andra funktioner</value>
+    <value>Här kan du länka programstartaren till ThriveDevCenter för att få tillgång till DevBuilds och andra funktioner</value>
   </data>
   <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
     <value>Välj den manuellt inskrivna hasch-valutan som är använd för inskrivningslådan som den valda Devbuild att spela när du kör en Devbuild</value>
   </data>
   <data name="SettingsSaveFailedMessage" xml:space="preserve">
-    <value>misslyckades att spara inställningar till inställningfilen. var säker att spelstartaren har skrivtillgång och försök igen.
-Spelstartningsloggen har mer info.</value>
+    <value>Misslyckades att spara inställningar till inställningfilen. Se till att programstartaren har skrivtillgång och försök igen.
+Programstartarloggen har mer info.</value>
   </data>
   <data name="ThriveInstallFolderNotFound" xml:space="preserve">
     <value>Thrive-versionsinstalleringsmappen finns inte.</value>
+  </data>
+  <data name="LaunchOptionForceOpenGL" xml:space="preserve">
+    <value>Tvinga OpenGL renderingsläge (kan hjälpa Thrive att starta men orsakar små grafiska problem)</value>
+  </data>
+  <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
+    <value>Öka spelets ljud latens (kan fixa problem med ljudsprakande när latensen är satt högt nog)</value>
+  </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>Stäng Programstartaren Efter Spelet Börjar</value>
+  </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+    <value>Tillåt Sömlös Programstartar Läge (programstartaren visar inte sig själv innan Thrive börjar)</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>Uppdatera programstartaren automatiskt</value>
+  </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>Använd alternativt sätt att köra autouppdateraren (testa ifall normala autouppdaterar starten misslyckas)</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Okänd error</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>Inga Kompatibla Thrive Versioner Hittades</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>Flytta Existerande Filer?</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>Intern Error</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Radera</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="DeleteErrorExplanation" xml:space="preserve">
+    <value>Misslyckades att radera datan vid följande filsökväg: "{0}" p.g.a: {1}</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>Flöde kan inte visas. {0}</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>Använd Cachad Versions-Info</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Försök igen</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Flytta</value>
+  </data>
+  <data name="ExternalLinkLauncherGithub" xml:space="preserve">
+    <value>Programstartare på Github</value>
+  </data>
+  <data name="LauncherOptions" xml:space="preserve">
+    <value>Programstartare Inställningar</value>
+  </data>
+  <data name="ExternalLinkFanWiki" xml:space="preserve">
+    <value>Fanwikin</value>
+  </data>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+    <value>Aktivera Webflöden</value>
+  </data>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+    <value>Startar version:</value>
+  </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>Göm Programstartaren när Spelet Börjar</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>Stäng Programstartaren Efter Du Har Spelat (utan error)</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Klicka här</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>för att läsa hela inlägget.</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>Misslyckades att skapa loggmapp ({0}): {1}</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>Visa logg</value>
+  </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>Error Med Att Hämta Tillgängliga Thrive Versioner</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0} (Senaste)</value>
+  </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>Inställningar från en tidigare version av programstartaren har hittats. Du kan importera dessa existerande inställningar för att dina installerade Thrive versioner och andra anpassningar ska fortsätta vara intakta. Om du inte importerar dessa gamla Thrive versioner och cacher kommer de att ignoreras och denna programstartare kommer inte att veta om dem. Det rekommenderas att importera dessa inställningar.</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf (Copyright (c) 2010-2011 av tyPoland Lukasz Dziedzic med Reserverat Typsnitts Namn "Lato"), OFL licens:</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>upplagd av {0} vid {1}</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Hoppa Över</value>
+  </data>
+  <data name="LaunchOptionsTitle" xml:space="preserve">
+    <value>Start-Inställningar</value>
+  </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>Aktivera programstartare debug loggning (aktivera detta och starta om innan rapportering av problem eller buggar med programstartaren)</value>
+  </data>
+  <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
+    <value>Den nedladdade Thrive Programstartar-informationen är ogiltig. Vänligen försök igen om en liten stund och om problemet kvarstår, vänligen kontakta oss.</value>
+  </data>
+  <data name="SubmitRetryButton" xml:space="preserve">
+    <value>Försök igen</value>
+  </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>Programstartaren kunde inte hitta några kompatibla Thrive versioner för din nuvarande plattform. Om du använder ett udda operativsystem är detta förväntat. Annars, vänligen rapportera detta som ett problem.</value>
+  </data>
+  <data name="MoveVersionsExplanation" xml:space="preserve">
+    <value>Installerade Thrive versioner har upptäckts under den tidigare filsökvägen. Dessa kan flyttas automatiskt till den nya platsen. Om de inte flyttas kommer de att ignoreras och denna programstartare kommer inte veta om dem tills den tidigare filsökvägen är vald som installeringsplatsen igen. Vill du automatiskt flytta dessa filer till den nya platsen?</value>
+  </data>
+  <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
+    <value>Befintliga artiklar i cachen har upptäckts. Dessa kan automatiskt flyttas till den nya platsen. Om de inte flyttas kommer filerna att ignoreras och programstartaren kommer inte att veta om dem tills den tidigare filsökvägen väljs som plats igen. Vill du automatiskt flytta {0} fil(er) till den nya platsen? Notera att om det finns icke-Thrive relaterade filer i cachemappen kommer de också att flyttas.</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>Misslyckades att Radera</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+    <value>Radera alla filer i "DevBuild dehydrated cache" mappen. Om platsen är icke-standard kan det existera icke-Thrive filer i mappen som också raderas.</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Thrive Programstartare</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>Visa Programstartar-Licenser</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Thrive Programstartar-Licenser</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>Roboto typsnitt används i programstartaren, Roboto licens:</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>Alla signerande verifierande certifikat som denna programstartare skickas med har gått ut. Detta innebär att denna version av programstartaren är mycket utdaterad. Vänligen ladda ned och installera en nyare version.</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} för {1}</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>Laddar...</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>Flytta Existerande Versioner?</value>
+  </data>
+  <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
+    <value>Thrive Programstartare laddar tillgängliga Thrive versioner från internet för att veta vad som är tillgängligt. Att ladda denna information har misslyckats (se error nedan). Du kan försöka igen med att ladda ned denna information, eller om programstartaren har laddat ned denna information tidigare kan du ladda från en cachad kopia. Om denna cachade kopia är väldigt gammal kan den inte visa alla tillgängliga Thrive versioner. Notera att om din version av programstartaren är väldigt gammal, kan det hända att den inte är kompatibel med ett nyare dataformat och måste därför uppdateras manuellt innan datan kan laddas.</value>
+  </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>Stäng av alla Thrive mods vid start (testa om du har installerade mods och Thrive har uppdaterats)</value>
+  </data>
+  <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
+    <value>Föredra verktyg installerade på systemet istället för paketerade (kan orsaka problem ifall system-installerade verktyg är gamla)</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>Alla Certifikat Utgångna</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>En intern error har skett i programstartaren. Vänligen rapportera detta problem och medge programstartarlogg-filerna tillsammans med din rapport på hur du stötte på detta problem.</value>
   </data>
 </root>
