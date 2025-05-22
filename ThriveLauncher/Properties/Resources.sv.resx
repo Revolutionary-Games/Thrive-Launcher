@@ -726,4 +726,103 @@ Programstartarloggen har mer info.</value>
   <data name="RehydrationStarting" xml:space="preserve">
     <value>Detta är en "dehydrated" build. Påbörjar "rehydration".</value>
   </data>
+  <data name="ActiveReportingInfo" xml:space="preserve">
+    <value>Rapporterar krasch {0} vid {1}</value>
+  </data>
+  <data name="CrashReportDescriptionFieldPlaceholder" xml:space="preserve">
+    <value>Kraschbeskrivning (valfri)</value>
+  </data>
+  <data name="ShortTimeAgo" xml:space="preserve">
+    <value>{0} sedan</value>
+  </data>
+  <data name="ContinueReportingButton" xml:space="preserve">
+    <value>Fortsätt Rapportering</value>
+  </data>
+  <data name="ClearAllCrashesButton" xml:space="preserve">
+    <value>Radera ALLA Krasch Dumper</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Överlämna</value>
+  </data>
+  <data name="SubmittingReportExtraInfo" xml:space="preserve">
+    <value>Extra information gällande påstött error:</value>
+  </data>
+  <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
+    <value>Din rapport har lyckats överlämnas. Tack för din rapport.</value>
+  </data>
+  <data name="ReportDeleteInfo" xml:space="preserve">
+    <value>Om du vill radera din rapport, kan du göra det här:</value>
+  </data>
+  <data name="ReporterEndMessage" xml:space="preserve">
+    <value>Du kan nu stänga denna rapporterare. Eller vänta till detta fönster stängs automatiskt om</value>
+  </data>
+  <data name="SecondsDisplayPlural" xml:space="preserve">
+    <value>{0} sekunder</value>
+  </data>
+  <data name="SecondsDisplaySingular" xml:space="preserve">
+    <value>1 sekund</value>
+  </data>
+  <data name="StopAutoClose" xml:space="preserve">
+    <value>Avbryt Stängning</value>
+  </data>
+  <data name="AutoCloseStopped" xml:space="preserve">
+    <value>autostäng avbröts</value>
+  </data>
+  <data name="TimeMomentRightNow" xml:space="preserve">
+    <value>Nu</value>
+  </data>
+  <data name="CrashReportDescriptionField" xml:space="preserve">
+    <value>Beskriv vad du gjorde när kraschen skedde (valfri)</value>
+  </data>
+  <data name="CancelCreatingReportExplanation" xml:space="preserve">
+    <value>Är du säker på att du vill avbryta skapandet av kraschrapporten? Om inga rapporter läggs fram alls för en specifik bug kan det hända att utvecklarna av Thrive inte vet om den och kan därför inte fixa den.</value>
+  </data>
+  <data name="SubmittingReportMessage" xml:space="preserve">
+    <value>Överlämnar din rapport. Vänligen ha tålamod då uppladdning kan ta några minuter...</value>
+  </data>
+  <data name="CrashReporterWindowTitle" xml:space="preserve">
+    <value>Thrive Kraschrapporterare</value>
+  </data>
+  <data name="ErrorSubmittingReport" xml:space="preserve">
+    <value>En error skedde vid överlämningen av din kraschrapport. Vänligen kontrollera att datan är korrekt eller försök igen senare om det är ett serverproblem. Feltyp:</value>
+  </data>
+  <data name="CancelCreatingReportTitle" xml:space="preserve">
+    <value>Avbryt Skapande av Rapport?</value>
+  </data>
+  <data name="ReportViewingPublicInfo" xml:space="preserve">
+    <value>Du kan se på din rapport, om den är offentlig, på följande adress:</value>
+  </data>
+  <data name="ReportDeleteCaveat" xml:space="preserve">
+    <value>VIKTIGT om du förlorar din raderingslänk kommer du inte kunna radera din rapport. Så spara den! Du kan klicka på kopieraknappen till höger om den för att kopiera den.</value>
+  </data>
+  <data name="IncludeInReport" xml:space="preserve">
+    <value>Inkludera:</value>
+  </data>
+  <data name="CrashReportLogsSectionExplanation" xml:space="preserve">
+    <value>Vänligen spara loggarna om de är från samma omgång av spelet som kraschen eftersom loggarna kan hjälpa till med att identifiera och fixa problemet. Du kan klicka på namnet på filen för att öppna den, eller knappen för att visa målsmappen, för att visa och redigera den för att radera personliga detaljer om du vill. Loggfilerna är alltid bara synliga för utvecklarna av Thrive, och delas bara med andra parter om det är nödvändigt för att spåra eller fixa det rapporterade problemet.</value>
+  </data>
+  <data name="CopyLogWindowToClipboardToolTip" xml:space="preserve">
+    <value>Kopiera spelets utdata till urklipp</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Kopiera till Urklipp</value>
+  </data>
+  <data name="AtTime" xml:space="preserve">
+    <value>Vid {0}</value>
+  </data>
+  <data name="ViewFile" xml:space="preserve">
+    <value>Visa</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Öppna Mapp</value>
+  </data>
+  <data name="CrashReportLogsSection" xml:space="preserve">
+    <value>Loggar som Inkluderas</value>
+  </data>
+  <data name="CrashReportEmailField" xml:space="preserve">
+    <value>Din email, om du vill ta emot uppdateringar om rapporten (valfri)</value>
+  </data>
+  <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
+    <value>Email (valfri)</value>
+  </data>
 </root>
