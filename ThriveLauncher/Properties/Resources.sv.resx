@@ -524,4 +524,10 @@ Programstartarloggen har mer info.</value>
   <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
     <value>Anslutningen till ThriveDevCenter har misslyckats. Servern svarade med en okänd error eller så stötte vi på en error när vi hanterade svaret. Vänligen försök igen och om problemet kvarstår, vänligen rapportera det. Du kan kontrollera med länken nedan för att se om allt fungerar som det ska på ThriveDevCenter sidan.</value>
   </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>Kontrollera anslutningar på ThriveDevCenter</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>Testa Befintlig Anslutning Igen</value>
+  </data>
 </root>
