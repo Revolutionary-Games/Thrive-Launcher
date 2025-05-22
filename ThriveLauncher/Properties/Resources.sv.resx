@@ -587,4 +587,103 @@ Programstartarloggen har mer info.</value>
   <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
     <value>Programstartartypen som används borde kunna auto-uppdatera, men det har inte fungerat av någon anledning och den senaste programstartarversionen har varigt tillgänglig ett tag. Vänligen kontrollera att du inte har stängt av att hålla Thrive i den nyaste versionen.</value>
   </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>Misslyckades att skapa länk, vänligen kontrollera koden</value>
+  </data>
+  <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
+    <value>DB</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>besk:</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>Kan Inte Spela Thrive</value>
+  </data>
+  <data name="PlayingTitle" xml:space="preserve">
+    <value>Spelar {0}</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>Stäng</value>
+  </data>
+  <data name="DownloadingStateItemProgress" xml:space="preserve">
+    <value>Laddar ned {0} från {1}</value>
+  </data>
+  <data name="NoBuildToPlayFound" xml:space="preserve">
+    <value>Ingen DevBuild av matchande typ och nuvarande plattform hittades</value>
+  </data>
+  <data name="DownloadProgressDisplay" xml:space="preserve">
+    <value>Nedladdat {0} av {1} MiB</value>
+  </data>
+  <data name="ItemProgressDisplay" xml:space="preserve">
+    <value>Bearbetat {0} av {1}</value>
+  </data>
+  <data name="LoginToSeeThisContent" xml:space="preserve">
+    <value>Logga in på ThriveDevCenter för att se detta innehåll</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thrive har redan startats, vänligen stäng det och försök igen</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>Vänligen välj en version av Thrive från rullgardinsmenyn bredvid spelaknappen och försök igen</value>
+  </data>
+  <data name="ThriveFolderPrepareFailed" xml:space="preserve">
+    <value>Förberedelse av Thrive mappen misslyckades med error: {0}</value>
+  </data>
+  <data name="UnknownNumber" xml:space="preserve">
+    <value>okänd</value>
+  </data>
+  <data name="ErrorGettingDevBuild" xml:space="preserve">
+    <value>Error: misslyckades att hitta DevBuild av specificerad typ för den nuvarande plattformen. Vänligen välj en annan build, till exempel den rekommenderade DB, och försök igen. Orsak: {0}</value>
+  </data>
+  <data name="MissingThriveExecutableError" xml:space="preserve">
+    <value>Kunde inte hitta Thrive executable i mappen vid {0}, vänligen verifiera spelfilerna eller radera versionen för att ladda ned dem igen.</value>
+  </data>
+  <data name="GettingDevBuildInfoMessage" xml:space="preserve">
+    <value>Hämtar information om vald DevBuild av typ {0} för att spela...</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>Koden är giltig. Vänligen bekräfta länkande till följande konto:</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>Användarnamn:</value>
+  </data>
+  <data name="ThriveRunCanceled" xml:space="preserve">
+    <value>Spelandet av Thrive avbröts</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>osäker</value>
+  </data>
+  <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
+    <value>Spelandet av en osäker build avbröts</value>
+  </data>
+  <data name="ThriveRunError" xml:space="preserve">
+    <value>Thrive misslyckades att starta p.g.a följande error: {0}</value>
+  </data>
+  <data name="DownloadingItem" xml:space="preserve">
+    <value>Laddar ned {0}</value>
+  </data>
+  <data name="MissingThriveFolderError" xml:space="preserve">
+    <value>Thrive mappen borde finnas vid {0} men gör inte det</value>
+  </data>
+  <data name="DownloadError" xml:space="preserve">
+    <value>Nedladdning misslyckade p.g.a {0}</value>
+  </data>
+  <data name="ExtractError" xml:space="preserve">
+    <value>Misslyckades att extrahera ett arkiv p.g.a error: {0}</value>
+  </data>
+  <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
+    <value>Versionsinstallation eller kontrollering av installerad version misslyckades, se nedan för detaljer.</value>
+  </data>
+  <data name="VerifyingStateItemProgress" xml:space="preserve">
+    <value>Kontrollerar integritet av {0}</value>
+  </data>
+  <data name="ExtractingStateItemProgress" xml:space="preserve">
+    <value>Extraherar {0}. Detta kan ta många minuter för stora filer så vänligen ha tålamod.</value>
+  </data>
+  <data name="ProcessingStateItemProgress" xml:space="preserve">
+    <value>Bearbetar {0}</value>
+  </data>
 </root>
