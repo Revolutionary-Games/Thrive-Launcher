@@ -221,7 +221,7 @@
     <value>Få en länkkod</value>
   </data>
   <data name="ConnectionKeyPlaceholder" xml:space="preserve">
-    <value>Linkkod</value>
+    <value>Länkkod</value>
   </data>
   <data name="ConnectButton" xml:space="preserve">
     <value>Koppla</value>
@@ -478,5 +478,50 @@ Programstartarloggen har mer info.</value>
   </data>
   <data name="InternalErrorExplanation" xml:space="preserve">
     <value>En intern error har skett i programstartaren. Vänligen rapportera detta problem och medge programstartarlogg-filerna tillsammans med din rapport på hur du stötte på detta problem.</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>Radera DevBuild Cache?</value>
+  </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>Avkoppla</value>
+  </data>
+  <data name="ClearTemporaryFilesCount" xml:space="preserve">
+    <value>Du är på väg att radera {0} filer / mappar</value>
+  </data>
+  <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
+    <value>Anslutningen till ThriveDevCenter har misslyckats. Servern svarade med ett förbjudsvar. Detta innebär att våran anslutningsnyckel inte längre fungerar. Detta kan bero på att anslutningen avkopplas genom web UI eller så har ditt konto stängts av. Se länken nedan för att kontrollera ditt kontos anslutningsstatus.</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
+    <value>Du är på väg att radera alla filer förvarade i den tillfälliga mappen vid "{0}". Även icke-Thrive filer kommer att raderas ifall några finns i den mappen. Mappen själv kommer också att raderas. Radera den tillfälliga mappen?</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>Besök Nedladdningssidan</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>Programstartarversion är Gammal</value>
+  </data>
+  <data name="OutdatedLauncherExplanation" xml:space="preserve">
+    <value>Denna version av programstartaren är gammal och borde uppdateras. Eftersom du ser detta meddelande har auto-uppdatera inte startat så du behöver ladda ned uppdateringen manuellt och installera den. Du kan testa att använda den nuvarande versionen av programstartaren genom att hoppa över uppdateringen, men du kan stöta på oväntade problem eftersom bara den nyaste programstartarversionen är garanterad att fungera med de avlägsna systemen som programstartaren interagerar med.</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>ThriveDevCenter Anslutning Misslyckades</value>
+  </data>
+  <data name="DevCenterConnectFailureConnection" xml:space="preserve">
+    <value>Anslutningen till ThriveDevCenter har misslyckats. Vänligen försök igen eftersom ThriveDevCenter kan vara tillfälligt otillgänglig. Du borde också kontrollera din internetanslutning. Du kan använda länken nedan för att besöka ThriveDevCenter för att se om din webbläsare kan ansluta. Vänligen försök igen sebare och om problemet kvarstår längre än några minuter, vänligen rapportera det.</value>
+  </data>
+  <data name="DeleteErrorDoesNotExist" xml:space="preserve">
+    <value>Misslyckades att radera eftersom filsökväg inte finns</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>Okänd mapp:</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>Radera Tillfälliga filer?</value>
+  </data>
+  <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
+    <value>Error: ingen uppdateringsfil hittades för denna programstartartyp. Detta borde inte ske. Vänligen försök igen och om problemet kvarstår, vänligen kontakta oss.</value>
+  </data>
+  <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
+    <value>Anslutningen till ThriveDevCenter har misslyckats. Servern svarade med en okänd error eller så stötte vi på en error när vi hanterade svaret. Vänligen försök igen och om problemet kvarstår, vänligen rapportera det. Du kan kontrollera med länken nedan för att se om allt fungerar som det ska på ThriveDevCenter sidan.</value>
   </data>
 </root>
