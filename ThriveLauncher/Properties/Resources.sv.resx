@@ -686,4 +686,44 @@ Programstartarloggen har mer info.</value>
   <data name="ProcessingStateItemProgress" xml:space="preserve">
     <value>Bearbetar {0}</value>
   </data>
+  <data name="FoundDevBuildToPlayInfo" xml:space="preserve">
+    <value>Hittade DevBuild att spela: {0}, hash: {1}, är DB: {2}, gren: {3}</value>
+  </data>
+  <data name="RehydrationFailed" xml:space="preserve">
+    <value>Rehydration misslyckades p.g.a error: {0}</value>
+  </data>
+  <data name="ReportCrashButton" xml:space="preserve">
+    <value>Rapportera Krasch</value>
+  </data>
+  <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
+    <value>Build beskrivning:
+{0}</value>
+  </data>
+  <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
+    <value>Denna flik listar externt installerade versioner. Detta är en butiksversion av Thrive som inkluderar en paketerad (senaste) spelversion. Du kan aktivera visande av tillgängliga externa versioner under versionsväljarens rullgardinsmeny i programstartarens inställningar. När de har laddats ned kommer de versionerna att visas här.</value>
+  </data>
+  <data name="ExtraThriveStartFlags" xml:space="preserve">
+    <value>Thrive startas med extra flaggor som kommandotolkargument till programstartaren, dessa kan få Thrive att uppföra sig på ett oväntat sätt: {0}</value>
+  </data>
+  <data name="AcceptUnsafeBuildButton" xml:space="preserve">
+    <value>Jag förstår risken, spela ändå</value>
+  </data>
+  <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
+    <value>Error: underprocess har redan avslutats, programstartarfönstret kommer inte att stängas</value>
+  </data>
+  <data name="TruncatedGameOutputWarning" xml:space="preserve">
+    <value>Utdatan är för lång, den trunkerades! Se Thrive loggfilen för hela utdatan.</value>
+  </data>
+  <data name="ThriveIsStarting" xml:space="preserve">
+    <value>Thrive startas. Logg utdata (p.g.a buffring är detta troligtvis inte i nutid):</value>
+  </data>
+  <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
+    <value>DevBuildtyp att spela (när spelning av en DevBuild version är vald)</value>
+  </data>
+  <data name="PlayUnsafeBuildTitle" xml:space="preserve">
+    <value>Spela Osäker DevBuild?</value>
+  </data>
+  <data name="RehydrationStarting" xml:space="preserve">
+    <value>Detta är en "dehydrated" build. Påbörjar "rehydration".</value>
+  </data>
 </root>
