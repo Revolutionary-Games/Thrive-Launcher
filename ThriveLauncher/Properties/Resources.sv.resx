@@ -530,4 +530,61 @@ Programstartarloggen har mer info.</value>
   <data name="RetryExistingConnection" xml:space="preserve">
     <value>Testa Befintlig Anslutning Igen</value>
   </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>Denna version är aktuell</value>
+  </data>
+  <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
+    <value>ThriveDevCenter</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+    <value>Subreddit</value>
+  </data>
+  <data name="CacheConfigurationTab" xml:space="preserve">
+    <value>Cache</value>
+  </data>
+  <data name="ClearDehydratedFilesCount" xml:space="preserve">
+    <value>Du är på väg att radera {0} filer</value>
+  </data>
+  <data name="EnterDevCenterConnectionCode" xml:space="preserve">
+    <value>Vänligen ange en ThriveDevCenter anslutningskod först i inmatningsfönstret</value>
+  </data>
+  <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
+    <value>Utgångskoden kan innebära att du saknar en nödvändig DLL fil. Det kan vara Visual C++ Redistributable 2019, vilket du kan ladda ned en installerare för från: https://aka.ms/vs/17/release/vc_redist.x64.exe i syfte att installera / reparera den. Du kan också prova att köra Thrive.exe manuellt eftersom det kan visa en errordialog med den saknade DLL filnamnet i sig. Du bör också kontrollera att du har alla Windows uppdateringar installerade. Om dessa inte hjälper, vänligen kontakta oss för ytterligare hjälp.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateDisabledByUser" xml:space="preserve">
+    <value>Programstartartypen som används har auto-uppdateringsförmåga, men auto-uppdatering är för nuvarande avstängt antingen av programstartarens inställningar eller en kommandotolk flagga.</value>
+  </data>
+  <data name="DevCenterConnectAttemptError" xml:space="preserve">
+    <value>Error kontrollering av länkandekoden för ThriveDevCenter. Vänligen kontrollera att du angav koden korrekt och att den inte har gått ut. Extra information: {0}</value>
+  </data>
+  <data name="ExternalLinkBluesky" xml:space="preserve">
+    <value>Bluesky</value>
+  </data>
+  <data name="ExternalLinkInstagram" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+  <data name="ExternalLinkMastodon" xml:space="preserve">
+    <value>Mastodon</value>
+  </data>
+  <data name="ExternalLinkThreads" xml:space="preserve">
+    <value>Threads</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>{0} version</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>Du använder Thrive programstartarversion {0} men den senaste versionen är {1}</value>
+  </data>
+  <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
+    <value>Om spelet inte startade korrekt, vänligen prova Thrive startlösningarna som finns under "Thrive Inställningar" i programstartarinställningar</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>Du är på väg att radera alla filer lagrade i "dehydrated cache" mappen vid "{0}". Även icke-Thrive filer kommer att raderas om några är befintliga i mappen. Radera mappens innehåll?</value>
+  </data>
+  <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
+    <value>Du använder en programstartartyp som inte kan auto-uppdatera. Om du vill använda auto-uppdateringar i framtiden, vänligen installera en variant av programstartaren som har auto-uppdateringsförmåga.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
+    <value>Programstartartypen som används borde kunna auto-uppdatera, men det har inte fungerat av någon anledning och den senaste programstartarversionen har varigt tillgänglig ett tag. Vänligen kontrollera att du inte har stängt av att hålla Thrive i den nyaste versionen.</value>
+  </data>
 </root>
