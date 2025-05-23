@@ -825,4 +825,31 @@ Programstartarloggen har mer info.</value>
   <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
     <value>Email (valfri)</value>
   </data>
+  <data name="CrashReportEmailFieldNotice" xml:space="preserve">
+    <value>Din email kommer bara vara synlig för ThriveDevCenters administratörer.</value>
+  </data>
+  <data name="CrashReportIsPublic" xml:space="preserve">
+    <value>Offentlig? Offentliga rapporter har sina kraschanropsstacker och beskrivningar synliga för alla. Privata rapporter visas bara för Thrives utvecklare.</value>
+  </data>
+  <data name="SelectCrashToReport" xml:space="preserve">
+    <value>Välj en krasch att rapportera genom att klicka på namnet</value>
+  </data>
+  <data name="CrashReportDeleteAfterSubmitting" xml:space="preserve">
+    <value>Radera denna kraschdumpfil efter rapportering (rekommenderas)</value>
+  </data>
+  <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
+    <value>Den valda kraschen hände för ett tag sedan. Därför kan det hända att den inte är relaterad till de senaste loggfilerna eller spelets utdata som lagras av programstartaren. Vänligen kontrollera om du rapporterar rätt krasch och relaterade loggfiler.</value>
+  </data>
+  <data name="NoAvailableCrashesToReport" xml:space="preserve">
+    <value>Inga kraschar hittades som kunde rapporteras</value>
+  </data>
+  <data name="CrashReportDeleteInfoEnabled" xml:space="preserve">
+    <value>Kraschdumpfilen kommer automatiskt att raderas när en rapport har skickats</value>
+  </data>
+  <data name="CrashReportSubmitAcceptConfirmation" xml:space="preserve">
+    <value>Jag samtycker att informationen i detta formulär, inklusive alla inkluderade filer och kraschdumpen, tillsammans med min IP adress kommer att lagras i Thives kraschdatabas. Och om denna rapport är offentlig kan vem som helst läsa kraschanropsstacken och beskrivningen.</value>
+  </data>
+  <data name="CrashReportIncludeLauncherOutput" xml:space="preserve">
+    <value>Inkludera spelets utdata som visas i programstartarens "aktuella spel" popup (rekommenderas när rapportering är från den senaste instansen av spelet)</value>
+  </data>
 </root>
