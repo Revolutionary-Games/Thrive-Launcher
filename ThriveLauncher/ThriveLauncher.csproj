@@ -39,15 +39,15 @@
     <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.0" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.0" />
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
-    <PackageReference Include="DynamicData" Version="9.2.2" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.4" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.4" />
+    <PackageReference Include="DynamicData" Version="9.3.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.5" />
     <PackageReference Include="NLog" Version="5.4.0" />
     <PackageReference Include="NLog.Extensions.Logging" Version="5.4.0" />
     <!-- Needed due to avalonia requiring a really old Microsoft CodeAnalysis module-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0" />
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.13.0" />
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.Common" Version="4.13.0" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.CSharp" Version="4.14.0" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.14.0" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.Common" Version="4.14.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LauncherBackend\LauncherBackend.csproj" />
