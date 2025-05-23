@@ -739,7 +739,7 @@ Başlatıcı günlük dosyaları bununla ilgili daha fazla bilgi içermektedir.<
     <value>Eğer oyun düzgün bir şekilde başlamadıysa; lütfen başlatıcı ayarlarında, "Thrive Ayarları" altında bulunan, Thrive'ı başlatmaya yardımcı olabilecek çözüm yollarını deneyin</value>
   </data>
   <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
-    <value>Hata: Bu tür başlatıcı için güncelleme dosyası bulunamadı. Normal koşullarda bunun olmaması gerekirdi. Lütfen daha sonra tekrar deneyin. Eğer sorun devam ederse, lütfen bize bildirin.</value>
+    <value>Hata: Bu tür başlatıcı için güncelleme dosyası bulunamadı. Normal koşullarda bunun olmaması gerekir. Lütfen daha sonra tekrar deneyin. Eğer sorun devam ederse, lütfen bize bildirin.</value>
   </data>
   <data name="LinkFormingFailedError" xml:space="preserve">
     <value>Bağlantı oluşturulamadı, lütfen kodu tekrar inceleyin</value>
