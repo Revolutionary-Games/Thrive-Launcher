@@ -343,6 +343,8 @@ internal class Program
             stayActiveInBackground = false;
 #endif
 
+        // TODO: should the store versions also exclude staying open?
+
         // How often to check if the program should quit, this should be pretty low but not too low to consume a bunch
         // of extra CPU
         var runInterval = TimeSpan.FromMilliseconds(30);
