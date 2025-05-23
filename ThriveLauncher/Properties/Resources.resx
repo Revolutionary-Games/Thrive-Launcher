@@ -558,7 +558,7 @@ Launcher logs will have more info.</value>
     <value>The launcher type you are using is capable of auto-updating, however auto-updating is currently disabled either by the launcher settings or a commandline flag.</value>
   </data>
   <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
-    <value>Error: no update file found for this type of launcher. This should not happen. Please try again later and if the issue persist, please let us know.</value>
+    <value>Error: no update file found for this type of launcher. This should not happen. Please try again later and if the issue persists, please let us know.</value>
   </data>
   <data name="DevCenterConnectFailureTitle" xml:space="preserve">
     <value>ThriveDevCenter Connection Failed</value>
