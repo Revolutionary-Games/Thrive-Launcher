@@ -825,4 +825,109 @@ Programstartarloggen har mer info.</value>
   <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
     <value>Email (valfri)</value>
   </data>
+  <data name="CrashReportEmailFieldNotice" xml:space="preserve">
+    <value>Din email kommer bara vara synlig för ThriveDevCenters administratörer.</value>
+  </data>
+  <data name="CrashReportIsPublic" xml:space="preserve">
+    <value>Offentlig? Offentliga rapporter har sina kraschanropsstacker och beskrivningar synliga för alla. Privata rapporter visas bara för Thrives utvecklare.</value>
+  </data>
+  <data name="SelectCrashToReport" xml:space="preserve">
+    <value>Välj en krasch att rapportera genom att klicka på namnet</value>
+  </data>
+  <data name="CrashReportDeleteAfterSubmitting" xml:space="preserve">
+    <value>Radera denna kraschdumpfil efter rapportering (rekommenderas)</value>
+  </data>
+  <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
+    <value>Den valda kraschen hände för ett tag sedan. Därför kan det hända att den inte är relaterad till de senaste loggfilerna eller spelets utdata som lagras av programstartaren. Vänligen kontrollera om du rapporterar rätt krasch och relaterade loggfiler.</value>
+  </data>
+  <data name="NoAvailableCrashesToReport" xml:space="preserve">
+    <value>Inga kraschar hittades som kunde rapporteras</value>
+  </data>
+  <data name="CrashReportDeleteInfoEnabled" xml:space="preserve">
+    <value>Kraschdumpfilen kommer automatiskt att raderas när en rapport har skickats</value>
+  </data>
+  <data name="CrashReportSubmitAcceptConfirmation" xml:space="preserve">
+    <value>Jag samtycker att informationen i detta formulär, inklusive alla inkluderade filer och kraschdumpen, tillsammans med min IP adress kommer att lagras i Thives kraschdatabas. Och om denna rapport är offentlig kan vem som helst läsa kraschanropsstacken och beskrivningen.</value>
+  </data>
+  <data name="CrashReportIncludeLauncherOutput" xml:space="preserve">
+    <value>Inkludera spelets utdata som visas i programstartarens "aktuella spel" popup (rekommenderas när rapportering är från den senaste instansen av spelet)</value>
+  </data>
+  <data name="StartedAutoUpdateExplanation" xml:space="preserve">
+    <value>Programstartaren håller på att ladda ner och installera en uppdatering, vänligen vänta. Den nedladdade uppdateraren kan öppna ett nytt fönster som kräver en användarinsatts för att slutföra uppdateringen.</value>
+  </data>
+  <data name="LauncherVersionUpdateDescription" xml:space="preserve">
+    <value>Uppdaterar programstartaren till version {0} (nuvarande version: {1})</value>
+  </data>
+  <data name="ReportSubmitErrorTooManyRequests" xml:space="preserve">
+    <value>Inlämning av rapporten misslyckades p.g.a för många nya begäran från din IP adress, vänligen vänta upp till en timme och försök igen</value>
+  </data>
+  <data name="AutoUpdateError" xml:space="preserve">
+    <value>Auto-uppdaterings Error</value>
+  </data>
+  <data name="FileSystemErrorTitle" xml:space="preserve">
+    <value>Filåtkomst Error</value>
+  </data>
+  <data name="ReportSubmitErrorNetworkError" xml:space="preserve">
+    <value>Inlämningen av rapporten misslyckades p.g.a ett nätverksproblem, vänligen kontrollera din internetanslutning och försök igen om några minuter</value>
+  </data>
+  <data name="RetryingAutoUpdate" xml:space="preserve">
+    <value>Försöker auto-uppdatering igen...</value>
+  </data>
+  <data name="AutoUpdateRetryFailed" xml:space="preserve">
+    <value>Att försöka auto-uppdateringen igen har misslyckats. Du kan ignorera felet för att rensa befintliga auto-uppdateringsfiler för att få programstartaren att försöka igen nästa gång den startar om.</value>
+  </data>
+  <data name="InvalidVersionInfoLoadedTitle" xml:space="preserve">
+    <value>Laddad Versionsinformation Är Ogiltig</value>
+  </data>
+  <data name="CPUFeatureWarningTitle" xml:space="preserve">
+    <value>CPU Upptäcktes som Saknande Nödvändiga Funktioner</value>
+  </data>
+  <data name="LauncherOptionShowExternalVersions" xml:space="preserve">
+    <value>Visa externa Thriveversioner som kräver separata nedladdningar för att spela</value>
+  </data>
+  <data name="ReportSubmitErrorUnknown" xml:space="preserve">
+    <value>Inlämningen av rapporten misslyckades p.g.a ett okänt error, vänligen försök igen senare</value>
+  </data>
+  <data name="PerformingAutoUpdateTitle" xml:space="preserve">
+    <value>Uppdaterar Programstartaren</value>
+  </data>
+  <data name="IgnoreFailure" xml:space="preserve">
+    <value>Ignorera Felet</value>
+  </data>
+  <data name="ForgetLastPlayedVersion" xml:space="preserve">
+    <value>Glöm Senast Spelade Versionen</value>
+  </data>
+  <data name="ReportSubmitErrorBadRequest" xml:space="preserve">
+    <value>Inlämningen av rapporten misslyckades p.g.a inkorrekt information inskrivet i rapportformuläret, vänligen dubbelkolla informationen du vill lämna in och försök igen</value>
+  </data>
+  <data name="AutoUpdateMissingChannel" xml:space="preserve">
+    <value>Kan inte starta om en uppdatering eftersom denna programstartartyp inte har en ansluten uppdateringskanaltyp</value>
+  </data>
+  <data name="AutoUpdateFailedTitle" xml:space="preserve">
+    <value>Programstartaruppdateringen Misslyckades</value>
+  </data>
+  <data name="LauncherOptionShowAllBetaVersions" xml:space="preserve">
+    <value>Visa alla befintliga betaversioner av Thrive</value>
+  </data>
+  <data name="QuitLauncherButton" xml:space="preserve">
+    <value>Avsluta Programstartaren Nu</value>
+  </data>
+  <data name="ExitTheLauncher" xml:space="preserve">
+    <value>Avsluta Programstartaren</value>
+  </data>
+  <data name="ViewFirstAutoUpdaterFolder" xml:space="preserve">
+    <value>Öppna Mappen Första Uppdateraren Är I</value>
+  </data>
+  <data name="LauncherOptionAutoRestartThrive" xml:space="preserve">
+    <value>Starta om Thrive automatiskt om startande misslyckas</value>
+  </data>
+  <data name="ReportSubmitErrorServerError" xml:space="preserve">
+    <value>Inlämningen av rapporten misslyckades p.g.a ett serverproblem, vänligen vänta en stund och försök igen. Om problemet kvarstår, vänligen kontakta oss.</value>
+  </data>
+  <data name="NativeMenuPlayThrive" xml:space="preserve">
+    <value>Spela Thrive</value>
+  </data>
+  <data name="NativeMenuAbout" xml:space="preserve">
+    <value>Om Thrives Programstartare</value>
+  </data>
 </root>
