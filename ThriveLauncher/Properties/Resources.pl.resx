@@ -982,4 +982,7 @@ Jeśli poniżej nie ma żadnych plików, pobieranie aktualizacji nie powiodło s
   <data name="NativeMenuPlayThrive" xml:space="preserve">
     <value>Odpal Thrive</value>
   </data>
+  <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
+    <value>Preferuj narzędzia zainstalowane w systemie zamiast załączonych w pakiecie (może powodować problemy jeśli narzędzia z systemu są stare)</value>
+  </data>
 </root>
