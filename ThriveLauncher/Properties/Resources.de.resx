@@ -328,4 +328,22 @@
   <data name="SelectButton" xml:space="preserve">
     <value>Auswählen</value>
   </data>
+  <data name="ExternalLinkXFeed" xml:space="preserve">
+    <value>X (vormals Twitter)</value>
+  </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>Verwende alternatives Auto-Update (wähle diese Option, wenn das normale Auto-Update fehlschlägt)</value>
+  </data>
+  <data name="ExternalLinkBluesky" xml:space="preserve">
+    <value>Bluesky</value>
+  </data>
+  <data name="ExternalLinkInstagram" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+  <data name="ExternalLinkMastodon" xml:space="preserve">
+    <value>Mastodon</value>
+  </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>Deaktiviere alle Thrive Mods beim Start (wähle diese Option, wenn du Mods installiert hast und Thrive aktualisiert wurde)</value>
+  </data>
 </root>

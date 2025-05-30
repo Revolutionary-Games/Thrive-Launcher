@@ -374,7 +374,7 @@
     <value>Usa un modo alternativo de ejecutar el actualizador automático (prueba si el actualizador autonático falla al iniciarse)</value>
   </data>
   <data name="AllSigningKeysExpired" xml:space="preserve">
-    <value>Todos los certificados que fueron enviados con este lanzador han expirado. Esto significa que está versión del lanzador está extremadamente desactualizada. Por favor descarga una versión nueva.</value>
+    <value>Todos los certificados de verificación de firma incluidos con este lanzador han expirado. Esto significa que esta versión del lanzador está extremadamente desactualizada. Por favor, descarga e instala una versión más reciente.</value>
   </data>
   <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
     <value>Borrar automáticamente archivos viejos en la carpeta temporal</value>
@@ -519,5 +519,86 @@
   </data>
   <data name="ExternalLinkInstagram" xml:space="preserve">
     <value>Instagram</value>
+  </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>Desactivar todos los mods de Thrive al iniciar (prueba esto si tienes mods instalados y Thrive se ha actualizado)</value>
+  </data>
+  <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
+    <value>Preferir las herramientas instaladas en el sistema en lugar de las incluidas (puede causar problemas si las herramientas del sistema están desactualizadas)</value>
+  </data>
+  <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
+    <value>Si el juego no se inició correctamente, por favor prueba las soluciones alternativas de inicio de Thrive disponibles en 'Opciones de Thrive' dentro de la configuración del lanzador</value>
+  </data>
+  <data name="OutdatedLauncherExplanation" xml:space="preserve">
+    <value>Esta versión del lanzador está desactualizada y debe actualizarse. Como estás viendo este mensaje, la actualización automática no se ha iniciado, por lo que deberás descargar e instalar la actualización manualmente. Puedes intentar usar la versión actual del lanzador saltándote la actualización, pero podrías encontrar problemas inesperados, ya que solo la versión más reciente del lanzador garantiza funcionar correctamente con los sistemas remotos con los que interactúa.</value>
+  </data>
+  <data name="DevCenterConnectAttemptError" xml:space="preserve">
+    <value>Error al verificar el código de enlace para ThriveDevCenter. Verifica que el código esté escrito correctamente y que no haya expirado. Información adicional: {0}</value>
+  </data>
+  <data name="ExternalLinkBluesky" xml:space="preserve">
+    <value>Cielo azul</value>
+  </data>
+  <data name="ExternalLinkMastodon" xml:space="preserve">
+    <value>Mastodonte</value>
+  </data>
+  <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
+    <value>Estás usando una versión del lanzador que no puede actualizarse automáticamente. Si deseas usar las actualizaciones automáticas en el futuro, por favor instala una variante del lanzador que tenga esta capacidad.</value>
+  </data>
+  <data name="EnterDevCenterConnectionCode" xml:space="preserve">
+    <value>Por favor, ingresa primero un código de conexión de ThriveDevCenter en el cuadro de texto</value>
+  </data>
+  <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
+    <value>El código de salida puede significar que falta un archivo DLL requerido. Podría tratarse del Visual C++ Redistributable 2019, que puedes descargar e instalar (o reparar) desde: https://aka.ms/vs/17/release/vc_redist.x64.exe. También puedes intentar ejecutar Thrive.exe manualmente, ya que eso podría mostrar un cuadro de error con el nombre del archivo DLL que falta. Asegúrate de tener todas las actualizaciones de Windows instaladas. Si nada de esto soluciona el problema, por favor contáctanos para obtener ayuda adicional.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
+    <value>El tipo de lanzador que estás usando debería poder actualizarse automáticamente, pero por alguna razón no ha funcionado y la última versión del lanzador ha estado disponible desde hace un tiempo. Por favor, verifica que no hayas desactivado la opción de mantener Thrive actualizado.</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>Reintentar conexión existente</value>
+  </data>
+  <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
+    <value>BOTD</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>El código es válido. Por favor, confirma la vinculación con la siguiente cuenta:</value>
+  </data>
+  <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
+    <value>Error: no se encontró archivo de actualización para este tipo de lanzador. Esto no debería ocurrir. Por favor, intenta de nuevo más tarde y si el problema persiste, infórmanos.</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>Error de conexión con ThriveDevCenter</value>
+  </data>
+  <data name="OutdatedLauncherUpdateDisabledByUser" xml:space="preserve">
+    <value>El tipo de lanzador que usas puede actualizarse automáticamente, pero la actualización automática está desactivada, ya sea por la configuración del lanzador o por una opción en la línea de comandos.</value>
+  </data>
+  <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
+    <value>La conexión con ThriveDevCenter ha fallado. El servidor respondió con un mensaje de prohibición. Esto significa que nuestra clave de conexión ya no es válida. Puede ser porque la conexión fue desconectada desde la interfaz web o que tu cuenta está suspendida. Consulta el enlace abajo para verificar el estado de las conexiones de tu cuenta.</value>
+  </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>Desconectar</value>
+  </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>Verificar códigos en ThriveDevCenter</value>
+  </data>
+  <data name="DevCenterConnectFailureConnection" xml:space="preserve">
+    <value>La conexión con ThriveDevCenter ha fallado. Por favor, inténtalo de nuevo ya que ThriveDevCenter podría haber estado temporalmente inaccesible. También revisa tu conexión a internet. Puedes usar el enlace abajo para visitar el DevCenter y comprobar si tu navegador puede conectarse. Si el problema persiste por más de unos minutos, repórtalo.</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>Correo electrónico:</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>No se pudo crear el enlace, por favor revisa el código nuevamente</value>
+  </data>
+  <data name="LoginToSeeThisContent" xml:space="preserve">
+    <value>Inicia sesión en ThriveDevCenter para ver este contenido</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>Nombre de usuario:</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>no seguro</value>
+  </data>
+  <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
+    <value>La conexión con ThriveDevCenter ha fallado. El servidor respondió con un error desconocido o hubo un problema al procesar la respuesta. Por favor, inténtalo de nuevo más tarde y si el problema persiste, repórtalo. Puedes usar el enlace abajo para verificar si todo está bien en el servidor de ThriveDevCenter.</value>
   </data>
 </root>
