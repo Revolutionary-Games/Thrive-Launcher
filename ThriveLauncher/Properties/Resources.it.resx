@@ -560,4 +560,7 @@ I log del launcher contengono ulteriori informazioni.</value>
   <data name="LauncherIsLatestVersion" xml:space="preserve">
     <value>Questa versione è aggiornata</value>
   </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>Disabilita tutte le mod di Thrive all'avvio (nel caso tu abbia mod installate e Thrive sia stato aggiornato)</value>
+  </data>
 </root>
