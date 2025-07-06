@@ -646,7 +646,7 @@
     <value>要包含的記錄檔</value>
   </data>
   <data name="SettingsImportOldTitle" xml:space="preserve">
-    <value>導入先前的設定？</value>
+    <value>匯入先前的設定？</value>
   </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
     <value>發現了先前版本的啟動器設定。您可以導入這些現有的設定，以保留已安裝的 Thrive 版本和其他自定義設置。如果您不導入舊的 Thrive 版本和快取，它們將被遺棄，並且此啟動器將不會知道它們。建議導入這些設定。</value>
@@ -969,5 +969,20 @@
   </data>
   <data name="ExternalLinkXFeed" xml:space="preserve">
     <value>X（原 Twitter）</value>
+  </data>
+  <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
+    <value>使用系統上已安裝的工具而非套件工具（若系統安裝工具為舊版，有可能發生問題）</value>
+  </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>啟動時禁用所有 Thrive 模組（測試模組是否已安裝，以及 Thrive 是否已更新）</value>
+  </data>
+  <data name="NativeMenuPlayThrive" xml:space="preserve">
+    <value>遊玩 Thrive</value>
+  </data>
+  <data name="NativeMenuAbout" xml:space="preserve">
+    <value>關於 Thrive 啟動器</value>
+  </data>
+  <data name="NativeMenuPreferences" xml:space="preserve">
+    <value>偏好設定...</value>
   </data>
 </root>
