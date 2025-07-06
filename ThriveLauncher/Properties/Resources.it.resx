@@ -560,4 +560,13 @@ I log del launcher contengono ulteriori informazioni.</value>
   <data name="LauncherIsLatestVersion" xml:space="preserve">
     <value>Questa versione è aggiornata</value>
   </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>Disabilita tutte le mod di Thrive all'avvio ( prova se hai installato le mod di Thrive e che essi siano aggionrati )</value>
+  </data>
+  <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
+    <value>Preferire gli strumenti pre-installati nel sistema invece di usare i pacchetti aggiuntivi (può causare problemi a sistemi che installano strumenti vecchi )</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>Stai per eliminare tutti i file contenuti nella cartella della cache disidratata in "{0}". Anche i file non Thrive, se presenti in quella cartella, verranno eliminati. Eliminare il contenuto della cartella?</value>
+  </data>
 </root>
