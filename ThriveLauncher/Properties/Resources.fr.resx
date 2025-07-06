@@ -668,7 +668,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Vous utilisez un laceur qui ne peut pas se mettre à jour automatiquement. Si vous souhaitez utiliser les mises a jour automatiques, veuillez installer un lanceur qui les supporte.</value>
   </data>
   <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
-    <value>Erreur : aucun fichier de mise à jour pour ce lanceur. Veuillez réessayer plus tard et si le problème persiste, faites le nous savoir.</value>
+    <value>Erreur : aucun fichier de mise à jour pour ce lanceur. Veuillez réessayer plus tard et si le problème persiste, faites le nous savoir.</value>
   </data>
   <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
     <value>Le type de lanceur que vous utilisez devrait pouvoir se mettre à jour automatiquement, mais pour une raison ou une autre, ça n'a pas marché et la dernière version du lanceur est disponible depuis un certain temps déjà. Veuillez vérifier que vous n'avez pas désactivé les mises à jour automatiques.</value>
@@ -689,7 +689,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Vérifier les jetons sur le ThriveDevCenter</value>
   </data>
   <data name="RetryExistingConnection" xml:space="preserve">
-    <value>Relancer la connection existante</value>
+    <value>Réessayer la connection existante</value>
   </data>
   <data name="ExtractError" xml:space="preserve">
     <value>Échec de l'extraction d'une archive a cause d'une erreur : {0}</value>
@@ -858,7 +858,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Ce fichier de plantage sera automatiquement supprimé au bon envoi du rapport</value>
   </data>
   <data name="CrashReportLogsSectionExplanation" xml:space="preserve">
-    <value>Merci de garder les journaux inclus s'ils proviennent de la meme partie que le plantage, ils peuvent aider à identifier le problème et à le réparer. Vous pouvez appuyer sur le nom du fichier pour l'ouvrir, ou sur le bouton pour voir le dossier afin de le modifier pour enlever toute information personnelle que vous souhaitez. Les fichiers de journaux ne sont accessibles qu'au développeurs de Thrive, et ne seront partagés avec une tierce partie que pour l'investigation ou la réparation du problème.</value>
+    <value>Merci de garder les journaux inclus s'ils proviennent de la meme partie que le plantage, ils peuvent aider à identifier le problème et à le réparer. Vous pouvez cliquer sur le nom du fichier pour l'ouvrir, ou sur le bouton pour voir le dossier afin de le modifier pour enlever toute information personnelle que vous souhaitez. Les fichiers de journaux ne sont accessibles qu'aux développeurs de Thrive, et ne seront partagés avec une tierce partie que pour l'investigation ou la réparation du problème.</value>
   </data>
   <data name="CrashReportSubmitAcceptConfirmation" xml:space="preserve">
     <value>J'accepte que les informations listées dans ce formulaire, incluant tous les fichiers, le fichier de plantage ainsi que mon adresse IP seront stockés dans les base de données de plantage de Thrive. Et si ce rapport est public, tous peuvent lire les piles d'appels et les descriptions du plantage.</value>
@@ -969,5 +969,20 @@ Si aucun fichier n'est listé en dessous, le téléchargement de la mise à jour
   </data>
   <data name="LatestVersionParsingFailed" xml:space="preserve">
     <value>L'analyse des informations de la dernière version disponible du lanceur a échoué. Les notifications de nouvelle versions disponibles et de mise à jour ne marcheront pas.</value>
+  </data>
+  <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
+    <value>Préférez les outils installés sur le système plutôt que des packages (peut causer des problèmes si les outils systèmes sont vieux)</value>
+  </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>Désactiver tous les mods de Thrive au démarrage (essayez si vous avez des mods installés et que Thrive a été mis à jour)</value>
+  </data>
+  <data name="NativeMenuPlayThrive" xml:space="preserve">
+    <value>Jouer à Thrive</value>
+  </data>
+  <data name="NativeMenuAbout" xml:space="preserve">
+    <value>À propos du lanceur de Thrive</value>
+  </data>
+  <data name="NativeMenuPreferences" xml:space="preserve">
+    <value>Préférences...</value>
   </data>
 </root>
