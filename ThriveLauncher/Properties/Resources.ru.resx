@@ -971,10 +971,10 @@
     <value>Ветки</value>
   </data>
   <data name="LaunchOptionDisableMods" xml:space="preserve">
-    <value>Отключите все моды Thrive при запуске (попробуйте, если у вас установлены моды и Thrive был обновлён).</value>
+    <value>Отключите все моды Thrive при запуске (попробуйте, если у вас установлены моды и Thrive был обновлён)</value>
   </data>
   <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
-    <value>Предпочтение системным инструментам вместо встроенных (может вызвать проблемы, если системные инструменты устарели).</value>
+    <value>Предпочтение системным инструментам вместо встроенных (может вызвать проблемы, если системные инструменты устарели)</value>
   </data>
   <data name="NativeMenuPlayThrive" xml:space="preserve">
     <value>Играть в Thrive</value>
@@ -983,6 +983,6 @@
     <value>Насчет Thrive Лаунчера</value>
   </data>
   <data name="NativeMenuPreferences" xml:space="preserve">
-    <value>Предпочтения...</value>
+    <value>Персональные настройки...</value>
   </data>
 </root>
