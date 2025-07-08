@@ -65,14 +65,15 @@ public class LoggingManager : ILoggingManager
             if (basePath.EndsWith("/"))
                 basePath = basePath.Substring(0, basePath.Length - 1);
 
-            var fileTarget = new FileTarget("file")
+            var fileTarget = new AtomicFileTarget
             {
                 FileName = $"{basePath}/thrive-launcher-log.txt",
                 ArchiveAboveSize = GlobalConstants.MEBIBYTE * 2,
                 ArchiveEvery = FileArchivePeriod.Month,
-                ArchiveFileName = $"{basePath}/thrive-launcher-log.{{#}}.txt",
-                ArchiveNumbering = ArchiveNumberingMode.DateAndSequence,
-                ArchiveDateFormat = "yyyy-MM-dd",
+
+                // Required to be specified for the archive suffix to work...
+                ArchiveFileName = $"{basePath}/thrive-launcher-log.txt",
+                ArchiveSuffixFormat = ".{1:yyyy-MM-dd}",
                 MaxArchiveFiles = 4,
                 Encoding = Encoding.UTF8,
                 KeepFileOpen = true,
@@ -90,7 +91,7 @@ public class LoggingManager : ILoggingManager
 
     public static LogLevel GetLogLevel(bool verbose, LogLevel baseLevel)
     {
-        // Map log levels higher if verbose flag is set
+        // Map log levels higher if the verbose flag is set
         if (verbose)
         {
             if (baseLevel == LogLevel.Debug)
