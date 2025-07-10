@@ -8,8 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="DynamicData" Version="9.4.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.6" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.6" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.7" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.7" />
   </ItemGroup>
 
   <ItemGroup>
