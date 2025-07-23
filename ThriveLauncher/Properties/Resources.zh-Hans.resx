@@ -955,4 +955,34 @@
 
       如果您看到此错误警告，但您的 CPU 符合最低要求，并能正常游玩 Thrive，请告知我们您的 CPU型号，以便我们改进此检测功能。</value>
   </data>
+  <data name="ExternalLinkXFeed" xml:space="preserve">
+    <value>X（原 Twitter）</value>
+  </data>
+  <data name="ExternalLinkBluesky" xml:space="preserve">
+    <value>BlueskyBluesky</value>
+  </data>
+  <data name="ExternalLinkInstagram" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+  <data name="ExternalLinkMastodon" xml:space="preserve">
+    <value>Mastodon</value>
+  </data>
+  <data name="ExternalLinkThreads" xml:space="preserve">
+    <value>Threads</value>
+  </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>在启动时禁用所有Thrive模组（如果已安装模组且Thrive已更新，请尝试此操作）</value>
+  </data>
+  <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
+    <value>建议使用系统中已安装的工具，而非使用捆绑的工具（如果系统中已安装的工具版本过旧，可能会导致问题）</value>
+  </data>
+  <data name="NativeMenuPlayThrive" xml:space="preserve">
+    <value>游玩 Thrive</value>
+  </data>
+  <data name="NativeMenuAbout" xml:space="preserve">
+    <value>关于 Thrive 启动器</value>
+  </data>
+  <data name="NativeMenuPreferences" xml:space="preserve">
+    <value>首选项...</value>
+  </data>
 </root>
