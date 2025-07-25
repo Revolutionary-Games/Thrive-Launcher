@@ -795,4 +795,76 @@ Logs do Inicializador fornecerão informações mais detalhadas.</value>
   <data name="ThriveFolderPrepareFailed" xml:space="preserve">
     <value>Preparando a pasta de Thrive falhou com o erro: {0}</value>
   </data>
+  <data name="SubmittingReportMessage" xml:space="preserve">
+    <value>Enviando seu relatório. Favor esperar, o upload pode levar alguns minutos...</value>
+  </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>Desativar todos os mods de Thrive na abertura (tente se você instalou mods e Thrive foi atualizado)</value>
+  </data>
+  <data name="ReportViewingPublicInfo" xml:space="preserve">
+    <value>Você pode ver seu relatório, se ele for público, no seguinte endereço:</value>
+  </data>
+  <data name="StopAutoClose" xml:space="preserve">
+    <value>Cancelar Fechamento</value>
+  </data>
+  <data name="AutoCloseStopped" xml:space="preserve">
+    <value>fechamento automático cancelado</value>
+  </data>
+  <data name="CrashReportIsPublic" xml:space="preserve">
+    <value>Público? As descrições e pilhas de chamadas de travamentos de relatórios públicos são visíveis para todos. Relatórios privados são visíveis apenas para os desenvolvedores de Thrive.</value>
+  </data>
+  <data name="CrashReportEmailField" xml:space="preserve">
+    <value>Seu email, se você quiser receber atualizações sobre este relatório (opcional)</value>
+  </data>
+  <data name="CancelCreatingReportTitle" xml:space="preserve">
+    <value>Cancelar a Criação de um Relatório?</value>
+  </data>
+  <data name="ErrorSubmittingReport" xml:space="preserve">
+    <value>Ocorreu um erro durante o envio do seu relatório de travamento. Favor verifique se os dados estão corretos ou tente novamente mais tarde se o problema estiver nos servidores. Tipo de falha:</value>
+  </data>
+  <data name="ReportDeleteInfo" xml:space="preserve">
+    <value>Se você quiser apagar seu relatório, você pode fazer isso aqui:</value>
+  </data>
+  <data name="ReportDeleteCaveat" xml:space="preserve">
+    <value>IMPORTANTE se você perder seu link de apagamento, você não poderá apagar seu relatório. Salve-o! Você pode copiá-lo usando o botão à sua direita.</value>
+  </data>
+  <data name="ReporterEndMessage" xml:space="preserve">
+    <value>Você já pode fechar este relator com segurança, ou esperar que esta janela se feche automaticamente em</value>
+  </data>
+  <data name="ActiveReportingInfo" xml:space="preserve">
+    <value>Relatando travamento {0} em {1}</value>
+  </data>
+  <data name="CrashReportDescriptionField" xml:space="preserve">
+    <value>Descreva o que você estava fazendo quando o travamento ocorreu (opcional)</value>
+  </data>
+  <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
+    <value>Esta aba lista versões instaladas externamente. Esta é uma versão de loja de Thrive que inclui uma versão (mais recente) do jogo empacotada. Você pode ativar a mostra de versões externas disponíveis no menu seletor de versões nas opções do inicializador. Quando forem baixadas, essas versões aparecerão aqui.</value>
+  </data>
+  <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
+    <value>Seu relatório foi enviado com sucesso. Obrigado pelo aviso.</value>
+  </data>
+  <data name="CrashReportDescriptionFieldPlaceholder" xml:space="preserve">
+    <value>Descrição do travamento (opcional)</value>
+  </data>
+  <data name="NativeMenuPlayThrive" xml:space="preserve">
+    <value>Jogar Thrive</value>
+  </data>
+  <data name="NativeMenuAbout" xml:space="preserve">
+    <value>Sobre o inicializador de Thrive</value>
+  </data>
+  <data name="NativeMenuPreferences" xml:space="preserve">
+    <value>Preferências...</value>
+  </data>
+  <data name="CancelCreatingReportExplanation" xml:space="preserve">
+    <value>Tem certeza que você quer cancelar a criação de um relatório de travamento? Se nenhum relatório for enviado sobre um bug, os desenvolvedores de Thrive talvez não saibam que ele exista e portanto não possam consertá-lo.</value>
+  </data>
+  <data name="NoAvailableCrashesToReport" xml:space="preserve">
+    <value>Não foram detectados travamentos que possam ser relatados</value>
+  </data>
+  <data name="LauncherOptionShowLatestBetaVersion" xml:space="preserve">
+    <value>Mostrar a versão beta mais recente de Thrive no seletor de versão (se disponível)</value>
+  </data>
+  <data name="InvalidVersionInfoLoadedTitle" xml:space="preserve">
+    <value>A Informação da Versão Carregada é Inválida</value>
+  </data>
 </root>
