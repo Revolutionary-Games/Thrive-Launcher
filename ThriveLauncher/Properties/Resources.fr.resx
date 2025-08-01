@@ -140,7 +140,7 @@
     <value>Lanceur sur Github</value>
   </data>
   <data name="ExternalLinkFanWiki" xml:space="preserve">
-    <value>Wiki de la communauté</value>
+    <value>Wiki communautaire</value>
   </data>
   <data name="ExternalLinkDiscordServer" xml:space="preserve">
     <value>Serveur Discord</value>
@@ -512,7 +512,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Le lanceur n'a pu trouver aucune version de Thrive compatible avec la plateforme actuelle. Si vous utilisez un système d'exploitation inhabituel, c'est normal. Dans le cas contraire, veuillez signaler ce problème.</value>
   </data>
   <data name="LauncherOptionVerboseLogging" xml:space="preserve">
-    <value>Activer le débogage du lanceur (avant de faire un rapport de bogue, veillez activer ceci et relancer le lanceur)</value>
+    <value>Activer la journalisation de débogage du lanceur (avant de faire un rapport de bogue, veillez activer ceci et relancer le lanceur)</value>
   </data>
   <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
     <value>Le lanceur Thrive charge les version de Thrive disponibles depuis internet afin de savoir si une nouvelle version est disponible. Le chargement de l'information a échoué (voir l'erreur ci-dessous). Vous pouvez réessayer de télécharger cette information ou si le lanceur avait déjà téléchargé l'information, vous pouvez charger la copie en cache. Si la copie en cache est très ancienne, elle peut ne pas afficher toutes les versions de Thrive disponibles. Notez que si votre version du lanceur est très ancienne, il se peut qu'il ne soit plus compatible avec un nouveau format de données et qu'il doive être mis à jour manuellement avant que les données puissent être chargées.</value>
@@ -563,7 +563,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Quitter le lanceur</value>
   </data>
   <data name="LaunchOptionForceOpenGL" xml:space="preserve">
-    <value>Forcer le mode de rendu OpenGL (peut faire démarrer Thrive mais provoque de légers problèmes graphiques)</value>
+    <value>Forcer le mode de rendu OpenGL (peut permettre de démarrer Thrive mais provoque de légers problèmes graphiques)</value>
   </data>
   <data name="LauncherOptionShowAllBetaVersions" xml:space="preserve">
     <value>Afficher toutes les versions beta de Thrive existantes</value>
@@ -834,10 +834,10 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Email (optionnel)</value>
   </data>
   <data name="NoAvailableCrashesToReport" xml:space="preserve">
-    <value>Aucun plantage détecté pouvant être rapporté</value>
+    <value>Aucun plantage pouvant être rapporté n'a été détecté</value>
   </data>
   <data name="CrashReportIncludeLauncherOutput" xml:space="preserve">
-    <value>Inclure les sorties du jeu comme montré dans la fenêtre du lanceur (recommandé quand le plantage est la partie la plus récente)</value>
+    <value>Inclure les sorties du jeu comme affiché dans la pop-up «partie en cours» (recommandé quand le plantage rapporté provient de la dernière partie)</value>
   </data>
   <data name="StopAutoClose" xml:space="preserve">
     <value>Annuler la fermeture</value>
@@ -855,7 +855,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Il y a {0}</value>
   </data>
   <data name="CrashReportDeleteInfoEnabled" xml:space="preserve">
-    <value>Ce fichier de plantage sera automatiquement supprimé au bon envoi du rapport</value>
+    <value>Ce journal de plantage sera automatiquement supprimé au bon envoi du rapport</value>
   </data>
   <data name="CrashReportLogsSectionExplanation" xml:space="preserve">
     <value>Merci de garder les journaux inclus s'ils proviennent de la meme partie que le plantage, ils peuvent aider à identifier le problème et à le réparer. Vous pouvez cliquer sur le nom du fichier pour l'ouvrir, ou sur le bouton pour voir le dossier afin de le modifier pour enlever toute information personnelle que vous souhaitez. Les fichiers de journaux ne sont accessibles qu'aux développeurs de Thrive, et ne seront partagés avec une tierce partie que pour l'investigation ou la réparation du problème.</value>
@@ -870,7 +870,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Votre email ne sera visible que pour les administrateurs de ThriveDevCenter.</value>
   </data>
   <data name="CrashReportDeleteAfterSubmitting" xml:space="preserve">
-    <value>Supprimer le fichier de plantage après le rapport (recommandé)</value>
+    <value>Supprimer ce journal de plantage après le rapport (recommandé)</value>
   </data>
   <data name="ReportDeleteCaveat" xml:space="preserve">
     <value>IMPORTANT si vous perdez le lien de suppression vous ne pourrez pas supprimer le rapport. Sauvegardez-le ! Vous pouvez le copier en utilisant le bouton à sa droite.</value>
@@ -882,7 +882,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Public ? Les descriptions et les piles d'appels de plantage sont visible par tous. Les rapports privés ne sont visibles que par les développeurs de Thrive.</value>
   </data>
   <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
-    <value>Le plantage sélectionné s'est produit il y a un certain temps. Ainsi il peut ne pas être lié aux derniers fichier de journaux ou aux sorties enregistrées par le lanceur. Merci de vérifier que vous rapporter le bon plantage et les fichiers liés.</value>
+    <value>Le plantage sélectionné s'est produit il y a un certain temps. Ainsi il peut ne pas être lié aux derniers journaux ou aux sorties enregistrées par le lanceur. Merci de vérifier que vous rapporter le bon plantage et les fichiers liés.</value>
   </data>
   <data name="ReportSubmitErrorServerError" xml:space="preserve">
     <value>L'envoie du rapport a échoué à cause d'un problème de serveur, veuillez attendre et recommence. Si le problème persiste, merci de nous contacter.</value>
@@ -906,10 +906,10 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Ignorer l'échec</value>
   </data>
   <data name="CannotSubmitExceptionReportYet" xml:space="preserve">
-    <value>Le rapporteur de plantage ne peut utiliser les plantage issus d'une exception non gérée pour l'instant. Merci d'utiliser le bouton copier ci dessous pour copier le rapport dans votre presse papier et nous l'envoyer manuellement.</value>
+    <value>Le rapporteur de plantage ne peut utiliser les plantage issus d'une exception non gérée pour l'instant. Merci d'utiliser le bouton copier ci-dessous pour copier le rapport dans votre presse-papier puis nous l'envoyer manuellement.</value>
   </data>
   <data name="ThriveRunRetryStarting" xml:space="preserve">
-    <value>Thrive ne semble pas avoir démarré correctement. Nouvelle tentative de démarrage de Thrive, tentative numéro : {0}</value>
+    <value>Thrive semble ne pas avoir démarré correctement. Nouvelle tentative de démarrage de Thrive, tentative numéro : {0}</value>
   </data>
   <data name="FileSystemErrorTitle" xml:space="preserve">
     <value>Erreur d'accès au fichier</value>
@@ -939,7 +939,7 @@ Les journaux du lanceur contiendront plus d'informations.</value>
     <value>Les informations de la version chargée sont invalides</value>
   </data>
   <data name="CrashDumpsDetectedAdvice" xml:space="preserve">
-    <value>Un fichier de plantage a été détecté mais pourrait provenir d'une partie précédente de Thrive (merci de vérifier avant le rapport). Pour ne plus être notifié à propos des fichiers de plantage, merci d'ouvrir le rapporteur et de nettoyer les fichiers de plantage.</value>
+    <value>Un fichier de plantage a été détecté mais pourrait provenir d'une partie précédente de Thrive (merci de vérifier avant de rapporter). Pour ne plus être notifié à propos des fichiers de plantage, merci d'ouvrir le rapporteur et de nettoyer les fichiers de plantage.</value>
   </data>
   <data name="AutoUpdatingFailedExplanation" xml:space="preserve">
     <value>La mise à jour automatique du lanceur a échoué. Le problème est probablement lié à l'installeur. Vous pouvez essayer de relancer l'outil de mise à jour en cliquant sur son nom ci-dessous. Vous pouvez aussi cliquer sur le bouton en dessous pour ouvrir le dossier ou l'outil est, ce qui vous permettra de le relancer manuellement (merci de nous notifier si cela vous a aidé).
@@ -965,7 +965,7 @@ Si aucun fichier n'est listé en dessous, le téléchargement de la mise à jour
     <value>Le lanceur télécharge et installe une mise à jour, merci de patienter. L'outil de mise à jour téléchargé peut ouvrir une nouvelle fenêtre nécessitant des actions de l'utilisateur pour terminer la mise à jour.</value>
   </data>
   <data name="AutoUpdateSucceededMessage" xml:space="preserve">
-    <value>L'outil de mise à jour automatique a démarré. Une nouvelle fenêtre devrait s'ouvrir d'ici quelques instants. Le lanceur doit être fermé pour que la mise à jour se finisse. Vous pouvez le fermer manuellement ou attendre qu'il se ferme automatiquement dans</value>
+    <value>L'outil de mise à jour automatique devrait avoir démarré. Une nouvelle fenêtre devrait s'ouvrir d'ici quelques instants. Le lanceur doit être fermé pour que la mise à jour se finisse. Vous pouvez le fermer manuellement ou attendre qu'il se ferme automatiquement dans</value>
   </data>
   <data name="LatestVersionParsingFailed" xml:space="preserve">
     <value>L'analyse des informations de la dernière version disponible du lanceur a échoué. Les notifications de nouvelle versions disponibles et de mise à jour ne marcheront pas.</value>
