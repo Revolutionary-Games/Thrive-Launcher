@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DevelopmentFeedTitle" xml:space="preserve">
+    <value>FEJLESZTŐI FÓRUM</value>
+  </data>
+  <data name="ItemProgressDisplay" xml:space="preserve">
+    <value>{0} feldolgozva; összesen {1}</value>
+  </data>
+  <data name="VerifyingStateItemProgress" xml:space="preserve">
+    <value>{0} épségének ellenőrzése</value>
+  </data>
+  <data name="TruncatedGameOutputWarning" xml:space="preserve">
+    <value>A kimenet csonkolva lett, mert túl hosszú. Lásd a teljes kimenetet a Thrive naplófájlban.</value>
+  </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>A launcher hibakeresési naplózásának engedélyezése (Hibajelentés küldése előtt kérjük, engedélyezd ezt az opciót és indítsd újra a launchert)</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>Köszönjük a támogatást!</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>Kijelentkezés</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+    <value>Kézileg megadott hash:</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>Nem sikerült menteni a beállításokat. Győződj meg róla, hogy a launcher rendelkezik írási engedéllyel a fájlhoz és próbáld újra.
+A naplófájl további információt tartalmaz.</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>Nem sikerült importálni a beállításokat. Győződj meg róla, hogy a launcher jogosult a releváns fájlokat olvasni és írni, majd indítsd újra a launchert és próbált újra.</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+    <value>YouTube csatorna</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>Az ideiglenes mappa TELJES tartalmának törlése. Még a Thrive-tól független fájlok is törlésre kerülnek!</value>
+  </data>
+  <data name="SettingsImportOldTitle" xml:space="preserve">
+    <value>Importálod az előző beállításokat?</value>
+  </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>A launcher korábbi verziójából származó beállításokat találtam. Importálhatod a létező beállításokat, hogy a telepített Thrive verziók és egyéni módosítások sértetlenek maradjanak. Ha nem importálod a régi Thrive verziókat és gyorsítótárakat, azok hátramaradnak és a launcher nem fog tudni róluk. Javasolt a beállítások importálása.</value>
+  </data>
+  <data name="SkipAction" xml:space="preserve">
+    <value>Kihagyás</value>
+  </data>
+  <data name="PerformImport" xml:space="preserve">
+    <value>Importálás</value>
+  </data>
+  <data name="ImportFailedTitle" xml:space="preserve">
+    <value>Importálás sikertelen</value>
+  </data>
+  <data name="ImportSucceededTitle" xml:space="preserve">
+    <value>Importálás sikeres</value>
+  </data>
+  <data name="ImportSucceededMessage" xml:space="preserve">
+    <value>Az előző beállítások importálása sikeresen megtörtént.</value>
+  </data>
+  <data name="LauncherSelectedLanguage" xml:space="preserve">
+    <value>Launcher nyelv:</value>
+  </data>
+  <data name="LinksButton" xml:space="preserve">
+    <value>Linkek</value>
+  </data>
+  <data name="PlayButton" xml:space="preserve">
+    <value>Indítás</value>
+  </data>
+  <data name="ConnectToDevCenterPrompt" xml:space="preserve">
+    <value>Csatlakozás a ThriveDevCenter-hez</value>
+  </data>
+  <data name="WebContentIsDisabled" xml:space="preserve">
+    <value>Webes tartalom letiltva</value>
+  </data>
+  <data name="NewsFeedTitle" xml:space="preserve">
+    <value>HÍREK</value>
+  </data>
+  <data name="LinksPopupTitle" xml:space="preserve">
+    <value>Revolutionary Games linkek</value>
+  </data>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+    <value>Fő weboldal</value>
+  </data>
+  <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
+    <value>Fejlesztői fórum</value>
+  </data>
+  <data name="ExternalLinkCommunityForums" xml:space="preserve">
+    <value>Közösségi fórum</value>
+  </data>
+  <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
+    <value>Fejlesztői wiki</value>
+  </data>
+  <data name="ExternalLinkPatreon" xml:space="preserve">
+    <value>Patreon</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+    <value>Támogatás</value>
+  </data>
+  <data name="ExternalLinkThriveSteam" xml:space="preserve">
+    <value>Thrive a Steamen</value>
+  </data>
+  <data name="ExternalLinkThriveItch" xml:space="preserve">
+    <value>Thrive az itch.io-n</value>
+  </data>
+  <data name="ExternalLinkThriveGithub" xml:space="preserve">
+    <value>Thrive a Githubon</value>
+  </data>
+  <data name="ExternalLinkLauncherGithub" xml:space="preserve">
+    <value>Launcher a Githubon</value>
+  </data>
+  <data name="ExternalLinkFanWiki" xml:space="preserve">
+    <value>Rajongói wiki</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+    <value>Discord szerver</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+    <value>Subreddit</value>
+  </data>
+  <data name="ExternalLinkXFeed" xml:space="preserve">
+    <value>X (korábban Twitter)</value>
+  </data>
+  <data name="ExternalLinkFacebookPage" xml:space="preserve">
+    <value>Facebook oldal</value>
+  </data>
+  <data name="ExternalLinkBluesky" xml:space="preserve">
+    <value>Bluesky</value>
+  </data>
+  <data name="ExternalLinkInstagram" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+  <data name="ExternalLinkMastodon" xml:space="preserve">
+    <value>Mastodon</value>
+  </data>
+  <data name="ExternalLinkThreads" xml:space="preserve">
+    <value>Threads</value>
+  </data>
+  <data name="ThriveOptions" xml:space="preserve">
+    <value>Thrive opciók</value>
+  </data>
+  <data name="LauncherOptions" xml:space="preserve">
+    <value>Launcher opciók</value>
+  </data>
+  <data name="InstalledVersions" xml:space="preserve">
+    <value>Telepített verziók</value>
+  </data>
+  <data name="CacheConfigurationTab" xml:space="preserve">
+    <value>Gyorsítótár</value>
+  </data>
+  <data name="LaunchOptionForceOpenGL" xml:space="preserve">
+    <value>OpenGL mód kényszerítése (ezáltal elindulhat a játék, de kisebb grafikai hibákat okoz)</value>
+  </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>Az összes Thrive mod tiltása indításkor (ha modokat telepítettél vagy a Thrive frissült)</value>
+  </data>
+  <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
+    <value>Hangkésleltetés növelése (kijavíthatja a hang recsegését, ha az érték kellően magas)</value>
+  </data>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+    <value>Launcher verzió:</value>
+  </data>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+    <value>Webes hírcsatornák engedélyezése</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>32 bites verziók elrejtése, ha létezik egyenértékű 64 bites verzió</value>
+  </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>A launcher elrejtése indításkor</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>A launcher bezárása a játék bezárása után (ha nincsenek hibák)</value>
+  </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>A launcher bezárása a játék indítása után</value>
+  </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+    <value>Zökkenőmentes mód engedélyezése (a launcher nem jelenik meg a Thrive indítása előtt)</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>A launcher automatikus frissítése</value>
+  </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>Automatikus frissítő alternatív indítása (ha a normál mód nem működik)</value>
+  </data>
+  <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
+    <value>A rendszeren telepített eszközök használata a programmal mellékeltek helyett (gondot okozhat, ha a rendszerszintű eszközök régiek)</value>
+  </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>Az ideiglenes mappában levő régi fájlok automatikus törlése</value>
+  </data>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+    <value>Telepített fájlok tallózása</value>
+  </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>Telepítési mappa módosítása</value>
+  </data>
+  <data name="FolderPathDisplay" xml:space="preserve">
+    <value>Mappa:</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+    <value>Ideiglenes letöltési mappa:</value>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+    <value>Tartalom:</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+    <value>A mappa üres</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>A launcher indításakor az ideiglenes mappában levő régi fájlok törlésre kerülnek, emiatt ezt a mappát nem ajánlott más programokkal megosztva használni.</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>Ideiglenes fájlok helyének módosítása</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>Ideiglenes fájlok helyének visszaállítása</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>Ürítés</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+    <value>Gyorsítótár helyének módosítása</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+    <value>Gyorsítótár helyének visszaállítása</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+    <value>ThriveDevCenter kapcsolódás</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+    <value>Infó</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+    <value>Csatlakozva mint:</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>Fejlesztő vagy</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+    <value>Csatlakozás</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>Belépés</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>Megerősít</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+    <value>Kiválaszt</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>Beállítások mentése sikertelen</value>
+  </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0} MiB</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>(méret: {0})</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>A mappa nem található</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>A Thrive verzió telepítési mappája nem létezik.</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>Launcher licencek megtekintése</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Thrive Launcher</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Thrive Launcher licencek</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>A hírcsatorna nem jeleníthető meg. {0}</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>közzétéve {0} által {1}-kor</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Kattints ide</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>a teljes bejegyzés elolvasásához.</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>Napló megtekintése</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>Minden tanúsítvány lejárt</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>Az összes mellékelt hitelesítő tanúsítvány lejárt. Ez azt jelenti, hogy a launcher ezen verziója rendkívül elavult. Kérjük, telepíts egy újabb verziót.</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>{0} verzió</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>Betöltés...</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Újra</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Ismeretlen hiba</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>Nem található kompatibilis Thrive verzió</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0} (Legújabb)</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>Belső hiba</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Kihagyás</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Törlés</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Mégse</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>A törlés sikertelen</value>
+  </data>
+  <data name="DeleteErrorExplanation" xml:space="preserve">
+    <value>A törlés sikertelen a következő helyről: "{0}". {1}</value>
+  </data>
+  <data name="DeleteErrorDoesNotExist" xml:space="preserve">
+    <value>A törlés sikertelen, mert a célhely nem létezik</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>Ismeretlen mappa:</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>Ez a verzió naprakész</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>A launcher verziója elavult</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>ThriveDevCenter csatlakozás sikertelen</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="ThriveRunCanceled" xml:space="preserve">
+    <value>A Thrive futtatása megszakítva</value>
+  </data>
+  <data name="ThriveRunError" xml:space="preserve">
+    <value>A Thrive futtatása sikertelen a következő hiba miatt: {0}</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>Bezárás</value>
+  </data>
+  <data name="DownloadError" xml:space="preserve">
+    <value>Letöltés sikertelen: {0}</value>
+  </data>
+  <data name="ExtractError" xml:space="preserve">
+    <value>Archívum kibontása sikertelen: {0}</value>
+  </data>
+  <data name="DownloadProgressDisplay" xml:space="preserve">
+    <value>{0} MiB letöltve; összesen {1} MiB</value>
+  </data>
+  <data name="UnknownNumber" xml:space="preserve">
+    <value>ismeretlen</value>
+  </data>
+  <data name="DownloadingStateItemProgress" xml:space="preserve">
+    <value>{0} letöltve; összesen {1}</value>
+  </data>
+  <data name="ExtractingStateItemProgress" xml:space="preserve">
+    <value>{0} kibontása. Ez nagy fájlok esetén percekig is eltarthat, légy türelemmel.</value>
+  </data>
+  <data name="ProcessingStateItemProgress" xml:space="preserve">
+    <value>{0} feldolgozása</value>
+  </data>
+  <data name="ReportCrashButton" xml:space="preserve">
+    <value>Összeomlás jelentése</value>
+  </data>
+  <data name="CopyLogWindowToClipboardToolTip" xml:space="preserve">
+    <value>Kimenet másolása a vágólapra</value>
+  </data>
+  <data name="CrashReporterWindowTitle" xml:space="preserve">
+    <value>Thrive összeomlás bejelentő</value>
+  </data>
+  <data name="ContinueReportingButton" xml:space="preserve">
+    <value>Jelentés folytatása</value>
+  </data>
+  <data name="CancelCreatingReportTitle" xml:space="preserve">
+    <value>Megszakítod a hibajelentés létrehozását?</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Küldés</value>
+  </data>
+  <data name="SubmittingReportMessage" xml:space="preserve">
+    <value>A jelentés küldése folyamatbann. Légy türelmes, a feltöltés percekig is eltarthat...</value>
+  </data>
+  <data name="ErrorSubmittingReport" xml:space="preserve">
+    <value>Hiba történt a jelentés elküldése során. Győződj meg róla, hogy az adatok helyesek, vagy próbáld újra később, ha ez egy szerver oldali probléma. Hiba típusa:</value>
+  </data>
+  <data name="SubmittingReportExtraInfo" xml:space="preserve">
+    <value>További információ a felmerülő hibával kapcsolatban:</value>
+  </data>
+  <data name="SubmitRetryButton" xml:space="preserve">
+    <value>Újra</value>
+  </data>
+  <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
+    <value>A jelentés sikeresen elküldve. Köszönjük a bejelentést.</value>
+  </data>
+  <data name="ReportViewingPublicInfo" xml:space="preserve">
+    <value>Amennyiben az nyilvános, a jelentés megtekinthető az alábbi címen:</value>
+  </data>
+  <data name="ReportDeleteInfo" xml:space="preserve">
+    <value>Ha törölni szeretnéd a jelentést, itt teheted meg:</value>
+  </data>
+  <data name="SecondsDisplaySingular" xml:space="preserve">
+    <value>1 másodperc</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Másolás vágólapra</value>
+  </data>
+  <data name="TimeMomentRightNow" xml:space="preserve">
+    <value>Most</value>
+  </data>
+  <data name="AtTime" xml:space="preserve">
+    <value>{0}-kor</value>
+  </data>
+  <data name="ViewFile" xml:space="preserve">
+    <value>Megtekintés</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Mappa megnyitása</value>
+  </data>
+  <data name="CrashReportDescriptionField" xml:space="preserve">
+    <value>Írd le, mit csináltál, amikor az összeomlás történt (opcionális)</value>
+  </data>
+  <data name="CrashReportDescriptionFieldPlaceholder" xml:space="preserve">
+    <value>Összeomlás leírása (opcionális)</value>
+  </data>
+  <data name="CrashReportEmailField" xml:space="preserve">
+    <value>Email címed, ha szeretnél értesülni a jelentéssel kapcsolatos fejleményekről (opcionális)</value>
+  </data>
+  <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
+    <value>Email (opcionális)</value>
+  </data>
+  <data name="CrashReportEmailFieldNotice" xml:space="preserve">
+    <value>Az email címet csak a ThriveDevCenter adminisztrátorai látják.</value>
+  </data>
+  <data name="PerformingAutoUpdateTitle" xml:space="preserve">
+    <value>A launcher frissítése</value>
+  </data>
+  <data name="AutoUpdateFailedTitle" xml:space="preserve">
+    <value>A launcher frissítése sikertelen</value>
+  </data>
+  <data name="LauncherOptionShowAllBetaVersions" xml:space="preserve">
+    <value>A Thrive összes béta verziójának megjelenítése</value>
+  </data>
+  <data name="ForgetLastPlayedVersion" xml:space="preserve">
+    <value>Legutóbb játszott verzió elfelejtése</value>
+  </data>
+  <data name="FileSystemErrorTitle" xml:space="preserve">
+    <value>Fájlhozzáférési hiba</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>Telepítési mappa visszaállítása</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>Megjegyzés: az ideiglenes mappa helyének módosítása nem helyez át vagy töröl létező fájlokat, hogy a Thrive-tól független fájlok véletlenül se sérüljenek</value>
+  </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+    <value>Csatlakozás a ThriveDevCenter-hez...</value>
+  </data>
+  <data name="LaunchOptionsTitle" xml:space="preserve">
+    <value>Futtatási opciók</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>Minden beállítás visszaállítása</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+    <value>Gyorsítótár mérete:</value>
+  </data>
+  <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
+    <value>ThriveDevCenter</value>
+  </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+    <value>Játékbeli videók tiltása (ha a Thrive összeomlik a betöltési logó után és az intró videó előtt, ez segíthet a játék elindításában.)</value>
+  </data>
+  <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
+    <value>A letöltött Thrive Launcher információ érvénytelen. Próbálkozz újra később, és ha a probléma továbbra is fennáll, vedd fel velünk a kapcsolatot.</value>
+  </data>
+  <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
+    <value>A Thrive Launcher az internetről tölti le az elérhető Thrive verziók listáját, de ezen információ letöltése nem sikerült (lásd az alábbi hibaüzenetet). Megpróbálhatod újra letölteni ezt az információt, vagy ha a launcher korábban képes volt ezt megtenni, betöltheted a gyorsítótárból. Ha a gyorsítótárazott verzió nagyon régi, előfordulhat, hogy nem fog megjelenni minden elérhető verzió. Ha a launcher verziója nagyon régi, előfordulhat, hogy nem kompatibilis egy újabb adatformátummal és manuálisan kell frissíteni, mielőtt az adatok betöltése megtörténhet.</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>Felhasználónév:</value>
+  </data>
+  <data name="AcceptUnsafeBuildButton" xml:space="preserve">
+    <value>Megértettem a kockázatot, indítás mindenképp</value>
+  </data>
+  <data name="InvalidVersionInfoLoadedTitle" xml:space="preserve">
+    <value>A betöltött verzióinformáció érvénytelen</value>
+  </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>A launcher nem talált a rendszerrel kompatibilis Thrive verziót. Amennyiben szokatlan operációs rendszert használsz, ez normális. Egyéb esetben jelentsd ezt a hibát.</value>
+  </data>
+</root>
