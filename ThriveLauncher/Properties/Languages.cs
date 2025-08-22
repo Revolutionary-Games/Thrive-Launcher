@@ -33,6 +33,7 @@ public static class Languages
         "hr-HR",
         "it-IT",
         "lt-LT",
+        "hu-HU",
         "nl-NL",
         "pl-PL",
         "pt-BR",
