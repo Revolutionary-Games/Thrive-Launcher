@@ -569,4 +569,13 @@ A naplófájl további információt tartalmaz.</value>
   <data name="NoCompatibleVersionsFound" xml:space="preserve">
     <value>A launcher nem talált a rendszerrel kompatibilis Thrive verziót. Amennyiben szokatlan operációs rendszert használsz, ez normális. Egyéb esetben jelentsd ezt a hibát.</value>
   </data>
+  <data name="ConnectedSupporterGreeting" xml:space="preserve">
+    <value>Köszi,</value>
+  </data>
+  <data name="ConnectedDeveloperGreeting" xml:space="preserve">
+    <value>Szia,</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+    <value>Törli a DevBuild dehidratált gyorsítótár mappájának összes fájlját. Ha a hely nem az alapértelmezett, előfordulhat, hogy a mappában nem a Thrive-hoz tartozó fájlok is vannak, amelyek szintén törlésre kerülnek.</value>
+  </data>
 </root>
