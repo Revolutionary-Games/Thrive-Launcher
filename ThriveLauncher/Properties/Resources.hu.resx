@@ -578,4 +578,49 @@ A naplófájl további információt tartalmaz.</value>
   <data name="ClearDehydratedLocation" xml:space="preserve">
     <value>Törli a DevBuild dehidratált gyorsítótár mappájának összes fájlját. Ha a hely nem az alapértelmezett, előfordulhat, hogy a mappában nem a Thrive-hoz tartozó fájlok is vannak, amelyek szintén törlésre kerülnek.</value>
   </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+    <value>Fejlesztői verziók gyorsítótár:</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+    <value>Ajánlott napi build (BOTD)</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+    <value>Legfrissebb (gyakran véletlenszerűen változik, mivel ez közvetlenül a legutóbbi kód-commitre épülő build)</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>Kézzel kiválasztva a „Konkrét build” fülön</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>Itt összekapcsolhatod a launchert a ThriveDevCenterrel, hogy hozzáférj a fejlesztői build-ekhez és más funkciókhoz</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+    <value>Útmutató a Wiki oldalunkon</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>Linkkód lekérése</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+    <value>Linkkód</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+    <value>Konkrét build</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+    <value>Build hash (commit) megadása</value>
+  </data>
+  <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+    <value>Válaszd ki a kézzel megadott hash értéket a beviteli mezőből, amelyet a DevBuild lejátszásakor használni szeretnél</value>
+  </data>
+  <data name="FetchLatestBuildsButton" xml:space="preserve">
+    <value>Legfrissebb build-ek lekérése</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>Indítóprogram forráskódja</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>A Launcheren a Roboto betűtípus van használatban, Roboto licenc:</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf (Copyright (c) 2010–2011 tyPoland Lukasz Dziedzic, a „Lato” betűnév fenntartva), OFL licenc:</value>
+  </data>
 </root>
