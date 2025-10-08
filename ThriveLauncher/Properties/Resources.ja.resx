@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SettingsImportOldTitle" xml:space="preserve">
+    <value>前回の設定を読み込みますか？</value>
+  </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>前回のランチャーの設定が見つかりました。既存の設定をインポートすることでインストール済みのThriveのバージョンやその他のカスタマイズをそのまま保持できます。古いThriveのバージョンやキャッシュをインポートしない場合、それらは残ったままになり、このランチャーは認識しません。設定のインポートをおすすめします。</value>
+  </data>
+  <data name="SkipAction" xml:space="preserve">
+    <value>スキップ</value>
+  </data>
+  <data name="PerformImport" xml:space="preserve">
+    <value>インポート</value>
+  </data>
+  <data name="ImportFailedTitle" xml:space="preserve">
+    <value>インポートに失敗</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+    <value>サブレディット（Reddit）</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>注意: 一時フォルダの場所を移動しても、既存のファイルは移動や削除されません。Thriveに関係のないファイルを誤って操作しないようにするためです</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>あなたは開発者です</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>設定のインポートに失敗しました。設定ファイルのパスがランチャーから読み取りおよび書き込み可能であることを確認し、ランチャーを再起動して再度お試しください。</value>
+  </data>
+  <data name="ImportSucceededTitle" xml:space="preserve">
+    <value>インポートに成功しました</value>
+  </data>
+  <data name="ImportSucceededMessage" xml:space="preserve">
+    <value>前回の設定を正常にインポートしました。</value>
+  </data>
+  <data name="LauncherSelectedLanguage" xml:space="preserve">
+    <value>Launcherの言語:</value>
+  </data>
+  <data name="LinksButton" xml:space="preserve">
+    <value>リンク</value>
+  </data>
+  <data name="PlayButton" xml:space="preserve">
+    <value>プレイ</value>
+  </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+    <value>ThriveDevCenter に接続中…</value>
+  </data>
+  <data name="ConnectToDevCenterPrompt" xml:space="preserve">
+    <value>ThriveDevCenter に接続</value>
+  </data>
+  <data name="ConnectedDeveloperGreeting" xml:space="preserve">
+    <value>こんにちは、</value>
+  </data>
+  <data name="ConnectedSupporterGreeting" xml:space="preserve">
+    <value>ありがとうございます、</value>
+  </data>
+  <data name="DevelopmentFeedTitle" xml:space="preserve">
+    <value>開発フォーラム</value>
+  </data>
+  <data name="WebContentIsDisabled" xml:space="preserve">
+    <value>ウェブコンテンツ無効</value>
+  </data>
+  <data name="NewsFeedTitle" xml:space="preserve">
+    <value>ニュース</value>
+  </data>
+  <data name="LinksPopupTitle" xml:space="preserve">
+    <value>Revolutionary Games リンク</value>
+  </data>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+    <value>公式サイト</value>
+  </data>
+  <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
+    <value>開発フォーラム</value>
+  </data>
+  <data name="ExternalLinkCommunityForums" xml:space="preserve">
+    <value>コミュニティフォーラム</value>
+  </data>
+  <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
+    <value>開発者向けWiki</value>
+  </data>
+  <data name="ExternalLinkPatreon" xml:space="preserve">
+    <value>Patreon</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+    <value>寄付する</value>
+  </data>
+  <data name="ExternalLinkThriveSteam" xml:space="preserve">
+    <value>Steam版Thrive</value>
+  </data>
+  <data name="ExternalLinkThriveItch" xml:space="preserve">
+    <value>itch.io版Thrive</value>
+  </data>
+  <data name="ExternalLinkThriveGithub" xml:space="preserve">
+    <value>Github版Thrive</value>
+  </data>
+  <data name="ExternalLinkLauncherGithub" xml:space="preserve">
+    <value>Github版ランチャー</value>
+  </data>
+  <data name="ExternalLinkFanWiki" xml:space="preserve">
+    <value>ファンWiki</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+    <value>Discordサーバー</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+    <value>YouTubeチャンネル</value>
+  </data>
+  <data name="ExternalLinkXFeed" xml:space="preserve">
+    <value>X（旧Twitter）</value>
+  </data>
+  <data name="ExternalLinkFacebookPage" xml:space="preserve">
+    <value>Facebookページ</value>
+  </data>
+  <data name="ExternalLinkInstagram" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+  <data name="ExternalLinkMastodon" xml:space="preserve">
+    <value>マストドン</value>
+  </data>
+  <data name="ExternalLinkThreads" xml:space="preserve">
+    <value>Threads</value>
+  </data>
+  <data name="ExternalLinkBluesky" xml:space="preserve">
+    <value>Bluesky（ブルースカイ）</value>
+  </data>
+  <data name="LauncherOptions" xml:space="preserve">
+    <value>Launcherの設定</value>
+  </data>
+  <data name="ThriveOptions" xml:space="preserve">
+    <value>Thriveの設定</value>
+  </data>
+  <data name="InstalledVersions" xml:space="preserve">
+    <value>インストール済みバージョン</value>
+  </data>
+  <data name="CacheConfigurationTab" xml:space="preserve">
+    <value>キャッシュ</value>
+  </data>
+  <data name="LaunchOptionsTitle" xml:space="preserve">
+    <value>起動オプション</value>
+  </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+    <value>すべてのゲームビデオを無効化する（Thriveがロードロゴ表示後、イントロ動画再生前にクラッシュする場合はこれを有効にするとゲームが起動する可能性があります）</value>
+  </data>
+  <data name="LaunchOptionForceOpenGL" xml:space="preserve">
+    <value>OpenGLレンダリングモードを強制（Thriveは起動しますが、若干のグラフィックの問題が発生することがあります）</value>
+  </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>起動時にすべてのThriveモッドを無効化（モッドを導入しており、Thriveがアップデートされた場合に試してください）</value>
+  </data>
+  <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
+    <value>ゲームのオーディオ遅延を増加（遅延を十分に大きく設定すると、音割れの問題を解消できる場合があります）</value>
+  </data>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+    <value>ランチャーのバージョン:</value>
+  </data>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+    <value>ウェブフィードを有効にする</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>64ビット版が存在する場合、32ビット版を非表示にする</value>
+  </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>プレイ時にランチャーを非表示にする</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>プレイ後にランチャーを閉じる（エラーがなければ）</value>
+  </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>ゲーム起動後にランチャーを閉じる</value>
+  </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+    <value>シームレスランチャーモードを有効にする（Thrive起動前にランチャーが表示されません）</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>ランチャーを自動更新する</value>
+  </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>自動更新を別の方法で実行（通常の自動更新が開始されない場合に試してください）</value>
+  </data>
+  <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
+    <value>バンドル版ではなく、システムにインストールされたツールを優先して使用する（システム版ツールが古い場合、問題が発生する可能性があります）</value>
+  </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>一時フォルダ内の古いファイルを自動削除する</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>すべての設定をリセット</value>
+  </data>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+    <value>インストールされたファイルを参照する</value>
+  </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>インストール先を選択</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>インストール先をリセット</value>
+  </data>
+  <data name="FolderPathDisplay" xml:space="preserve">
+    <value>ディレクトリ:</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+    <value>一時ダウンロードフォルダ:</value>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+    <value>コンテンツ:</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+    <value>フォルダは空です</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>一時ファイルの場所を選択</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>一時ファイルの場所をリセットする</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+    <value>DevBuildの圧縮キャッシュフォルダ内のすべてのファイルを削除します。場所をデフォルト以外に設定している場合、Thriveに関係ないファイルも削除される可能性があります。</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>クリア</value>
+  </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+    <value>DevBuilds ファイルキャッシュ:</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+    <value>キャッシュの場所を選択</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+    <value>キャッシュの場所をリセット</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+    <value>キャッシュサイズ:</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+    <value>ThriveDevCenter 接続</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+    <value>情報</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+    <value>として接続中:</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>ご支援ありがとうございます！</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+    <value>本日のビルド（BOTD）、推奨</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+    <value>最新（最新のコードコミットから作られたビルドなので、内容はランダムに頻繁に変わります）</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>「特定のビルド」タブで手動選択</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>ログアウト</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>ここでランチャーをThriveDevCenterにリンクし、DevBuildやその他の機能にアクセスできます</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+    <value>Wikiの説明</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>リンクコードを取得する</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+    <value>リンクコード</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+    <value>接続する</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>ログイン</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>確認する</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+    <value>特定のビルド</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+    <value>手動入力ハッシュ:</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+    <value>ビルドハッシュ（コミット）を入力</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+    <value>選択</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>ランチャー再起動時に、一時フォルダ内の古いファイルは自動的に削除されます。そのため、誤って関係ないファイルが削除されないよう、一時フォルダはThrive以外で共有しないようにしてください。</value>
+  </data>
+  <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
+    <value>ThriveDevCenter</value>
+  </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>ランチャーのデバッグログを有効にする（ランチャーの不具合やバグを報告する前に、これを有効にしてランチャーを再起動してください）</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>一時フォルダ内のすべてのファイルを削除します。Thriveに関係ないファイルも存在する場合、削除される可能性があります！</value>
+  </data>
+</root>
