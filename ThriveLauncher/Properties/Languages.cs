@@ -32,6 +32,9 @@ public static class Languages
         "ka-KA",
         "hr-HR",
         "it-IT",
+
+        // TODO: this also requires a new font: https://github.com/Revolutionary-Games/Thrive-Launcher/issues/820
+        // "ja-JA",
         "lt-LT",
         "hu-HU",
         "nl-NL",
