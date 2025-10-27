@@ -937,7 +937,7 @@
     <value>Принудительный режим рендеринга OpenGL (может запустить Thrive, но вызывает небольшие графические проблемы)</value>
   </data>
   <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
-    <value>Увеличить задержку звука в игре (можно устранить проблемы с потрескиванием звука, если задержка установлена на достаточно высоком уровне)</value>
+    <value>Увеличить задержку звука в игре (может устранить проблемы с потрескиванием звука, если задержка установлена на достаточно высоком уровне)</value>
   </data>
   <data name="FileSystemErrorTitle" xml:space="preserve">
     <value>Ошибка доступа к файлу</value>
@@ -971,7 +971,7 @@
     <value>Ветки</value>
   </data>
   <data name="LaunchOptionDisableMods" xml:space="preserve">
-    <value>Отключите все моды Thrive при запуске (попробуйте, если у вас установлены моды и Thrive был обновлён)</value>
+    <value>Отключить все моды Thrive при запуске (попробуйте, если у вас установлены моды и Thrive был обновлён)</value>
   </data>
   <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
     <value>Предпочтение системным инструментам вместо встроенных (может вызвать проблемы, если системные инструменты устарели)</value>
