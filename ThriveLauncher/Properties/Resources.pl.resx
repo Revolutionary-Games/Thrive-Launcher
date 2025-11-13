@@ -564,7 +564,7 @@ Logi launchera nie mają więcej informacji.</value>
     <value>Prosimy najpierw wprowadzić kod połączenia ThriveDevCenter w ramkę wejścia</value>
   </data>
   <data name="UnsafeBuild" xml:space="preserve">
-    <value>niebezpieczna</value>
+    <value>nie bezpieczne</value>
   </data>
   <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
     <value>WD</value>
