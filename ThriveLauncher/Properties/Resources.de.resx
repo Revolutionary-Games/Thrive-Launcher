@@ -278,7 +278,7 @@
     <value>DevBuilds-Dateicache:</value>
   </data>
   <data name="BuildTypeSelectionBOTD" xml:space="preserve">
-    <value>Build des Tage (BDT), empfohlen</value>
+    <value>Build des Tages (BdT), empfohlen</value>
   </data>
   <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
     <value>ThriveDevCenter Verbindung</value>
@@ -345,5 +345,69 @@
   </data>
   <data name="LaunchOptionDisableMods" xml:space="preserve">
     <value>Deaktiviere alle Thrive Mods beim Start (wähle diese Option, wenn du Mods installiert hast und Thrive aktualisiert wurde)</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>Manuell ausgewählt im "Specific Build" Tab</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+    <value>Spezifischer Build</value>
+  </data>
+  <data name="FetchLatestBuildsButton" xml:space="preserve">
+    <value>Neueste Builds Abrufen</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>Speichern der Einstellungen fehlgeschlagen</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>Speichern der Einstellungen in die Einstellungsdatei ist fehlgeschlagen. Bitte stelle sicher, dass der Launcher Schreibberechtigung hat und versuch es nochmal.
+Launcher-Logs enthalten weitere Informationen.</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>Gepostet von {0} um {1}</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>Launcher Lizenzen ansehen</value>
+  </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0} MiB</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>(Größe: {0})</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>Ordner nicht gefunden.</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>Der Ordner für Thrive Versionen existiert nicht.</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>Launcher Quellcode</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Thrive Launcher</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Thrive Launcher Lizenzen</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>Roboto Schriftart wird im Launcher genutzt, Roboto Lizenz:</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>Feed kann nicht angezeigt werden. {0}</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Hier klicken</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>um den gesamten Beitrag zu lesen.</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>Fehler beim Erstellen des Protokollierungs-Ordners ({0}): {1}</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>Logs anzeigen</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>Alle Zertifikate abgelaufen</value>
   </data>
 </root>
