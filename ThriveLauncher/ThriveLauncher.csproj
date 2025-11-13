@@ -40,8 +40,8 @@
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.8" />
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
     <PackageReference Include="DynamicData" Version="9.4.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.10" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.0" />
     <PackageReference Include="NLog" Version="6.0.6" />
     <PackageReference Include="NLog.Extensions.Logging" Version="6.1.0" />
     <!-- Needed due to avalonia requiring a really old Microsoft CodeAnalysis module-->
@@ -49,6 +49,7 @@
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.14.0" />
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.Common" Version="4.14.0" />
     <PackageReference Include="NLog.Targets.AtomicFile" Version="6.0.6" />
+    <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.100" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LauncherBackend\LauncherBackend.csproj" />
