@@ -212,7 +212,7 @@
     <value>Informacje</value>
   </data>
   <data name="ConnectedAsUserDisplay" xml:space="preserve">
-    <value>Połączony(a/e) jako:</value>
+    <value>Połączono jako:</value>
   </data>
   <data name="YouAreDeveloperInfo" xml:space="preserve">
     <value>Jesteś deweloperem</value>
@@ -564,7 +564,7 @@ Logi launchera nie mają więcej informacji.</value>
     <value>Prosimy najpierw wprowadzić kod połączenia ThriveDevCenter w ramkę wejścia</value>
   </data>
   <data name="UnsafeBuild" xml:space="preserve">
-    <value>nie bezpieczne</value>
+    <value>niebezpieczna</value>
   </data>
   <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
     <value>WD</value>
