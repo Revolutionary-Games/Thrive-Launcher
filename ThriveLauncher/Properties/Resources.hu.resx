@@ -623,4 +623,64 @@ A naplófájl további információt tartalmaz.</value>
   <data name="LatoLicenseTitle" xml:space="preserve">
     <value>Lato.ttf (Copyright (c) 2010–2011 tyPoland Lukasz Dziedzic, a „Lato” betűnév fenntartva), OFL licenc:</value>
   </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>Nem sikerült létrehozni a naplófájlt tartalmazó mappát ({0}): {1}</value>
+  </data>
+  <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
+    <value>A gyorsítótárban meglévő elemeket találtunk. Ezek automatikusan áthelyezhetők az új helyre. Ha nem kerülnek áthelyezésre, a fájlok a régi helyen maradnak, és a launcher csak akkor ismeri fel őket, ha a régi útvonalat újra helyszínként választják. Szeretné, ha a(z) {0} fájl automatikusan áthelyeződne az új helyre? Vegye figyelembe, hogy a gyorsítótár mappában található nem-Thrive fájlok is áthelyezésre kerülnek.</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} – {1} számára</value>
+  </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>Hiba a rendelkezésre álló Thrive-verziók lekérésekor</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>Gyorsítótárban lévő verzióinformáció használata</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>Létező verziók áthelyezése?</value>
+  </data>
+  <data name="MoveVersionsExplanation" xml:space="preserve">
+    <value>A korábban telepített Thrive-verziók megtalálhatók a régi útvonalon. Ezek automatikusan áthelyezhetők az új helyre. Ha nem kerülnek áthelyezésre, a fájlok a régi helyen maradnak, és a launcher csak akkor ismeri fel őket, ha a telepítési útvonalként újra a régi helyet választják. Szeretné, ha ezek a fájlok automatikusan áthelyeződnének az új helyre?</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>Áthelyezzük a meglévő fájlokat?</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>Belső hiba történt a launcherben. Kérjük, jelentse a problémát, és mellékelje a launcher naplófájljait, valamint írja le, hogyan találkozott ezzel a hibával.</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Mozgás</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>Törli az ideiglenes fájlokat?</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
+    <value>Minden fájl törlésre kerül a "{0}" ideiglenes mappából. Ha vannak benne nem-Thrive fájlok, azok is törlődnek. Maga a mappa is törlésre kerül. Törölje az ideiglenes mappát?</value>
+  </data>
+  <data name="ClearTemporaryFilesCount" xml:space="preserve">
+    <value>Éppen {0} fájl / mappa törlésére készülsz</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>Töröli a DevBuild gyorsítótárat?</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>Ön éppen az összes fájl törlésére készül a '{0}' dehydrált gyorsítótár mappából. Ha vannak benne nem-Thrive fájlok, azok is törlődnek. Törölje a mappa tartalmát?</value>
+  </data>
+  <data name="ClearDehydratedFilesCount" xml:space="preserve">
+    <value>Ön éppen {0} fájl törlésére készül</value>
+  </data>
+  <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
+    <value>A kilépési kód azt jelentheti, hogy hiányzik egy szükséges DLL-fájl. Ez lehet például a Visual C++ Redistributable 2019, amelyhez az alábbi linken talál telepítőt: https://aka.ms/vs/17/release/vc_redist.x64.exe, amelyet telepíthet vagy javíthat. Próbálkozhat azzal is, hogy a Thrive.exe fájlt közvetlenül indítja, mert ez megjeleníthet egy hibadiálógust a hiányzó DLL-fájl nevével. Ellenőrizze, hogy minden Windows-frissítés telepítve van-e. Ha ezek nem segítenek, kérjük, vegye fel velünk a kapcsolatot további segítségért.</value>
+  </data>
+  <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
+    <value>Ha a játék nem indult el megfelelően, próbálja ki a Thrive indítási megoldásait, amelyeket a launcher beállításaiban a „Thrive beállítások” alatt talál</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>Ön a Thrive Launcher {0} verzióját használja, de a legújabb verzió {1}</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>Letöltések oldalának megnyitása</value>
+  </data>
 </root>
