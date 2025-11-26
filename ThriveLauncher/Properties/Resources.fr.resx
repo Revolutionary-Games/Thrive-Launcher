@@ -149,7 +149,7 @@
     <value>Subreddit</value>
   </data>
   <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
-    <value>Chaine YouTube</value>
+    <value>Chaîne YouTube</value>
   </data>
   <data name="ExternalLinkFacebookPage" xml:space="preserve">
     <value>Page Facebook</value>
@@ -965,7 +965,7 @@ Si aucun fichier n'est listé en dessous, le téléchargement de la mise à jour
     <value>Le lanceur télécharge et installe une mise à jour, merci de patienter. L'outil de mise à jour téléchargé peut ouvrir une nouvelle fenêtre nécessitant des actions de l'utilisateur pour terminer la mise à jour.</value>
   </data>
   <data name="AutoUpdateSucceededMessage" xml:space="preserve">
-    <value>L'outil de mise à jour automatique devrait avoir démarré. Une nouvelle fenêtre devrait s'ouvrir d'ici quelques instants. Le lanceur doit être fermé pour que la mise à jour se finisse. Vous pouvez le fermer manuellement ou attendre qu'il se ferme automatiquement dans</value>
+    <value>L'outil de mise à jour automatique devrait avoir démarré. Une nouvelle fenêtre devrait s'ouvrir d'ici quelques instants. Le lanceur doit être fermé pour que la mise à jour se termine. Vous pouvez le fermer manuellement ou attendre qu'il se ferme automatiquement dans</value>
   </data>
   <data name="LatestVersionParsingFailed" xml:space="preserve">
     <value>L'analyse des informations de la dernière version disponible du lanceur a échoué. Les notifications de nouvelle versions disponibles et de mise à jour ne marcheront pas.</value>
