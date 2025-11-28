@@ -971,7 +971,7 @@ Si aucun fichier n'est listé en dessous, le téléchargement de la mise à jour
     <value>L'analyse des informations de la dernière version disponible du lanceur a échoué. Les notifications de nouvelle versions disponibles et de mise à jour ne marcheront pas.</value>
   </data>
   <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
-    <value>Préférez les outils installés sur le système plutôt que des packages (peut causer des problèmes si les outils systèmes sont vieux)</value>
+    <value>Préférez les outils installés sur le système plutôt que ceux embarqués (peut causer des problèmes si les outils systèmes sont vieux)</value>
   </data>
   <data name="LaunchOptionDisableMods" xml:space="preserve">
     <value>Désactiver tous les mods de Thrive au démarrage (essayez si vous avez des mods installés et que Thrive a été mis à jour)</value>
