@@ -13,7 +13,6 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Platform;
-using Avalonia.ReactiveUI;
 using Avalonia.Threading;
 using CommandLine;
 using DevCenterCommunication.Models;
@@ -25,6 +24,7 @@ using Microsoft.Extensions.Logging;
 using Models;
 using NLog.Extensions.Logging;
 using Properties;
+using ReactiveUI.Avalonia;
 using Services;
 using SharedBase.Utilities;
 using Utilities;
@@ -722,7 +722,7 @@ internal class Program
 
     private static bool HandlePostThriveWait(IThriveRunner runner)
     {
-        // If cancelled we don't want to even think about showing the launcher again
+        // If cancelled, we don't want to even think about showing the launcher again
         if (cancelPressCount > 0)
             return true;
 
