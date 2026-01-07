@@ -152,7 +152,7 @@
     <value>Připojen jako:</value>
   </data>
   <data name="BuildTypeSelectionLatest" xml:space="preserve">
-    <value>Poslední (mění se náhodně, protože se jedná doslova o sestavení z nejnovější revize kódu)</value>
+    <value>Poslední (mění se často a náhodně, protože se jedná doslova o sestavy z nejnovější revize kódu)</value>
   </data>
   <data name="FetchLatestBuildsButton" xml:space="preserve">
     <value>Získat poslední Buildy</value>
@@ -179,7 +179,7 @@
     <value>{0} (nejnovější)</value>
   </data>
   <data name="BuildTypeSelectionManual" xml:space="preserve">
-    <value>Manuálně vybráno ve "Konkrétní Build" záložce</value>
+    <value>Manuálně vybráno v "Konkrétní Build" záložce</value>
   </data>
   <data name="LogoutButton" xml:space="preserve">
     <value>Odhlásit se</value>
@@ -460,5 +460,242 @@ V log záznamech Launcheru bude uvedeno více informací.</value>
   </data>
   <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
     <value>Thrive Launcher běžně načítá dostupné verze Thrive z internetu, aby věděl, která verze je k dispozici. Načtení těchto informací se nezdařila (viz chyba níže). Můžete se pokusit tyto informace stáhnout znovu, nebo pokud Launcher byl dříve schopen tyto informace stáhnout, můžete načíst kopii z mezipaměti. Pokud je kopie v mezipaměti zastaralá, nemusí zobrazovat všechny dostupné verze Thrive. Upozorňujeme, že pokud je vaše verze Launcheru zastaralá, nemusí již být kompatibilní s novějším formátem dat a je nutné ji před načtením ručně aktualizovat.</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>Přesunout existující soubory?</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>Vnitřní chyba</value>
+  </data>
+  <data name="PlayingTitle" xml:space="preserve">
+    <value>Právě hraje {0}</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>Neznámá složka:</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>Přezdívka:</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="UnknownNumber" xml:space="preserve">
+    <value>neznámé</value>
+  </data>
+  <data name="SubmitRetryButton" xml:space="preserve">
+    <value>Zkusit znovu</value>
+  </data>
+  <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
+    <value>Tvé hlášení bylo úspěšně nahráno. Mnohokrát děkujeme.</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Zkopírovat do schránky</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>nestabilní</value>
+  </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>Odpojit</value>
+  </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>Podívejte se na tokeny v ThriveDevCenteru</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>Zkusit znovu existující spojení</value>
+  </data>
+  <data name="CrashReporterWindowTitle" xml:space="preserve">
+    <value>Nahlášení spadnutí hry Thrive</value>
+  </data>
+  <data name="ActiveReportingInfo" xml:space="preserve">
+    <value>Nahlašujeme spadnutí {0} z {1}</value>
+  </data>
+  <data name="CrashReportDescriptionField" xml:space="preserve">
+    <value>Popište, jak jste došel spadnutí hry (dobrovolné)</value>
+  </data>
+  <data name="SecondsDisplayPlural" xml:space="preserve">
+    <value>{0} sekund</value>
+  </data>
+  <data name="CrashReportDescriptionFieldPlaceholder" xml:space="preserve">
+    <value>Popis spadnutí (dobrovolné)</value>
+  </data>
+  <data name="CrashReportEmailField" xml:space="preserve">
+    <value>Tvůj email, pokud chceš obdržet novinky ohledně tvého hlášení (dobrovolné)</value>
+  </data>
+  <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
+    <value>Email (dobrovolné)</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Smazat</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Zrušit</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>Nepodařilo se smazat</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Přeskočit</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>Smazat DevBuild mezipaměť?</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>Verze launcheru je zastaralá</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>Navštívit stahovací stránku</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Nahrát</value>
+  </data>
+  <data name="AtTime" xml:space="preserve">
+    <value>Při {0}</value>
+  </data>
+  <data name="AutoUpdateFailedTitle" xml:space="preserve">
+    <value>Aktualizace launcheru selhala</value>
+  </data>
+  <data name="ExitTheLauncher" xml:space="preserve">
+    <value>Odejít z launcheru</value>
+  </data>
+  <data name="IgnoreFailure" xml:space="preserve">
+    <value>Ignorovat selhání</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>V launcheru nastala vnitřní chyba. Prosím nahlaste tuhle chybu a poskytněte nám zápis z launcheru společně s popsáním toho, jak jste přišli k tomuto problému.</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Pohyb</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>Smazat dočasné soubory?</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>Užíváte Thrive launcher verzi {0} , ale nejnovější je verze {1}</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>Zavřít</value>
+  </data>
+  <data name="ThriveRunError" xml:space="preserve">
+    <value>Thrive se nezapnul kvůli následující chybe: {0}</value>
+  </data>
+  <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
+    <value>Hraní nestabilní verze bylo zrušeno</value>
+  </data>
+  <data name="DownloadingItem" xml:space="preserve">
+    <value>Stahuje se {0}</value>
+  </data>
+  <data name="DownloadError" xml:space="preserve">
+    <value>Stahování selhalo kvůli {0}</value>
+  </data>
+  <data name="VerifyingStateItemProgress" xml:space="preserve">
+    <value>Ověřuje se integrita {0}</value>
+  </data>
+  <data name="MissingThriveFolderError" xml:space="preserve">
+    <value>Složka s Thrive měla existovat zde {0}, ale nebyla tam</value>
+  </data>
+  <data name="CancelCreatingReportTitle" xml:space="preserve">
+    <value>Zrušit vytvoření nahlášení?</value>
+  </data>
+  <data name="ContinueReportingButton" xml:space="preserve">
+    <value>Pokračovat v nahlášení</value>
+  </data>
+  <data name="SecondsDisplaySingular" xml:space="preserve">
+    <value>1 sekunda</value>
+  </data>
+  <data name="StopAutoClose" xml:space="preserve">
+    <value>Zrušit zavření</value>
+  </data>
+  <data name="AutoCloseStopped" xml:space="preserve">
+    <value>automatické zavření bylo zrušeno</value>
+  </data>
+  <data name="TimeMomentRightNow" xml:space="preserve">
+    <value>Teď</value>
+  </data>
+  <data name="PerformingAutoUpdateTitle" xml:space="preserve">
+    <value>Aktualizaování Thrive launcheru</value>
+  </data>
+  <data name="NoAvailableCrashesToReport" xml:space="preserve">
+    <value>Žádné spadnutí, které by mohly být nahlášeny, nebyly detekovány</value>
+  </data>
+  <data name="ShortTimeAgo" xml:space="preserve">
+    <value>{0} zpátky</value>
+  </data>
+  <data name="ThriveRunCanceled" xml:space="preserve">
+    <value>Spuštění Thrivu bylo zrušeno</value>
+  </data>
+  <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
+    <value>Užíváte typ launcheru, který se neumí sám aktualizovat. Pokud chcete v budoucnu automatické aktualizace, stáhněte si prosím variantu launcheru, která je toho schopná.</value>
+  </data>
+  <data name="SubmittingReportMessage" xml:space="preserve">
+    <value>Nahráváme tvé nahlášení. Prosíme o strpení, může to chvilku trvat...</value>
+  </data>
+  <data name="CrashReportEmailFieldNotice" xml:space="preserve">
+    <value>Tvůj email bude viditelný jen pro administrátory ThriveDevCenter.</value>
+  </data>
+  <data name="NativeMenuPlayThrive" xml:space="preserve">
+    <value>Spustit Thrive</value>
+  </data>
+  <data name="NativeMenuAbout" xml:space="preserve">
+    <value>O Thrive launcheru</value>
+  </data>
+  <data name="NativeMenuPreferences" xml:space="preserve">
+    <value>Preference...</value>
+  </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>Vypnout veškeré Thrive módy při zapnutí hry (zkus, pokud máš nainstalované módy a Thrive byl aktualizován)</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thrive již byl spuštěn, prosím zavřete ho a zkuste to znovu</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>Máte nejnovější verzi</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>Popis:</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>Nelze hrát Thrive</value>
+  </data>
+  <data name="ThriveFolderPrepareFailed" xml:space="preserve">
+    <value>Připravování složky Thrive selhalo kvůli chybě: {0}</value>
+  </data>
+  <data name="DownloadProgressDisplay" xml:space="preserve">
+    <value>Staženo {0} z {1} MiB</value>
+  </data>
+  <data name="ItemProgressDisplay" xml:space="preserve">
+    <value>Zpracováno {0} z {1}</value>
+  </data>
+  <data name="DownloadingStateItemProgress" xml:space="preserve">
+    <value>Stahování {0} z {1}</value>
+  </data>
+  <data name="ProcessingStateItemProgress" xml:space="preserve">
+    <value>Zpracovává se {0}</value>
+  </data>
+  <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
+    <value>Chyba: podproces již skončil, launcher nebude zavřen</value>
+  </data>
+  <data name="ReportCrashButton" xml:space="preserve">
+    <value>Nahlásit spadnutí hry</value>
+  </data>
+  <data name="PlayUnsafeBuildTitle" xml:space="preserve">
+    <value>Spustit nestabilní DevBuild?</value>
+  </data>
+  <data name="AcceptUnsafeBuildButton" xml:space="preserve">
+    <value>Jsem seznámen s riziky a chci i tak hrát</value>
+  </data>
+  <data name="ViewFile" xml:space="preserve">
+    <value>Zobrazit</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Otevřít složku</value>
+  </data>
+  <data name="IncludeInReport" xml:space="preserve">
+    <value>Zahrnout:</value>
+  </data>
+  <data name="QuitLauncherButton" xml:space="preserve">
+    <value>Odejít z launcheru (teď)</value>
+  </data>
+  <data name="LauncherVersionUpdateDescription" xml:space="preserve">
+    <value>Aktualizování launcheru na verzi {0} (současná verze: {1})</value>
   </data>
 </root>
