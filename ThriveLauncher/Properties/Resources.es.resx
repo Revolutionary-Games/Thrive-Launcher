@@ -601,4 +601,16 @@
   <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
     <value>La conexión con ThriveDevCenter ha fallado. El servidor respondió con un error desconocido o hubo un problema al procesar la respuesta. Por favor, inténtalo de nuevo más tarde y si el problema persiste, repórtalo. Puedes usar el enlace abajo para verificar si todo está bien en el servidor de ThriveDevCenter.</value>
   </data>
+  <data name="ExitTheLauncher" xml:space="preserve">
+    <value>Cerrar el Launcher</value>
+  </data>
+  <data name="SecondsDisplaySingular" xml:space="preserve">
+    <value>1 segundo</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thrive ya ha sido iniciado, por favor ciérrelo e intentelo de nuevo</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>Por favor seleccione una versión de Thrive del menú al lado del botón de jugar e inténtelo de nuevo</value>
+  </data>
 </root>
