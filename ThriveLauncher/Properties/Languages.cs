@@ -27,6 +27,7 @@ public static class Languages
     private static readonly string[] AdditionalAvailableLanguages =
     [
         "cs-CZ",
+        "da-DA",
         "de-DE",
         "fr-FR",
         "ka-KA",
