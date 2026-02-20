@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SettingsImportOldTitle" xml:space="preserve">
+    <value>Importér forrige indstillinger?</value>
+  </data>
+  <data name="SettingsImportOldExplanation" xml:space="preserve">
+    <value>Indstillinger fra en tidligere version af launcheren er blevet fundet. Du kan importere de eksisterende indstillinger for at beholde dine installerede versioner af Thrive og andre tilpasninger intakte. Hvis du ikke importerer de gamle thriver versioner og caches, så vil de blive efterladt, og launcheren vil ikke kende til dem. Det anbefales at indstillingerne importeres.</value>
+  </data>
+  <data name="SkipAction" xml:space="preserve">
+    <value>Spring over</value>
+  </data>
+  <data name="PerformImport" xml:space="preserve">
+    <value>Importér</value>
+  </data>
+  <data name="ImportFailedTitle" xml:space="preserve">
+    <value>Importering mislykkedes</value>
+  </data>
+  <data name="ImportFailedMessage" xml:space="preserve">
+    <value>Importering af indstilliger mislykkedes. Sørg venligst for at de relevante filstier for indstillinger er læsbare og skrivbare for launcheren, og genstart derefter launcheren for at prøve igen.</value>
+  </data>
+  <data name="ImportSucceededTitle" xml:space="preserve">
+    <value>Importering lykkedes</value>
+  </data>
+  <data name="ImportSucceededMessage" xml:space="preserve">
+    <value>Forrige indstillinger blev importeret sucessfuldt.</value>
+  </data>
+  <data name="LauncherSelectedLanguage" xml:space="preserve">
+    <value>Launcher sprog:</value>
+  </data>
+  <data name="LinksButton" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="PlayButton" xml:space="preserve">
+    <value>Spil</value>
+  </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+    <value>Forbinder til ThriveDevCenter...</value>
+  </data>
+  <data name="ConnectToDevCenterPrompt" xml:space="preserve">
+    <value>Forbundet til ThriveDevCenter</value>
+  </data>
+  <data name="ConnectedDeveloperGreeting" xml:space="preserve">
+    <value>Davs,</value>
+  </data>
+  <data name="ConnectedSupporterGreeting" xml:space="preserve">
+    <value>Tak,</value>
+  </data>
+  <data name="DevelopmentFeedTitle" xml:space="preserve">
+    <value>UDVIKLINGS FORUM</value>
+  </data>
+  <data name="WebContentIsDisabled" xml:space="preserve">
+    <value>Webindhold deaktiveret</value>
+  </data>
+  <data name="NewsFeedTitle" xml:space="preserve">
+    <value>NYHEDER</value>
+  </data>
+  <data name="LinksPopupTitle" xml:space="preserve">
+    <value>Revolutionary Games Links</value>
+  </data>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+    <value>Hovedwebside</value>
+  </data>
+  <data name="ExternalLinkDevelopmentForums" xml:space="preserve">
+    <value>Udviklings forum</value>
+  </data>
+  <data name="ExternalLinkCommunityForums" xml:space="preserve">
+    <value>Community forum</value>
+  </data>
+  <data name="ExternalLinkDeveloperWiki" xml:space="preserve">
+    <value>Udvikler wiki</value>
+  </data>
+  <data name="ExternalLinkPatreon" xml:space="preserve">
+    <value>Patreon</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+    <value>Donér</value>
+  </data>
+  <data name="ExternalLinkThriveDevCenter" xml:space="preserve">
+    <value>ThriveDevCenter</value>
+  </data>
+  <data name="ExternalLinkThriveSteam" xml:space="preserve">
+    <value>Thrive på Steam</value>
+  </data>
+  <data name="ExternalLinkThriveItch" xml:space="preserve">
+    <value>Thrive på itch.io</value>
+  </data>
+  <data name="ExternalLinkThriveGithub" xml:space="preserve">
+    <value>Thrive på GitHub</value>
+  </data>
+  <data name="ExternalLinkLauncherGithub" xml:space="preserve">
+    <value>Launcher på Github</value>
+  </data>
+  <data name="ExternalLinkFanWiki" xml:space="preserve">
+    <value>Fan Wiki</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+    <value>Discord server</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+    <value>Subreddit</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+    <value>YouTube kanal</value>
+  </data>
+  <data name="ExternalLinkXFeed" xml:space="preserve">
+    <value>X (tidligere Twitter)</value>
+  </data>
+  <data name="ExternalLinkFacebookPage" xml:space="preserve">
+    <value>Facebook side</value>
+  </data>
+  <data name="ExternalLinkBluesky" xml:space="preserve">
+    <value>Bluesky</value>
+  </data>
+  <data name="ExternalLinkInstagram" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+  <data name="ExternalLinkMastodon" xml:space="preserve">
+    <value>Mastodon</value>
+  </data>
+  <data name="ExternalLinkThreads" xml:space="preserve">
+    <value>Threads</value>
+  </data>
+  <data name="ThriveOptions" xml:space="preserve">
+    <value>Thrive indstillinger</value>
+  </data>
+  <data name="LauncherOptions" xml:space="preserve">
+    <value>Launcher indstillinger</value>
+  </data>
+  <data name="InstalledVersions" xml:space="preserve">
+    <value>Installerede versioner</value>
+  </data>
+  <data name="CacheConfigurationTab" xml:space="preserve">
+    <value>Cache</value>
+  </data>
+  <data name="LaunchOptionsTitle" xml:space="preserve">
+    <value>Opstartsindstillinger</value>
+  </data>
+  <data name="LaunchOptionDisableVideos" xml:space="preserve">
+    <value>Deaktiver alle spil videoer (hvis Thrive crasher efter den har vist loading logoet og før intro videoen afspilles, så kan det hjælpe med at få spillet til at virke)</value>
+  </data>
+  <data name="LaunchOptionForceOpenGL" xml:space="preserve">
+    <value>Tving OpenGL renderingstilstand (får måske Thrive til at starte, men skaber mindre grafiske problemer)</value>
+  </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>Deaktiver alle Thrive mods ved start (prøv hvis du har mods instaleret og Thrive er blevet opdateret)</value>
+  </data>
+  <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
+    <value>Øg spillets lydlatens (kan løse problemer med knasende lyd, hvis latensen sættes højt nok)</value>
+  </data>
+  <data name="LauncherVersionDisplay" xml:space="preserve">
+    <value>Launcher version:</value>
+  </data>
+  <data name="LauncherOptionWebFeeds" xml:space="preserve">
+    <value>Aktivér web feeds</value>
+  </data>
+  <data name="LauncherOptionHide32Bit" xml:space="preserve">
+    <value>Gem 32-bit versioner hvis en lignende 64-bit version eksisterer</value>
+  </data>
+  <data name="LauncherOptionHideOnPlay" xml:space="preserve">
+    <value>Skjul launcheren ved spil</value>
+  </data>
+  <data name="LauncherOptionCloseAfterPlaying" xml:space="preserve">
+    <value>Luk launcheren efter der er spillet (hvis der ingen fejl er)</value>
+  </data>
+  <data name="LauncherOptionCloseAfterStart" xml:space="preserve">
+    <value>Luk launcheren efter spillet er startet</value>
+  </data>
+  <data name="LauncherOptionAllowSeamlessMode" xml:space="preserve">
+    <value>Tillad skjult launcher-tilstand (launcheren vises ikke før spilstart)</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>Opdatér automatisk launcheren</value>
+  </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>Brug alternativ måde at køre auto opdatereren (prøv hvis den normale auto opdatér fejler med at starte)</value>
+  </data>
+  <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
+    <value>Foretræk værktøjer installeret på systemet frem for de medfølgende (kan give problemer, hvis systemets værktøjer er for gamle)</value>
+  </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>Aktivér launcherens debug-logning (før du rapporterer et problem eller en fejl med launcheren, skal du aktivere dette og genstarte launcheren)</value>
+  </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>Slet automatisk gamle filer i midlertidig mappen</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>Gendan alle indstillinger</value>
+  </data>
+  <data name="BrowseInstalledFiles" xml:space="preserve">
+    <value>Gennemse installerede filer</value>
+  </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>Vælg installations lokation</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>Gendan installations lokation</value>
+  </data>
+  <data name="FolderPathDisplay" xml:space="preserve">
+    <value>Bibliotek:</value>
+  </data>
+  <data name="TemporaryDownloadsPathDisplay" xml:space="preserve">
+    <value>Midlertidig downloads mappe:</value>
+  </data>
+  <data name="FolderContentsLabel" xml:space="preserve">
+    <value>Indhold:</value>
+  </data>
+  <data name="FolderIsEmpty" xml:space="preserve">
+    <value>Mappen er tom</value>
+  </data>
+  <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
+    <value>Note: flytning af midlertidig lokation vil ikke flytte eller slette eksisterende filer for at undgå filer ikke relateret til Thrive røres</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>Gamle filer vil automatisk blive slettet fra midlertidige filer mappen ved launcher genstart. Derfor bør den midlertidige filer mappe ikke deles med andre filer end dem brugt af Thrive for at undgå fejlagtig sletning af urelaterede filer.</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>Vælg midlertidige filer lokation</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>Gendan midlertidige filer lokation</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>Slet ALLE filer i midlertidige filer mappen. Kan slette ikke-Thrive relaterede filer hvis de eksisterer!</value>
+  </data>
+  <data name="ClearDehydratedLocation" xml:space="preserve">
+    <value>Slet alle filer i DevBuild dehydrerede cache mappen. Hvis lokationen ikke er standard kan der eksistere ikke-Thrive filer i mappen som muligvis også vil blive slettet.</value>
+  </data>
+  <data name="ClearFolder" xml:space="preserve">
+    <value>Ryd</value>
+  </data>
+  <data name="DevBuildsCachePathDisplay" xml:space="preserve">
+    <value>DevBuilds fil cache:</value>
+  </data>
+  <data name="SelectDevBuildCacheLocation" xml:space="preserve">
+    <value>Vælg cache lokation</value>
+  </data>
+  <data name="ResetCacheLocation" xml:space="preserve">
+    <value>Gendan cache lokation</value>
+  </data>
+  <data name="CacheSizeDisplay" xml:space="preserve">
+    <value>Cache størrelse:</value>
+  </data>
+  <data name="DevCenterConnectionDialogTitle" xml:space="preserve">
+    <value>ThriveDevCenter forbindelse</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ConnectionInfoTab" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="ConnectedAsUserDisplay" xml:space="preserve">
+    <value>Forbundet som:</value>
+  </data>
+  <data name="YouAreDeveloperInfo" xml:space="preserve">
+    <value>Du er en udvikler</value>
+  </data>
+  <data name="YouAreASupporter" xml:space="preserve">
+    <value>Tak for din støtte!</value>
+  </data>
+  <data name="BuildTypeSelectionBOTD" xml:space="preserve">
+    <value>Build of the day (BOTD), anbefalet</value>
+  </data>
+  <data name="BuildTypeSelectionLatest" xml:space="preserve">
+    <value>Seneste (ændrer meget tilfældigt, da dette vitterligt er buildet fra den sidste kode commit)</value>
+  </data>
+  <data name="BuildTypeSelectionManual" xml:space="preserve">
+    <value>Manuelt valgt i "Specifik build" fanen</value>
+  </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>Log ud</value>
+  </data>
+  <data name="DevCenterConnectionExplanation" xml:space="preserve">
+    <value>Her kan du linke launcheren til ThriveDevCenteret for at få adgang til DevBuilds og andre features</value>
+  </data>
+  <data name="ConnectionInstructionsWikiPrompt" xml:space="preserve">
+    <value>Instruktioner på vores wiki</value>
+  </data>
+  <data name="ConnectionInstructionsGetLinkCode" xml:space="preserve">
+    <value>Få en link kode</value>
+  </data>
+  <data name="ConnectionKeyPlaceholder" xml:space="preserve">
+    <value>Link kode</value>
+  </data>
+  <data name="ConnectButton" xml:space="preserve">
+    <value>Forbind</value>
+  </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="ConfirmButton" xml:space="preserve">
+    <value>Bekræft</value>
+  </data>
+  <data name="SpecificBuildTab" xml:space="preserve">
+    <value>Specifik build</value>
+  </data>
+  <data name="ManuallyEnteredHashDisplay" xml:space="preserve">
+    <value>Manuelt indtastet hash:</value>
+  </data>
+  <data name="EnterBuildHashPlaceholder" xml:space="preserve">
+    <value>Skriv build hash (commit)</value>
+  </data>
+  <data name="SelectButton" xml:space="preserve">
+    <value>Vælg</value>
+  </data>
+  <data name="ManualHashSelectButtonToolTip" xml:space="preserve">
+    <value>Vælg den manuelt indskrevne has værdi der bruges fra inputboksen som det valgte DevBuild der spilles når der spilles en DevBuild</value>
+  </data>
+  <data name="FetchLatestBuildsButton" xml:space="preserve">
+    <value>Hent seneste builds</value>
+  </data>
+  <data name="SettingsSaveFailedTitle" xml:space="preserve">
+    <value>Mislykkedes i at gemme indstillinger</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>Det mislykkede at gemme indstillinger til indstillingsfilen. Sørg venligst for at launcheren har skriveadgang, og prøv igen.
+Launcher logs vil have mere info.</value>
+  </data>
+  <data name="SizeInMiB" xml:space="preserve">
+    <value>{0} MiB</value>
+  </data>
+  <data name="InstalledFolderSize" xml:space="preserve">
+    <value>(størrelse: {0})</value>
+  </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>Mappe ikke fundet</value>
+  </data>
+  <data name="ThriveInstallFolderNotFound" xml:space="preserve">
+    <value>Thrive version installationsmappen findes ikke.</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>Launcher source kode</value>
+  </data>
+  <data name="ViewLicensesButton" xml:space="preserve">
+    <value>Vis launcher licenser</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Thrive launcher</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Thrive launcher licenser</value>
+  </data>
+  <data name="RobotoLicenseTitle" xml:space="preserve">
+    <value>Roboto fonten bruges i launcheren, Roboto licens:</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf (Copyright (c) 2010-2011 af tyPoland Lukasz Dziedzic med det reserverede font navn "Lato"), OFL licens:</value>
+  </data>
+  <data name="FeedFetchError" xml:space="preserve">
+    <value>Feed kan ikke vises. {0}</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>posted af {0} {1}</value>
+  </data>
+  <data name="ClickHereLink" xml:space="preserve">
+    <value>Klik her</value>
+  </data>
+  <data name="TruncatedClickSuffix" xml:space="preserve">
+    <value>for at læse den fulde post.</value>
+  </data>
+  <data name="LogFolderCreateFailed" xml:space="preserve">
+    <value>Fejlede i at oprette logs mappe ({0}): {1}</value>
+  </data>
+  <data name="OpenLogsFolderButton" xml:space="preserve">
+    <value>Se logs</value>
+  </data>
+  <data name="AllSigningKeysExpiredTitle" xml:space="preserve">
+    <value>Alle certifikater udløbet</value>
+  </data>
+  <data name="AllSigningKeysExpired" xml:space="preserve">
+    <value>Alle signing verifying certifikater som launcheren ko med er udløbet. Det betyder at denne version af launcheren er ekstremt forældet. Download og installer venligst en nyere version.</value>
+  </data>
+  <data name="StoreVersionName" xml:space="preserve">
+    <value>{0} version</value>
+  </data>
+  <data name="VersionWithPlatform" xml:space="preserve">
+    <value>{0} for {1}</value>
+  </data>
+  <data name="LoadingDotDotDot" xml:space="preserve">
+    <value>Indlæser...</value>
+  </data>
+  <data name="VersionInfoLoadFailureTitle" xml:space="preserve">
+    <value>Indhentning af tilgængelige Thrive versioner mislykkedes</value>
+  </data>
+  <data name="VersionInfoLoadFailureExplanation" xml:space="preserve">
+    <value>Thrive launcheren indhenter de tilgængelige Thrive versioner fra internettet så den ved hvad der er tilgængeligt. Indhentningen af dette er mislykkedes (se fejlen nedenunder). Du kan forsøge at downloade denne information igen, eller hvis launcheren førhen har kunnet downloade denne information kan du bruge en cachet kopi. Hvis den cachede kopi er meget gammel viser den måske ikke alle tilgængelige Thrive versioner. Bemærk at hvis versionen af din launcher er meget gammel er den muligvis ikke længere kompatibel med et nyere data format, og skal opdateres manuelt før data kan indhentes.</value>
+  </data>
+  <data name="VersionInfoLoadFailureBadData" xml:space="preserve">
+    <value>Det downloadede Thrive launcher information er ugyldigt. Prøv venligst igen efter lidt tid, og kontakt og venligst hvis problemet fortsætter.</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Prøv igen</value>
+  </data>
+  <data name="UseCached" xml:space="preserve">
+    <value>Brug cachet version info</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Ukendt fejl</value>
+  </data>
+  <data name="NoCompatibleVersionsFoundTitle" xml:space="preserve">
+    <value>Ingen kompatible Thrive versioner fundet</value>
+  </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>Launcheren kunne ikke finde nogle kompatible thrive versioner for den nuværende platform. Dette er forventeligt hvis du bruger et underligt operativsystem. Ellers rapportér det venligst som en fejl.</value>
+  </data>
+  <data name="LatestVersionTag" xml:space="preserve">
+    <value>{0} (Seneste)</value>
+  </data>
+  <data name="MoveVersionsTitle" xml:space="preserve">
+    <value>Flyt eksisterende versioner?</value>
+  </data>
+  <data name="MoveVersionsExplanation" xml:space="preserve">
+    <value>Installerede versioner af Thrive er blevet opdaget ved den forrige sti. Disse kan automatisk flyttes til den nye lokation. Hvis de ikke flyttes vil de blive efterladt, og launcheren vil ikke kende til dem før den forrige sti igen er valgt som instalationslokation. Ønsker du automatisk at flytte disse filer til den nye lokation?</value>
+  </data>
+  <data name="MoveFilesTitle" xml:space="preserve">
+    <value>Flyt eksisterende filer?</value>
+  </data>
+  <data name="MoveDehydratedCacheExplanation" xml:space="preserve">
+    <value>Eksisterende genstande er opdaget i cachen. Disse kan automatisk flyttes til den nye lokation. Hvis de ikke flyttes vil filerne blive efterladt, og launcheren vil ikke kende til dem før den forrige sti igen er valgt som lokation. Ønsker du automatisk at flytte {0} fil(er) til den nye lokation? Bemærk at hvis ikke-Thrive filer eksisterer i cache mappen vil det også blive flyttet.</value>
+  </data>
+  <data name="InternalErrorTitle" xml:space="preserve">
+    <value>Intern fejl</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>Der er sket en intern fejl i launcheren. Rapportér venligst dette problem og inkluder launcher-logfilerne samt en beskrivelse af, hvordan du oplevede problemet.</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Flyt</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Spring over</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Slet</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>Sletning mislykkedes</value>
+  </data>
+  <data name="DeleteErrorExplanation" xml:space="preserve">
+    <value>Sletning mislykkedes ved den følgende sti: "{0}" grundet: {1}</value>
+  </data>
+</root>
