@@ -655,7 +655,7 @@ internal class Program
         return AppBuilder.Configure(() => new App(serviceProvider))
             .UsePlatformDetect()
             .LogToTrace()
-            .UseReactiveUI();
+            .UseReactiveUI(_ => { });
     }
 
     private static bool CheckLogLevelOptionIsFine(Options options)

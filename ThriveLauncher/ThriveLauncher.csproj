@@ -49,7 +49,7 @@
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.Common" Version="5.0.0" />
     <PackageReference Include="NLog.Targets.AtomicFile" Version="6.1.0" />
     <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.103" />
-    <PackageReference Include="ReactiveUI.Avalonia" Version="11.3.8" />
+    <PackageReference Include="ReactiveUI.Avalonia" Version="11.4.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LauncherBackend\LauncherBackend.csproj" />
