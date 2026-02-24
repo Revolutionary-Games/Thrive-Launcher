@@ -500,4 +500,160 @@ Launcher logs vil have mere info.</value>
   <data name="DeleteErrorExplanation" xml:space="preserve">
     <value>Sletning mislykkedes ved den følgende sti: "{0}" grundet: {1}</value>
   </data>
+  <data name="DeleteErrorDoesNotExist" xml:space="preserve">
+    <value>Sletning mislykkedes, da stien ikke findes</value>
+  </data>
+  <data name="UnknownFolder" xml:space="preserve">
+    <value>Ukendt mappe:</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptTitle" xml:space="preserve">
+    <value>Slet midlertidige filer?</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
+    <value>Du er ved at slette alle filer i den midlertidiges mappe ved "{0}". Selv ikke-Thrive filer vil blive slettet hvis de findes i mappen. Mappen i sig selv vil også blive slettet. Slet den midlertidige mappe?</value>
+  </data>
+  <data name="ClearTemporaryFilesCount" xml:space="preserve">
+    <value>Du er ved at slette {0} filer / mapper</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptTitle" xml:space="preserve">
+    <value>Slet DevBuild Cache?</value>
+  </data>
+  <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
+    <value>Du er ved at slette alle filerne i den dehydrerede cache mappe ved "{0}". Selv ikke-Thrive filer vil blive slette hvis de eksisterer i mappen. Slet mappens indhold?</value>
+  </data>
+  <data name="ClearDehydratedFilesCount" xml:space="preserve">
+    <value>Du er ved at slette {0} filer</value>
+  </data>
+  <data name="ErrorSuggestionForMissingDll" xml:space="preserve">
+    <value>Slut koden kan betyde at du mangler en påkrævet DLL file. Det kan være Visual C++ Redistributable 2019, som du kan downloade en installer for her: https://aka.ms/vs/17/release/vc_redist.x64.exe for at installere / fikse den. Du kan også prøve at køre Thrive.exe manuelt da det kan vise en fejlbesked med navnet på den manglende DLL fil. Du børe tjekke at du har alle Windows opdateringer installeret. Hvis dette ikke hjælper så kontakt os venligst for mere vejledning.</value>
+  </data>
+  <data name="ErrorSuggestionForStartupFailure" xml:space="preserve">
+    <value>Hvis spillet ikke starter korrekt, prøv venligst Thrive opstart løsningerne tilgængelige under "Thrive indstillinger" i launcher indstillingerne</value>
+  </data>
+  <data name="LauncherIsLatestVersion" xml:space="preserve">
+    <value>Denne version er opdateret</value>
+  </data>
+  <data name="OutdatedLauncherVersionComparison" xml:space="preserve">
+    <value>Du bruger Thrive Launcher version {0}, men den seneste version er {1}</value>
+  </data>
+  <data name="LauncherDownloadsPageButton" xml:space="preserve">
+    <value>Besøg downloads siden</value>
+  </data>
+  <data name="OutdatedLauncherTitle" xml:space="preserve">
+    <value>Launcher version er forældet</value>
+  </data>
+  <data name="OutdatedLauncherExplanation" xml:space="preserve">
+    <value>Denne version af launcheren er forældet og bør opdateres. Eftersom du ser denne besked er auto-opdater ikke startet, så du er nødt til manuelt at downloade o installere opdateringen. Du kan prøve at bruge den nuværende version af launcheren ved at springe opdateringen over, men du kan løbe ind i uforudsete fejl, da de kun er den seneste launcher version der er garanteret til at virke med fjernsystemerne som launcheren interagerer med.</value>
+  </data>
+  <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
+    <value>Du bruger en type a launcheren der ikke kan auto-opdateres. Hvis du i fremtiden gerne vil gøre brug af auto-opdateringer, så installer venligst en variant f launcheren der kan auto-opdatere.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
+    <value>Launcher typen du bruger burde være i stand til t auto-opdatere, men af en eller anden grunden har det ikke fungeret, og den seneste launcher version har været tilgængelig et stykke tid. Tjek venligst at du ikke har deaktiveret at holde Thrive opdateret.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateDisabledByUser" xml:space="preserve">
+    <value>Launcher typen du bruegr er i stand til at auto-opdatere, men auto-opdatering er i øjeblikket slået fra, enten i launcher indstillingerne eller med et commandline flag.</value>
+  </data>
+  <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
+    <value>Fejl: ingen opdateringsfil fundet for denne launcher type. Det burde ikke ske. Prøv venligst igen, og hvis fejlen fortsat sker, så informér os venligst om det.</value>
+  </data>
+  <data name="DevCenterConnectFailureTitle" xml:space="preserve">
+    <value>ThriveDevCenter forbindelse fejlede</value>
+  </data>
+  <data name="DevCenterConnectFailureForbidden" xml:space="preserve">
+    <value>Forbindelse til ThriveDevCenteret mislykkedes. Serveren svarede igen med en forbudt respons. Det betyder at vore forbindelsesnøgle ikke længere er gyldig. Det kan skyldes at forbindelsen er blevet afbrudt gennem web UI eller at din konto er blevet suspenderet. Se linket nedenunder for at se din kontos forbindelses status.</value>
+  </data>
+  <data name="DevCenterConnectFailureConnection" xml:space="preserve">
+    <value>Forbindelse til ThriveDevCenteret mislykkedes. Prøv venligst igen da det kan være at ThriveDevCenteret kun midlertidigt har været utilgængeligt. Du bør også tjekke din internet forbindelse. Du kan bruge linket nedenunder for at besøge DevCenteret for at se om din browser kan forbinde. Prøv venligst igen senere og hvis problemet fortsætter i mere end et par minutter, så indsend venligst en rapport.</value>
+  </data>
+  <data name="DevCenterConnectFailureUnknown" xml:space="preserve">
+    <value>Forbindelse til ThriveDevCenteret mislykkedes. Serveren svarede igen med en ukendt fejl, eller der opstod en fejl med at håndtere responsen. Prøv venligst igen senere, og hvis fejlen fortsætter, så indsend venligst en rapport. Du kan tjekke ed linket nedenunder for at se om alt ser fint ud på ThriveDevCenterets side.</value>
+  </data>
+  <data name="DisconnectDevCenter" xml:space="preserve">
+    <value>Afbryd</value>
+  </data>
+  <data name="CheckDevCenterTokensLink" xml:space="preserve">
+    <value>Tjek tokens i ThriveDevCenter</value>
+  </data>
+  <data name="RetryExistingConnection" xml:space="preserve">
+    <value>Prøv eksisterende forbindelser igen</value>
+  </data>
+  <data name="EnterDevCenterConnectionCode" xml:space="preserve">
+    <value>Indtast venligst først en ThriveDevCenter forbindelses kode i inputfeltet</value>
+  </data>
+  <data name="DevCenterConnectAttemptError" xml:space="preserve">
+    <value>Fejl ved tjek af linking kode til ThriveDevCenteret. Verificer venligst at du indtastede oden korrekt, og at den ikke er udløbet. Ekstra information: {0}</value>
+  </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>Koden er gyldig. Bekræft venligst linket til den følgende konto:</value>
+  </data>
+  <data name="NewLinkUsername" xml:space="preserve">
+    <value>Brugernavn:</value>
+  </data>
+  <data name="NewLinkEmail" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>Fejlede i at oprette linket, tjek venligst koden igen</value>
+  </data>
+  <data name="LoginToSeeThisContent" xml:space="preserve">
+    <value>Log ind til ThriveDevCenteret for at se dette indhold</value>
+  </data>
+  <data name="UnsafeBuild" xml:space="preserve">
+    <value>usikker</value>
+  </data>
+  <data name="BuildOfTheDayAbbreviation" xml:space="preserve">
+    <value>BOTD</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>beskr:</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>Kan ikke spille Thrive</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>Thriver er allerede startet, luk det venligst og prøv igen</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>Vælg venligst en Thrive version fra dropdownen ved siden af spil knappen og prøv igen</value>
+  </data>
+  <data name="PlayingTitle" xml:space="preserve">
+    <value>Spiller {0}</value>
+  </data>
+  <data name="GettingDevBuildInfoMessage" xml:space="preserve">
+    <value>Henter info omkring valgte DevBuild af typen {0} til at spille...</value>
+  </data>
+  <data name="ErrorGettingDevBuild" xml:space="preserve">
+    <value>Fejl: fandt ikke et DevBuild af den specificerede type for den nuværende platform. Vælg venligst et andet build, for eksempel det anbefalede BOTD, og prøv igen. Fejlen skyldes: {0}</value>
+  </data>
+  <data name="ThriveRunCanceled" xml:space="preserve">
+    <value>Kørende Thrive blev annulleret</value>
+  </data>
+  <data name="PlayingUnsafeBuildWasCanceled" xml:space="preserve">
+    <value>Spilning af usikkert build blev annulleret</value>
+  </data>
+  <data name="ThriveRunError" xml:space="preserve">
+    <value>Thrive fejlede i at køre grundet følgende fejl: {0}</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>Luk</value>
+  </data>
+  <data name="NoBuildToPlayFound" xml:space="preserve">
+    <value>Intet DevBuild der matcher den påkrævede type og nuværende platform blev fundet</value>
+  </data>
+  <data name="DownloadingItem" xml:space="preserve">
+    <value>Downloader {0}</value>
+  </data>
+  <data name="DownloadError" xml:space="preserve">
+    <value>Download mislykkede på grund af {0}</value>
+  </data>
+  <data name="ExtractError" xml:space="preserve">
+    <value>Fejlede i at udpakke arkivet på grund af fejl: {0}</value>
+  </data>
+  <data name="MissingThriveFolderError" xml:space="preserve">
+    <value>Thrive mappen burde eksistere her {0}, men gør det ikke</value>
+  </data>
+  <data name="MissingThriveExecutableError" xml:space="preserve">
+    <value>Ikke i stand til at finde Thrive eksekverbar i mappen {0}, venligst enten verificer spillets filer eller slet denne version og download den igen.</value>
+  </data>
 </root>
