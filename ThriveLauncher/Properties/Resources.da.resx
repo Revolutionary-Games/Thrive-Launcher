@@ -656,4 +656,143 @@ Launcher logs vil have mere info.</value>
   <data name="MissingThriveExecutableError" xml:space="preserve">
     <value>Ikke i stand til at finde Thrive eksekverbar i mappen {0}, venligst enten verificer spillets filer eller slet denne version og download den igen.</value>
   </data>
+  <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
+    <value>Version installation eller tjek af installeret version mislykkede, se nedenunder for detaljer.</value>
+  </data>
+  <data name="ThriveFolderPrepareFailed" xml:space="preserve">
+    <value>Forberedelse af Thrive mappe mislykkedes med følgende fejl: {0}</value>
+  </data>
+  <data name="DownloadProgressDisplay" xml:space="preserve">
+    <value>{0} af {1} MiB downloadet</value>
+  </data>
+  <data name="ItemProgressDisplay" xml:space="preserve">
+    <value>{0} of {1} bearbejdet</value>
+  </data>
+  <data name="UnknownNumber" xml:space="preserve">
+    <value>ukendt</value>
+  </data>
+  <data name="DownloadingStateItemProgress" xml:space="preserve">
+    <value>Downloader {0} fra {1}</value>
+  </data>
+  <data name="VerifyingStateItemProgress" xml:space="preserve">
+    <value>Verificerer integriteten af {0}</value>
+  </data>
+  <data name="ExtractingStateItemProgress" xml:space="preserve">
+    <value>Udpakker {0}. Det kan tage mange minutter for store filer, så vær venligst tålmodig.</value>
+  </data>
+  <data name="ProcessingStateItemProgress" xml:space="preserve">
+    <value>Bearbejder {0}</value>
+  </data>
+  <data name="TruncatedGameOutputWarning" xml:space="preserve">
+    <value>Outputet er for langt, det blev trunkeret. Se Thrive log filen for det fulde output.</value>
+  </data>
+  <data name="ThriveIsStarting" xml:space="preserve">
+    <value>Thrive starter. Log output(grundet buffering er dette højst sandsyneligt ikke i realtid):</value>
+  </data>
+  <data name="ReportCrashButton" xml:space="preserve">
+    <value>Indberet crash</value>
+  </data>
+  <data name="PlayUnsafeBuildTitle" xml:space="preserve">
+    <value>Spil usikkert DevBuild?</value>
+  </data>
+  <data name="AcceptUnsafeBuildButton" xml:space="preserve">
+    <value>Jeg forstår risikoen, spil alligevel</value>
+  </data>
+  <data name="FoundDevBuildToPlayInfo" xml:space="preserve">
+    <value>Fandt DevBuild til at spille: {0}, hash: {1}, er BOTD: {2}, gren: {3}</value>
+  </data>
+  <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
+    <value>Build beskrivelse:
+{0}</value>
+  </data>
+  <data name="RehydrationFailed" xml:space="preserve">
+    <value>Rehydrering mislykkede grundt en fejl: {0}</value>
+  </data>
+  <data name="RehydrationStarting" xml:space="preserve">
+    <value>Dette er et dehydreret build. Begynder rehydrering.</value>
+  </data>
+  <data name="CopyLogWindowToClipboardToolTip" xml:space="preserve">
+    <value>Kopiér spil outputtet til udklipsholderen</value>
+  </data>
+  <data name="CrashReporterWindowTitle" xml:space="preserve">
+    <value>Thrive crash indberetter</value>
+  </data>
+  <data name="ContinueReportingButton" xml:space="preserve">
+    <value>Fortsæt indberetning</value>
+  </data>
+  <data name="CancelCreatingReportTitle" xml:space="preserve">
+    <value>Annuller oprettelse af indberetning?</value>
+  </data>
+  <data name="SecondsDisplayPlural" xml:space="preserve">
+    <value>{0} sekunder</value>
+  </data>
+  <data name="SecondsDisplaySingular" xml:space="preserve">
+    <value>1 sekundt</value>
+  </data>
+  <data name="StopAutoClose" xml:space="preserve">
+    <value>Annuller lukning</value>
+  </data>
+  <data name="AutoCloseStopped" xml:space="preserve">
+    <value>auto lukning annulleret</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Kopiér til udklipsholderen</value>
+  </data>
+  <data name="TimeMomentRightNow" xml:space="preserve">
+    <value>Nu</value>
+  </data>
+  <data name="ShortTimeAgo" xml:space="preserve">
+    <value>{0} siden</value>
+  </data>
+  <data name="AtTime" xml:space="preserve">
+    <value>Ved {0}</value>
+  </data>
+  <data name="ViewFile" xml:space="preserve">
+    <value>Vis</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Åben mappe</value>
+  </data>
+  <data name="IncludeInReport" xml:space="preserve">
+    <value>Inkluder:</value>
+  </data>
+  <data name="NativeMenuPlayThrive" xml:space="preserve">
+    <value>Spil Thrive</value>
+  </data>
+  <data name="NativeMenuAbout" xml:space="preserve">
+    <value>Om Thrive launcheren</value>
+  </data>
+  <data name="NativeMenuPreferences" xml:space="preserve">
+    <value>Preferencer...</value>
+  </data>
+  <data name="ForgetLastPlayedVersion" xml:space="preserve">
+    <value>Glem sidst spillet version</value>
+  </data>
+  <data name="SubmitRetryButton" xml:space="preserve">
+    <value>Prøv igen</value>
+  </data>
+  <data name="ClearAllCrashesButton" xml:space="preserve">
+    <value>Slet ALLE crash dumps</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Indsend</value>
+  </data>
+  <data name="SubmittingReportMessage" xml:space="preserve">
+    <value>Indsender din rapport. Vær venligst tålmodig, da upload kan tage nogle minutter...</value>
+  </data>
+  <data name="CrashReportEmailFieldPlaceholder" xml:space="preserve">
+    <value>Email (valgfri)</value>
+  </data>
+  <data name="CrashReportEmailFieldNotice" xml:space="preserve">
+    <value>Din email vil kun være synlig for ThriveDevCenter administratorer.</value>
+  </data>
+  <data name="PerformingAutoUpdateTitle" xml:space="preserve">
+    <value>Opdaterer launcheren</value>
+  </data>
+  <data name="QuitLauncherButton" xml:space="preserve">
+    <value>Afslut launcheren nu</value>
+  </data>
+  <data name="ExitTheLauncher" xml:space="preserve">
+    <value>Afslut launcheren</value>
+  </data>
 </root>
