@@ -795,4 +795,114 @@ Launcher logs vil have mere info.</value>
   <data name="ExitTheLauncher" xml:space="preserve">
     <value>Afslut launcheren</value>
   </data>
+  <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
+    <value>Fejl: child processen er allerede afsluttet, launcher vinduet vil ikke blive lukket</value>
+  </data>
+  <data name="ExtraThriveStartFlags" xml:space="preserve">
+    <value>Thrive bliver startet med ekstra flag sat som kommandolinje argumenter til launcheren, disse kan få Thrive til at opføre sig på en uforudset måde: {0}</value>
+  </data>
+  <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
+    <value>Denne fane lister eksternt installerede versioner. Dette er butiksudgaven af Thrive der inkluderer en sammenpakket (seneste) spilversion. Du kan slå visning af tilgængelige eksterne versioner til i versionsvælger dropdownen i launcherindstillingerne. Så snart de er hentet ned vil de blive vist her.</value>
+  </data>
+  <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
+    <value>DevBuild typen der spilles (når det er valgt at spille en DevBuild version)</value>
+  </data>
+  <data name="PlayUnsafeBuildExplanation" xml:space="preserve">
+    <value>Normale DevBuilds bliver automatisk uploadet a en CI server med en verificeret nøgle. Disses builds kan kun blive udløst af Thrive repository medlemmer. Medmindre sådan en persons konto er kompromitteret (eller de handler ondsindet), er disse builds omtrent så sikre som officielle udgivelser. DevBuilds accepteres også fra pull requests (PR), men i det tilfælde vil de specifikt være markeret som usikre (såsom det valgte build), da pull requesten kan indholde alt muligt ubehageligt.
+
+Hvis et Thrive holdmedlem verificerer at PR'en er sikker forsvinder advarslen. Alternativt kan du fortsætte hvis du mener dette build er sikkert. Før du gør dette bør du tjekke PR'en i Github for at se om den seneste commits hash stemmer overens, og at ThriveDevCenterets build job siger den har uploadet et DevBuild med den hash. Yderligere bør det tjekkes at PR'en ikke har ændret i nogle build scripts. Efter alt det burde det være relativt sikkert at fortsætte, da dette er den samme metode som Thrive holdmedlemmer bruger til at verificere PRs.</value>
+  </data>
+  <data name="CancelCreatingReportExplanation" xml:space="preserve">
+    <value>Er du sikker på du vil annullere at oprette en crash rapport? Hvis ingen inberetninger overhovedet bliver lavet for en specifik fejl kan de ske at Thrive udviklerene ikke har kendskab til fejlen, og dermed ikke være i stand til at fikse den.</value>
+  </data>
+  <data name="ErrorSubmittingReport" xml:space="preserve">
+    <value>En fejl forekom mens der forsøgtes at indsende din crash rapport. Verificer venligst at data'en er korrekt eller prøv igen hvis problemet er en server fejl. Fejl type:</value>
+  </data>
+  <data name="SubmittingReportExtraInfo" xml:space="preserve">
+    <value>Ekstra information angående fejlen der blev stødt på:</value>
+  </data>
+  <data name="SuccessfulReportSubmitMessage" xml:space="preserve">
+    <value>Din rapport er med success blevet indberettet. Tak for din rapport.</value>
+  </data>
+  <data name="ReportViewingPublicInfo" xml:space="preserve">
+    <value>Du kan se din rapport, hvis den er offentlig, på følgende adresse:</value>
+  </data>
+  <data name="ReportDeleteInfo" xml:space="preserve">
+    <value>Hvis du vil slette din rapport, kan du gøre det her:</value>
+  </data>
+  <data name="ReportDeleteCaveat" xml:space="preserve">
+    <value>VIGTIGT hvis du mister din slet link vil du ikke være i standt til at slette din rapport. Så gem det! Du kan trykke på kopiér knappen til højre for at kopiere den.</value>
+  </data>
+  <data name="ReporterEndMessage" xml:space="preserve">
+    <value>Du kan nu sikkert lukke disse rapporter. Eller vent til vinduet automatisk lukker om</value>
+  </data>
+  <data name="ActiveReportingInfo" xml:space="preserve">
+    <value>Indberetter crash {0} af {1}</value>
+  </data>
+  <data name="CrashReportLogsSection" xml:space="preserve">
+    <value>Logs der inkluderes</value>
+  </data>
+  <data name="CrashReportLogsSectionExplanation" xml:space="preserve">
+    <value>Sørg venligst for at inkludere loggene hvis den er fra den samme gennemspilning som crashet, da loggene kan hjælpe med at identificere og fikse problemet. Du kan klikke på navnet på filen for at åbne den, eller på knappen for at se mappen den er i, for at se og redigere i den for at fjerne de personlige detaljer du ønsker. Logfiler er altid kun synlige for Thrive udviklere, og bliver ku delt med andre parter hvis det er nødvendigt fro at kunne finde eller løse det relaterede problem.</value>
+  </data>
+  <data name="CrashReportDescriptionField" xml:space="preserve">
+    <value>Beskriv hvad du gjorde da crashet skete (valgfrit)</value>
+  </data>
+  <data name="CrashReportDescriptionFieldPlaceholder" xml:space="preserve">
+    <value>Crash beskrivelse (valgfrit)</value>
+  </data>
+  <data name="CrashReportEmailField" xml:space="preserve">
+    <value>Din email, hvis du gerne vil modtage opdateringer omkring denne rapport (valgfrit)</value>
+  </data>
+  <data name="CrashReportIsPublic" xml:space="preserve">
+    <value>Offentlig? Offentlige rapporter har deres crash callstack og beskrivelse synligt for offentligheden. Private rapporter er kun synlige for Thrive udviklere.</value>
+  </data>
+  <data name="CrashReportSubmitAcceptConfirmation" xml:space="preserve">
+    <value>Jeg er enig i at informationen i den form, inklusiv alle inkluderede filer og crash dumpet, sammen med min Ip adresse, vil blive lagret i Thrive crash databasen. Og hvis denne rapport er offentlig kan hvem som helst læse crash callstakken og beskrivelsen.</value>
+  </data>
+  <data name="SelectCrashToReport" xml:space="preserve">
+    <value>Vælg en crash raport ved at klikke på dens navn</value>
+  </data>
+  <data name="NoAvailableCrashesToReport" xml:space="preserve">
+    <value>Ingen crashes der kan rapporteres blev fundet</value>
+  </data>
+  <data name="CrashReportDeleteAfterSubmitting" xml:space="preserve">
+    <value>Slet denne crash dump fil efter indberetning (anbefalet)</value>
+  </data>
+  <data name="CrashReportDeleteInfoEnabled" xml:space="preserve">
+    <value>Crash dump filen vil automatisk blive slettet når rapporten med success er blevet indsendt</value>
+  </data>
+  <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
+    <value>Det valgte crash skete for noget tid siden. Derfor relaterer den måske ikke så meget med de seneste logfiler eller spil output gemt i launcheren. Tjek venligst at du indberetter det rigtige crash og de relaterede logfiler.</value>
+  </data>
+  <data name="CrashReportIncludeLauncherOutput" xml:space="preserve">
+    <value>Inkludér spillets output, som det vises i popup-vinduet for det aktuelt kørende spil i launcheren (anbefales ved rapportering af et crash fra den seneste spilafvikling)</value>
+  </data>
+  <data name="ReportSubmitErrorTooManyRequests" xml:space="preserve">
+    <value>Indberetning af rapporten fejlede på grund af for mange nylige kald fra din IP adresse, vent venligst en time og prøv så igen</value>
+  </data>
+  <data name="ReportSubmitErrorServerError" xml:space="preserve">
+    <value>Indberetning af rapporten fejlede på grund af en server fejl, vent venligst lidt tid og prøv derefter igen. Hvis du fortsat får fejlen, så fortæl os det venligst.</value>
+  </data>
+  <data name="ReportSubmitErrorBadRequest" xml:space="preserve">
+    <value>Indberetning af rapporten fejlede på grund af dårlig information skrevet ind i crash rapport formen, dobbelttjek venligst at informationen du forsøger at indberette og prøv derefter igen</value>
+  </data>
+  <data name="ReportSubmitErrorNetworkError" xml:space="preserve">
+    <value>Indsendelse af rapporten fejlede på grund af netværks problemer, tjek venligst din internetforbindelse og prøv igen om et par minutter</value>
+  </data>
+  <data name="ReportSubmitErrorUnknown" xml:space="preserve">
+    <value>Indsendelse af rapporten fejlede på grund af en ukendt fejl, prøv venligst igen senere</value>
+  </data>
+  <data name="LauncherOptionShowExternalVersions" xml:space="preserve">
+    <value>Vis eksterne Thrive versioner der kræver separate downloads for at kunne spille</value>
+  </data>
+  <data name="StartedAutoUpdateExplanation" xml:space="preserve">
+    <value>Launcheren downloader og installerer en opdatering lige nu , vent venligst. Download updateren kan åbne et nyt vindue der kræver brugerinteraktion for at kunne fuldføre opdateringen.</value>
+  </data>
+  <data name="LauncherVersionUpdateDescription" xml:space="preserve">
+    <value>Opdaterer launcheren til version {0} (nuværende version: {1})</value>
+  </data>
+  <data name="AutoUpdateError" xml:space="preserve">
+    <value>Auto-opdatering fejl</value>
+  </data>
 </root>
