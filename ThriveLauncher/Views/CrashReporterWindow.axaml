@@ -10,6 +10,7 @@
         MinHeight="400"
         MinWidth="600"
         x:Class="ThriveLauncher.Views.CrashReporterWindow"
+        x:DataType="vm:CrashReporterWindowViewModel"
         Icon="/Assets/Icons/icon.ico"
         Title="{i18n:Localize CrashReporterWindowTitle}"
         FontFamily="{StaticResource Lato}"
@@ -153,7 +154,7 @@
                                  MaxLength="5000"
                                  Text="{Binding UserEnteredReportDescription}"
                                  AcceptsReturn="True" MinHeight="100"
-                                 Watermark="{i18n:Localize CrashReportDescriptionFieldPlaceholder}" />
+                                 PlaceholderText="{i18n:Localize CrashReportDescriptionFieldPlaceholder}" />
 
                         <TextBlock Grid.Row="11" TextWrapping="Wrap"
                                    Text="{i18n:Localize CrashReportEmailField}" Margin="0 15 0 3" />
@@ -162,7 +163,7 @@
                                  MaxLength="250"
                                  Text="{Binding ReporterEmail}"
                                  AcceptsReturn="False"
-                                 Watermark="{i18n:Localize CrashReportEmailFieldPlaceholder}" />
+                                 PlaceholderText="{i18n:Localize CrashReportEmailFieldPlaceholder}" />
 
                         <TextBlock Grid.Row="13" TextWrapping="Wrap" FontSize="12"
                                    Text="{i18n:Localize CrashReportEmailFieldNotice}" Margin="0 5 0 5" />

@@ -6,6 +6,7 @@ using System.IO;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Data;
+using Avalonia.Input.Platform;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
@@ -67,7 +68,7 @@ public partial class CrashReporterWindow : Window
         dataContext.WhenAnyValue(d => d.AvailableLogFilesToAttach).Subscribe(OnAvailableLogFilesToIncludeChanged);
         dataContext.WhenAnyValue(d => d.SelectedLogFilesToAttach).Subscribe(OnSelectedLogFilesChanged);
 
-        // Unlike the main view we kick things off in this window like this
+        // Unlike the main view, we kick things off in this window like this
         dataContext.DetectAvailableCrashes();
     }
 

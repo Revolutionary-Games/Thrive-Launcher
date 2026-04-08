@@ -9,6 +9,7 @@
         Width="950" Height="600"
         MinWidth="900" MinHeight="550"
         x:Class="ThriveLauncher.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/Icons/icon.ico"
         Title="{i18n:Localize MainWindowTitle}"
         FontFamily="{StaticResource Lato}"
@@ -553,7 +554,7 @@
                                     IsVisible="{Binding CanRetryDevCenterConnection}"
                                     Content="{i18n:Localize RetryExistingConnection}" Margin="0 15" />
 
-                            <TextBox Watermark="{i18n:Localize ConnectionKeyPlaceholder}"
+                            <TextBox PlaceholderText="{i18n:Localize ConnectionKeyPlaceholder}"
                                      Text="{Binding DevCenterConnectCode}"
                                      IsEnabled="{Binding !CanFormDevCenterConnection}" />
 
@@ -616,7 +617,7 @@
 
                                 <TextBox Grid.Column="1" Grid.Row="1"
                                          Text="{Binding ManuallyEnteredHashInput}"
-                                         Watermark="{i18n:Localize EnterBuildHashPlaceholder}">
+                                         PlaceholderText="{i18n:Localize EnterBuildHashPlaceholder}">
                                     <Control.KeyBindings>
                                         <KeyBinding Gesture="Enter" Command="{Binding EnterManuallyEnteredHash}" />
                                     </Control.KeyBindings>
