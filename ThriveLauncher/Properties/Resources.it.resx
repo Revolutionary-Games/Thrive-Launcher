@@ -569,4 +569,10 @@ I log del launcher contengono ulteriori informazioni.</value>
   <data name="ClearDehydratedFilesPromptExplanation" xml:space="preserve">
     <value>Stai per eliminare tutti i file contenuti nella cartella della cache disidratata in "{0}". Anche i file non Thrive, se presenti in quella cartella, verranno eliminati. Eliminare il contenuto della cartella?</value>
   </data>
+  <data name="OutdatedLauncherExplanation" xml:space="preserve">
+    <value>Questa versione del launcher è obsoleta e deve essere aggiornata. Questo messaggio implica che l'aggiornamento automatico non è incominciato, perciò è necessario scaricare manualmente l'aggiornamento ed installarlo. Puoi provare ad usare l'attuale versione del launcher ignorando l'aggiornamento, ma potresti incorrere in problemi inaspettati in quanto il corretto funzionamento del launcher è garantito solo per la versione più recente.</value>
+  </data>
+  <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
+    <value>Stai utilizzando un tipo di launcher che non può auto-aggiornarsi. Se preferisci avere aggiornamenti automatici in futuro, installa una variante del launcher che ha capacità di auto-aggiornamento.</value>
+  </data>
 </root>
