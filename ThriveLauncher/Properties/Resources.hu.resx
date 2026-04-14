@@ -683,4 +683,46 @@ A naplófájl további információt tartalmaz.</value>
   <data name="LauncherDownloadsPageButton" xml:space="preserve">
     <value>Letöltések oldalának megnyitása</value>
   </data>
+  <data name="ConfirmValidLink" xml:space="preserve">
+    <value>Érvényes kód. Kérjük erősítsd meg a következő fiókhoz való kapcsolódást:</value>
+  </data>
+  <data name="LinkFormingFailedError" xml:space="preserve">
+    <value>Nem sikerült létrehozni a kapcsolatot. Kérjük ellenőrizze a kódot újra</value>
+  </data>
+  <data name="LoginToSeeThisContent" xml:space="preserve">
+    <value>Lépjen be a ThriveDevCenter-be hogy lássa ezt a tartalmat</value>
+  </data>
+  <data name="BuildDescriptionLabelShort" xml:space="preserve">
+    <value>leírás:</value>
+  </data>
+  <data name="CannotPlayThriveTitle" xml:space="preserve">
+    <value>Nem lehet elindítani a Thrive-ot</value>
+  </data>
+  <data name="ThriveCurrentlyRunning" xml:space="preserve">
+    <value>A Thrive már el lett indítva, kérjük zárja be és aztán próbálja újra</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>Kérjük válasszon egy Thrive verziót az indítás gomb melletti legördülő menüből és próbálja újra</value>
+  </data>
+  <data name="PlayingTitle" xml:space="preserve">
+    <value>{0} játékban</value>
+  </data>
+  <data name="NoBuildToPlayFound" xml:space="preserve">
+    <value>Nem található DevBuild a kiválasztott típussal a jelenlegi rendszerhez</value>
+  </data>
+  <data name="MissingThriveExecutableError" xml:space="preserve">
+    <value>A Thrive program nem található a {0} mappában. Kérjük ellenőrizze a játékfájlok épségét, vagy törölje, majd töltse le újra a verziót.</value>
+  </data>
+  <data name="VersionInstallationOrCheckFailed" xml:space="preserve">
+    <value>A verzió telepítése vagy a telepített verzió ellenőrzése nem sikerült. A részletek alább találhatók.</value>
+  </data>
+  <data name="ThriveFolderPrepareFailed" xml:space="preserve">
+    <value>A Thrive mappa előkészítése közben hiba történt: {0}</value>
+  </data>
+  <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
+    <value>Hiba: A gyermekfolyamat már befejeződött. A launcher ablak nem lesz bezárva</value>
+  </data>
+  <data name="ThriveIsStarting" xml:space="preserve">
+    <value>A Thrive indul. Napló kimenet (pufferelés miatt valószínűleg nem valós idejű):</value>
+  </data>
 </root>
