@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -58,4 +58,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SkipAction" xml:space="preserve">
+    <value>לדלג</value>
+  </data>
+  <data name="LinksButton" xml:space="preserve">
+    <value>קישורים</value>
+  </data>
+  <data name="PlayButton" xml:space="preserve">
+    <value>לשחק</value>
+  </data>
+  <data name="DevCenterCheckingConnection" xml:space="preserve">
+    <value>מתחבר לThriveDevCenter...</value>
+  </data>
+  <data name="ConnectToDevCenterPrompt" xml:space="preserve">
+    <value>להתחבר לThriveDevCenter</value>
+  </data>
+  <data name="ConnectedDeveloperGreeting" xml:space="preserve">
+    <value>אהלן,</value>
+  </data>
+  <data name="ConnectedSupporterGreeting" xml:space="preserve">
+    <value>תודה,</value>
+  </data>
+  <data name="NewsFeedTitle" xml:space="preserve">
+    <value>חדשות</value>
+  </data>
+  <data name="ExternalLinkMainWebsite" xml:space="preserve">
+    <value>אתר ראשי</value>
+  </data>
+  <data name="ExternalLinkDonate" xml:space="preserve">
+    <value>לתרום</value>
+  </data>
+  <data name="ExternalLinkDiscordServer" xml:space="preserve">
+    <value>דיסקורד סרבר</value>
+  </data>
+  <data name="ExternalLinkSubreddit" xml:space="preserve">
+    <value>סאברדיט</value>
+  </data>
+  <data name="ExternalLinkYouTubeChannel" xml:space="preserve">
+    <value>ערוץ יוטיוב</value>
+  </data>
+  <data name="ExternalLinkInstagram" xml:space="preserve">
+    <value>אינסטגרם</value>
+  </data>
+  <data name="ResetAllSettings" xml:space="preserve">
+    <value>איפוס כל ההגדרות</value>
+  </data>
+  <data name="SelectInstallLocation" xml:space="preserve">
+    <value>בחירת מיקום להתקנה</value>
+  </data>
+  <data name="ResetInstallLocationToolTip" xml:space="preserve">
+    <value>איפוס מיקום להתקנה</value>
+  </data>
 </root>
