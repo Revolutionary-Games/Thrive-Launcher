@@ -1629,6 +1629,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string CrashReportExtremelyOldCrash {
+            get {
+                return ResourceManager.GetString("CrashReportExtremelyOldCrash", resourceCulture);
+            }
+        }
+        
         public static string CrashReportIncludeLauncherOutput {
             get {
                 return ResourceManager.GetString("CrashReportIncludeLauncherOutput", resourceCulture);
@@ -1662,6 +1668,12 @@ namespace ThriveLauncher.Properties {
         public static string ReportSubmitErrorUnknown {
             get {
                 return ResourceManager.GetString("ReportSubmitErrorUnknown", resourceCulture);
+            }
+        }
+        
+        public static string ReportsNotBeingAccepted {
+            get {
+                return ResourceManager.GetString("ReportsNotBeingAccepted", resourceCulture);
             }
         }
         

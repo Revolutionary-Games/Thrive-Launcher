@@ -186,6 +186,8 @@ public static class LauncherConstants
 
     public static readonly TimeSpan OldCrashReportWarningThreshold = TimeSpan.FromDays(1);
 
+    public static readonly TimeSpan VeryOldCrashReportWarning = TimeSpan.FromDays(60);
+
     public static readonly TimeSpan RecentThriveCrash = TimeSpan.FromHours(4);
 
     public static readonly TimeSpan CrashShortTimeDisplayCutoff = TimeSpan.FromHours(12);

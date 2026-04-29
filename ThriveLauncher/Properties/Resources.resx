@@ -857,6 +857,9 @@ If a Thrive team member verifies that the PR is safe this warning goes away. Alt
   <data name="CrashReportWarningAboutOldFile" xml:space="preserve">
     <value>The selected crash happened a while ago. As such it may not be related to the latest log files or the game output stored by the launcher. Please check carefully if you are reporting the right crash and related log files.</value>
   </data>
+  <data name="CrashReportExtremelyOldCrash" xml:space="preserve">
+    <value>The selected crash IS VERY OLD! It is {0} days old. As such it is likely not useful, and might be rejected. So please do not report this crash unless you are very sure the log files match this crash and that it is still a relevant Thrive version.</value>
+  </data>
   <data name="CrashReportIncludeLauncherOutput" xml:space="preserve">
     <value>Include the game output as shown in the launcher currently played game popup (recommended when reporting a crash from the latest run of the game)</value>
   </data>
@@ -874,6 +877,9 @@ If a Thrive team member verifies that the PR is safe this warning goes away. Alt
   </data>
   <data name="ReportSubmitErrorUnknown" xml:space="preserve">
     <value>Submitting the report failed due to an unknown error, please try again later</value>
+  </data>
+  <data name="ReportsNotBeingAccepted" xml:space="preserve">
+    <value>As latest Thrive versions are currently unable to generate crash dumps, any crash dumps are not useful and as such we have disabled receiving them. So submitting any crash report will fail!</value>
   </data>
   <data name="LauncherOptionShowExternalVersions" xml:space="preserve">
     <value>Show external Thrive versions that require separate downloads to play</value>

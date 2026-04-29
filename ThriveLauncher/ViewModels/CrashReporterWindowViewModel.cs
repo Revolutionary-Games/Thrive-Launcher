@@ -189,13 +189,15 @@ public class CrashReporterWindowViewModel : ViewModelBase
             this.RaisePropertyChanged(nameof(CanDeleteCurrentCrashDump));
             this.RaisePropertyChanged(nameof(ReportingCrashInfoString));
             this.RaisePropertyChanged(nameof(CrashReportIsOld));
+            this.RaisePropertyChanged(nameof(CrashReportIsVeryOld));
+            this.RaisePropertyChanged(nameof(CrashReportOldText));
             this.RaisePropertyChanged(nameof(CrashReportIsForException));
         }
     }
 
     public string? SelectedCrashName => SelectedCrashToReport?.Name;
 
-    // To avoid user error this is now always disabled
+    // To avoid user error, this is now always disabled
     // See: https://github.com/Revolutionary-Games/Thrive-Launcher/issues/269
     public bool ShowCrashDumpDeleteAfterReportCheckBox => false;
 
@@ -207,11 +209,44 @@ public class CrashReporterWindowViewModel : ViewModelBase
     {
         get
         {
-            if (SelectedCrashToReport == null)
+            if (SelectedCrashToReport == null || CrashReportIsVeryOld)
                 return false;
 
             return DateTime.UtcNow - SelectedCrashToReport.CrashTime >
                 LauncherConstants.OldCrashReportWarningThreshold;
+        }
+    }
+
+    public bool CrashReportIsVeryOld
+    {
+        get
+        {
+            if (SelectedCrashToReport == null)
+                return false;
+
+            return DateTime.UtcNow - SelectedCrashToReport.CrashTime >
+                LauncherConstants.VeryOldCrashReportWarning;
+        }
+    }
+
+    public string CrashReportOldText
+    {
+        get
+        {
+            if (SelectedCrashToReport == null)
+                return string.Empty;
+
+            var days = Math.Floor((DateTime.UtcNow - SelectedCrashToReport.CrashTime).TotalDays);
+
+            try
+            {
+                return string.Format(Resources.CrashReportExtremelyOldCrash, (int)days);
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e, "Bad localization string for old report");
+                return "FAILED TO LOCALIZE TEXT";
+            }
         }
     }
 
