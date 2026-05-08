@@ -720,9 +720,24 @@ A naplófájl további információt tartalmaz.</value>
     <value>A Thrive mappa előkészítése közben hiba történt: {0}</value>
   </data>
   <data name="ThriveLaunchFailurePreventedAutoClose" xml:space="preserve">
-    <value>Hiba: A gyermekfolyamat már befejeződött. A launcher ablak nem lesz bezárva</value>
+    <value>Hiba: Az alárendelt folyamat már befejeződött. A launcher ablak nem lesz bezárva</value>
   </data>
   <data name="ThriveIsStarting" xml:space="preserve">
     <value>A Thrive indul. Napló kimenet (pufferelés miatt valószínűleg nem valós idejű):</value>
+  </data>
+  <data name="OutdatedLauncherExplanation" xml:space="preserve">
+    <value>A launcher ezen verziója elavult és frissítésre szorul. Az automatikus frissítés nem indult el, így manuálisan kell letölteni és telepíteni a frissítést. A launcher jelen verziója is használható a frissítés kihagyásával, de ez váratlan problémákat okozhat, mivel a launcher online funkcióinak működése csak a legújabb verzióval garantált.</value>
+  </data>
+  <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
+    <value>A launcher egy automatikus frissítésre képtelen verzióját használod. Ha szeretnéd ezt a funkciót használni a jövőben, kérjük telepítsd a launcher egy erre képes verzióját.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateHasBeenAvailable" xml:space="preserve">
+    <value>Az általad használt launcher verzió képes az automatikus frissítésre, de ismeretlen okok miatt erre nem volt képes, és egy újabb verzió régebb óta elérhető. Kérjük ellenőrizd, hogy nincs kikapcsolva a Thrive automatikus frissítése.</value>
+  </data>
+  <data name="OutdatedLauncherUpdateDisabledByUser" xml:space="preserve">
+    <value>Az általad használt launcher verzió képes az automatikus frissítésre, viszont ez egy beállítással vagy a parancssoron keresztül ki van kapcsolva.</value>
+  </data>
+  <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
+    <value>Hiba: nem található frissítő fájl ehhez a launcher típushoz. Ennek nem kéne megtörténnie. Kérjük próbáld újra később, és ha a probléma továbbra is fennáll, kérjük tájékoztass minket.</value>
   </data>
 </root>

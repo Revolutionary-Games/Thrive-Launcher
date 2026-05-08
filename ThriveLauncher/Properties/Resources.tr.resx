@@ -985,4 +985,10 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı k
   <data name="NativeMenuPlayThrive" xml:space="preserve">
     <value>Thrive'ı Oyna</value>
   </data>
+  <data name="CrashReportExtremelyOldCrash" xml:space="preserve">
+    <value>Seçilen çökme ÇOK ESKİ! Bu çökme, {0} gün öncesine ait. O bakımdan, bu çökme yararlı olmayabilir ve reddedilebilir. Bu yüzden, günlük dosyalarının bu çökme ile eşleştiğinden ve bu çökmenin hala uygun bir Thrive sürümü olduğundan çok emin olmadıkça, lütfen bu çökmeyi bildirmeyin.</value>
+  </data>
+  <data name="ReportsNotBeingAccepted" xml:space="preserve">
+    <value>En son Thrive sürümleri şu anda çökme dökümü oluşturamadığından, hiçbir çökme raporu yararlı değil. Bu bakımdan, biz bu dökümleri almayı devre dışı bıraktık. O yüzden, herhangi bir çökme raporunu göndermek başarısızlıkla sonuçlanacak!</value>
+  </data>
 </root>

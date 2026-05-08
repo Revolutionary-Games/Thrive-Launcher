@@ -985,4 +985,7 @@ Si aucun fichier n'est listé en dessous, le téléchargement de la mise à jour
   <data name="NativeMenuPreferences" xml:space="preserve">
     <value>Préférences...</value>
   </data>
+  <data name="CrashReportExtremelyOldCrash" xml:space="preserve">
+    <value>Le plantage selectionné EST TRÈS VIEUX ! Il s'est passé il y a {0} jours. Á cause de çela c'est probable qu'il n'est plus utile, et il peut être rejeté. Alors s'il vous plaît, ne lui signale pas sauf si vous êtes sûr que les fichiers journaux sont celles de ce plantage et que c'est encore une version de Thrive pertinente.</value>
+  </data>
 </root>
