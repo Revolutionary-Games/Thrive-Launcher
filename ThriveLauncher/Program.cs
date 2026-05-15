@@ -778,12 +778,18 @@ internal class Program
 
             return MemoryMappedFile.CreateNew(LauncherConstants.LauncherGlobalMemoryMapName, 256);
         }
+
+        // TODO: detect between permission error and the file already existing?
+        /*catch (IOException e)
+        {
+
+        }*/
         catch (Exception e)
         {
             GlobalMemoryFailed = true;
 
             logger.LogWarning(e, "Could not open global memory mapped file to mark ourselves as running. " +
-                "This may indicate the OS is blocking us.");
+                "This may indicate the launcher is already open");
 
             return null;
         }
