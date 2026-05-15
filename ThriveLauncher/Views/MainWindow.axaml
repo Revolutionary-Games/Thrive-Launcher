@@ -265,11 +265,11 @@
                                     <ComboBoxItem Content="400 ms" />
                                     <ComboBoxItem Content="500 ms" />
                                 </ComboBox>
-                            </StackPanel>
 
-                            <TextBlock Text="{i18n:Localize GlobalMemoryFailedWarning}"
-                                       IsVisible="{Binding GlobalMemoryFailed}"
-                                       Foreground="Red" TextWrapping="Wrap" Margin="0 8" />
+                                <TextBlock Text="{i18n:Localize GlobalMemoryFailedWarning}"
+                                           IsVisible="{Binding GlobalMemoryFailed}"
+                                           Foreground="Red" TextWrapping="Wrap" Margin="0 8" />
+                            </StackPanel>
 
                             <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
                                 <Button Classes="DialogButton Danger" Content="{i18n:Localize ExitTheLauncher}"
