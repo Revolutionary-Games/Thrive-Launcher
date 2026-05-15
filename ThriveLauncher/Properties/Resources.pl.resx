@@ -985,4 +985,10 @@ Jeśli poniżej nie ma żadnych plików, pobieranie aktualizacji nie powiodło s
   <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
     <value>Preferuj narzędzia zainstalowane w systemie zamiast załączonych w pakiecie (może powodować problemy jeśli narzędzia z systemu są stare)</value>
   </data>
+  <data name="CrashReportExtremelyOldCrash" xml:space="preserve">
+    <value>Wybrany crash JEST BARDZO STARY! Ma {0} dni. W związku z tym raczej nie jest przydatny i może zostać odrzucony. Więc proszę nie zgłaszaj tego crasha chyba, że jesteś pewien, że pliki logu pasują do tego crasha i, że jest to w miarę nowa wersja Thrive.</value>
+  </data>
+  <data name="ReportsNotBeingAccepted" xml:space="preserve">
+    <value>Ponieważ nowsze wersje Thrive obecnie nie są w stanie generować wyrzutów crashy, wszystkie wyrzuty crashy nie są przydatne, dlatego wyłączyliśmy otrzymywanie ich. Więc zgłaszanie każdych raportów crashy się nie powiedzie!</value>
+  </data>
 </root>
