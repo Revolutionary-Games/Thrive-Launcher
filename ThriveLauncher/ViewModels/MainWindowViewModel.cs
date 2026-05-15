@@ -232,6 +232,8 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
         private set => this.RaiseAndSetIfChanged(ref launcherInfoLoadError, value);
     }
 
+    public bool GlobalMemoryFailed => Program.GlobalMemoryFailed;
+
     public LauncherThriveInformation? ThriveVersionInformation
     {
         get => thriveVersionInformation;

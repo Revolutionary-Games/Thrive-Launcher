@@ -1886,5 +1886,11 @@ namespace ThriveLauncher.Properties {
                 return ResourceManager.GetString("NativeMenuPreferences", resourceCulture);
             }
         }
+        
+        public static string GlobalMemoryFailedWarning {
+            get {
+                return ResourceManager.GetString("GlobalMemoryFailedWarning", resourceCulture);
+            }
+        }
     }
 }

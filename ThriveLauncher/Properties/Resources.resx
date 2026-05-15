@@ -994,4 +994,7 @@ If no files are listed below, downloading the update has failed and it cannot be
   <data name="NativeMenuPreferences" xml:space="preserve">
     <value>Preferences...</value>
   </data>
+  <data name="GlobalMemoryFailedWarning" xml:space="preserve">
+      <value>Global memory allocation failed. This may prevent some features from working correctly and can happen if your antivirus or OS configuration is blocking the launcher.</value>
+  </data>
 </root>

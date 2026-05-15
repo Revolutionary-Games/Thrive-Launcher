@@ -39,6 +39,8 @@ internal class Program
 
     private static bool launcherQuitRequested;
 
+    public static bool GlobalMemoryFailed { get; private set; }
+
     // Initialisation code. Don't use any Avalonia, third-party APIs or any
     // SynchronizationContext-reliant code before AppMain is called: things aren't initialised
     // yet, and stuff might break.
@@ -770,7 +772,7 @@ internal class Program
     {
         try
         {
-            // This is only currently done (and needed on windows)
+            // This is only currently done (and needed on Windows)
             if (!OperatingSystem.IsWindows())
                 return null;
 
@@ -778,8 +780,11 @@ internal class Program
         }
         catch (Exception e)
         {
-            logger.LogError(e, "Could not open global memory mapped file to mark ourselves as running. " +
-                "This may indicate the launcher is already open");
+            GlobalMemoryFailed = true;
+
+            logger.LogWarning(e, "Could not open global memory mapped file to mark ourselves as running. " +
+                "This may indicate the OS is blocking us.");
+
             return null;
         }
     }
