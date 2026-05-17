@@ -991,4 +991,7 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı k
   <data name="ReportsNotBeingAccepted" xml:space="preserve">
     <value>En son Thrive sürümleri şu anda çökme dökümü oluşturamadığından, hiçbir çökme raporu yararlı değil. Bu bakımdan, biz bu dökümleri almayı devre dışı bıraktık. O yüzden, herhangi bir çökme raporunu göndermek başarısızlıkla sonuçlanacak!</value>
   </data>
+  <data name="GlobalMemoryFailedWarning" xml:space="preserve">
+    <value>Birden fazla başlatıcı örneği açık olabilir. Genel bellek ataması başarısız.</value>
+  </data>
 </root>
