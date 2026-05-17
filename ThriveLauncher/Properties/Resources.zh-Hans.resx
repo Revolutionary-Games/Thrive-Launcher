@@ -991,4 +991,7 @@
   <data name="ReportsNotBeingAccepted" xml:space="preserve">
     <value>由于当前版本的 Thrive 无法生成崩溃转储文件（crash dumps），任何此类文件均无参考价值。因此，我们已关闭了接收功能。提交任何崩溃报告都将失败！</value>
   </data>
+  <data name="GlobalMemoryFailedWarning" xml:space="preserve">
+    <value>可能有多个启动器实例正在运行。全局内存分配失败。</value>
+  </data>
 </root>
