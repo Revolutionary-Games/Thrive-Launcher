@@ -991,4 +991,7 @@ Jeśli poniżej nie ma żadnych plików, pobieranie aktualizacji nie powiodło s
   <data name="ReportsNotBeingAccepted" xml:space="preserve">
     <value>Ponieważ nowsze wersje Thrive obecnie nie są w stanie generować wyrzutów crashy, wszystkie wyrzuty crashy nie są przydatne, dlatego wyłączyliśmy otrzymywanie ich. Więc zgłaszanie każdych raportów crashy się nie powiedzie!</value>
   </data>
+  <data name="GlobalMemoryFailedWarning" xml:space="preserve">
+    <value>Może być wiele otwartych instancji launchera. Alokacja globalnej pamięci się nie powiodła.</value>
+  </data>
 </root>
