@@ -985,4 +985,13 @@
   <data name="NativeMenuPreferences" xml:space="preserve">
     <value>მორგება...</value>
   </data>
+  <data name="CrashReportExtremelyOldCrash" xml:space="preserve">
+    <value>არჩეული ავარია ძალიან ძველია! ის {0} დღისაა. ამიტომ, ის გამოუსადეგარია და შეიძლება, უარყოფილი იყოს. ამიტომ, გთხოვთ, ნუ მოგვწერთ ამ ავარიის შესახებ იმ შემთხვევის გარდა, როცა დარწმუნებული ბრძანდებით, რომ ჟურნალის ფაილები ემთხვევა ამ ავარიას და ის Thrive-ის ამ ვერსიაშიც არსებობს.</value>
+  </data>
+  <data name="ReportsNotBeingAccepted" xml:space="preserve">
+    <value>Thrive-ის უკანასკნელ ვერსიებს არ შეუძლიათ ავარიის დამპების გენერაცია. ავარიის დამპები სასარგებლო არაა და ამის გამო მათი მიღება შევწყვიტეთ. ასე რომ, ავარიის შესახებ ანგარიშის გამოგზავნა შეცდომით დასრულდება!</value>
+  </data>
+  <data name="GlobalMemoryFailedWarning" xml:space="preserve">
+    <value>გაშვებულია გამშვების ერთზე მეტი ასლი. გლობალური მეხსიერების გამოყოფა ჩავარდა.</value>
+  </data>
 </root>
