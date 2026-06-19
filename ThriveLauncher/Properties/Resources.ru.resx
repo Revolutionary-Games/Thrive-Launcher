@@ -985,4 +985,7 @@
   <data name="NativeMenuPreferences" xml:space="preserve">
     <value>Персональные настройки...</value>
   </data>
+  <data name="CrashReportExtremelyOldCrash" xml:space="preserve">
+    <value>Выбранный краш ОЧЕНЬ ДРЕВНИЙ! Ему {0} дней. Из-за того, что он бесполезен, его можно пропустить. Не создавайте отчет по этому крашу, пока не будете уверены, что в логах именно этот краш, и версия Thrive актуальна.</value>
+  </data>
 </root>
