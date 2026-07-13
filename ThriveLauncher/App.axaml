@@ -38,6 +38,7 @@
         <Color x:Key="DangerHover">#d46a6a</Color>
         <Color x:Key="DangerActive">#651212</Color>
         <Color x:Key="ModalBackground">#fefefe</Color>
+        <Color x:Key="DevBuildModalBackground">#e1f5fe</Color>
         <Color x:Key="ModalBorder">#888</Color>
         <Color x:Key="TextLink">#6acdeb</Color>
         <Color x:Key="TextLinkHover">#56a7bf</Color>
@@ -45,6 +46,34 @@
         <Color x:Key="MenuBackgroundEnd">#aa444444</Color>
         <Color x:Key="MainWindowBackgroundColour">#404040</Color>
         <SolidColorBrush x:Key="MainWindowBackground" Color="{DynamicResource MainWindowBackgroundColour}" />
+        <SolidColorBrush x:Key="DevBuildModalBackgroundOnlyBrush" Color="{DynamicResource DevBuildModalBackground}" />
+        <Pen x:Key="DevBuildModalBackgroundOnlyPen" Thickness="10"
+             Brush="{StaticResource DevBuildModalBackgroundOnlyBrush}" LineCap="Square" />
+
+        <DrawingBrush x:Key="DevBuildModalBackgroundBrush" Stretch="UniformToFill" TileMode="Tile" Opacity="1"
+                      DestinationRect="0,0,40,40">
+            <DrawingBrush.Transform>
+                <RotateTransform Angle="45" />
+            </DrawingBrush.Transform>
+            <DrawingBrush.Drawing>
+                <DrawingGroup>
+                    <GeometryDrawing Brush="White">
+                        <GeometryDrawing.Geometry>
+                            <RectangleGeometry Rect="0,0,40,40" />
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+
+                    <GeometryDrawing Pen="{StaticResource DevBuildModalBackgroundOnlyPen}">
+                        <GeometryDrawing.Geometry>
+
+                            <LineGeometry StartPoint="20,-8" EndPoint="20,48" />
+
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingBrush.Drawing>
+        </DrawingBrush>
+
         <SolidColorBrush x:Key="BackgroundDarkener" Color="Black" Opacity="0.75" />
         <SolidColorBrush x:Key="GameErrorOutput" Color="{StaticResource GameErrorOutputColour}" />
         <LinearGradientBrush x:Key="FeedBackground" StartPoint="0%,0%" EndPoint="100%,100%">

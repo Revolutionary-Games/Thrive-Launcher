@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Avalonia;
+using Avalonia.Media;
 using Avalonia.Threading;
 using DevCenterCommunication.Models;
 using DynamicData;
@@ -26,6 +28,7 @@ public partial class MainWindowViewModel
 {
     private readonly List<IDisposable> runnerObservers = new();
 
+    private bool isPlayingDevBuild;
     private bool currentlyPlaying;
     private bool canCancelPlaying;
     private bool showCloseButtonOnPlayPopup;
@@ -52,6 +55,21 @@ public partial class MainWindowViewModel
 
     public bool CanPressPlayButton =>
         !CurrentlyPlaying && !string.IsNullOrEmpty(SelectedVersionToPlay) && !thriveIsRunning;
+
+    public bool IsPlayingDevBuild
+    {
+        get => isPlayingDevBuild;
+        private set
+        {
+            this.RaiseAndSetIfChanged(ref isPlayingDevBuild, value);
+            this.RaisePropertyChanged(nameof(PlayPopupBackground));
+        }
+    }
+
+    public IBrush PlayPopupBackground =>
+        IsPlayingDevBuild ?
+            (IBrush?)Application.Current?.Resources["DevBuildModalBackgroundBrush"] ?? Brushes.LightBlue :
+            Brushes.White;
 
     public bool CurrentlyPlaying
     {
@@ -212,6 +230,7 @@ public partial class MainWindowViewModel
         PlayPopupTopMessage = string.Empty;
         PlayPopupBottomMessage = string.Empty;
         CurrentlyPlaying = true;
+        IsPlayingDevBuild = version.IsDevBuild;
         ShowCloseButtonOnPlayPopup = false;
 
         lock (PlayMessages)
@@ -254,6 +273,7 @@ public partial class MainWindowViewModel
 
         logger.LogInformation("Closing play popup due to cancellation");
         CurrentlyPlaying = false;
+        IsPlayingDevBuild = false;
         CanCancelPlaying = false;
 
         // Make sure that the playing info popup doesn't open again if activatable lifetime re-creates the main
@@ -798,6 +818,7 @@ public partial class MainWindowViewModel
             logger.LogInformation("Restoring state from backend for Thrive runner");
 
             CurrentlyPlaying = true;
+            IsPlayingDevBuild = thriveRunner.PlayedThriveVersion?.IsDevBuild ?? false;
 
             // Restore the playing title to not leave it awkwardly blank
             if (thriveRunner.PlayedThriveVersion == null)
