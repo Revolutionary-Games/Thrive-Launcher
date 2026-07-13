@@ -158,8 +158,8 @@ public partial class MainWindowViewModel
             Languages.SetLanguage(availableLanguages[SelectedLauncherLanguage]);
             this.RaisePropertyChanged();
 
-            // Language affects the names in the version selector
-            NotifyChangesToAvailableVersions();
+            // Language affects a bunch of things in the view model
+            ReloadLocalizedStrings();
         }
     }
 
@@ -462,7 +462,7 @@ public partial class MainWindowViewModel
         get => SelectedDevBuildType == DevBuildType.BuildOfTheDay;
         set
         {
-            if (value == false)
+            if (!value)
             {
                 // We can't really unset this here, so we do nothing...
                 return;
@@ -477,7 +477,7 @@ public partial class MainWindowViewModel
         get => SelectedDevBuildType == DevBuildType.Latest;
         set
         {
-            if (value == false)
+            if (!value)
                 return;
 
             SelectedDevBuildType = DevBuildType.Latest;
@@ -489,7 +489,7 @@ public partial class MainWindowViewModel
         get => SelectedDevBuildType == DevBuildType.ManuallySelected;
         set
         {
-            if (value == false)
+            if (!value)
                 return;
 
             SelectedDevBuildType = DevBuildType.ManuallySelected;

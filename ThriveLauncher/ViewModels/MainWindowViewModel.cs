@@ -638,6 +638,12 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
         SetRememberedVersionToVersionSelector();
     }
 
+    private void ReloadLocalizedStrings()
+    {
+        NotifyChangesToAvailableVersions();
+        this.RaisePropertyChanged(nameof(InstalledFolders));
+    }
+
     private async Task<List<ParsedLauncherFeedItem>> FetchFeed(string name, Uri uri, bool mainSite)
     {
         NotifyFeedLoadingState(mainSite, true);

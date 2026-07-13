@@ -268,6 +268,12 @@ public partial class MainWindow : Window
         var selected = languageItems.First(i => selectedLanguage == (string?)i.Content);
 
         LanguageComboBox.SelectedItem = selected;
+
+        // Refresh elements that don't use bindings but manual string formatting
+        OnInstalledVersionListChanged(DerivedDataContext.InstalledFolders);
+
+        // Feeds also need to be recreated to react to language change
+        _ = UpdateFeedItemsWhenRetrieved();
     }
 
     private void OpenLicensesWindow(object? sender, RoutedEventArgs routedEventArgs)
@@ -400,7 +406,7 @@ public partial class MainWindow : Window
         var lightGrey = new SolidColorBrush((Color?)Application.Current?.Resources["LightGrey"] ??
             throw new Exception("missing brush"));
 
-        // TODO: these items need to be recreated if language changes (or bindings need to be used)
+        // These items need to be recreated if language changes (or bindings need to be used)
         foreach (var feedItem in items)
         {
             var itemContainer = new StackPanel
@@ -572,7 +578,6 @@ public partial class MainWindow : Window
                 {
                     TextWrapping = TextWrapping.Wrap,
 
-                    // TODO: make this react to language change somehow
                     Text = string.Format(Properties.Resources.InstalledFolderSize,
                         string.Format(Properties.Resources.SizeInMiB,
                             Math.Round((float)installFolder.Size / GlobalConstants.MEBIBYTE, 2))),
