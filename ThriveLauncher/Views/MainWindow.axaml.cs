@@ -519,10 +519,7 @@ public partial class MainWindow : Window
             }
             else
             {
-                if (lastContentItem != null)
-                {
-                    lastContentItem.Margin = bottomMargin;
-                }
+                lastContentItem?.Margin = bottomMargin;
             }
 
             targetContainer.Children.Add(itemContainer);
