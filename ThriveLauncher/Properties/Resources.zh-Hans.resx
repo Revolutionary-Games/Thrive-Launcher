@@ -233,7 +233,7 @@
     <value>注意：更改临时目录不会移动或删除现有文件，以防止意外操作与 Thrive 无关的文件</value>
   </data>
   <data name="SettingsImportOldTitle" xml:space="preserve">
-    <value>导入以前的设置？</value>
+    <value>是否导入之前的设置？</value>
   </data>
   <data name="SelectDevBuildCacheLocation" xml:space="preserve">
     <value>选择缓存位置</value>
