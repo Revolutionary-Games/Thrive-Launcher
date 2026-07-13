@@ -48,6 +48,8 @@ public partial class MainWindowViewModel
     private string manuallyEnteredHashInput = string.Empty;
 
     private bool refreshingLatestDevBuilds;
+    private int devBuildsOffset;
+    private int? nextDevBuildsOffset;
     private List<DevBuildLauncherDTO> latestAvailableDevBuilds = new();
 
     private bool loggingOutDevCenterConnection;
@@ -185,6 +187,10 @@ public partial class MainWindowViewModel
         get => refreshingLatestDevBuilds;
         private set => this.RaiseAndSetIfChanged(ref refreshingLatestDevBuilds, value);
     }
+
+    public bool HasNextDevBuildsPage => nextDevBuildsOffset != null;
+
+    public bool HasPreviousDevBuildsPage => devBuildsOffset > 0;
 
     public List<DevBuildLauncherDTO> LatestAvailableDevBuilds
     {
@@ -371,6 +377,30 @@ public partial class MainWindowViewModel
             return;
         }
 
+        devBuildsOffset = 0;
+        RefreshingLatestDevBuilds = true;
+
+        PerformDevBuildListRefresh();
+    }
+
+    public void LoadNextDevBuildsPage()
+    {
+        if (RefreshingLatestDevBuilds || nextDevBuildsOffset == null)
+            return;
+
+        devBuildsOffset = nextDevBuildsOffset.Value;
+        RefreshingLatestDevBuilds = true;
+
+        PerformDevBuildListRefresh();
+    }
+
+    public void LoadPreviousDevBuildsPage()
+    {
+        if (RefreshingLatestDevBuilds || devBuildsOffset <= 0)
+            return;
+
+        // This is a bit of a guess if the page size is not constant, but for now we assume it is
+        devBuildsOffset = Math.Max(0, devBuildsOffset - LauncherConstants.DevBuildsPageSize);
         RefreshingLatestDevBuilds = true;
 
         PerformDevBuildListRefresh();
@@ -526,22 +556,26 @@ public partial class MainWindowViewModel
 
     private async void PerformDevBuildListRefresh()
     {
-        // TODO: offset support
-        var result = await devCenterClient.FetchLatestBuilds(0);
+        var result = await devCenterClient.FetchLatestBuilds(devBuildsOffset);
 
         Dispatcher.UIThread.Post(() =>
         {
             RefreshingLatestDevBuilds = false;
 
-            if (result is not { Count: >= 1 })
+            if (result == null || result.Result.Count < 1)
             {
                 logger.LogInformation("Didn't get latest builds");
                 LatestAvailableDevBuilds = new List<DevBuildLauncherDTO>();
+                nextDevBuildsOffset = null;
             }
             else
             {
-                LatestAvailableDevBuilds = result;
+                LatestAvailableDevBuilds = result.Result;
+                nextDevBuildsOffset = result.NextOffset;
             }
+
+            this.RaisePropertyChanged(nameof(HasNextDevBuildsPage));
+            this.RaisePropertyChanged(nameof(HasPreviousDevBuildsPage));
         });
     }
 }

@@ -30,7 +30,7 @@ public interface IDevCenterClient
     public Task<DevBuildDownload?> GetDownloadForBuild(DevBuildLauncherDTO build);
 
     /// <summary>
-    ///   Gets download urls for dehydrated objects based on on their hashes
+    ///   Gets download urls for dehydrated objects based on their hashes
     /// </summary>
     /// <param name="dehydratedObjects">The objects to ask downloads for</param>
     /// <returns>If successful list of downloads related to the requested hashes</returns>
@@ -43,7 +43,8 @@ public interface IDevCenterClient
     /// <param name="offset">Offset to use (start at 0)</param>
     /// <param name="pageSize">The page size to fetch at once</param>
     /// <returns>The found latest builds or null on error</returns>
-    public Task<List<DevBuildLauncherDTO>?> FetchLatestBuilds(int offset, int pageSize = 75);
+    public Task<DevBuildSearchResults?> FetchLatestBuilds(int offset,
+        int pageSize = LauncherConstants.DevBuildsPageSize);
 
     public Task<DevCenterResult> FormConnection(string code);
 

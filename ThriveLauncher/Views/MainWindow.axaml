@@ -642,7 +642,21 @@
                                     Command="{Binding RefreshLatestDevBuildsList}" />
 
                             <ScrollViewer Grid.Row="3" IsVisible="{Binding !RefreshingLatestDevBuilds}">
-                                <StackPanel Spacing="3" Name="LatestBuildsList" />
+                                <StackPanel Spacing="5">
+                                    <StackPanel Spacing="3" Name="LatestBuildsList" />
+
+                                    <Grid ColumnDefinitions="*, *" Margin="0 10 0 0">
+                                        <Button Grid.Column="0" Classes="DialogButton"
+                                                Content="{i18n:Localize PaginationPrevious}"
+                                                IsEnabled="{Binding HasPreviousDevBuildsPage}"
+                                                Command="{Binding LoadPreviousDevBuildsPage}" />
+
+                                        <Button Grid.Column="1" Classes="DialogButton" HorizontalAlignment="Right"
+                                                Content="{i18n:Localize PaginationNext}"
+                                                IsEnabled="{Binding HasNextDevBuildsPage}"
+                                                Command="{Binding LoadNextDevBuildsPage}" />
+                                    </Grid>
+                                </StackPanel>
                             </ScrollViewer>
 
                             <ProgressBar Grid.Row="3" IsVisible="{Binding RefreshingLatestDevBuilds}"

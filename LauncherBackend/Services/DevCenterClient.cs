@@ -245,7 +245,7 @@ public sealed class DevCenterClient : IDevCenterClient, IDisposable
         }
     }
 
-    public async Task<List<DevBuildLauncherDTO>?> FetchLatestBuilds(int offset, int pageSize)
+    public async Task<DevBuildSearchResults?> FetchLatestBuilds(int offset, int pageSize)
     {
         try
         {
@@ -266,9 +266,7 @@ public sealed class DevCenterClient : IDevCenterClient, IDisposable
 
             logger.LogDebug("Got {Count} latest builds at offset {Offset}", result.Result.Count, offset);
 
-            // TODO: pass the result.NextOffset out of this method if pagination is wanted
-
-            return result.Result;
+            return result;
         }
         catch (Exception e)
         {

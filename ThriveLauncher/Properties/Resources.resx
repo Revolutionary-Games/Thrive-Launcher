@@ -370,6 +370,12 @@
   <data name="FetchLatestBuildsButton" xml:space="preserve">
       <value>Fetch Latest Builds</value>
   </data>
+  <data name="PaginationNext" xml:space="preserve">
+      <value>Next</value>
+  </data>
+  <data name="PaginationPrevious" xml:space="preserve">
+      <value>Previous</value>
+  </data>
   <data name="SettingsSaveFailedTitle" xml:space="preserve">
     <value>Saving Settings Failed</value>
   </data>
