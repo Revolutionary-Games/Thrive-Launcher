@@ -339,7 +339,7 @@ public class ThriveRunner : IThriveRunner
             // libgcc_s.so.1 (libc6,x86-64) => /usr/lib/libgcc_s.so.1
             if (line.Contains("libgcc_s"))
             {
-                int index = line.LastIndexOf("=>");
+                int index = line.LastIndexOf("=>", StringComparison.Ordinal);
                 if (index >= 0)
                     return line[(index + 2)..].Trim();
             }
