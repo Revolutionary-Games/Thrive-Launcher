@@ -3,6 +3,7 @@ namespace LauncherBackend.Services;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Text.Json;
 using LauncherThriveShared;
 using Microsoft.Extensions.Logging;
@@ -307,6 +308,47 @@ public class ThriveRunner : IThriveRunner
         }
     }
 
+    // Find libgcc in order to set the environment variable for linux harmony mods
+    // https://github.com/Revolutionary-Games/Thrive-Launcher/issues/927
+    // The idea here is to use "ldconfig" which is on most linux systems to dynamically
+    // locate the main libgcc_s file to preload.
+    private static string? FindLibgcc()
+    {
+        var ldconfigStartInfo = new ProcessStartInfo
+        {
+            FileName = "ldconfig",
+            ArgumentList = { "-p" },
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false,
+        };
+
+        using var ldconfig = Process.Start(ldconfigStartInfo);
+        if (ldconfig == null)
+            return null;
+
+        string ldconfigStdout = ldconfig.StandardOutput.ReadToEnd();
+        ldconfig.WaitForExit();
+
+        if (ldconfig.ExitCode != 0)
+            return null;
+
+        foreach (string line in ldconfigStdout.Split('\n'))
+        {
+            // parsing this line: (details may vary)
+            // libgcc_s.so.1 (libc6,x86-64) => /usr/lib/libgcc_s.so.1
+            if (line.Contains("libgcc_s"))
+            {
+                int index = line.LastIndexOf("=>");
+                if (index >= 0)
+                    return line[(index + 2)..].Trim();
+            }
+        }
+
+        // could not find libgcc
+        return null;
+    }
+
     private void JoinRunnerThreadIfExists()
     {
         if (thriveRunnerThread != null)
@@ -339,6 +381,18 @@ public class ThriveRunner : IThriveRunner
         {
             WorkingDirectory = workingDirectory,
         };
+
+        // Find libgcc in order to set the environment variable for linux harmony mods
+        // https://github.com/Revolutionary-Games/Thrive-Launcher/issues/927
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            // Actual file location may vary by distro, so we have to find it dynamically
+            string? libgcc = FindLibgcc();
+            if (libgcc != null)
+                runInfo.Environment["LD_PRELOAD"] = libgcc;
+            else // Use a common fallback in the case of ldconfig not found or a similar issue
+                runInfo.Environment["LD_PRELOAD"] = "/usr/lib/libgcc_s.so.1";
+        }
 
         SetLaunchArgumentsAndEnvironment(runInfo);
 
