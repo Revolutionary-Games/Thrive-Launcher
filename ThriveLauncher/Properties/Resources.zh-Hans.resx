@@ -77,7 +77,7 @@
     <value>连接到开发中心</value>
   </data>
   <data name="ConnectedDeveloperGreeting" xml:space="preserve">
-    <value>你好，</value>
+    <value>嗨，</value>
   </data>
   <data name="LinksButton" xml:space="preserve">
     <value>相关链接</value>
@@ -239,7 +239,7 @@
     <value>选择缓存位置</value>
   </data>
   <data name="SettingsImportOldExplanation" xml:space="preserve">
-    <value>旧版启动器的设置配置已被发现，你可以导入这些已有的设置以让你已安装的Thrive和其他自定义内容保持完整。如果你未导入旧版的Thrive和缓存，它们会被抛弃并且启动器不会知道这些内容。推荐导入这些设置。</value>
+    <value>已检测到来自旧版本启动器的设置。您可以选择导入这些现有设置，以保留已安装的 Thrive 版本及其他自定义配置。若您选择不导入，则旧的 Thrive 版本和缓存数据将储存在原位置，但当前的启动器将无法对其识别。建议您导入这些设置。</value>
   </data>
   <data name="ClearFolder" xml:space="preserve">
     <value>清除</value>
@@ -993,5 +993,11 @@
   </data>
   <data name="GlobalMemoryFailedWarning" xml:space="preserve">
     <value>可能有多个启动器实例正在运行。全局内存分配失败。</value>
+  </data>
+  <data name="PaginationNext" xml:space="preserve">
+    <value>下一个</value>
+  </data>
+  <data name="PaginationPrevious" xml:space="preserve">
+    <value>先前的</value>
   </data>
 </root>
