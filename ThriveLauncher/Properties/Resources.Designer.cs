@@ -663,6 +663,18 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string PaginationNext {
+            get {
+                return ResourceManager.GetString("PaginationNext", resourceCulture);
+            }
+        }
+        
+        public static string PaginationPrevious {
+            get {
+                return ResourceManager.GetString("PaginationPrevious", resourceCulture);
+            }
+        }
+        
         public static string SettingsSaveFailedTitle {
             get {
                 return ResourceManager.GetString("SettingsSaveFailedTitle", resourceCulture);
@@ -1890,6 +1902,24 @@ namespace ThriveLauncher.Properties {
         public static string GlobalMemoryFailedWarning {
             get {
                 return ResourceManager.GetString("GlobalMemoryFailedWarning", resourceCulture);
+            }
+        }
+        
+        public static string UseLibgccPreload {
+            get {
+                return ResourceManager.GetString("UseLibgccPreload", resourceCulture);
+            }
+        }
+        
+        public static string LibgccPreloadExplanation {
+            get {
+                return ResourceManager.GetString("LibgccPreloadExplanation", resourceCulture);
+            }
+        }
+        
+        public static string LibgccCustomPath {
+            get {
+                return ResourceManager.GetString("LibgccCustomPath", resourceCulture);
             }
         }
     }

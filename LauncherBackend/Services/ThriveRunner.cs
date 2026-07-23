@@ -3,7 +3,6 @@ namespace LauncherBackend.Services;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
-using System.Runtime.InteropServices;
 using System.Text.Json;
 using LauncherThriveShared;
 using Microsoft.Extensions.Logging;
@@ -308,11 +307,19 @@ public class ThriveRunner : IThriveRunner
         }
     }
 
-    // Find libgcc in order to set the environment variable for linux harmony mods
-    // https://github.com/Revolutionary-Games/Thrive-Launcher/issues/927
-    // The idea here is to use "ldconfig" which is on most linux systems to dynamically
-    // locate the main libgcc_s file to preload.
-    private static string? FindLibgcc()
+    /// <summary>
+    ///   Find libgcc to set the environment variable for linux harmony mods
+    ///   <see href="https://github.com/Revolutionary-Games/Thrive-Launcher/issues/927"/>
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The idea here is to use "ldconfig," which is on most linux systems, to dynamically
+    ///     locate the main libgcc_s file to preload.
+    ///   </para>
+    /// </remarks>
+    /// <param name="cancellationToken">Cancellation token for the operation</param>
+    /// <returns>The path to libgcc if found, null otherwise</returns>
+    private static async Task<string?> FindLibgcc(CancellationToken cancellationToken)
     {
         var ldconfigStartInfo = new ProcessStartInfo
         {
@@ -323,14 +330,30 @@ public class ThriveRunner : IThriveRunner
             UseShellExecute = false,
         };
 
-        using var ldconfig = Process.Start(ldconfigStartInfo);
-        if (ldconfig == null)
+        using var ldConfig = Process.Start(ldconfigStartInfo);
+        if (ldConfig == null)
             return null;
 
-        string ldconfigStdout = ldconfig.StandardOutput.ReadToEnd();
-        ldconfig.WaitForExit();
+        using var timeoutSource = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+        using var linkedSource =
+            CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, timeoutSource.Token);
 
-        if (ldconfig.ExitCode != 0)
+        string ldconfigStdout;
+        try
+        {
+            var readTask = ldConfig.StandardOutput.ReadToEndAsync(linkedSource.Token);
+            await ldConfig.WaitForExitAsync(linkedSource.Token);
+            ldconfigStdout = await readTask;
+        }
+        catch (OperationCanceledException)
+        {
+            if (!ldConfig.HasExited)
+                ldConfig.Kill();
+
+            return null;
+        }
+
+        if (ldConfig.ExitCode != 0)
             return null;
 
         foreach (string line in ldconfigStdout.Split('\n'))
@@ -366,7 +389,7 @@ public class ThriveRunner : IThriveRunner
         // ReSharper disable once MethodSupportsCancellation
         thriveRunnerThread = new Thread(() => RunThriveExecutable(thriveExecutable, version, playCancellation).Wait())
         {
-            // Even if this is running we want this process to be able to quit
+            // Even if this is running, we want this process to be able to quit
             IsBackground = true,
         };
         thriveRunnerThread.Start();
@@ -382,16 +405,36 @@ public class ThriveRunner : IThriveRunner
             WorkingDirectory = workingDirectory,
         };
 
-        // Find libgcc in order to set the environment variable for linux harmony mods
+        // Find lib gcc to set the environment variable for linux harmony mods
         // https://github.com/Revolutionary-Games/Thrive-Launcher/issues/927
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        if (OperatingSystem.IsLinux() && settingsManager.Settings.UseLibgccPreload)
         {
+            logger.LogInformation("LD_PRELOAD is enabled for Thrive");
+
             // Actual file location may vary by distro, so we have to find it dynamically
-            string? libgcc = FindLibgcc();
-            if (libgcc != null)
-                runInfo.Environment["LD_PRELOAD"] = libgcc;
-            else // Use a common fallback in the case of ldconfig not found or a similar issue
+            string? libGcc = settingsManager.Settings.LibgccCustomPath;
+
+            if (string.IsNullOrWhiteSpace(libGcc))
+            {
+                libGcc = await FindLibgcc(cancellationToken);
+            }
+            else
+            {
+                logger.LogInformation("Using user-specified libgcc path: {LibgccPath}", libGcc);
+            }
+
+            if (libGcc != null)
+            {
+                OnNormalOutput($"LD_PRELOAD = {libGcc}");
+                runInfo.Environment["LD_PRELOAD"] = libGcc;
+            }
+            else
+            {
+                // Use a common fallback in the case of ld config not found or a similar issue
+                logger.LogInformation("Unable to find libgcc, using fallback");
+                OnNormalOutput("LD_PRELOAD = /usr/lib/libgcc_s.so.1");
                 runInfo.Environment["LD_PRELOAD"] = "/usr/lib/libgcc_s.so.1";
+            }
         }
 
         SetLaunchArgumentsAndEnvironment(runInfo);
@@ -411,7 +454,7 @@ public class ThriveRunner : IThriveRunner
         {
             // We pass in empty stdin to the process to make it not inherit our own stdin
             result = await ProcessRunHelpers.RunProcessWithStdInAndOutputStreamingAsync(runInfo, cancellationToken,
-                new string[] { }, OnNormalOutput, OnErrorOutput);
+                [], OnNormalOutput, OnErrorOutput);
 
             // TODO: do we somehow need to get the guard back in here that checked after start that the process is
             // alive or the exited callback has been triggered?
@@ -440,7 +483,7 @@ public class ThriveRunner : IThriveRunner
             logger.LogInformation("LD_PRELOAD for Thrive set to: {LDPreload}", LDPreload);
             runInfo.Environment["LD_PRELOAD"] = LDPreload;
         }
-        else
+        else if (!runInfo.Environment.ContainsKey("LD_PRELOAD"))
         {
             logger.LogDebug("No LD_PRELOAD specified so passing empty one to the child process");
             runInfo.Environment["LD_PRELOAD"] = string.Empty;
@@ -472,8 +515,8 @@ public class ThriveRunner : IThriveRunner
 
         if (currentStoreVersionInfo != null)
         {
-            // Pass arguments about the store version to Thrive for it to show correct information
-            // This is needed because itch builds don't have anything special on the Thrive side to them
+            // Pass arguments about the store version to Thrive for it to show correct information.
+            // This is needed because itch builds don't have anything special on the Thrive side to them.
             runInfo.ArgumentList.Add(
                 $"{ThriveLauncherSharedConstants.THRIVE_LAUNCHER_STORE_PREFIX}{currentStoreVersionInfo.StoreName}");
         }

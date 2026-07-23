@@ -1,5 +1,6 @@
 namespace ThriveLauncher.ViewModels;
 
+using System;
 using LauncherBackend.Models;
 using Microsoft.Extensions.Logging;
 using Properties;
@@ -454,6 +455,39 @@ public partial class MainWindowViewModel
             this.RaisePropertyChanged();
         }
     }
+
+    public bool UseLibgccPreload
+    {
+        get => Settings.UseLibgccPreload;
+        set
+        {
+            if (Settings.UseLibgccPreload == value)
+                return;
+
+            this.RaisePropertyChanging();
+            Settings.UseLibgccPreload = value;
+            this.RaisePropertyChanged();
+            this.RaisePropertyChanged(nameof(ShowLibgccCustomPath));
+        }
+    }
+
+    public string? LibgccCustomPath
+    {
+        get => Settings.LibgccCustomPath;
+        set
+        {
+            if (Settings.LibgccCustomPath == value)
+                return;
+
+            this.RaisePropertyChanging();
+            Settings.LibgccCustomPath = value;
+            this.RaisePropertyChanged();
+        }
+    }
+
+    public bool IsLinux => OperatingSystem.IsLinux();
+
+    public bool ShowLibgccCustomPath => UseLibgccPreload;
 
     // Derived setting values
 
