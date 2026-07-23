@@ -994,4 +994,10 @@
   <data name="GlobalMemoryFailedWarning" xml:space="preserve">
     <value>გაშვებულია გამშვების ერთზე მეტი ასლი. გლობალური მეხსიერების გამოყოფა ჩავარდა.</value>
   </data>
+  <data name="PaginationNext" xml:space="preserve">
+    <value>შემდეგი</value>
+  </data>
+  <data name="PaginationPrevious" xml:space="preserve">
+    <value>წინა</value>
+  </data>
 </root>
