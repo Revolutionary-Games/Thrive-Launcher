@@ -270,12 +270,12 @@
                                     <CheckBox IsChecked="{Binding UseLibgccPreload}">
                                         <TextBlock TextWrapping="Wrap" Text="{i18n:Localize UseLibgccPreload}" />
                                     </CheckBox>
-                                    <TextBlock IsVisible="{Binding UseLibgccPreload}" Margin="30, 0, 0, 0"
+                                    <TextBlock Margin="30, 0, 0, 0"
                                                FontStyle="Italic" FontSize="12" TextWrapping="Wrap"
                                                Text="{i18n:Localize LibgccPreloadExplanation}" />
 
                                     <StackPanel Orientation="Vertical" IsVisible="{Binding ShowLibgccCustomPath}"
-                                                Margin="30, 5, 0, 0">
+                                                Margin="0, 5, 0, 0">
                                         <TextBlock VerticalAlignment="Center" Margin="0, 0, 5, 0"
                                                    Text="{i18n:Localize LibgccCustomPath}" />
                                         <TextBox Text="{Binding LibgccCustomPath}" />

@@ -1007,7 +1007,7 @@ If no files are listed below, downloading the update has failed and it cannot be
     <value>Use LD_PRELOAD for libgcc</value>
   </data>
   <data name="LibgccPreloadExplanation" xml:space="preserve">
-    <value>turning it on loads libgcc as a preload and it can make Harmony-based C# mods work with Thrive on Linux.</value>
+    <value>Turning this on loads libgcc as a preload and it can make Harmony-based C# mods work with Thrive on Linux.</value>
   </data>
   <data name="LibgccCustomPath" xml:space="preserve">
     <value>Custom libgcc path (leave blank for auto detect):</value>
