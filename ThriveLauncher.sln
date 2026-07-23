@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevCenterCommunication", "R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LauncherThriveShared", "RevolutionaryGamesCommon\LauncherThriveShared\LauncherThriveShared.csproj", "{368110A4-2AEC-43EF-A17E-5BB07CDB2AC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodotPckTool.CSharp", "GodotPckTool\GodotPckTool.CSharp\GodotPckTool.CSharp.csproj", "{26CD0B0F-39D5-47BE-B765-5A95337ABE6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,5 +80,9 @@ Global
 		{368110A4-2AEC-43EF-A17E-5BB07CDB2AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{368110A4-2AEC-43EF-A17E-5BB07CDB2AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{368110A4-2AEC-43EF-A17E-5BB07CDB2AC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26CD0B0F-39D5-47BE-B765-5A95337ABE6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26CD0B0F-39D5-47BE-B765-5A95337ABE6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26CD0B0F-39D5-47BE-B765-5A95337ABE6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26CD0B0F-39D5-47BE-B765-5A95337ABE6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
