@@ -1046,7 +1046,6 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         }
 
         // Move some stuff to be more where Apple says they should be
-        MoveReadmeFiles(Path.Join(macFolder, "tools", "pck"), Path.Join(resourcesFolder, "godotpcktool"));
         MoveReadmeFiles(Path.Join(macFolder, "tools", "7zip"), Path.Join(resourcesFolder, "7zip"));
 
         MoveReadmeFiles(macFolder, Path.Join(resourcesFolder, "ReadmeFiles"));
