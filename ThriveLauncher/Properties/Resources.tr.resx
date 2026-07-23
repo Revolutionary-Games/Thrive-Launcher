@@ -994,4 +994,10 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı k
   <data name="GlobalMemoryFailedWarning" xml:space="preserve">
     <value>Birden fazla başlatıcı örneği açık olabilir. Genel bellek ataması başarısız.</value>
   </data>
+  <data name="PaginationNext" xml:space="preserve">
+    <value>Sonraki</value>
+  </data>
+  <data name="PaginationPrevious" xml:space="preserve">
+    <value>Önceki</value>
+  </data>
 </root>
