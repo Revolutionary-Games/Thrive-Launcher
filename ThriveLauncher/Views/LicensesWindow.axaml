@@ -51,11 +51,6 @@
                 <TextBlock Text="{i18n:Localize EmbeddedPckToolLicenseTitle}" FontWeight="Bold" TextWrapping="Wrap"
                            Margin="0 20 0 0" />
 
-                <TextBlock Text="{Binding PckLicenseText^, FallbackValue='...'}"
-                           TextWrapping="Wrap" FontFamily="{StaticResource RobotoMono}" />
-
-                <TextBlock Text="{Binding PckLibraryLicensesText^, FallbackValue='...'}"
-                           TextWrapping="Wrap" FontFamily="{StaticResource RobotoMono}" />
             </StackPanel>
         </ScrollViewer>
     </DockPanel>

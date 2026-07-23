@@ -266,6 +266,22 @@
                                     <ComboBoxItem Content="500 ms" />
                                 </ComboBox>
 
+                                <StackPanel IsVisible="{Binding IsLinux}">
+                                    <CheckBox IsChecked="{Binding UseLibgccPreload}">
+                                        <TextBlock TextWrapping="Wrap" Text="{i18n:Localize UseLibgccPreload}" />
+                                    </CheckBox>
+                                    <TextBlock Margin="30, 0, 0, 0"
+                                               FontStyle="Italic" FontSize="12" TextWrapping="Wrap"
+                                               Text="{i18n:Localize LibgccPreloadExplanation}" />
+
+                                    <StackPanel Orientation="Vertical" IsVisible="{Binding ShowLibgccCustomPath}"
+                                                Margin="0, 5, 0, 0">
+                                        <TextBlock VerticalAlignment="Center" Margin="0, 0, 5, 0"
+                                                   Text="{i18n:Localize LibgccCustomPath}" />
+                                        <TextBox Text="{Binding LibgccCustomPath}" />
+                                    </StackPanel>
+                                </StackPanel>
+
                                 <TextBlock Text="{i18n:Localize GlobalMemoryFailedWarning}"
                                            IsVisible="{Binding GlobalMemoryFailed}"
                                            Foreground="Red" TextWrapping="Wrap" Margin="0 8" />

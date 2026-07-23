@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GodotPckTool\GodotPckTool.CSharp\GodotPckTool.CSharp.csproj" />
     <ProjectReference Include="..\RevolutionaryGamesCommon\DevCenterCommunication\DevCenterCommunication.csproj" />
     <ProjectReference Include="..\RevolutionaryGamesCommon\FeedParser\FeedParser.csproj" />
     <ProjectReference Include="..\RevolutionaryGamesCommon\LauncherThriveShared\LauncherThriveShared.csproj" />

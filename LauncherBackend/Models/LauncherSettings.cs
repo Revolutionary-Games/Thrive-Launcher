@@ -103,6 +103,12 @@ public class LauncherSettings
     [JsonPropertyName("overrideAudioLatencyMilliseconds")]
     public int AudioLatencyMilliseconds { get; set; } = 30;
 
+    [JsonPropertyName("useLibgccPreload")]
+    public bool UseLibgccPreload { get; set; }
+
+    [JsonPropertyName("libgccCustomPath")]
+    public string? LibgccCustomPath { get; set; }
+
     public bool ShouldShowVersionWithPlatform(PackagePlatform versionPlatform,
         IEnumerable<PackagePlatform> allPlatformsForSameVersion)
     {
@@ -165,6 +171,8 @@ public class LauncherSettings
             DisableThriveMods = DisableThriveMods,
             OverrideAudioLatency = OverrideAudioLatency,
             AudioLatencyMilliseconds = AudioLatencyMilliseconds,
+            UseLibgccPreload = UseLibgccPreload,
+            LibgccCustomPath = LibgccCustomPath,
         };
     }
 

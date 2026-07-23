@@ -4,10 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using GodotPckTool;
 using LauncherBackend.Models;
 using LauncherBackend.Services;
 using Microsoft.Extensions.Logging;
@@ -58,38 +57,35 @@ public class ExternalTools : IExternalTools
         }
     }
 
+    /// <summary>
+    ///   Run a Godot PCK tool operation to add files. Note that this is now implemented as a C# module.
+    /// </summary>
+    /// <param name="pckFile">.pck file to process</param>
+    /// <param name="filesToAdd">Files to add</param>
+    /// <param name="cancellationToken">Cancellation</param>
+    /// <exception cref="Exception">Thrown if this cannot update the PCK file</exception>
     public async Task RunGodotPckTool(string pckFile, IEnumerable<PckOperation> filesToAdd,
         CancellationToken cancellationToken)
     {
-        var fileData = JsonSerializer.Serialize(filesToAdd);
-
-        var startInfo = SetupPckToolRunning();
-        startInfo.ArgumentList.Add(pckFile);
-        startInfo.ArgumentList.Add("--action");
-        startInfo.ArgumentList.Add("add");
-
-        // Read from stdin
-        startInfo.ArgumentList.Add("-");
-
-        logger.LogTrace("Starting godotpcktool add operation with data: {FileData}", fileData);
-        var output = new StringBuilder();
-
-        void OnOutput(string line)
+        await Task.Run(() =>
         {
-            output.Append(line);
-            output.Append("\n");
-        }
+            using var pck = new PckFile(pckFile);
 
-        var result =
-            await ProcessRunHelpers.RunProcessWithStdInAndOutputStreamingAsync(startInfo, cancellationToken,
-                new[] { fileData }, OnOutput, OnOutput);
+            if (File.Exists(pckFile))
+            {
+                if (!pck.Load())
+                    throw new Exception($"Failed to load existing PCK file: {pckFile}");
+            }
 
-        logger.LogDebug("godotpcktool exited with code: {ExitCode}", result.ExitCode);
-        if (result.ExitCode != 0)
-        {
-            throw new Exception($"Godotpcktool .pck modification failed to run, exit code: {result.ExitCode}, " +
-                $"output: {output.ToString().Truncate(300)}");
-        }
+            foreach (var operation in filesToAdd)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                pck.AddSingleFile(operation.FilePath, operation.TargetNameInPck);
+            }
+
+            if (!pck.Save())
+                throw new Exception($"Failed to save PCK file: {pckFile}");
+        }, cancellationToken);
     }
 
     private ProcessStartInfo Setup7ZipRunning()
@@ -151,46 +147,6 @@ public class ExternalTools : IExternalTools
 
         if (!File.Exists(executable))
             throw new Exception("7-zip is missing. It should have been included with the launcher");
-
-        return new ProcessStartInfo(executable);
-    }
-
-    private ProcessStartInfo SetupPckToolRunning()
-    {
-        string executableName;
-
-        if (OperatingSystem.IsLinux())
-        {
-            executableName = "godotpcktool";
-        }
-        else if (OperatingSystem.IsWindows())
-        {
-            executableName = "godotpcktool.exe";
-        }
-        else
-        {
-            // TODO: mac support
-            throw new NotSupportedException("Godotpcktool not configured to work on current platform");
-        }
-
-        if (settings.Settings.PreferSystemTools)
-        {
-            var fromPath = ExecutableFinder.Which(executableName);
-
-            if (!string.IsNullOrEmpty(fromPath) && File.Exists(fromPath))
-            {
-                logger.LogInformation("Using godotpcktool from PATH: {Path}", fromPath);
-
-                // TODO: verify version?
-
-                return new ProcessStartInfo(fromPath);
-            }
-        }
-
-        var executable = Path.Join(BasePathForTools, "pck", executableName);
-
-        if (!File.Exists(executable))
-            throw new Exception("godotpcktool is missing. It should have been included with the launcher");
 
         return new ProcessStartInfo(executable);
     }
