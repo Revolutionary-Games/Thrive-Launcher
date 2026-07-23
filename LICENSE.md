@@ -27,10 +27,10 @@ Used Libraries
 --------------
 
 Thrive Launcher makes use of Avalonia GUI framework and bundles it in
-releases.
+releases. The Launcher also uses GodotPckTool.CSharp library.
 
 Thrive Launcher also includes third party tools bundled in:
-7zip, godotpcktool
+7zip
 
 
 Library Licenses
@@ -99,3 +99,9 @@ THE POSSIBILITY OF SUCH DAMAGE.
 The launcher is built on .NET using C#. The software either requires a
 runtime or is bundled with it. The runtime or installer is included as
 part of this software for convenience to the user.
+
+### GodotPckTool
+
+MIT License
+
+Copyright (c) 2020-2026 Henri Hyyryläinen and contributors

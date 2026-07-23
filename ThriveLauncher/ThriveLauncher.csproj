@@ -61,21 +61,11 @@
     <EmbeddedResource Include="Assets\Fonts\Roboto\LICENSE.txt" LogicalName="Roboto/LICENSE.txt" />
     <EmbeddedResource Include="Assets\Fonts\Lato\OFL.txt" LogicalName="OFL.txt" />
     <EmbeddedResource Include="..\tools\7zip\License.txt" LogicalName="7ZipLicense.txt" />
-    <EmbeddedResource Include="..\tools\pck\LibraryLicenses.txt" LogicalName="pckLibraryLicenses.txt" />
-    <EmbeddedResource Include="..\tools\pck\LICENSE" LogicalName="pckLICENSE" />
   </ItemGroup>
   <ItemGroup>
     <ContentWithTargetPath Include="..\tools\7zip\License.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>tools\7zip\%(Filename)%(Extension)</TargetPath>
-    </ContentWithTargetPath>
-    <ContentWithTargetPath Include="..\tools\pck\LibraryLicenses.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>tools\pck\%(Filename)%(Extension)</TargetPath>
-    </ContentWithTargetPath>
-    <ContentWithTargetPath Include="..\tools\pck\LICENSE">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>tools\pck\%(Filename)%(Extension)</TargetPath>
     </ContentWithTargetPath>
   </ItemGroup>
   <ItemGroup Condition="$(RuntimeIdentifier.StartsWith('win'))">
@@ -87,19 +77,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>tools\7zip\%(Filename)%(Extension)</TargetPath>
     </ContentWithTargetPath>
-    <ContentWithTargetPath Include="..\tools\pck\godotpcktool.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>tools\pck\%(Filename)%(Extension)</TargetPath>
-    </ContentWithTargetPath>
   </ItemGroup>
   <ItemGroup Condition="$(RuntimeIdentifier.StartsWith('linux'))">
     <ContentWithTargetPath Include="..\tools\7zip\7zz">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>tools\7zip\%(Filename)%(Extension)</TargetPath>
-    </ContentWithTargetPath>
-    <ContentWithTargetPath Include="..\tools\pck\godotpcktool">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>tools\pck\%(Filename)%(Extension)</TargetPath>
     </ContentWithTargetPath>
   </ItemGroup>
   <ItemGroup Condition="$(RuntimeIdentifier.StartsWith('osx'))">

@@ -4,3 +4,6 @@
 [submodule "create-dmg"]
 	path = create-dmg
 	url = https://github.com/create-dmg/create-dmg.git
+[submodule "GodotPckTool"]
+	path = GodotPckTool
+	url = https://github.com/hhyyrylainen/GodotPckTool.git
