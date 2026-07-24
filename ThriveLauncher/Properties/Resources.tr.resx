@@ -1000,4 +1000,13 @@ Eğer bir Thrive ekibi üyesi PR'nin güvenli olduğunu doğrularsa, bu uyarı k
   <data name="PaginationPrevious" xml:space="preserve">
     <value>Önceki</value>
   </data>
+  <data name="UseLibgccPreload" xml:space="preserve">
+    <value>libgcc için LD_PRELOAD kullanın</value>
+  </data>
+  <data name="LibgccCustomPath" xml:space="preserve">
+    <value>Özel libgcc yolu (otomatik algılama için boş bırakın):</value>
+  </data>
+  <data name="LibgccPreloadExplanation" xml:space="preserve">
+    <value>Bunu açmak, libgcc'yi ön yükleme olarak yükler ve Harmony tabanlı C# modlarının Linux'te Thrive ile çalışmasını sağlayabilir.</value>
+  </data>
 </root>
