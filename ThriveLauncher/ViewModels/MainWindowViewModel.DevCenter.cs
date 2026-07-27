@@ -2,7 +2,6 @@ namespace ThriveLauncher.ViewModels;
 
 using System;
 using System.Collections.Generic;
-using System.Reactive;
 using System.Threading.Tasks;
 using Avalonia.Threading;
 using DevCenterCommunication.Models;
@@ -12,6 +11,7 @@ using LauncherBackend.Utilities;
 using Microsoft.Extensions.Logging;
 using Properties;
 using ReactiveUI;
+using ReactiveUI.Primitives;
 
 /// <summary>
 ///   DevCenter connection (and DevBuild) related functions of the window
@@ -200,7 +200,7 @@ public partial class MainWindowViewModel
 
     public DevCenterConnection? DevCenterConnection => devCenterClient.DevCenterConnection;
 
-    public ReactiveCommand<int, Unit> DevCenterKeyCommand { get; }
+    public ReactiveCommand<int, RxVoid> DevCenterKeyCommand { get; }
 
     public void OpenDevCenterConnectionMenu()
     {
