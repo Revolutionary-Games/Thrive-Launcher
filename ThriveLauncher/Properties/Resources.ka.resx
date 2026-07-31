@@ -1000,4 +1000,10 @@
   <data name="PaginationPrevious" xml:space="preserve">
     <value>წინა</value>
   </data>
+  <data name="UseLibgccPreload" xml:space="preserve">
+    <value>LD_PRELOAD-ის გამოყენება libgcc-ისთვის</value>
+  </data>
+  <data name="LibgccCustomPath" xml:space="preserve">
+    <value>სასურველი libgcc-ის ბილიკი (ავტომატური აღმოჩენისთვის დატოვეთ ცარიელი):</value>
+  </data>
 </root>
