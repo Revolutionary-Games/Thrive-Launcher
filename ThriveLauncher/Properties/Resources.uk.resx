@@ -723,4 +723,49 @@
   <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
     <value>Збільшити затримку аудіо в грі (може виправити проблеми з потріскуванням аудіо, якщо затримку встановлено достатньо високо)</value>
   </data>
+  <data name="ExternalLinkXFeed" xml:space="preserve">
+    <value>X (раніше Twitter)</value>
+  </data>
+  <data name="ExternalLinkBluesky" xml:space="preserve">
+    <value>Bluesky</value>
+  </data>
+  <data name="ExternalLinkInstagram" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+  <data name="ExternalLinkMastodon" xml:space="preserve">
+    <value>Mastodon</value>
+  </data>
+  <data name="ExternalLinkThreads" xml:space="preserve">
+    <value>Threads</value>
+  </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>Вимкнути всі моди Thrive при запуску (спробуйте, якщо маєте встановлені моди та Thrive оновився)</value>
+  </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>Запускати автооновлювач альтернативним шляхом (спробуйте, якщо нормальне автооновлення не працює)</value>
+  </data>
+  <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
+    <value>Надавати перевагу системним інструментам над вбудованими (може викликати проблеми, якщо системні інструменти застарілі)</value>
+  </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>Автоматично видаляти старі файли в тимчасовому каталозі</value>
+  </data>
+  <data name="PaginationNext" xml:space="preserve">
+    <value>Далі</value>
+  </data>
+  <data name="PaginationPrevious" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="ExtractingStateItemProgress" xml:space="preserve">
+    <value>Отримується {0}. Це може зайняти хвилини для великих файлів; заждіть, будь ласка.</value>
+  </data>
+  <data name="StoreVersionExternalVersionsNote" xml:space="preserve">
+    <value>Ця вкладка містить зовнішньо встановлені версії. Це магазинна версія Thrive, що включає вбудовану останню версію гри. У випадному меню вибора версій у мналаштуваннях лаунчера ви можете увімкнути показ доступних зовнішніх версій. Вони показуватимуться після завантаження.</value>
+  </data>
+  <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
+    <value>Тип DevBuild для гри (якщо DevBuild-версії увімкнені)</value>
+  </data>
+  <data name="PlayUnsafeBuildTitle" xml:space="preserve">
+    <value>Запустити нестабільний DevBuild?</value>
+  </data>
 </root>
