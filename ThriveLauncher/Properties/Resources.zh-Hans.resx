@@ -1000,4 +1000,13 @@
   <data name="PaginationPrevious" xml:space="preserve">
     <value>先前的</value>
   </data>
+  <data name="UseLibgccPreload" xml:space="preserve">
+    <value>使用 LD_PRELOAD 加载 libgcc</value>
+  </data>
+  <data name="LibgccPreloadExplanation" xml:space="preserve">
+    <value>开启此选项会将 libgcc 作为预加载库加载，这可以让基于 Harmony 的 C# 模组在 Linux 上与 Thrive 正常工作。</value>
+  </data>
+  <data name="LibgccCustomPath" xml:space="preserve">
+    <value>自定义 libgcc 路径（留空则自动检测）：</value>
+  </data>
 </root>
