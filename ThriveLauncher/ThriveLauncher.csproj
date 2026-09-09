@@ -48,7 +48,7 @@
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="5.9.0" />
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.Common" Version="5.9.0" />
     <PackageReference Include="NLog.Targets.AtomicFile" Version="6.2.0" />
-    <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.400" />
+    <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.401" />
     <PackageReference Include="ReactiveUI.Avalonia" Version="12.1.2" />
   </ItemGroup>
   <ItemGroup>
