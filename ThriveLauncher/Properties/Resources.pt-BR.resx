@@ -867,4 +867,13 @@ Logs do Inicializador fornecerão informações mais detalhadas.</value>
   <data name="InvalidVersionInfoLoadedTitle" xml:space="preserve">
     <value>A Informação da Versão Carregada é Inválida</value>
   </data>
+  <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
+    <value>Preferir ferramentas instaladas no sistema em vez das incluídas no jogo (isso pode causar problemas caso as ferramentas instaladas no sistema estejam desatualizadas)</value>
+  </data>
+  <data name="PaginationNext" xml:space="preserve">
+    <value>Próximo</value>
+  </data>
+  <data name="PaginationPrevious" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
 </root>
