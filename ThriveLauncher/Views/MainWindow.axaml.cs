@@ -846,7 +846,7 @@ public partial class MainWindow : Window
         switch (e.Action)
         {
             case NotifyCollectionChangedAction.Add:
-
+            {
                 var children = FirstGameOutputContainer.Children;
                 int index = e.NewStartingIndex;
 
@@ -881,13 +881,20 @@ public partial class MainWindow : Window
                 PlayOutputScrollContainer.ScrollToEnd();
 
                 break;
+            }
+
             case NotifyCollectionChangedAction.Remove:
+            {
                 // This shouldn't be ever triggered, but this is included for completeness
                 FirstGameOutputContainer.Children.RemoveRange(e.OldStartingIndex, e.OldItems?.Count ?? 1);
                 break;
+            }
+
             case NotifyCollectionChangedAction.Reset:
+            {
                 FirstGameOutputContainer.Children.Clear();
                 break;
+            }
         }
     }
 
@@ -933,7 +940,7 @@ public partial class MainWindow : Window
         switch (e.Action)
         {
             case NotifyCollectionChangedAction.Add:
-
+            {
                 var children = LastGameOutputContainer.Children;
                 int index = e.NewStartingIndex;
 
@@ -970,12 +977,18 @@ public partial class MainWindow : Window
                 PlayOutputScrollContainer.ScrollToEnd();
 
                 break;
+            }
+
             case NotifyCollectionChangedAction.Remove:
+            {
                 throw new InvalidOperationException("Our caller should have specially handled the remove action");
+            }
 
             case NotifyCollectionChangedAction.Reset:
+            {
                 LastGameOutputContainer.Children.Clear();
                 break;
+            }
         }
     }
 
