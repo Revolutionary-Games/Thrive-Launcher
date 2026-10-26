@@ -17,19 +17,24 @@ public static class ObservableCollectionExtensions
 
                 break;
             case NotifyCollectionChangedAction.Remove:
+            {
                 for (int i = 0; i < args.OldItems!.Count; ++i)
                 {
                     collection.RemoveAt(args.OldStartingIndex);
                 }
 
                 break;
+            }
+
             case NotifyCollectionChangedAction.Replace:
+            {
                 for (int i = 0; i < args.OldItems!.Count; ++i)
                 {
                     collection.RemoveAt(args.OldStartingIndex);
                 }
 
                 goto case NotifyCollectionChangedAction.Add;
+            }
 
             // For now move is not implemented
             // case NotifyCollectionChangedAction.Move:

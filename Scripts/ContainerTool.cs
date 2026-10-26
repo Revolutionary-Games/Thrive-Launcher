@@ -65,6 +65,8 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
             ColourConsole.WriteInfoLine(
                 $"Downloading the dotnet install repo for use by the image to {PathToPackageFile}");
 
+            // This is done rarely enough that we don't need to cache the client.
+            // ReSharper disable once ShortLivedHttpClient
             var client = new HttpClient();
 
             try

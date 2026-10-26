@@ -380,7 +380,7 @@ public sealed class CrashReporter : ICrashReporter, IDisposable
         {
             var fileName = Path.GetFileName(potentialFile);
 
-            if (potentialLogFileNames.Any(f => fileName.EndsWith(f)))
+            if (potentialLogFileNames.Any(fileName.EndsWith))
             {
                 yield return potentialFile;
             }

@@ -251,9 +251,11 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 case LauncherExportType.Standalone:
                 case LauncherExportType.Steam:
                 case LauncherExportType.Itch:
+                {
                     ColourConsole.WriteNormalLine("This export type doesn't have an installer");
                     options.CreateInstallers = false;
                     break;
+                }
             }
 
             if (!await base.PackageForPlatform(cancellationToken, platform))
@@ -685,7 +687,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         {
             default:
             case LauncherExportType.Standalone:
-
+            {
                 // Mac .app files can be considered to support updating just fine
                 if (platform == PackagePlatform.Mac)
                 {
@@ -693,7 +695,10 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 }
 
                 break;
+            }
+
             case LauncherExportType.WithUpdater:
+            {
                 switch (platform)
                 {
                     case PackagePlatform.Linux:
@@ -715,6 +720,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 }
 
                 break;
+            }
+
             case LauncherExportType.Steam:
                 startInfo.ArgumentList.Add("-p:MyConstants=\"LAUNCHER_STEAM;LAUNCHER_NO_OUTDATED_NOTICE\"");
                 break;
