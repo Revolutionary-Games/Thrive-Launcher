@@ -18,6 +18,8 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         };
 
         FilePathsToAlwaysIgnore.Add(new Regex(@"\.Designer\.cs"));
+        FilePathsToAlwaysIgnore.Add(new Regex(@"tools\/7zip\/.*"));
+        FilePathsToAlwaysIgnore.Add(new Regex(@"\.junie\/"));
     }
 
     protected override Dictionary<string, CodeCheck> ValidChecks { get; }
