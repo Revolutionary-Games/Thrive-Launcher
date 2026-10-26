@@ -22,7 +22,6 @@ using LauncherBackend.Services;
 using LauncherBackend.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 using Models;
-using ReactiveUI;
 using Services.Localization;
 using SharedBase.Utilities;
 using Utilities;

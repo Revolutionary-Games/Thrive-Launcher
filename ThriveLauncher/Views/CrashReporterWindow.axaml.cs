@@ -12,7 +12,6 @@ using Avalonia.Layout;
 using Avalonia.Media;
 using LauncherBackend.Models;
 using LauncherBackend.Services;
-using ReactiveUI;
 using Services.Localization;
 using SharedBase.Utilities;
 using ViewModels;
