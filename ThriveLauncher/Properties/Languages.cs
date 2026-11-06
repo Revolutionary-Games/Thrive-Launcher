@@ -43,6 +43,7 @@ public static class Languages
         "pt-BR",
         "ro-RO",
         "gsw",
+        "sk-SK",
         "fi-FI",
         "sv-SE",
         "tr-TR",
