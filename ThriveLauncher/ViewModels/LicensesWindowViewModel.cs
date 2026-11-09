@@ -23,6 +23,9 @@ public class LicensesWindowViewModel : ViewModelBase
 
     public Task<string> P7ZipLicenseText => ResourceUtilities.ReadManifestResourceAsync("7ZipLicense.txt", assembly);
 
+    public Task<string> GodotPckToolLicenseText =>
+        ResourceUtilities.ReadManifestResourceAsync("GodotPckTool/LICENSE", assembly);
+
     public void OpenLauncherSourceCode()
     {
         URLUtilities.OpenURLInBrowser(LauncherConstants.LauncherRepoURL);

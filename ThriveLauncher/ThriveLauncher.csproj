@@ -61,6 +61,7 @@
     <EmbeddedResource Include="Assets\Fonts\Roboto\LICENSE.txt" LogicalName="Roboto/LICENSE.txt" />
     <EmbeddedResource Include="Assets\Fonts\Lato\OFL.txt" LogicalName="OFL.txt" />
     <EmbeddedResource Include="..\tools\7zip\License.txt" LogicalName="7ZipLicense.txt" />
+    <EmbeddedResource Include="..\GodotPckTool\LICENSE" LogicalName="GodotPckTool/LICENSE" />
   </ItemGroup>
   <ItemGroup>
     <ContentWithTargetPath Include="..\tools\7zip\License.txt">
