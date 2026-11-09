@@ -673,7 +673,7 @@ Laukaisijan lokeissa on lisätietoa.</value>
     <value>Päivitetään laukaisijaa</value>
   </data>
   <data name="DevBuildTypeSelectionHeading" xml:space="preserve">
-    <value>DevBuildin pelattava tyyppi (kun DevBuild versio on valittu pelattavaksi)</value>
+    <value>Kehittäjäkoontiversion (DevBuild) pelattava tyyppi (kun koontiversio versio on valittu pelattavaksi)</value>
   </data>
   <data name="ShortTimeAgo" xml:space="preserve">
     <value>{0} sitten</value>
@@ -685,7 +685,7 @@ Laukaisijan lokeissa on lisätietoa.</value>
     <value>Tarkista koodit ThriveDevCenterissa</value>
   </data>
   <data name="CrashReportEmailFieldNotice" xml:space="preserve">
-    <value>Sähköpostisi on näkyvissä vain ThriveDevCenterin admineille.</value>
+    <value>Sähköpostisi on näkyvissä vain ThriveDevCenterin järjestelmänvalvojille.</value>
   </data>
   <data name="DevCenterCheckingConnection" xml:space="preserve">
     <value>Yhdistetään ThriveDevCenteriin...</value>
@@ -698,5 +698,153 @@ Laukaisijan lokeissa on lisätietoa.</value>
   </data>
   <data name="LoginToSeeThisContent" xml:space="preserve">
     <value>Kirjaudu sisään ThriveDevCenteriin nähdäksesi tämän sisällön</value>
+  </data>
+  <data name="ExternalLinkXFeed" xml:space="preserve">
+    <value>X (aiemmin Twitter)</value>
+  </data>
+  <data name="ExternalLinkBluesky" xml:space="preserve">
+    <value>Bluesky</value>
+  </data>
+  <data name="ExternalLinkInstagram" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+  <data name="ExternalLinkMastodon" xml:space="preserve">
+    <value>Mastodon</value>
+  </data>
+  <data name="ExternalLinkThreads" xml:space="preserve">
+    <value>Threads</value>
+  </data>
+  <data name="LaunchOptionDisableMods" xml:space="preserve">
+    <value>Ohita kaikkien modien lataus Thriven käynnistyksessä (kokeile tätä, jos sinulla on asennettuja modeja ja Thrive on päivitetty)</value>
+  </data>
+  <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
+    <value>Lisää peliäänien viivettä (tämä voi korjata äänen säröilyä kun viive on asetettu tarpeeksi isoksi)</value>
+  </data>
+  <data name="LauncherOptionAutoUpdate" xml:space="preserve">
+    <value>Päivitä laukaisija automaattisesti</value>
+  </data>
+  <data name="LauncherOptionAutoUpdateAlternativeMode" xml:space="preserve">
+    <value>Käytä vaihtoehtoista keinoa laukaisijan päivittämiseksi (kokeile tätä, jos normaali automaattipäivitys epäonnistuu)</value>
+  </data>
+  <data name="LauncherOptionPreferSystemTools" xml:space="preserve">
+    <value>Suosi työkaluja, jotka on asennettu järjestelmänlaajuisesti laukaisijan mukana olevaan (voi aiheuttaa ongelmia, jos järjestelmän työkaluversiot ovat liian vanhoja)</value>
+  </data>
+  <data name="LauncherOptionVerboseLogging" xml:space="preserve">
+    <value>Käytä laukaisijan virheenkorjauslokitusta (ennen kuin raportoit ongelman tai bugin laukaisijassa, ole hyvä ja laita tämä asetus päälle ja sitten käynnistä laukaisija uudelleen)</value>
+  </data>
+  <data name="LauncherOptionCleanTemporaryFiles" xml:space="preserve">
+    <value>Poista vanhat tiedostot välikaistiedostojen kansiossa automaattisesti</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>Kaikki vanhat tiedostot poistetaan välikaistiedostojen kansiosta laukaisijan uudelleenkäynnistyessä. Tästä johtuen väliaikaistiedostojen kansiota ei tule jakaa eri käyttötarkoituksiin kuin pelkästään Thrivelle, jotta vahingossa muiden tarkoitusten tiedostoja ei tule poistetuksi.</value>
+  </data>
+  <data name="PaginationNext" xml:space="preserve">
+    <value>Seuraavat</value>
+  </data>
+  <data name="PaginationPrevious" xml:space="preserve">
+    <value>Edelliset</value>
+  </data>
+  <data name="LauncherSourceCodeButton" xml:space="preserve">
+    <value>Laukaisijan lähdekoodi</value>
+  </data>
+  <data name="LicensesWindowTitle" xml:space="preserve">
+    <value>Thriven laukaisijan lisenssit</value>
+  </data>
+  <data name="LatoLicenseTitle" xml:space="preserve">
+    <value>Lato.ttf (Copyright (c) 2010-2011 by tyPoland Lukasz Dziedzic with Reserved Font Name "Lato"), OFL lisenssi:</value>
+  </data>
+  <data name="FeedItemPostedByAndTime" xml:space="preserve">
+    <value>julkaissut {0} {1}</value>
+  </data>
+  <data name="NoCompatibleVersionsFound" xml:space="preserve">
+    <value>Laukaisija ei löytänyt yhtään yhteensopivaa Thriven versiota nykyiselle alustalle. Jos käytät outoa käyttöjärjestelmää, tämä on odotettu tulos. Muussa tapauksessa, ole hyvä ja raportoi tämä bugina.</value>
+  </data>
+  <data name="InternalErrorExplanation" xml:space="preserve">
+    <value>Sisäinen virhe on tapahtunut laukaisijassa. Raportoi tämä virhe ja liitä mukaan laukaisijan lokitiedostot sekä kuvaus siitä, että mikä aiheutti tämän virheen.</value>
+  </data>
+  <data name="DeleteErrorExplanation" xml:space="preserve">
+    <value>Datan poistaminen tästä polusta epäonnistui: "{0}". Syynä on seuraava virhe: {1}</value>
+  </data>
+  <data name="DeleteErrorDoesNotExist" xml:space="preserve">
+    <value>Poistaminen epäonnistui, koska kohdepolkua ei ole olemassa</value>
+  </data>
+  <data name="ClearTemporaryFilesPromptExplanation" xml:space="preserve">
+    <value>Olet postamassa kaikki tiedostot välikaikaistiedostojen kansiossa: "{0}". Myös Thriveen liitttymättömät tiedostot poistetaan, jos niitä on mainitussa kansiossa. Kansio myös itsessään tullaan poistamaan. Poista väliaikaistiedostojen kansio?</value>
+  </data>
+  <data name="OutdatedLauncherTypeCannotUpdate" xml:space="preserve">
+    <value>Tämä laukaisijan tyyppi ei pysty päivittymään automaattisesti. Jos haluat saada automaattisia päivityksiä tulevaisuudessa, asenna sen tyyppinen laukaisija, jolla on tuki automaattisille päivityksille.</value>
+  </data>
+  <data name="OutdatedLauncherTypeHasNoUpdateFile" xml:space="preserve">
+    <value>Virhe: päivitystiedostoa ei löytynyt tämän tyyppiselle laukaisijalle. Tätä ei pitäisi tapahtua. Yritä uudestaan myöhemmin ja, jos virhe jatkuu, ilmoita siitä meille.</value>
+  </data>
+  <data name="DevCenterConnectAttemptError" xml:space="preserve">
+    <value>Virhe tarkistaessa linkkikoodia ThriveDevCenteriin. Varmista, että kirjoitit koodin oikein ja että se ei ole vanhentunut. Lisätietoa ongelmasta: {0}</value>
+  </data>
+  <data name="NoVersionSelected" xml:space="preserve">
+    <value>Valitse Thriven versio vetovalikosta pelaa-nappulan vierestä ja kokeile uudestaan</value>
+  </data>
+  <data name="GettingDevBuildInfoMessage" xml:space="preserve">
+    <value>Haetaan dataa valitusta kehityskoontiversion tyypistä {0} jota yritetään pelata...</value>
+  </data>
+  <data name="ErrorGettingDevBuild" xml:space="preserve">
+    <value>Virhe: nykyiselle alustalle ei löytynyt koontiversiota. Ole hyvä ja valitse eri versio, esimerkiksi suositeltu PKV, ja yritä uudelleen. Syy virheelle: {0}</value>
+  </data>
+  <data name="NoBuildToPlayFound" xml:space="preserve">
+    <value>Koontiversiota, joka vastaisi vaadittua tyyppiä ja nykyistä alustaa, ei löytynyt</value>
+  </data>
+  <data name="MissingThriveExecutableError" xml:space="preserve">
+    <value>Thriven suoritettavaa ohjelmaa ei löytynyt hakemistosta {0}, vahvista pelin tiedostot tai poista tämä versio ja yritä uudestaan.</value>
+  </data>
+  <data name="DownloadProgressDisplay" xml:space="preserve">
+    <value>Ladattu {0} / {1} MiB</value>
+  </data>
+  <data name="ItemProgressDisplay" xml:space="preserve">
+    <value>Prosessoitu {0} / {1}</value>
+  </data>
+  <data name="ExtraThriveStartFlags" xml:space="preserve">
+    <value>Thrive käynnistetään ylimääräisten komentoriviparametrien kanssa, jotka annettiin parametreinä laukaisijalle, nämä voivat aiheuttaa Thriven epätavallisen toiminnan: {0}</value>
+  </data>
+  <data name="FoundDevBuildToPlayInfo" xml:space="preserve">
+    <value>Löydettiin koontiversio pelattavaksi: {0}, tiiviste: {1}, onko PKV: {2}, haara: {3}</value>
+  </data>
+  <data name="FoundDevBuildToPlayDescription" xml:space="preserve">
+    <value>Koontiversion kuvaus:
+{0}</value>
+  </data>
+  <data name="ReportViewingPublicInfo" xml:space="preserve">
+    <value>Voit tarkastellua raporttiasi, jos se on julkinen, seuraavassa osoitteessa:</value>
+  </data>
+  <data name="ReportDeleteInfo" xml:space="preserve">
+    <value>Jos haluat poistaa raporttisi, voit tehdä sen täällä:</value>
+  </data>
+  <data name="ReportDeleteCaveat" xml:space="preserve">
+    <value>TÄRKEÄÄ! Jos hukkaat poistamis linkin, et voi poistaa raporttiasi, joten ota se talkteen. Voit kopioida sen painikkeella sen oikealla puolella.</value>
+  </data>
+  <data name="ReporterEndMessage" xml:space="preserve">
+    <value>Voit nyt turvallisesti sulkea tämän raportoijan. Tai odottaa kunnes tämä ikkuna sulkeutuu automaattisesti.</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Avaa hakemisto</value>
+  </data>
+  <data name="IncludeInReport" xml:space="preserve">
+    <value>Sisällytä:</value>
+  </data>
+  <data name="CrashReportDescriptionField" xml:space="preserve">
+    <value>Kuvaile mitä teit kaatumishetkellä (vapaaehtoinen)</value>
+  </data>
+  <data name="CrashReportDescriptionFieldPlaceholder" xml:space="preserve">
+    <value>Kaatumisen kuvaus (vapaaehtoinen)</value>
+  </data>
+  <data name="CrashReportEmailField" xml:space="preserve">
+    <value>Sähköpostiosoitteesi, jos haluat kuulla päivityksiä tästä raportista (vapaaehtoinen)</value>
+  </data>
+  <data name="NoAvailableCrashesToReport" xml:space="preserve">
+    <value>Raportoitavissa olevia kaatumisia ei havaittu</value>
+  </data>
+  <data name="CrashReportDeleteAfterSubmitting" xml:space="preserve">
+    <value>Poista tämä kaatumistiedosto raportoinnin jälkeen (suositeltu vaihtoehto)</value>
+  </data>
+  <data name="CrashReportDeleteInfoEnabled" xml:space="preserve">
+    <value>Kaatumistiedosto poistetaan automaattisesti kun raportti on lähetetty onnistuneesti</value>
   </data>
 </root>
