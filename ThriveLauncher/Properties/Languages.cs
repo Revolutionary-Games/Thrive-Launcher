@@ -46,6 +46,7 @@ public static class Languages
         "sk-SK",
         "fi-FI",
         "sv-SE",
+        "vi-VI",
         "tr-TR",
         "bg-BG",
         "mk-MK",
