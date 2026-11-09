@@ -52,6 +52,7 @@ public static class Languages
         "mk-MK",
         "ru-RU",
         "uk-UA",
+        "he-IL",
 
         // Requires font support, See: https://github.com/Revolutionary-Games/Thrive-Launcher/issues/194
         // "zh-CN",
