@@ -39,7 +39,7 @@
     <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.6" />
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
     <PackageReference Include="DynamicData" Version="9.5.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.14" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.14" />
     <PackageReference Include="NLog" Version="6.2.2" />
     <PackageReference Include="NLog.Extensions.Logging" Version="6.2.2" />
