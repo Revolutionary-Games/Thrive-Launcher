@@ -29,7 +29,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
         ColourConsole.WriteInfoLine($"Selected image type to build: {options.Image}");
     }
 
-    protected override string ExportFileNameBase => options.Image switch
+    protected override string ExportFileNameBase => Options.Image switch
     {
         ImageType.CI => "launcher",
         ImageType.ReleaseBuilder => "launcher-builder",
@@ -38,7 +38,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
 
     protected override string ImagesAndConfigsFolder => Path.Join("Scripts", "podman");
 
-    protected override (string BuildRelativeFolder, string? TargetToStopAt) DefaultImageToBuild => options.Image switch
+    protected override (string BuildRelativeFolder, string? TargetToStopAt) DefaultImageToBuild => Options.Image switch
     {
         ImageType.CI => ("ci", null),
         ImageType.ReleaseBuilder => ("release_builder", null),
@@ -46,21 +46,21 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
     };
 
     protected override string ImageNameBase => $"thrive/{ExportFileNameBase}";
-    protected override bool SaveByDefault => options.Image != ImageType.ReleaseBuilder;
+    protected override bool SaveByDefault => Options.Image != ImageType.ReleaseBuilder;
 
     private string PathToPackageFile =>
         Path.Join(ImagesAndConfigsFolder, "release_builder", "packages-microsoft-prod.rpm");
 
     protected override IEnumerable<string> ImagesToPullIfTheyAreOld()
     {
-        if (options.Image == ImageType.ReleaseBuilder)
+        if (Options.Image == ImageType.ReleaseBuilder)
             yield return "almalinux:9";
     }
 
     protected override async Task<string?> Build(string buildType, string? targetToStopAt, string? tag,
         string? extraTag, bool skipCache, CancellationToken cancellationToken)
     {
-        if (options.Image == ImageType.ReleaseBuilder)
+        if (Options.Image == ImageType.ReleaseBuilder)
         {
             ColourConsole.WriteInfoLine(
                 $"Downloading the dotnet install repo for use by the image to {PathToPackageFile}");

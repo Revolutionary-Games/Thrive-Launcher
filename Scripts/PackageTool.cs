@@ -135,26 +135,26 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     protected override IEnumerable<string> SourceFilesToPackage => SourceItemsToPackage;
 
-    private string ReadmeFile => Path.Join(options.OutputFolder, "README.txt");
-    private string RevisionFile => Path.Join(options.OutputFolder, "revision.txt");
+    private string ReadmeFile => Path.Join(Options.OutputFolder, "README.txt");
+    private string RevisionFile => Path.Join(Options.OutputFolder, "revision.txt");
 
     private string NSISInstallerName => doingNoRuntimeExport ?
         $"ThriveLauncher_Windows_Installer_WithDotnet_{launcherVersionAlwaysWithRevision}.exe" :
         $"ThriveLauncher_Windows_Installer_{launcherVersionAlwaysWithRevision}.exe";
 
-    private string ExpectedLauncherInstallerFile => Path.Join(options.OutputFolder, NSISInstallerName);
+    private string ExpectedLauncherInstallerFile => Path.Join(Options.OutputFolder, NSISInstallerName);
 
     private string DMGInstallerName => $"ThriveLauncher_Mac_Installer_{launcherVersionAlwaysWithRevision}.dmg";
-    private string ExpectedMacDMGFile => Path.Join(options.OutputFolder, DMGInstallerName);
+    private string ExpectedMacDMGFile => Path.Join(Options.OutputFolder, DMGInstallerName);
 
     protected override async Task<bool> OnBeforeStartExport(CancellationToken cancellationToken)
     {
-        if (options.LinuxPodman == true)
+        if (Options.LinuxPodman == true)
         {
             ColourConsole.WriteNormalLine("Podman will be used for Linux builds");
         }
 
-        if (options.CreateDynamicFiles == true)
+        if (Options.CreateDynamicFiles == true)
         {
             await CreateDynamicallyGeneratedFiles(cancellationToken);
         }
@@ -163,7 +163,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             ColourConsole.WriteWarningLine("Skipping dynamic file generation");
         }
 
-        if (options.CreateWithoutRuntime == true)
+        if (Options.CreateWithoutRuntime == true)
         {
             ColourConsole.WriteWarningLine(
                 "Creating exports without runtime included. For now these kinds of builds are not needed.");
@@ -171,24 +171,24 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             doingNoRuntimeExport = true;
         }
 
-        if (options.ExportTypes.Count < 1)
+        if (Options.ExportTypes.Count < 1)
         {
             ColourConsole.WriteInfoLine("Exporting by default with Standalone type");
-            options.ExportTypes = new List<LauncherExportType>
+            Options.ExportTypes = new List<LauncherExportType>
             {
                 LauncherExportType.Standalone,
             };
         }
 
-        if (options.ExportTypes.Count < 1)
+        if (Options.ExportTypes.Count < 1)
         {
             ColourConsole.WriteErrorLine("No export types selected");
             return false;
         }
 
-        ColourConsole.WriteNormalLine($"Exporting with export types: {string.Join(" ", options.ExportTypes)}");
+        ColourConsole.WriteNormalLine($"Exporting with export types: {string.Join(" ", Options.ExportTypes)}");
 
-        originalInstallerMode = options.CreateInstallers == true;
+        originalInstallerMode = Options.CreateInstallers == true;
 
         return true;
     }
@@ -239,9 +239,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         if (doingNoRuntimeExport)
             ColourConsole.WriteInfoLine($"Doing a no runtime variant of export for {platform}");
 
-        foreach (var exportType in options.ExportTypes)
+        foreach (var exportType in Options.ExportTypes)
         {
-            options.CreateInstallers = originalInstallerMode;
+            Options.CreateInstallers = originalInstallerMode;
 
             currentExportType = exportType;
             ColourConsole.WriteInfoLine($"Starting export with type {exportType}");
@@ -253,7 +253,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 case LauncherExportType.Itch:
                 {
                     ColourConsole.WriteNormalLine("This export type doesn't have an installer");
-                    options.CreateInstallers = false;
+                    Options.CreateInstallers = false;
                     break;
                 }
             }
@@ -323,7 +323,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 Directory.Delete(appFolder, true);
             }
 
-            if (string.IsNullOrEmpty(options.MacSigningKey))
+            if (string.IsNullOrEmpty(Options.MacSigningKey))
             {
                 ColourConsole.WriteWarningLine(
                     "Signing without a specific key for mac (this should work but in an optimal case " +
@@ -333,7 +333,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             }
             else
             {
-                ColourConsole.WriteInfoLine($"Signing mac build with key {options.MacSigningKey}");
+                ColourConsole.WriteInfoLine($"Signing mac build with key {Options.MacSigningKey}");
             }
 
             DeleteDsStore(folder);
@@ -343,9 +343,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 return false;
             }
         }
-        else if (platform == PackagePlatform.Linux && options.LinuxPodman == true)
+        else if (platform == PackagePlatform.Linux && Options.LinuxPodman == true)
         {
-            if (options.NugetSource != null)
+            if (Options.NugetSource != null)
                 ColourConsole.WriteWarningLine("Nuget source specifying doesn't work with podman build");
 
             ColourConsole.WriteInfoLine("Attempting Linux build in podman");
@@ -454,7 +454,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 return false;
             }
 
-            if (!string.IsNullOrEmpty(options.AppleId) || !string.IsNullOrEmpty(options.MacTeamId))
+            if (!string.IsNullOrEmpty(Options.AppleId) || !string.IsNullOrEmpty(Options.MacTeamId))
             {
                 ColourConsole.WriteInfoLine("Notarizing Mac build");
 
@@ -497,12 +497,12 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         // Apply a final signature on Mac
         // We don't want to do this for the dmg as it is notarized
-        if (platform == PackagePlatform.Mac && !string.IsNullOrEmpty(options.MacSigningKey) &&
+        if (platform == PackagePlatform.Mac && !string.IsNullOrEmpty(Options.MacSigningKey) &&
             !archiveFile.Contains(".dmg"))
         {
             ColourConsole.WriteNormalLine("Applying final signature on Mac (might be unnecessary for the .zip)");
 
-            if (!await BinaryHelpers.SignFileForMac(archiveFile, MacEntitlementsFile, options.MacSigningKey,
+            if (!await BinaryHelpers.SignFileForMac(archiveFile, MacEntitlementsFile, Options.MacSigningKey,
                     cancellationToken))
             {
                 return false;
@@ -515,7 +515,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     protected override async Task<bool> OnPostFolderHandled(PackagePlatform platform, string folderOrArchive,
         CancellationToken cancellationToken)
     {
-        if (options.CreateInstallers != true)
+        if (Options.CreateInstallers != true)
             return true;
 
         if (currentExportType == LauncherExportType.Standalone)
@@ -618,7 +618,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     protected override IEnumerable<FileToPackage> GetFilesToPackage()
     {
-        if (options.CreateDynamicFiles == true)
+        if (Options.CreateDynamicFiles == true)
         {
             yield return new FileToPackage(ReadmeFile, "README.txt");
             yield return new FileToPackage(RevisionFile, "revision.txt");
@@ -675,11 +675,11 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         startInfo.ArgumentList.Add("--self-contained");
         startInfo.ArgumentList.Add(selfContained ? "true" : "false");
 
-        if (options.NugetSource != null)
+        if (Options.NugetSource != null)
         {
-            ColourConsole.WriteNormalLine($"Using nuget source: {options.NugetSource}");
+            ColourConsole.WriteNormalLine($"Using nuget source: {Options.NugetSource}");
             startInfo.ArgumentList.Add("--source");
-            startInfo.ArgumentList.Add(options.NugetSource);
+            startInfo.ArgumentList.Add(Options.NugetSource);
         }
 
         // Compiler definitions
@@ -848,7 +848,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         // here
         foreach (var executable in Directory.EnumerateFiles(folder, "*", SearchOption.AllDirectories))
         {
-            if (!await BinaryHelpers.SignFileForMac(executable, MacEntitlementsFile, options.MacSigningKey,
+            if (!await BinaryHelpers.SignFileForMac(executable, MacEntitlementsFile, Options.MacSigningKey,
                     cancellationToken))
             {
                 return false;
@@ -886,18 +886,18 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private async Task RunRcEdit(string executable, CancellationToken cancellationToken, params string[] arguments)
     {
-        ColourConsole.WriteNormalLine($"Running {options.RcEdit} on: {executable}");
+        ColourConsole.WriteNormalLine($"Running {Options.RcEdit} on: {executable}");
 
         string pathToRcEdit;
 
-        if (!File.Exists(options.RcEdit))
+        if (!File.Exists(Options.RcEdit))
         {
-            pathToRcEdit = ExecutableFinder.Which(options.RcEdit) ??
+            pathToRcEdit = ExecutableFinder.Which(Options.RcEdit) ??
                 throw new Exception("Could not find rcedit in PATH");
         }
         else
         {
-            pathToRcEdit = options.RcEdit;
+            pathToRcEdit = Options.RcEdit;
         }
 
         ProcessStartInfo startInfo;
@@ -986,11 +986,11 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private async Task RunNSIS(string nsisFileName, CancellationToken cancellationToken)
     {
-        ColourConsole.WriteNormalLine($"Running makensis on {Path.Join(options.OutputFolder, nsisFileName)}");
+        ColourConsole.WriteNormalLine($"Running makensis on {Path.Join(Options.OutputFolder, nsisFileName)}");
 
         var startInfo = new ProcessStartInfo("makensis")
         {
-            WorkingDirectory = options.OutputFolder,
+            WorkingDirectory = Options.OutputFolder,
         };
 
         startInfo.ArgumentList.Add(nsisFileName);
@@ -1089,7 +1089,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             cancellationToken);
 
         // The base app file must be signed as well as all the executables
-        if (!await BinaryHelpers.SignFileForMac(appBase, MacEntitlementsFile, options.MacSigningKey,
+        if (!await BinaryHelpers.SignFileForMac(appBase, MacEntitlementsFile, Options.MacSigningKey,
                 cancellationToken))
         {
             throw new Exception("Signing .app file failed");
@@ -1134,15 +1134,15 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 return false;
             }
 
-            if (string.IsNullOrEmpty(options.MacTeamId) || string.IsNullOrEmpty(options.AppleId) ||
-                string.IsNullOrEmpty(options.AppleAppPassword))
+            if (string.IsNullOrEmpty(Options.MacTeamId) || string.IsNullOrEmpty(Options.AppleId) ||
+                string.IsNullOrEmpty(Options.AppleAppPassword))
             {
                 ColourConsole.WriteErrorLine("Notarizing Mac build requires Apple developer credentials and team id");
                 return false;
             }
 
-            if (!await BinaryHelpers.NotarizeFile(fullZipPath, options.MacTeamId,
-                    options.AppleId, options.AppleAppPassword, cancellationToken, false))
+            if (!await BinaryHelpers.NotarizeFile(fullZipPath, Options.MacTeamId,
+                    Options.AppleId, Options.AppleAppPassword, cancellationToken, false))
             {
                 ColourConsole.WriteErrorLine("Failed to notarize Mac build (.app)");
                 return false;
@@ -1253,7 +1253,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             startInfo.ArgumentList.Add("--no-internet-enable");
 
             startInfo.ArgumentList.Add("--codesign");
-            BinaryHelpers.AddCodesignName(startInfo, options.MacSigningKey);
+            BinaryHelpers.AddCodesignName(startInfo, Options.MacSigningKey);
 
             startInfo.ArgumentList.Add(dmgToCreate);
             startInfo.ArgumentList.Add(folder);
@@ -1268,10 +1268,10 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 continue;
             }
 
-            if (!string.IsNullOrEmpty(options.AppleId) || !string.IsNullOrEmpty(options.MacTeamId))
+            if (!string.IsNullOrEmpty(Options.AppleId) || !string.IsNullOrEmpty(Options.MacTeamId))
             {
-                if (string.IsNullOrEmpty(options.MacTeamId) || string.IsNullOrEmpty(options.AppleId) ||
-                    string.IsNullOrEmpty(options.AppleAppPassword))
+                if (string.IsNullOrEmpty(Options.MacTeamId) || string.IsNullOrEmpty(Options.AppleId) ||
+                    string.IsNullOrEmpty(Options.AppleAppPassword))
                 {
                     ColourConsole.WriteErrorLine(
                         "Notarizing Mac build requires Apple developer credentials and team id");
@@ -1280,8 +1280,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
                 ColourConsole.WriteInfoLine("Notarizing .dmg");
 
-                if (!await BinaryHelpers.NotarizeFile(dmgToCreate, options.MacTeamId, options.AppleId,
-                        options.AppleAppPassword, cancellationToken, true))
+                if (!await BinaryHelpers.NotarizeFile(dmgToCreate, Options.MacTeamId, Options.AppleId,
+                        Options.AppleAppPassword, cancellationToken, true))
                 {
                     ColourConsole.WriteErrorLine("Failed to notarize .dmg");
                     return false;
