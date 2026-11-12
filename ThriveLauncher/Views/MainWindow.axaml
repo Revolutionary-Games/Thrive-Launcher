@@ -545,6 +545,7 @@
                             </RadioButton>
                             <RadioButton GroupName="DevBuildTypeSelection"
                                          IsChecked="{Binding SelectedDevBuildTypeIsLatest}"
+                                         IsVisible="False"
                                          Command="{Binding SelectLatestBuild}">
                                 <TextBlock TextWrapping="Wrap" Text="{i18n:Localize BuildTypeSelectionLatest}" />
                             </RadioButton>

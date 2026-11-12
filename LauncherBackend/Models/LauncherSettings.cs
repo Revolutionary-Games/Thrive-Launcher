@@ -78,7 +78,7 @@ public class LauncherSettings
     [JsonPropertyName("devCenterKey")]
     public string? DevCenterKey { get; set; }
 
-    [JsonPropertyName("selectedDevBuildType")]
+    [JsonPropertyName("selectedDevBuildType2")]
     public DevBuildType? SelectedDevBuildType { get; set; } = DevBuildType.BuildOfTheDay;
 
     [JsonPropertyName("manuallySelectedBuildHash")]
