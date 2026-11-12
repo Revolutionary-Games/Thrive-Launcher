@@ -6,9 +6,9 @@ using Microsoft.Extensions.Logging;
 using Properties;
 using ReactiveUI;
 
-/// <summary>
+/// <content>
 ///   The <see cref="LauncherSettings"/> proxy parts for the view model
-/// </summary>
+/// </content>
 public partial class MainWindowViewModel
 {
     private readonly string languagePlaceHolderIfNotSelected;
