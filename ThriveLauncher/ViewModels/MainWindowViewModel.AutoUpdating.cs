@@ -18,9 +18,9 @@ using Properties;
 using ReactiveUI;
 using SharedBase.Utilities;
 
-/// <summary>
+/// <content>
 ///   Auto-update part of the view model functionality
-/// </summary>
+/// </content>
 public partial class MainWindowViewModel
 {
     private bool registeredUpdaterCallbacks;
@@ -33,7 +33,7 @@ public partial class MainWindowViewModel
     private bool autoUpdatingFailed;
     private bool autoUpdatingSucceeded;
     private string autoUpdateFailureExtraMessage = string.Empty;
-    private IReadOnlyCollection<string> availableUpdaterFiles = new string[] { };
+    private IReadOnlyCollection<string> availableUpdaterFiles = [];
 
     private bool showAutoUpdaterPopup;
     private int? autoUpdateClose;

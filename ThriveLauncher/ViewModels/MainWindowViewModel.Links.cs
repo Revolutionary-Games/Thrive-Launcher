@@ -4,9 +4,9 @@ using LauncherBackend.Services;
 using LauncherBackend.Utilities;
 using ReactiveUI;
 
-/// <summary>
+/// <content>
 ///   The link buttons features
-/// </summary>
+/// </content>
 public partial class MainWindowViewModel
 {
     private bool showLinksPopup;

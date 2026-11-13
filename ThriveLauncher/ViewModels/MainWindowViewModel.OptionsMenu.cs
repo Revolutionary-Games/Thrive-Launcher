@@ -2,6 +2,7 @@ namespace ThriveLauncher.ViewModels;
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
@@ -14,10 +15,10 @@ using Properties;
 using ReactiveUI;
 using SharedBase.Utilities;
 
-/// <summary>
+/// <content>
 ///   Properties and methods for the option menu portion of the window. Settings properties are in the
 ///   MainWindowViewModel.Settings.cs file.
-/// </summary>
+/// </content>
 public partial class MainWindowViewModel
 {
     private bool showSettingsPopup;
@@ -779,6 +780,7 @@ public partial class MainWindowViewModel
         await calculateTask.WaitAsync(CancellationToken.None);
         var size = calculateTask.Result;
 
-        return string.Format(Resources.SizeInMiB, Math.Round((float)size / GlobalConstants.MEBIBYTE, 1));
+        return string.Format(CultureInfo.CurrentCulture, Resources.SizeInMiB,
+            Math.Round((float)size / GlobalConstants.MEBIBYTE, 1));
     }
 }

@@ -3,6 +3,7 @@ namespace ThriveLauncher.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -575,7 +576,7 @@ public partial class MainWindow : Window
                     TextWrapping = TextWrapping.Wrap,
 
                     Text = string.Format(Properties.Resources.InstalledFolderSize,
-                        string.Format(Properties.Resources.SizeInMiB,
+                        string.Format(CultureInfo.CurrentCulture, Properties.Resources.SizeInMiB,
                             Math.Round((float)installFolder.Size / GlobalConstants.MEBIBYTE, 2))),
                     VerticalAlignment = VerticalAlignment.Center,
                     Margin = new Thickness(4, 0, 3, 0),

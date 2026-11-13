@@ -13,9 +13,9 @@ using Properties;
 using ReactiveUI;
 using ReactiveUI.Primitives;
 
-/// <summary>
+/// <content>
 ///   DevCenter connection (and DevBuild) related functions of the window
-/// </summary>
+/// </content>
 public partial class MainWindowViewModel
 {
     // DevCenter features
