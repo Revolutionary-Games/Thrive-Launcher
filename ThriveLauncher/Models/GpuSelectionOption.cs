@@ -23,6 +23,11 @@ public record GpuSelectionOption(string? Identifier, string? Name, string Displa
                 GetTypeName(device.Type)));
     }
 
+    public static GpuSelectionOption FromSavedDevice(string identifier, string? name)
+    {
+        return new GpuSelectionOption(identifier, name, name ?? identifier);
+    }
+
     public static GpuSelectionOption FromMissingDevice(string identifier, string? name)
     {
         return new GpuSelectionOption(identifier, name,

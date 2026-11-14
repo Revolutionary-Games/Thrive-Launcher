@@ -675,7 +675,11 @@ public partial class MainWindowViewModel
         // Keep the user's selection visible even if the device is not (yet) detected
         var selectedIdentifier = Settings.PreferredGpuIdentifier;
         if (!string.IsNullOrEmpty(selectedIdentifier) && options.All(o => o.Identifier != selectedIdentifier))
-            options.Add(GpuSelectionOption.FromMissingDevice(selectedIdentifier, Settings.PreferredGpuName));
+        {
+            options.Add(detectedGpus == null ?
+                GpuSelectionOption.FromSavedDevice(selectedIdentifier, Settings.PreferredGpuName) :
+                GpuSelectionOption.FromMissingDevice(selectedIdentifier, Settings.PreferredGpuName));
+        }
 
         return options;
     }

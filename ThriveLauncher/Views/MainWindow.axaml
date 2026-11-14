@@ -247,7 +247,7 @@
                                                    Text="{i18n:Localize GpuSelectionLabel}" />
                                         <ComboBox ItemsSource="{Binding AvailableGpus}"
                                                   SelectedItem="{Binding SelectedGpu}"
-                                                  IsDropDownOpen="{Binding GpuDropDownOpen}"
+                                                  IsDropDownOpen="{Binding GpuDropDownOpen, Mode=TwoWay}"
                                                   IsEnabled="{Binding !ForceOpenGlMode}"
                                                   MinWidth="250" />
                                     </WrapPanel>
