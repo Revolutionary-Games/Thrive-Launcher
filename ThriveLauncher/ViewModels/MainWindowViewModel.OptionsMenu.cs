@@ -717,8 +717,6 @@ public partial class MainWindowViewModel
 
     private void StartSettingsViewTasks()
     {
-        StartGpuDetection();
-
         if (DehydrateCacheSize.Status == TaskStatus.Created)
             DehydrateCacheSize.Start();
 

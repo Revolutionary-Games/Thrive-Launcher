@@ -351,6 +351,12 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string GpuSelectionOpenGlFallback {
+            get {
+                return ResourceManager.GetString("GpuSelectionOpenGlFallback", resourceCulture);
+            }
+        }
+        
         public static string GpuSelectionDeviceFormat {
             get {
                 return ResourceManager.GetString("GpuSelectionDeviceFormat", resourceCulture);

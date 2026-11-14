@@ -21,6 +21,7 @@ public partial class MainWindowViewModel
     private IReadOnlyList<GpuDeviceInfo>? detectedGpus;
     private IReadOnlyList<GpuSelectionOption>? availableGpus;
     private bool gpuDetectionStarted;
+    private bool gpuDropDownOpen;
 
     public bool ShowWebContent
     {
@@ -414,6 +415,18 @@ public partial class MainWindowViewModel
     /// </summary>
     public bool ShowGpuSelection => gpuDeviceEnumerator.IsSupported;
 
+    public bool GpuDropDownOpen
+    {
+        get => gpuDropDownOpen;
+        set
+        {
+            this.RaiseAndSetIfChanged(ref gpuDropDownOpen, value);
+
+            if (value)
+                StartGpuDetection();
+        }
+    }
+
     public IReadOnlyList<GpuSelectionOption> AvailableGpus
     {
         get => availableGpus ??= BuildGpuOptions();
@@ -590,6 +603,11 @@ public partial class MainWindowViewModel
     /// <summary>
     ///   Setting-update helper to set the selected version to "devbuild" when related options are enabled
     /// </summary>
+    private static bool IsSelectableGpu(GpuDeviceInfo device)
+    {
+        return device.Type != GpuDeviceType.Cpu;
+    }
+
     private void UpdateSelectedVersionForDevBuild()
     {
         // Change the type of thing to play to devbuild automatically to avoid user errors
@@ -641,14 +659,18 @@ public partial class MainWindowViewModel
 
     private List<GpuSelectionOption> BuildGpuOptions()
     {
-        var options = new List<GpuSelectionOption> { GpuSelectionOption.Automatic };
+        // Software renderers (like llvmpipe) are never a sensible choice, so they aren't shown
+        var selectableDevices = detectedGpus?.Where(IsSelectableGpu).ToList();
 
-        if (detectedGpus != null)
+        // When detection has run and found no usable Vulkan devices, Thrive falls back to OpenGL (where the GPU
+        // can't be selected) so the automatic option is shown as that instead of the picker looking broken
+        var options = new List<GpuSelectionOption>
         {
-            // Software renderers (like llvmpipe) are never a sensible choice, so they aren't shown
-            options.AddRange(detectedGpus.Where(d => d.Type != GpuDeviceType.Cpu)
-                .Select(GpuSelectionOption.FromDevice));
-        }
+            selectableDevices is { Count: 0 } ? GpuSelectionOption.OpenGlFallback : GpuSelectionOption.Automatic,
+        };
+
+        if (selectableDevices != null)
+            options.AddRange(selectableDevices.Select(GpuSelectionOption.FromDevice));
 
         // Keep the user's selection visible even if the device is not (yet) detected
         var selectedIdentifier = Settings.PreferredGpuIdentifier;

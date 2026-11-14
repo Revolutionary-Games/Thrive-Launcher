@@ -214,6 +214,9 @@
   <data name="GpuSelectionAutomatic" xml:space="preserve">
       <value>Automatic (let the game choose)</value>
   </data>
+  <data name="GpuSelectionOpenGlFallback" xml:space="preserve">
+      <value>OpenGL device (Vulkan is not available)</value>
+  </data>
   <data name="GpuSelectionDeviceFormat" xml:space="preserve">
       <value>{0} ({1})</value>
   </data>

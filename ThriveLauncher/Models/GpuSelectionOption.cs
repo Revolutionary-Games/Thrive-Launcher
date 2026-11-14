@@ -11,6 +11,11 @@ public record GpuSelectionOption(string? Identifier, string? Name, string Displa
 {
     public static GpuSelectionOption Automatic => new(null, null, Resources.GpuSelectionAutomatic);
 
+    /// <summary>
+    ///   Shown instead of <see cref="Automatic"/> when Vulkan is not available, in which case Thrive will use OpenGL
+    /// </summary>
+    public static GpuSelectionOption OpenGlFallback => new(null, null, Resources.GpuSelectionOpenGlFallback);
+
     public static GpuSelectionOption FromDevice(GpuDeviceInfo device)
     {
         return new GpuSelectionOption(device.Identifier, device.Name,
