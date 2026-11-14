@@ -241,6 +241,19 @@
                                 <CheckBox IsChecked="{Binding ForceOpenGlMode}">
                                     <TextBlock TextWrapping="Wrap" Text="{i18n:Localize LaunchOptionForceOpenGL}" />
                                 </CheckBox>
+                                <StackPanel IsVisible="{Binding ShowGpuSelection}" Margin="0, 0, 0, 5">
+                                    <WrapPanel Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Margin="0, 0, 5, 0"
+                                                   Text="{i18n:Localize GpuSelectionLabel}" />
+                                        <ComboBox ItemsSource="{Binding AvailableGpus}"
+                                                  SelectedItem="{Binding SelectedGpu}"
+                                                  IsEnabled="{Binding !ForceOpenGlMode}"
+                                                  MinWidth="250" />
+                                    </WrapPanel>
+                                    <TextBlock Margin="30, 0, 0, 0"
+                                               FontStyle="Italic" FontSize="12" TextWrapping="Wrap"
+                                               Text="{i18n:Localize GpuSelectionExplanation}" />
+                                </StackPanel>
                                 <CheckBox IsChecked="{Binding DisableThriveMods}">
                                     <TextBlock TextWrapping="Wrap" Text="{i18n:Localize LaunchOptionDisableMods}" />
                                 </CheckBox>

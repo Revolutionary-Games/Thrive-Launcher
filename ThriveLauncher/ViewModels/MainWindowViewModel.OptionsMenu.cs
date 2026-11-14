@@ -628,6 +628,8 @@ public partial class MainWindowViewModel
         this.RaisePropertyChanged(nameof(DisableThriveMods));
         this.RaisePropertyChanged(nameof(PreferSystemTools));
 
+        RefreshGpuOptions();
+
         // Reset some extra stuff
         RefreshDehydratedCacheSize();
         StartSettingsViewTasks();
@@ -715,6 +717,8 @@ public partial class MainWindowViewModel
 
     private void StartSettingsViewTasks()
     {
+        StartGpuDetection();
+
         if (DehydrateCacheSize.Status == TaskStatus.Created)
             DehydrateCacheSize.Start();
 

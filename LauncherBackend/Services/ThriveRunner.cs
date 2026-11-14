@@ -19,6 +19,7 @@ public class ThriveRunner : IThriveRunner
     private readonly ILauncherPaths launcherPaths;
     private readonly ILauncherOptions launcherOptions;
     private readonly ILauncherTranslations launcherTranslations;
+    private readonly IGpuDeviceEnumerator gpuDeviceEnumerator;
 
     private readonly ObservableValue<bool> runningObservable = new(false);
     private readonly ObservableValue<bool> truncatedObservable = new(false);
@@ -51,7 +52,8 @@ public class ThriveRunner : IThriveRunner
 
     public ThriveRunner(ILogger<ThriveRunner> logger, ILauncherSettingsManager settingsManager,
         IThriveInstaller thriveInstaller, IStoreVersionDetector storeVersionDetector, ILauncherPaths launcherPaths,
-        ILauncherOptions launcherOptions, ILauncherTranslations launcherTranslations)
+        ILauncherOptions launcherOptions, ILauncherTranslations launcherTranslations,
+        IGpuDeviceEnumerator gpuDeviceEnumerator)
     {
         this.logger = logger;
         this.settingsManager = settingsManager;
@@ -60,6 +62,7 @@ public class ThriveRunner : IThriveRunner
         this.launcherPaths = launcherPaths;
         this.launcherOptions = launcherOptions;
         this.launcherTranslations = launcherTranslations;
+        this.gpuDeviceEnumerator = gpuDeviceEnumerator;
     }
 
     public ObservableCollection<ThrivePlayMessage> PlayMessages { get; } = new();
@@ -504,6 +507,10 @@ public class ThriveRunner : IThriveRunner
 
             // Could also allow the "opengl3_es" option (though that's probably even less compatible)
         }
+        else
+        {
+            AddGpuSelectionArguments(runInfo, settings);
+        }
 
         if (settings.OverrideAudioLatency)
         {
@@ -550,6 +557,43 @@ public class ThriveRunner : IThriveRunner
 
             PlayMessages.Add(new ThrivePlayMessage(ThrivePlayMessage.Type.ExtraStartFlags, extraFlagsString));
         }
+    }
+
+    /// <summary>
+    ///   Tells Godot which GPU to use if the user has selected one. The index needs to be determined right before
+    ///   starting as it isn't stable.
+    /// </summary>
+    private void AddGpuSelectionArguments(ProcessStartInfo runInfo, LauncherSettings settings)
+    {
+        if (string.IsNullOrEmpty(settings.PreferredGpuIdentifier) || !gpuDeviceEnumerator.IsSupported)
+            return;
+
+        var devices = gpuDeviceEnumerator.EnumerateDevices();
+
+        var candidates = devices.Where(d => d.Identifier == settings.PreferredGpuIdentifier).ToList();
+
+        // If there are multiple identical identifiers (for example, two of the same GPU model), try to also match
+        // the name, otherwise just take the first one
+        var device = candidates.FirstOrDefault(d => d.Name == settings.PreferredGpuName) ??
+            candidates.FirstOrDefault();
+
+        if (device == null)
+        {
+            logger.LogWarning(
+                "Selected GPU {Name} ({Identifier}) was not found, letting Thrive pick the GPU automatically",
+                settings.PreferredGpuName, settings.PreferredGpuIdentifier);
+            OnNormalOutput(
+                $"Selected GPU {settings.PreferredGpuName} ({settings.PreferredGpuIdentifier}) not found, " +
+                "using automatic GPU selection");
+            return;
+        }
+
+        logger.LogInformation("Telling Thrive to use GPU #{Index}: {Name} ({Identifier})", device.Index,
+            device.Name, device.Identifier);
+        OnNormalOutput($"Using selected GPU #{device.Index}: {device.Name}");
+
+        runInfo.ArgumentList.Add("--gpu-index");
+        runInfo.ArgumentList.Add(device.Index.ToString(CultureInfo.InvariantCulture));
     }
 
     private void OnThriveExited(int? exitCode, Exception? runFailException, IPlayableVersion version, TimeSpan elapsed,
