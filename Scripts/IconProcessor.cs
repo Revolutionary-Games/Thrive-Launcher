@@ -281,7 +281,9 @@ public class IconProcessor
             return new[] { WINDOWS_MAGICK_EXECUTABLE };
         }
 
-        return new[] { "convert" };
+        // The convert command is deprecated in ImageMagick v7. magick is preferred, and if it's not found for some
+        // reason it falls back to the old convert.
+        return new[] { "magick", "convert" };
     }
 
     private ProcessStartInfo CreateStartInfo(string executable)
