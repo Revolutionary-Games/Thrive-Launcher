@@ -37,6 +37,7 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
     private readonly IAutoUpdater autoUpdater;
     private readonly IBackgroundExceptionNoticeDisplayer backgroundExceptionNoticeDisplayer;
     private readonly ILoggingManager loggingManager;
+    private readonly IGpuDeviceEnumerator gpuDeviceEnumerator;
 
     private readonly Dictionary<string, CultureInfo> availableLanguages;
     private readonly StoreVersionInfo detectedStore;
@@ -74,7 +75,7 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
         IThriveInstaller thriveInstaller, IDevCenterClient devCenterClient, IThriveRunner thriveRunner,
         ILauncherOptions launcherOptions, IAutoUpdater autoUpdater,
         IBackgroundExceptionNoticeDisplayer backgroundExceptionNoticeDisplayer, ILoggingManager loggingManager,
-        bool allowTaskStarts = true)
+        IGpuDeviceEnumerator gpuDeviceEnumerator, bool allowTaskStarts = true)
     {
         this.logger = logger;
         this.launcherFeeds = launcherFeeds;
@@ -90,6 +91,7 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
         this.autoUpdater = autoUpdater;
         this.backgroundExceptionNoticeDisplayer = backgroundExceptionNoticeDisplayer;
         this.loggingManager = loggingManager;
+        this.gpuDeviceEnumerator = gpuDeviceEnumerator;
 
         DevCenterKeyCommand = ReactiveCommand.Create<int>(DevCenterViewActivation);
 
@@ -166,7 +168,8 @@ public sealed partial class MainWindowViewModel : ViewModelBase, INoticeDisplaye
         DesignTimeServices.Services.GetRequiredService<ILauncherOptions>(),
         DesignTimeServices.Services.GetRequiredService<IAutoUpdater>(),
         DesignTimeServices.Services.GetRequiredService<IBackgroundExceptionNoticeDisplayer>(),
-        DesignTimeServices.Services.GetRequiredService<ILoggingManager>(), false)
+        DesignTimeServices.Services.GetRequiredService<ILoggingManager>(),
+        DesignTimeServices.Services.GetRequiredService<IGpuDeviceEnumerator>(), false)
     {
         languagePlaceHolderIfNotSelected = string.Empty;
         DevCenterKeyCommand = null!;

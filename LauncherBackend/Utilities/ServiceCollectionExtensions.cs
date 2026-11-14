@@ -20,6 +20,7 @@ public static class ServiceCollectionExtensions
             .AddSingleton<IThriveRunner, ThriveRunner>()
             .AddSingleton<IAutoUpdater, AutoUpdater>()
             .AddSingleton<ICPUFeatureCheck, CPUFeatureCheck>()
+            .AddSingleton<IGpuDeviceEnumerator, GpuDeviceEnumerator>()
             .AddSingleton<TemporaryFilesCleaner>();
     }
 }

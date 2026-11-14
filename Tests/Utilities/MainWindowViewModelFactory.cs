@@ -47,6 +47,8 @@ public class MainWindowViewModelFactory
 
     public ILoggingManager LoggingManagerMock { get; set; } = Substitute.For<ILoggingManager>();
 
+    public IGpuDeviceEnumerator GpuDeviceEnumeratorMock { get; set; } = Substitute.For<IGpuDeviceEnumerator>();
+
     public ILogger<MainWindowViewModel> Logger { get; }
 
     public MainWindowViewModel Create()
@@ -54,6 +56,6 @@ public class MainWindowViewModelFactory
         return new MainWindowViewModel(Logger, FeedsMock, StoreMock, SettingsMock,
             new VersionUtilities(), PathsMock, InfoRetrieveMock, InstallerMock,
             DevCenterMock, ThriveRunnerMock, LauncherOptions, AutoUpdaterMock,
-            BackgroundExceptionNoticeDisplayer, LoggingManagerMock, false);
+            BackgroundExceptionNoticeDisplayer, LoggingManagerMock, GpuDeviceEnumeratorMock, false);
     }
 }

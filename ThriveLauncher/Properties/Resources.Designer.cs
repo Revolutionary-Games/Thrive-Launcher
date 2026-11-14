@@ -333,6 +333,72 @@ namespace ThriveLauncher.Properties {
             }
         }
         
+        public static string GpuSelectionLabel {
+            get {
+                return ResourceManager.GetString("GpuSelectionLabel", resourceCulture);
+            }
+        }
+        
+        public static string GpuSelectionExplanation {
+            get {
+                return ResourceManager.GetString("GpuSelectionExplanation", resourceCulture);
+            }
+        }
+        
+        public static string GpuSelectionAutomatic {
+            get {
+                return ResourceManager.GetString("GpuSelectionAutomatic", resourceCulture);
+            }
+        }
+        
+        public static string GpuSelectionOpenGlFallback {
+            get {
+                return ResourceManager.GetString("GpuSelectionOpenGlFallback", resourceCulture);
+            }
+        }
+        
+        public static string GpuSelectionDeviceFormat {
+            get {
+                return ResourceManager.GetString("GpuSelectionDeviceFormat", resourceCulture);
+            }
+        }
+        
+        public static string GpuSelectionNotDetected {
+            get {
+                return ResourceManager.GetString("GpuSelectionNotDetected", resourceCulture);
+            }
+        }
+        
+        public static string GpuTypeDiscrete {
+            get {
+                return ResourceManager.GetString("GpuTypeDiscrete", resourceCulture);
+            }
+        }
+        
+        public static string GpuTypeIntegrated {
+            get {
+                return ResourceManager.GetString("GpuTypeIntegrated", resourceCulture);
+            }
+        }
+        
+        public static string GpuTypeVirtual {
+            get {
+                return ResourceManager.GetString("GpuTypeVirtual", resourceCulture);
+            }
+        }
+        
+        public static string GpuTypeCpu {
+            get {
+                return ResourceManager.GetString("GpuTypeCpu", resourceCulture);
+            }
+        }
+        
+        public static string GpuTypeOther {
+            get {
+                return ResourceManager.GetString("GpuTypeOther", resourceCulture);
+            }
+        }
+        
         public static string LaunchOptionOverrideAudioLatency {
             get {
                 return ResourceManager.GetString("LaunchOptionOverrideAudioLatency", resourceCulture);
