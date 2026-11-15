@@ -106,7 +106,7 @@ public static class LauncherConstants
     public static readonly Uri DevCenterURL = new(Mode switch
     {
         // ReSharper disable HeuristicUnreachableCode
-        LauncherMode.Staging => "https://staging.dev.revolutionarygamesstudio.com/",
+        LauncherMode.Staging => "https://dev.staging.revolutionarygamesstudio.com/",
         LauncherMode.LocalTesting => "http://localhost:5000",
 
         // ReSharper restore HeuristicUnreachableCode
