@@ -153,6 +153,6 @@ When updating the copyright year it needs to be updated in
 
 ### Updating dotnet version
 
-Currently version 8 is used. If updated the installer files in
+Currently, version 10 is used. If updated the installer files in
 `DependencyInstallers` need to be updated and `PackageTool` as well as
 `Scripts/launcher.nsi.template` need to be updated to refer to the new version.

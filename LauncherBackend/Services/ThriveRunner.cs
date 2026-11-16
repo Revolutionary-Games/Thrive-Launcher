@@ -918,13 +918,14 @@ public class ThriveRunner : IThriveRunner
             {
                 logger.LogInformation(
                     "Detected Thrive as correctly started at {Time} due to matching startup info file id: {StartId}",
-                    info.StartedAt.ToString("G"), info.StartId);
+                    info.StartedAt.ToString("G", CultureInfo.CurrentCulture), info.StartId);
                 return true;
             }
 
             logger.LogInformation(
                 "Read startup info file doesn't match what we expected, it was from: {Time} with id: {StartId} " +
-                "(should be: {ExpectedId})", info.StartedAt.ToString("G"), info.StartId, thriveStartId);
+                "(should be: {ExpectedId})", info.StartedAt.ToString("G", CultureInfo.CurrentCulture), info.StartId,
+                thriveStartId);
         }
         catch (Exception e)
         {

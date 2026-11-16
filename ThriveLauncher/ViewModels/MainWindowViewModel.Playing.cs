@@ -21,9 +21,9 @@ using Properties;
 using ReactiveUI;
 using SharedBase.Utilities;
 
-/// <summary>
+/// <content>
 ///   This partial class handles everything related to the setting up and playing Thrive (and the related popup)
-/// </summary>
+/// </content>
 public partial class MainWindowViewModel
 {
     private readonly List<IDisposable> runnerObservers = new();

@@ -1,6 +1,7 @@
 namespace ThriveLauncher.Models;
 
 using System;
+using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Layout;
@@ -174,7 +175,7 @@ public class ProgressDisplayer : IDisposable, IObserver<FilePrepareProgress>
         {
             textualProgress!.IsVisible = true;
 
-            var maxValue = progress.FinishedProgress?.ToString() ?? Resources.UnknownNumber;
+            var maxValue = progress.FinishedProgress?.ToString(CultureInfo.CurrentCulture) ?? Resources.UnknownNumber;
 
             textualProgress!.Text = string.Format(Resources.ItemProgressDisplay,
                 progress.CurrentProgress.ToString(), maxValue);

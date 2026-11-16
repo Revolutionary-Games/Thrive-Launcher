@@ -169,7 +169,7 @@ public sealed class ThriveInstaller : IThriveInstaller, IDisposable
         });
 
         // Then by is used here to sort beta versions to be after the full release equivalents
-        sorted = sorted.ThenBy(t => t.VersionName);
+        sorted = sorted.ThenBy(t => t.VersionName, StringComparer.OrdinalIgnoreCase);
 
         return sorted;
     }
