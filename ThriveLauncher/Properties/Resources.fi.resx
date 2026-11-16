@@ -847,4 +847,7 @@ Laukaisijan lokeissa on lisätietoa.</value>
   <data name="CrashReportDeleteInfoEnabled" xml:space="preserve">
     <value>Kaatumistiedosto poistetaan automaattisesti kun raportti on lähetetty onnistuneesti</value>
   </data>
+  <data name="ExitTheLauncher" xml:space="preserve">
+    <value>Poistu laukaisijasta</value>
+  </data>
 </root>
