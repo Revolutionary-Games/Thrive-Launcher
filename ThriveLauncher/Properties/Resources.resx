@@ -205,6 +205,39 @@
   <data name="LaunchOptionDisableMods" xml:space="preserve">
       <value>Disable all Thrive mods on start (try if you have installed mods and Thrive has been updated)</value>
   </data>
+  <data name="GpuSelectionLabel" xml:space="preserve">
+      <value>Graphics card (GPU) used by Thrive:</value>
+  </data>
+  <data name="GpuSelectionExplanation" xml:space="preserve">
+      <value>Use this if Thrive runs slowly because it picked the wrong graphics card (for example, an integrated GPU instead of the dedicated one). Has no effect when OpenGL mode is forced.</value>
+  </data>
+  <data name="GpuSelectionAutomatic" xml:space="preserve">
+      <value>Automatic (let the game choose)</value>
+  </data>
+  <data name="GpuSelectionOpenGlFallback" xml:space="preserve">
+      <value>OpenGL device (Vulkan is not available)</value>
+  </data>
+  <data name="GpuSelectionDeviceFormat" xml:space="preserve">
+      <value>{0} ({1})</value>
+  </data>
+  <data name="GpuSelectionNotDetected" xml:space="preserve">
+      <value>{0} (not currently detected)</value>
+  </data>
+  <data name="GpuTypeDiscrete" xml:space="preserve">
+      <value>dedicated</value>
+  </data>
+  <data name="GpuTypeIntegrated" xml:space="preserve">
+      <value>integrated</value>
+  </data>
+  <data name="GpuTypeVirtual" xml:space="preserve">
+      <value>virtual</value>
+  </data>
+  <data name="GpuTypeCpu" xml:space="preserve">
+      <value>software</value>
+  </data>
+  <data name="GpuTypeOther" xml:space="preserve">
+      <value>other</value>
+  </data>
   <data name="LaunchOptionOverrideAudioLatency" xml:space="preserve">
       <value>Increase game audio latency (can fix audio crackling issues when the latency is set high enough)</value>
   </data>

@@ -88,6 +88,20 @@ public class LauncherSettings
     [JsonPropertyName("forceOpenGLMode")]
     public bool ForceOpenGlMode { get; set; }
 
+    /// <summary>
+    ///   Identifier (see <see cref="GpuDeviceInfo.Identifier"/>) of the GPU the user wants Thrive to use. Null means
+    ///   to let Thrive pick automatically.
+    /// </summary>
+    [JsonPropertyName("preferredGpu")]
+    public string? PreferredGpuIdentifier { get; set; }
+
+    /// <summary>
+    ///   Name of <see cref="PreferredGpuIdentifier"/> for displaying it when the device is not currently detected and
+    ///   to pick the right device when multiple devices share the same identifier
+    /// </summary>
+    [JsonPropertyName("preferredGpuName")]
+    public string? PreferredGpuName { get; set; }
+
     [JsonPropertyName("disableThriveVideos")]
     public bool DisableThriveVideos { get; set; }
 
@@ -167,6 +181,8 @@ public class LauncherSettings
             SelectedDevBuildType = SelectedDevBuildType,
             ManuallySelectedBuildHash = ManuallySelectedBuildHash,
             ForceOpenGlMode = ForceOpenGlMode,
+            PreferredGpuIdentifier = PreferredGpuIdentifier,
+            PreferredGpuName = PreferredGpuName,
             DisableThriveVideos = DisableThriveVideos,
             DisableThriveMods = DisableThriveMods,
             OverrideAudioLatency = OverrideAudioLatency,

@@ -1,8 +1,13 @@
 namespace ThriveLauncher.ViewModels;
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Avalonia.Threading;
 using LauncherBackend.Models;
 using Microsoft.Extensions.Logging;
+using Models;
 using Properties;
 using ReactiveUI;
 
@@ -12,6 +17,11 @@ using ReactiveUI;
 public partial class MainWindowViewModel
 {
     private readonly string languagePlaceHolderIfNotSelected;
+
+    private IReadOnlyList<GpuDeviceInfo>? detectedGpus;
+    private IReadOnlyList<GpuSelectionOption>? availableGpus;
+    private bool gpuDetectionStarted;
+    private bool gpuDropDownOpen;
 
     public bool ShowWebContent
     {
@@ -400,6 +410,61 @@ public partial class MainWindowViewModel
         }
     }
 
+    /// <summary>
+    ///   GPU selection is only possible when the GPU enumeration works on the current platform
+    /// </summary>
+    public bool ShowGpuSelection => gpuDeviceEnumerator.IsSupported;
+
+    public bool GpuDropDownOpen
+    {
+        get => gpuDropDownOpen;
+        set
+        {
+            this.RaiseAndSetIfChanged(ref gpuDropDownOpen, value);
+
+            if (value)
+                StartGpuDetection();
+        }
+    }
+
+    public IReadOnlyList<GpuSelectionOption> AvailableGpus
+    {
+        get => availableGpus ??= BuildGpuOptions();
+        private set => this.RaiseAndSetIfChanged(ref availableGpus, value);
+    }
+
+    public GpuSelectionOption? SelectedGpu
+    {
+        get
+        {
+            var identifier = Settings.PreferredGpuIdentifier;
+
+            if (string.IsNullOrEmpty(identifier))
+                return AvailableGpus.FirstOrDefault(o => o.Identifier == null);
+
+            return AvailableGpus.FirstOrDefault(o => o.Identifier == identifier && o.Name == Settings.PreferredGpuName)
+                ?? AvailableGpus.FirstOrDefault(o => o.Identifier == identifier);
+        }
+        set
+        {
+            // The ComboBox sets the selection to null when its items are replaced, ignore that to not lose the
+            // selected GPU
+            if (value == null)
+                return;
+
+            if (Settings.PreferredGpuIdentifier == value.Identifier && Settings.PreferredGpuName == value.Name)
+                return;
+
+            this.RaisePropertyChanging();
+            Settings.PreferredGpuIdentifier = value.Identifier;
+            Settings.PreferredGpuName = value.Name;
+            this.RaisePropertyChanged();
+
+            logger.LogInformation("Preferred GPU set to: {Identifier} ({Name})", value.Identifier ?? "automatic",
+                value.Name);
+        }
+    }
+
     public bool DisableThriveVideos
     {
         get => Settings.DisableThriveVideos;
@@ -538,6 +603,11 @@ public partial class MainWindowViewModel
     /// <summary>
     ///   Setting-update helper to set the selected version to "devbuild" when related options are enabled
     /// </summary>
+    private static bool IsSelectableGpu(GpuDeviceInfo device)
+    {
+        return device.Type != GpuDeviceType.Cpu;
+    }
+
     private void UpdateSelectedVersionForDevBuild()
     {
         // Change the type of thing to play to devbuild automatically to avoid user errors
@@ -556,5 +626,61 @@ public partial class MainWindowViewModel
             // Remember this change across restarts
             settingsManager.RememberedVersion = devbuildName;
         }
+    }
+
+    /// <summary>
+    ///   Starts detecting the available GPUs in the background (if not done already) to show them in the options
+    /// </summary>
+    private void StartGpuDetection()
+    {
+        if (gpuDetectionStarted || !gpuDeviceEnumerator.IsSupported)
+            return;
+
+        gpuDetectionStarted = true;
+
+        // ReSharper disable once MethodSupportsCancellation
+        backgroundExceptionNoticeDisplayer.HandleTask(Task.Run(() =>
+        {
+            var devices = gpuDeviceEnumerator.EnumerateDevices();
+
+            Dispatcher.UIThread.Post(() =>
+            {
+                detectedGpus = devices;
+                RefreshGpuOptions();
+            });
+        }));
+    }
+
+    private void RefreshGpuOptions()
+    {
+        AvailableGpus = BuildGpuOptions();
+        this.RaisePropertyChanged(nameof(SelectedGpu));
+    }
+
+    private List<GpuSelectionOption> BuildGpuOptions()
+    {
+        // Software renderers (like llvmpipe) are never a sensible choice, so they aren't shown
+        var selectableDevices = detectedGpus?.Where(IsSelectableGpu).ToList();
+
+        // When detection has run and found no usable Vulkan devices, Thrive falls back to OpenGL (where the GPU
+        // can't be selected) so the automatic option is shown as that instead of the picker looking broken
+        var options = new List<GpuSelectionOption>
+        {
+            selectableDevices is { Count: 0 } ? GpuSelectionOption.OpenGlFallback : GpuSelectionOption.Automatic,
+        };
+
+        if (selectableDevices != null)
+            options.AddRange(selectableDevices.Select(GpuSelectionOption.FromDevice));
+
+        // Keep the user's selection visible even if the device is not (yet) detected
+        var selectedIdentifier = Settings.PreferredGpuIdentifier;
+        if (!string.IsNullOrEmpty(selectedIdentifier) && options.All(o => o.Identifier != selectedIdentifier))
+        {
+            options.Add(detectedGpus == null ?
+                GpuSelectionOption.FromSavedDevice(selectedIdentifier, Settings.PreferredGpuName) :
+                GpuSelectionOption.FromMissingDevice(selectedIdentifier, Settings.PreferredGpuName));
+        }
+
+        return options;
     }
 }
