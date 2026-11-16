@@ -582,9 +582,8 @@ public class ThriveRunner : IThriveRunner
             logger.LogWarning(
                 "Selected GPU {Name} ({Identifier}) was not found, letting Thrive pick the GPU automatically",
                 settings.PreferredGpuName, settings.PreferredGpuIdentifier);
-            OnNormalOutput(
-                $"Selected GPU {settings.PreferredGpuName} ({settings.PreferredGpuIdentifier}) not found, " +
-                "using automatic GPU selection");
+            OnNormalOutput($"Selected GPU {settings.PreferredGpuName} ({settings.PreferredGpuIdentifier})" +
+                $"not found, using automatic GPU selection");
             return;
         }
 
