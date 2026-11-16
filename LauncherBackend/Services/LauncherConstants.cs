@@ -116,11 +116,11 @@ public static class LauncherConstants
     public static readonly List<string> SigningManifestResourceNames = new(Mode switch
     {
         // ReSharper disable HeuristicUnreachableCode
-        LauncherMode.Staging => new List<string> { "staging_1.cert", "staging_2.cert" },
+        LauncherMode.Staging => new List<string> { "staging_2.cert", "staging_3.cert" },
         LauncherMode.LocalTesting => new List<string>(),
 
         // ReSharper restore HeuristicUnreachableCode
-        _ => new List<string> { "production_1.cert", "production_2.cert" },
+        _ => new List<string> { "production_2.cert", "production_3.cert" },
     });
 
     public static readonly Uri DevForumFeedURL = new("https://thrivefeeds.b-cdn.net/posts.rss");
