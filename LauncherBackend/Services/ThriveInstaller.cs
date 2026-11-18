@@ -203,6 +203,29 @@ public sealed class ThriveInstaller : IThriveInstaller, IDisposable
             thriveFolders.Add(fullPath);
         }
 
+        var loadedInfo = infoRetriever.CurrentlyLoadedInfo;
+        if (loadedInfo?.Versions != null)
+        {
+            var settings = settingsManager.Settings;
+
+            foreach (var version in loadedInfo.Versions)
+            {
+                var allPlatformsForVersion = version.Platforms.Keys.ToList();
+
+                foreach (var versionPlatform in version.Platforms)
+                {
+                    if (!settings.ShouldShowVersionWithPlatform(versionPlatform.Key,
+                            allPlatformsForVersion))
+                    {
+                        continue;
+                    }
+
+                    var fullPath = Path.GetFullPath(Path.Join(installFolder, versionPlatform.Value.LocalFileName));
+                    thriveFolders.Add(fullPath);
+                }
+            }
+        }
+
         foreach (var directory in Directory.EnumerateDirectories(installFolder))
         {
             var full = Path.GetFullPath(directory);
