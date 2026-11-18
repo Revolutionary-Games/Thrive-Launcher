@@ -1,22 +1,26 @@
-  7-Zip for Linux and macOS
-  ~~~~~~~~~~~~~~~~~~~~~~~~~
+  7-Zip Extra
+  ~~~~~~~~~~~
   License for use and distribution
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  7-Zip Copyright (C) 1999-2024 Igor Pavlov.
+  Copyright (C) 1999-2026 Igor Pavlov.
 
-  The licenses for 7zz and 7zzs files are:
+  The licenses for files are:
 
+    - 7za.exe:
          - The "GNU LGPL" as main license for most of the code
-         - The "GNU LGPL" with "unRAR license restriction" for some code
          - The "BSD 3-clause License" for some code
          - The "BSD 2-clause License" for some code
+    - All other files: the "GNU LGPL".
 
   Redistributions in binary form must reproduce related license information from this file.
 
-  Note:
-    You can use 7-Zip on any computer, including a computer in a commercial
-    organization. You don't need to register or pay for 7-Zip.
+  Note: 
+        You can use 7-Zip Extra on any computer, including a computer in a commercial 
+        organization. You don't need to register or pay for 7-Zip.
+
+  It is allowed to digitally sign DLL and EXE files included into this package
+  with arbitrary signatures of third parties.
 
 
 GNU LGPL information
@@ -37,22 +41,17 @@ GNU LGPL information
 
 
 
-
 BSD 3-clause License in 7-Zip code
 ----------------------------------
 
-  The "BSD 3-clause License" is used for the following code in 7z.dll
-    1) LZFSE data decompression.
-       That code was derived from the code in the "LZFSE compression library" developed by Apple Inc,
-       that also uses the "BSD 3-clause License".
-    2) ZSTD data decompression.
+  The "BSD 3-clause License" is used for the following code in 7za.exe
+    -  ZSTD data decompression.
        that code was developed using original zstd decoder code as reference code.
        The original zstd decoder code was developed by Facebook Inc,
        that also uses the "BSD 3-clause License".
 
-  Copyright (c) 2015-2016, Apple Inc. All rights reserved.
   Copyright (c) Facebook, Inc. All rights reserved.
-  Copyright (c) 2023-2024 Igor Pavlov.
+  Copyright (c) 2023-2025 Igor Pavlov.
 
 Text of the "BSD 3-clause License"
 ----------------------------------
@@ -90,12 +89,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 BSD 2-clause License in 7-Zip code
 ----------------------------------
 
-  The "BSD 2-clause License" is used for the XXH64 code in 7-Zip.
+  The "BSD 2-clause License" is used for the XXH64 code in 7za.exe.
 
   XXH64 code in 7-Zip was derived from the original XXH64 code developed by Yann Collet.
 
   Copyright (c) 2012-2021 Yann Collet.
-  Copyright (c) 2023-2024 Igor Pavlov.
+  Copyright (c) 2023-2025 Igor Pavlov.
 
 Text of the "BSD 2-clause License"
 ----------------------------------
@@ -122,23 +121,3 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ---
-
-
-
-
-unRAR license restriction
--------------------------
-
-The decompression engine for RAR archives was developed using source
-code of unRAR program.
-All copyrights to original unRAR code are owned by Alexander Roshal.
-
-The license for original unRAR code has the following restriction:
-
-  The unRAR sources cannot be used to re-create the RAR compression algorithm,
-  which is proprietary. Distribution of modified unRAR sources in separate form
-  or as a part of other software is permitted, provided that it is clearly
-  stated in the documentation and source comments that the code may
-  not be used to develop a RAR (WinRAR) compatible archiver.
-
---
