@@ -129,6 +129,7 @@ public class ThriveRunner : IThriveRunner
     {
         JoinRunnerThreadIfExists();
 
+        ClearExistingCrashDumps();
         ClearOutput();
         startCounter = 0;
 
@@ -373,6 +374,31 @@ public class ThriveRunner : IThriveRunner
 
         // could not find libgcc
         return null;
+    }
+
+    private void ClearExistingCrashDumps()
+    {
+        try
+        {
+            foreach (var crash in GetAvailableCrashesToReport())
+            {
+                if (crash is not ReportableCrashDump crashDump)
+                    continue;
+
+                try
+                {
+                    File.Delete(crashDump.File);
+                }
+                catch (Exception e)
+                {
+                    logger.LogWarning(e, "Couldn't delete old Thrive crash dump: {CrashDump}", crashDump.File);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            logger.LogWarning(e, "Couldn't enumerate old Thrive crash dumps");
+        }
     }
 
     private void JoinRunnerThreadIfExists()
