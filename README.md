@@ -156,3 +156,9 @@ When updating the copyright year it needs to be updated in
 Currently, version 10 is used. If updated the installer files in
 `DependencyInstallers` need to be updated and `PackageTool` as well as
 `Scripts/launcher.nsi.template` need to be updated to refer to the new version.
+
+### Updating 7-zip
+
+To update 7-zip download the 7-zip releases and extra files from GitHub. Then rename the Mac files to match the new names and for Windows version keep just the `7za.exe` and needed DLL files. Then replace existing files.
+
+One thing to note is that `7za.exe` needs to be manually patched so that it is a GUI subsystem executable so that it doesn't flash a command prompt on screen when unzipping things.
