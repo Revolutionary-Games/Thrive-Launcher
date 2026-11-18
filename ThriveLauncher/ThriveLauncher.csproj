@@ -79,13 +79,17 @@
     </ContentWithTargetPath>
   </ItemGroup>
   <ItemGroup Condition="$(RuntimeIdentifier.StartsWith('linux'))">
-    <ContentWithTargetPath Include="..\tools\7zip\7zz">
+    <ContentWithTargetPath Include="..\tools\7zip\7zzs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>tools\7zip\%(Filename)%(Extension)</TargetPath>
     </ContentWithTargetPath>
   </ItemGroup>
   <ItemGroup Condition="$(RuntimeIdentifier.StartsWith('osx'))">
-    <ContentWithTargetPath Include="..\tools\7zip\7zz_mac">
+    <ContentWithTargetPath Include="..\tools\7zip\7zz_mac_arm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>tools\7zip\%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="..\tools\7zip\7zz_mac_x64">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>tools\7zip\%(Filename)%(Extension)</TargetPath>
     </ContentWithTargetPath>

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using GodotPckTool;
@@ -14,6 +15,7 @@ using SharedBase.Utilities;
 
 public class ExternalTools : IExternalTools
 {
+    private const string Linux7ZipExecutableName = "7zzs";
     private const string Unix7ZipExecutableName = "7zz";
 
     private static readonly string[] Windows7ZipSystemPaths =
@@ -94,7 +96,7 @@ public class ExternalTools : IExternalTools
 
         if (OperatingSystem.IsLinux())
         {
-            executableName = Unix7ZipExecutableName;
+            executableName = Linux7ZipExecutableName;
         }
         else if (OperatingSystem.IsWindows())
         {
@@ -102,7 +104,15 @@ public class ExternalTools : IExternalTools
         }
         else if (OperatingSystem.IsMacOS())
         {
-            executableName = "7zz_mac";
+            executableName = RuntimeInformation.ProcessArchitecture switch
+            {
+                Architecture.Arm64 => "7zz_mac_arm",
+                Architecture.X64 => "7zz_mac_x64",
+                _ => throw new NotSupportedException(
+                    $"7-zip is not configured for macOS architecture {RuntimeInformation.ProcessArchitecture}"),
+
+                // Probably can just assume ARM here if detection failed
+            };
         }
         else
         {
@@ -111,17 +121,21 @@ public class ExternalTools : IExternalTools
 
         if (settings.Settings.PreferSystemTools)
         {
-            var fromPath = ExecutableFinder.Which(executableName);
+            string? fromPath;
 
-            if (string.IsNullOrEmpty(fromPath) && OperatingSystem.IsMacOS())
+            if (OperatingSystem.IsWindows())
+            {
+                fromPath = ExecutableFinder.Which(executableName);
+            }
+            else
             {
                 fromPath = ExecutableFinder.Which(Unix7ZipExecutableName);
-            }
 
-            if (string.IsNullOrEmpty(fromPath) && !OperatingSystem.IsWindows())
-            {
-                // Fallback to the old name of the tool (p7zip)
-                fromPath = ExecutableFinder.Which("7za");
+                if (string.IsNullOrEmpty(fromPath))
+                {
+                    // Fallback to the old name of the tool (p7zip)
+                    fromPath = ExecutableFinder.Which("7za");
+                }
             }
 
             if (!string.IsNullOrEmpty(fromPath) && File.Exists(fromPath))
