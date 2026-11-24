@@ -314,12 +314,10 @@ internal class Program
             }
         }
 
-        var lifetime = (ClassicDesktopStyleApplicationLifetime?)applicationInstance.ApplicationLifetime;
-
-        if (lifetime == null)
+        if (applicationInstance.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime lifetime)
         {
-            programLogger.LogError("Lifetime not found, can't detect when this should shutdown");
-            throw new Exception("Lifetime not created");
+            programLogger.LogError("Desktop application lifetime unavailable, can't detect when this should shutdown");
+            throw new InvalidOperationException("Expected a classic desktop application lifetime");
         }
 
         // Mac activation / background operation when no windows are open
