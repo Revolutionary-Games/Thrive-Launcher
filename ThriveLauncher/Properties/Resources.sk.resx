@@ -268,4 +268,49 @@
   <data name="TemporaryFolderNoFilesMoveNotice" xml:space="preserve">
     <value>Poznámka: premiestniť dočasnú lokáciu nepremiestni alebo nevymaže existujúce súbory, aby predišlo omylom sa dotýkať súborov čo nemajú nič spoločne so Thrive</value>
   </data>
+  <data name="GpuSelectionLabel" xml:space="preserve">
+    <value>Grafická karta (GPU) používaná Thrive:</value>
+  </data>
+  <data name="GpuSelectionExplanation" xml:space="preserve">
+    <value>Použite toto ak Thrive behá pomaly lebo vybralo zlú grafickú kartu (napríklad, integrovaná GPU namiesto dedikovanej). Nemá žiadny efekt ak OpenGL mód je donútený.</value>
+  </data>
+  <data name="GpuSelectionAutomatic" xml:space="preserve">
+    <value>Automaticky (nechaj si hru vybrať)</value>
+  </data>
+  <data name="GpuSelectionOpenGlFallback" xml:space="preserve">
+    <value>OpenGL zariadenie (Vulkan není dostupný)</value>
+  </data>
+  <data name="GpuSelectionDeviceFormat" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
+  <data name="GpuSelectionNotDetected" xml:space="preserve">
+    <value>{0} (není momentálne detekované)</value>
+  </data>
+  <data name="GpuTypeDiscrete" xml:space="preserve">
+    <value>dedikovaná</value>
+  </data>
+  <data name="GpuTypeIntegrated" xml:space="preserve">
+    <value>integrovaná</value>
+  </data>
+  <data name="GpuTypeVirtual" xml:space="preserve">
+    <value>virtuálne</value>
+  </data>
+  <data name="GpuTypeCpu" xml:space="preserve">
+    <value>softwer</value>
+  </data>
+  <data name="GpuTypeOther" xml:space="preserve">
+    <value>iné</value>
+  </data>
+  <data name="TemporaryFolderAutoClearNotice" xml:space="preserve">
+    <value>Všetky staré súbory budú automaticky vymazané zo dočasného priečinku na reštarte spúšťača. V dôsledku toho by priečinok s dočasnými súbormi nemal byť zdieľaný na iné účely než pre Thrive, aby sa predišlo omylnému odstráneniu nesúvisiacich súborov.</value>
+  </data>
+  <data name="SelectTemporaryFilesLocation" xml:space="preserve">
+    <value>Vybrať lokáciu dočasných súboroch</value>
+  </data>
+  <data name="ResetTemporaryLocation" xml:space="preserve">
+    <value>Resetovať lokáciu dočasných súboroch</value>
+  </data>
+  <data name="ClearTemporaryLocation" xml:space="preserve">
+    <value>Vymazať VŠETKY súbory vo dočasnom priečinku. Môže vymazať aj non-Thrive súbory ak existujú!</value>
+  </data>
 </root>
