@@ -698,4 +698,40 @@ V log záznamech Launcheru bude uvedeno více informací.</value>
   <data name="LauncherVersionUpdateDescription" xml:space="preserve">
     <value>Aktualizování launcheru na verzi {0} (současná verze: {1})</value>
   </data>
+  <data name="GpuSelectionLabel" xml:space="preserve">
+    <value>Grafická karta (GPU) používaný pro Thrive:</value>
+  </data>
+  <data name="GpuSelectionAutomatic" xml:space="preserve">
+    <value>Automatický (nechat hru vybrat)</value>
+  </data>
+  <data name="GpuSelectionOpenGlFallback" xml:space="preserve">
+    <value>OpenGL zařízení(Vulkan není dostupné)</value>
+  </data>
+  <data name="GpuSelectionDeviceFormat" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
+  <data name="GpuSelectionNotDetected" xml:space="preserve">
+    <value>{0} (momentálně nenalezeno)</value>
+  </data>
+  <data name="GpuTypeDiscrete" xml:space="preserve">
+    <value>dedikováný</value>
+  </data>
+  <data name="GpuTypeIntegrated" xml:space="preserve">
+    <value>integrovaný</value>
+  </data>
+  <data name="GpuTypeVirtual" xml:space="preserve">
+    <value>virtuální</value>
+  </data>
+  <data name="GpuTypeCpu" xml:space="preserve">
+    <value>software</value>
+  </data>
+  <data name="GpuTypeOther" xml:space="preserve">
+    <value>jiné</value>
+  </data>
+  <data name="PaginationNext" xml:space="preserve">
+    <value>Další</value>
+  </data>
+  <data name="PaginationPrevious" xml:space="preserve">
+    <value>Minulý</value>
+  </data>
 </root>
