@@ -1,0 +1,65 @@
+name: Bug report
+description: Create a report to help us improve the launcher
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **IMPORTANT**
+        Please note that you should only report bugs in the **launcher** here. If the launcher has successfully downloaded the game and started it, all problems after that, before the game is closed, are actually problems in the game itself. Those need to be reported to: https://github.com/Revolutionary-Games/Thrive/issues
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      placeholder: A clear and concise description of what the bug is.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: To Reproduce
+      description: Steps to reproduce the behaviour.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      placeholder: A clear and concise description of what you expected to happen.
+    validations:
+      required: false
+
+  - type: upload
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain your problem.
+    validations:
+      required: false
+
+  - type: textarea
+    id: system-info
+    attributes:
+      label: System information
+      description: Please specify the OS version and the launcher version.
+      placeholder: |
+        - OS: Windows 10
+        - Thrive Launcher: 2.4.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.
+    validations:
+      required: false
